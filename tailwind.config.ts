@@ -10,15 +10,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#0B0C0E",
-        surface: "#15171B",
+        background: "#FFFFFF",
+        surface: "rgba(11, 12, 14, 0.05)",
         accent: {
           DEFAULT: "#FF4538",
           light: "#FF6B58",
         },
         border: {
-          subtle: "rgba(255, 255, 255, 0.08)",
-          active: "rgba(255, 255, 255, 0.15)",
+          subtle: "rgba(11, 12, 14, 0.1)",
+          active: "rgba(11, 12, 14, 0.2)",
         },
       },
       fontFamily: {
@@ -33,7 +33,7 @@ const config: Config = {
         xs: "2px",
       },
       boxShadow: {
-        'inner-glow': 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05)',
+        'inner-glow': 'inset 0 1px 0 0 rgba(11, 12, 14, 0.05)',
       },
     },
   },

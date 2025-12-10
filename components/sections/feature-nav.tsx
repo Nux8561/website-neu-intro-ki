@@ -17,7 +17,7 @@ interface FeatureNavProps {
 
 export function FeatureNav({ activeFeature, onFeatureChange }: FeatureNavProps) {
   return (
-    <div className="border-b border-[#0B0C0E]/10 bg-white relative">
+    <div className="sticky top-16 z-40 border-b border-[#0B0C0E]/10 bg-white/95 backdrop-blur-xl relative">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-8 overflow-x-auto hide-scrollbar">
           {features.map((feature) => {

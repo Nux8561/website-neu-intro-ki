@@ -10,10 +10,9 @@ import {
   MoreHorizontal,
   Search,
   Filter,
-  Download,
-  Upload,
   Settings,
   ChevronDown,
+  Loader2,
 } from "lucide-react"
 import {
   Tooltip,
@@ -26,78 +25,212 @@ interface Company {
   id: string
   name: string
   domains: string[]
-  associatedDeals: number
-  icpFit: "Excellent" | "Medium" | "Good" | "Poor"
-  arr?: number
-  connectionStrength?: number
+  associatedDeals: string
+  icpFit: "Excellent" | "Medium" | "Good" | "Low"
+  estimatedARR?: string
+  connectionStrength: "Very strong" | "Strong" | "Weak" | "Good"
+  aiThinking?: {
+    icpFit?: boolean
+    arr?: boolean
+  }
 }
 
-const mockCompanies: Company[] = [
+// Exakte Attio-Daten
+const attioCompanies: Company[] = [
   {
     id: "1",
     name: "Vercel",
     domains: ["vercel.com"],
-    associatedDeals: 3,
+    associatedDeals: "Vercel - Expansion",
     icpFit: "Excellent",
-    arr: 50000,
-    connectionStrength: 95,
+    estimatedARR: "$100M-$250M",
+    connectionStrength: "Very strong",
+    aiThinking: { icpFit: false, arr: false },
   },
   {
     id: "2",
     name: "DigitalOcean",
     domains: ["digitalocean.com"],
-    associatedDeals: 2,
+    associatedDeals: "DigitalOcean",
     icpFit: "Medium",
-    arr: 30000,
-    connectionStrength: 72,
+    estimatedARR: "$500M-$1B",
+    connectionStrength: "Strong",
+    aiThinking: { icpFit: true, arr: true },
   },
   {
     id: "3",
     name: "GitHub",
     domains: ["github.com"],
-    associatedDeals: 5,
+    associatedDeals: "GitHub - x20 Enterprise",
     icpFit: "Good",
-    arr: 75000,
-    connectionStrength: 88,
+    estimatedARR: "$1B-$10B",
+    connectionStrength: "Very strong",
+    aiThinking: { icpFit: true, arr: true },
   },
   {
     id: "4",
     name: "Stripe",
     domains: ["stripe.com"],
-    associatedDeals: 1,
-    icpFit: "Excellent",
-    arr: 100000,
-    connectionStrength: 92,
+    associatedDeals: "Stripe",
+    icpFit: "Good",
+    estimatedARR: "$1B-$10B",
+    connectionStrength: "Very strong",
+    aiThinking: { icpFit: true, arr: true },
   },
   {
     id: "5",
-    name: "Linear",
-    domains: ["linear.app"],
-    associatedDeals: 4,
+    name: "Figma",
+    domains: ["figma.com"],
+    associatedDeals: "Figma",
     icpFit: "Good",
-    arr: 45000,
-    connectionStrength: 85,
+    estimatedARR: "$500M-$1B",
+    connectionStrength: "Very strong",
+    aiThinking: { icpFit: true, arr: true },
+  },
+  {
+    id: "6",
+    name: "Intercom",
+    domains: ["intercom.com"],
+    associatedDeals: "Intercom - Automations",
+    icpFit: "Medium",
+    estimatedARR: "$250M-$500M",
+    connectionStrength: "Very strong",
+    aiThinking: { icpFit: true, arr: true },
+  },
+  {
+    id: "7",
+    name: "Segment",
+    domains: ["segment.com"],
+    associatedDeals: "Segment - x30 Pro",
+    icpFit: "Good",
+    estimatedARR: "$250M-$500M",
+    connectionStrength: "Strong",
+    aiThinking: { icpFit: true, arr: true },
+  },
+  {
+    id: "8",
+    name: "Notion",
+    domains: ["notion.so"],
+    associatedDeals: "Notion - Exec, Notion - GTM",
+    icpFit: "Medium",
+    estimatedARR: "$100M-$250M",
+    connectionStrength: "Strong",
+    aiThinking: { icpFit: true, arr: true },
+  },
+  {
+    id: "9",
+    name: "Slack",
+    domains: ["slack.com"],
+    associatedDeals: "Slack - Expansion",
+    icpFit: "Low",
+    estimatedARR: "$1B-$10B",
+    connectionStrength: "Weak",
+    aiThinking: { icpFit: true, arr: true },
+  },
+  {
+    id: "10",
+    name: "Loom",
+    domains: ["loom.com"],
+    associatedDeals: "Loom",
+    icpFit: "Medium",
+    estimatedARR: "$50M-$100M",
+    connectionStrength: "Good",
+    aiThinking: { icpFit: true, arr: true },
+  },
+  {
+    id: "11",
+    name: "Retool",
+    domains: ["retool.com"],
+    associatedDeals: "Retool",
+    icpFit: "Excellent",
+    estimatedARR: "$50M-$100M",
+    connectionStrength: "Good",
+    aiThinking: { icpFit: true, arr: true },
+  },
+  {
+    id: "12",
+    name: "Customer.io",
+    domains: ["customer.io"],
+    associatedDeals: "Customer.io - x10 Plus",
+    icpFit: "Excellent",
+    estimatedARR: "$10-$50M",
+    connectionStrength: "Strong",
+    aiThinking: { icpFit: true, arr: true },
+  },
+  {
+    id: "13",
+    name: "Snowflake",
+    domains: ["snowflake.com"],
+    associatedDeals: "Snowflake - Expansion",
+    icpFit: "Low",
+    estimatedARR: "$1B-$10B",
+    connectionStrength: "Strong",
+    aiThinking: { icpFit: true, arr: true },
   },
 ]
 
 const getICPBadgeColor = (fit: Company["icpFit"]) => {
   switch (fit) {
     case "Excellent":
-      return "bg-purple-500/20 text-purple-400 border-purple-500/30"
+      return "bg-purple-500/20 text-purple-600 border-purple-500/30"
     case "Good":
-      return "bg-green-500/20 text-green-400 border-green-500/30"
+      return "bg-green-500/20 text-green-600 border-green-500/30"
     case "Medium":
-      return "bg-blue-500/20 text-blue-400 border-blue-500/30"
-    case "Poor":
-      return "bg-orange-500/20 text-orange-400 border-orange-500/30"
+      return "bg-blue-500/20 text-blue-600 border-blue-500/30"
+    case "Low":
+      return "bg-orange-500/20 text-orange-600 border-orange-500/30"
+  }
+}
+
+const getConnectionStrengthColor = (strength: Company["connectionStrength"]) => {
+  switch (strength) {
+    case "Very strong":
+      return "bg-green-500"
+    case "Strong":
+      return "bg-blue-500"
+    case "Good":
+      return "bg-yellow-500"
+    case "Weak":
+      return "bg-gray-400"
   }
 }
 
 export function CompaniesTable() {
-  const [companies, setCompanies] = React.useState<Company[]>(mockCompanies)
+  const [companies, setCompanies] = React.useState<Company[]>(attioCompanies)
   const [selected, setSelected] = React.useState<Set<string>>(new Set())
-  const [sortField, setSortField] = React.useState<string | null>(null)
-  const [sortDirection, setSortDirection] = React.useState<"asc" | "desc">("asc")
+
+  // Simulate AI thinking completion after delay
+  React.useEffect(() => {
+    const timers: NodeJS.Timeout[] = []
+    
+    companies.forEach((company, index) => {
+      if (company.aiThinking?.icpFit) {
+        const timer = setTimeout(() => {
+          setCompanies(prev => prev.map(c => 
+            c.id === company.id 
+              ? { ...c, aiThinking: { ...c.aiThinking, icpFit: false } }
+              : c
+          ))
+        }, 2000 + index * 200)
+        timers.push(timer)
+      }
+      
+      if (company.aiThinking?.arr) {
+        const timer = setTimeout(() => {
+          setCompanies(prev => prev.map(c => 
+            c.id === company.id 
+              ? { ...c, aiThinking: { ...c.aiThinking, arr: false } }
+              : c
+          ))
+        }, 2500 + index * 200)
+        timers.push(timer)
+      }
+    })
+
+    return () => {
+      timers.forEach(timer => clearTimeout(timer))
+    }
+  }, [])
 
   const toggleSelect = (id: string) => {
     const newSelected = new Set(selected)
@@ -117,70 +250,76 @@ export function CompaniesTable() {
     }
   }
 
-  const handleSort = (field: string) => {
-    if (sortField === field) {
-      setSortDirection(sortDirection === "asc" ? "desc" : "asc")
-    } else {
-      setSortField(field)
-      setSortDirection("asc")
-    }
-  }
-
   return (
     <div className="w-full space-y-4">
-      {/* Table Header with Controls */}
+      {/* Table Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <h2 className="text-2xl font-jakarta font-medium tracking-tight text-[#0B0C0E]">
-            Companies
-          </h2>
+          <div>
+            <h2 className="text-2xl font-jakarta font-medium tracking-tight text-[#0B0C0E]">
+              Companies
+            </h2>
+            <p className="text-sm text-[#0B0C0E]/50 font-inter mt-1">
+              +1
+            </p>
+          </div>
           <div className="flex items-center gap-2">
-            <button className="p-2 rounded-lg border border-[#0B0C0E]/10 bg-[#0B0C0E]/5 hover:bg-[#0B0C0E]/10 hover:border-[#0B0C0E]/20 transition-all">
+            <button 
+              className="p-2 rounded-lg border border-[#0B0C0E]/10 bg-[#0B0C0E]/5 hover:bg-[#0B0C0E]/10 hover:border-[#0B0C0E]/20 transition-all"
+              aria-label="Search companies"
+            >
               <Search className="h-4 w-4 text-[#0B0C0E]/70" />
             </button>
-            <button className="p-2 rounded-lg border border-[#0B0C0E]/10 bg-[#0B0C0E]/5 hover:bg-[#0B0C0E]/10 hover:border-[#0B0C0E]/20 transition-all">
+            <button 
+              className="p-2 rounded-lg border border-[#0B0C0E]/10 bg-[#0B0C0E]/5 hover:bg-[#0B0C0E]/10 hover:border-[#0B0C0E]/20 transition-all"
+              aria-label="Filter companies"
+            >
               <Filter className="h-4 w-4 text-[#0B0C0E]/70" />
             </button>
           </div>
         </div>
         <div className="flex items-center gap-2">
-            <Button
-              variant="outline"
-              size="sm"
-              className="border-[#0B0C0E]/10 bg-[#0B0C0E]/5 text-[#0B0C0E]/70 hover:text-[#0B0C0E] hover:bg-[#0B0C0E]/10"
-            >
-              <Settings className="h-4 w-4 mr-2" />
-              View settings
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              className="border-[#0B0C0E]/10 bg-[#0B0C0E]/5 text-[#0B0C0E]/70 hover:text-[#0B0C0E] hover:bg-[#0B0C0E]/10"
-            >
-              <ChevronDown className="h-4 w-4 mr-2" />
-              Import / Export
-            </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            className="border-[#0B0C0E]/10 bg-[#0B0C0E]/5 text-[#0B0C0E]/70 hover:text-[#0B0C0E] hover:bg-[#0B0C0E]/10 rounded-full"
+          >
+            <Settings className="h-4 w-4 mr-2" />
+            View settings
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            className="border-[#0B0C0E]/10 bg-[#0B0C0E]/5 text-[#0B0C0E]/70 hover:text-[#0B0C0E] hover:bg-[#0B0C0E]/10 rounded-full"
+          >
+            <ChevronDown className="h-4 w-4 mr-2" />
+            Import / Export
+          </Button>
         </div>
       </div>
 
       {/* Sort Bar */}
       <div className="flex items-center gap-4 text-sm text-[#0B0C0E]/50 font-inter">
         <span>Sorted by</span>
-        <button
-          onClick={() => handleSort("name")}
+        <button 
           className="text-[#0B0C0E]/70 hover:text-[#0B0C0E] transition-colors flex items-center gap-1"
+          aria-label="Sort by last email interaction"
         >
           Last email interaction
           <ArrowUpDown className="h-3 w-3" />
         </button>
-        <button className="text-[#0B0C0E]/50 hover:text-[#0B0C0E]/70 transition-colors flex items-center gap-1">
+        <button 
+          className="text-[#0B0C0E]/50 hover:text-[#0B0C0E]/70 transition-colors flex items-center gap-1"
+          aria-label="Advanced filter"
+        >
           <Filter className="h-3 w-3" />
-          Advanced filter 3 +
+          Advanced filter 3
         </button>
+        <span className="text-[#0B0C0E]/30">1,439 count</span>
       </div>
 
       {/* Table */}
-      <div className="border border-[#0B0C0E]/10 rounded-lg overflow-hidden bg-white">
+      <div className="border border-[#0B0C0E]/10 rounded-xl overflow-hidden bg-white">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
@@ -191,14 +330,8 @@ export function CompaniesTable() {
                     onCheckedChange={toggleSelectAll}
                   />
                 </th>
-                <th
-                  className="px-4 py-3 text-left text-sm font-inter text-[#0B0C0E]/70 cursor-pointer hover:text-[#0B0C0E] group"
-                  onClick={() => handleSort("name")}
-                >
-                  <div className="flex items-center gap-2">
-                    <span>Company</span>
-                    <ArrowUpDown className="h-4 w-4 opacity-50 group-hover:opacity-100 transition-opacity" />
-                  </div>
+                <th className="px-4 py-3 text-left text-sm font-inter text-[#0B0C0E]/70">
+                  Company
                 </th>
                 <th className="px-4 py-3 text-left text-sm font-inter text-[#0B0C0E]/70">
                   Domains
@@ -211,6 +344,12 @@ export function CompaniesTable() {
                 </th>
                 <th className="px-4 py-3 text-left text-sm font-inter text-[#0B0C0E]/70">
                   AI
+                </th>
+                <th className="px-4 py-3 text-left text-sm font-inter text-[#0B0C0E]/70">
+                  Estimated ARR
+                </th>
+                <th className="px-4 py-3 text-left text-sm font-inter text-[#0B0C0E]/70">
+                  Connection strength
                 </th>
                 <th className="px-4 py-3 text-left text-sm font-inter text-[#0B0C0E]/70">
                   Actions
@@ -226,7 +365,7 @@ export function CompaniesTable() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{
-                      delay: index * 0.05,
+                      delay: index * 0.03,
                       type: "spring",
                       stiffness: 400,
                       damping: 17,
@@ -259,7 +398,7 @@ export function CompaniesTable() {
                             href={`https://${domain}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-blue-400 hover:text-blue-300 text-sm font-inter transition-colors"
+                            className="text-blue-600 hover:text-blue-700 text-sm font-inter transition-colors"
                           >
                             {domain}
                           </a>
@@ -272,12 +411,19 @@ export function CompaniesTable() {
                       </span>
                     </td>
                     <td className="px-4 py-3">
-                      <Badge
-                        variant="outline"
-                        className={`${getICPBadgeColor(company.icpFit)} border text-xs`}
-                      >
-                        {company.icpFit}
-                      </Badge>
+                      {company.aiThinking?.icpFit ? (
+                        <div className="flex items-center gap-2 text-sm text-[#0B0C0E]/50">
+                          <Loader2 className="h-3 w-3 animate-spin" />
+                          <span className="font-inter">AI is thinking...</span>
+                        </div>
+                      ) : (
+                        <Badge
+                          variant="outline"
+                          className={`${getICPBadgeColor(company.icpFit)} border text-xs`}
+                        >
+                          {company.icpFit}
+                        </Badge>
+                      )}
                     </td>
                     <td className="px-4 py-3">
                       <TooltipProvider>
@@ -286,9 +432,9 @@ export function CompaniesTable() {
                             <div className="flex items-center gap-2">
                               <div className="w-16 h-2 rounded-full bg-[#0B0C0E]/10 overflow-hidden">
                                 <motion.div
-                                  className="h-full bg-gradient-to-r from-blue-500 to-purple-500"
+                                  className={`h-full ${getConnectionStrengthColor(company.connectionStrength)}`}
                                   initial={{ width: 0 }}
-                                  animate={{ width: `${company.connectionStrength || 0}%` }}
+                                  animate={{ width: "100%" }}
                                   transition={{
                                     delay: index * 0.1,
                                     type: "spring",
@@ -297,9 +443,6 @@ export function CompaniesTable() {
                                   }}
                                 />
                               </div>
-                              <span className="text-[#0B0C0E]/50 text-xs">
-                                {company.connectionStrength}%
-                              </span>
                             </div>
                           </TooltipTrigger>
                           <TooltipContent className="bg-white border-[#0B0C0E]/10 text-[#0B0C0E]">
@@ -309,7 +452,27 @@ export function CompaniesTable() {
                       </TooltipProvider>
                     </td>
                     <td className="px-4 py-3">
-                      <button className="p-2 rounded-lg border border-[#0B0C0E]/10 bg-[#0B0C0E]/5 hover:bg-[#0B0C0E]/10 hover:border-[#0B0C0E]/20 transition-all opacity-0 group-hover:opacity-100">
+                      {company.aiThinking?.arr ? (
+                        <div className="flex items-center gap-2 text-sm text-[#0B0C0E]/50">
+                          <Loader2 className="h-3 w-3 animate-spin" />
+                          <span className="font-inter">AI is thinking...</span>
+                        </div>
+                      ) : (
+                        <span className="text-[#0B0C0E]/70 font-inter text-sm">
+                          {company.estimatedARR}
+                        </span>
+                      )}
+                    </td>
+                    <td className="px-4 py-3">
+                      <span className="text-[#0B0C0E]/70 font-inter text-sm capitalize">
+                        {company.connectionStrength}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3">
+                      <button 
+                        className="p-2 rounded-lg border border-[#0B0C0E]/10 bg-[#0B0C0E]/5 hover:bg-[#0B0C0E]/10 hover:border-[#0B0C0E]/20 transition-all opacity-0 group-hover:opacity-100"
+                        aria-label={`More actions for ${company.name}`}
+                      >
                         <MoreHorizontal className="h-4 w-4 text-[#0B0C0E]/70" />
                       </button>
                     </td>
@@ -320,7 +483,30 @@ export function CompaniesTable() {
           </table>
         </div>
       </div>
+
+      {/* Add calculation buttons */}
+      <div className="flex items-center gap-2 text-sm text-[#0B0C0E]/50">
+        <button 
+          className="hover:text-[#0B0C0E]/70 transition-colors font-inter"
+          aria-label="Add calculation"
+        >
+          Add calculation
+        </button>
+        <span className="text-[#0B0C0E]/30">+</span>
+        <button 
+          className="hover:text-[#0B0C0E]/70 transition-colors font-inter"
+          aria-label="Add calculation"
+        >
+          Add calculation
+        </button>
+        <span className="text-[#0B0C0E]/30">+</span>
+        <button 
+          className="hover:text-[#0B0C0E]/70 transition-colors font-inter"
+          aria-label="Add calculation"
+        >
+          Add calculation
+        </button>
+      </div>
     </div>
   )
 }
-

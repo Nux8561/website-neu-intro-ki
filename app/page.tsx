@@ -6,6 +6,10 @@ import { TopBanner } from "@/components/sections/top-banner"
 import { Hero } from "@/components/sections/hero"
 import { FeatureNav } from "@/components/sections/feature-nav"
 import { DashboardPreview } from "@/components/sections/dashboard-preview"
+import { PowerfulPlatformSection } from "@/components/sections/powerful-platform-section"
+import { AdaptiveModelSection } from "@/components/sections/adaptive-model-section"
+import { DataEnrichmentSection } from "@/components/sections/data-enrichment-section"
+import { BuiltForScaleSection } from "@/components/sections/built-for-scale-section"
 
 // Lazy load heavy components
 const VideoSection = dynamic(() => import("@/components/sections/video-section").then(mod => ({ default: mod.VideoSection })), { ssr: true })
@@ -26,6 +30,10 @@ export default function Home() {
         <Hero />
         <FeatureNav activeFeature={activeFeature} onFeatureChange={setActiveFeature} />
         <DashboardPreview activeFeature={activeFeature} />
+        <PowerfulPlatformSection />
+        <AdaptiveModelSection />
+        <DataEnrichmentSection />
+        <BuiltForScaleSection />
         <FeaturesSection />
         <TestimonialSection />
         <SocialProof />

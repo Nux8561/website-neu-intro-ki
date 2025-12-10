@@ -33,7 +33,7 @@ export function CTASection() {
   const ref = React.useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
-  const headline = "Bereit für KI Vertrieb der nächsten Generation?"
+  const headline = "Start with a 14-day free trial of Pro."
   const words = headline.split(" ")
 
   return (
@@ -76,14 +76,27 @@ export function CTASection() {
             ))}
           </motion.h2>
 
-          {/* CTA Button */}
-          <motion.div variants={wordVariants}>
+          {/* CTA Buttons */}
+          <motion.div variants={wordVariants} className="flex flex-wrap gap-4 justify-center">
             <Button
               size="lg"
-              className="bg-blue-600 text-white hover:bg-blue-700 font-semibold px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105 border-0"
+              className="bg-[#0B0C0E] text-white hover:bg-[#0B0C0E]/90 font-semibold px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105 border-0"
             >
-              Jetzt mit KI Vertrieb starten
-              <ArrowRight className="ml-2 h-5 w-5" />
+              Start for free
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              className="border-[#0B0C0E]/20 text-[#0B0C0E] hover:bg-[#0B0C0E]/5 font-semibold px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
+            >
+              Send me a demo
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              className="border-[#0B0C0E]/20 text-[#0B0C0E] hover:bg-[#0B0C0E]/5 font-semibold px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
+            >
+              See our plans
             </Button>
           </motion.div>
         </motion.div>
@@ -91,4 +104,5 @@ export function CTASection() {
     </section>
   )
 }
+
 

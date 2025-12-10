@@ -24,11 +24,12 @@ export function Navbar() {
 
   return (
     <motion.nav
-      className="fixed top-0 left-0 right-0 z-50"
+      className="fixed top-0 left-0 right-0 z-50 bg-white"
       initial={{ y: 0 }}
       animate={{
-        backgroundColor: isScrolled ? "rgba(11, 12, 14, 0.8)" : "transparent",
+        backgroundColor: isScrolled ? "rgba(255, 255, 255, 0.95)" : "rgba(255, 255, 255, 1)",
         backdropFilter: isScrolled ? "blur(20px)" : "none",
+        boxShadow: isScrolled ? "0 1px 3px rgba(0, 0, 0, 0.1)" : "none",
       }}
       transition={{ type: "spring", stiffness: 400, damping: 17 }}
     >
@@ -46,7 +47,7 @@ export function Navbar() {
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="text-white"
+                className="text-[#0B0C0E]"
               >
                 <path
                   d="M12 2L2 7L12 12L22 7L12 2Z"
@@ -71,7 +72,7 @@ export function Navbar() {
                 />
               </svg>
             </motion.div>
-            <span className="font-jakarta font-semibold text-white tracking-tight text-lg lowercase">
+            <span className="font-jakarta font-semibold text-[#0B0C0E] tracking-tight text-lg lowercase">
               attio
             </span>
           </Link>
@@ -82,7 +83,7 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm text-white/70 hover:text-white transition-colors font-inter relative group flex items-center gap-1"
+                className="text-sm text-[#0B0C0E]/70 hover:text-[#0B0C0E] transition-colors font-inter relative group flex items-center gap-1"
               >
                 <motion.span
                   whileHover={{ scale: 1.05 }}
@@ -93,7 +94,7 @@ export function Navbar() {
                 <svg className="w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
-                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-white group-hover:w-full transition-all duration-300" />
+                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#0B0C0E] group-hover:w-full transition-all duration-300" />
               </Link>
             ))}
           </div>
@@ -101,16 +102,16 @@ export function Navbar() {
           {/* CTA Buttons - Attio Exact Style */}
           <div className="hidden md:flex items-center gap-3">
             <Button
-              variant="ghost"
+              variant="outline"
               size="sm"
-              className="text-white/70 hover:text-white hover:bg-white/5 border-0 rounded-full px-4"
+              className="text-[#0B0C0E]/70 hover:text-[#0B0C0E] hover:bg-[#0B0C0E]/5 border-[#0B0C0E]/20 rounded-full px-4"
               asChild
             >
               <Link href="/dashboard">Sign in</Link>
             </Button>
             <Button
               size="sm"
-              className="bg-white text-[#0B0C0E] hover:bg-white/90 font-semibold rounded-full px-6"
+              className="bg-[#0B0C0E] text-white hover:bg-[#0B0C0E]/90 font-semibold rounded-full px-6"
               asChild
             >
               <Link href="/pricing">Start for free</Link>
@@ -119,7 +120,7 @@ export function Navbar() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-white p-2 -mr-2 touch-manipulation"
+            className="md:hidden text-[#0B0C0E] p-2 -mr-2 touch-manipulation"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
             aria-expanded={isMobileMenuOpen}
@@ -136,7 +137,7 @@ export function Navbar() {
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
-              className="md:hidden border-t border-white/5 py-4 bg-[#0B0C0E]/95 backdrop-blur-xl"
+              className="md:hidden border-t border-[#0B0C0E]/10 py-4 bg-white/95 backdrop-blur-xl"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
@@ -147,24 +148,24 @@ export function Navbar() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="text-sm text-white/70 hover:text-white transition-colors font-inter py-2 touch-manipulation"
+                    className="text-sm text-[#0B0C0E]/70 hover:text-[#0B0C0E] transition-colors font-inter py-2 touch-manipulation"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.label}
                   </Link>
                 ))}
-                <div className="flex flex-col gap-2 pt-4 border-t border-white/5">
+                <div className="flex flex-col gap-2 pt-4 border-t border-[#0B0C0E]/10">
                   <Button
-                    variant="ghost"
+                    variant="outline"
                     size="sm"
-                    className="w-full text-white/70 hover:text-white hover:bg-white/5 border-0 touch-manipulation min-h-[44px] rounded-full"
+                    className="w-full text-[#0B0C0E]/70 hover:text-[#0B0C0E] hover:bg-[#0B0C0E]/5 border-[#0B0C0E]/20 touch-manipulation min-h-[44px] rounded-full"
                     asChild
                   >
                     <Link href="/dashboard">Sign in</Link>
                   </Button>
                   <Button
                     size="sm"
-                    className="w-full bg-white text-[#0B0C0E] hover:bg-white/90 font-semibold rounded-full touch-manipulation min-h-[44px]"
+                    className="w-full bg-[#0B0C0E] text-white hover:bg-[#0B0C0E]/90 font-semibold rounded-full touch-manipulation min-h-[44px]"
                     asChild
                   >
                     <Link href="/pricing">Start for free</Link>

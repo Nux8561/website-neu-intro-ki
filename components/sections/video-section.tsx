@@ -12,7 +12,7 @@ export function VideoSection() {
   return (
     <section
       ref={ref}
-      className="relative py-24 overflow-hidden bg-[#0B0C0E]"
+      className="relative py-24 overflow-hidden bg-white"
     >
       {/* Aurora Background */}
       <div className="absolute inset-0 pointer-events-none">
@@ -53,7 +53,7 @@ export function VideoSection() {
             damping: 17,
           }}
         >
-          <div className="relative aspect-video rounded-2xl overflow-hidden bg-white/5 border border-white/10 group cursor-pointer">
+          <div className="relative aspect-video rounded-2xl overflow-hidden bg-[#0B0C0E]/5 border border-[#0B0C0E]/10 group cursor-pointer">
             {/* Video Thumbnail Placeholder */}
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20" />
             
@@ -63,8 +63,8 @@ export function VideoSection() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-full p-6 group-hover:bg-white/20 transition-all">
-                <Play className="h-12 w-12 text-white ml-1" fill="white" strokeWidth={1.5} />
+              <div className="bg-[#0B0C0E]/10 backdrop-blur-md border border-[#0B0C0E]/20 rounded-full p-6 group-hover:bg-[#0B0C0E]/20 transition-all">
+                <Play className="h-12 w-12 text-[#0B0C0E] ml-1" fill="#0B0C0E" strokeWidth={1.5} />
               </div>
             </motion.div>
 

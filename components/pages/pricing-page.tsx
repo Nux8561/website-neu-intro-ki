@@ -91,9 +91,9 @@ export function PricingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0B0C0E]">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative py-24 border-b border-white/5">
+      <section className="relative py-24 border-b border-[#0B0C0E]/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             ref={ref}
@@ -112,13 +112,13 @@ export function PricingPage() {
             </motion.div>
             <motion.h1
               variants={itemVariants}
-              className="text-5xl sm:text-6xl md:text-7xl font-jakarta font-medium tracking-tight text-white mb-6"
+              className="text-5xl sm:text-6xl md:text-7xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6"
             >
               Einfache, transparente Preise
             </motion.h1>
             <motion.p
               variants={itemVariants}
-              className="text-lg md:text-xl text-white/70 font-inter mb-8 max-w-2xl mx-auto"
+              className="text-lg md:text-xl text-[#0B0C0E]/70 font-inter mb-8 max-w-2xl mx-auto"
             >
               Wählen Sie den Plan, der zu Ihrem Unternehmen passt. Alle Pläne
               enthalten eine 14-tägige kostenlose Testphase.
@@ -143,10 +143,10 @@ export function PricingPage() {
                   stiffness: 400,
                   damping: 17,
                 }}
-                className={`relative bg-white/5 border rounded-2xl p-8 ${
+                className={`relative bg-[#0B0C0E]/5 border rounded-2xl p-8 ${
                   plan.popular
                     ? "border-blue-500/50 bg-blue-500/5 scale-105"
-                    : "border-white/10"
+                    : "border-[#0B0C0E]/10"
                 }`}
               >
                 {plan.popular && (
@@ -157,18 +157,18 @@ export function PricingPage() {
                   </div>
                 )}
                 <div className="mb-6">
-                  <h3 className="text-2xl font-jakarta font-medium tracking-tight text-white mb-2">
+                  <h3 className="text-2xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-2">
                     {plan.name}
                   </h3>
-                  <p className="text-white/70 font-inter text-sm mb-4">
+                  <p className="text-[#0B0C0E]/70 font-inter text-sm mb-4">
                     {plan.description}
                   </p>
                   <div className="flex items-baseline gap-2">
-                    <span className="text-5xl font-jakarta font-medium text-white">
+                    <span className="text-5xl font-jakarta font-medium text-[#0B0C0E]">
                       {plan.price}
                     </span>
                     {plan.period && (
-                      <span className="text-white/50 font-inter">
+                      <span className="text-[#0B0C0E]/50 font-inter">
                         {plan.period}
                       </span>
                     )}
@@ -178,7 +178,7 @@ export function PricingPage() {
                   {plan.features.map((feature, i) => (
                     <li
                       key={i}
-                      className="flex items-start gap-3 text-white/70 font-inter text-sm"
+                      className="flex items-start gap-3 text-[#0B0C0E]/70 font-inter text-sm"
                     >
                       <Check className="h-5 w-5 text-blue-500 flex-shrink-0 mt-0.5" />
                       {feature}
@@ -190,7 +190,7 @@ export function PricingPage() {
                   className={`w-full rounded-full ${
                     plan.popular
                       ? "bg-blue-600 text-white hover:bg-blue-700"
-                      : "bg-white/10 text-white hover:bg-white/20 border border-white/10"
+                      : "bg-[#0B0C0E]/10 text-[#0B0C0E] hover:bg-[#0B0C0E]/20 border border-[#0B0C0E]/10"
                   }`}
                   asChild
                 >
@@ -213,10 +213,10 @@ export function PricingPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-24 border-t border-white/5">
+      <section className="py-24 border-t border-[#0B0C0E]/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-jakarta font-medium tracking-tight text-white mb-12 text-center">
+            <h2 className="text-3xl md:text-4xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-12 text-center">
               Häufige Fragen
             </h2>
             <div className="space-y-6">
@@ -249,12 +249,12 @@ export function PricingPage() {
                     stiffness: 400,
                     damping: 17,
                   }}
-                  className="bg-white/5 border border-white/10 rounded-xl p-6"
+                  className="bg-[#0B0C0E]/5 border border-[#0B0C0E]/10 rounded-xl p-6"
                 >
-                  <h3 className="text-white font-jakarta font-medium mb-2">
+                  <h3 className="text-[#0B0C0E] font-jakarta font-medium mb-2">
                     {faq.q}
                   </h3>
-                  <p className="text-white/70 font-inter text-sm">{faq.a}</p>
+                  <p className="text-[#0B0C0E]/70 font-inter text-sm">{faq.a}</p>
                 </motion.div>
               ))}
             </div>

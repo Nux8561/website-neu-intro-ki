@@ -42,7 +42,7 @@ export function DatenschutzPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-[#0B0C0E]">
+    <div className="min-h-screen bg-white">
       <section className="py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -56,11 +56,11 @@ export function DatenschutzPage() {
               damping: 17,
             }}
           >
-            <h1 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-white mb-8">
+            <h1 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-8">
               Datenschutzerklärung
             </h1>
             <div className="space-y-8">
-              <p className="text-white/70 font-inter">
+              <p className="text-[#0B0C0E]/70 font-inter">
                 Der Schutz Ihrer persönlichen Daten ist uns ein besonderes
                 Anliegen. In dieser Datenschutzerklärung informieren wir Sie
                 über die Verarbeitung personenbezogener Daten bei der Nutzung
@@ -78,12 +78,12 @@ export function DatenschutzPage() {
                     stiffness: 400,
                     damping: 17,
                   }}
-                  className="bg-white/5 border border-white/10 rounded-xl p-6"
+                  className="bg-[#0B0C0E]/5 border border-[#0B0C0E]/10 rounded-xl p-6"
                 >
-                  <h2 className="text-xl font-jakarta font-medium text-white mb-4">
+                  <h2 className="text-xl font-jakarta font-medium text-[#0B0C0E] mb-4">
                     {section.title}
                   </h2>
-                  <p className="text-white/70 font-inter">{section.content}</p>
+                  <p className="text-[#0B0C0E]/70 font-inter">{section.content}</p>
                 </motion.div>
               ))}
             </div>

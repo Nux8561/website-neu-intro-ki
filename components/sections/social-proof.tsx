@@ -17,11 +17,11 @@ const logos = [
 
 export function SocialProof() {
   return (
-    <section className="py-16 border-y border-white/5 bg-[#0B0C0E]">
+    <section className="py-16 border-y border-[#0B0C0E]/10 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center md:flex-row">
           <div className="md:max-w-44 md:border-r md:pr-6 mb-6 md:mb-0">
-            <p className="text-end text-sm text-white/50 font-inter">
+            <p className="text-end text-sm text-[#0B0C0E]/50 font-inter">
               Powering the best teams
             </p>
           </div>

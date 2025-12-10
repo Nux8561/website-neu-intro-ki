@@ -101,9 +101,9 @@ export function ChangelogPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0B0C0E]">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative py-24 border-b border-white/5">
+      <section className="relative py-24 border-b border-[#0B0C0E]/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             ref={ref}
@@ -122,13 +122,13 @@ export function ChangelogPage() {
             </motion.div>
             <motion.h1
               variants={itemVariants}
-              className="text-5xl sm:text-6xl md:text-7xl font-jakarta font-medium tracking-tight text-white mb-6"
+              className="text-5xl sm:text-6xl md:text-7xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6"
             >
               Was ist neu?
             </motion.h1>
             <motion.p
               variants={itemVariants}
-              className="text-lg md:text-xl text-white/70 font-inter mb-8 max-w-2xl mx-auto"
+              className="text-lg md:text-xl text-[#0B0C0E]/70 font-inter mb-8 max-w-2xl mx-auto"
             >
               Bleiben Sie auf dem Laufenden über neue Features, Updates und
               Verbesserungen.
@@ -153,20 +153,20 @@ export function ChangelogPage() {
                   stiffness: 400,
                   damping: 17,
                 }}
-                className="bg-white/5 border border-white/10 rounded-2xl p-8"
+                className="bg-[#0B0C0E]/5 border border-[#0B0C0E]/10 rounded-2xl p-8"
               >
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
                       {getTypeBadge(entry.type)}
-                      <span className="text-white/50 font-mono text-sm">
+                      <span className="text-[#0B0C0E]/50 font-mono text-sm">
                         v{entry.version}
                       </span>
                     </div>
-                    <h2 className="text-2xl font-jakarta font-medium tracking-tight text-white mb-2">
+                    <h2 className="text-2xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-2">
                       {entry.title}
                     </h2>
-                    <div className="flex items-center gap-2 text-white/50 font-inter text-sm mb-4">
+                    <div className="flex items-center gap-2 text-[#0B0C0E]/50 font-inter text-sm mb-4">
                       <Calendar className="h-4 w-4" />
                       {new Date(entry.date).toLocaleDateString("de-DE", {
                         year: "numeric",
@@ -174,14 +174,14 @@ export function ChangelogPage() {
                         day: "numeric",
                       })}
                     </div>
-                    <p className="text-white/70 font-inter mb-4">
+                    <p className="text-[#0B0C0E]/70 font-inter mb-4">
                       {entry.description}
                     </p>
                     <ul className="space-y-2">
                       {entry.items.map((item, i) => (
                         <li
                           key={i}
-                          className="flex items-center gap-3 text-white/60 font-inter text-sm"
+                          className="flex items-center gap-3 text-[#0B0C0E]/60 font-inter text-sm"
                         >
                           <div className="h-1.5 w-1.5 rounded-full bg-blue-500" />
                           {item}

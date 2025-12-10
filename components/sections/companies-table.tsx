@@ -131,60 +131,60 @@ export function CompaniesTable() {
       {/* Table Header with Controls */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <h2 className="text-2xl font-jakarta font-medium tracking-tight text-white">
+          <h2 className="text-2xl font-jakarta font-medium tracking-tight text-[#0B0C0E]">
             Companies
           </h2>
           <div className="flex items-center gap-2">
-            <button className="p-2 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all">
-              <Search className="h-4 w-4 text-white/70" />
+            <button className="p-2 rounded-lg border border-[#0B0C0E]/10 bg-[#0B0C0E]/5 hover:bg-[#0B0C0E]/10 hover:border-[#0B0C0E]/20 transition-all">
+              <Search className="h-4 w-4 text-[#0B0C0E]/70" />
             </button>
-            <button className="p-2 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all">
-              <Filter className="h-4 w-4 text-white/70" />
+            <button className="p-2 rounded-lg border border-[#0B0C0E]/10 bg-[#0B0C0E]/5 hover:bg-[#0B0C0E]/10 hover:border-[#0B0C0E]/20 transition-all">
+              <Filter className="h-4 w-4 text-[#0B0C0E]/70" />
             </button>
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <Button
-            variant="outline"
-            size="sm"
-            className="border-white/10 bg-white/5 text-white/70 hover:text-white hover:bg-white/10"
-          >
-            <Settings className="h-4 w-4 mr-2" />
-            View settings
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            className="border-white/10 bg-white/5 text-white/70 hover:text-white hover:bg-white/10"
-          >
-            <ChevronDown className="h-4 w-4 mr-2" />
-            Import / Export
-          </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              className="border-[#0B0C0E]/10 bg-[#0B0C0E]/5 text-[#0B0C0E]/70 hover:text-[#0B0C0E] hover:bg-[#0B0C0E]/10"
+            >
+              <Settings className="h-4 w-4 mr-2" />
+              View settings
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              className="border-[#0B0C0E]/10 bg-[#0B0C0E]/5 text-[#0B0C0E]/70 hover:text-[#0B0C0E] hover:bg-[#0B0C0E]/10"
+            >
+              <ChevronDown className="h-4 w-4 mr-2" />
+              Import / Export
+            </Button>
         </div>
       </div>
 
       {/* Sort Bar */}
-      <div className="flex items-center gap-4 text-sm text-white/50 font-inter">
+      <div className="flex items-center gap-4 text-sm text-[#0B0C0E]/50 font-inter">
         <span>Sorted by</span>
         <button
           onClick={() => handleSort("name")}
-          className="text-white/70 hover:text-white transition-colors flex items-center gap-1"
+          className="text-[#0B0C0E]/70 hover:text-[#0B0C0E] transition-colors flex items-center gap-1"
         >
           Last email interaction
           <ArrowUpDown className="h-3 w-3" />
         </button>
-        <button className="text-white/50 hover:text-white/70 transition-colors flex items-center gap-1">
+        <button className="text-[#0B0C0E]/50 hover:text-[#0B0C0E]/70 transition-colors flex items-center gap-1">
           <Filter className="h-3 w-3" />
           Advanced filter 3 +
         </button>
       </div>
 
       {/* Table */}
-      <div className="border border-white/10 rounded-lg overflow-hidden bg-[#15171B]">
+      <div className="border border-[#0B0C0E]/10 rounded-lg overflow-hidden bg-white">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-white/10 bg-white/5">
+              <tr className="border-b border-[#0B0C0E]/10 bg-[#0B0C0E]/5">
                 <th className="px-4 py-3 text-left">
                   <Checkbox
                     checked={selected.size === companies.length}
@@ -192,7 +192,7 @@ export function CompaniesTable() {
                   />
                 </th>
                 <th
-                  className="px-4 py-3 text-left text-sm font-inter text-white/70 cursor-pointer hover:text-white group"
+                  className="px-4 py-3 text-left text-sm font-inter text-[#0B0C0E]/70 cursor-pointer hover:text-[#0B0C0E] group"
                   onClick={() => handleSort("name")}
                 >
                   <div className="flex items-center gap-2">
@@ -200,19 +200,19 @@ export function CompaniesTable() {
                     <ArrowUpDown className="h-4 w-4 opacity-50 group-hover:opacity-100 transition-opacity" />
                   </div>
                 </th>
-                <th className="px-4 py-3 text-left text-sm font-inter text-white/70">
+                <th className="px-4 py-3 text-left text-sm font-inter text-[#0B0C0E]/70">
                   Domains
                 </th>
-                <th className="px-4 py-3 text-left text-sm font-inter text-white/70">
+                <th className="px-4 py-3 text-left text-sm font-inter text-[#0B0C0E]/70">
                   Associated deals
                 </th>
-                <th className="px-4 py-3 text-left text-sm font-inter text-white/70">
+                <th className="px-4 py-3 text-left text-sm font-inter text-[#0B0C0E]/70">
                   ICP Fit
                 </th>
-                <th className="px-4 py-3 text-left text-sm font-inter text-white/70">
+                <th className="px-4 py-3 text-left text-sm font-inter text-[#0B0C0E]/70">
                   AI
                 </th>
-                <th className="px-4 py-3 text-left text-sm font-inter text-white/70">
+                <th className="px-4 py-3 text-left text-sm font-inter text-[#0B0C0E]/70">
                   Actions
                 </th>
               </tr>
@@ -231,7 +231,7 @@ export function CompaniesTable() {
                       stiffness: 400,
                       damping: 17,
                     }}
-                    className="border-b border-white/5 hover:bg-white/5 transition-colors group"
+                    className="border-b border-[#0B0C0E]/5 hover:bg-[#0B0C0E]/5 transition-colors group"
                   >
                     <td className="px-4 py-3">
                       <Checkbox
@@ -241,12 +241,12 @@ export function CompaniesTable() {
                     </td>
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
-                          <span className="text-xs font-semibold text-white/70">
+                        <div className="w-8 h-8 rounded-lg bg-[#0B0C0E]/5 border border-[#0B0C0E]/10 flex items-center justify-center">
+                          <span className="text-xs font-semibold text-[#0B0C0E]/70">
                             {company.name.charAt(0)}
                           </span>
                         </div>
-                        <span className="text-white font-inter font-medium">
+                        <span className="text-[#0B0C0E] font-inter font-medium">
                           {company.name}
                         </span>
                       </div>
@@ -267,7 +267,7 @@ export function CompaniesTable() {
                       </div>
                     </td>
                     <td className="px-4 py-3">
-                      <span className="text-white/70 font-inter text-sm">
+                      <span className="text-[#0B0C0E]/70 font-inter text-sm">
                         {company.associatedDeals}
                       </span>
                     </td>
@@ -284,7 +284,7 @@ export function CompaniesTable() {
                         <Tooltip>
                           <TooltipTrigger asChild>
                             <div className="flex items-center gap-2">
-                              <div className="w-16 h-2 rounded-full bg-white/10 overflow-hidden">
+                              <div className="w-16 h-2 rounded-full bg-[#0B0C0E]/10 overflow-hidden">
                                 <motion.div
                                   className="h-full bg-gradient-to-r from-blue-500 to-purple-500"
                                   initial={{ width: 0 }}
@@ -297,20 +297,20 @@ export function CompaniesTable() {
                                   }}
                                 />
                               </div>
-                              <span className="text-white/50 text-xs">
+                              <span className="text-[#0B0C0E]/50 text-xs">
                                 {company.connectionStrength}%
                               </span>
                             </div>
                           </TooltipTrigger>
-                          <TooltipContent className="bg-[#15171B] border-white/10 text-white">
+                          <TooltipContent className="bg-white border-[#0B0C0E]/10 text-[#0B0C0E]">
                             <p className="text-xs">Connection Strength</p>
                           </TooltipContent>
                         </Tooltip>
                       </TooltipProvider>
                     </td>
                     <td className="px-4 py-3">
-                      <button className="p-2 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all opacity-0 group-hover:opacity-100">
-                        <MoreHorizontal className="h-4 w-4 text-white/70" />
+                      <button className="p-2 rounded-lg border border-[#0B0C0E]/10 bg-[#0B0C0E]/5 hover:bg-[#0B0C0E]/10 hover:border-[#0B0C0E]/20 transition-all opacity-0 group-hover:opacity-100">
+                        <MoreHorizontal className="h-4 w-4 text-[#0B0C0E]/70" />
                       </button>
                     </td>
                   </motion.tr>

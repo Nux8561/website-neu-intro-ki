@@ -77,8 +77,8 @@ export function WorkflowSection() {
 
   return (
     <LazyMotion features={domAnimation}>
-      <section className="py-24 bg-[#0B0C0E]">
-        <div ref={containerRef} className="h-[300vh] lg:h-[300vh] md:h-[200vh] relative">
+      <section className="py-24 bg-white">
+        <div ref={containerRef} className="h-[200vh] lg:h-[200vh] md:h-[150vh] relative">
           <div className="sticky top-0 h-screen flex items-center">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -93,10 +93,10 @@ export function WorkflowSection() {
                         style={{ opacity: stepOpacities[index], willChange: "transform" }}
                         className="space-y-4"
                       >
-                        <h3 className="text-3xl font-jakarta font-medium tracking-tight text-white">
+                        <h3 className="text-3xl font-jakarta font-medium tracking-tight text-[#0B0C0E]">
                           {step.title}
                         </h3>
-                        <p className="text-lg text-slate-400 font-inter">
+                        <p className="text-lg text-[#0B0C0E]/70 font-inter">
                           {step.description}
                         </p>
                       </motion.div>
@@ -114,7 +114,7 @@ export function WorkflowSection() {
                     }}
                     className="w-full max-w-md"
                   >
-                    <Card className="h-[400px] flex items-center justify-center border-white/10 bg-white/5">
+                    <Card className="h-[400px] flex items-center justify-center border-[#0B0C0E]/10 bg-[#0B0C0E]/5">
                       <CardContent className="text-center">
                         <motion.div
                           key={activeStep}
@@ -128,17 +128,17 @@ export function WorkflowSection() {
                           }}
                           className="mb-4 flex items-center justify-center"
                         >
-                          <div className="p-6 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-white/10">
+                          <div className="p-6 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-[#0B0C0E]/10">
                             {React.createElement(workflowSteps[activeStep].icon, {
-                              className: "h-16 w-16 text-white",
+                              className: "h-16 w-16 text-[#0B0C0E]",
                               strokeWidth: 1.5,
                             })}
                           </div>
                         </motion.div>
-                        <CardTitle className="text-2xl mb-2 text-white">
-                          {workflowSteps[activeStep].title}
-                        </CardTitle>
-                        <CardDescription className="text-base text-white/70">
+                        <CardTitle className="text-2xl mb-2 text-[#0B0C0E]">
+                        {workflowSteps[activeStep].title}
+                      </CardTitle>
+                      <CardDescription className="text-base text-[#0B0C0E]/70">
                           {workflowSteps[activeStep].description}
                         </CardDescription>
                       </CardContent>
@@ -148,7 +148,7 @@ export function WorkflowSection() {
 
                 {/* Visual Element - Mobile */}
                 <div className="lg:hidden mt-8">
-                  <Card className="h-[300px] flex items-center justify-center border-white/10 bg-white/5">
+                  <Card className="h-[300px] flex items-center justify-center border-[#0B0C0E]/10 bg-[#0B0C0E]/5">
                     <CardContent className="text-center">
                       <motion.div
                         key={activeStep}
@@ -162,17 +162,17 @@ export function WorkflowSection() {
                         }}
                         className="mb-4 flex items-center justify-center"
                       >
-                        <div className="p-4 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-white/10">
+                        <div className="p-4 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-[#0B0C0E]/10">
                           {React.createElement(workflowSteps[activeStep].icon, {
-                            className: "h-12 w-12 text-white",
+                            className: "h-12 w-12 text-[#0B0C0E]",
                             strokeWidth: 1.5,
                           })}
                         </div>
                       </motion.div>
-                      <CardTitle className="text-xl mb-2 text-white">
+                      <CardTitle className="text-xl mb-2 text-[#0B0C0E]">
                         {workflowSteps[activeStep].title}
                       </CardTitle>
-                      <CardDescription className="text-sm text-white/70">
+                      <CardDescription className="text-sm text-[#0B0C0E]/70">
                         {workflowSteps[activeStep].description}
                       </CardDescription>
                     </CardContent>

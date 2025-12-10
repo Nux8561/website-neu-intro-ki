@@ -75,9 +75,9 @@ export function EnterprisePage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0B0C0E]">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative py-24 border-b border-white/5">
+      <section className="relative py-24 border-b border-[#0B0C0E]/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             ref={ref}
@@ -96,7 +96,7 @@ export function EnterprisePage() {
             </motion.div>
             <motion.h1
               variants={itemVariants}
-              className="text-5xl sm:text-6xl md:text-7xl font-jakarta font-medium tracking-tight text-white mb-6"
+              className="text-5xl sm:text-6xl md:text-7xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6"
             >
               Enterprise-Lösungen
               <br />
@@ -104,7 +104,7 @@ export function EnterprisePage() {
             </motion.h1>
             <motion.p
               variants={itemVariants}
-              className="text-lg md:text-xl text-white/70 font-inter mb-8 max-w-2xl mx-auto"
+              className="text-lg md:text-xl text-[#0B0C0E]/70 font-inter mb-8 max-w-2xl mx-auto"
             >
               Maßgeschneiderte CRM-Lösungen mit Enterprise-Security, Custom
               Integrations und dediziertem Support.
@@ -120,7 +120,7 @@ export function EnterprisePage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white/10 text-white hover:bg-white/10 rounded-full px-8"
+                className="border-[#0B0C0E]/20 text-[#0B0C0E] hover:bg-[#0B0C0E]/5 rounded-full px-8"
                 asChild
               >
                 <Link href="/pricing">Preise ansehen</Link>
@@ -148,15 +148,15 @@ export function EnterprisePage() {
                     stiffness: 400,
                     damping: 17,
                   }}
-                  className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-colors"
+                  className="bg-[#0B0C0E]/5 border border-[#0B0C0E]/10 rounded-2xl p-8 hover:bg-[#0B0C0E]/10 transition-colors"
                 >
-                  <div className="p-3 rounded-lg bg-white/5 border border-white/10 w-fit mb-4">
-                    <Icon className="h-6 w-6 text-white/70" />
+                  <div className="p-3 rounded-lg bg-[#0B0C0E]/5 border border-[#0B0C0E]/10 w-fit mb-4">
+                    <Icon className="h-6 w-6 text-[#0B0C0E]/70" />
                   </div>
-                  <h3 className="text-xl font-jakarta font-medium tracking-tight text-white mb-2">
+                  <h3 className="text-xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-2">
                     {feature.title}
                   </h3>
-                  <p className="text-white/70 font-inter text-sm">
+                  <p className="text-[#0B0C0E]/70 font-inter text-sm">
                     {feature.description}
                   </p>
                 </motion.div>
@@ -167,10 +167,10 @@ export function EnterprisePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 border-t border-white/5">
+      <section className="py-24 border-t border-[#0B0C0E]/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            className="max-w-2xl mx-auto text-center bg-white/5 border border-white/10 rounded-2xl p-12"
+            className="max-w-2xl mx-auto text-center bg-[#0B0C0E]/5 border border-[#0B0C0E]/10 rounded-2xl p-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -180,10 +180,10 @@ export function EnterprisePage() {
               damping: 17,
             }}
           >
-            <h2 className="text-3xl md:text-4xl font-jakarta font-medium tracking-tight text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-4">
               Bereit für Enterprise?
             </h2>
-            <p className="text-white/70 font-inter mb-8">
+            <p className="text-[#0B0C0E]/70 font-inter mb-8">
               Lassen Sie uns gemeinsam die perfekte Lösung für Ihr Unternehmen
               entwickeln.
             </p>

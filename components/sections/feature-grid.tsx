@@ -100,7 +100,7 @@ function AvatarStack() {
           </motion.div>
         ))}
         <motion.span
-          className="text-sm text-slate-400 font-inter ml-2"
+          className="text-sm text-[#0B0C0E]/50 font-inter ml-2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
@@ -125,7 +125,7 @@ function PipelineKanban() {
     <div className="p-6 h-full flex flex-col gap-4">
       {columns.map((column, colIndex) => (
         <div key={colIndex} className="flex-1 flex flex-col gap-2">
-          <h4 className="text-xs font-mono text-slate-400 uppercase tracking-wider">
+          <h4 className="text-xs font-mono text-[#0B0C0E]/50 uppercase tracking-wider">
             {column.name}
           </h4>
           <div className="flex-1 flex gap-2">
@@ -184,7 +184,7 @@ export function FeatureGrid() {
             {[1, 2, 3, 4, 5, 6].map((i) => (
               <motion.div
                 key={i}
-                className="h-20 rounded-lg bg-white/5 border border-white/10"
+                className="h-20 rounded-lg bg-[#0B0C0E]/5 border border-[#0B0C0E]/10"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{
@@ -239,7 +239,7 @@ export function FeatureGrid() {
 
   return (
     <LazyMotion features={domAnimation}>
-      <section id="features" className="py-24">
+      <section id="features" className="py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -248,10 +248,10 @@ export function FeatureGrid() {
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
-            <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-4">
               Alles was du brauchst
             </h2>
-            <p className="text-lg text-slate-400 font-inter max-w-2xl mx-auto">
+            <p className="text-lg text-[#0B0C0E]/70 font-inter max-w-2xl mx-auto">
               Eine vollständige CRM-Lösung, die sich an deine Bedürfnisse anpasst
             </p>
           </motion.div>

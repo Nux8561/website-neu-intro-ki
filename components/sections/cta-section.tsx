@@ -39,7 +39,7 @@ export function CTASection() {
   return (
     <section
       ref={ref}
-      className="relative py-24 overflow-hidden bg-[#0B0C0E]"
+      className="relative py-24 overflow-hidden bg-white"
     >
       {/* Background Gradient */}
       <div className="absolute inset-0 pointer-events-none">
@@ -62,7 +62,7 @@ export function CTASection() {
         >
           {/* Headline with Staggered Text Reveal */}
           <motion.h2
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-jakarta font-medium tracking-tight text-white mb-8"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-8"
             variants={containerVariants}
           >
             {words.map((word, index) => (

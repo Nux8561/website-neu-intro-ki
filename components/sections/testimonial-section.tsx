@@ -11,7 +11,7 @@ export function TestimonialSection() {
   return (
     <section
       ref={ref}
-      className="relative py-24 border-y border-white/5 bg-[#0B0C0E]"
+      className="relative py-24 border-y border-[#0B0C0E]/10 bg-white"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -25,7 +25,7 @@ export function TestimonialSection() {
           }}
         >
           <motion.blockquote
-            className="text-2xl md:text-3xl font-jakarta font-medium tracking-tight text-white/60 mb-8"
+            className="text-2xl md:text-3xl font-jakarta font-medium tracking-tight text-[#0B0C0E]/60 mb-8"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ delay: 0.2 }}
@@ -34,7 +34,7 @@ export function TestimonialSection() {
             the next generation of CRM."
           </motion.blockquote>
           <motion.div
-            className="text-white/40 font-inter text-sm"
+            className="text-[#0B0C0E]/40 font-inter text-sm"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ delay: 0.4 }}

@@ -112,9 +112,9 @@ export function FAQPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0B0C0E]">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative py-24 border-b border-white/5">
+      <section className="relative py-24 border-b border-[#0B0C0E]/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             ref={ref}
@@ -133,13 +133,13 @@ export function FAQPage() {
             </motion.div>
             <motion.h1
               variants={itemVariants}
-              className="text-5xl sm:text-6xl md:text-7xl font-jakarta font-medium tracking-tight text-white mb-6"
+              className="text-5xl sm:text-6xl md:text-7xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6"
             >
               Häufig gestellte Fragen
             </motion.h1>
             <motion.p
               variants={itemVariants}
-              className="text-lg md:text-xl text-white/70 font-inter mb-8 max-w-2xl mx-auto"
+              className="text-lg md:text-xl text-[#0B0C0E]/70 font-inter mb-8 max-w-2xl mx-auto"
             >
               Finden Sie Antworten auf die häufigsten Fragen zu IntroKI.
             </motion.p>
@@ -148,7 +148,7 @@ export function FAQPage() {
       </section>
 
       {/* Category Tabs */}
-      <section className="sticky top-16 z-40 bg-[#0B0C0E]/80 backdrop-blur-md border-b border-white/5">
+      <section className="sticky top-16 z-40 bg-white/95 backdrop-blur-md border-b border-[#0B0C0E]/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3 overflow-x-auto hide-scrollbar py-4">
             {faqCategories.map((category) => {
@@ -160,7 +160,7 @@ export function FAQPage() {
                   className={`px-4 py-2 rounded-full text-sm font-inter transition-all touch-manipulation min-h-[44px] whitespace-nowrap ${
                     isActive
                       ? "bg-blue-600 text-white"
-                      : "bg-white/5 text-white/70 hover:bg-white/10 hover:text-white border border-white/10 hover:border-white/20"
+                      : "bg-[#0B0C0E]/5 text-[#0B0C0E]/70 hover:bg-[#0B0C0E]/10 hover:text-[#0B0C0E] border border-[#0B0C0E]/10 hover:border-[#0B0C0E]/20"
                   }`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -192,17 +192,17 @@ export function FAQPage() {
                       stiffness: 400,
                       damping: 17,
                     }}
-                    className="bg-white/5 border border-white/10 rounded-xl overflow-hidden"
+                    className="bg-[#0B0C0E]/5 border border-[#0B0C0E]/10 rounded-xl overflow-hidden"
                   >
                     <button
                       onClick={() => toggleItem(index)}
-                      className="w-full p-6 flex items-center justify-between text-left hover:bg-white/5 transition-colors"
+                      className="w-full p-6 flex items-center justify-between text-left hover:bg-[#0B0C0E]/5 transition-colors"
                     >
-                      <h3 className="text-white font-jakarta font-medium pr-4">
+                      <h3 className="text-[#0B0C0E] font-jakarta font-medium pr-4">
                         {faq.q}
                       </h3>
                       <ChevronDown
-                        className={`h-5 w-5 text-white/50 flex-shrink-0 transition-transform ${
+                        className={`h-5 w-5 text-[#0B0C0E]/50 flex-shrink-0 transition-transform ${
                           isOpen ? "rotate-180" : ""
                         }`}
                       />
@@ -220,7 +220,7 @@ export function FAQPage() {
                           }}
                         >
                           <div className="px-6 pb-6">
-                            <p className="text-white/70 font-inter text-sm">
+                            <p className="text-[#0B0C0E]/70 font-inter text-sm">
                               {faq.a}
                             </p>
                           </div>

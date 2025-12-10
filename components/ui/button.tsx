@@ -57,7 +57,13 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     }
 
     // Use motion.button with explicit props to avoid TypeScript drag handler conflicts
-    const motionProps: HTMLMotionProps<"button"> = {
+    // We need to explicitly exclude drag handlers that conflict with Framer Motion's onDrag
+    // TypeScript sees props as potentially containing onDrag even though we Omit it from ButtonProps
+    const { onDrag: _, onDragStart: __, onDragEnd: ___, ...safeProps } = props as ButtonProps & { onDrag?: never; onDragStart?: never; onDragEnd?: never }
+    
+    // Explicitly cast to HTMLMotionProps to bypass TypeScript's strict checking
+    // The drag handlers are already excluded from ButtonProps, so this is safe
+    const motionProps = {
       type,
       disabled,
       onClick,
@@ -72,8 +78,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         stiffness: 400,
         damping: 17,
       },
-      ...props,
-    }
+      ...safeProps,
+    } as unknown as HTMLMotionProps<"button">
 
     return (
       <MotionButton {...motionProps}>

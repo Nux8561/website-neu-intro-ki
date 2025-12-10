@@ -2,7 +2,6 @@
 
 import * as React from "react"
 import { motion } from "framer-motion"
-import { Linkedin, Twitter, Instagram } from "lucide-react"
 import { useInView } from "framer-motion"
 import Link from "next/link"
 
@@ -33,6 +32,75 @@ export function Footer() {
     },
   }
 
+  const footerColumns = [
+    {
+      title: "Platform",
+      links: [
+        { label: "Refer a team", href: "/refer", badge: "New" },
+        { label: "Changelog", href: "/changelog" },
+        { label: "Gmail extension", href: "/gmail-extension" },
+        { label: "iOS app", href: "/ios-app" },
+        { label: "Android app", href: "/android-app" },
+        { label: "Security", href: "/security" },
+      ],
+    },
+    {
+      title: "Company",
+      links: [
+        { label: "Customers", href: "/customers" },
+        { label: "Announcements", href: "/announcements" },
+        { label: "Engineering blog", href: "/blog", badge: "New" },
+        { label: "Careers", href: "/careers" },
+        { label: "Manifesto", href: "/manifesto" },
+        { label: "Become a partner", href: "/partners" },
+      ],
+    },
+    {
+      title: "Import from",
+      links: [
+        { label: "Salesforce", href: "/import/salesforce" },
+        { label: "Hubspot", href: "/import/hubspot" },
+        { label: "Pipedrive", href: "/import/pipedrive" },
+        { label: "Zoho", href: "/import/zoho" },
+        { label: "Excel", href: "/import/excel" },
+        { label: "CSV", href: "/import/csv" },
+      ],
+    },
+    {
+      title: "Attio for",
+      links: [
+        { label: "Startups", href: "/for/startups" },
+        { label: "Deal flow", href: "/for/deal-flow" },
+      ],
+    },
+    {
+      title: "Apps",
+      links: [
+        { label: "Gmail", href: "/apps/gmail" },
+        { label: "Outlook", href: "/apps/outlook" },
+        { label: "Segment", href: "/apps/segment" },
+        { label: "Mailchimp", href: "/apps/mailchimp" },
+        { label: "Slack", href: "/apps/slack" },
+        { label: "Outreach", href: "/apps/outreach" },
+        { label: "Mixmax", href: "/apps/mixmax" },
+        { label: "Typeform", href: "/apps/typeform" },
+        { label: "Zapier", href: "/apps/zapier" },
+      ],
+    },
+    {
+      title: "Resources",
+      links: [
+        { label: "Startup program", href: "/startup-program" },
+        { label: "Help center", href: "/help" },
+        { label: "Automation templates", href: "/templates" },
+        { label: "Developers", href: "/developers" },
+        { label: "System status", href: "/status" },
+        { label: "Hire an expert", href: "/experts" },
+        { label: "Downloads", href: "/downloads" },
+      ],
+    },
+  ]
+
   return (
     <footer
       ref={ref}
@@ -46,164 +114,30 @@ export function Footer() {
           animate={isInView ? "visible" : "hidden"}
         >
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 mb-16">
-            {/* Product Column */}
-            <motion.div variants={itemVariants}>
-              <h3 className="text-sm font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6">
-                Product
-              </h3>
-              <ul className="space-y-4">
-                {[
-                  { label: "Features", href: "/features" },
-                  { label: "Pricing", href: "/pricing" },
-                  { label: "Enterprise", href: "/enterprise" },
-                  { label: "Changelog", href: "/changelog" },
-                  { label: "Roadmap", href: "/roadmap" },
-                ].map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-[#0B0C0E]/70 hover:text-[#0B0C0E] transition-colors font-inter text-sm"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* Resources Column */}
-            <motion.div variants={itemVariants}>
-              <h3 className="text-sm font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6">
-                Resources
-              </h3>
-              <ul className="space-y-4">
-                {[
-                  { label: "Help Center", href: "/faq" },
-                  { label: "Documentation", href: "#" },
-                  { label: "API Reference", href: "#" },
-                  { label: "Integrations", href: "#" },
-                  { label: "Templates", href: "#" },
-                ].map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-[#0B0C0E]/70 hover:text-[#0B0C0E] transition-colors font-inter text-sm"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* Company Column */}
-            <motion.div variants={itemVariants}>
-              <h3 className="text-sm font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6">
-                Company
-              </h3>
-              <ul className="space-y-4">
-                {[
-                  { label: "About", href: "/about" },
-                  { label: "Blog", href: "#" },
-                  { label: "Careers", href: "/careers" },
-                  { label: "Customers", href: "#" },
-                  { label: "Partners", href: "#" },
-                ].map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-[#0B0C0E]/70 hover:text-[#0B0C0E] transition-colors font-inter text-sm"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* Legal Column */}
-            <motion.div variants={itemVariants}>
-              <h3 className="text-sm font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6">
-                Legal
-              </h3>
-              <ul className="space-y-4">
-                {[
-                  { label: "Privacy Policy", href: "/datenschutz" },
-                  { label: "Terms & Conditions", href: "#" },
-                  { label: "Impressum", href: "/impressum" },
-                  { label: "Cookie Policy", href: "#" },
-                ].map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-[#0B0C0E]/70 hover:text-[#0B0C0E] transition-colors font-inter text-sm"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* Support Column */}
-            <motion.div variants={itemVariants}>
-              <h3 className="text-sm font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6">
-                Support
-              </h3>
-              <ul className="space-y-4">
-                {[
-                  { label: "Contact", href: "/kontakt" },
-                  { label: "FAQ", href: "/faq" },
-                  { label: "Status", href: "#" },
-                  { label: "Security", href: "#" },
-                ].map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-[#0B0C0E]/70 hover:text-[#0B0C0E] transition-colors font-inter text-sm"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* Social Column */}
-            <motion.div variants={itemVariants}>
-              <h3 className="text-sm font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6">
-                Follow Us
-              </h3>
-              <div className="flex items-center gap-4">
-                <a
-                  href="https://linkedin.com/company/introki"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#0B0C0E]/50 hover:text-[#0B0C0E] transition-colors"
-                  aria-label="LinkedIn"
-                >
-                  <Linkedin className="h-5 w-5" strokeWidth={1.5} />
-                </a>
-                <a
-                  href="https://twitter.com/introki"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#0B0C0E]/50 hover:text-[#0B0C0E] transition-colors"
-                  aria-label="Twitter"
-                >
-                  <Twitter className="h-5 w-5" strokeWidth={1.5} />
-                </a>
-                <a
-                  href="https://instagram.com/introki"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#0B0C0E]/50 hover:text-[#0B0C0E] transition-colors"
-                  aria-label="Instagram"
-                >
-                  <Instagram className="h-5 w-5" strokeWidth={1.5} />
-                </a>
-              </div>
-            </motion.div>
+            {footerColumns.map((column) => (
+              <motion.div key={column.title} variants={itemVariants}>
+                <h3 className="text-sm font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6">
+                  {column.title}
+                </h3>
+                <ul className="space-y-4">
+                  {column.links.map((link) => (
+                    <li key={link.label}>
+                      <Link
+                        href={link.href}
+                        className="text-[#0B0C0E]/70 hover:text-[#0B0C0E] transition-colors font-inter text-sm flex items-center gap-2"
+                      >
+                        <span>{link.label}</span>
+                        {link.badge && (
+                          <span className="text-xs px-1.5 py-0.5 rounded-full bg-blue-500/20 text-blue-600 font-mono">
+                            {link.badge}
+                          </span>
+                        )}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
           </div>
 
           {/* Bottom Bar */}
@@ -212,20 +146,26 @@ export function Footer() {
             variants={itemVariants}
           >
             <p className="text-[#0B0C0E]/50 font-inter text-sm">
-              © 2024 IntroKI. Alle Rechte vorbehalten.
+              © 2025 Attio Ltd. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
               <Link
-                href="/datenschutz"
+                href="/terms"
+                className="text-[#0B0C0E]/50 hover:text-[#0B0C0E] transition-colors font-inter text-sm"
+              >
+                Terms & Conditions
+              </Link>
+              <Link
+                href="/privacy"
                 className="text-[#0B0C0E]/50 hover:text-[#0B0C0E] transition-colors font-inter text-sm"
               >
                 Privacy Policy
               </Link>
               <Link
-                href="#"
+                href="/llms"
                 className="text-[#0B0C0E]/50 hover:text-[#0B0C0E] transition-colors font-inter text-sm"
               >
-                Terms & Conditions
+                LLMs
               </Link>
             </div>
           </motion.div>

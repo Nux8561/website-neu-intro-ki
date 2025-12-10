@@ -3,7 +3,13 @@
 import * as React from "react"
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { Menu, X } from "lucide-react"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { Menu, X, ChevronDown } from "lucide-react"
 import Link from "next/link"
 
 export function Navbar() {
@@ -15,9 +21,38 @@ export function Navbar() {
     setIsScrolled(latest > 50)
   })
 
+  const platformItems = [
+    { label: "Refer a team", href: "/refer", badge: "New" },
+    { label: "Changelog", href: "/changelog" },
+    { label: "Gmail extension", href: "/gmail-extension" },
+    { label: "iOS app", href: "/ios-app" },
+    { label: "Android app", href: "/android-app" },
+    { label: "Security", href: "/security" },
+  ]
+
+  const resourcesItems = [
+    { label: "Startup program", href: "/startup-program" },
+    { label: "Help center", href: "/help" },
+    { label: "Automation templates", href: "/templates" },
+    { label: "Developers", href: "/developers" },
+    { label: "System status", href: "/status" },
+    { label: "Hire an expert", href: "/experts" },
+    { label: "Downloads", href: "/downloads" },
+  ]
+
   const navItems = [
-    { label: "Platform", href: "/platform" },
-    { label: "Resources", href: "/resources" },
+    { 
+      label: "Platform", 
+      href: "/platform",
+      hasDropdown: true,
+      items: platformItems,
+    },
+    { 
+      label: "Resources", 
+      href: "/resources",
+      hasDropdown: true,
+      items: resourcesItems,
+    },
     { label: "Customers", href: "/customers" },
     { label: "Pricing", href: "/pricing" },
   ]
@@ -79,24 +114,56 @@ export function Navbar() {
 
           {/* Desktop Navigation - Attio Exact Style */}
           <div className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-sm text-[#0B0C0E]/70 hover:text-[#0B0C0E] transition-colors font-inter relative group flex items-center gap-1"
-              >
-                <motion.span
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            {navItems.map((item) => {
+              if (item.hasDropdown && item.items) {
+                return (
+                  <DropdownMenu key={item.label}>
+                    <DropdownMenuTrigger asChild>
+                      <button className="text-sm text-[#0B0C0E]/70 hover:text-[#0B0C0E] transition-colors font-inter relative group flex items-center gap-1">
+                        <motion.span
+                          whileHover={{ scale: 1.05 }}
+                          transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                        >
+                          {item.label}
+                        </motion.span>
+                        <ChevronDown className="w-4 h-4 opacity-50" />
+                        <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#0B0C0E] group-hover:w-full transition-all duration-300" />
+                      </button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="start" className="w-56">
+                      {item.items.map((dropdownItem) => (
+                        <DropdownMenuItem key={dropdownItem.label} asChild>
+                          <Link href={dropdownItem.href} className="flex items-center justify-between w-full">
+                            <span>{dropdownItem.label}</span>
+                            {dropdownItem.badge && (
+                              <span className="text-xs px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-600 font-mono">
+                                {dropdownItem.badge}
+                              </span>
+                            )}
+                          </Link>
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                )
+              }
+              
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-sm text-[#0B0C0E]/70 hover:text-[#0B0C0E] transition-colors font-inter relative group flex items-center gap-1"
                 >
-                  {item.label}
-                </motion.span>
-                <svg className="w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#0B0C0E] group-hover:w-full transition-all duration-300" />
-              </Link>
-            ))}
+                  <motion.span
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  >
+                    {item.label}
+                  </motion.span>
+                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#0B0C0E] group-hover:w-full transition-all duration-300" />
+                </Link>
+              )
+            })}
           </div>
 
           {/* CTA Buttons - Attio Exact Style */}
@@ -145,14 +212,29 @@ export function Navbar() {
             >
               <div className="flex flex-col gap-4">
                 {navItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="text-sm text-[#0B0C0E]/70 hover:text-[#0B0C0E] transition-colors font-inter py-2 touch-manipulation"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
+                  <div key={item.href}>
+                    <Link
+                      href={item.href}
+                      className="text-sm text-[#0B0C0E]/70 hover:text-[#0B0C0E] transition-colors font-inter py-2 touch-manipulation block"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                    {item.hasDropdown && item.items && (
+                      <div className="ml-4 mt-2 space-y-2">
+                        {item.items.map((dropdownItem) => (
+                          <Link
+                            key={dropdownItem.label}
+                            href={dropdownItem.href}
+                            className="text-sm text-[#0B0C0E]/50 hover:text-[#0B0C0E]/70 transition-colors font-inter py-1 block"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                          >
+                            {dropdownItem.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 ))}
                 <div className="flex flex-col gap-2 pt-4 border-t border-[#0B0C0E]/10">
                   <Button
@@ -179,4 +261,3 @@ export function Navbar() {
     </motion.nav>
   )
 }
-

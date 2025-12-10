@@ -3,62 +3,57 @@
 import * as React from "react"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
-import { Check, ArrowRight, PhoneCall } from "lucide-react"
+import { Check, ArrowRight } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
 const plans = [
   {
-    name: "Starter",
-    price: "€49",
-    period: "pro Monat",
-    description: "Perfekt für kleine Teams",
+    name: "Plus",
+    price: "Free",
+    description: "Perfect for individuals",
     features: [
-      "Bis zu 5 Benutzer",
-      "Deep Research (100/Monat)",
-      "Lead Scoring",
-      "Pipeline Management",
-      "Email Support",
-      "Basic Analytics",
+      "Up to 10,000 records",
+      "Basic automation",
+      "Email support",
+      "Core integrations",
     ],
-    cta: "Jetzt starten",
+    cta: "Start for free",
     popular: false,
   },
   {
-    name: "Professional",
-    price: "€149",
-    period: "pro Monat",
-    description: "Für wachsende Unternehmen",
+    name: "Pro",
+    price: "$99",
+    period: "/month",
+    description: "For growing teams",
     features: [
-      "Bis zu 25 Benutzer",
-      "Unbegrenzte Research",
-      "Live Call Coaching",
-      "Advanced Lead Scoring",
-      "Workflow Automation",
-      "Priority Support",
-      "Custom Reports",
-      "API Access",
+      "Unlimited records",
+      "Advanced automation",
+      "AI-powered insights",
+      "Priority support",
+      "Advanced integrations",
+      "Custom fields",
+      "API access",
     ],
-    cta: "Jetzt starten",
+    cta: "Start for free",
     popular: true,
+    badge: "14-day free trial",
   },
   {
     name: "Enterprise",
     price: "Custom",
-    period: "",
-    description: "Für große Organisationen",
+    description: "For large organizations",
     features: [
-      "Unbegrenzte Benutzer",
-      "Alles aus Professional",
-      "Dedicated Account Manager",
-      "Custom Integrations",
-      "SSO & Advanced Security",
-      "On-Premise Option",
-      "SLA Garantie",
-      "Custom Training",
+      "Everything in Pro",
+      "Dedicated support",
+      "Custom integrations",
+      "SSO & advanced security",
+      "SLA guarantee",
+      "On-premise option",
+      "Custom training",
     ],
-    cta: "Kontakt aufnehmen",
+    cta: "Talk to sales",
     popular: false,
   },
 ]
@@ -102,27 +97,26 @@ export function PricingPage() {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
           >
-            <motion.div variants={itemVariants}>
-              <Badge
-                variant="outline"
-                className="bg-blue-500/20 text-blue-400 border-blue-500/30 mb-6"
-              >
-                Pricing
-              </Badge>
-            </motion.div>
             <motion.h1
               variants={itemVariants}
               className="text-5xl sm:text-6xl md:text-7xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6"
             >
-              Einfache, transparente Preise
+              Start with a 14-day free trial of Pro.
             </motion.h1>
-            <motion.p
+            <motion.div
               variants={itemVariants}
-              className="text-lg md:text-xl text-[#0B0C0E]/70 font-inter mb-8 max-w-2xl mx-auto"
+              className="flex flex-wrap gap-4 justify-center mb-8"
             >
-              Wählen Sie den Plan, der zu Ihrem Unternehmen passt. Alle Pläne
-              enthalten eine 14-tägige kostenlose Testphase.
-            </motion.p>
+              <Button className="bg-[#0B0C0E] text-white rounded-full px-8 py-4">
+                Start for free
+              </Button>
+              <Button variant="outline" className="rounded-full px-8 py-4">
+                Send me a demo
+              </Button>
+              <Button variant="outline" className="rounded-full px-8 py-4">
+                See our plans
+              </Button>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -145,14 +139,14 @@ export function PricingPage() {
                 }}
                 className={`relative bg-[#0B0C0E]/5 border rounded-2xl p-8 ${
                   plan.popular
-                    ? "border-blue-500/50 bg-blue-500/5 scale-105"
+                    ? "border-[#0B0C0E]/20 bg-white scale-105 shadow-lg"
                     : "border-[#0B0C0E]/10"
                 }`}
               >
-                {plan.popular && (
+                {plan.popular && plan.badge && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <Badge className="bg-blue-600 text-white border-0">
-                      Beliebt
+                    <Badge className="bg-[#0B0C0E] text-white border-0 text-xs">
+                      {plan.badge}
                     </Badge>
                   </div>
                 )}
@@ -180,7 +174,7 @@ export function PricingPage() {
                       key={i}
                       className="flex items-start gap-3 text-[#0B0C0E]/70 font-inter text-sm"
                     >
-                      <Check className="h-5 w-5 text-blue-500 flex-shrink-0 mt-0.5" />
+                      <Check className="h-5 w-5 text-[#0B0C0E] flex-shrink-0 mt-0.5" />
                       {feature}
                     </li>
                   ))}
@@ -189,22 +183,17 @@ export function PricingPage() {
                   size="lg"
                   className={`w-full rounded-full ${
                     plan.popular
-                      ? "bg-blue-600 text-white hover:bg-blue-700"
+                      ? "bg-[#0B0C0E] text-white hover:bg-[#0B0C0E]/90"
                       : "bg-[#0B0C0E]/10 text-[#0B0C0E] hover:bg-[#0B0C0E]/20 border border-[#0B0C0E]/10"
                   }`}
                   asChild
                 >
-                  {plan.name === "Enterprise" ? (
-                    <Link href="/kontakt">
-                      {plan.cta}
-                      <PhoneCall className="ml-2 h-4 w-4" />
-                    </Link>
-                  ) : (
-                    <Link href="/dashboard">
-                      {plan.cta}
+                  <Link href={plan.name === "Enterprise" ? "/kontakt" : "/dashboard"}>
+                    {plan.cta}
+                    {plan.name !== "Enterprise" && (
                       <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  )}
+                    )}
+                  </Link>
                 </Button>
               </motion.div>
             ))}
@@ -217,25 +206,25 @@ export function PricingPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-12 text-center">
-              Häufige Fragen
+              Frequently asked questions
             </h2>
             <div className="space-y-6">
               {[
                 {
-                  q: "Kann ich meinen Plan später ändern?",
-                  a: "Ja, Sie können jederzeit zwischen den Plänen wechseln. Upgrades werden anteilig berechnet, Downgrades werden am Ende des Abrechnungszeitraums wirksam.",
+                  q: "Can I change my plan later?",
+                  a: "Yes, you can upgrade or downgrade your plan at any time. Changes to your plan will be prorated and reflected in your next billing cycle.",
                 },
                 {
-                  q: "Gibt es eine kostenlose Testphase?",
-                  a: "Ja, alle Pläne enthalten eine 14-tägige kostenlose Testphase. Keine Kreditkarte erforderlich.",
+                  q: "Is there a free trial?",
+                  a: "Yes, all Pro plans include a 14-day free trial. No credit card required to start.",
                 },
                 {
-                  q: "Was passiert nach der Testphase?",
-                  a: "Nach der Testphase können Sie einen kostenpflichtigen Plan wählen oder Ihr Konto pausieren. Ihre Daten bleiben 30 Tage lang gespeichert.",
+                  q: "What happens after the trial?",
+                  a: "After your trial ends, you can choose to continue with a paid plan or pause your account. Your data will be saved for 30 days.",
                 },
                 {
-                  q: "Bietet IntroKI Support?",
-                  a: "Ja, alle Pläne enthalten E-Mail-Support. Professional und Enterprise erhalten zusätzlich Priority Support und einen dedizierten Account Manager.",
+                  q: "Do you offer refunds?",
+                  a: "Yes, we offer a 30-day money-back guarantee on all annual plans. Monthly plans can be cancelled at any time.",
                 },
               ].map((faq, i) => (
                 <motion.div
@@ -264,4 +253,3 @@ export function PricingPage() {
     </div>
   )
 }
-

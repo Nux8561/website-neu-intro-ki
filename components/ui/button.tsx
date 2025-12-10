@@ -3,7 +3,7 @@
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
-import { motion, type HTMLMotionProps } from "framer-motion"
+import { motion } from "framer-motion"
 
 import { cn } from "@/lib/utils"
 
@@ -37,12 +37,12 @@ const buttonVariants = cva(
 )
 
 export interface ButtonProps
-  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "onDrag" | "onDragStart" | "onDragEnd" | "onAnimationStart" | "onAnimationEnd" | "onAnimationIteration">,
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean
 }
 
-const MotionButton = motion.button
+const MotionButton = motion("button")
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, type, disabled, onClick, onMouseEnter, onMouseLeave, children, ...props }, ref) => {
@@ -56,11 +56,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       )
     }
 
-    // Use motion.button with explicit props to avoid TypeScript drag handler conflicts
-    // TypeScript on Vercel's build system sees a conflict between HTML's onDrag and Framer Motion's onDrag
-    // We've already excluded drag handlers from ButtonProps, so this is safe
+    // Use motion("button") instead of motion.button to avoid TypeScript drag handler conflicts
+    // This approach avoids the type conflict between HTML's onDrag and Framer Motion's onDrag
+    // We don't spread props to avoid drag handler conflicts
     return (
-      // @ts-ignore - Framer Motion's onDrag type conflicts with HTML's onDrag type, but we've excluded drag handlers from ButtonProps
       <MotionButton
         type={type}
         disabled={disabled}

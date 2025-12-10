@@ -3,6 +3,8 @@
 import * as React from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
+import { BackgroundPaths } from "@/components/ui/background-paths"
+import { ArrowRight } from "lucide-react"
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -33,6 +35,9 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+      {/* Background Paths Animation */}
+      <BackgroundPaths />
+      
       {/* Mesh Gradient Background - Attio Style */}
       <div className="absolute inset-0 bg-[#0B0C0E]" />
       <div
@@ -87,26 +92,42 @@ export function Hero() {
             Attio is the AI-native CRM for GTM builders.
           </motion.p>
 
-          {/* CTA Buttons - Attio Style */}
+          {/* Search Input - Intro KI Style */}
           <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            className="flex flex-col sm:flex-row gap-3 max-w-2xl mx-auto mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.4, type: "spring", stiffness: 400, damping: 17 }}
           >
+            <input
+              type="text"
+              placeholder="KI Vertrieb für Ihr Unternehmen"
+              className="flex-1 px-6 py-4 rounded-full bg-white/5 border border-white/10 text-white placeholder:text-white/50 focus:outline-none focus:border-white/20 focus:bg-white/10 transition-all font-inter"
+            />
             <Button
               size="lg"
-              className="bg-[#1F1F1F] text-white hover:bg-[#2A2A2A] font-semibold px-8 py-6 text-base rounded-full transition-all duration-300 hover:scale-105 border-0"
+              className="bg-accent text-white hover:bg-accent-light font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 border-0 whitespace-nowrap"
             >
-              Start for free
+              Research starten
+              <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="bg-white text-[#0B0C0E] hover:bg-white/90 border-0 font-semibold px-8 py-6 text-base rounded-full transition-all duration-300 hover:scale-105"
-            >
-              Talk to sales
-            </Button>
+          </motion.div>
+
+          {/* Mode Buttons - Intro KI Style */}
+          <motion.div
+            className="flex flex-wrap gap-3 justify-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.6, type: "spring", stiffness: 400, damping: 17 }}
+          >
+            {["Schnell-Modus", "Tiefen-Modus", "Ultra-Modus"].map((mode, index) => (
+              <button
+                key={index}
+                className="px-4 py-2 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 text-sm text-white/70 hover:text-white transition-all font-inter"
+              >
+                {mode}
+              </button>
+            ))}
           </motion.div>
         </div>
       </div>

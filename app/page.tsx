@@ -9,7 +9,7 @@ import { SocialProof } from "@/components/sections/social-proof"
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#0B0C0E]">
+    <main className="min-h-screen bg-[#0B0C0E] relative">
       <TopBanner />
       <Navbar />
       <Hero />

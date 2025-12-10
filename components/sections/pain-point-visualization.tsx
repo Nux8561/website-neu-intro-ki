@@ -153,7 +153,9 @@ export function PainPointVisualization({ feature }: PainPointProps) {
               >
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-inter text-gray-700">{item.label}</span>
-                  <span className="text-xs text-gray-500">{item.priority || item.status || item.stage || "?"}</span>
+                  <span className="text-xs text-gray-500">
+                    {"priority" in item ? item.priority : "status" in item ? item.status : "stage" in item ? item.stage : "value" in item ? item.value : "?"}
+                  </span>
                 </div>
               </motion.div>
             ))}
@@ -189,7 +191,7 @@ export function PainPointVisualization({ feature }: PainPointProps) {
                         {item.label}
                       </span>
                       <div className="flex items-center gap-2">
-                        {item.priority && (
+                        {"priority" in item && item.priority && (
                           <span className={`text-xs px-2 py-1 rounded-full ${
                             item.priority === "Hoch" ? "bg-red-100 text-red-700" :
                             item.priority === "Mittel" ? "bg-yellow-100 text-yellow-700" :
@@ -198,7 +200,7 @@ export function PainPointVisualization({ feature }: PainPointProps) {
                             {item.priority}
                           </span>
                         )}
-                        {item.icpFit && (
+                        {"icpFit" in item && item.icpFit && (
                           <span className={`text-xs px-2 py-1 rounded-full ${
                             item.icpFit === "Excellent" ? "bg-purple-100 text-purple-700" :
                             item.icpFit === "Good" ? "bg-green-100 text-green-700" :
@@ -207,24 +209,24 @@ export function PainPointVisualization({ feature }: PainPointProps) {
                             {item.icpFit}
                           </span>
                         )}
-                        {item.priority && !item.icpFit && (
+                        {"priority" in item && item.priority && !("icpFit" in item && item.icpFit) && (
                           <span className="text-xs font-semibold text-green-600">
                             {item.priority}
                           </span>
                         )}
                       </div>
                     </div>
-                    {item.nextAction && (
+                    {"nextAction" in item && item.nextAction && (
                       <p className="text-xs text-[#0B0C0E]/70 font-inter">
                         {item.nextAction}
                       </p>
                     )}
-                    {item.change && (
+                    {"change" in item && item.change && (
                       <p className="text-xs text-green-600 font-inter mt-1">
                         {item.change}
                       </p>
                     )}
-                    {item.auto && (
+                    {"auto" in item && item.auto && (
                       <div className="flex items-center gap-1 mt-2">
                         <Zap className="h-3 w-3 text-blue-500" />
                         <span className="text-xs text-blue-600 font-inter">Automatisch</span>

@@ -4,7 +4,7 @@ import * as React from "react"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
-interface SpotlightCardProps extends React.HTMLAttributes<HTMLDivElement> {
+interface SpotlightCardProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onDrag" | "onDragStart" | "onDragEnd"> {
   children: React.ReactNode
 }
 
@@ -35,7 +35,6 @@ const SpotlightCard = React.forwardRef<HTMLDivElement, SpotlightCardProps>(
         style={{
           background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255, 255, 255, 0.1), transparent 40%), rgba(21, 23, 27, 0.4)`,
         }}
-        {...props}
       >
         {children}
       </motion.div>

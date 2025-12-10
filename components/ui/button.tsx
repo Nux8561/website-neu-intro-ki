@@ -57,32 +57,25 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     }
 
     // Use motion.button with explicit props to avoid TypeScript drag handler conflicts
-    // We need to explicitly exclude drag handlers that conflict with Framer Motion's onDrag
-    // TypeScript sees props as potentially containing onDrag even though we Omit it from ButtonProps
-    const { onDrag: _, onDragStart: __, onDragEnd: ___, ...safeProps } = props as ButtonProps & { onDrag?: never; onDragStart?: never; onDragEnd?: never }
-    
-    // Explicitly cast to HTMLMotionProps to bypass TypeScript's strict checking
-    // The drag handlers are already excluded from ButtonProps, so this is safe
-    const motionProps = {
-      type,
-      disabled,
-      onClick,
-      onMouseEnter,
-      onMouseLeave,
-      className: cn(buttonVariants({ variant, size, className })),
-      ref,
-      whileHover: { scale: 1.01 },
-      whileTap: { scale: 0.98 },
-      transition: {
-        type: "spring",
-        stiffness: 400,
-        damping: 17,
-      },
-      ...safeProps,
-    } as unknown as HTMLMotionProps<"button">
-
+    // We don't spread props to avoid any potential drag handler conflicts
+    // Only pass the explicitly needed props
     return (
-      <MotionButton {...motionProps}>
+      <MotionButton
+        type={type}
+        disabled={disabled}
+        onClick={onClick}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        whileHover={{ scale: 1.01 }}
+        whileTap={{ scale: 0.98 }}
+        transition={{
+          type: "spring",
+          stiffness: 400,
+          damping: 17,
+        }}
+      >
         {children}
       </MotionButton>
     )

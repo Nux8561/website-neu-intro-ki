@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import Image from "next/image"
 import { InfiniteSlider } from "@/components/ui/infinite-slider"
 import { ProgressiveBlur } from "@/components/ui/progressive-blur"
 
@@ -33,12 +34,13 @@ export function SocialProof() {
             >
               {logos.map((logo, index) => (
                 <div key={index} className="flex">
-                  <img
+                  <Image
                     className="mx-auto h-auto w-fit dark:invert"
                     src={logo.src}
                     alt={logo.alt}
                     height={logo.height}
-                    width="auto"
+                    width={logo.height * 2}
+                    unoptimized
                   />
                 </div>
               ))}

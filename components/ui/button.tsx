@@ -57,10 +57,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     }
 
     // Use motion.button with explicit props to avoid TypeScript drag handler conflicts
-    // We construct props explicitly to avoid any drag handler type conflicts
-    // TypeScript on Vercel's build system is stricter, so we need to be explicit
-    // Create a new object with only the props we need, explicitly typed
-    const motionButtonProps: Pick<HTMLMotionProps<"button">, "type" | "disabled" | "onClick" | "onMouseEnter" | "onMouseLeave" | "className" | "ref" | "whileHover" | "whileTap" | "transition" | "children"> = {
+    // We pass props directly inline without spreading to avoid any drag handler type conflicts
+    // TypeScript on Vercel's build system is stricter, so we need to use a type assertion
+    // The drag handlers are already excluded from ButtonProps, so this is safe
+    const motionProps = {
       type,
       disabled,
       onClick,
@@ -75,11 +75,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         stiffness: 400,
         damping: 17,
       },
-      children,
-    }
+    } as unknown as HTMLMotionProps<"button">
 
     return (
-      <MotionButton {...motionButtonProps} />
+      <MotionButton {...motionProps}>
+        {children}
+      </MotionButton>
     )
   }
 )

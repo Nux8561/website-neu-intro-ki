@@ -32,7 +32,7 @@ export function FeatureNav({ activeFeature, onFeatureChange }: FeatureNavProps) 
       }`}
       initial={false}
       animate={{
-        backgroundColor: isSticky ? "rgba(11, 12, 14, 0.95)" : "transparent",
+        backgroundColor: isSticky ? "rgba(11, 12, 14, 0.95)" : "rgba(11, 12, 14, 1)",
         backdropFilter: isSticky ? "blur(20px)" : "none",
       }}
       transition={{ type: "spring", stiffness: 400, damping: 17 }}

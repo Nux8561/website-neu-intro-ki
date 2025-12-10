@@ -16,7 +16,7 @@ export function TopBanner() {
       animate={{ y: 0 }}
       exit={{ y: -100 }}
       transition={{ type: "spring", stiffness: 400, damping: 17 }}
-      className="bg-[#0B0C0E] border-b border-white/5 relative z-50"
+      className="bg-[#0B0C0E] border-b border-[#0B0C0E]/10 relative z-50"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-12">

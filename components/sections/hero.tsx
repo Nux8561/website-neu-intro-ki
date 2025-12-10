@@ -34,11 +34,11 @@ export function Hero() {
   const words = headline.split(" ")
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 bg-[#0B0C0E]">
       {/* Background Paths Animation */}
       <BackgroundPaths />
       
-      {/* Mesh Gradient Background - Attio Style */}
+      {/* Mesh Gradient Background - Attio Exact Style */}
       <div className="absolute inset-0 bg-[#0B0C0E]" />
       <div
         className="absolute inset-0 opacity-40"
@@ -51,7 +51,7 @@ export function Hero() {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
-          {/* Pill Button - Attio Style */}
+          {/* Pill Button - Attio Exact Style */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -64,7 +64,7 @@ export function Hero() {
             </button>
           </motion.div>
 
-          {/* Headline with Staggered Text Reveal - Attio Style */}
+          {/* Headline with Staggered Text Reveal - Attio Exact Style */}
           <motion.h1
             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-jakarta font-medium tracking-tight text-white mb-8"
             variants={containerVariants}
@@ -82,7 +82,7 @@ export function Hero() {
             ))}
           </motion.h1>
 
-          {/* Description - Attio Style */}
+          {/* Description - Attio Exact Style */}
           <motion.p
             className="text-lg md:text-xl text-white/70 font-inter mb-12 max-w-2xl mx-auto font-light"
             initial={{ opacity: 0, y: 20 }}
@@ -92,42 +92,26 @@ export function Hero() {
             Attio is the AI-native CRM for GTM builders.
           </motion.p>
 
-          {/* Search Input - Intro KI Style */}
+          {/* CTA Buttons - Attio Exact Style */}
           <motion.div
-            className="flex flex-col sm:flex-row gap-3 max-w-2xl mx-auto mb-8"
+            className="flex flex-wrap gap-4 justify-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.4, type: "spring", stiffness: 400, damping: 17 }}
           >
-            <input
-              type="text"
-              placeholder="KI Vertrieb für Ihr Unternehmen"
-              className="flex-1 px-6 py-4 rounded-full bg-white/5 border border-white/10 text-white placeholder:text-white/50 focus:outline-none focus:border-white/20 focus:bg-white/10 transition-all font-inter touch-manipulation min-h-[48px] text-base"
-            />
             <Button
               size="lg"
-              className="bg-accent text-white hover:bg-accent-light font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 border-0 whitespace-nowrap touch-manipulation min-h-[48px]"
+              className="bg-white text-[#0B0C0E] hover:bg-white/90 font-semibold rounded-full px-8 py-4 h-auto"
             >
-              Research starten
-              <ArrowRight className="ml-2 h-4 w-4" />
+              Start for free
             </Button>
-          </motion.div>
-
-          {/* Mode Buttons - Intro KI Style */}
-          <motion.div
-            className="flex flex-wrap gap-3 justify-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.6, type: "spring", stiffness: 400, damping: 17 }}
-          >
-            {["Schnell-Modus", "Tiefen-Modus", "Ultra-Modus"].map((mode, index) => (
-              <button
-                key={index}
-                className="px-4 py-2 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 text-sm text-white/70 hover:text-white transition-all font-inter"
-              >
-                {mode}
-              </button>
-            ))}
+            <Button
+              variant="outline"
+              size="lg"
+              className="border-white/20 text-white hover:bg-white/5 font-semibold rounded-full px-8 py-4 h-auto"
+            >
+              Talk to sales
+            </Button>
           </motion.div>
         </div>
       </div>

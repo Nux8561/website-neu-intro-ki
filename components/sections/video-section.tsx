@@ -12,7 +12,7 @@ export function VideoSection() {
   return (
     <section
       ref={ref}
-      className="relative py-24 overflow-hidden"
+      className="relative py-24 overflow-hidden bg-[#0B0C0E]"
     >
       {/* Aurora Background */}
       <div className="absolute inset-0 pointer-events-none">

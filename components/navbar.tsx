@@ -16,10 +16,10 @@ export function Navbar() {
   })
 
   const navItems = [
-    { label: "Features", href: "/features" },
+    { label: "Platform", href: "/platform" },
+    { label: "Resources", href: "/resources" },
+    { label: "Customers", href: "/customers" },
     { label: "Pricing", href: "/pricing" },
-    { label: "Enterprise", href: "/enterprise" },
-    { label: "FAQ", href: "/faq" },
   ]
 
   return (
@@ -34,7 +34,7 @@ export function Navbar() {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          {/* Logo - Attio Style */}
+          {/* Logo - Attio Exact Style */}
           <Link href="/" className="flex items-center gap-2">
             <motion.div
               whileHover={{ scale: 1.02 }}
@@ -71,18 +71,18 @@ export function Navbar() {
                 />
               </svg>
             </motion.div>
-            <span className="font-jakarta font-semibold text-white tracking-tight text-lg">
-              IntroKI
+            <span className="font-jakarta font-semibold text-white tracking-tight text-lg lowercase">
+              attio
             </span>
           </Link>
 
-          {/* Desktop Navigation - Attio Style */}
+          {/* Desktop Navigation - Attio Exact Style */}
           <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm text-white/70 hover:text-white transition-colors font-inter relative group"
+                className="text-sm text-white/70 hover:text-white transition-colors font-inter relative group flex items-center gap-1"
               >
                 <motion.span
                   whileHover={{ scale: 1.05 }}
@@ -90,27 +90,30 @@ export function Navbar() {
                 >
                   {item.label}
                 </motion.span>
+                <svg className="w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
                 <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-white group-hover:w-full transition-all duration-300" />
               </Link>
             ))}
           </div>
 
-          {/* CTA Buttons - Attio Style */}
+          {/* CTA Buttons - Attio Exact Style */}
           <div className="hidden md:flex items-center gap-3">
             <Button
               variant="ghost"
               size="sm"
-              className="text-white/70 hover:text-white hover:bg-white/5 border-0"
+              className="text-white/70 hover:text-white hover:bg-white/5 border-0 rounded-full px-4"
               asChild
             >
-              <Link href="/dashboard">Anmelden</Link>
+              <Link href="/dashboard">Sign in</Link>
             </Button>
             <Button
               size="sm"
               className="bg-white text-[#0B0C0E] hover:bg-white/90 font-semibold rounded-full px-6"
               asChild
             >
-              <Link href="/pricing">Kostenlos starten</Link>
+              <Link href="/pricing">Start for free</Link>
             </Button>
           </div>
 
@@ -154,17 +157,17 @@ export function Navbar() {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="w-full text-white/70 hover:text-white hover:bg-white/5 touch-manipulation min-h-[44px]"
+                    className="w-full text-white/70 hover:text-white hover:bg-white/5 border-0 touch-manipulation min-h-[44px] rounded-full"
                     asChild
                   >
-                    <Link href="/dashboard">Anmelden</Link>
+                    <Link href="/dashboard">Sign in</Link>
                   </Button>
                   <Button
                     size="sm"
                     className="w-full bg-white text-[#0B0C0E] hover:bg-white/90 font-semibold rounded-full touch-manipulation min-h-[44px]"
                     asChild
                   >
-                    <Link href="/pricing">Kostenlos starten</Link>
+                    <Link href="/pricing">Start for free</Link>
                   </Button>
                 </div>
               </div>

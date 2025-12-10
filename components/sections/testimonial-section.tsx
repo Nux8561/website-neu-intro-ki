@@ -11,7 +11,7 @@ export function TestimonialSection() {
   return (
     <section
       ref={ref}
-      className="relative py-24 border-y border-white/5"
+      className="relative py-24 border-y border-white/5 bg-[#0B0C0E]"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div

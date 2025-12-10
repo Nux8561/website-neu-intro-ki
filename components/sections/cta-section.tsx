@@ -39,7 +39,7 @@ export function CTASection() {
   return (
     <section
       ref={ref}
-      className="relative py-24 overflow-hidden"
+      className="relative py-24 overflow-hidden bg-[#0B0C0E]"
     >
       {/* Background Gradient */}
       <div className="absolute inset-0 pointer-events-none">

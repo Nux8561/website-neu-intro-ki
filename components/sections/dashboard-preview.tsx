@@ -3,6 +3,7 @@
 import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { RefreshCw, Plus, Share2, MoreVertical, Database, GitBranch, BarChart3, GitBranch as PipelineIcon } from "lucide-react"
+import { CompaniesTable } from "./companies-table"
 
 interface DashboardPreviewProps {
   activeFeature: string
@@ -116,7 +117,7 @@ export function DashboardPreview({ activeFeature }: DashboardPreviewProps) {
           transition={{ type: "spring", stiffness: 400, damping: 17 }}
           className="mb-8 flex items-center justify-between"
         >
-          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4">
             <div className="p-3 rounded-lg bg-white/5 border border-white/10">
               <Icon className="h-6 w-6 text-white/70" />
             </div>
@@ -145,61 +146,73 @@ export function DashboardPreview({ activeFeature }: DashboardPreviewProps) {
           </div>
         </motion.div>
 
-        {/* Dashboard Grid */}
+        {/* Dashboard Content */}
         <AnimatePresence mode="wait">
-          <motion.div
-            key={activeFeature}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-6"
-          >
-            {content.cards.map((card, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  delay: index * 0.1,
-                  type: "spring",
-                  stiffness: 400,
-                  damping: 17,
-                }}
-                className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-6"
-              >
-                <div className="mb-4">
-                  <h3 className="text-sm font-mono text-white/50 uppercase tracking-wider mb-2">
-                    {card.title}
-                  </h3>
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-3xl font-jakarta font-medium tracking-tight text-white">
-                      {card.value}
-                    </span>
-                    <span className="text-sm text-green-400 font-inter">
-                      {card.change}
-                    </span>
+          {activeFeature === "data" ? (
+            <motion.div
+              key="data"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            >
+              <CompaniesTable />
+            </motion.div>
+          ) : (
+            <motion.div
+              key={activeFeature}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+            >
+              {content.cards.map((card, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    delay: index * 0.1,
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 17,
+                  }}
+                  className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-6"
+                >
+                  <div className="mb-4">
+                    <h3 className="text-sm font-mono text-white/50 uppercase tracking-wider mb-2">
+                      {card.title}
+                    </h3>
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-3xl font-jakarta font-medium tracking-tight text-white">
+                        {card.value}
+                      </span>
+                      <span className="text-sm text-green-400 font-inter">
+                        {card.change}
+                      </span>
+                    </div>
                   </div>
-                </div>
-                <div className="h-48 flex items-end gap-2">
-                  {[40, 60, 45, 80, 70, 90, 100].map((height, i) => (
-                    <motion.div
-                      key={i}
-                      className={`flex-1 bg-gradient-to-t ${card.color} rounded-t`}
-                      initial={{ height: 0 }}
-                      animate={{ height: `${height}%` }}
-                      transition={{
-                        delay: index * 0.1 + i * 0.05,
-                        type: "spring",
-                        stiffness: 400,
-                        damping: 17,
-                      }}
-                    />
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+                  <div className="h-48 flex items-end gap-2">
+                    {[40, 60, 45, 80, 70, 90, 100].map((height, i) => (
+                      <motion.div
+                        key={i}
+                        className={`flex-1 bg-gradient-to-t ${card.color} rounded-t`}
+                        initial={{ height: 0 }}
+                        animate={{ height: `${height}%` }}
+                        transition={{
+                          delay: index * 0.1 + i * 0.05,
+                          type: "spring",
+                          stiffness: 400,
+                          damping: 17,
+                        }}
+                      />
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
         </AnimatePresence>
       </div>
     </section>

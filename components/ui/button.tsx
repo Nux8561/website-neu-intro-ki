@@ -37,7 +37,7 @@ const buttonVariants = cva(
 )
 
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "onDrag" | "onDragStart" | "onDragEnd">,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean
 }
@@ -57,7 +57,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     }
 
     // Use motion.button with explicit props to avoid TypeScript drag handler conflicts
-    const buttonProps = {
+    const motionProps: HTMLMotionProps<"button"> = {
       type,
       disabled,
       onClick,
@@ -72,10 +72,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         stiffness: 400,
         damping: 17,
       },
-    } as any
+      ...props,
+    }
 
     return (
-      <MotionButton {...buttonProps}>
+      <MotionButton {...motionProps}>
         {children}
       </MotionButton>
     )

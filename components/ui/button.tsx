@@ -54,25 +54,27 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       )
     }
 
-    // Use type assertion to avoid TypeScript conflicts between HTML and Motion props
-    // Only pass explicit props to avoid drag handler conflicts
+    // Create motion props object with only compatible props
+    // Use type assertion to bypass TypeScript's strict checking for incompatible drag handlers
+    const motionProps = {
+      type,
+      disabled,
+      onClick,
+      onMouseEnter,
+      onMouseLeave,
+      className: cn(buttonVariants({ variant, size, className })),
+      ref,
+      whileHover: { scale: 1.01 },
+      whileTap: { scale: 0.98 },
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 17,
+      },
+    } as HTMLMotionProps<"button">
+
     return (
-      <motion.button
-        type={type}
-        disabled={disabled}
-        onClick={onClick}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
-        className={cn(buttonVariants({ variant, size, className }))}
-        ref={ref}
-        whileHover={{ scale: 1.01 }}
-        whileTap={{ scale: 0.98 }}
-        transition={{
-          type: "spring",
-          stiffness: 400,
-          damping: 17,
-        }}
-      >
+      <motion.button {...motionProps}>
         {children}
       </motion.button>
     )

@@ -117,7 +117,7 @@ export function DataEnrichmentSection() {
                   </h4>
                   <div className="bg-[#0B0C0E]/5 rounded-lg p-4">
                     <p className="text-sm text-[#0B0C0E]/70 font-inter leading-relaxed">
-                      Sarah Johnson, the Head of IT, is leading the initiative to modernize their data infrastructure, which aligns with GreenLeaf's growth and sustainability goals. A successful demo call on August 29 confirmed the need for TechWave's solutions, and the opportunity is moving forward with a 75% confidence level.
+                      Sarah Johnson, the Head of IT, is leading the initiative to modernize their data infrastructure, which aligns with GreenLeaf&apos;s growth and sustainability goals. A successful demo call on August 29 confirmed the need for TechWave&apos;s solutions, and the opportunity is moving forward with a 75% confidence level.
                     </p>
                   </div>
                 </motion.div>

@@ -160,7 +160,7 @@ function AutomateEverything() {
           Automate everything
         </h3>
         <p className="text-[#0B0C0E]/70 font-inter mb-6">
-          You're in control. Automate even the most complex business processes with our powerful, intelligent automation engine.
+          You&apos;re in control. Automate even the most complex business processes with our powerful, intelligent automation engine.
         </p>
         <Button variant="outline" className="rounded-full">
           Explore automations

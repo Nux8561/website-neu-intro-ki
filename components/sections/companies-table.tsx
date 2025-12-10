@@ -203,7 +203,7 @@ export function CompaniesTable() {
   React.useEffect(() => {
     const timers: NodeJS.Timeout[] = []
     
-    companies.forEach((company, index) => {
+    attioCompanies.forEach((company, index) => {
       if (company.aiThinking?.icpFit) {
         const timer = setTimeout(() => {
           setCompanies(prev => prev.map(c => 
@@ -230,6 +230,7 @@ export function CompaniesTable() {
     return () => {
       timers.forEach(timer => clearTimeout(timer))
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const toggleSelect = (id: string) => {

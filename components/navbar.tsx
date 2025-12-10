@@ -21,7 +21,7 @@ export function Navbar() {
     setIsScrolled(latest > 50)
   })
 
-  const platformItems = [
+  const platformItems: Array<{ label: string; href: string; badge?: string }> = [
     { label: "Refer a team", href: "/refer", badge: "New" },
     { label: "Changelog", href: "/changelog" },
     { label: "Gmail extension", href: "/gmail-extension" },
@@ -30,7 +30,7 @@ export function Navbar() {
     { label: "Security", href: "/security" },
   ]
 
-  const resourcesItems = [
+  const resourcesItems: Array<{ label: string; href: string; badge?: string }> = [
     { label: "Startup program", href: "/startup-program" },
     { label: "Help center", href: "/help" },
     { label: "Automation templates", href: "/templates" },

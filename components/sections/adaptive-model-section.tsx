@@ -82,7 +82,7 @@ export function AdaptiveModelSection() {
             A seismic shift in CRM flexibility.
           </h2>
           <p className="text-lg text-[#0B0C0E]/70 font-inter mb-12 max-w-2xl">
-            Attio's powerful data model adapts to how your business works, not the other way around. Your business model — perfectly reflected in your CRM.
+            Attio&apos;s powerful data model adapts to how your business works, not the other way around. Your business model — perfectly reflected in your CRM.
           </p>
 
           {/* Tab Navigation */}

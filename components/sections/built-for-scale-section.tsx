@@ -50,7 +50,7 @@ export function BuiltForScaleSection() {
   const [countedValue, setCountedValue] = React.useState(0)
 
   React.useEffect(() => {
-    if (isInView && stats[0].animate) {
+    if (isInView && stats[0]?.animate) {
       const duration = 2000
       const steps = 100
       const increment = 1000000 / steps
@@ -69,6 +69,7 @@ export function BuiltForScaleSection() {
 
       return () => clearInterval(timer)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isInView])
 
   return (

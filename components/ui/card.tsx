@@ -10,8 +10,11 @@ const Card = React.forwardRef<
   React.HTMLAttributes<HTMLDivElement> & {
     interactive?: boolean
   }
->(({ className, interactive = false, ...props }, ref) => {
+>(({ className, interactive = false, children, ...props }, ref) => {
   if (interactive) {
+    // Extract only safe props for motion.div to avoid type conflicts
+    const { onDrag, onDragStart, onDragEnd, ...safeProps } = props
+    
     return (
       <motion.div
         ref={ref}
@@ -27,8 +30,10 @@ const Card = React.forwardRef<
           stiffness: 400,
           damping: 17,
         }}
-        {...props}
-      />
+        {...safeProps}
+      >
+        {children}
+      </motion.div>
     )
   }
   
@@ -40,7 +45,9 @@ const Card = React.forwardRef<
         className
       )}
       {...props}
-    />
+    >
+      {children}
+    </div>
   )
 })
 Card.displayName = "Card"

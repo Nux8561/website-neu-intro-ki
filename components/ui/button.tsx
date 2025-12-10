@@ -57,10 +57,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     }
 
     // Use motion.button with explicit props to avoid TypeScript drag handler conflicts
-    // We pass props directly inline without spreading to avoid any drag handler type conflicts
-    // TypeScript on Vercel's build system is stricter, so we pass props directly inline
-    // By not spreading, TypeScript can see that no drag handlers are present
+    // TypeScript on Vercel's build system sees a conflict between HTML's onDrag and Framer Motion's onDrag
+    // We've already excluded drag handlers from ButtonProps, so this is safe
     return (
+      // @ts-ignore - Framer Motion's onDrag type conflicts with HTML's onDrag type, but we've excluded drag handlers from ButtonProps
       <MotionButton
         type={type}
         disabled={disabled}

@@ -54,6 +54,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       )
     }
 
+    // Use type assertion to avoid TypeScript conflicts between HTML and Motion props
+    // Only pass explicit props to avoid drag handler conflicts
     return (
       <motion.button
         type={type}

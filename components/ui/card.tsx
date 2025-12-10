@@ -12,8 +12,17 @@ const Card = React.forwardRef<
   }
 >(({ className, interactive = false, children, ...props }, ref) => {
   if (interactive) {
-    // Extract only safe props for motion.div to avoid type conflicts
-    const { onDrag, onDragStart, onDragEnd, ...safeProps } = props
+    // Filter out all event handlers that conflict with Framer Motion
+    const {
+      onDrag,
+      onDragStart,
+      onDragEnd,
+      onAnimationStart,
+      onAnimationEnd,
+      onAnimationIteration,
+      onTransitionEnd,
+      ...safeProps
+    } = props
     
     return (
       <motion.div
@@ -30,7 +39,7 @@ const Card = React.forwardRef<
           stiffness: 400,
           damping: 17,
         }}
-        {...safeProps}
+        {...(safeProps as React.ComponentPropsWithoutRef<typeof motion.div>)}
       >
         {children}
       </motion.div>

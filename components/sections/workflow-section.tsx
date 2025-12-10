@@ -47,6 +47,33 @@ export function WorkflowSection() {
   const imageScale = useTransform(scrollYProgress, [0, 0.33, 0.66, 1], [0.8, 1, 0.8, 0.8])
   const imageOpacity = useTransform(scrollYProgress, [0, 0.33, 0.66, 1], [0.3, 1, 0.3, 0.3])
 
+  // Create opacity transforms for each step outside of map
+  const step0Opacity = useTransform(
+    scrollYProgress,
+    [-0.5 / workflowSteps.length, 0 / workflowSteps.length, 0.5 / workflowSteps.length],
+    [0.3, 1, 0.3]
+  )
+  const step1Opacity = useTransform(
+    scrollYProgress,
+    [
+      (1 - 0.5) / workflowSteps.length,
+      1 / workflowSteps.length,
+      (1 + 0.5) / workflowSteps.length,
+    ],
+    [0.3, 1, 0.3]
+  )
+  const step2Opacity = useTransform(
+    scrollYProgress,
+    [
+      (2 - 0.5) / workflowSteps.length,
+      2 / workflowSteps.length,
+      (2 + 0.5) / workflowSteps.length,
+    ],
+    [0.3, 1, 0.3]
+  )
+
+  const stepOpacities = [step0Opacity, step1Opacity, step2Opacity]
+
   return (
     <LazyMotion features={domAnimation}>
       <section className="py-24">
@@ -58,20 +85,11 @@ export function WorkflowSection() {
                 <div className="space-y-24">
                   {workflowSteps.map((step, index) => {
                     const isActive = activeStep === index
-                    const opacity = useTransform(
-                      scrollYProgress,
-                      [
-                        (index - 0.5) / workflowSteps.length,
-                        index / workflowSteps.length,
-                        (index + 0.5) / workflowSteps.length,
-                      ],
-                      [0.3, 1, 0.3]
-                    )
 
                     return (
                       <motion.div
                         key={index}
-                        style={{ opacity, willChange: "transform" }}
+                        style={{ opacity: stepOpacities[index], willChange: "transform" }}
                         className="space-y-4"
                       >
                         <h3 className="text-3xl font-jakarta font-medium tracking-tight text-white">

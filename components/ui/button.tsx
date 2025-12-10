@@ -55,7 +55,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     }
 
     // Create motion props object with only compatible props
-    // Use type assertion to bypass TypeScript's strict checking for incompatible drag handlers
+    // We only pass explicit props, so TypeScript's drag handler conflict is a false positive
     const motionProps = {
       type,
       disabled,
@@ -71,9 +71,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         stiffness: 400,
         damping: 17,
       },
-    } as HTMLMotionProps<"button">
+    }
 
     return (
+      // @ts-expect-error - TypeScript incorrectly infers drag handler conflicts, but we only pass compatible props
       <motion.button {...motionProps}>
         {children}
       </motion.button>

@@ -56,26 +56,24 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     // Create motion props object with only compatible props
     // We only pass explicit props, so TypeScript's drag handler conflict is a false positive
-    const motionProps = {
-      type,
-      disabled,
-      onClick,
-      onMouseEnter,
-      onMouseLeave,
-      className: cn(buttonVariants({ variant, size, className })),
-      ref,
-      whileHover: { scale: 1.01 },
-      whileTap: { scale: 0.98 },
-      transition: {
-        type: "spring",
-        stiffness: 400,
-        damping: 17,
-      },
-    }
-
     return (
       // @ts-expect-error - TypeScript incorrectly infers drag handler conflicts, but we only pass compatible props
-      <motion.button {...motionProps}>
+      <motion.button
+        type={type}
+        disabled={disabled}
+        onClick={onClick}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        whileHover={{ scale: 1.01 }}
+        whileTap={{ scale: 0.98 }}
+        transition={{
+          type: "spring",
+          stiffness: 400,
+          damping: 17,
+        }}
+      >
         {children}
       </motion.button>
     )

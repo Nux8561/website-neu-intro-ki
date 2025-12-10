@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { motion, useScroll, useMotionValueEvent } from "framer-motion"
+import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 import Link from "next/link"
@@ -16,10 +16,10 @@ export function Navbar() {
   })
 
   const navItems = [
-    { label: "Product", href: "#product" },
-    { label: "Pricing", href: "#pricing" },
-    { label: "Resources", href: "#resources" },
-    { label: "Company", href: "#company" },
+    { label: "Features", href: "/features" },
+    { label: "Pricing", href: "/pricing" },
+    { label: "Enterprise", href: "/enterprise" },
+    { label: "FAQ", href: "/faq" },
   ]
 
   return (
@@ -72,23 +72,26 @@ export function Navbar() {
               </svg>
             </motion.div>
             <span className="font-jakarta font-semibold text-white tracking-tight text-lg">
-              Attio
+              IntroKI
             </span>
           </Link>
 
           {/* Desktop Navigation - Attio Style */}
           <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
-              <motion.a
+              <Link
                 key={item.href}
                 href={item.href}
                 className="text-sm text-white/70 hover:text-white transition-colors font-inter relative group"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
-                {item.label}
+                <motion.span
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                >
+                  {item.label}
+                </motion.span>
                 <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-white group-hover:w-full transition-all duration-300" />
-              </motion.a>
+              </Link>
             ))}
           </div>
 
@@ -98,22 +101,25 @@ export function Navbar() {
               variant="ghost"
               size="sm"
               className="text-white/70 hover:text-white hover:bg-white/5 border-0"
+              asChild
             >
-              Sign in
+              <Link href="/dashboard">Anmelden</Link>
             </Button>
             <Button
               size="sm"
               className="bg-white text-[#0B0C0E] hover:bg-white/90 font-semibold rounded-full px-6"
+              asChild
             >
-              Start for free
+              <Link href="/pricing">Kostenlos starten</Link>
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-white"
+            className="md:hidden text-white p-2 -mr-2 touch-manipulation"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
           >
             {isMobileMenuOpen ? (
               <X className="h-6 w-6" />
@@ -124,43 +130,47 @@ export function Navbar() {
         </div>
 
         {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <motion.div
-            className="md:hidden border-t border-white/5 py-4 bg-[#0B0C0E]/95 backdrop-blur-xl"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ type: "spring", stiffness: 400, damping: 17 }}
-          >
-            <div className="flex flex-col gap-4">
-              {navItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="text-sm text-white/70 hover:text-white transition-colors font-inter"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.label}
-                </a>
-              ))}
-              <div className="flex flex-col gap-2 pt-4 border-t border-white/5">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="w-full text-white/70 hover:text-white hover:bg-white/5"
-                >
-                  Sign in
-                </Button>
-                <Button
-                  size="sm"
-                  className="w-full bg-white text-[#0B0C0E] hover:bg-white/90 font-semibold rounded-full"
-                >
-                  Start for free
-                </Button>
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              className="md:hidden border-t border-white/5 py-4 bg-[#0B0C0E]/95 backdrop-blur-xl"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            >
+              <div className="flex flex-col gap-4">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="text-sm text-white/70 hover:text-white transition-colors font-inter py-2 touch-manipulation"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+                <div className="flex flex-col gap-2 pt-4 border-t border-white/5">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="w-full text-white/70 hover:text-white hover:bg-white/5 touch-manipulation min-h-[44px]"
+                    asChild
+                  >
+                    <Link href="/dashboard">Anmelden</Link>
+                  </Button>
+                  <Button
+                    size="sm"
+                    className="w-full bg-white text-[#0B0C0E] hover:bg-white/90 font-semibold rounded-full touch-manipulation min-h-[44px]"
+                    asChild
+                  >
+                    <Link href="/pricing">Kostenlos starten</Link>
+                  </Button>
+                </div>
               </div>
-            </div>
-          </motion.div>
-        )}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.nav>
   )

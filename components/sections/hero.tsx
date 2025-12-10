@@ -102,11 +102,11 @@ export function Hero() {
             <input
               type="text"
               placeholder="KI Vertrieb für Ihr Unternehmen"
-              className="flex-1 px-6 py-4 rounded-full bg-white/5 border border-white/10 text-white placeholder:text-white/50 focus:outline-none focus:border-white/20 focus:bg-white/10 transition-all font-inter"
+              className="flex-1 px-6 py-4 rounded-full bg-white/5 border border-white/10 text-white placeholder:text-white/50 focus:outline-none focus:border-white/20 focus:bg-white/10 transition-all font-inter touch-manipulation min-h-[48px] text-base"
             />
             <Button
               size="lg"
-              className="bg-accent text-white hover:bg-accent-light font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 border-0 whitespace-nowrap"
+              className="bg-accent text-white hover:bg-accent-light font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 border-0 whitespace-nowrap touch-manipulation min-h-[48px]"
             >
               Research starten
               <ArrowRight className="ml-2 h-4 w-4" />

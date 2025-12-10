@@ -8,6 +8,13 @@ const nextConfig = {
       },
     ],
     minimumCacheTTL: 60,
+    formats: ['image/avif', 'image/webp'],
+  },
+  experimental: {
+    optimizePackageImports: ['lucide-react', 'framer-motion'],
+  },
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
   },
 }
 

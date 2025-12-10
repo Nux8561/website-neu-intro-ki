@@ -21,10 +21,10 @@ export function TopBanner() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-12">
           <Link
-            href="#developer-platform"
+            href="/features"
             className="text-white/70 hover:text-white text-sm font-inter transition-colors flex items-center gap-2"
           >
-            Meet the Attio Developer Platform
+            Neue Features verfügbar - Jetzt entdecken
             <span className="text-white/50">→</span>
           </Link>
           <button

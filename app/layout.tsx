@@ -25,6 +25,11 @@ const mono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: "Intro KI - AI-native CRM",
   description: "Das moderne CRM für die Zukunft",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+  },
 };
 
 export default function RootLayout({

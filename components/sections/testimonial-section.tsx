@@ -1,0 +1,50 @@
+"use client"
+
+import * as React from "react"
+import { motion } from "framer-motion"
+import { useInView } from "framer-motion"
+
+export function TestimonialSection() {
+  const ref = React.useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-100px" })
+
+  return (
+    <section
+      ref={ref}
+      className="relative py-24 border-y border-white/5"
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          className="max-w-4xl mx-auto text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{
+            type: "spring",
+            stiffness: 400,
+            damping: 17,
+          }}
+        >
+          <motion.blockquote
+            className="text-2xl md:text-3xl font-jakarta font-medium tracking-tight text-white/60 mb-8"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            "When I first opened Attio, I instantly got the feeling this was
+            the next generation of CRM."
+          </motion.blockquote>
+          <motion.div
+            className="text-white/40 font-inter text-sm"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ delay: 0.4 }}
+          >
+            <p className="font-medium">Margaret Shen</p>
+            <p>Head of Business Operations · Modal</p>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+

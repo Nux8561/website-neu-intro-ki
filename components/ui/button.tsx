@@ -37,7 +37,7 @@ const buttonVariants = cva(
 )
 
 export interface ButtonProps
-  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "onDrag" | "onDragStart" | "onDragEnd">,
+  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "onDrag" | "onDragStart" | "onDragEnd" | "onAnimationStart" | "onAnimationEnd" | "onAnimationIteration">,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean
 }
@@ -59,23 +59,28 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     // Use motion.button with explicit props to avoid TypeScript drag handler conflicts
     // We don't spread props to avoid any potential drag handler conflicts
     // Only pass the explicitly needed props
+    // TypeScript needs explicit casting because ButtonProps extends Omit<...> but TypeScript
+    // still sees the potential for drag handlers in the type system at build time
+    // We use a type assertion to tell TypeScript that these props are safe
+    const motionProps = {
+      type,
+      disabled,
+      onClick,
+      onMouseEnter,
+      onMouseLeave,
+      className: cn(buttonVariants({ variant, size, className })),
+      ref,
+      whileHover: { scale: 1.01 },
+      whileTap: { scale: 0.98 },
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 17,
+      },
+    } as Omit<HTMLMotionProps<"button">, "onDrag" | "onDragStart" | "onDragEnd" | "onAnimationStart" | "onAnimationEnd" | "onAnimationIteration"> & HTMLMotionProps<"button">
+
     return (
-      <MotionButton
-        type={type}
-        disabled={disabled}
-        onClick={onClick}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
-        className={cn(buttonVariants({ variant, size, className }))}
-        ref={ref}
-        whileHover={{ scale: 1.01 }}
-        whileTap={{ scale: 0.98 }}
-        transition={{
-          type: "spring",
-          stiffness: 400,
-          damping: 17,
-        }}
-      >
+      <MotionButton {...motionProps}>
         {children}
       </MotionButton>
     )

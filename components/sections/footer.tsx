@@ -4,6 +4,7 @@ import * as React from "react"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import Link from "next/link"
+import { Linkedin, Twitter, Instagram } from "lucide-react"
 
 export function Footer() {
   const ref = React.useRef(null)
@@ -149,23 +150,44 @@ export function Footer() {
               © 2025 Attio Ltd. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
-              <Link
-                href="/terms"
-                className="text-[#0B0C0E]/50 hover:text-[#0B0C0E] transition-colors font-inter text-sm"
+              <a
+                href="https://linkedin.com/company/introki"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#0B0C0E]/50 hover:text-[#0B0C0E] transition-colors"
+                aria-label="LinkedIn"
               >
-                Terms & Conditions
-              </Link>
+                <Linkedin className="h-5 w-5" strokeWidth={1.5} />
+              </a>
+              <a
+                href="https://twitter.com/introki"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#0B0C0E]/50 hover:text-[#0B0C0E] transition-colors"
+                aria-label="Twitter"
+              >
+                <Twitter className="h-5 w-5" strokeWidth={1.5} />
+              </a>
+              <a
+                href="https://instagram.com/introki"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#0B0C0E]/50 hover:text-[#0B0C0E] transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram className="h-5 w-5" strokeWidth={1.5} />
+              </a>
               <Link
-                href="/privacy"
+                href="/datenschutz"
                 className="text-[#0B0C0E]/50 hover:text-[#0B0C0E] transition-colors font-inter text-sm"
               >
                 Privacy Policy
               </Link>
               <Link
-                href="/llms"
+                href="/impressum"
                 className="text-[#0B0C0E]/50 hover:text-[#0B0C0E] transition-colors font-inter text-sm"
               >
-                LLMs
+                Terms & Conditions
               </Link>
             </div>
           </motion.div>

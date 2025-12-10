@@ -2,6 +2,9 @@
 
 import * as React from "react"
 import dynamic from "next/dynamic"
+import { Navbar } from "@/components/navbar"
+import { Footer } from "@/components/sections/footer"
+import { CookieConsent } from "@/components/ui/cookie-consent"
 import { TopBanner } from "@/components/sections/top-banner"
 import { Hero } from "@/components/sections/hero"
 import { FeatureNav } from "@/components/sections/feature-nav"
@@ -25,6 +28,7 @@ export default function Home() {
 
   return (
     <>
+      <Navbar />
       <TopBanner />
       <main className="min-h-screen bg-white relative">
         <Hero />
@@ -41,6 +45,8 @@ export default function Home() {
         <WorkflowSection />
         <CTASection />
       </main>
+      <Footer />
+      <CookieConsent />
     </>
   )
 }

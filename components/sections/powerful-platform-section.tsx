@@ -21,6 +21,8 @@ import {
   Code,
   Users,
   TrendingUp,
+  Share2,
+  MoreVertical,
 } from "lucide-react"
 
 const platformTabs = [
@@ -639,6 +641,7 @@ function PowerfulReporting() {
   const ref = React.useRef(null)
   const isInView = useInView(ref, { once: true })
   const [selectedPeriod, setSelectedPeriod] = React.useState("30D")
+  const [hoveredBar, setHoveredBar] = React.useState<string | null>(null)
 
   const periods = ["7D", "30D", "3M", "6M", "12M", "All"]
   const plans = ["Plus", "Pro", "Enterprise"]
@@ -728,14 +731,14 @@ function PowerfulReporting() {
             {chartData.map((data, index) => {
               const maxValue = Math.max(...chartData.map(d => d.value))
               const height = (data.value / maxValue) * 100
-              const [isHovered, setIsHovered] = React.useState(false)
+              const isHovered = hoveredBar === data.month
               
               return (
                 <motion.div
                   key={data.month}
                   className="flex-1 relative group"
-                  onHoverStart={() => setIsHovered(true)}
-                  onHoverEnd={() => setIsHovered(false)}
+                  onHoverStart={() => setHoveredBar(data.month)}
+                  onHoverEnd={() => setHoveredBar(null)}
                 >
                   {/* Tooltip */}
                   {isHovered && (

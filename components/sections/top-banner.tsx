@@ -6,7 +6,7 @@ import { X } from "lucide-react"
 import Link from "next/link"
 
 export function TopBanner() {
-  const [isVisible, setIsVisible] = React.useState(true)
+  const [isVisible, setIsVisible] = React.useState(false) // Standardmäßig ausgeblendet
 
   if (!isVisible) return null
 

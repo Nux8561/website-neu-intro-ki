@@ -3,25 +3,26 @@
 import * as React from "react"
 import { LazyMotion, motion, useScroll, useTransform, domAnimation } from "framer-motion"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Database, Sparkles, Zap } from "lucide-react"
 
 const workflowSteps = [
   {
     title: "Daten importieren",
     description:
       "Verbinde deine bestehenden Datenquellen und importiere Kontakte, Deals und Aktivitäten nahtlos.",
-    image: "📊",
+    icon: Database,
   },
   {
     title: "KI-Analyse aktivieren",
     description:
       "Unsere KI analysiert deine Daten und identifiziert Muster, Chancen und Optimierungspotenziale.",
-    image: "🤖",
+    icon: Sparkles,
   },
   {
     title: "Automatisierte Workflows",
     description:
       "Erstelle intelligente Automatisierungen, die sich selbst anpassen und dein Team entlasten.",
-    image: "⚡",
+    icon: Zap,
   },
 ]
 
@@ -113,7 +114,7 @@ export function WorkflowSection() {
                     }}
                     className="w-full max-w-md"
                   >
-                    <Card className="h-[400px] flex items-center justify-center">
+                    <Card className="h-[400px] flex items-center justify-center border-white/10 bg-white/5">
                       <CardContent className="text-center">
                         <motion.div
                           key={activeStep}
@@ -125,14 +126,19 @@ export function WorkflowSection() {
                             stiffness: 400,
                             damping: 17,
                           }}
-                          className="text-8xl mb-4"
+                          className="mb-4 flex items-center justify-center"
                         >
-                          {workflowSteps[activeStep].image}
+                          <div className="p-6 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-white/10">
+                            {React.createElement(workflowSteps[activeStep].icon, {
+                              className: "h-16 w-16 text-white",
+                              strokeWidth: 1.5,
+                            })}
+                          </div>
                         </motion.div>
-                        <CardTitle className="text-2xl mb-2">
+                        <CardTitle className="text-2xl mb-2 text-white">
                           {workflowSteps[activeStep].title}
                         </CardTitle>
-                        <CardDescription className="text-base">
+                        <CardDescription className="text-base text-white/70">
                           {workflowSteps[activeStep].description}
                         </CardDescription>
                       </CardContent>
@@ -142,7 +148,7 @@ export function WorkflowSection() {
 
                 {/* Visual Element - Mobile */}
                 <div className="lg:hidden mt-8">
-                  <Card className="h-[300px] flex items-center justify-center">
+                  <Card className="h-[300px] flex items-center justify-center border-white/10 bg-white/5">
                     <CardContent className="text-center">
                       <motion.div
                         key={activeStep}
@@ -154,14 +160,19 @@ export function WorkflowSection() {
                           stiffness: 400,
                           damping: 17,
                         }}
-                        className="text-6xl mb-4"
+                        className="mb-4 flex items-center justify-center"
                       >
-                        {workflowSteps[activeStep].image}
+                        <div className="p-4 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-white/10">
+                          {React.createElement(workflowSteps[activeStep].icon, {
+                            className: "h-12 w-12 text-white",
+                            strokeWidth: 1.5,
+                          })}
+                        </div>
                       </motion.div>
-                      <CardTitle className="text-xl mb-2">
+                      <CardTitle className="text-xl mb-2 text-white">
                         {workflowSteps[activeStep].title}
                       </CardTitle>
-                      <CardDescription className="text-sm">
+                      <CardDescription className="text-sm text-white/70">
                         {workflowSteps[activeStep].description}
                       </CardDescription>
                     </CardContent>

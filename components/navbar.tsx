@@ -9,7 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Menu, X, ChevronDown } from "lucide-react"
+import { Menu, X, ChevronDown, Users, FileText, Mail, Smartphone, Shield, BookOpen, HelpCircle, Code, Download, TrendingUp, Zap } from "lucide-react"
 import Link from "next/link"
 
 export function Navbar() {
@@ -21,23 +21,23 @@ export function Navbar() {
     setIsScrolled(latest > 50)
   })
 
-  const platformItems: Array<{ label: string; href: string; badge?: string }> = [
-    { label: "Refer a team", href: "/refer", badge: "New" },
-    { label: "Changelog", href: "/changelog" },
-    { label: "Gmail extension", href: "/gmail-extension" },
-    { label: "iOS app", href: "/ios-app" },
-    { label: "Android app", href: "/android-app" },
-    { label: "Security", href: "/security" },
+  const platformItems: Array<{ label: string; href: string; badge?: string; icon?: React.ComponentType<{ className?: string }> }> = [
+    { label: "Refer a team", href: "/refer", badge: "New", icon: Users },
+    { label: "Changelog", href: "/changelog", icon: FileText },
+    { label: "Gmail extension", href: "/gmail-extension", icon: Mail },
+    { label: "iOS app", href: "/ios-app", icon: Smartphone },
+    { label: "Android app", href: "/android-app", icon: Smartphone },
+    { label: "Security", href: "/security", icon: Shield },
   ]
 
-  const resourcesItems: Array<{ label: string; href: string; badge?: string }> = [
-    { label: "Startup program", href: "/startup-program" },
-    { label: "Help center", href: "/help" },
-    { label: "Automation templates", href: "/templates" },
-    { label: "Developers", href: "/developers" },
-    { label: "System status", href: "/status" },
-    { label: "Hire an expert", href: "/experts" },
-    { label: "Downloads", href: "/downloads" },
+  const resourcesItems: Array<{ label: string; href: string; badge?: string; icon?: React.ComponentType<{ className?: string }> }> = [
+    { label: "Startup program", href: "/startup-program", icon: TrendingUp },
+    { label: "Help center", href: "/help", icon: HelpCircle },
+    { label: "Automation templates", href: "/templates", icon: Zap },
+    { label: "Developers", href: "/developers", icon: Code },
+    { label: "System status", href: "/status", icon: Shield },
+    { label: "Hire an expert", href: "/experts", icon: Users },
+    { label: "Downloads", href: "/downloads", icon: Download },
   ]
 
   const navItems = [
@@ -119,30 +119,58 @@ export function Navbar() {
                 return (
                   <DropdownMenu key={item.label}>
                     <DropdownMenuTrigger asChild>
-                      <button className="text-sm text-[#0B0C0E]/70 hover:text-[#0B0C0E] transition-colors font-inter relative group flex items-center gap-1">
-                        <motion.span
-                          whileHover={{ scale: 1.05 }}
+                      <motion.button
+                        className="text-sm text-[#0B0C0E]/70 hover:text-[#0B0C0E] transition-colors font-inter relative group flex items-center gap-1"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                      >
+                        <span>{item.label}</span>
+                        <motion.div
+                          animate={{ rotate: 0 }}
                           transition={{ type: "spring", stiffness: 400, damping: 17 }}
                         >
-                          {item.label}
-                        </motion.span>
-                        <ChevronDown className="w-4 h-4 opacity-50" />
+                          <ChevronDown className="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity" />
+                        </motion.div>
                         <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#0B0C0E] group-hover:w-full transition-all duration-300" />
-                      </button>
+                      </motion.button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="start" className="w-56">
-                      {item.items.map((dropdownItem) => (
-                        <DropdownMenuItem key={dropdownItem.label} asChild>
-                          <Link href={dropdownItem.href} className="flex items-center justify-between w-full">
-                            <span>{dropdownItem.label}</span>
-                            {dropdownItem.badge && (
-                              <span className="text-xs px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-600 font-mono">
-                                {dropdownItem.badge}
-                              </span>
-                            )}
-                          </Link>
-                        </DropdownMenuItem>
-                      ))}
+                    <DropdownMenuContent 
+                      align="start" 
+                      className="w-64 p-2 mt-2 border-[#0B0C0E]/10 shadow-xl bg-white rounded-xl"
+                      sideOffset={8}
+                    >
+                      <div className="py-1">
+                        {item.items.map((dropdownItem) => {
+                          const Icon = dropdownItem.icon
+                          return (
+                            <DropdownMenuItem 
+                              key={dropdownItem.label} 
+                              asChild
+                              className="px-3 py-2.5 rounded-lg hover:bg-[#0B0C0E]/5 cursor-pointer transition-all group/item"
+                            >
+                              <Link 
+                                href={dropdownItem.href} 
+                                className="flex items-center justify-between w-full text-sm gap-3"
+                              >
+                                <div className="flex items-center gap-3 flex-1 min-w-0">
+                                  {Icon && (
+                                    <Icon className="h-4 w-4 text-[#0B0C0E]/50 group-hover/item:text-[#0B0C0E]/70 transition-colors flex-shrink-0" />
+                                  )}
+                                  <span className="text-[#0B0C0E]/70 group-hover/item:text-[#0B0C0E] transition-colors font-inter truncate">
+                                    {dropdownItem.label}
+                                  </span>
+                                </div>
+                                {dropdownItem.badge && (
+                                  <span className="text-xs px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-600 font-mono flex-shrink-0">
+                                    {dropdownItem.badge}
+                                  </span>
+                                )}
+                              </Link>
+                            </DropdownMenuItem>
+                          )
+                        })}
+                      </div>
                     </DropdownMenuContent>
                   </DropdownMenu>
                 )

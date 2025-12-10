@@ -371,7 +371,7 @@ export function CompaniesTable() {
                       stiffness: 400,
                       damping: 17,
                     }}
-                    className="border-b border-[#0B0C0E]/5 hover:bg-[#0B0C0E]/5 transition-colors group"
+                    className="border-b border-[#0B0C0E]/5 hover:bg-[#0B0C0E]/5 hover:border-[#0B0C0E]/10 transition-all group cursor-pointer"
                   >
                     <td className="px-4 py-3">
                       <Checkbox

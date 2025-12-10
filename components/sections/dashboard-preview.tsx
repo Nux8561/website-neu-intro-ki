@@ -4,6 +4,9 @@ import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { RefreshCw, Plus, Share2, MoreVertical, Database, GitBranch, BarChart3, GitBranch as PipelineIcon } from "lucide-react"
 import { CompaniesTable } from "./companies-table"
+import { DashboardSidebar } from "@/components/ui/dashboard-sidebar"
+import { DashboardHeader } from "@/components/ui/dashboard-header"
+import { Breadcrumbs } from "@/components/ui/breadcrumbs"
 
 interface DashboardPreviewProps {
   activeFeature: string
@@ -108,57 +111,91 @@ export function DashboardPreview({ activeFeature }: DashboardPreviewProps) {
         />
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Dashboard Header */}
-        <motion.div
-          key={activeFeature}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ type: "spring", stiffness: 400, damping: 17 }}
-          className="mb-8 flex items-center justify-between"
-        >
-            <div className="flex items-center gap-4">
-            <div className="p-3 rounded-lg bg-[#0B0C0E]/5 border border-[#0B0C0E]/10">
-              <Icon className="h-6 w-6 text-[#0B0C0E]/70" />
+      {activeFeature === "data" ? (
+        /* Full Dashboard Layout with Sidebar */
+        <div className="container mx-auto px-0 relative z-10">
+          <div className="flex">
+            {/* Sidebar */}
+            <div className="hidden lg:block">
+              <DashboardSidebar />
             </div>
-            <div>
-              <h2 className="text-2xl font-jakarta font-medium tracking-tight text-[#0B0C0E]">
-                {content.title}
-              </h2>
-              <p className="text-[#0B0C0E]/50 font-inter text-sm mt-1">
-                {content.description}
-              </p>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <button className="p-2 rounded-lg border border-[#0B0C0E]/10 bg-[#0B0C0E]/5 hover:bg-[#0B0C0E]/10 hover:border-[#0B0C0E]/20 transition-all">
-              <RefreshCw className="h-4 w-4 text-[#0B0C0E]/70" />
-            </button>
-            <button className="p-2 rounded-lg border border-[#0B0C0E]/10 bg-[#0B0C0E]/5 hover:bg-[#0B0C0E]/10 hover:border-[#0B0C0E]/20 transition-all">
-              <Plus className="h-4 w-4 text-[#0B0C0E]/70" />
-            </button>
-            <button className="p-2 rounded-lg border border-[#0B0C0E]/10 bg-[#0B0C0E]/5 hover:bg-[#0B0C0E]/10 hover:border-[#0B0C0E]/20 transition-all">
-              <Share2 className="h-4 w-4 text-[#0B0C0E]/70" />
-            </button>
-            <button className="p-2 rounded-lg border border-[#0B0C0E]/10 bg-[#0B0C0E]/5 hover:bg-[#0B0C0E]/10 hover:border-[#0B0C0E]/20 transition-all">
-              <MoreVertical className="h-4 w-4 text-[#0B0C0E]/70" />
-            </button>
-          </div>
-        </motion.div>
 
-        {/* Dashboard Content */}
-        <AnimatePresence mode="wait">
-          {activeFeature === "data" ? (
-            <motion.div
-              key="data"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            >
-              <CompaniesTable />
-            </motion.div>
-          ) : (
+            {/* Main Content */}
+            <div className="flex-1 flex flex-col min-h-[800px]">
+              {/* Dashboard Header */}
+              <DashboardHeader />
+
+              {/* Content Area */}
+              <div className="flex-1 p-6">
+                {/* Breadcrumbs */}
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  className="mb-6"
+                >
+                  <Breadcrumbs
+                    items={[
+                      { label: "Basepoint", href: "#" },
+                      { label: "Companies" },
+                    ]}
+                  />
+                </motion.div>
+
+                {/* Companies Table */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                >
+                  <CompaniesTable />
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        /* Simplified Layout for Other Features */
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Dashboard Header */}
+          <motion.div
+            key={activeFeature}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            className="mb-8 flex items-center justify-between"
+          >
+            <div className="flex items-center gap-4">
+              <div className="p-3 rounded-lg bg-[#0B0C0E]/5 border border-[#0B0C0E]/10">
+                <Icon className="h-6 w-6 text-[#0B0C0E]/70" />
+              </div>
+              <div>
+                <h2 className="text-2xl font-jakarta font-medium tracking-tight text-[#0B0C0E]">
+                  {content.title}
+                </h2>
+                <p className="text-[#0B0C0E]/50 font-inter text-sm mt-1">
+                  {content.description}
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <button className="p-2 rounded-lg border border-[#0B0C0E]/10 bg-[#0B0C0E]/5 hover:bg-[#0B0C0E]/10 hover:border-[#0B0C0E]/20 transition-all">
+                <RefreshCw className="h-4 w-4 text-[#0B0C0E]/70" />
+              </button>
+              <button className="p-2 rounded-lg border border-[#0B0C0E]/10 bg-[#0B0C0E]/5 hover:bg-[#0B0C0E]/10 hover:border-[#0B0C0E]/20 transition-all">
+                <Plus className="h-4 w-4 text-[#0B0C0E]/70" />
+              </button>
+              <button className="p-2 rounded-lg border border-[#0B0C0E]/10 bg-[#0B0C0E]/5 hover:bg-[#0B0C0E]/10 hover:border-[#0B0C0E]/20 transition-all">
+                <Share2 className="h-4 w-4 text-[#0B0C0E]/70" />
+              </button>
+              <button className="p-2 rounded-lg border border-[#0B0C0E]/10 bg-[#0B0C0E]/5 hover:bg-[#0B0C0E]/10 hover:border-[#0B0C0E]/20 transition-all">
+                <MoreVertical className="h-4 w-4 text-[#0B0C0E]/70" />
+              </button>
+            </div>
+          </motion.div>
+
+          {/* Dashboard Content */}
+          <AnimatePresence mode="wait">
             <motion.div
               key={activeFeature}
               initial={{ opacity: 0, y: 20 }}
@@ -212,9 +249,9 @@ export function DashboardPreview({ activeFeature }: DashboardPreviewProps) {
                 </motion.div>
               ))}
             </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+          </AnimatePresence>
+        </div>
+      )}
     </section>
   )
 }

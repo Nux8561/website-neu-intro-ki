@@ -17,8 +17,8 @@ const config: Config = {
           light: "#FF6B58",
         },
         border: {
-          subtle: "rgba(11, 12, 14, 0.1)",
-          active: "rgba(11, 12, 14, 0.2)",
+          subtle: "rgba(11, 12, 14, 0.08)",
+          active: "rgba(11, 12, 14, 0.15)",
         },
       },
       fontFamily: {

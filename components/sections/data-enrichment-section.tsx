@@ -4,6 +4,8 @@ import * as React from "react"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { Button } from "@/components/ui/button"
+import { CalendarEvent } from "@/components/ui/calendar-event"
+import { ActivityTimeline } from "@/components/ui/activity-timeline"
 import { 
   Mail, 
   Calendar, 
@@ -12,6 +14,7 @@ import {
   Clock,
   User,
   Database,
+  Linkedin,
 } from "lucide-react"
 
 export function DataEnrichmentSection() {
@@ -88,16 +91,27 @@ export function DataEnrichmentSection() {
             <div className="bg-white rounded-xl p-6 border border-[#0B0C0E]/10">
               {/* Header */}
               <div className="flex items-start gap-4 mb-6">
-                <div className="w-12 h-12 rounded-full bg-[#0B0C0E]/10 flex items-center justify-center">
-                  <User className="h-6 w-6 text-[#0B0C0E]/70" />
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center border-2 border-[#0B0C0E]/10">
+                  <span className="text-2xl font-jakarta font-semibold text-[#0B0C0E]">
+                    SJ
+                  </span>
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl font-jakarta font-medium text-[#0B0C0E] mb-1">
                     Sarah Johnson
                   </h3>
-                  <p className="text-sm text-[#0B0C0E]/70 font-inter">
+                  <p className="text-sm text-[#0B0C0E]/70 font-inter mb-2">
                     Head of IT at GreenLeaf Inc.
                   </p>
+                  <a
+                    href="https://linkedin.com/in/sarahjohnson"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs text-blue-600 hover:text-blue-700 font-inter transition-colors"
+                  >
+                    <Linkedin className="h-3.5 w-3.5" />
+                    <span>sarahjohnson</span>
+                  </a>
                 </div>
                 <Button variant="outline" size="sm" className="rounded-full">
                   <Mail className="h-4 w-4 mr-2" />
@@ -134,17 +148,12 @@ export function DataEnrichmentSection() {
                   <h4 className="text-sm font-jakarta font-medium text-[#0B0C0E] mb-3">
                     Upcoming
                   </h4>
-                  <div className="flex items-center gap-3 p-3 bg-[#0B0C0E]/5 rounded-lg">
-                    <Calendar className="h-4 w-4 text-[#0B0C0E]/70" />
-                    <div>
-                      <p className="text-sm font-inter text-[#0B0C0E] font-medium">
-                        Demo Call
-                      </p>
-                      <p className="text-xs text-[#0B0C0E]/50 font-inter">
-                        Nov 29, 10:40 AM
-                      </p>
-                    </div>
-                  </div>
+                  <CalendarEvent
+                    title="Demo Call"
+                    date="Nov 29"
+                    time="10:40 AM"
+                    type="meeting"
+                  />
                 </motion.div>
               )}
 
@@ -179,22 +188,13 @@ export function DataEnrichmentSection() {
                   <h4 className="text-sm font-jakarta font-medium text-[#0B0C0E] mb-3">
                     Activity
                   </h4>
-                  <div className="space-y-2">
-                    {[
-                      { name: "Michael Chang", action: "attended an in-person meeting", time: "6 hours ago" },
-                      { name: "Sarah Johnson", action: "attended an event", time: "2 days ago" },
-                      { name: "Michael Chang", action: "made an outbound phone call", time: "4 days ago" },
-                    ].map((activity, index) => (
-                      <div key={index} className="flex items-start gap-3 text-sm">
-                        <Clock className="h-4 w-4 text-[#0B0C0E]/50 mt-0.5" />
-                        <div>
-                          <span className="font-inter text-[#0B0C0E]">{activity.name}</span>
-                          <span className="text-[#0B0C0E]/70"> {activity.action}</span>
-                          <span className="text-[#0B0C0E]/50 text-xs ml-2">{activity.time}</span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                  <ActivityTimeline
+                    activities={[
+                      { id: "1", person: "Michael Chang", action: "attended an in-person meeting", time: "6 hours ago", type: "meeting" },
+                      { id: "2", person: "Sarah Johnson", action: "attended an event", time: "2 days ago", type: "event" },
+                      { id: "3", person: "Michael Chang", action: "made an outbound phone call", time: "4 days ago", type: "call" },
+                    ]}
+                  />
                 </motion.div>
               )}
             </div>

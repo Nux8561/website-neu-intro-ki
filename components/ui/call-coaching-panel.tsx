@@ -77,23 +77,23 @@ export function CallCoachingPanel({
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
             >
-              <span className="text-white/50">Lead:</span> "Wir suchen nach einer
-              Lösung..."
+              <span className="text-white/50">Lead:</span> &ldquo;Wir suchen nach einer
+              Lösung&hellip;&rdquo;
             </motion.div>
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
             >
-              <span className="text-white/50">Du:</span> "Verstehe. Wie groß ist
-              euer Team?"
+              <span className="text-white/50">Du:</span> &ldquo;Verstehe. Wie groß ist
+              euer Team?&rdquo;
             </motion.div>
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
             >
-              <span className="text-white/50">Lead:</span> "Etwa 50 Mitarbeiter..."
+              <span className="text-white/50">Lead:</span> &ldquo;Etwa 50 Mitarbeiter&hellip;&rdquo;
             </motion.div>
           </div>
         </motion.div>

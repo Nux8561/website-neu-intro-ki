@@ -16,7 +16,7 @@
 
 @layer base {
   * {
-    @apply border-border-subtle;
+    border-color: var(--border-subtle);
   }
   
   body {

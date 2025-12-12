@@ -207,7 +207,7 @@ export default function ImportHubspotPage() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-4">
-              So einfach geht's
+              So einfach geht&apos;s
             </h2>
             <p className="text-xl text-[#0B0C0E]/70 font-inter max-w-2xl mx-auto">
               In 5 einfachen Schritten zu IntroKI

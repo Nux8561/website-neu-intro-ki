@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Menu, X, ChevronDown, Users, FileText, Mail, Smartphone, Shield, BookOpen, HelpCircle, Code, Download, TrendingUp, Zap } from "lucide-react"
 import Link from "next/link"
+import { IntroKILogo } from "@/components/ui/introki-logo"
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = React.useState(false)
@@ -59,57 +60,27 @@ export function Navbar() {
 
   return (
     <motion.nav
-      className="fixed top-0 left-0 right-0 z-50 bg-white"
+      className="fixed top-0 left-0 right-0 z-50"
       initial={{ y: 0 }}
       animate={{
-        backgroundColor: isScrolled ? "rgba(255, 255, 255, 0.95)" : "rgba(255, 255, 255, 1)",
-        backdropFilter: isScrolled ? "blur(20px)" : "none",
-        boxShadow: isScrolled ? "0 1px 3px rgba(0, 0, 0, 0.1)" : "none",
+        backgroundColor: isScrolled 
+          ? "rgba(255, 255, 255, 0.8)" 
+          : "rgba(255, 255, 255, 1)",
+        backdropFilter: isScrolled ? "blur(20px) saturate(180%)" : "none",
+        borderBottom: isScrolled 
+          ? "1px solid rgba(11, 12, 14, 0.08)" 
+          : "1px solid transparent",
       }}
       transition={{ type: "spring", stiffness: 400, damping: 17 }}
+      style={{
+        WebkitBackdropFilter: isScrolled ? "blur(20px) saturate(180%)" : "none",
+      }}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          {/* Logo - IntroKI Style */}
-          <Link href="/" className="flex items-center gap-2">
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="text-[#0B0C0E]"
-              >
-                <path
-                  d="M12 2L2 7L12 12L22 7L12 2Z"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M2 17L12 22L22 17"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M2 12L12 17L22 12"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </motion.div>
-            <span className="font-jakarta font-semibold text-[#0B0C0E] tracking-tight text-lg lowercase">
-              introki
-            </span>
+          {/* Logo - Professional IntroKI Logo */}
+          <Link href="/" className="flex items-center">
+            <IntroKILogo size="md" variant="default" animated={true} />
           </Link>
 
           {/* Desktop Navigation - IntroKI Style */}

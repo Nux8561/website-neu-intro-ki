@@ -4,6 +4,7 @@ import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { IntroKILogo } from "@/components/ui/introki-logo"
 import {
   LayoutDashboard,
   Users,
@@ -42,11 +43,7 @@ export function Sidebar({
         {/* Logo */}
         <div className="h-16 flex items-center px-6 border-b border-white/5">
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center">
-              <span className="text-white font-jakarta font-semibold text-sm">
-                IK
-              </span>
-            </div>
+            <IntroKILogo size="sm" variant="light" showText={false} animated={false} />
             <span className="font-jakarta font-semibold text-white tracking-tight">
               IntroKI
             </span>
@@ -110,11 +107,7 @@ export function Sidebar({
               {/* Header */}
               <div className="h-16 flex items-center justify-between px-6 border-b border-white/5">
                 <Link href="/" className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center">
-                    <span className="text-white font-jakarta font-semibold text-sm">
-                      IK
-                    </span>
-                  </div>
+                  <IntroKILogo size="sm" variant="light" showText={false} animated={false} />
                   <span className="font-jakarta font-semibold text-white tracking-tight">
                     IntroKI
                   </span>

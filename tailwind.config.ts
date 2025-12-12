@@ -10,15 +10,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#0B0C0E",
-        surface: "#15171B",
+        background: "#FFFFFF",
+        surface: "rgba(0, 0, 0, 0.02)",
         accent: {
-          DEFAULT: "#FF4538",
-          light: "#FF6B58",
+          DEFAULT: "#000000",
+          light: "#333333",
         },
         border: {
-          subtle: "rgba(255, 255, 255, 0.1)",
-          active: "rgba(255, 255, 255, 0.2)",
+          subtle: "rgba(0, 0, 0, 0.08)",
+          active: "rgba(0, 0, 0, 0.15)",
         },
         agent: {
           company: '#3b82f6',

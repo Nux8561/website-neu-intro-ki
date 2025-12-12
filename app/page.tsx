@@ -23,7 +23,7 @@ export default function Home() {
     <>
       <Navbar />
       <TopBanner />
-      <main className="min-h-screen bg-[#0B0C0E] relative">
+      <main className="min-h-screen bg-white relative">
         <Hero />
         <VideoSection />
         <FeaturesBentoGrid />

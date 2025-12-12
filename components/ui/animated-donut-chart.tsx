@@ -38,14 +38,14 @@ const CustomTooltip = ({ active, payload }: any) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload
     return (
-      <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg p-3 shadow-lg">
-        <p className="text-sm font-jakarta font-medium text-white mb-1">
+      <div className="bg-white/90 backdrop-blur-md border border-black/10 rounded-lg p-3 shadow-lg">
+        <p className="text-sm font-jakarta font-medium text-black mb-1">
           {data.name}
         </p>
-        <p className="text-xs font-inter text-white/70">
+        <p className="text-xs font-inter text-black/70">
           Wert: <span className="font-semibold">{data.value}</span>
         </p>
-        <p className="text-xs font-inter text-white/70">
+        <p className="text-xs font-inter text-black/70">
           Prozent:{" "}
           <span className="font-semibold">
             {((data.value / data.total) * 100).toFixed(1)}%

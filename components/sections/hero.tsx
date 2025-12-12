@@ -39,15 +39,12 @@ export function Hero({ backgroundType = "paths" }: HeroProps) {
   const words = headline.split(" ")
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 bg-[#0B0C0E]">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 bg-white">
       {/* Background Animation */}
       {backgroundType === "paths" && <BackgroundPaths />}
-      {backgroundType === "aurora" && (
-        <AuroraBackground intensity="medium" variant="blue-purple" />
-      )}
       
-      {/* Dark Background */}
-      <div className="absolute inset-0 bg-[#0B0C0E]" />
+      {/* White Background */}
+      <div className="absolute inset-0 bg-white" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
@@ -58,15 +55,15 @@ export function Hero({ backgroundType = "paths" }: HeroProps) {
             transition={{ duration: 0.6 }}
             className="mb-12"
           >
-            <button className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all text-sm text-white/70 hover:text-white font-inter">
+            <button className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-black/10 bg-black/5 hover:bg-black/10 hover:border-black/20 transition-all text-sm text-black/70 hover:text-black font-inter">
               Neu: Multi-Agent Research System
-              <span className="text-white/50">→</span>
+              <span className="text-black/50">→</span>
             </button>
           </motion.div>
 
           {/* Headline with Staggered Text Reveal - IntroKI Style */}
           <motion.h1
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-jakarta font-medium tracking-tight text-white mb-8"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-jakarta font-medium tracking-tight text-black mb-8"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
@@ -84,7 +81,7 @@ export function Hero({ backgroundType = "paths" }: HeroProps) {
 
           {/* Description - IntroKI Style */}
           <motion.p
-            className="text-lg md:text-xl text-white/70 font-inter mb-12 max-w-2xl mx-auto font-light"
+            className="text-lg md:text-xl text-black/70 font-inter mb-12 max-w-2xl mx-auto font-light"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2, type: "spring", stiffness: 400, damping: 17 }}
@@ -101,14 +98,14 @@ export function Hero({ backgroundType = "paths" }: HeroProps) {
           >
             <Button
               size="lg"
-              className="bg-white text-[#0B0C0E] hover:bg-white/90 font-semibold rounded-full px-8 py-4 h-auto"
+              className="bg-black text-white hover:bg-black/90 font-semibold rounded-full px-8 py-4 h-auto"
             >
               Kostenlos starten
             </Button>
             <Button
               variant="outline"
               size="lg"
-              className="border-white/20 text-white hover:bg-white/5 font-semibold rounded-full px-8 py-4 h-auto"
+              className="border-black/20 text-black hover:bg-black/5 font-semibold rounded-full px-8 py-4 h-auto"
             >
               Demo buchen
             </Button>
@@ -117,13 +114,13 @@ export function Hero({ backgroundType = "paths" }: HeroProps) {
       </div>
 
       {/* Subtle grid overlay */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
+      <div className="absolute inset-0 pointer-events-none opacity-[0.02]">
         <div
           className="w-full h-full"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px)
+              linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px)
             `,
             backgroundSize: "50px 50px",
           }}

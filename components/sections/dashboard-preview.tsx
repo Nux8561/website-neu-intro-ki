@@ -98,7 +98,7 @@ export function DashboardPreview({ activeFeature }: DashboardPreviewProps) {
   const Icon = content.icon
 
   return (
-    <section className="relative bg-[#0B0C0E] py-24 overflow-hidden">
+    <section className="relative bg-white py-24 overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
         <div
@@ -168,30 +168,30 @@ export function DashboardPreview({ activeFeature }: DashboardPreviewProps) {
             className="mb-8 flex items-center justify-between"
           >
             <div className="flex items-center gap-4">
-              <div className="p-3 rounded-lg bg-white/5 border border-white/10">
-                <Icon className="h-6 w-6 text-white/70" />
+              <div className="p-3 rounded-lg bg-black/5 border border-black/10">
+                <Icon className="h-6 w-6 text-black/70" />
               </div>
               <div>
-                <h2 className="text-2xl font-jakarta font-medium tracking-tight text-white">
+                <h2 className="text-2xl font-jakarta font-medium tracking-tight text-black">
                   {content.title}
                 </h2>
-                <p className="text-white/50 font-inter text-sm mt-1">
+                <p className="text-black/50 font-inter text-sm mt-1">
                   {content.description}
                 </p>
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <button className="p-2 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all">
-                <RefreshCw className="h-4 w-4 text-white/70" />
+              <button className="p-2 rounded-lg border border-black/10 bg-black/5 hover:bg-black/10 hover:border-black/20 transition-all">
+                <RefreshCw className="h-4 w-4 text-black/70" />
               </button>
-              <button className="p-2 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all">
-                <Plus className="h-4 w-4 text-white/70" />
+              <button className="p-2 rounded-lg border border-black/10 bg-black/5 hover:bg-black/10 hover:border-black/20 transition-all">
+                <Plus className="h-4 w-4 text-black/70" />
               </button>
-              <button className="p-2 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all">
-                <Share2 className="h-4 w-4 text-white/70" />
+              <button className="p-2 rounded-lg border border-black/10 bg-black/5 hover:bg-black/10 hover:border-black/20 transition-all">
+                <Share2 className="h-4 w-4 text-black/70" />
               </button>
-              <button className="p-2 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all">
-                <MoreVertical className="h-4 w-4 text-white/70" />
+              <button className="p-2 rounded-lg border border-black/10 bg-black/5 hover:bg-black/10 hover:border-black/20 transition-all">
+                <MoreVertical className="h-4 w-4 text-black/70" />
               </button>
             </div>
           </motion.div>
@@ -217,17 +217,17 @@ export function DashboardPreview({ activeFeature }: DashboardPreviewProps) {
                     stiffness: 400,
                     damping: 17,
                   }}
-                  className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-6"
+                  className="rounded-2xl border border-black/10 bg-black/5 backdrop-blur-sm p-6"
                 >
                   <div className="mb-4">
-                    <h3 className="text-sm font-mono text-white/50 uppercase tracking-wider mb-2">
+                    <h3 className="text-sm font-mono text-black/50 uppercase tracking-wider mb-2">
                       {card.title}
                     </h3>
                     <div className="flex items-baseline gap-2">
-                      <span className="text-3xl font-jakarta font-medium tracking-tight text-white">
+                      <span className="text-3xl font-jakarta font-medium tracking-tight text-black">
                         {card.value}
                       </span>
-                      <span className="text-sm text-green-400 font-inter">
+                      <span className="text-sm text-green-600 font-inter">
                         {card.change}
                       </span>
                     </div>

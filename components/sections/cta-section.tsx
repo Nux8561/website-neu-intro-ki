@@ -33,7 +33,7 @@ export function CTASection() {
   const ref = React.useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
-  const headline = "Start with a 14-day free trial of Pro."
+  const headline = "Bereit loszulegen?"
   const words = headline.split(" ")
 
   return (
@@ -76,27 +76,34 @@ export function CTASection() {
             ))}
           </motion.h2>
 
+          <motion.p
+            variants={wordVariants}
+            className="text-lg md:text-xl text-[#0B0C0E]/70 font-inter mb-12 max-w-2xl mx-auto"
+          >
+            Starte noch heute mit IntroKI und transformiere deinen Vertrieb.
+          </motion.p>
+
           {/* CTA Buttons */}
           <motion.div variants={wordVariants} className="flex flex-wrap gap-4 justify-center">
             <Button
               size="lg"
               className="bg-[#0B0C0E] text-white hover:bg-[#0B0C0E]/90 font-semibold px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105 border-0"
             >
-              Start for free
+              Kostenlos starten
             </Button>
             <Button
               variant="outline"
               size="lg"
               className="border-[#0B0C0E]/20 text-[#0B0C0E] hover:bg-[#0B0C0E]/5 font-semibold px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
             >
-              Send me a demo
+              Demo buchen
             </Button>
             <Button
               variant="outline"
               size="lg"
               className="border-[#0B0C0E]/20 text-[#0B0C0E] hover:bg-[#0B0C0E]/5 font-semibold px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
             >
-              See our plans
+              Preise ansehen
             </Button>
           </motion.div>
         </motion.div>

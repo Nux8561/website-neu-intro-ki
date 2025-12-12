@@ -30,7 +30,7 @@ const wordVariants = {
 }
 
 export function Hero() {
-  const headline = "Customer relationship magic."
+  const headline = "Das AI-gestützte CRM, das Sales-Teams von manueller Recherche befreit"
   const words = headline.split(" ")
 
   return (
@@ -51,7 +51,7 @@ export function Hero() {
             className="mb-12"
           >
             <button className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#0B0C0E]/10 bg-[#0B0C0E]/5 hover:bg-[#0B0C0E]/10 hover:border-[#0B0C0E]/20 transition-all text-sm text-[#0B0C0E]/70 hover:text-[#0B0C0E] font-inter">
-              Explore our integration with Granola
+              Neu: Multi-Agent Research System
               <span className="text-[#0B0C0E]/50">→</span>
             </button>
           </motion.div>
@@ -81,7 +81,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2, type: "spring", stiffness: 400, damping: 17 }}
           >
-            Attio is the AI-native CRM for GTM builders.
+            Enterprise-grade Sales CRM mit Multi-Agent AI-Orchestrierung, Echtzeit-Recherche und automatisiertem Call-Coaching – alles in einer Plattform.
           </motion.p>
 
           {/* CTA Buttons - Attio Exact Style */}
@@ -95,14 +95,14 @@ export function Hero() {
               size="lg"
               className="bg-[#0B0C0E] text-white hover:bg-[#0B0C0E]/90 font-semibold rounded-full px-8 py-4 h-auto"
             >
-              Start for free
+              Kostenlos starten
             </Button>
             <Button
               variant="outline"
               size="lg"
               className="border-[#0B0C0E]/20 text-[#0B0C0E] hover:bg-[#0B0C0E]/5 font-semibold rounded-full px-8 py-4 h-auto"
             >
-              Talk to sales
+              Demo buchen
             </Button>
           </motion.div>
         </div>

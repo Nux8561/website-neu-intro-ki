@@ -35,6 +35,29 @@ const config: Config = {
       boxShadow: {
         'inner-glow': 'inset 0 1px 0 0 rgba(11, 12, 14, 0.05)',
       },
+      animation: {
+        'pulse-slow': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'fade-in': 'fadeIn 0.5s ease-in-out',
+        'slide-in': 'slideIn 0.3s ease-out',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        slideIn: {
+          '0%': { transform: 'translateX(-20px)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' },
+        },
+      },
+      colors: {
+        agent: {
+          company: '#3b82f6',
+          people: '#a855f7',
+          ai: '#10b981',
+          validation: '#f97316',
+        },
+      },
     },
   },
   plugins: [],

@@ -65,5 +65,61 @@
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
   }
+
+  /* Glassmorphism Utilities */
+  .glass-sm {
+    @apply bg-white/5 backdrop-blur-sm border border-white/10;
+  }
+
+  .glass-md {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
+  }
+
+  .glass-lg {
+    @apply bg-white/5 backdrop-blur-lg border border-white/10;
+  }
+
+  .glass-dark-sm {
+    @apply bg-[#0B0C0E]/5 backdrop-blur-sm border border-[#0B0C0E]/10;
+  }
+
+  .glass-dark-md {
+    @apply bg-[#0B0C0E]/5 backdrop-blur-md border border-[#0B0C0E]/10;
+  }
+
+  .glass-dark-lg {
+    @apply bg-[#0B0C0E]/5 backdrop-blur-lg border border-[#0B0C0E]/10;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 

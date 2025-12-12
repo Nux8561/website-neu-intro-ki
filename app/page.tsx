@@ -13,6 +13,8 @@ import { PipelineManagementSection } from "@/components/sections/pipeline-manage
 import { CallCoachingSection } from "@/components/sections/call-coaching-section"
 
 // Lazy load heavy components
+const VideoSection = dynamic(() => import("@/components/sections/video-section").then(mod => ({ default: mod.VideoSection })), { ssr: true })
+const TestimonialSectionEnhanced = dynamic(() => import("@/components/sections/testimonial-section-enhanced").then(mod => ({ default: mod.TestimonialSectionEnhanced })), { ssr: true })
 const SocialProof = dynamic(() => import("@/components/sections/social-proof").then(mod => ({ default: mod.SocialProof })), { ssr: true })
 const CTASection = dynamic(() => import("@/components/sections/cta-section").then(mod => ({ default: mod.CTASection })), { ssr: true })
 
@@ -23,11 +25,13 @@ export default function Home() {
       <TopBanner />
       <main className="min-h-screen bg-white relative">
         <Hero />
+        <VideoSection />
         <FeaturesBentoGrid />
         <ResearchOrchestratorSection />
         <PipelineManagementSection />
         <CallCoachingSection />
         <SocialProof />
+        <TestimonialSectionEnhanced />
         <CTASection />
       </main>
       <Footer />

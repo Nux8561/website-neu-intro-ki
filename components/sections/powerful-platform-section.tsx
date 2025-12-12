@@ -24,6 +24,7 @@ import {
   Share2,
   MoreVertical,
 } from "lucide-react"
+import { AnimatedBarChart } from "@/components/ui/animated-bar-chart"
 
 const platformTabs = [
   { id: "automate", label: "Automate everything", icon: Zap },
@@ -726,63 +727,16 @@ function PowerfulReporting() {
             </div>
           </div>
           
-          {/* Interactive Bar Chart */}
-          <div className="flex items-end gap-3 h-48 relative">
-            {chartData.map((data, index) => {
-              const maxValue = Math.max(...chartData.map(d => d.value))
-              const height = (data.value / maxValue) * 100
-              const isHovered = hoveredBar === data.month
-              
-              return (
-                <motion.div
-                  key={data.month}
-                  className="flex-1 relative group"
-                  onHoverStart={() => setHoveredBar(data.month)}
-                  onHoverEnd={() => setHoveredBar(null)}
-                >
-                  {/* Tooltip */}
-                  {isHovered && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 5 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="absolute -top-12 left-1/2 transform -translate-x-1/2 z-10"
-                    >
-                      <div className="bg-[#0B0C0E] text-white text-xs px-3 py-1.5 rounded-lg whitespace-nowrap shadow-lg">
-                        <div className="font-medium mb-0.5">{data.month}</div>
-                        <div className="text-white/80">
-                          ${(data.value / 1000000).toFixed(2)}M
-                        </div>
-                        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full">
-                          <div className="w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-[#0B0C0E]" />
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                  
-                  {/* Bar */}
-                  <motion.div
-                    initial={{ height: 0 }}
-                    animate={isInView ? { height: `${height}%` } : { height: 0 }}
-                    transition={{
-                      delay: index * 0.15,
-                      type: "spring",
-                      stiffness: 400,
-                      damping: 17,
-                    }}
-                    className="bg-gradient-to-t from-blue-600 to-blue-500 rounded-t-lg relative cursor-pointer transition-all group-hover:from-blue-700 group-hover:to-blue-600"
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    {/* Bar Value Label */}
-                    <div className="absolute -top-6 left-0 right-0 text-center">
-                      <p className="text-xs font-inter text-[#0B0C0E]/50 font-medium">
-                        {data.month}
-                      </p>
-                    </div>
-                  </motion.div>
-                </motion.div>
-              )
-            })}
-          </div>
+          {/* Real Bar Chart */}
+          <AnimatedBarChart
+            data={chartData.map((data) => ({
+              name: data.month,
+              value: data.value / 1000, // Convert to thousands for display
+            }))}
+            height={192}
+            colorScheme="blue-purple"
+            showAnimation={true}
+          />
           
           {/* Chart Legend */}
           <div className="mt-6 pt-4 border-t border-[#0B0C0E]/10 flex items-center justify-between">

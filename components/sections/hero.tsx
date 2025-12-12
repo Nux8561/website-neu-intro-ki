@@ -4,6 +4,7 @@ import * as React from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { BackgroundPaths } from "@/components/ui/background-paths"
+import { AuroraBackground } from "@/components/ui/aurora-background"
 import { ArrowRight } from "lucide-react"
 
 const containerVariants = {
@@ -29,14 +30,21 @@ const wordVariants = {
   },
 }
 
-export function Hero() {
+interface HeroProps {
+  backgroundType?: "paths" | "aurora" | "none"
+}
+
+export function Hero({ backgroundType = "paths" }: HeroProps) {
   const headline = "Das AI-gestützte CRM, das Sales-Teams von manueller Recherche befreit"
   const words = headline.split(" ")
 
   return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 bg-white">
-      {/* Background Paths Animation */}
-      <BackgroundPaths />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 bg-white">
+      {/* Background Animation */}
+      {backgroundType === "paths" && <BackgroundPaths />}
+      {backgroundType === "aurora" && (
+        <AuroraBackground intensity="subtle" variant="blue-purple" />
+      )}
       
       {/* Subtle Background - Light Theme */}
       <div className="absolute inset-0 bg-white" />

@@ -45,8 +45,24 @@ export function WorkflowSection() {
     return () => unsubscribe()
   }, [stepProgress])
 
-  const imageScale = useTransform(scrollYProgress, [0, 0.33, 0.66, 1], [0.8, 1, 0.8, 0.8])
-  const imageOpacity = useTransform(scrollYProgress, [0, 0.33, 0.66, 1], [0.3, 1, 0.3, 0.3])
+  // Improved smooth transitions for visual element
+  const imageScale = useTransform(
+    scrollYProgress,
+    [0, 0.25, 0.5, 0.75, 1],
+    [0.85, 1, 1, 0.85, 0.85]
+  )
+  const imageOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.25, 0.5, 0.75, 1],
+    [0.4, 1, 1, 0.4, 0.4]
+  )
+  
+  // Smooth rotation for visual interest
+  const imageRotate = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    [0, 2, 0]
+  )
 
   // Create opacity transforms for each step outside of map
   const step0Opacity = useTransform(
@@ -90,7 +106,10 @@ export function WorkflowSection() {
                     return (
                       <motion.div
                         key={index}
-                        style={{ opacity: stepOpacities[index], willChange: "transform" }}
+                        style={{
+                          opacity: stepOpacities[index],
+                          willChange: "opacity",
+                        }}
                         className="space-y-4"
                       >
                         <h3 className="text-3xl font-jakarta font-medium tracking-tight text-[#0B0C0E]">
@@ -110,7 +129,8 @@ export function WorkflowSection() {
                     style={{
                       scale: imageScale,
                       opacity: imageOpacity,
-                      willChange: "transform",
+                      rotate: imageRotate,
+                      willChange: "transform, opacity",
                     }}
                     className="w-full max-w-md"
                   >
@@ -118,9 +138,9 @@ export function WorkflowSection() {
                       <CardContent className="text-center">
                         <motion.div
                           key={activeStep}
-                          initial={{ scale: 0.9, opacity: 0 }}
-                          animate={{ scale: 1, opacity: 1 }}
-                          exit={{ scale: 0.9, opacity: 0 }}
+                          initial={{ scale: 0.9, opacity: 0, rotate: -5 }}
+                          animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                          exit={{ scale: 0.9, opacity: 0, rotate: 5 }}
                           transition={{
                             type: "spring",
                             stiffness: 400,

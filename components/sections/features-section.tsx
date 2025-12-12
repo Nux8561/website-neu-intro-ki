@@ -4,6 +4,7 @@ import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Zap, Target, Rocket, Brain, Sparkles } from "lucide-react"
 import { useInView } from "framer-motion"
+import { AuroraBackground } from "@/components/ui/aurora-background"
 
 const tabs = [
   { id: "research", label: "Deep Research", icon: Brain },
@@ -76,27 +77,8 @@ export function FeaturesSection() {
       ref={ref}
       className="relative py-24 overflow-hidden bg-white"
     >
-      {/* Aurora Background Animation */}
-      <div className="absolute inset-0 pointer-events-none">
-        <motion.div
-          className="absolute inset-0"
-          animate={{
-            backgroundPosition: ["0% 0%", "100% 100%"],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            repeatType: "reverse",
-            ease: "linear",
-          }}
-          style={{
-            background:
-              "radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.2), transparent 50%), radial-gradient(circle at 80% 50%, rgba(168, 85, 247, 0.2), transparent 50%)",
-            backgroundSize: "200% 200%",
-            filter: "blur(120px)",
-          }}
-        />
-      </div>
+      {/* Aurora Background */}
+      <AuroraBackground intensity="medium" variant="blue-purple" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
@@ -109,8 +91,8 @@ export function FeaturesSection() {
             damping: 17,
           }}
         >
-          {/* Tab Navigation */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
+          {/* Tab Navigation with Layout Animation */}
+          <div className="relative flex flex-wrap justify-center gap-3 mb-12">
             {tabs.map((tab) => {
               const Icon = tab.icon
               const isActive = activeTab === tab.id
@@ -118,16 +100,29 @@ export function FeaturesSection() {
                 <motion.button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-inter transition-all ${
+                  className={`relative flex items-center gap-2 px-4 py-2 rounded-full text-sm font-inter transition-all ${
                     isActive
-                      ? "bg-blue-600 text-white"
+                      ? "text-white"
                       : "bg-[#0B0C0E]/5 text-[#0B0C0E]/70 hover:bg-[#0B0C0E]/10 hover:text-[#0B0C0E] border border-[#0B0C0E]/10 hover:border-[#0B0C0E]/20"
                   }`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
+                  layout
                 >
-                  <Icon className="h-4 w-4" />
-                  {tab.label}
+                  {/* Active Background with Layout Animation */}
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeTab"
+                      className="absolute inset-0 rounded-full bg-blue-600"
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 17,
+                      }}
+                    />
+                  )}
+                  <Icon className="h-4 w-4 relative z-10" />
+                  <span className="relative z-10">{tab.label}</span>
                 </motion.button>
               )
             })}

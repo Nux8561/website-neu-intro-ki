@@ -7,6 +7,8 @@ import { CompaniesTable } from "./companies-table"
 import { DashboardSidebar } from "@/components/ui/dashboard-sidebar"
 import { DashboardHeader } from "@/components/ui/dashboard-header"
 import { Breadcrumbs } from "@/components/ui/breadcrumbs"
+import { AnimatedBarChart } from "@/components/ui/animated-bar-chart"
+import { AnimatedDonutChart } from "@/components/ui/animated-donut-chart"
 
 interface DashboardPreviewProps {
   activeFeature: string
@@ -230,22 +232,36 @@ export function DashboardPreview({ activeFeature }: DashboardPreviewProps) {
                       </span>
                     </div>
                   </div>
-                  <div className="h-48 flex items-end gap-2">
-                    {[40, 60, 45, 80, 70, 90, 100].map((height, i) => (
-                      <motion.div
-                        key={i}
-                        className={`flex-1 bg-gradient-to-t ${card.color} rounded-t`}
-                        initial={{ height: 0 }}
-                        animate={{ height: `${height}%` }}
-                        transition={{
-                          delay: index * 0.1 + i * 0.05,
-                          type: "spring",
-                          stiffness: 400,
-                          damping: 17,
-                        }}
-                      />
-                    ))}
-                  </div>
+                  {/* Real Chart */}
+                  {activeFeature === "reporting" ? (
+                    <AnimatedBarChart
+                      data={[
+                        { name: "Jan", value: 40 },
+                        { name: "Feb", value: 60 },
+                        { name: "Mar", value: 45 },
+                        { name: "Apr", value: 80 },
+                        { name: "May", value: 70 },
+                        { name: "Jun", value: 90 },
+                        { name: "Jul", value: 100 },
+                      ]}
+                      height={192}
+                      colorScheme="blue-purple"
+                      showAnimation={true}
+                    />
+                  ) : (
+                    <AnimatedDonutChart
+                      data={[
+                        { name: "Active", value: 65 },
+                        { name: "Pending", value: 25 },
+                        { name: "Completed", value: 10 },
+                      ]}
+                      height={192}
+                      colorScheme="blue-purple"
+                      showAnimation={true}
+                      innerRadius={40}
+                      outerRadius={80}
+                    />
+                  )}
                 </motion.div>
               ))}
             </motion.div>

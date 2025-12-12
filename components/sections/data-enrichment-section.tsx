@@ -46,15 +46,15 @@ export function DataEnrichmentSection() {
           }}
         >
           {/* Section Number */}
-          <div className="text-sm font-mono text-[#0B0C0E]/50 mb-4">
+          <div className="text-sm font-mono text-black/50 mb-4">
             [03] data enrichment
           </div>
 
           {/* Header */}
-          <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-4">
+          <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-black mb-4">
             Schnell aufgebaut.
           </h2>
-          <p className="text-lg text-[#0B0C0E]/70 font-inter mb-12 max-w-2xl">
+          <p className="text-lg text-black/70 font-inter mb-12 max-w-2xl">
             Vergiss monatelange Einrichtung. IntroKI synchronisiert sich sofort mit deinem E-Mail und Kalender und baut ein leistungsstarkes CRM vor deinen Augen auf.
           </p>
 

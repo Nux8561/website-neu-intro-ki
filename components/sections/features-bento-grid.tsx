@@ -120,22 +120,22 @@ export function FeaturesBentoGrid() {
         >
           <SpotlightCard className="h-full group">
             <Card
-              className={`h-full border-white/10 ${feature.bgColor} backdrop-blur-sm transition-all hover:border-white/20`}
+              className={`h-full border-black/10 ${feature.bgColor} backdrop-blur-sm transition-all hover:border-black/20`}
             >
               <CardHeader className="pb-3">
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="p-2 rounded-lg bg-white/10 border border-white/10 group-hover:bg-white/20 group-hover:border-white/20 transition-all">
-                    <Icon className="h-5 w-5 text-white/90" />
+                  <div className="p-2 rounded-lg bg-black/5 border border-black/10 group-hover:bg-black/10 group-hover:border-black/20 transition-all">
+                    <Icon className="h-5 w-5 text-black/70" />
                   </div>
-                  <CardTitle className="text-lg font-jakarta font-medium tracking-tight text-white">
+                  <CardTitle className="text-lg font-jakarta font-medium tracking-tight text-black">
                     {feature.title}
                   </CardTitle>
                 </div>
-                <CardDescription className="text-white/70 font-inter text-sm">
+                <CardDescription className="text-black/70 font-inter text-sm">
                   {feature.description}
                 </CardDescription>
               </CardHeader>
-              <CardContent className="h-full min-h-[200px] bg-[#15171B] rounded-lg border border-white/5">
+              <CardContent className="h-full min-h-[200px] bg-white rounded-lg border border-black/5">
                 {feature.content}
               </CardContent>
             </Card>
@@ -155,8 +155,8 @@ export function FeaturesBentoGrid() {
             className="w-full h-full"
             style={{
               backgroundImage: `
-                linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px)
+                linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px)
               `,
               backgroundSize: "50px 50px",
             }}
@@ -172,10 +172,10 @@ export function FeaturesBentoGrid() {
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
-            <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-black mb-4">
               Alles was du brauchst
             </h2>
-            <p className="text-lg text-white/70 font-inter max-w-2xl mx-auto">
+            <p className="text-lg text-black/70 font-inter max-w-2xl mx-auto">
               Eine vollständige CRM-Lösung mit AI-Power für erfolgreichen Vertrieb
             </p>
           </motion.div>

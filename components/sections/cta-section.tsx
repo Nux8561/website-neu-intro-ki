@@ -62,7 +62,7 @@ export function CTASection() {
         >
           {/* Headline with Staggered Text Reveal */}
           <motion.h2
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-8"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-jakarta font-medium tracking-tight text-black mb-8"
             variants={containerVariants}
           >
             {words.map((word, index) => (
@@ -78,7 +78,7 @@ export function CTASection() {
 
           <motion.p
             variants={wordVariants}
-            className="text-lg md:text-xl text-[#0B0C0E]/70 font-inter mb-12 max-w-2xl mx-auto"
+            className="text-lg md:text-xl text-black/70 font-inter mb-12 max-w-2xl mx-auto"
           >
             Starte noch heute mit IntroKI und transformiere deinen Vertrieb.
           </motion.p>
@@ -87,21 +87,21 @@ export function CTASection() {
           <motion.div variants={wordVariants} className="flex flex-wrap gap-4 justify-center">
             <Button
               size="lg"
-              className="bg-[#0B0C0E] text-white hover:bg-[#0B0C0E]/90 font-semibold px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105 border-0"
+              className="bg-black text-white hover:bg-black/90 font-semibold px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105 border-0"
             >
               Kostenlos starten
             </Button>
             <Button
               variant="outline"
               size="lg"
-              className="border-[#0B0C0E]/20 text-[#0B0C0E] hover:bg-[#0B0C0E]/5 font-semibold px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
+              className="border-black/20 text-black hover:bg-black/5 font-semibold px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
             >
               Demo buchen
             </Button>
             <Button
               variant="outline"
               size="lg"
-              className="border-[#0B0C0E]/20 text-[#0B0C0E] hover:bg-[#0B0C0E]/5 font-semibold px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
+              className="border-black/20 text-black hover:bg-black/5 font-semibold px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
             >
               Preise ansehen
             </Button>

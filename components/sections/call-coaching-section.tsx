@@ -36,7 +36,7 @@ export function CallCoachingSection() {
   return (
     <section
       ref={ref}
-      className="relative py-24 overflow-hidden bg-white border-y border-[#0B0C0E]/10"
+      className="relative py-24 overflow-hidden bg-white border-y border-black/10"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -50,34 +50,34 @@ export function CallCoachingSection() {
           }}
         >
           {/* Section Number */}
-          <div className="text-sm font-mono text-[#0B0C0E]/50 mb-4">
+          <div className="text-sm font-mono text-black/50 mb-4">
             [03] Call Coaching
           </div>
 
           {/* Header */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
             <div>
-              <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-4">
+              <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-black mb-4">
                 Nie wieder unvorbereitet.
               </h2>
-              <p className="text-lg text-[#0B0C0E]/70 font-inter mb-8 max-w-2xl">
+              <p className="text-lg text-black/70 font-inter mb-8 max-w-2xl">
                 Live Coaching während des Calls mit AI-generierten Talking Points und
                 Objection Handling. Automatische Transkription und Post-Call Analysis
                 für kontinuierliche Verbesserung.
               </p>
               <div className="flex gap-4">
-                <Button className="rounded-full bg-[#0B0C0E] text-white">
+                <Button className="rounded-full bg-black text-white">
                   Kostenlos starten
                 </Button>
-                <Button variant="outline" className="rounded-full">
+                <Button variant="outline" className="rounded-full border-black/20 text-black">
                   Demo ansehen
                 </Button>
               </div>
             </div>
 
             {/* Visual Demo */}
-            <div className="bg-[#0B0C0E]/5 border border-[#0B0C0E]/10 rounded-2xl p-8 backdrop-blur-sm">
-              <div className="bg-[#15171B] rounded-xl p-6 border border-white/10">
+            <div className="bg-black/5 border border-black/10 rounded-2xl p-8 backdrop-blur-sm">
+              <div className="bg-white rounded-xl p-6 border border-black/10">
                 <CallCoachingPanel />
               </div>
             </div>
@@ -100,15 +100,15 @@ export function CallCoachingSection() {
                     stiffness: 400,
                     damping: 17,
                   }}
-                  className="bg-[#0B0C0E]/5 border border-[#0B0C0E]/10 rounded-xl p-6 hover:border-[#0B0C0E]/20 transition-all"
+                  className="bg-black/5 border border-black/10 rounded-xl p-6 hover:border-black/20 transition-all"
                 >
-                  <div className="p-3 rounded-lg bg-[#0B0C0E]/5 border border-[#0B0C0E]/10 w-fit mb-4">
-                    <Icon className="h-6 w-6 text-[#0B0C0E]/70" />
+                  <div className="p-3 rounded-lg bg-black/5 border border-black/10 w-fit mb-4">
+                    <Icon className="h-6 w-6 text-black/70" />
                   </div>
-                  <h3 className="text-lg font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-2">
+                  <h3 className="text-lg font-jakarta font-medium tracking-tight text-black mb-2">
                     {feature.title}
                   </h3>
-                  <p className="text-sm text-[#0B0C0E]/70 font-inter">
+                  <p className="text-sm text-black/70 font-inter">
                     {feature.description}
                   </p>
                 </motion.div>

@@ -60,20 +60,20 @@ export function PowerfulPlatformSection() {
           }}
         >
           {/* Section Number */}
-          <div className="text-sm font-mono text-[#0B0C0E]/50 mb-4">
+          <div className="text-sm font-mono text-black/50 mb-4">
             [01] Powerful platform
           </div>
 
           {/* Header */}
-          <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-4">
+          <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-black mb-4">
             GTM at full throttle.
           </h2>
-          <p className="text-lg text-[#0B0C0E]/70 font-inter mb-12 max-w-2xl">
+          <p className="text-lg text-black/70 font-inter mb-12 max-w-2xl">
             Execute your revenue strategy with precision. Design powerful workflows, deploy AI, integrate your data and build detailed reports — all in one platform.
           </p>
 
           {/* Tab Navigation */}
-          <div className="flex flex-wrap gap-3 mb-12 border-b border-[#0B0C0E]/10 pb-4">
+          <div className="flex flex-wrap gap-3 mb-12 border-b border-black/10 pb-4">
             {platformTabs.map((tab) => {
               const Icon = tab.icon
               const isActive = activeTab === tab.id
@@ -83,8 +83,8 @@ export function PowerfulPlatformSection() {
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-inter transition-all ${
                     isActive
-                      ? "bg-[#0B0C0E] text-white"
-                      : "bg-[#0B0C0E]/5 text-[#0B0C0E]/70 hover:bg-[#0B0C0E]/10 hover:text-[#0B0C0E] border border-[#0B0C0E]/10 hover:border-[#0B0C0E]/20"
+                      ? "bg-black text-white"
+                      : "bg-black/5 text-black/70 hover:bg-black/10 hover:text-black border border-black/10 hover:border-black/20"
                   }`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -159,10 +159,10 @@ function AutomateEverything() {
       className="space-y-8"
     >
       <div>
-        <h3 className="text-2xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-2">
+        <h3 className="text-2xl font-jakarta font-medium tracking-tight text-black mb-2">
           Automate everything
         </h3>
-        <p className="text-[#0B0C0E]/70 font-inter mb-6">
+        <p className="text-black/70 font-inter mb-6">
           You&apos;re in control. Automate even the most complex business processes with our powerful, intelligent automation engine.
         </p>
         <Button variant="outline" className="rounded-full">
@@ -195,7 +195,7 @@ function AutomateEverything() {
                     className="relative"
                   >
                     {/* Workflow Step Card */}
-                    <div className="flex items-start gap-4 p-4 bg-white rounded-xl border border-[#0B0C0E]/10 hover:border-[#0B0C0E]/20 transition-all group">
+                    <div className="flex items-start gap-4 p-4 bg-white rounded-xl border border-black/10 hover:border-black/20 transition-all group">
                       <div className={`p-3 rounded-lg flex-shrink-0 ${
                         step.type === "trigger" ? "bg-blue-500/20 text-blue-600" :
                         step.type === "condition" ? "bg-purple-500/20 text-purple-600" :
@@ -204,19 +204,19 @@ function AutomateEverything() {
                         <Icon className="h-5 w-5" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h4 className="font-jakarta font-medium text-[#0B0C0E] mb-1">
+                        <h4 className="font-jakarta font-medium text-black mb-1">
                           {step.title}
                         </h4>
-                        <p className="text-sm text-[#0B0C0E]/70 font-inter">
+                        <p className="text-sm text-black/70 font-inter">
                           {step.description}
                         </p>
                         {step.type === "trigger" && (
                           <div className="mt-2 flex items-center gap-2">
-                            <span className="text-xs font-mono text-[#0B0C0E]/50 bg-[#0B0C0E]/5 px-2 py-0.5 rounded">
+                            <span className="text-xs font-mono text-black/50 bg-black/5 px-2 py-0.5 rounded">
                               Deal.status
                             </span>
-                            <span className="text-xs text-[#0B0C0E]/50">=</span>
-                            <span className="text-xs font-mono text-[#0B0C0E]/50 bg-[#0B0C0E]/5 px-2 py-0.5 rounded">
+                            <span className="text-xs text-black/50">=</span>
+                            <span className="text-xs font-mono text-black/50 bg-black/5 px-2 py-0.5 rounded">
                               Updated
                             </span>
                           </div>
@@ -225,17 +225,17 @@ function AutomateEverything() {
                           <div className="mt-3 space-y-2">
                             <div className="flex items-center gap-2 text-xs">
                               <div className="w-2 h-2 rounded-full bg-green-500" />
-                              <span className="text-[#0B0C0E]/70">If upsell →</span>
+                              <span className="text-black/70">If upsell →</span>
                             </div>
                             <div className="flex items-center gap-2 text-xs">
                               <div className="w-2 h-2 rounded-full bg-blue-500" />
-                              <span className="text-[#0B0C0E]/70">If nurture →</span>
+                              <span className="text-black/70">If nurture →</span>
                             </div>
                           </div>
                         )}
                       </div>
                       {!isLast && !isCondition && (
-                        <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-0.5 h-4 bg-[#0B0C0E]/20" />
+                        <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-0.5 h-4 bg-black/20" />
                       )}
                     </div>
                   </motion.div>
@@ -253,7 +253,7 @@ function AutomateEverything() {
                       }}
                       className="flex justify-center"
                     >
-                      <div className="w-0.5 h-6 bg-[#0B0C0E]/20" />
+                      <div className="w-0.5 h-6 bg-black/20" />
                     </motion.div>
                   )}
 
@@ -272,9 +272,9 @@ function AutomateEverything() {
                     >
                       {/* Branch Lines */}
                       <div className="flex items-center gap-4">
-                        <div className="flex-1 h-0.5 bg-[#0B0C0E]/10" />
-                        <div className="w-0.5 h-8 bg-[#0B0C0E]/10" />
-                        <div className="flex-1 h-0.5 bg-[#0B0C0E]/10" />
+                        <div className="flex-1 h-0.5 bg-black/10" />
+                        <div className="w-0.5 h-8 bg-black/10" />
+                        <div className="flex-1 h-0.5 bg-black/10" />
                       </div>
                     </motion.div>
                   )}

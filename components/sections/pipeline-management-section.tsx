@@ -36,7 +36,7 @@ export function PipelineManagementSection() {
   return (
     <section
       ref={ref}
-      className="relative py-24 overflow-hidden bg-[#0B0C0E]"
+      className="relative py-24 overflow-hidden bg-white"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -50,28 +50,28 @@ export function PipelineManagementSection() {
           }}
         >
           {/* Section Number */}
-          <div className="text-sm font-mono text-white/50 mb-4">
+          <div className="text-sm font-mono text-black/50 mb-4">
             [02] Pipeline Management
           </div>
 
           {/* Header */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
             <div>
-              <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-white mb-4">
+              <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-black mb-4">
                 Pipeline mit AI-Power.
               </h2>
-              <p className="text-lg text-white/70 font-inter mb-8 max-w-2xl">
+              <p className="text-lg text-black/70 font-inter mb-8 max-w-2xl">
                 Verwalte deine Pipeline wie ein Profi. Drag & Drop Kanban-Board mit
                 AI-gestützten Empfehlungen für jeden Lead. Real-time Updates und Bulk
                 Actions für maximale Effizienz.
               </p>
               <div className="flex gap-4">
-                <Button className="rounded-full bg-white text-[#0B0C0E] hover:bg-white/90">
+                <Button className="rounded-full bg-black text-white hover:bg-black/90">
                   Kostenlos starten
                 </Button>
                 <Button
                   variant="outline"
-                  className="rounded-full border-white/20 text-white hover:bg-white/10"
+                  className="rounded-full border-black/20 text-black hover:bg-black/5"
                 >
                   Demo ansehen
                 </Button>
@@ -79,8 +79,8 @@ export function PipelineManagementSection() {
             </div>
 
             {/* Visual Demo */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-sm">
-              <div className="bg-[#15171B] rounded-xl p-6 border border-white/10">
+            <div className="bg-black/5 border border-black/10 rounded-2xl p-8 backdrop-blur-sm">
+              <div className="bg-white rounded-xl p-6 border border-black/10">
                 <PipelineKanbanCard />
               </div>
             </div>
@@ -103,15 +103,15 @@ export function PipelineManagementSection() {
                     stiffness: 400,
                     damping: 17,
                   }}
-                  className="bg-white/5 border border-white/10 rounded-xl p-6 hover:border-white/20 transition-all backdrop-blur-sm"
+                  className="bg-black/5 border border-black/10 rounded-xl p-6 hover:border-black/20 transition-all backdrop-blur-sm"
                 >
-                  <div className="p-3 rounded-lg bg-white/10 border border-white/10 w-fit mb-4">
-                    <Icon className="h-6 w-6 text-white/90" />
+                  <div className="p-3 rounded-lg bg-black/5 border border-black/10 w-fit mb-4">
+                    <Icon className="h-6 w-6 text-black/70" />
                   </div>
-                  <h3 className="text-lg font-jakarta font-medium tracking-tight text-white mb-2">
+                  <h3 className="text-lg font-jakarta font-medium tracking-tight text-black mb-2">
                     {feature.title}
                   </h3>
-                  <p className="text-sm text-white/70 font-inter">
+                  <p className="text-sm text-black/70 font-inter">
                     {feature.description}
                   </p>
                 </motion.div>

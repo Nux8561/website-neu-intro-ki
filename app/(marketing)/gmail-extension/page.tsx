@@ -4,7 +4,7 @@ export default function GmailExtensionPage() {
   return (
     <MarketingPageTemplate
       title="Gmail Extension"
-      description="Connect Attio directly with your Gmail inbox."
+      description="Verbinde IntroKI direkt mit deinem Gmail-Posteingang."
     />
   )
 }

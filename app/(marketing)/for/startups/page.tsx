@@ -3,8 +3,8 @@ import { MarketingPageTemplate } from "@/components/templates/marketing-page-tem
 export default function ForStartupsPage() {
   return (
     <MarketingPageTemplate
-      title="Attio for Startups"
-      description="The CRM built for fast-growing startups."
+      title="IntroKI for Startups"
+      description="Das CRM für schnell wachsende Startups."
     />
   )
 }

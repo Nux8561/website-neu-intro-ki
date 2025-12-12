@@ -4,7 +4,7 @@ export default function ImportSalesforcePage() {
   return (
     <MarketingPageTemplate
       title="Import from Salesforce"
-      description="Migrate your data from Salesforce to Attio."
+      description="Migriere deine Daten von Salesforce zu IntroKI."
     />
   )
 }

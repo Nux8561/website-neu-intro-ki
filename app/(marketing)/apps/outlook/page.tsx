@@ -4,7 +4,7 @@ export default function AppOutlookPage() {
   return (
     <MarketingPageTemplate
       title="Outlook Integration"
-      description="Connect Attio with Outlook."
+      description="Verbinde IntroKI mit Outlook."
     />
   )
 }

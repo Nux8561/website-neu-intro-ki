@@ -3,8 +3,8 @@ import { MarketingPageTemplate } from "@/components/templates/marketing-page-tem
 export default function ForDealFlowPage() {
   return (
     <MarketingPageTemplate
-      title="Attio for Deal Flow"
-      description="Manage your deal flow with Attio."
+      title="IntroKI for Deal Flow"
+      description="Verwalte deinen Deal Flow mit IntroKI."
     />
   )
 }

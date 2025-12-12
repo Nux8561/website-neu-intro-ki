@@ -4,7 +4,7 @@ export default function ImportExcelPage() {
   return (
     <MarketingPageTemplate
       title="Import from Excel"
-      description="Upload your Excel files to Attio."
+      description="Lade deine Excel-Dateien zu IntroKI hoch."
     />
   )
 }

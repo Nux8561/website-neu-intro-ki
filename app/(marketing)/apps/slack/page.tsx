@@ -4,7 +4,7 @@ export default function AppSlackPage() {
   return (
     <MarketingPageTemplate
       title="Slack Integration"
-      description="Connect Attio with Slack."
+      description="Verbinde IntroKI mit Slack."
     />
   )
 }

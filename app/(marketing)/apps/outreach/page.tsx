@@ -4,7 +4,7 @@ export default function AppOutreachPage() {
   return (
     <MarketingPageTemplate
       title="Outreach Integration"
-      description="Integrate Attio with Outreach."
+      description="Integriere IntroKI mit Outreach."
     />
   )
 }

@@ -4,7 +4,7 @@ export default function AnnouncementsPage() {
   return (
     <MarketingPageTemplate
       title="Announcements"
-      description="Latest updates and news from Attio."
+      description="Neueste Updates und News von IntroKI."
     />
   )
 }

@@ -12,21 +12,21 @@ const customerStories = [
     name: "Sahil Mansuri",
     role: "CEO & Co-founder",
     company: "Bravado",
-    quote: "Attio is the first CRM that feels truly modern. It's powerful, flexible, and fast to build with. There's nothing like it on the market.",
+    quote: "IntroKI ist das erste CRM, das sich wirklich modern anfühlt. Es ist leistungsstark, flexibel und schnell zu implementieren. Es gibt nichts Vergleichbares auf dem Markt.",
     favoriteFeatures: ["Workflows", "Deals", "Reports"],
   },
   {
     name: "David Boskovic",
     role: "CEO & Founder",
     company: "Flatfile",
-    quote: "Attio has transformed how we manage our sales pipeline. The flexibility of the data model means it adapts to how we work, not the other way around.",
+    quote: "IntroKI hat transformiert, wie wir unsere Sales-Pipeline verwalten. Die Flexibilität des Datenmodells bedeutet, dass es sich an unsere Arbeitsweise anpasst, nicht umgekehrt.",
     favoriteFeatures: ["Custom objects", "Hightouch", "Reports"],
   },
   {
     name: "Jamie Marshall",
     role: "COO & Co-founder",
     company: "Snackpass",
-    quote: "We switched from Salesforce to Attio and haven't looked back. It's faster, more intuitive, and actually helps our team be more productive.",
+    quote: "Wir sind von Salesforce zu IntroKI gewechselt und haben nie zurückgeblickt. Es ist schneller, intuitiver und hilft unserem Team tatsächlich, produktiver zu sein.",
     favoriteFeatures: ["Lists", "Workflows", "API"],
   },
 ]
@@ -95,7 +95,7 @@ export function CustomersPage() {
               variants={itemVariants}
               className="text-lg md:text-xl text-[#0B0C0E]/70 font-inter mb-8 max-w-2xl mx-auto"
             >
-              See how teams use Attio to power their revenue operations and build stronger customer relationships.
+              Sieh, wie Teams IntroKI nutzen, um ihre Revenue-Operations zu stärken und bessere Kundenbeziehungen aufzubauen.
             </motion.p>
           </motion.div>
         </div>
@@ -191,7 +191,7 @@ export function CustomersPage() {
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
             <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6">
-              Join thousands of companies using Attio
+              Schließe dich Tausenden von Unternehmen an, die IntroKI nutzen
             </h2>
             <p className="text-lg text-[#0B0C0E]/70 font-inter mb-8">
               Start your 14-day free trial today. No credit card required.

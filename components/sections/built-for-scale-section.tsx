@@ -98,7 +98,7 @@ export function BuiltForScaleSection() {
             The system of action for the next generation.
           </h2>
           <p className="text-lg text-[#0B0C0E]/70 font-inter mb-12 max-w-2xl">
-            Attio is built for scale. Our customers sort through millions of records with sub-50ms latency.
+            IntroKI ist für Skalierung gebaut. Unsere Kunden durchsuchen Millionen von Datensätzen mit unter 50ms Latenz.
           </p>
 
           {/* Stats Grid */}
@@ -142,7 +142,7 @@ export function BuiltForScaleSection() {
               Scale with security.
             </h3>
             <p className="text-[#0B0C0E]/70 font-inter mb-6 max-w-2xl">
-              Attio is audited and certified by industry-leading third party standards.
+              IntroKI wird von branchenführenden Drittanbietern geprüft und zertifiziert.
             </p>
             
             <div className="flex flex-wrap gap-4 mb-6">

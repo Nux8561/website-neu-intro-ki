@@ -4,7 +4,7 @@ export default function DevelopersPage() {
   return (
     <MarketingPageTemplate
       title="Developers"
-      description="Resources for developers building with Attio."
+      description="Ressourcen für Entwickler, die mit IntroKI arbeiten."
     />
   )
 }

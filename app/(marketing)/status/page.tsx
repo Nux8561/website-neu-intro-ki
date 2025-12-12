@@ -4,7 +4,7 @@ export default function StatusPage() {
   return (
     <MarketingPageTemplate
       title="System Status"
-      description="Check the current status of Attio services."
+      description="Prüfe den aktuellen Status der IntroKI-Services."
     />
   )
 }

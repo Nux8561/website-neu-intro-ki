@@ -4,7 +4,7 @@ export default function ImportCSVPage() {
   return (
     <MarketingPageTemplate
       title="Import from CSV"
-      description="Import CSV files into Attio."
+      description="Importiere CSV-Dateien in IntroKI."
     />
   )
 }

@@ -4,7 +4,7 @@ export default function AppTypeformPage() {
   return (
     <MarketingPageTemplate
       title="Typeform Integration"
-      description="Integrate Attio with Typeform."
+      description="Integriere IntroKI mit Typeform."
     />
   )
 }

@@ -79,10 +79,10 @@ export function AdaptiveModelSection() {
 
           {/* Header */}
           <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-4">
-            A seismic shift in CRM flexibility.
+            Ein Paradigmenwechsel in CRM-Flexibilität.
           </h2>
           <p className="text-lg text-[#0B0C0E]/70 font-inter mb-12 max-w-2xl">
-            Attio&apos;s powerful data model adapts to how your business works, not the other way around. Your business model — perfectly reflected in your CRM.
+            IntroKIs leistungsstarkes Datenmodell passt sich an dein Geschäftsmodell an, nicht umgekehrt. Dein Geschäftsmodell – perfekt widergespiegelt in deinem CRM.
           </p>
 
           {/* Tab Navigation */}

@@ -4,7 +4,7 @@ export default function ImportHubspotPage() {
   return (
     <MarketingPageTemplate
       title="Import from HubSpot"
-      description="Move your HubSpot data to Attio seamlessly."
+      description="Übertrage deine HubSpot-Daten nahtlos zu IntroKI."
     />
   )
 }

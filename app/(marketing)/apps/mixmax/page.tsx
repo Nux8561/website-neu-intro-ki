@@ -4,7 +4,7 @@ export default function AppMixmaxPage() {
   return (
     <MarketingPageTemplate
       title="Mixmax Integration"
-      description="Connect Attio with Mixmax."
+      description="Verbinde IntroKI mit Mixmax."
     />
   )
 }

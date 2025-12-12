@@ -4,7 +4,7 @@ export default function ImportPipedrivePage() {
   return (
     <MarketingPageTemplate
       title="Import from Pipedrive"
-      description="Transfer your Pipedrive data to Attio."
+      description="Übertrage deine Pipedrive-Daten zu IntroKI."
     />
   )
 }

@@ -4,7 +4,7 @@ export default function DownloadsPage() {
   return (
     <MarketingPageTemplate
       title="Downloads"
-      description="Download Attio apps and resources."
+      description="Lade IntroKI-Apps und Ressourcen herunter."
     />
   )
 }

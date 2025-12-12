@@ -4,7 +4,7 @@ export default function AndroidAppPage() {
   return (
     <MarketingPageTemplate
       title="Android App"
-      description="Access Attio on your Android device."
+      description="Greife auf IntroKI auf deinem Android-Gerät zu."
     />
   )
 }

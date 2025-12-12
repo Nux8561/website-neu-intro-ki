@@ -4,7 +4,7 @@ export default function IOSAppPage() {
   return (
     <MarketingPageTemplate
       title="iOS App"
-      description="Take Attio with you on your iPhone."
+      description="Nimm IntroKI mit auf dein iPhone."
     />
   )
 }

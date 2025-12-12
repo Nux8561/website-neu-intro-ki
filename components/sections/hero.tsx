@@ -43,7 +43,7 @@ export function Hero() {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
-          {/* Pill Button - Attio Exact Style */}
+          {/* Pill Button - IntroKI Style */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -56,7 +56,7 @@ export function Hero() {
             </button>
           </motion.div>
 
-          {/* Headline with Staggered Text Reveal - Attio Exact Style */}
+          {/* Headline with Staggered Text Reveal - IntroKI Style */}
           <motion.h1
             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-8"
             variants={containerVariants}
@@ -74,7 +74,7 @@ export function Hero() {
             ))}
           </motion.h1>
 
-          {/* Description - Attio Exact Style */}
+          {/* Description - IntroKI Style */}
           <motion.p
             className="text-lg md:text-xl text-[#0B0C0E]/70 font-inter mb-12 max-w-2xl mx-auto font-light"
             initial={{ opacity: 0, y: 20 }}
@@ -84,7 +84,7 @@ export function Hero() {
             Enterprise-grade Sales CRM mit Multi-Agent AI-Orchestrierung, Echtzeit-Recherche und automatisiertem Call-Coaching – alles in einer Plattform.
           </motion.p>
 
-          {/* CTA Buttons - Attio Exact Style */}
+          {/* CTA Buttons - IntroKI Style */}
           <motion.div
             className="flex flex-wrap gap-4 justify-center"
             initial={{ opacity: 0, y: 20 }}

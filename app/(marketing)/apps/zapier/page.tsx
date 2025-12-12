@@ -4,7 +4,7 @@ export default function AppZapierPage() {
   return (
     <MarketingPageTemplate
       title="Zapier Integration"
-      description="Connect Attio with Zapier."
+      description="Verbinde IntroKI mit Zapier."
     />
   )
 }

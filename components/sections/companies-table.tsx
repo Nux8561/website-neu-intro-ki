@@ -35,8 +35,8 @@ interface Company {
   }
 }
 
-// Exakte Attio-Daten
-const attioCompanies: Company[] = [
+// Exakte IntroKI-Daten
+const introkiCompanies: Company[] = [
   {
     id: "1",
     name: "Vercel",
@@ -196,14 +196,14 @@ const getConnectionStrengthColor = (strength: Company["connectionStrength"]) => 
 }
 
 export function CompaniesTable() {
-  const [companies, setCompanies] = React.useState<Company[]>(attioCompanies)
+  const [companies, setCompanies] = React.useState<Company[]>(introkiCompanies)
   const [selected, setSelected] = React.useState<Set<string>>(new Set())
 
   // Simulate AI thinking completion after delay
   React.useEffect(() => {
     const timers: NodeJS.Timeout[] = []
     
-    attioCompanies.forEach((company, index) => {
+    introkiCompanies.forEach((company, index) => {
       if (company.aiThinking?.icpFit) {
         const timer = setTimeout(() => {
           setCompanies(prev => prev.map(c => 

@@ -27,7 +27,7 @@ const changelogEntries = [
     type: "major",
     title: "Major Update: Neue Dashboard-Oberfläche",
     description:
-      "Komplett überarbeitete Dashboard-Oberfläche im Attio-Stil mit verbesserter UX.",
+      "Komplett überarbeitete Dashboard-Oberfläche im IntroKI-Stil mit verbesserter UX.",
     items: [
       "Neues Dashboard Layout",
       "Verbesserte Leads Table",

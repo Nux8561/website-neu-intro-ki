@@ -68,7 +68,7 @@ export function Footer() {
       ],
     },
     {
-      title: "Attio for",
+      title: "IntroKI for",
       links: [
         { label: "Startups", href: "/for/startups" },
         { label: "Deal flow", href: "/for/deal-flow" },
@@ -147,7 +147,7 @@ export function Footer() {
             variants={itemVariants}
           >
             <p className="text-[#0B0C0E]/50 font-inter text-sm">
-              © 2025 Attio Ltd. All rights reserved.
+              © 2025 IntroKI. Alle Rechte vorbehalten.
             </p>
             <div className="flex items-center gap-6">
               <a

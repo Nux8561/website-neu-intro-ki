@@ -4,7 +4,7 @@ export default function AppGmailPage() {
   return (
     <MarketingPageTemplate
       title="Gmail Integration"
-      description="Connect Attio with Gmail."
+      description="Verbinde IntroKI mit Gmail."
     />
   )
 }

@@ -4,7 +4,7 @@ export default function SecurityPage() {
   return (
     <MarketingPageTemplate
       title="Security"
-      description="Learn about Attio's security practices and compliance."
+      description="Erfahre mehr über IntroKIs Sicherheitspraktiken und Compliance."
     />
   )
 }

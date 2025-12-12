@@ -4,7 +4,7 @@ export default function AppMailchimpPage() {
   return (
     <MarketingPageTemplate
       title="Mailchimp Integration"
-      description="Connect Attio with Mailchimp."
+      description="Verbinde IntroKI mit Mailchimp."
     />
   )
 }

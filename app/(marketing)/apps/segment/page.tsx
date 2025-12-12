@@ -4,7 +4,7 @@ export default function AppSegmentPage() {
   return (
     <MarketingPageTemplate
       title="Segment Integration"
-      description="Integrate Attio with Segment."
+      description="Integriere IntroKI mit Segment."
     />
   )
 }

@@ -30,8 +30,8 @@ export function TestimonialSection() {
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ delay: 0.2 }}
           >
-            &ldquo;When I first opened Attio, I instantly got the feeling this was
-            the next generation of CRM.&rdquo;
+            &ldquo;Als ich IntroKI zum ersten Mal öffnete, hatte ich sofort das Gefühl, dass dies
+            die nächste Generation von CRM ist.&rdquo;
           </motion.blockquote>
           <motion.div
             className="text-[#0B0C0E]/40 font-inter text-sm"

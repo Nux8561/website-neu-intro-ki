@@ -52,10 +52,10 @@ export function DataEnrichmentSection() {
 
           {/* Header */}
           <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-4">
-            Build fast.
+            Schnell aufgebaut.
           </h2>
           <p className="text-lg text-[#0B0C0E]/70 font-inter mb-12 max-w-2xl">
-            Forget months of setup. Attio syncs immediately with your email and calendar, building a powerful CRM right before your eyes.
+            Vergiss monatelange Einrichtung. IntroKI synchronisiert sich sofort mit deinem E-Mail und Kalender und baut ein leistungsstarkes CRM vor deinen Augen auf.
           </p>
 
           {/* Data Sources */}
@@ -79,10 +79,10 @@ export function DataEnrichmentSection() {
 
           <div className="flex gap-6 mb-12">
             <Button className="rounded-full bg-[#0B0C0E] text-white">
-              Start for free
+              Kostenlos starten
             </Button>
             <Button variant="outline" className="rounded-full">
-              Send me a demo
+              Demo ansehen
             </Button>
           </div>
 

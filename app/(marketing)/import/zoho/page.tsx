@@ -4,7 +4,7 @@ export default function ImportZohoPage() {
   return (
     <MarketingPageTemplate
       title="Import from Zoho"
-      description="Import your Zoho CRM data into Attio."
+      description="Importiere deine Zoho CRM-Daten in IntroKI."
     />
   )
 }

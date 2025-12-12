@@ -70,7 +70,7 @@ export function Navbar() {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          {/* Logo - Attio Exact Style */}
+          {/* Logo - IntroKI Style */}
           <Link href="/" className="flex items-center gap-2">
             <motion.div
               whileHover={{ scale: 1.02 }}
@@ -108,11 +108,11 @@ export function Navbar() {
               </svg>
             </motion.div>
             <span className="font-jakarta font-semibold text-[#0B0C0E] tracking-tight text-lg lowercase">
-              attio
+              introki
             </span>
           </Link>
 
-          {/* Desktop Navigation - Attio Exact Style */}
+          {/* Desktop Navigation - IntroKI Style */}
           <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => {
               if (item.hasDropdown && item.items) {
@@ -194,7 +194,7 @@ export function Navbar() {
             })}
           </div>
 
-          {/* CTA Buttons - Attio Exact Style */}
+          {/* CTA Buttons - IntroKI Style */}
           <div className="hidden md:flex items-center gap-3">
             <Button
               variant="outline"
@@ -202,14 +202,14 @@ export function Navbar() {
               className="text-[#0B0C0E]/70 hover:text-[#0B0C0E] hover:bg-[#0B0C0E]/5 border-[#0B0C0E]/20 rounded-full px-4"
               asChild
             >
-              <Link href="/dashboard">Sign in</Link>
+              <Link href="/dashboard">Anmelden</Link>
             </Button>
             <Button
               size="sm"
               className="bg-[#0B0C0E] text-white hover:bg-[#0B0C0E]/90 font-semibold rounded-full px-6"
               asChild
             >
-              <Link href="/pricing">Start for free</Link>
+              <Link href="/pricing">Kostenlos starten</Link>
             </Button>
           </div>
 
@@ -271,14 +271,14 @@ export function Navbar() {
                     className="w-full text-[#0B0C0E]/70 hover:text-[#0B0C0E] hover:bg-[#0B0C0E]/5 border-[#0B0C0E]/20 touch-manipulation min-h-[44px] rounded-full"
                     asChild
                   >
-                    <Link href="/dashboard">Sign in</Link>
+                    <Link href="/dashboard">Anmelden</Link>
                   </Button>
                   <Button
                     size="sm"
                     className="w-full bg-[#0B0C0E] text-white hover:bg-[#0B0C0E]/90 font-semibold rounded-full touch-manipulation min-h-[44px]"
                     asChild
                   >
-                    <Link href="/pricing">Start for free</Link>
+                    <Link href="/pricing">Kostenlos starten</Link>
                   </Button>
                 </div>
               </div>

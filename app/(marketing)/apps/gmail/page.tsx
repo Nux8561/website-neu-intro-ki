@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import Image from "next/image"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { Button } from "@/components/ui/button"
@@ -37,6 +38,28 @@ export default function AppGmailPage() {
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
             className="max-w-4xl mx-auto text-center"
           >
+            <div className="flex items-center justify-center mb-8">
+              <div className="relative w-20 h-20 flex items-center justify-center">
+                <Image
+                  src="/logos/gmail.svg"
+                  alt="Gmail"
+                  width={80}
+                  height={80}
+                  className="object-contain"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement
+                    target.style.display = 'none'
+                    const parent = target.parentElement
+                    if (parent && !parent.querySelector('.gmail-fallback')) {
+                      const fallback = document.createElement('div')
+                      fallback.className = 'gmail-fallback absolute inset-0 flex items-center justify-center'
+                      fallback.innerHTML = '<div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center shadow-lg"><svg class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg></div>'
+                      parent.appendChild(fallback)
+                    }
+                  }}
+                />
+              </div>
+            </div>
             <h1 className="text-5xl md:text-6xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6">
               Verbinde IntroKI mit
               <br />

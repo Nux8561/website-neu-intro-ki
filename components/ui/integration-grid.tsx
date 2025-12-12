@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import Image from "next/image"
 import { motion } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import { CheckCircle2, Circle, Loader2 } from "lucide-react"
@@ -9,6 +10,7 @@ interface Integration {
   id: string
   name: string
   logo?: string
+  logoPath?: string // Path to logo image in public/logos/
   status: "connected" | "disconnected" | "connecting"
   category: string
 }
@@ -18,12 +20,12 @@ interface IntegrationGridProps {
 }
 
 const defaultIntegrations: Integration[] = [
-  { id: "hubspot", name: "HubSpot", status: "connected", category: "CRM" },
-  { id: "gmail", name: "Gmail", status: "connected", category: "Email" },
-  { id: "slack", name: "Slack", status: "connected", category: "Workspace" },
-  { id: "salesforce", name: "Salesforce", status: "disconnected", category: "CRM" },
-  { id: "outlook", name: "Outlook", status: "connecting", category: "Email" },
-  { id: "notion", name: "Notion", status: "disconnected", category: "Workspace" },
+  { id: "hubspot", name: "HubSpot", logoPath: "/logos/hubspot.svg", status: "connected", category: "CRM" },
+  { id: "gmail", name: "Gmail", logoPath: "/logos/gmail.svg", status: "connected", category: "Email" },
+  { id: "slack", name: "Slack", logoPath: "/logos/slack.svg", status: "connected", category: "Workspace" },
+  { id: "salesforce", name: "Salesforce", logoPath: "/logos/salesforce.svg", status: "disconnected", category: "CRM" },
+  { id: "outlook", name: "Outlook", logoPath: "/logos/microsoft.svg", status: "connecting", category: "Email" },
+  { id: "notion", name: "Notion", logoPath: "/logos/notion.svg", status: "disconnected", category: "Workspace" },
 ]
 
 const getStatusIcon = (status: Integration["status"]) => {
@@ -86,13 +88,40 @@ export function IntegrationGrid({
                 isHovered ? "scale-[1.05] border-white/30" : ""
               }`}
             >
-              {/* Logo Placeholder */}
-              <div className="flex items-center justify-center mb-2">
-                <div className="w-8 h-8 rounded bg-white/10 flex items-center justify-center">
-                  <span className="text-[10px] font-mono text-white/70 font-bold">
-                    {integration.name.charAt(0)}
-                  </span>
-                </div>
+              {/* Logo */}
+              <div className="flex items-center justify-center mb-2 h-8">
+                {integration.logoPath ? (
+                  <div className="relative w-8 h-8 flex items-center justify-center">
+                    <Image
+                      src={integration.logoPath}
+                      alt={integration.name}
+                      width={32}
+                      height={32}
+                      className="object-contain max-w-full max-h-full opacity-80"
+                      onError={(e) => {
+                        // Fallback to initial if image not found
+                        const target = e.target as HTMLImageElement
+                        target.style.display = 'none'
+                        const parent = target.parentElement
+                        if (parent) {
+                          const fallback = document.createElement('div')
+                          fallback.className = 'w-8 h-8 rounded bg-white/10 flex items-center justify-center'
+                          const span = document.createElement('span')
+                          span.className = 'text-[10px] font-mono text-white/70 font-bold'
+                          span.textContent = integration.name.charAt(0)
+                          fallback.appendChild(span)
+                          parent.appendChild(fallback)
+                        }
+                      }}
+                    />
+                  </div>
+                ) : (
+                  <div className="w-8 h-8 rounded bg-white/10 flex items-center justify-center">
+                    <span className="text-[10px] font-mono text-white/70 font-bold">
+                      {integration.name.charAt(0)}
+                    </span>
+                  </div>
+                )}
               </div>
 
               {/* Name */}

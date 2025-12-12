@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { CheckCircle2, ArrowRight, Handshake, TrendingUp, Users, Gift } from "lucide-react"
+import { LogoCarousel, LogoItem } from "@/components/ui/logo-carousel"
 
 const partnerTypes = [
   { icon: Users, title: "Integration Partner", description: "Integriere IntroKI in deine Plattform und biete deinen Kunden mehr Wert." },
@@ -19,6 +20,72 @@ const benefits = [
   "Co-Marketing-Möglichkeiten",
   "Early-Access zu Features",
   "Partner-Portal",
+]
+
+const partnerLogos: LogoItem[] = [
+  {
+    name: "Salesforce",
+    imagePath: "/logos/salesforce.svg",
+    fallbackSvg: (
+      <svg viewBox="0 0 120 30" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+        <path d="M15.5 7.5C15.5 11.6 12.1 15 8 15C3.9 15 0.5 11.6 0.5 7.5C0.5 3.4 3.9 0 8 0C12.1 0 15.5 3.4 15.5 7.5Z" fill="#00A1E0"/>
+        <text x="20" y="18" fontSize="12" fill="#00A1E0" fontFamily="Arial, sans-serif" fontWeight="bold">Salesforce</text>
+      </svg>
+    ),
+    width: 140,
+    height: 35,
+  },
+  {
+    name: "HubSpot",
+    imagePath: "/logos/hubspot.svg",
+    fallbackSvg: (
+      <svg viewBox="0 0 120 30" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+        <circle cx="15" cy="15" r="12" fill="#FF7A59"/>
+        <text x="30" y="18" fontSize="14" fill="#FF7A59" fontFamily="Arial, sans-serif" fontWeight="bold">HubSpot</text>
+      </svg>
+    ),
+    width: 120,
+    height: 30,
+  },
+  {
+    name: "Zapier",
+    imagePath: "/logos/zapier.svg",
+    fallbackSvg: (
+      <svg viewBox="0 0 120 30" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+        <circle cx="15" cy="15" r="10" fill="#FF4A00"/>
+        <text x="30" y="18" fontSize="14" fill="#FF4A00" fontFamily="Arial, sans-serif" fontWeight="600">Zapier</text>
+      </svg>
+    ),
+    width: 100,
+    height: 30,
+  },
+  {
+    name: "Slack",
+    imagePath: "/logos/slack.svg",
+    fallbackSvg: (
+      <svg viewBox="0 0 120 30" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+        <path d="M8 8C8 10.2 6.2 12 4 12C1.8 12 0 10.2 0 8C0 5.8 1.8 4 4 4H8V8Z" fill="#36C5F0"/>
+        <text x="25" y="18" fontSize="14" fill="#4A154B" fontFamily="Arial, sans-serif" fontWeight="bold">Slack</text>
+      </svg>
+    ),
+    width: 100,
+    height: 30,
+  },
+  {
+    name: "Microsoft",
+    imagePath: "/logos/microsoft.svg",
+    fallbackSvg: (
+      <svg viewBox="0 0 120 30" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+        <rect x="0" y="0" width="12" height="12" fill="#F25022"/>
+        <rect x="13" y="0" width="12" height="12" fill="#7FBA00"/>
+        <rect x="0" y="13" width="12" height="12" fill="#00A4EF"/>
+        <rect x="13" y="13" width="12" height="12" fill="#FFB900"/>
+        <text x="30" y="18" fontSize="12" fill="#737373" fontFamily="Arial, sans-serif" fontWeight="600">Microsoft</text>
+      </svg>
+    ),
+    width: 130,
+    height: 30,
+  },
 ]
 
 export default function PartnersPage() {
@@ -96,6 +163,21 @@ export default function PartnersPage() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Partner Logos */}
+      <section className="py-16 border-y border-[#0B0C0E]/10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <LogoCarousel
+            logos={partnerLogos}
+            title="Unsere Partner"
+            speed={35}
+            speedOnHover={15}
+            gap={100}
+            grayscale={true}
+            showTitle={true}
+          />
         </div>
       </section>
 

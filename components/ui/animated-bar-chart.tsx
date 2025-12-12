@@ -36,11 +36,11 @@ const defaultColors = {
 const CustomTooltip = ({ active, payload }: any) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-white/90 backdrop-blur-md border border-[#0B0C0E]/10 rounded-lg p-3 shadow-lg">
-        <p className="text-sm font-jakarta font-medium text-[#0B0C0E] mb-1">
+      <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg p-3 shadow-lg">
+        <p className="text-sm font-jakarta font-medium text-white mb-1">
           {payload[0].payload.name}
         </p>
-        <p className="text-xs font-inter text-[#0B0C0E]/70">
+        <p className="text-xs font-inter text-white/70">
           Wert: <span className="font-semibold">{payload[0].value}</span>
         </p>
       </div>
@@ -76,14 +76,14 @@ export function AnimatedBarChart({
             dataKey="name"
             axisLine={false}
             tickLine={false}
-            tick={{ fill: "#0B0C0E", fontSize: 12, fontFamily: "Inter" }}
-            className="text-[#0B0C0E]/50"
+            tick={{ fill: "rgba(255, 255, 255, 0.7)", fontSize: 12, fontFamily: "Inter" }}
+            className="text-white/50"
           />
           <YAxis
             axisLine={false}
             tickLine={false}
-            tick={{ fill: "#0B0C0E", fontSize: 12, fontFamily: "Inter" }}
-            className="text-[#0B0C0E]/50"
+            tick={{ fill: "rgba(255, 255, 255, 0.7)", fontSize: 12, fontFamily: "Inter" }}
+            className="text-white/50"
           />
           <Tooltip content={<CustomTooltip />} />
           <Bar

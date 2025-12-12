@@ -101,7 +101,7 @@ export function TestimonialSectionEnhanced() {
   return (
     <section
       ref={ref}
-      className="relative py-24 border-y border-[#0B0C0E]/10 bg-white"
+      className="relative py-24 border-y border-white/10 bg-[#0B0C0E]"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -111,10 +111,10 @@ export function TestimonialSectionEnhanced() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ type: "spring", stiffness: 400, damping: 17 }}
         >
-          <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-4">
+          <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-white mb-4">
             Vertraut von führenden Teams
           </h2>
-          <p className="text-lg md:text-xl text-[#0B0C0E]/70 font-inter">
+          <p className="text-lg md:text-xl text-white/70 font-inter">
             Sieh, wie Teams IntroKI nutzen, um ihre Sales-Operations zu transformieren
           </p>
         </motion.div>
@@ -130,33 +130,33 @@ export function TestimonialSectionEnhanced() {
             <motion.div
               key={testimonial.id}
               variants={cardVariants}
-              className="group relative bg-[#0B0C0E]/5 border border-[#0B0C0E]/10 rounded-2xl p-8 hover:border-[#0B0C0E]/20 transition-all"
+              className="group relative bg-white/5 border border-white/10 rounded-2xl p-8 hover:border-white/20 transition-all"
               whileHover={{ scale: 1.01 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
               {/* Quote Icon */}
               <div className="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity">
-                <Quote className="h-12 w-12 text-[#0B0C0E]" strokeWidth={1.5} />
+                <Quote className="h-12 w-12 text-white" strokeWidth={1.5} />
               </div>
 
               {/* Quote */}
-              <blockquote className="text-lg font-inter text-[#0B0C0E]/80 mb-6 pr-8">
+              <blockquote className="text-lg font-inter text-white/80 mb-6 pr-8">
                 &ldquo;{testimonial.quote}&rdquo;
               </blockquote>
 
               {/* Author Info */}
-              <div className="flex items-start justify-between gap-4 pt-6 border-t border-[#0B0C0E]/10">
+              <div className="flex items-start justify-between gap-4 pt-6 border-t border-white/10">
                 <div className="flex-1">
-                  <p className="font-jakarta font-medium text-[#0B0C0E] mb-1">
+                  <p className="font-jakarta font-medium text-white mb-1">
                     {testimonial.author.name}
                   </p>
-                  <p className="text-sm text-[#0B0C0E]/50 font-inter mb-4">
+                  <p className="text-sm text-white/50 font-inter mb-4">
                     {testimonial.author.role} · {testimonial.author.company}
                   </p>
 
                   {/* Favorite Features */}
                   <div>
-                    <p className="text-xs text-[#0B0C0E]/50 font-inter mb-2">
+                    <p className="text-xs text-white/50 font-inter mb-2">
                       {testimonial.author.company}&apos;s favorite features
                     </p>
                     <div className="flex flex-wrap gap-2">
@@ -164,7 +164,7 @@ export function TestimonialSectionEnhanced() {
                         <Badge
                           key={feature}
                           variant="outline"
-                          className="text-xs border-[#0B0C0E]/10 text-[#0B0C0E]/70 bg-white/50"
+                          className="text-xs border-white/10 text-white/70 bg-white/5"
                         >
                           {feature}
                         </Badge>
@@ -175,7 +175,7 @@ export function TestimonialSectionEnhanced() {
 
                 {/* Company Logo */}
                 {testimonial.companyLogo && (
-                  <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-white border border-[#0B0C0E]/10 flex items-center justify-center overflow-hidden">
+                  <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden">
                     <Image
                       src={testimonial.companyLogo}
                       alt={testimonial.author.company}

@@ -33,7 +33,7 @@ export function VideoSection({
   }
 
   return (
-    <section className={cn("py-24 bg-white relative overflow-hidden", className)}>
+    <section className={cn("py-24 bg-[#0B0C0E] relative overflow-hidden", className)}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -42,10 +42,10 @@ export function VideoSection({
           transition={{ type: "spring", stiffness: 400, damping: 17 }}
           className="max-w-5xl mx-auto text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-4">
+          <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-white mb-4">
             {title}
           </h2>
-          <p className="text-lg md:text-xl text-[#0B0C0E]/70 font-inter">
+          <p className="text-lg md:text-xl text-white/70 font-inter">
             {description}
           </p>
         </motion.div>
@@ -59,7 +59,7 @@ export function VideoSection({
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <div className="relative aspect-video rounded-2xl overflow-hidden border border-[#0B0C0E]/10 bg-[#0B0C0E]/5 shadow-xl group cursor-pointer">
+          <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 bg-white/5 shadow-xl group cursor-pointer">
             {/* Video Thumbnail or Placeholder */}
             {thumbnailUrl ? (
               <Image
@@ -107,7 +107,7 @@ export function VideoSection({
                 <Play
                   className="h-10 w-10 md:h-12 md:w-12 text-[#0B0C0E] ml-1"
                   strokeWidth={2}
-                  fill="currentColor"
+                  fill="#0B0C0E"
                 />
                 {/* Glow Effect */}
                 {isHovered && (
@@ -124,7 +124,7 @@ export function VideoSection({
             {/* Video Info Badge */}
             {videoUrl && (
               <motion.div
-                className="absolute bottom-4 right-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-[#0B0C0E]/10 text-xs font-inter text-[#0B0C0E]/70"
+                className="absolute bottom-4 right-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-inter text-white/70"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: isHovered ? 1 : 0.7, y: 0 }}
                 transition={{ delay: 0.1 }}

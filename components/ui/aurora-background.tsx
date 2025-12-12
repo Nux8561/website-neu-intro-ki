@@ -16,26 +16,26 @@ export function AuroraBackground({
   variant = "blue-purple",
 }: AuroraBackgroundProps) {
   const intensityMap = {
-    subtle: { opacity: 0.1, blur: 80 },
-    medium: { opacity: 0.15, blur: 100 },
-    strong: { opacity: 0.2, blur: 120 },
+    subtle: { opacity: 0.2, blur: 100 },
+    medium: { opacity: 0.3, blur: 120 },
+    strong: { opacity: 0.4, blur: 140 },
   }
 
   const variantMap = {
     "blue-purple": {
-      color1: "rgba(59, 130, 246, 0.15)", // Blue-500
-      color2: "rgba(139, 92, 246, 0.15)", // Purple-500
-      color3: "rgba(59, 130, 246, 0.15)", // Blue-500
+      color1: "rgba(59, 130, 246, 0.25)", // Blue-500 - stärker für Dark Mode
+      color2: "rgba(139, 92, 246, 0.25)", // Purple-500 - stärker für Dark Mode
+      color3: "rgba(59, 130, 246, 0.25)", // Blue-500 - stärker für Dark Mode
     },
     "blue-pink": {
-      color1: "rgba(59, 130, 246, 0.15)",
-      color2: "rgba(236, 72, 153, 0.15)", // Pink-500
-      color3: "rgba(59, 130, 246, 0.15)",
+      color1: "rgba(59, 130, 246, 0.25)",
+      color2: "rgba(236, 72, 153, 0.25)", // Pink-500 - stärker für Dark Mode
+      color3: "rgba(59, 130, 246, 0.25)",
     },
     "purple-pink": {
-      color1: "rgba(139, 92, 246, 0.15)",
-      color2: "rgba(236, 72, 153, 0.15)",
-      color3: "rgba(139, 92, 246, 0.15)",
+      color1: "rgba(139, 92, 246, 0.25)",
+      color2: "rgba(236, 72, 153, 0.25)",
+      color3: "rgba(139, 92, 246, 0.25)",
     },
   }
 
@@ -87,14 +87,7 @@ export function AuroraBackground({
         }}
       />
 
-      {/* Blend Mode Overlay for Subtle Effect */}
-      <div
-        className="absolute inset-0 bg-[#0B0C0E]"
-        style={{
-          mixBlendMode: "multiply",
-          opacity: opacity,
-        }}
-      />
+      {/* Blend Mode Overlay for Subtle Effect - entfernt für Dark Mode */}
 
       {/* Additional Glow Effect */}
       <div

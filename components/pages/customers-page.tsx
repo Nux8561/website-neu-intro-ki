@@ -3,6 +3,7 @@
 import * as React from "react"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
@@ -150,12 +151,12 @@ export function CustomersPage() {
             ))}
           </div>
 
-          {/* Company Logos Grid */}
+          {/* Company Logos Grid - Using LogoCarousel */}
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-2xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-8 text-center">
-              Trusted by leading companies
+            <h2 className="text-2xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-12 text-center">
+              Vertraut von führenden Unternehmen
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
               {companies.map((company, index) => (
                 <motion.div
                   key={company}
@@ -168,11 +169,30 @@ export function CustomersPage() {
                     stiffness: 400,
                     damping: 17,
                   }}
-                  className="flex items-center justify-center h-16 bg-[#0B0C0E]/5 border border-[#0B0C0E]/10 rounded-xl hover:border-[#0B0C0E]/20 transition-all"
+                  className="flex items-center justify-center h-20 bg-white border border-[#0B0C0E]/10 rounded-xl hover:border-[#0B0C0E]/20 hover:shadow-sm transition-all group"
                 >
-                  <span className="text-[#0B0C0E]/70 font-inter font-medium text-sm">
-                    {company}
-                  </span>
+                  {/* Logo Image Placeholder - Add real logos to public/logos/ */}
+                  <div className="relative w-full h-full flex items-center justify-center px-4">
+                    <Image
+                      src={`/logos/${company.toLowerCase().replace(/[^a-z0-9]/g, '-')}.svg`}
+                      alt={company}
+                      width={120}
+                      height={40}
+                      className="object-contain max-w-full max-h-full opacity-60 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-300"
+                      onError={(e) => {
+                        // Fallback to text if image not found
+                        const target = e.target as HTMLImageElement
+                        target.style.display = 'none'
+                        const parent = target.parentElement
+                        if (parent) {
+                          const fallback = document.createElement('span')
+                          fallback.className = 'text-[#0B0C0E]/70 font-inter font-medium text-sm'
+                          fallback.textContent = company
+                          parent.appendChild(fallback)
+                        }
+                      }}
+                    />
+                  </div>
                 </motion.div>
               ))}
             </div>

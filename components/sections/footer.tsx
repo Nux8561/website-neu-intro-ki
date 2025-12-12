@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import Link from "next/link"
 import { Linkedin, Twitter, Instagram } from "lucide-react"
+import { IntroKILogo } from "@/components/ui/introki-logo"
 
 export function Footer() {
   const ref = React.useRef(null)
@@ -146,9 +147,14 @@ export function Footer() {
             className="flex flex-col sm:flex-row justify-between items-center gap-6 pt-8 border-t border-[#0B0C0E]/10"
             variants={itemVariants}
           >
-            <p className="text-[#0B0C0E]/50 font-inter text-sm">
-              © 2025 IntroKI. Alle Rechte vorbehalten.
-            </p>
+            <div className="flex flex-col sm:flex-row items-center gap-4">
+              <Link href="/" className="flex items-center">
+                <IntroKILogo size="sm" variant="default" animated={false} />
+              </Link>
+              <p className="text-[#0B0C0E]/50 font-inter text-sm">
+                © 2025 IntroKI GmbH. Alle Rechte vorbehalten.
+              </p>
+            </div>
             <div className="flex items-center gap-6">
               <a
                 href="https://linkedin.com/company/introki"

@@ -20,6 +20,12 @@ const config: Config = {
           subtle: "rgba(11, 12, 14, 0.08)",
           active: "rgba(11, 12, 14, 0.15)",
         },
+        agent: {
+          company: '#3b82f6',
+          people: '#a855f7',
+          ai: '#10b981',
+          validation: '#f97316',
+        },
       },
       fontFamily: {
         jakarta: ["var(--font-jakarta)", "sans-serif"],
@@ -48,14 +54,6 @@ const config: Config = {
         slideIn: {
           '0%': { transform: 'translateX(-20px)', opacity: '0' },
           '100%': { transform: 'translateX(0)', opacity: '1' },
-        },
-      },
-      colors: {
-        agent: {
-          company: '#3b82f6',
-          people: '#a855f7',
-          ai: '#10b981',
-          validation: '#f97316',
         },
       },
     },

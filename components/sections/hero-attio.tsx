@@ -6,6 +6,7 @@ import { ArrowRight, Sparkles } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { DataFlowAnimation } from "@/components/ui/data-flow-animation"
+import { MeshGradient } from "@paper-design/shaders-react"
 
 // Animation variants
 const containerVariants = {
@@ -49,6 +50,20 @@ interface HeroAttioProps {
 
 export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
   const [activeTab, setActiveTab] = React.useState<"data" | "workflows" | "reporting" | "pipeline">("data")
+  const [dimensions, setDimensions] = React.useState({ width: 1920, height: 1080 })
+  const [mounted, setMounted] = React.useState(false)
+
+  React.useEffect(() => {
+    setMounted(true)
+    const update = () =>
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      })
+    update()
+    window.addEventListener("resize", update)
+    return () => window.removeEventListener("resize", update)
+  }, [])
 
   const tabs = [
     { id: "data", label: "Data" },
@@ -70,11 +85,34 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
         </div>
       </div>
 
-      {/* Hero Section */}
+      {/* Hero Section with MeshGradient Background */}
       <section className="relative bg-background pt-20 pb-16 overflow-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* MeshGradient Background - ONLY until tabs, not further */}
+        <div className="absolute top-0 left-0 right-0 bottom-auto overflow-hidden" style={{ height: '520px' }}>
+          {mounted && (
+            <>
+              <MeshGradient
+                width={dimensions.width}
+                height={520}
+                colors={["#3B82F6", "#8B5CF6", "#6366F1", "#A855F7", "#EC4899", "#06B6D4"]}
+                distortion={0.5}
+                swirl={0.3}
+                grainMixer={0}
+                grainOverlay={0}
+                speed={0.25}
+                offsetX={0.04}
+              />
+              <div className="absolute inset-0 pointer-events-none bg-black/40" />
+              {/* Smooth fade transition at the bottom - longer fade for smoother transition */}
+              <div className="absolute bottom-0 left-0 right-0 h-48 pointer-events-none bg-gradient-to-b from-transparent via-background/30 to-background" />
+            </>
+          )}
+        </div>
+        
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          
           <motion.div
-            className="max-w-4xl mx-auto text-center"
+            className="max-w-4xl mx-auto text-center relative z-10"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
@@ -128,7 +166,7 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
             initial="hidden"
             animate="visible"
             transition={{ delay: 0.4 }}
-            className="max-w-5xl mx-auto"
+            className="max-w-5xl mx-auto relative z-10"
           >
             {/* Tab Navigation */}
             <div className="flex items-center justify-center gap-2 mb-6 border-b border-border">
@@ -197,7 +235,7 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
         </div>
       </section>
 
-      {/* Customer Logos Section */}
+      {/* Customer Logos Section - NO gradient background */}
       <section className="py-16 border-t border-border bg-surface/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div

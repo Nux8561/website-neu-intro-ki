@@ -157,8 +157,8 @@ function SourceCard({
         relative flex items-center gap-4 px-4 py-4 rounded-2xl
         border-2 transition-all duration-300 cursor-pointer text-left w-full
         ${isActive 
-          ? "border-gray-300 shadow-xl bg-white scale-[1.02]" 
-          : "border-gray-100 bg-white/95 hover:bg-white hover:border-gray-200 hover:shadow-md"
+          ? "border-blue-500 shadow-2xl bg-white scale-[1.02]" 
+          : "border-gray-300 bg-white hover:bg-gray-50 hover:border-gray-400 hover:shadow-lg"
         }
       `}
       initial={{ opacity: 0, x: -30 }}
@@ -319,21 +319,21 @@ function CentralHub({ count }: { count: number }) {
     >
       {/* Outer pulsing ring */}
       <motion.div
-        className="absolute w-48 h-48 rounded-full border border-gray-200"
-        animate={{ scale: [1, 1.06, 1], opacity: [0.4, 0.15, 0.4] }}
+        className="absolute w-48 h-48 rounded-full border-2 border-gray-400"
+        animate={{ scale: [1, 1.06, 1], opacity: [0.5, 0.2, 0.5] }}
         transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
       />
       
       {/* Middle ring with orbiting dots */}
       <motion.div
-        className="absolute w-40 h-40 rounded-full border border-gray-100"
+        className="absolute w-40 h-40 rounded-full border-2 border-gray-300"
         animate={{ rotate: 360 }}
         transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
       >
         {[0, 90, 180, 270].map((angle, i) => (
           <div
             key={i}
-            className="absolute w-2 h-2 rounded-full bg-gray-200"
+            className="absolute w-2 h-2 rounded-full bg-gray-500"
             style={{
               top: "50%",
               left: "50%",
@@ -345,7 +345,7 @@ function CentralHub({ count }: { count: number }) {
       
       {/* Center card with logo - using PNG image with SVG fallback */}
       <motion.div 
-        className="relative w-28 h-28 rounded-2xl bg-white shadow-2xl border border-gray-100 flex flex-col items-center justify-center overflow-hidden"
+        className="relative w-28 h-28 rounded-2xl bg-white shadow-2xl border-2 border-gray-300 flex flex-col items-center justify-center overflow-hidden"
         whileHover={{ scale: 1.05 }}
         transition={{ type: "spring", stiffness: 400, damping: 25 }}
       >
@@ -382,7 +382,7 @@ function StatsRow({ totalRecords }: { totalRecords: number }) {
   
   return (
     <motion.div
-      className="flex items-center justify-between gap-3 px-4 py-3 bg-white/80 backdrop-blur rounded-xl border border-gray-100"
+      className="flex items-center justify-between gap-3 px-4 py-3 bg-white backdrop-blur rounded-xl border-2 border-gray-300 shadow-lg"
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ ...smoothSpring, delay: 0.7 }}
@@ -433,17 +433,17 @@ export function DataFlowAnimation() {
   }
 
   return (
-    <div className="relative w-full h-full min-h-[440px] bg-white rounded-xl overflow-hidden">
+    <div className="relative w-full h-full bg-gray-50 rounded-xl overflow-hidden" style={{ height: '100%', width: '100%', display: 'flex', flexDirection: 'column' }}>
       {/* Dot pattern background */}
       <div 
-        className="absolute inset-0"
+        className="absolute inset-0 opacity-40"
         style={{
-          backgroundImage: `radial-gradient(circle, #D1D5DB 1px, transparent 1px)`,
+          backgroundImage: `radial-gradient(circle, #9CA3AF 1px, transparent 1px)`,
           backgroundSize: "20px 20px"
         }}
       />
       
-      <div className="relative z-10 h-full flex flex-col p-6">
+      <div className="relative z-10 flex flex-col p-6" style={{ flex: '1 1 auto', minHeight: 0 }}>
         {/* Header */}
         <motion.div 
           className="flex items-start justify-between mb-4"
@@ -470,7 +470,7 @@ export function DataFlowAnimation() {
         </motion.div>
         
         {/* Main visualization area */}
-        <div className="flex-1 relative min-h-[320px]">
+        <div className="relative flex-1" style={{ minHeight: '300px', flex: '1 1 auto', overflow: 'visible' }}>
           {/* SVG for flow lines - full width to ensure lines reach container */}
           <svg 
             className="absolute inset-0 w-full h-full pointer-events-none" 

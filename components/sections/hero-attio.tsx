@@ -6,6 +6,7 @@ import { ArrowRight, Sparkles } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { DataFlowAnimation } from "@/components/ui/data-flow-animation"
+import { PrioritiesAnimation } from "@/components/ui/priorities-animation"
 import { MeshGradient } from "@paper-design/shaders-react"
 
 // Animation variants
@@ -49,7 +50,7 @@ interface HeroAttioProps {
 }
 
 export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
-  const [activeTab, setActiveTab] = React.useState<"data" | "workflows" | "reporting" | "pipeline">("data")
+  const [activeTab, setActiveTab] = React.useState<"data" | "priorities" | "reporting" | "pipeline">("data")
   const [dimensions, setDimensions] = React.useState({ width: 1920, height: 1080 })
   const [mounted, setMounted] = React.useState(false)
 
@@ -67,7 +68,7 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
 
   const tabs = [
     { id: "data", label: "Data" },
-    { id: "workflows", label: "Workflows" },
+    { id: "priorities", label: "Prioritäten" },
     { id: "reporting", label: "Reporting" },
     { id: "pipeline", label: "Pipeline" },
   ]
@@ -202,9 +203,16 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                   className="relative aspect-[16/10] bg-[#0B0C0E] rounded-xl overflow-hidden"
+                  style={{ position: 'relative', width: '100%', height: '100%' }}
                 >
                   {activeTab === "data" ? (
-                    <DataFlowAnimation />
+                    <div style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
+                      <DataFlowAnimation />
+                    </div>
+                  ) : activeTab === "priorities" ? (
+                    <div style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
+                      <PrioritiesAnimation />
+                    </div>
                   ) : (
                     /* Placeholder for other tabs - can add more animations later */
                     <div className="absolute inset-0 flex items-center justify-center p-6">

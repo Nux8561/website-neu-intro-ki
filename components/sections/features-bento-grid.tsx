@@ -102,6 +102,23 @@ const features = [
 export function FeaturesBentoGrid() {
   const ref = React.useRef<HTMLDivElement>(null)
 
+  // Dynamic grid template areas for responsive layout
+  const gridAreas = {
+    desktop: `
+      "research research pipeline pipeline"
+      "research research coaching guides"
+      "scoring integrations integrations integrations"
+    `,
+    mobile: `
+      "research"
+      "pipeline"
+      "coaching"
+      "guides"
+      "scoring"
+      "integrations"
+    `,
+  }
+
   const FeatureItem = React.memo(
     ({
       feature,
@@ -116,26 +133,29 @@ export function FeaturesBentoGrid() {
           key={feature.id}
           variants={itemVariants}
           className={feature.span}
-          style={{ willChange: "transform" }}
+          style={{ 
+            willChange: "transform",
+            gridArea: feature.id,
+          }}
         >
           <SpotlightCard className="h-full group">
             <Card
-              className={`h-full border-black/10 ${feature.bgColor} backdrop-blur-sm transition-all hover:border-black/20`}
+              className={`h-full border-border-subtle ${feature.bgColor} backdrop-blur-sm transition-all hover:border-border-active`}
             >
               <CardHeader className="pb-3">
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="p-2 rounded-lg bg-black/5 border border-black/10 group-hover:bg-black/10 group-hover:border-black/20 transition-all">
-                    <Icon className="h-5 w-5 text-black/70" />
+                  <div className="p-2 rounded-lg bg-white/5 border border-border-subtle group-hover:bg-white/10 group-hover:border-border-active transition-all">
+                    <Icon className="h-5 w-5 text-text-secondary" />
                   </div>
-                  <CardTitle className="text-lg font-jakarta font-medium tracking-tight text-black">
+                  <CardTitle className="text-lg font-jakarta font-medium tracking-tight text-text-primary">
                     {feature.title}
                   </CardTitle>
                 </div>
-                <CardDescription className="text-black/70 font-inter text-sm">
+                <CardDescription className="text-text-secondary font-inter text-sm">
                   {feature.description}
                 </CardDescription>
               </CardHeader>
-              <CardContent className="h-full min-h-[200px] bg-white rounded-lg border border-black/5">
+              <CardContent className="h-full min-h-[200px] bg-surface rounded-lg border border-border-subtle">
                 {feature.content}
               </CardContent>
             </Card>
@@ -148,15 +168,15 @@ export function FeaturesBentoGrid() {
 
   return (
     <LazyMotion features={domAnimation}>
-      <section id="features" className="py-24 bg-[#0B0C0E] relative overflow-hidden">
+      <section id="features" className="py-24 bg-background relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-[0.03]">
           <div
             className="w-full h-full"
             style={{
               backgroundImage: `
-                linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px)
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px)
               `,
               backgroundSize: "50px 50px",
             }}
@@ -172,10 +192,10 @@ export function FeaturesBentoGrid() {
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
-            <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-black mb-4">
+            <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-text-primary mb-4">
               Alles was du brauchst
             </h2>
-            <p className="text-lg text-black/70 font-inter max-w-2xl mx-auto">
+            <p className="text-lg text-text-secondary font-inter max-w-2xl mx-auto">
               Eine vollständige CRM-Lösung mit AI-Power für erfolgreichen Vertrieb
             </p>
           </motion.div>

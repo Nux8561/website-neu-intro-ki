@@ -28,8 +28,8 @@ const Card = React.forwardRef<
       <motion.div
         ref={ref}
         className={cn(
-          "rounded-2xl border border-[#0B0C0E]/10 bg-[#0B0C0E]/5 backdrop-blur-md text-[#0B0C0E] shadow-inner-glow transition-all cursor-pointer",
-          "hover:border-[#0B0C0E]/20 hover:bg-[#0B0C0E]/10",
+          "rounded-2xl border border-border-subtle border-t border-t-white/15 bg-surface backdrop-blur-md text-text-primary shadow-inner-glow transition-all cursor-pointer",
+          "hover:border-border-active hover:bg-surface-elevated hover:border-t-white/20",
           className
         )}
         whileHover={{ scale: 1.01 }}
@@ -50,7 +50,7 @@ const Card = React.forwardRef<
     <div
       ref={ref}
       className={cn(
-        "rounded-2xl border border-[#0B0C0E]/10 bg-[#0B0C0E]/5 backdrop-blur-md text-[#0B0C0E] shadow-inner-glow",
+        "rounded-2xl border border-border-subtle border-t border-t-white/15 bg-surface backdrop-blur-md text-text-primary shadow-inner-glow",
         className
       )}
       {...props}
@@ -79,10 +79,10 @@ const CardTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn(
-      "text-2xl font-jakarta font-medium leading-none tracking-tight text-[#0B0C0E]",
-      className
-    )}
+      className={cn(
+        "text-2xl font-jakarta font-medium leading-none tracking-tight text-text-primary",
+        className
+      )}
     {...props}
   />
 ))
@@ -94,7 +94,7 @@ const CardDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("text-sm text-[#0B0C0E]/70 font-inter", className)}
+    className={cn("text-sm text-text-secondary font-inter", className)}
     {...props}
   />
 ))

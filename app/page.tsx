@@ -17,13 +17,15 @@ const VideoSection = dynamic(() => import("@/components/sections/video-section")
 const TestimonialSectionEnhanced = dynamic(() => import("@/components/sections/testimonial-section-enhanced").then(mod => ({ default: mod.TestimonialSectionEnhanced })), { ssr: true })
 const SocialProof = dynamic(() => import("@/components/sections/social-proof").then(mod => ({ default: mod.SocialProof })), { ssr: true })
 const CTASection = dynamic(() => import("@/components/sections/cta-section").then(mod => ({ default: mod.CTASection })), { ssr: true })
+// Lazy load 3D component for better performance
+const Hero3DElement = dynamic(() => import("@/components/ui/hero-3d-element").then(mod => ({ default: mod.Hero3DElement })), { ssr: false })
 
 export default function Home() {
   return (
     <>
       <Navbar />
       <TopBanner />
-      <main className="min-h-screen bg-white relative">
+      <main className="min-h-screen bg-background relative">
         <Hero />
         <VideoSection />
         <FeaturesBentoGrid />

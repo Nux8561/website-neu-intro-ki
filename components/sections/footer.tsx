@@ -106,7 +106,7 @@ export function Footer() {
   return (
     <footer
       ref={ref}
-      className="bg-white border-t border-black/10 relative overflow-hidden"
+      className="bg-background border-t border-border-subtle relative overflow-hidden"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <motion.div
@@ -118,7 +118,7 @@ export function Footer() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 mb-16">
             {footerColumns.map((column) => (
               <motion.div key={column.title} variants={itemVariants}>
-                <h3 className="text-sm font-jakarta font-medium tracking-tight text-black mb-6">
+                <h3 className="text-sm font-jakarta font-medium tracking-tight text-text-primary mb-6">
                   {column.title}
                 </h3>
                 <ul className="space-y-4">
@@ -126,7 +126,7 @@ export function Footer() {
                     <li key={link.label}>
                       <Link
                         href={link.href}
-                        className="text-black/70 hover:text-black transition-colors font-inter text-sm flex items-center gap-2"
+                        className="text-text-secondary hover:text-text-primary transition-colors font-inter text-sm flex items-center gap-2"
                       >
                         <span>{link.label}</span>
                         {link.badge && (
@@ -144,14 +144,14 @@ export function Footer() {
 
           {/* Bottom Bar */}
           <motion.div
-            className="flex flex-col sm:flex-row justify-between items-center gap-6 pt-8 border-t border-black/10"
+            className="flex flex-col sm:flex-row justify-between items-center gap-6 pt-8 border-t border-border-subtle"
             variants={itemVariants}
           >
             <div className="flex flex-col sm:flex-row items-center gap-4">
               <Link href="/" className="flex items-center">
                 <IntroKILogo size="sm" variant="default" animated={false} />
               </Link>
-              <p className="text-black/50 font-inter text-sm">
+              <p className="text-text-muted font-inter text-sm">
                 © 2025 IntroKI GmbH. Alle Rechte vorbehalten.
               </p>
             </div>
@@ -160,7 +160,7 @@ export function Footer() {
                 href="https://linkedin.com/company/introki"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-black/50 hover:text-black transition-colors"
+                className="text-text-muted hover:text-text-primary transition-colors"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="h-5 w-5" strokeWidth={1.5} />
@@ -169,7 +169,7 @@ export function Footer() {
                 href="https://twitter.com/introki"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-black/50 hover:text-black transition-colors"
+                className="text-text-muted hover:text-text-primary transition-colors"
                 aria-label="Twitter"
               >
                 <Twitter className="h-5 w-5" strokeWidth={1.5} />
@@ -178,20 +178,20 @@ export function Footer() {
                 href="https://instagram.com/introki"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-black/50 hover:text-black transition-colors"
+                className="text-text-muted hover:text-text-primary transition-colors"
                 aria-label="Instagram"
               >
                 <Instagram className="h-5 w-5" strokeWidth={1.5} />
               </a>
               <Link
                 href="/datenschutz"
-                className="text-black/50 hover:text-black transition-colors font-inter text-sm"
+                className="text-text-muted hover:text-text-primary transition-colors font-inter text-sm"
               >
                 Privacy Policy
               </Link>
               <Link
                 href="/impressum"
-                className="text-black/50 hover:text-black transition-colors font-inter text-sm"
+                className="text-text-muted hover:text-text-primary transition-colors font-inter text-sm"
               >
                 Terms & Conditions
               </Link>

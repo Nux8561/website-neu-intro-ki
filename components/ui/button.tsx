@@ -8,18 +8,18 @@ import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium font-jakarta tracking-tight transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0B0C0E]/20 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 rounded-full",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium font-jakarta tracking-tight transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 rounded-full",
   {
     variants: {
       variant: {
-        default: "bg-[#0B0C0E] text-white hover:bg-[#0B0C0E]/90 border border-[#0B0C0E]/20 shadow-inner-glow",
+        default: "bg-accent text-background hover:bg-accent-light border border-accent/20 shadow-inner-glow",
         destructive:
-          "bg-accent text-white hover:bg-accent-light border border-accent/20",
+          "bg-red-500 text-white hover:bg-red-600 border border-red-500/20",
         outline:
-          "border border-[#0B0C0E]/20 bg-[#0B0C0E]/5 hover:bg-[#0B0C0E]/10 hover:border-[#0B0C0E]/20 text-[#0B0C0E]",
+          "border border-border bg-surface hover:bg-surface-elevated hover:border-border-active text-text-primary",
         secondary:
-          "bg-surface text-[#0B0C0E] border border-[#0B0C0E]/10 hover:border-[#0B0C0E]/20",
-        ghost: "hover:bg-[#0B0C0E]/5 text-[#0B0C0E] hover:border-[#0B0C0E]/10 border border-transparent",
+          "bg-surface text-text-primary border border-border-subtle hover:border-border-active",
+        ghost: "hover:bg-white/5 text-text-primary hover:border-border-subtle border border-transparent",
         link: "text-accent underline-offset-4 hover:underline",
       },
       size: {

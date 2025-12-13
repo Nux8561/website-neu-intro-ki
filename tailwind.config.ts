@@ -10,15 +10,22 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#FFFFFF",
-        surface: "rgba(0, 0, 0, 0.02)",
+        background: "#0B0C0E", // App Background (Attio Standard)
+        surface: "#15171B", // Card/Surface
+        "surface-elevated": "#1C1E23", // Elevated surfaces
         accent: {
-          DEFAULT: "#000000",
-          light: "#333333",
+          DEFAULT: "#FFFFFF",
+          light: "#E5E7EB",
         },
         border: {
-          subtle: "rgba(0, 0, 0, 0.08)",
-          active: "rgba(0, 0, 0, 0.15)",
+          subtle: "rgba(255, 255, 255, 0.05)",
+          DEFAULT: "rgba(255, 255, 255, 0.10)",
+          active: "rgba(255, 255, 255, 0.20)",
+        },
+        text: {
+          primary: "#FFFFFF",
+          secondary: "rgba(255, 255, 255, 0.70)",
+          muted: "#94A3B8", // slate-400 (cool/blueish, never pure gray)
         },
         agent: {
           company: '#3b82f6',
@@ -39,7 +46,8 @@ const config: Config = {
         xs: "2px",
       },
       boxShadow: {
-        'inner-glow': 'inset 0 1px 0 0 rgba(11, 12, 14, 0.05)',
+        'inner-glow': 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05)',
+        'glass-elevated': 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 0 4px 24px rgba(0, 0, 0, 0.4)',
       },
       animation: {
         'pulse-slow': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',

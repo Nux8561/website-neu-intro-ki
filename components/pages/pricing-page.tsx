@@ -9,6 +9,8 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 
 // Types
+import type { LucideIcon } from "lucide-react"
+
 interface Plan {
   name: string
   price: { monthly: number | string; yearly: number | string }
@@ -17,7 +19,7 @@ interface Plan {
   cta: string
   popular?: boolean
   badge?: string
-  icon: React.ComponentType<{ className?: string }>
+  icon: LucideIcon
 }
 
 // Data

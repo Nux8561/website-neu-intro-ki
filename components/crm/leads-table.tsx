@@ -232,6 +232,75 @@ function ColumnHeader({
   return content
 }
 
+// Static mock data (outside component to avoid recreating on each render)
+const MOCK_LEADS: Lead[] = [
+  {
+    id: "1",
+    company: "Acme Corp",
+    name: "John Doe",
+    email: "john@acme.com",
+    source: "Organic",
+    status: "New",
+    size: 50000,
+    icpFit: "Excellent",
+    probability: "High",
+    lastAction: "2 days ago",
+    interest: [20, 25, 30, 35, 40],
+  },
+  {
+    id: "2",
+    company: "TechStart",
+    name: "Jane Smith",
+    email: "jane@techstart.com",
+    source: "Campaign",
+    status: "Closing",
+    size: 100000,
+    icpFit: "Medium",
+    probability: "Mid",
+    lastAction: "1 week ago",
+    interest: [10, 15, 20, 18, 22],
+  },
+  {
+    id: "3",
+    company: "Innovate Labs",
+    name: "Mike Johnson",
+    email: "mike@innovatelabs.com",
+    source: "Organic",
+    status: "Pre-sale",
+    size: 250000,
+    icpFit: "Excellent",
+    probability: "High",
+    lastAction: "3 days ago",
+    interest: [30, 35, 40, 45, 50],
+  },
+  {
+    id: "4",
+    company: "DataFlow Inc",
+    name: "Sarah Wilson",
+    email: "sarah@dataflow.io",
+    source: "Campaign",
+    status: "Closed",
+    size: 75000,
+    icpFit: "Good",
+    probability: "High",
+    lastAction: "1 day ago",
+    interest: [40, 42, 45, 48, 52],
+  },
+  {
+    id: "5",
+    company: "CloudNine",
+    name: "Alex Chen",
+    email: "alex@cloudnine.com",
+    source: "Organic",
+    status: "Lost",
+    size: 30000,
+    icpFit: "Poor",
+    probability: "Low",
+    lastAction: "2 weeks ago",
+    interest: [25, 20, 15, 12, 10],
+  },
+]
+
 // Main Component
 export function LeadsTable() {
   const [leads, setLeads] = React.useState<Lead[]>([])
@@ -247,79 +316,10 @@ export function LeadsTable() {
   const tableRef = React.useRef<HTMLDivElement>(null)
   const isInView = useInView(tableRef, { once: true, margin: "-100px" })
 
-  // Mock data
-  const mockLeads: Lead[] = [
-    {
-      id: "1",
-      company: "Acme Corp",
-      name: "John Doe",
-      email: "john@acme.com",
-      source: "Organic",
-      status: "New",
-      size: 50000,
-      icpFit: "Excellent",
-      probability: "High",
-      lastAction: "2 days ago",
-      interest: [20, 25, 30, 35, 40],
-    },
-    {
-      id: "2",
-      company: "TechStart",
-      name: "Jane Smith",
-      email: "jane@techstart.com",
-      source: "Campaign",
-      status: "Closing",
-      size: 100000,
-      icpFit: "Medium",
-      probability: "Mid",
-      lastAction: "1 week ago",
-      interest: [10, 15, 20, 18, 22],
-    },
-    {
-      id: "3",
-      company: "Innovate Labs",
-      name: "Mike Johnson",
-      email: "mike@innovatelabs.com",
-      source: "Organic",
-      status: "Pre-sale",
-      size: 250000,
-      icpFit: "Excellent",
-      probability: "High",
-      lastAction: "3 days ago",
-      interest: [30, 35, 40, 45, 50],
-    },
-    {
-      id: "4",
-      company: "DataFlow Inc",
-      name: "Sarah Wilson",
-      email: "sarah@dataflow.io",
-      source: "Campaign",
-      status: "Closed",
-      size: 75000,
-      icpFit: "Good",
-      probability: "High",
-      lastAction: "1 day ago",
-      interest: [40, 42, 45, 48, 52],
-    },
-    {
-      id: "5",
-      company: "CloudNine",
-      name: "Alex Chen",
-      email: "alex@cloudnine.com",
-      source: "Organic",
-      status: "Lost",
-      size: 30000,
-      icpFit: "Poor",
-      probability: "Low",
-      lastAction: "2 weeks ago",
-      interest: [25, 20, 15, 12, 10],
-    },
-  ]
-
   // Load data
   React.useEffect(() => {
     const timer = setTimeout(() => {
-      setLeads(mockLeads)
+      setLeads(MOCK_LEADS)
       setLoading(false)
     }, 1200)
     return () => clearTimeout(timer)

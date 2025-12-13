@@ -3,7 +3,7 @@
 import * as React from "react"
 import { motion, useInView, useMotionValue, useSpring, useTransform } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Sparkles, Calendar, CreditCard } from "lucide-react"
+import { ArrowRight, Sparkles, Calendar, CreditCard, type LucideIcon } from "lucide-react"
 import Link from "next/link"
 
 const containerVariants = {
@@ -64,7 +64,7 @@ function CTAButton({
 }: {
   children: React.ReactNode
   variant?: "primary" | "secondary" | "ghost"
-  icon?: React.ComponentType<{ className?: string }>
+  icon?: LucideIcon
   href: string
 }) {
   const [isHovered, setIsHovered] = React.useState(false)

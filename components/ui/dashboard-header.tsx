@@ -20,7 +20,7 @@ export function DashboardHeader({ workspaceName = "Basepoint", className }: Dash
 
   return (
     <header
-      className={`h-16 bg-white border-b border-[#0B0C0E]/10 flex items-center justify-between px-4 ${className || ""}`}
+      className={`h-16 bg-background border-b border-border-subtle flex items-center justify-between px-4 ${className || ""}`}
     >
       {/* Left: Workspace Selector & Search */}
       <div className="flex items-center gap-4 flex-1">
@@ -28,7 +28,7 @@ export function DashboardHeader({ workspaceName = "Basepoint", className }: Dash
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <motion.button
-              className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-inter text-[#0B0C0E] hover:bg-[#0B0C0E]/5 transition-all"
+              className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-inter text-text-primary hover:bg-surface transition-all"
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -48,19 +48,19 @@ export function DashboardHeader({ workspaceName = "Basepoint", className }: Dash
           <div
             className={`flex items-center gap-2 px-3 py-2 rounded-lg border transition-all ${
               isSearchFocused
-                ? "border-[#0B0C0E]/20 bg-white"
-                : "border-[#0B0C0E]/10 bg-[#0B0C0E]/5"
+                ? "border-border-active bg-background"
+                : "border-border-subtle bg-surface"
             }`}
           >
-            <Search className="h-4 w-4 text-[#0B0C0E]/50" />
+            <Search className="h-4 w-4 text-text-muted" />
             <input
               type="text"
               placeholder="Quick actions"
-              className="flex-1 bg-transparent border-none outline-none text-sm font-inter text-[#0B0C0E] placeholder:text-[#0B0C0E]/50"
+              className="flex-1 bg-transparent border-none outline-none text-sm font-inter text-text-primary placeholder:text-text-muted"
               onFocus={() => setIsSearchFocused(true)}
               onBlur={() => setIsSearchFocused(false)}
             />
-            <div className="flex items-center gap-1 text-xs font-mono text-[#0B0C0E]/50 bg-[#0B0C0E]/5 px-1.5 py-0.5 rounded">
+            <div className="flex items-center gap-1 text-xs font-mono text-text-muted bg-surface px-1.5 py-0.5 rounded">
               <Command className="h-3 w-3" />
               <span>K</span>
             </div>
@@ -72,7 +72,7 @@ export function DashboardHeader({ workspaceName = "Basepoint", className }: Dash
       <div className="flex items-center gap-2">
         {/* Notifications */}
         <motion.button
-          className="p-2 rounded-lg text-[#0B0C0E]/70 hover:text-[#0B0C0E] hover:bg-[#0B0C0E]/5 transition-all relative"
+          className="p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface transition-all relative"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           aria-label="Notifications"
@@ -83,7 +83,7 @@ export function DashboardHeader({ workspaceName = "Basepoint", className }: Dash
 
         {/* Tasks */}
         <motion.button
-          className="p-2 rounded-lg text-[#0B0C0E]/70 hover:text-[#0B0C0E] hover:bg-[#0B0C0E]/5 transition-all"
+          className="p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface transition-all"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           aria-label="Tasks"
@@ -93,7 +93,7 @@ export function DashboardHeader({ workspaceName = "Basepoint", className }: Dash
 
         {/* Emails */}
         <motion.button
-          className="p-2 rounded-lg text-[#0B0C0E]/70 hover:text-[#0B0C0E] hover:bg-[#0B0C0E]/5 transition-all relative"
+          className="p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface transition-all relative"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           aria-label="Emails"
@@ -104,7 +104,7 @@ export function DashboardHeader({ workspaceName = "Basepoint", className }: Dash
 
         {/* Reports */}
         <motion.button
-          className="p-2 rounded-lg text-[#0B0C0E]/70 hover:text-[#0B0C0E] hover:bg-[#0B0C0E]/5 transition-all"
+          className="p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface transition-all"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           aria-label="Reports"
@@ -116,7 +116,7 @@ export function DashboardHeader({ workspaceName = "Basepoint", className }: Dash
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <motion.button
-              className="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-[#0B0C0E]/5 transition-all"
+              className="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-surface transition-all"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >

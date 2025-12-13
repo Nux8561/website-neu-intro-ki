@@ -149,7 +149,7 @@ export function PainPointVisualization({ feature }: PainPointProps) {
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white border border-gray-200 rounded-lg p-4"
+                className="bg-background border border-gray-200 rounded-lg p-4"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-inter text-gray-700">{item.label}</span>
@@ -184,10 +184,10 @@ export function PainPointVisualization({ feature }: PainPointProps) {
                     initial={{ opacity: 0, x: 10, scale: 0.95 }}
                     animate={{ opacity: 1, x: 0, scale: 1 }}
                     transition={{ delay: index * 0.1, type: "spring", stiffness: 400, damping: 17 }}
-                    className="bg-white border border-green-200 rounded-lg p-4"
+                    className="bg-background border border-green-200 rounded-lg p-4"
                   >
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm font-inter font-medium text-[#0B0C0E]">
+                      <span className="text-sm font-inter font-medium text-text-primary">
                         {item.label}
                       </span>
                       <div className="flex items-center gap-2">
@@ -217,7 +217,7 @@ export function PainPointVisualization({ feature }: PainPointProps) {
                       </div>
                     </div>
                     {"nextAction" in item && item.nextAction && (
-                      <p className="text-xs text-[#0B0C0E]/70 font-inter">
+                      <p className="text-xs text-text-secondary font-inter">
                         {item.nextAction}
                       </p>
                     )}

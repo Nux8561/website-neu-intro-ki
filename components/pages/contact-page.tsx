@@ -36,9 +36,9 @@ export function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative py-24 border-b border-[#0B0C0E]/10">
+      <section className="relative py-24 border-b border-border-subtle">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             ref={ref}
@@ -57,13 +57,13 @@ export function ContactPage() {
             </motion.div>
             <motion.h1
               variants={itemVariants}
-              className="text-5xl sm:text-6xl md:text-7xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6"
+              className="text-5xl sm:text-6xl md:text-7xl font-jakarta font-medium tracking-tight text-text-primary mb-6"
             >
               Kontaktieren Sie uns
             </motion.h1>
             <motion.p
               variants={itemVariants}
-              className="text-lg md:text-xl text-[#0B0C0E]/70 font-inter mb-8 max-w-2xl mx-auto"
+              className="text-lg md:text-xl text-text-secondary font-inter mb-8 max-w-2xl mx-auto"
             >
               Haben Sie Fragen? Wir helfen Ihnen gerne weiter.
             </motion.p>
@@ -85,50 +85,50 @@ export function ContactPage() {
                 stiffness: 400,
                 damping: 17,
               }}
-              className="bg-[#0B0C0E]/5 border border-[#0B0C0E]/10 rounded-2xl p-8"
+              className="bg-surface border border-border-subtle rounded-2xl p-8"
             >
-              <h2 className="text-2xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6">
+              <h2 className="text-2xl font-jakarta font-medium tracking-tight text-text-primary mb-6">
                 Nachricht senden
               </h2>
               <form className="space-y-6">
                 <div>
-                  <label className="block text-[#0B0C0E]/70 font-inter text-sm mb-2">
+                  <label className="block text-text-secondary font-inter text-sm mb-2">
                     Name
                   </label>
                   <Input
                     type="text"
                     placeholder="Ihr Name"
-                    className="bg-[#0B0C0E]/5 border-[#0B0C0E]/10 text-[#0B0C0E] placeholder:text-[#0B0C0E]/50"
+                    className="bg-surface border-border-subtle text-text-primary placeholder:text-text-primary/50"
                   />
                 </div>
                 <div>
-                  <label className="block text-[#0B0C0E]/70 font-inter text-sm mb-2">
+                  <label className="block text-text-secondary font-inter text-sm mb-2">
                     E-Mail
                   </label>
                   <Input
                     type="email"
                     placeholder="ihre@email.com"
-                    className="bg-[#0B0C0E]/5 border-[#0B0C0E]/10 text-[#0B0C0E] placeholder:text-[#0B0C0E]/50"
+                    className="bg-surface border-border-subtle text-text-primary placeholder:text-text-primary/50"
                   />
                 </div>
                 <div>
-                  <label className="block text-[#0B0C0E]/70 font-inter text-sm mb-2">
+                  <label className="block text-text-secondary font-inter text-sm mb-2">
                     Betreff
                   </label>
                   <Input
                     type="text"
                     placeholder="Betreff"
-                    className="bg-[#0B0C0E]/5 border-[#0B0C0E]/10 text-[#0B0C0E] placeholder:text-[#0B0C0E]/50"
+                    className="bg-surface border-border-subtle text-text-primary placeholder:text-text-primary/50"
                   />
                 </div>
                 <div>
-                  <label className="block text-[#0B0C0E]/70 font-inter text-sm mb-2">
+                  <label className="block text-text-secondary font-inter text-sm mb-2">
                     Nachricht
                   </label>
                   <textarea
                     placeholder="Ihre Nachricht"
                     rows={6}
-                    className="w-full px-4 py-3 rounded-lg bg-[#0B0C0E]/5 border border-[#0B0C0E]/10 text-[#0B0C0E] placeholder:text-[#0B0C0E]/50 focus:outline-none focus:border-[#0B0C0E]/20 focus:bg-[#0B0C0E]/10 transition-all font-inter resize-none"
+                    className="w-full px-4 py-3 rounded-lg bg-surface border border-border-subtle text-text-primary placeholder:text-text-primary/50 focus:outline-none focus:border-border-active focus:bg-white/10 transition-all font-inter resize-none"
                   />
                 </div>
                 <Button
@@ -153,52 +153,52 @@ export function ContactPage() {
               }}
               className="space-y-6"
             >
-              <div className="bg-[#0B0C0E]/5 border border-[#0B0C0E]/10 rounded-2xl p-8">
-                <h2 className="text-2xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6">
+              <div className="bg-surface border border-border-subtle rounded-2xl p-8">
+                <h2 className="text-2xl font-jakarta font-medium tracking-tight text-text-primary mb-6">
                   Kontaktinformationen
                 </h2>
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-lg bg-[#0B0C0E]/5 border border-[#0B0C0E]/10">
-                      <Mail className="h-5 w-5 text-[#0B0C0E]/70" />
+                    <div className="p-3 rounded-lg bg-surface border border-border-subtle">
+                      <Mail className="h-5 w-5 text-text-secondary" />
                     </div>
                     <div>
-                      <h3 className="text-[#0B0C0E] font-inter font-medium mb-1">
+                      <h3 className="text-text-primary font-inter font-medium mb-1">
                         E-Mail
                       </h3>
                       <a
                         href="mailto:info@introki.app"
-                        className="text-[#0B0C0E]/70 font-inter text-sm hover:text-[#0B0C0E] transition-colors"
+                        className="text-text-secondary font-inter text-sm hover:text-text-primary transition-colors"
                       >
                         info@introki.app
                       </a>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-lg bg-[#0B0C0E]/5 border border-[#0B0C0E]/10">
-                      <Phone className="h-5 w-5 text-[#0B0C0E]/70" />
+                    <div className="p-3 rounded-lg bg-surface border border-border-subtle">
+                      <Phone className="h-5 w-5 text-text-secondary" />
                     </div>
                     <div>
-                      <h3 className="text-[#0B0C0E] font-inter font-medium mb-1">
+                      <h3 className="text-text-primary font-inter font-medium mb-1">
                         Telefon
                       </h3>
                       <a
                         href="tel:+49123456789"
-                        className="text-[#0B0C0E]/70 font-inter text-sm hover:text-[#0B0C0E] transition-colors"
+                        className="text-text-secondary font-inter text-sm hover:text-text-primary transition-colors"
                       >
                         +49 (0) 123 456 789
                       </a>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-lg bg-[#0B0C0E]/5 border border-[#0B0C0E]/10">
-                      <MapPin className="h-5 w-5 text-[#0B0C0E]/70" />
+                    <div className="p-3 rounded-lg bg-surface border border-border-subtle">
+                      <MapPin className="h-5 w-5 text-text-secondary" />
                     </div>
                     <div>
-                      <h3 className="text-[#0B0C0E] font-inter font-medium mb-1">
+                      <h3 className="text-text-primary font-inter font-medium mb-1">
                         Adresse
                       </h3>
-                      <p className="text-[#0B0C0E]/70 font-inter text-sm">
+                      <p className="text-text-secondary font-inter text-sm">
                         IntroKI GmbH
                         <br />
                         Musterstraße 123

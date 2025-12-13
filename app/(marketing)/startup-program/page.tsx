@@ -27,7 +27,7 @@ export default function StartupProgramPage() {
   const heroInView = useInView(heroRef, { once: true, margin: "-100px" })
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <section ref={heroRef} className="relative pt-32 pb-24 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-purple-500/5 via-transparent to-transparent" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -37,17 +37,17 @@ export default function StartupProgramPage() {
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h1 className="text-5xl md:text-6xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6">
+            <h1 className="text-5xl md:text-6xl font-jakarta font-medium tracking-tight text-text-primary mb-6">
               Startup-Programm
             </h1>
-            <p className="text-xl text-[#0B0C0E]/70 font-inter mb-12 max-w-3xl mx-auto">
+            <p className="text-xl text-text-secondary font-inter mb-12 max-w-3xl mx-auto">
               Spezielle Preise und Vorteile für Startups. Skaliere mit IntroKI und spare dabei.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" className="bg-[#0B0C0E] text-white hover:bg-[#0B0C0E]/90 font-semibold rounded-full px-8 py-6">
+              <Button size="lg" className="bg-text-primary text-white hover:bg-text-primary/90 font-semibold rounded-full px-8 py-6">
                 Jetzt bewerben <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button variant="outline" size="lg" className="border-[#0B0C0E]/20 text-[#0B0C0E] rounded-full px-8 py-6">
+              <Button variant="outline" size="lg" className="border-border-active text-text-primary rounded-full px-8 py-6">
                 Mehr erfahren
               </Button>
             </div>
@@ -55,7 +55,7 @@ export default function StartupProgramPage() {
         </div>
       </section>
 
-      <section className="py-24 bg-[#0B0C0E]/2">
+      <section className="py-24 bg-surface">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl font-jakarta font-medium mb-12 text-center">Programm-Vorteile</h2>
@@ -67,10 +67,10 @@ export default function StartupProgramPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.05 }}
-                  className="flex items-center gap-3 p-4 rounded-xl bg-white/50 backdrop-blur-sm border border-[#0B0C0E]/10"
+                  className="flex items-center gap-3 p-4 rounded-xl bg-white/50 backdrop-blur-sm border border-border-subtle"
                 >
                   <CheckCircle2 className="h-5 w-5 text-purple-600 flex-shrink-0" />
-                  <span className="font-inter text-[#0B0C0E]/80">{benefit}</span>
+                  <span className="font-inter text-text-secondary">{benefit}</span>
                 </motion.div>
               ))}
             </div>
@@ -84,10 +84,10 @@ export default function StartupProgramPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.05 }}
-                  className="flex items-center gap-3 p-4 rounded-xl bg-white/50 backdrop-blur-sm border border-[#0B0C0E]/10"
+                  className="flex items-center gap-3 p-4 rounded-xl bg-white/50 backdrop-blur-sm border border-border-subtle"
                 >
                   <CheckCircle2 className="h-5 w-5 text-blue-600 flex-shrink-0" />
-                  <span className="font-inter text-[#0B0C0E]/80">{requirement}</span>
+                  <span className="font-inter text-text-secondary">{requirement}</span>
                 </motion.div>
               ))}
             </div>
@@ -95,15 +95,15 @@ export default function StartupProgramPage() {
         </div>
       </section>
 
-      <section className="py-24 bg-[#0B0C0E]/2">
+      <section className="py-24 bg-surface">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-4xl font-jakarta font-medium mb-8">Bereit für das Programm?</h2>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" className="bg-[#0B0C0E] text-white rounded-full px-8 py-6">
+              <Button size="lg" className="bg-text-primary text-white rounded-full px-8 py-6">
                 Jetzt bewerben <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button variant="outline" size="lg" className="border-[#0B0C0E]/20 rounded-full px-8 py-6">
+              <Button variant="outline" size="lg" className="border-border-active rounded-full px-8 py-6">
                 Kontakt aufnehmen
               </Button>
             </div>

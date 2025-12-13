@@ -75,7 +75,7 @@ export function FeaturesSection() {
   return (
     <section
       ref={ref}
-      className="relative py-24 overflow-hidden bg-white"
+      className="relative py-24 overflow-hidden bg-background"
     >
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

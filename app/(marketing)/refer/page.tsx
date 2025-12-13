@@ -20,7 +20,7 @@ export default function ReferPage() {
   const heroInView = useInView(heroRef, { once: true, margin: "-100px" })
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <section ref={heroRef} className="relative pt-32 pb-24 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-purple-500/5 via-transparent to-transparent" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -30,19 +30,19 @@ export default function ReferPage() {
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h1 className="text-5xl md:text-6xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6">
+            <h1 className="text-5xl md:text-6xl font-jakarta font-medium tracking-tight text-text-primary mb-6">
               Teile IntroKI mit deinem Team
               <br />
               <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">und werde belohnt</span>
             </h1>
-            <p className="text-xl text-[#0B0C0E]/70 font-inter mb-12 max-w-3xl mx-auto">
+            <p className="text-xl text-text-secondary font-inter mb-12 max-w-3xl mx-auto">
               Hilf deinem Netzwerk, IntroKI zu entdecken und verdiene Belohnungen. Für jede erfolgreiche Empfehlung erhältst du 1 Monat kostenlos.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" className="bg-[#0B0C0E] text-white hover:bg-[#0B0C0E]/90 font-semibold rounded-full px-8 py-6">
+              <Button size="lg" className="bg-text-primary text-white hover:bg-text-primary/90 font-semibold rounded-full px-8 py-6">
                 Empfehlungslink erstellen <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button variant="outline" size="lg" className="border-[#0B0C0E]/20 text-[#0B0C0E] rounded-full px-8 py-6">
+              <Button variant="outline" size="lg" className="border-border-active text-text-primary rounded-full px-8 py-6">
                 Mehr erfahren
               </Button>
             </div>
@@ -50,7 +50,7 @@ export default function ReferPage() {
         </div>
       </section>
 
-      <section className="py-24 bg-[#0B0C0E]/2">
+      <section className="py-24 bg-surface">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl font-jakarta font-medium mb-12 text-center">So funktioniert&apos;s</h2>
@@ -65,7 +65,7 @@ export default function ReferPage() {
                   <Share2 className="h-8 w-8 text-purple-600" />
                 </div>
                 <h3 className="text-xl font-jakarta font-semibold mb-2">1. Teilen</h3>
-                <p className="text-[#0B0C0E]/70 font-inter">Teile deinen Empfehlungslink mit deinem Netzwerk.</p>
+                <p className="text-text-secondary font-inter">Teile deinen Empfehlungslink mit deinem Netzwerk.</p>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -78,7 +78,7 @@ export default function ReferPage() {
                   <Users className="h-8 w-8 text-purple-600" />
                 </div>
                 <h3 className="text-xl font-jakarta font-semibold mb-2">2. Empfehlung</h3>
-                <p className="text-[#0B0C0E]/70 font-inter">Dein Kontakt meldet sich mit deinem Link an.</p>
+                <p className="text-text-secondary font-inter">Dein Kontakt meldet sich mit deinem Link an.</p>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -91,7 +91,7 @@ export default function ReferPage() {
                   <Gift className="h-8 w-8 text-purple-600" />
                 </div>
                 <h3 className="text-xl font-jakarta font-semibold mb-2">3. Belohnung</h3>
-                <p className="text-[#0B0C0E]/70 font-inter">Du erhältst 1 Monat kostenlos – sofort gutgeschrieben.</p>
+                <p className="text-text-secondary font-inter">Du erhältst 1 Monat kostenlos – sofort gutgeschrieben.</p>
               </motion.div>
             </div>
 
@@ -104,10 +104,10 @@ export default function ReferPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.05 }}
-                  className="flex items-center gap-3 p-4 rounded-xl bg-white/50 backdrop-blur-sm border border-[#0B0C0E]/10"
+                  className="flex items-center gap-3 p-4 rounded-xl bg-white/50 backdrop-blur-sm border border-border-subtle"
                 >
                   <CheckCircle2 className="h-5 w-5 text-purple-600 flex-shrink-0" />
-                  <span className="font-inter text-[#0B0C0E]/80">{benefit}</span>
+                  <span className="font-inter text-text-secondary">{benefit}</span>
                 </motion.div>
               ))}
             </div>
@@ -115,15 +115,15 @@ export default function ReferPage() {
         </div>
       </section>
 
-      <section className="py-24 bg-[#0B0C0E]/2">
+      <section className="py-24 bg-surface">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-4xl font-jakarta font-medium mb-8">Bereit zu teilen?</h2>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" className="bg-[#0B0C0E] text-white rounded-full px-8 py-6">
+              <Button size="lg" className="bg-text-primary text-white rounded-full px-8 py-6">
                 Empfehlungslink erstellen <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button variant="outline" size="lg" className="border-[#0B0C0E]/20 rounded-full px-8 py-6">
+              <Button variant="outline" size="lg" className="border-border-active rounded-full px-8 py-6">
                 Mehr erfahren
               </Button>
             </div>

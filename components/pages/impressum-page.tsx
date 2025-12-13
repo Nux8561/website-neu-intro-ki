@@ -9,7 +9,7 @@ export function ImpressumPage() {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <section className="py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -23,12 +23,12 @@ export function ImpressumPage() {
               damping: 17,
             }}
           >
-            <h1 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-8">
+            <h1 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-text-primary mb-8">
               Impressum
             </h1>
-            <div className="space-y-8 text-[#0B0C0E]/70 font-inter">
+            <div className="space-y-8 text-text-secondary font-inter">
               <div>
-                <h2 className="text-xl font-jakarta font-medium text-[#0B0C0E] mb-4">
+                <h2 className="text-xl font-jakarta font-medium text-text-primary mb-4">
                   Angaben gemäß § 5 TMG
                 </h2>
                 <p>
@@ -42,7 +42,7 @@ export function ImpressumPage() {
                 </p>
               </div>
               <div>
-                <h2 className="text-xl font-jakarta font-medium text-[#0B0C0E] mb-4">
+                <h2 className="text-xl font-jakarta font-medium text-text-primary mb-4">
                   Kontakt
                 </h2>
                 <p>
@@ -52,7 +52,7 @@ export function ImpressumPage() {
                 </p>
               </div>
               <div>
-                <h2 className="text-xl font-jakarta font-medium text-[#0B0C0E] mb-4">
+                <h2 className="text-xl font-jakarta font-medium text-text-primary mb-4">
                   Registereintrag
                 </h2>
                 <p>
@@ -64,7 +64,7 @@ export function ImpressumPage() {
                 </p>
               </div>
               <div>
-                <h2 className="text-xl font-jakarta font-medium text-[#0B0C0E] mb-4">
+                <h2 className="text-xl font-jakarta font-medium text-text-primary mb-4">
                   Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV
                 </h2>
                 <p>

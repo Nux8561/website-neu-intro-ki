@@ -32,7 +32,7 @@ export function DataEnrichmentSection() {
   return (
     <section
       ref={ref}
-      className="relative py-24 overflow-hidden bg-white"
+      className="relative py-24 overflow-hidden bg-background"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -60,25 +60,25 @@ export function DataEnrichmentSection() {
 
           {/* Data Sources */}
           <div className="flex items-center gap-4 mb-12 flex-wrap">
-            <div className="flex items-center gap-2 px-4 py-2 bg-[#0B0C0E]/5 rounded-full border border-[#0B0C0E]/10">
-              <Mail className="h-4 w-4 text-[#0B0C0E]/70" />
-              <span className="text-sm font-inter text-[#0B0C0E]">Email events</span>
+            <div className="flex items-center gap-2 px-4 py-2 bg-surface rounded-full border border-border-subtle">
+              <Mail className="h-4 w-4 text-text-secondary" />
+              <span className="text-sm font-inter text-text-primary">Email events</span>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 bg-[#0B0C0E]/5 rounded-full border border-[#0B0C0E]/10">
-              <Calendar className="h-4 w-4 text-[#0B0C0E]/70" />
-              <span className="text-sm font-inter text-[#0B0C0E]">Calendar events</span>
+            <div className="flex items-center gap-2 px-4 py-2 bg-surface rounded-full border border-border-subtle">
+              <Calendar className="h-4 w-4 text-text-secondary" />
+              <span className="text-sm font-inter text-text-primary">Calendar events</span>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 bg-[#0B0C0E]/5 rounded-full border border-[#0B0C0E]/10">
-              <Database className="h-4 w-4 text-[#0B0C0E]/70" />
-              <span className="text-sm font-inter text-[#0B0C0E]">Segment events</span>
+            <div className="flex items-center gap-2 px-4 py-2 bg-surface rounded-full border border-border-subtle">
+              <Database className="h-4 w-4 text-text-secondary" />
+              <span className="text-sm font-inter text-text-primary">Segment events</span>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 bg-[#0B0C0E]/5 rounded-full border border-[#0B0C0E]/10">
-              <span className="text-sm font-inter text-[#0B0C0E]/50">Data sources</span>
+            <div className="flex items-center gap-2 px-4 py-2 bg-surface rounded-full border border-border-subtle">
+              <span className="text-sm font-inter text-text-muted">Data sources</span>
             </div>
           </div>
 
           <div className="flex gap-6 mb-12">
-            <Button className="rounded-full bg-[#0B0C0E] text-white">
+            <Button className="rounded-full bg-text-primary text-white">
               Kostenlos starten
             </Button>
             <Button variant="outline" className="rounded-full">
@@ -87,20 +87,20 @@ export function DataEnrichmentSection() {
           </div>
 
           {/* Person Card Demo */}
-          <div className="bg-[#0B0C0E]/5 border border-[#0B0C0E]/10 rounded-2xl p-8">
-            <div className="bg-white rounded-xl p-6 border border-[#0B0C0E]/10">
+          <div className="bg-surface border border-border-subtle rounded-2xl p-8">
+            <div className="bg-background rounded-xl p-6 border border-border-subtle">
               {/* Header */}
               <div className="flex items-start gap-4 mb-6">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center border-2 border-[#0B0C0E]/10">
-                  <span className="text-2xl font-jakarta font-semibold text-[#0B0C0E]">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center border-2 border-border-subtle">
+                  <span className="text-2xl font-jakarta font-semibold text-text-primary">
                     SJ
                   </span>
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-jakarta font-medium text-[#0B0C0E] mb-1">
+                  <h3 className="text-xl font-jakarta font-medium text-text-primary mb-1">
                     Sarah Johnson
                   </h3>
-                  <p className="text-sm text-[#0B0C0E]/70 font-inter mb-2">
+                  <p className="text-sm text-text-secondary font-inter mb-2">
                     Head of IT at GreenLeaf Inc.
                   </p>
                   <a
@@ -126,11 +126,11 @@ export function DataEnrichmentSection() {
                   animate={{ opacity: 1, y: 0 }}
                   className="mb-6"
                 >
-                  <h4 className="text-sm font-jakarta font-medium text-[#0B0C0E] mb-3">
+                  <h4 className="text-sm font-jakarta font-medium text-text-primary mb-3">
                     Highlights
                   </h4>
-                  <div className="bg-[#0B0C0E]/5 rounded-lg p-4">
-                    <p className="text-sm text-[#0B0C0E]/70 font-inter leading-relaxed">
+                  <div className="bg-surface rounded-lg p-4">
+                    <p className="text-sm text-text-secondary font-inter leading-relaxed">
                       Sarah Johnson, the Head of IT, is leading the initiative to modernize their data infrastructure, which aligns with GreenLeaf&apos;s growth and sustainability goals. A successful demo call on August 29 confirmed the need for TechWave&apos;s solutions, and the opportunity is moving forward with a 75% confidence level.
                     </p>
                   </div>
@@ -145,7 +145,7 @@ export function DataEnrichmentSection() {
                   transition={{ delay: 0.2 }}
                   className="mb-6"
                 >
-                  <h4 className="text-sm font-jakarta font-medium text-[#0B0C0E] mb-3">
+                  <h4 className="text-sm font-jakarta font-medium text-text-primary mb-3">
                     Upcoming
                   </h4>
                   <CalendarEvent
@@ -165,15 +165,15 @@ export function DataEnrichmentSection() {
                   transition={{ delay: 0.4 }}
                   className="mb-6"
                 >
-                  <h4 className="text-sm font-jakarta font-medium text-[#0B0C0E] mb-3">
+                  <h4 className="text-sm font-jakarta font-medium text-text-primary mb-3">
                     Company
                   </h4>
                   <div className="flex items-center gap-2">
-                    <Building2 className="h-4 w-4 text-[#0B0C0E]/50" />
-                    <span className="text-sm text-[#0B0C0E]/70 font-inter">
+                    <Building2 className="h-4 w-4 text-text-muted" />
+                    <span className="text-sm text-text-secondary font-inter">
                       GreenLeaf Inc.
                     </span>
-                    <span className="text-xs text-[#0B0C0E]/50">San Francisco, CA</span>
+                    <span className="text-xs text-text-muted">San Francisco, CA</span>
                   </div>
                 </motion.div>
               )}
@@ -185,7 +185,7 @@ export function DataEnrichmentSection() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
                 >
-                  <h4 className="text-sm font-jakarta font-medium text-[#0B0C0E] mb-3">
+                  <h4 className="text-sm font-jakarta font-medium text-text-primary mb-3">
                     Activity
                   </h4>
                   <ActivityTimeline

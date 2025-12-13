@@ -63,9 +63,9 @@ export function CareersPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative py-24 border-b border-[#0B0C0E]/10">
+      <section className="relative py-24 border-b border-border-subtle">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             ref={ref}
@@ -84,13 +84,13 @@ export function CareersPage() {
             </motion.div>
             <motion.h1
               variants={itemVariants}
-              className="text-5xl sm:text-6xl md:text-7xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6"
+              className="text-5xl sm:text-6xl md:text-7xl font-jakarta font-medium tracking-tight text-text-primary mb-6"
             >
               Werde Teil des Teams
             </motion.h1>
             <motion.p
               variants={itemVariants}
-              className="text-lg md:text-xl text-[#0B0C0E]/70 font-inter mb-8 max-w-2xl mx-auto"
+              className="text-lg md:text-xl text-text-secondary font-inter mb-8 max-w-2xl mx-auto"
             >
               Baue mit uns die Zukunft des KI-gestützten Vertriebs. Wir suchen
               talentierte Menschen, die Leidenschaft für Technologie und
@@ -116,36 +116,36 @@ export function CareersPage() {
                   stiffness: 400,
                   damping: 17,
                 }}
-                className="bg-[#0B0C0E]/5 border border-[#0B0C0E]/10 rounded-2xl p-8 hover:bg-[#0B0C0E]/10 transition-colors"
+                className="bg-surface border border-border-subtle rounded-2xl p-8 hover:bg-white/10 transition-colors"
               >
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex-1">
-                    <h3 className="text-2xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-2">
+                    <h3 className="text-2xl font-jakarta font-medium tracking-tight text-text-primary mb-2">
                       {position.title}
                     </h3>
                     <div className="flex flex-wrap items-center gap-4 mb-4">
                       <Badge
                         variant="outline"
-                        className="bg-[#0B0C0E]/5 text-[#0B0C0E]/70 border-[#0B0C0E]/10"
+                        className="bg-surface text-text-secondary border-border-subtle"
                       >
                         {position.department}
                       </Badge>
-                      <div className="flex items-center gap-2 text-[#0B0C0E]/50 font-inter text-sm">
+                      <div className="flex items-center gap-2 text-text-primary/50 font-inter text-sm">
                         <MapPin className="h-4 w-4" />
                         {position.location}
                       </div>
-                      <div className="flex items-center gap-2 text-[#0B0C0E]/50 font-inter text-sm">
+                      <div className="flex items-center gap-2 text-text-primary/50 font-inter text-sm">
                         <Clock className="h-4 w-4" />
                         {position.type}
                       </div>
                     </div>
-                    <p className="text-[#0B0C0E]/70 font-inter text-sm">
+                    <p className="text-text-secondary font-inter text-sm">
                       {position.description}
                     </p>
                   </div>
                   <Button
                     variant="outline"
-                    className="border-[#0B0C0E]/10 text-[#0B0C0E] hover:bg-[#0B0C0E]/5 ml-4"
+                    className="border-border-subtle text-text-primary hover:bg-surface ml-4"
                     asChild
                   >
                     <Link href="/kontakt">Bewerben</Link>
@@ -158,7 +158,7 @@ export function CareersPage() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-24 border-t border-[#0B0C0E]/10">
+      <section className="py-24 border-t border-border-subtle">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="max-w-4xl mx-auto"
@@ -171,7 +171,7 @@ export function CareersPage() {
               damping: 17,
             }}
           >
-            <h2 className="text-3xl md:text-4xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-12 text-center">
+            <h2 className="text-3xl md:text-4xl font-jakarta font-medium tracking-tight text-text-primary mb-12 text-center">
               Warum IntroKI?
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -185,7 +185,7 @@ export function CareersPage() {
               ].map((benefit, i) => (
                 <div
                   key={i}
-                  className="flex items-center gap-3 text-[#0B0C0E]/70 font-inter"
+                  className="flex items-center gap-3 text-text-secondary font-inter"
                 >
                   <div className="h-1.5 w-1.5 rounded-full bg-blue-500" />
                   {benefit}

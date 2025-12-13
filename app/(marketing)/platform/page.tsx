@@ -125,14 +125,14 @@ export default function PlatformPage() {
   const statsInView = useInView(statsRef, { once: true, margin: "-100px" })
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section 
         ref={heroRef}
         className="relative pt-32 pb-24 overflow-hidden"
       >
         {/* Background Effects */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0B0C0E]/5 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-surface via-transparent to-transparent" />
         <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
 
@@ -147,15 +147,15 @@ export default function PlatformPage() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={heroInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
               transition={{ delay: 0.1 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#0B0C0E]/10 bg-white/50 backdrop-blur-sm mb-8"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border-subtle bg-white/50 backdrop-blur-sm mb-8"
             >
               <Sparkles className="h-4 w-4 text-blue-600" />
-              <span className="text-sm font-inter text-[#0B0C0E]/70">
+              <span className="text-sm font-inter text-text-secondary">
                 Die vollständige Sales-Intelligence-Plattform
               </span>
             </motion.div>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-jakarta font-medium tracking-tight text-text-primary mb-6">
               Eine Plattform.
               <br />
               <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
@@ -163,14 +163,14 @@ export default function PlatformPage() {
               </span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-[#0B0C0E]/70 font-inter mb-12 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-text-secondary font-inter mb-12 max-w-3xl mx-auto leading-relaxed">
               IntroKI kombiniert AI-gestützte Recherche, intelligente Pipeline-Verwaltung und Echtzeit-Call-Coaching in einer einzigen, nahtlosen Plattform.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button 
                 size="lg" 
-                className="bg-[#0B0C0E] text-white hover:bg-[#0B0C0E]/90 font-semibold rounded-full px-8 py-6 text-lg transition-all duration-300 hover:scale-105"
+                className="bg-text-primary text-white hover:bg-text-primary/90 font-semibold rounded-full px-8 py-6 text-lg transition-all duration-300 hover:scale-105"
               >
                 Kostenlos starten
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -178,7 +178,7 @@ export default function PlatformPage() {
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="border-[#0B0C0E]/20 text-[#0B0C0E] hover:bg-[#0B0C0E]/5 font-semibold rounded-full px-8 py-6 text-lg transition-all duration-300 hover:scale-105"
+                className="border-border-active text-text-primary hover:bg-surface font-semibold rounded-full px-8 py-6 text-lg transition-all duration-300 hover:scale-105"
               >
                 Demo buchen
               </Button>
@@ -188,7 +188,7 @@ export default function PlatformPage() {
       </section>
 
       {/* Stats Section */}
-      <section ref={statsRef} className="py-16 border-y border-[#0B0C0E]/10 bg-[#0B0C0E]/2">
+      <section ref={statsRef} className="py-16 border-y border-border-subtle bg-surface">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0 }}
@@ -205,13 +205,13 @@ export default function PlatformPage() {
                   transition={{ delay: index * 0.1, type: "spring", stiffness: 400, damping: 17 }}
                   className="text-center"
                 >
-                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-[#0B0C0E]/5 mb-4">
-                    <Icon className="h-6 w-6 text-[#0B0C0E]/70" />
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-surface mb-4">
+                    <Icon className="h-6 w-6 text-text-secondary" />
                   </div>
-                  <div className="text-4xl font-jakarta font-semibold text-[#0B0C0E] mb-2">
+                  <div className="text-4xl font-jakarta font-semibold text-text-primary mb-2">
                     {stat.value}
                   </div>
-                  <div className="text-sm text-[#0B0C0E]/60 font-inter">
+                  <div className="text-sm text-text-muted font-inter">
                     {stat.label}
                   </div>
                 </motion.div>
@@ -230,10 +230,10 @@ export default function PlatformPage() {
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-4">
+            <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-text-primary mb-4">
               Alles, was du brauchst
             </h2>
-            <p className="text-xl text-[#0B0C0E]/70 font-inter max-w-2xl mx-auto">
+            <p className="text-xl text-text-secondary font-inter max-w-2xl mx-auto">
               Eine vollständige Suite von Tools für moderne Sales-Teams
             </p>
           </motion.div>
@@ -268,7 +268,7 @@ export default function PlatformPage() {
                         <h3 className="text-2xl font-jakarta font-semibold tracking-tight mb-2">
                           {feature.title}
                         </h3>
-                        <p className="text-[#0B0C0E]/70 font-inter leading-relaxed">
+                        <p className="text-text-secondary font-inter leading-relaxed">
                           {feature.description}
                         </p>
                       </div>
@@ -278,7 +278,7 @@ export default function PlatformPage() {
                       {feature.benefits.map((benefit, i) => (
                         <div key={i} className="flex items-start gap-3">
                           <CheckCircle2 className="h-5 w-5 flex-shrink-0 mt-0.5" />
-                          <span className="text-sm text-[#0B0C0E]/80 font-inter">
+                          <span className="text-sm text-text-secondary font-inter">
                             {benefit}
                           </span>
                         </div>
@@ -293,7 +293,7 @@ export default function PlatformPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-[#0B0C0E]/5 via-blue-500/5 to-purple-500/5">
+      <section className="py-24 bg-gradient-to-br from-surface via-blue-500/5 to-purple-500/5">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -302,16 +302,16 @@ export default function PlatformPage() {
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
             className="max-w-3xl mx-auto text-center"
           >
-            <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6">
+            <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-text-primary mb-6">
               Bereit, dein Sales-Team zu transformieren?
             </h2>
-            <p className="text-xl text-[#0B0C0E]/70 font-inter mb-8">
+            <p className="text-xl text-text-secondary font-inter mb-8">
               Starte noch heute mit IntroKI und erlebe die Zukunft des Sales-Managements.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button 
                 size="lg" 
-                className="bg-[#0B0C0E] text-white hover:bg-[#0B0C0E]/90 font-semibold rounded-full px-8 py-6 text-lg transition-all duration-300 hover:scale-105"
+                className="bg-text-primary text-white hover:bg-text-primary/90 font-semibold rounded-full px-8 py-6 text-lg transition-all duration-300 hover:scale-105"
               >
                 Kostenlos starten
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -319,7 +319,7 @@ export default function PlatformPage() {
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="border-[#0B0C0E]/20 text-[#0B0C0E] hover:bg-[#0B0C0E]/5 font-semibold rounded-full px-8 py-6 text-lg transition-all duration-300 hover:scale-105"
+                className="border-border-active text-text-primary hover:bg-surface font-semibold rounded-full px-8 py-6 text-lg transition-all duration-300 hover:scale-105"
               >
                 Demo buchen
               </Button>

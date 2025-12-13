@@ -18,7 +18,7 @@ export default function DownloadsPage() {
   const heroInView = useInView(heroRef, { once: true, margin: "-100px" })
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <section ref={heroRef} className="relative pt-32 pb-24 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 via-transparent to-transparent" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -28,10 +28,10 @@ export default function DownloadsPage() {
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h1 className="text-5xl md:text-6xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6">
+            <h1 className="text-5xl md:text-6xl font-jakarta font-medium tracking-tight text-text-primary mb-6">
               Downloads
             </h1>
-            <p className="text-xl text-[#0B0C0E]/70 font-inter mb-12 max-w-3xl mx-auto">
+            <p className="text-xl text-text-secondary font-inter mb-12 max-w-3xl mx-auto">
               Lade IntroKI-Apps und Ressourcen herunter. Verfügbar für alle Plattformen.
             </p>
           </motion.div>
@@ -50,7 +50,7 @@ export default function DownloadsPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="p-8 rounded-2xl border border-[#0B0C0E]/10 bg-white/50 backdrop-blur-sm hover:shadow-xl transition-all"
+                  className="p-8 rounded-2xl border border-border-subtle bg-white/50 backdrop-blur-sm hover:shadow-xl transition-all"
                 >
                   <div className="flex items-start gap-4 mb-6">
                     <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center">
@@ -58,10 +58,10 @@ export default function DownloadsPage() {
                     </div>
                     <div>
                       <h3 className="text-2xl font-jakarta font-semibold mb-2">{download.title}</h3>
-                      <p className="text-[#0B0C0E]/70 font-inter">{download.description}</p>
+                      <p className="text-text-secondary font-inter">{download.description}</p>
                     </div>
                   </div>
-                  <Button variant="outline" className="w-full border-[#0B0C0E]/20">
+                  <Button variant="outline" className="w-full border-border-active">
                     <Download className="mr-2 h-4 w-4" />
                     Herunterladen
                   </Button>

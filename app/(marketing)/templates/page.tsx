@@ -18,7 +18,7 @@ export default function TemplatesPage() {
   const heroInView = useInView(heroRef, { once: true, margin: "-100px" })
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <section ref={heroRef} className="relative pt-32 pb-24 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-purple-500/5 via-transparent to-transparent" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -28,19 +28,19 @@ export default function TemplatesPage() {
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h1 className="text-5xl md:text-6xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6">
+            <h1 className="text-5xl md:text-6xl font-jakarta font-medium tracking-tight text-text-primary mb-6">
               Automatisierungsvorlagen
               <br />
               <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">für IntroKI</span>
             </h1>
-            <p className="text-xl text-[#0B0C0E]/70 font-inter mb-12 max-w-3xl mx-auto">
+            <p className="text-xl text-text-secondary font-inter mb-12 max-w-3xl mx-auto">
               Vorgefertigte Automatisierungsvorlagen für IntroKI. Starte sofort mit bewährten Workflows.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" className="bg-[#0B0C0E] text-white hover:bg-[#0B0C0E]/90 font-semibold rounded-full px-8 py-6">
+              <Button size="lg" className="bg-text-primary text-white hover:bg-text-primary/90 font-semibold rounded-full px-8 py-6">
                 Vorlagen durchsuchen <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button variant="outline" size="lg" className="border-[#0B0C0E]/20 text-[#0B0C0E] rounded-full px-8 py-6">
+              <Button variant="outline" size="lg" className="border-border-active text-text-primary rounded-full px-8 py-6">
                 Eigene erstellen
               </Button>
             </div>
@@ -48,7 +48,7 @@ export default function TemplatesPage() {
         </div>
       </section>
 
-      <section className="py-24 bg-[#0B0C0E]/2">
+      <section className="py-24 bg-surface">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {templates.map((template, index) => {
@@ -60,7 +60,7 @@ export default function TemplatesPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="p-8 rounded-2xl border border-[#0B0C0E]/10 bg-white/50 backdrop-blur-sm"
+                  className="p-8 rounded-2xl border border-border-subtle bg-white/50 backdrop-blur-sm"
                 >
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center">
@@ -68,7 +68,7 @@ export default function TemplatesPage() {
                     </div>
                     <div>
                       <h3 className="text-2xl font-jakarta font-semibold mb-2">{template.title}</h3>
-                      <p className="text-[#0B0C0E]/70 font-inter">{template.description}</p>
+                      <p className="text-text-secondary font-inter">{template.description}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -78,15 +78,15 @@ export default function TemplatesPage() {
         </div>
       </section>
 
-      <section className="py-24 bg-[#0B0C0E]/2">
+      <section className="py-24 bg-surface">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-4xl font-jakarta font-medium mb-8">Bereit zu automatisieren?</h2>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" className="bg-[#0B0C0E] text-white rounded-full px-8 py-6">
+              <Button size="lg" className="bg-text-primary text-white rounded-full px-8 py-6">
                 Vorlagen durchsuchen <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button variant="outline" size="lg" className="border-[#0B0C0E]/20 rounded-full px-8 py-6">
+              <Button variant="outline" size="lg" className="border-border-active rounded-full px-8 py-6">
                 Eigene erstellen
               </Button>
             </div>

@@ -75,7 +75,7 @@ export default function RoadmapPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <section ref={heroRef} className="relative pt-32 pb-24 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 via-transparent to-transparent" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -85,10 +85,10 @@ export default function RoadmapPage() {
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h1 className="text-5xl md:text-6xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6">
+            <h1 className="text-5xl md:text-6xl font-jakarta font-medium tracking-tight text-text-primary mb-6">
               Produkt-Roadmap
             </h1>
-            <p className="text-xl text-[#0B0C0E]/70 font-inter mb-12 max-w-3xl mx-auto">
+            <p className="text-xl text-text-secondary font-inter mb-12 max-w-3xl mx-auto">
               Sieh, was wir als Nächstes entwickeln. Unsere Roadmap zeigt dir, welche Features kommen.
             </p>
           </motion.div>
@@ -105,7 +105,7 @@ export default function RoadmapPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="p-8 rounded-2xl border border-[#0B0C0E]/10 bg-white/50 backdrop-blur-sm"
+                className="p-8 rounded-2xl border border-border-subtle bg-white/50 backdrop-blur-sm"
               >
                 <div className="flex items-center justify-between mb-6">
                   <h2 className="text-3xl font-jakarta font-semibold">{item.quarter}</h2>
@@ -120,7 +120,7 @@ export default function RoadmapPage() {
                   {item.items.map((roadmapItem, i) => (
                     <div key={i} className="flex items-center gap-3">
                       <CheckCircle2 className="h-5 w-5 text-blue-600 flex-shrink-0" />
-                      <span className="font-inter text-[#0B0C0E]/80">{roadmapItem}</span>
+                      <span className="font-inter text-text-secondary">{roadmapItem}</span>
                     </div>
                   ))}
                 </div>

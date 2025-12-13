@@ -46,7 +46,7 @@ export function PowerfulPlatformSection() {
   return (
     <section
       ref={ref}
-      className="relative py-24 overflow-hidden bg-white"
+      className="relative py-24 overflow-hidden bg-background"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -172,7 +172,7 @@ function AutomateEverything() {
       </div>
 
       {/* Workflow Builder Visual */}
-      <div className="bg-[#0B0C0E]/5 border border-[#0B0C0E]/10 rounded-2xl p-8">
+      <div className="bg-surface border border-border-subtle rounded-2xl p-8">
         <div className="relative">
           {/* Workflow Steps with Visual Connectors */}
           <div className="space-y-0">
@@ -195,7 +195,7 @@ function AutomateEverything() {
                     className="relative"
                   >
                     {/* Workflow Step Card */}
-                    <div className="flex items-start gap-4 p-4 bg-white rounded-xl border border-black/10 hover:border-black/20 transition-all group">
+                    <div className="flex items-start gap-4 p-4 bg-background rounded-xl border border-black/10 hover:border-black/20 transition-all group">
                       <div className={`p-3 rounded-lg flex-shrink-0 ${
                         step.type === "trigger" ? "bg-blue-500/20 text-blue-600" :
                         step.type === "condition" ? "bg-purple-500/20 text-purple-600" :
@@ -340,10 +340,10 @@ function DeployAI() {
       className="space-y-8"
     >
       <div>
-        <h3 className="text-2xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-2">
+        <h3 className="text-2xl font-jakarta font-medium tracking-tight text-text-primary mb-2">
           Deploy AI
         </h3>
-        <p className="text-[#0B0C0E]/70 font-inter mb-6">
+        <p className="text-text-secondary font-inter mb-6">
           Put our research agent to work and scale complex tasks that normally require human effort, like prospecting, lead routing and more.
         </p>
         <Button variant="outline" className="rounded-full">
@@ -353,7 +353,7 @@ function DeployAI() {
       </div>
 
       {/* AI Agent Visual */}
-      <div className="bg-[#0B0C0E]/5 border border-[#0B0C0E]/10 rounded-2xl p-8">
+      <div className="bg-surface border border-border-subtle rounded-2xl p-8">
         <div className="space-y-4">
           {aiTasks.map((task, index) => {
             const isThinking = thinkingIndex <= index
@@ -370,7 +370,7 @@ function DeployAI() {
                   stiffness: 400,
                   damping: 17,
                 }}
-                className="p-4 bg-white rounded-xl border border-[#0B0C0E]/10 hover:border-[#0B0C0E]/20 transition-all"
+                className="p-4 bg-background rounded-xl border border-border-subtle hover:border-border-active transition-all"
               >
                 <div className="flex items-start gap-3">
                   <motion.div
@@ -388,7 +388,7 @@ function DeployAI() {
                     <Brain className="h-5 w-5" />
                   </motion.div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-inter text-[#0B0C0E] mb-2 font-medium">
+                    <p className="text-sm font-inter text-text-primary mb-2 font-medium">
                       {task.question}
                     </p>
                     {hasAnswer ? (
@@ -398,25 +398,25 @@ function DeployAI() {
                         transition={{ type: "spring", stiffness: 400, damping: 17 }}
                         className="space-y-2"
                       >
-                        <p className="text-sm font-inter text-[#0B0C0E]/70">
+                        <p className="text-sm font-inter text-text-secondary">
                           {task.answer}
                         </p>
                         <div className="flex items-center gap-2 mt-2">
                           <div className="flex items-center gap-1">
                             <div className="w-2 h-2 rounded-full bg-green-500" />
-                            <span className="text-xs font-mono text-[#0B0C0E]/50">
+                            <span className="text-xs font-mono text-text-muted">
                               Confidence: 95%
                             </span>
                           </div>
-                          <span className="text-xs text-[#0B0C0E]/30">•</span>
-                          <span className="text-xs text-[#0B0C0E]/50">
+                          <span className="text-xs text-text-muted/50">•</span>
+                          <span className="text-xs text-text-muted">
                             Sources: 3
                           </span>
                         </div>
                       </motion.div>
                     ) : (
                       <motion.div
-                        className="flex items-center gap-2 text-sm text-[#0B0C0E]/50"
+                        className="flex items-center gap-2 text-sm text-text-muted"
                         animate={{
                           opacity: [0.5, 1, 0.5],
                         }}
@@ -450,16 +450,16 @@ function DeployAI() {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ delay: 0.5 }}
-          className="mt-6 pt-6 border-t border-[#0B0C0E]/10"
+          className="mt-6 pt-6 border-t border-border-subtle"
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              <span className="text-xs font-inter text-[#0B0C0E]/70">
+              <span className="text-xs font-inter text-text-secondary">
                 Research agent active
               </span>
             </div>
-            <span className="text-xs font-mono text-[#0B0C0E]/50">
+            <span className="text-xs font-mono text-text-muted">
               Processing 3 tasks
             </span>
           </div>
@@ -543,10 +543,10 @@ function ConnectData() {
       className="space-y-8"
     >
       <div>
-        <h3 className="text-2xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-2">
+        <h3 className="text-2xl font-jakarta font-medium tracking-tight text-text-primary mb-2">
           Connect any type of data
         </h3>
-        <p className="text-[#0B0C0E]/70 font-inter mb-6">
+        <p className="text-text-secondary font-inter mb-6">
           Sync product data, billing data, and everything in between, for a real-time single source of truth for your business.
         </p>
         <Button variant="outline" className="rounded-full">
@@ -573,7 +573,7 @@ function ConnectData() {
                 stiffness: 400,
                 damping: 17,
               }}
-              className="p-4 bg-white border border-[#0B0C0E]/10 rounded-xl hover:border-[#0B0C0E]/20 hover:bg-[#0B0C0E]/5 transition-all cursor-pointer group relative"
+              className="p-4 bg-background border border-border-subtle rounded-xl hover:border-border-active hover:bg-surface transition-all cursor-pointer group relative"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -593,7 +593,7 @@ function ConnectData() {
                         ease: "easeInOut",
                       }}
                     />
-                    <span className="text-xs font-mono text-[#0B0C0E]/50">
+                    <span className="text-xs font-mono text-text-muted">
                       Live
                     </span>
                   </div>
@@ -610,23 +610,23 @@ function ConnectData() {
                         ease: "easeInOut",
                       }}
                     />
-                    <span className="text-xs font-mono text-[#0B0C0E]/50">
+                    <span className="text-xs font-mono text-text-muted">
                       Sync
                     </span>
                   </div>
                 ) : null}
               </div>
 
-              <div className="p-3 rounded-lg bg-[#0B0C0E]/5 w-fit mb-3 group-hover:bg-[#0B0C0E]/10 transition-colors">
-                <Icon className="h-6 w-6 text-[#0B0C0E]/70" />
+              <div className="p-3 rounded-lg bg-surface w-fit mb-3 group-hover:bg-surface-elevated transition-colors">
+                <Icon className="h-6 w-6 text-text-secondary" />
               </div>
-              <p className="text-sm font-inter text-[#0B0C0E] font-medium mb-1">
+              <p className="text-sm font-inter text-text-primary font-medium mb-1">
                 {integration.name}
               </p>
-              <p className="text-xs font-inter text-[#0B0C0E]/50 mb-2">
+              <p className="text-xs font-inter text-text-muted mb-2">
                 {integration.category}
               </p>
-              <p className="text-xs font-mono text-[#0B0C0E]/40">
+              <p className="text-xs font-mono text-text-muted">
                 {integration.lastSync}
               </p>
             </motion.div>
@@ -663,10 +663,10 @@ function PowerfulReporting() {
       className="space-y-8"
     >
       <div>
-        <h3 className="text-2xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-2">
+        <h3 className="text-2xl font-jakarta font-medium tracking-tight text-text-primary mb-2">
           Powerful reporting
         </h3>
-        <p className="text-[#0B0C0E]/70 font-inter mb-6">
+        <p className="text-text-secondary font-inter mb-6">
           Create real-time, detailed reports that scale with your data. Visualize, customize, and get deep insights in seconds — not hours.
         </p>
         <Button variant="outline" className="rounded-full">
@@ -676,7 +676,7 @@ function PowerfulReporting() {
       </div>
 
       {/* Report Visual */}
-      <div className="bg-[#0B0C0E]/5 border border-[#0B0C0E]/10 rounded-2xl p-8">
+      <div className="bg-surface border border-border-subtle rounded-2xl p-8">
         {/* Filters */}
         <div className="flex items-center gap-4 mb-6 flex-wrap">
           <div className="flex items-center gap-2">
@@ -686,8 +686,8 @@ function PowerfulReporting() {
                 onClick={() => setSelectedPeriod(period)}
                 className={`px-3 py-1 rounded-full text-sm font-inter transition-all ${
                   selectedPeriod === period
-                    ? "bg-[#0B0C0E] text-white"
-                    : "bg-white text-[#0B0C0E]/70 hover:bg-[#0B0C0E]/5 border border-[#0B0C0E]/10"
+                    ? "bg-text-primary text-white"
+                    : "bg-background text-text-secondary hover:bg-surface border border-border-subtle"
                 }`}
               >
                 {period}
@@ -698,7 +698,7 @@ function PowerfulReporting() {
             {plans.map((plan) => (
               <button
                 key={plan}
-                className="px-3 py-1 rounded-full text-sm font-inter bg-white text-[#0B0C0E]/70 hover:bg-[#0B0C0E]/5 border border-[#0B0C0E]/10 transition-all"
+                className="px-3 py-1 rounded-full text-sm font-inter bg-background text-text-secondary hover:bg-surface border border-border-subtle transition-all"
               >
                 {plan} plan
               </button>
@@ -707,22 +707,22 @@ function PowerfulReporting() {
         </div>
 
         {/* Chart */}
-        <div className="bg-white rounded-xl p-6 border border-[#0B0C0E]/10">
+        <div className="bg-background rounded-xl p-6 border border-border-subtle">
           <div className="mb-6 flex items-center justify-between">
             <div>
-              <p className="text-3xl font-jakarta font-medium text-[#0B0C0E] mb-1">
+              <p className="text-3xl font-jakarta font-medium text-text-primary mb-1">
                 $2.8M
               </p>
-              <p className="text-sm text-[#0B0C0E]/50 font-inter">
+              <p className="text-sm text-text-muted font-inter">
                 Revenue
               </p>
             </div>
             <div className="flex items-center gap-2">
-              <button className="p-2 rounded-lg border border-[#0B0C0E]/10 hover:bg-[#0B0C0E]/5 transition-all">
-                <Share2 className="h-4 w-4 text-[#0B0C0E]/70" />
+              <button className="p-2 rounded-lg border border-border-subtle hover:bg-surface transition-all">
+                <Share2 className="h-4 w-4 text-text-secondary" />
               </button>
-              <button className="p-2 rounded-lg border border-[#0B0C0E]/10 hover:bg-[#0B0C0E]/5 transition-all">
-                <MoreVertical className="h-4 w-4 text-[#0B0C0E]/70" />
+              <button className="p-2 rounded-lg border border-border-subtle hover:bg-surface transition-all">
+                <MoreVertical className="h-4 w-4 text-text-secondary" />
               </button>
             </div>
           </div>
@@ -739,18 +739,18 @@ function PowerfulReporting() {
           />
           
           {/* Chart Legend */}
-          <div className="mt-6 pt-4 border-t border-[#0B0C0E]/10 flex items-center justify-between">
+          <div className="mt-6 pt-4 border-t border-border-subtle flex items-center justify-between">
             <div className="flex items-center gap-4">
               {plans.map((plan) => (
                 <div key={plan} className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full bg-blue-500" />
-                  <span className="text-xs font-inter text-[#0B0C0E]/70">
+                  <span className="text-xs font-inter text-text-secondary">
                     {plan} plan
                   </span>
                 </div>
               ))}
             </div>
-            <div className="flex items-center gap-2 text-xs font-mono text-[#0B0C0E]/50">
+            <div className="flex items-center gap-2 text-xs font-mono text-text-muted">
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
               <span>Real-time</span>
             </div>

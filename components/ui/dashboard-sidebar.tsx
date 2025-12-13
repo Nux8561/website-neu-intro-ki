@@ -75,16 +75,16 @@ interface DashboardSidebarProps {
 export function DashboardSidebar({ className }: DashboardSidebarProps) {
   return (
     <aside
-      className={`w-64 bg-white border-r border-[#0B0C0E]/10 flex flex-col ${className || ""}`}
+      className={`w-64 bg-background border-r border-border-subtle flex flex-col ${className || ""}`}
     >
       {/* Quick Actions */}
-      <div className="px-3 py-2 border-b border-[#0B0C0E]/10">
+      <div className="px-3 py-2 border-b border-border-subtle">
         {quickActions.map((item) => {
           const Icon = item.icon
           return (
             <motion.button
               key={item.label}
-              className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-inter text-[#0B0C0E]/70 hover:text-[#0B0C0E] hover:bg-[#0B0C0E]/5 transition-all"
+              className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-inter text-text-secondary hover:text-text-primary hover:bg-surface transition-all"
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -93,7 +93,7 @@ export function DashboardSidebar({ className }: DashboardSidebarProps) {
                 <span>{item.label}</span>
               </div>
               {item.badge && (
-                <span className="text-xs font-mono text-[#0B0C0E]/50 bg-[#0B0C0E]/5 px-1.5 py-0.5 rounded">
+                <span className="text-xs font-mono text-text-muted bg-surface px-1.5 py-0.5 rounded">
                   {item.badge}
                 </span>
               )}
@@ -103,9 +103,9 @@ export function DashboardSidebar({ className }: DashboardSidebarProps) {
       </div>
 
       {/* Notifications, Tasks, Emails */}
-      <div className="px-3 py-2 border-b border-[#0B0C0E]/10 flex items-center gap-2">
+      <div className="px-3 py-2 border-b border-border-subtle flex items-center gap-2">
         <motion.button
-          className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-sm font-inter text-[#0B0C0E]/70 hover:text-[#0B0C0E] hover:bg-[#0B0C0E]/5 transition-all"
+          className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-sm font-inter text-text-secondary hover:text-text-primary hover:bg-surface transition-all"
           whileHover={{ scale: 1.01 }}
           whileTap={{ scale: 0.98 }}
         >
@@ -113,7 +113,7 @@ export function DashboardSidebar({ className }: DashboardSidebarProps) {
           <span>Notifications</span>
         </motion.button>
         <motion.button
-          className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-sm font-inter text-[#0B0C0E]/70 hover:text-[#0B0C0E] hover:bg-[#0B0C0E]/5 transition-all"
+          className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-sm font-inter text-text-secondary hover:text-text-primary hover:bg-surface transition-all"
           whileHover={{ scale: 1.01 }}
           whileTap={{ scale: 0.98 }}
         >
@@ -121,7 +121,7 @@ export function DashboardSidebar({ className }: DashboardSidebarProps) {
           <span>Tasks</span>
         </motion.button>
         <motion.button
-          className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-sm font-inter text-[#0B0C0E]/70 hover:text-[#0B0C0E] hover:bg-[#0B0C0E]/5 transition-all"
+          className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-sm font-inter text-text-secondary hover:text-text-primary hover:bg-surface transition-all"
           whileHover={{ scale: 1.01 }}
           whileTap={{ scale: 0.98 }}
         >
@@ -141,8 +141,8 @@ export function DashboardSidebar({ className }: DashboardSidebarProps) {
                 key={item.label}
                 className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-inter transition-all mb-1 ${
                   item.active
-                    ? "bg-[#0B0C0E] text-white"
-                    : "text-[#0B0C0E]/70 hover:text-[#0B0C0E] hover:bg-[#0B0C0E]/5"
+                    ? "bg-text-primary text-white"
+                    : "text-text-secondary hover:text-text-primary hover:bg-surface"
                 }`}
                 whileHover={{ scale: item.active ? 1 : 1.01 }}
                 whileTap={{ scale: 0.98 }}
@@ -155,9 +155,9 @@ export function DashboardSidebar({ className }: DashboardSidebarProps) {
         </nav>
 
         {/* Lists Section */}
-        <div className="px-3 py-2 border-t border-[#0B0C0E]/10 mt-2">
+        <div className="px-3 py-2 border-t border-border-subtle mt-2">
           <div className="px-3 py-1 mb-1">
-            <span className="text-xs font-mono text-[#0B0C0E]/50 uppercase tracking-wider">
+            <span className="text-xs font-mono text-text-muted uppercase tracking-wider">
               Lists
             </span>
           </div>
@@ -166,7 +166,7 @@ export function DashboardSidebar({ className }: DashboardSidebarProps) {
             return (
               <motion.button
                 key={item.label}
-                className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-inter text-[#0B0C0E]/70 hover:text-[#0B0C0E] hover:bg-[#0B0C0E]/5 transition-all mb-1"
+                className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-inter text-text-secondary hover:text-text-primary hover:bg-surface transition-all mb-1"
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -178,9 +178,9 @@ export function DashboardSidebar({ className }: DashboardSidebarProps) {
         </div>
 
         {/* Workflows Section */}
-        <div className="px-3 py-2 border-t border-[#0B0C0E]/10 mt-2">
+        <div className="px-3 py-2 border-t border-border-subtle mt-2">
           <div className="px-3 py-1 mb-1">
-            <span className="text-xs font-mono text-[#0B0C0E]/50 uppercase tracking-wider">
+            <span className="text-xs font-mono text-text-muted uppercase tracking-wider">
               Automations
             </span>
           </div>
@@ -189,7 +189,7 @@ export function DashboardSidebar({ className }: DashboardSidebarProps) {
             return (
               <motion.button
                 key={item.label}
-                className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-inter text-[#0B0C0E]/70 hover:text-[#0B0C0E] hover:bg-[#0B0C0E]/5 transition-all mb-1"
+                className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-inter text-text-secondary hover:text-text-primary hover:bg-surface transition-all mb-1"
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -201,9 +201,9 @@ export function DashboardSidebar({ className }: DashboardSidebarProps) {
         </div>
 
         {/* Records Section */}
-        <div className="px-3 py-2 border-t border-[#0B0C0E]/10 mt-2">
+        <div className="px-3 py-2 border-t border-border-subtle mt-2">
           <div className="px-3 py-1 mb-1">
-            <span className="text-xs font-mono text-[#0B0C0E]/50 uppercase tracking-wider">
+            <span className="text-xs font-mono text-text-muted uppercase tracking-wider">
               Records
             </span>
           </div>
@@ -212,7 +212,7 @@ export function DashboardSidebar({ className }: DashboardSidebarProps) {
             return (
               <motion.button
                 key={item.label}
-                className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-inter text-[#0B0C0E]/70 hover:text-[#0B0C0E] hover:bg-[#0B0C0E]/5 transition-all mb-1"
+                className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-inter text-text-secondary hover:text-text-primary hover:bg-surface transition-all mb-1"
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -224,13 +224,13 @@ export function DashboardSidebar({ className }: DashboardSidebarProps) {
         </div>
 
         {/* Reports Section */}
-        <div className="px-3 py-2 border-t border-[#0B0C0E]/10 mt-2">
+        <div className="px-3 py-2 border-t border-border-subtle mt-2">
           {reports.map((item) => {
             const Icon = item.icon
             return (
               <motion.button
                 key={item.label}
-                className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-inter text-[#0B0C0E]/70 hover:text-[#0B0C0E] hover:bg-[#0B0C0E]/5 transition-all mb-1"
+                className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-inter text-text-secondary hover:text-text-primary hover:bg-surface transition-all mb-1"
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -243,9 +243,9 @@ export function DashboardSidebar({ className }: DashboardSidebarProps) {
       </div>
 
       {/* Settings */}
-      <div className="px-3 py-2 border-t border-[#0B0C0E]/10">
+      <div className="px-3 py-2 border-t border-border-subtle">
         <motion.button
-          className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-inter text-[#0B0C0E]/70 hover:text-[#0B0C0E] hover:bg-[#0B0C0E]/5 transition-all"
+          className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-inter text-text-secondary hover:text-text-primary hover:bg-surface transition-all"
           whileHover={{ scale: 1.01 }}
           whileTap={{ scale: 0.98 }}
         >

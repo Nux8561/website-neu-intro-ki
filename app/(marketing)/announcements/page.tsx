@@ -16,7 +16,7 @@ export default function AnnouncementsPage() {
   const heroInView = useInView(heroRef, { once: true, margin: "-100px" })
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <section ref={heroRef} className="relative pt-32 pb-24 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 via-transparent to-transparent" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -26,12 +26,12 @@ export default function AnnouncementsPage() {
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h1 className="text-5xl md:text-6xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6">
+            <h1 className="text-5xl md:text-6xl font-jakarta font-medium tracking-tight text-text-primary mb-6">
               Neueste Updates und News
               <br />
               <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">von IntroKI</span>
             </h1>
-            <p className="text-xl text-[#0B0C0E]/70 font-inter mb-12 max-w-3xl mx-auto">
+            <p className="text-xl text-text-secondary font-inter mb-12 max-w-3xl mx-auto">
               Bleibe auf dem Laufenden über neue Features, Updates und wichtige Ankündigungen.
             </p>
           </motion.div>
@@ -48,16 +48,16 @@ export default function AnnouncementsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="p-8 rounded-2xl border border-[#0B0C0E]/10 bg-white/50 backdrop-blur-sm hover:shadow-xl transition-all"
+                className="p-8 rounded-2xl border border-border-subtle bg-white/50 backdrop-blur-sm hover:shadow-xl transition-all"
               >
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center flex-shrink-0">
                     <Sparkles className="h-6 w-6 text-blue-600" />
                   </div>
                   <div className="flex-1">
-                    <div className="text-sm font-inter text-[#0B0C0E]/60 mb-2">{announcement.date}</div>
+                    <div className="text-sm font-inter text-text-muted mb-2">{announcement.date}</div>
                     <h3 className="text-2xl font-jakarta font-semibold mb-2">{announcement.title}</h3>
-                    <p className="text-[#0B0C0E]/70 font-inter">{announcement.description}</p>
+                    <p className="text-text-secondary font-inter">{announcement.description}</p>
                   </div>
                 </div>
               </motion.div>

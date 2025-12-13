@@ -12,7 +12,7 @@ export function DashboardLayout({
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false)
 
   return (
-    <div className="flex h-screen bg-[#0B0C0E] overflow-hidden">
+    <div className="flex h-screen bg-text-primary overflow-hidden">
       {/* Sidebar */}
       <Sidebar
         isMobileMenuOpen={isMobileMenuOpen}

@@ -95,7 +95,7 @@ export function IntroKILogo({
               ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600"
               : variant === "light"
               ? "text-white"
-              : "text-[#0B0C0E]"
+              : "text-text-primary"
           )}
           initial={animated ? { opacity: 0, x: -10 } : undefined}
           animate={animated ? { opacity: 1, x: 0 } : undefined}

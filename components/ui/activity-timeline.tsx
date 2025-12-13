@@ -44,15 +44,15 @@ export function ActivityTimeline({ activities, className }: ActivityTimelineProp
             }}
             className="flex items-start gap-3 text-sm group"
           >
-            <div className="p-1.5 rounded-lg bg-[#0B0C0E]/5 text-[#0B0C0E]/70 flex-shrink-0 mt-0.5">
+            <div className="p-1.5 rounded-lg bg-surface text-text-secondary flex-shrink-0 mt-0.5">
               <Icon className="h-3.5 w-3.5" />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-[#0B0C0E] font-inter">
+              <p className="text-text-primary font-inter">
                 <span className="font-medium">{activity.person}</span>
-                <span className="text-[#0B0C0E]/70"> {activity.action}</span>
+                <span className="text-text-secondary"> {activity.action}</span>
               </p>
-              <p className="text-xs text-[#0B0C0E]/50 font-inter mt-0.5">
+              <p className="text-xs text-text-muted font-inter mt-0.5">
                 {activity.time}
               </p>
             </div>

@@ -47,7 +47,7 @@ export function ResearchResults({
   const ModeIcon = modeInfo.icon
 
   return (
-    <div className="min-h-screen bg-[#0B0C0E] p-6 md:p-8">
+    <div className="min-h-screen bg-text-primary p-6 md:p-8">
       <div className="max-w-7xl mx-auto space-y-8">
         {/* Header */}
         <motion.div

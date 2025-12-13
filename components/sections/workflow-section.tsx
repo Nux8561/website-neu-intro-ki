@@ -93,7 +93,7 @@ export function WorkflowSection() {
 
   return (
     <LazyMotion features={domAnimation}>
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-background">
         <div ref={containerRef} className="h-[200vh] lg:h-[200vh] md:h-[150vh] relative">
           <div className="sticky top-0 h-screen flex items-center">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">

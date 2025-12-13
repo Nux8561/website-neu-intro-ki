@@ -33,7 +33,7 @@ export default function ManifestoPage() {
   const heroInView = useInView(heroRef, { once: true, margin: "-100px" })
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <section ref={heroRef} className="relative pt-32 pb-24 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-purple-500/5 via-transparent to-transparent" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -43,10 +43,10 @@ export default function ManifestoPage() {
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h1 className="text-5xl md:text-6xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6">
+            <h1 className="text-5xl md:text-6xl font-jakarta font-medium tracking-tight text-text-primary mb-6">
               Unser Manifesto
             </h1>
-            <p className="text-xl text-[#0B0C0E]/70 font-inter mb-12 max-w-3xl mx-auto">
+            <p className="text-xl text-text-secondary font-inter mb-12 max-w-3xl mx-auto">
               Die Prinzipien, die uns antreiben. Die Werte, die wir leben. Die Vision, die wir verfolgen.
             </p>
           </motion.div>
@@ -72,7 +72,7 @@ export default function ManifestoPage() {
                   </div>
                   <div className="flex-1">
                     <h2 className="text-3xl font-jakarta font-semibold mb-4">{principle.title}</h2>
-                    <p className="text-lg text-[#0B0C0E]/70 font-inter leading-relaxed">
+                    <p className="text-lg text-text-secondary font-inter leading-relaxed">
                       {principle.description}
                     </p>
                   </div>
@@ -83,7 +83,7 @@ export default function ManifestoPage() {
         </div>
       </section>
 
-      <section className="py-24 bg-[#0B0C0E]/2">
+      <section className="py-24 bg-surface">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <motion.div
@@ -95,7 +95,7 @@ export default function ManifestoPage() {
               <h2 className="text-4xl font-jakarta font-medium mb-6">
                 Die Zukunft des Sales ist hier
               </h2>
-              <p className="text-xl text-[#0B0C0E]/70 font-inter leading-relaxed">
+              <p className="text-xl text-text-secondary font-inter leading-relaxed">
                 Wir glauben daran, dass Sales-Teams bessere Tools verdienen. Tools, die sie von manueller Arbeit befreien und ihnen ermöglichen, sich auf das zu konzentrieren, was wirklich wichtig ist: den Aufbau von Beziehungen und das Schließen von Deals.
               </p>
             </motion.div>

@@ -101,7 +101,7 @@ export function TestimonialSectionEnhanced() {
   return (
     <section
       ref={ref}
-      className="relative py-24 border-y border-black/10 bg-white"
+      className="relative py-24 border-y border-black/10 bg-background"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -175,7 +175,7 @@ export function TestimonialSectionEnhanced() {
 
                 {/* Company Logo */}
                 {testimonial.companyLogo && (
-                  <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-white border border-black/10 flex items-center justify-center overflow-hidden">
+                  <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-background border border-black/10 flex items-center justify-center overflow-hidden">
                     <Image
                       src={testimonial.companyLogo}
                       alt={testimonial.author.company}

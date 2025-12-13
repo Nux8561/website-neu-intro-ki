@@ -84,7 +84,7 @@ export function RoadmapPage() {
         )
       default:
         return (
-          <Badge className="bg-[#0B0C0E]/10 text-[#0B0C0E]/70 border-[#0B0C0E]/20">
+          <Badge className="bg-surface-elevated text-text-secondary border-border-active">
             <Sparkles className="mr-1 h-3 w-3" />
             Geplant
           </Badge>
@@ -93,9 +93,9 @@ export function RoadmapPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative py-24 border-b border-[#0B0C0E]/10">
+      <section className="relative py-24 border-b border-border-subtle">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             ref={ref}
@@ -114,13 +114,13 @@ export function RoadmapPage() {
             </motion.div>
             <motion.h1
               variants={itemVariants}
-              className="text-5xl sm:text-6xl md:text-7xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6"
+              className="text-5xl sm:text-6xl md:text-7xl font-jakarta font-medium tracking-tight text-text-primary mb-6"
             >
               Unsere Roadmap
             </motion.h1>
             <motion.p
               variants={itemVariants}
-              className="text-lg md:text-xl text-[#0B0C0E]/70 font-inter mb-8 max-w-2xl mx-auto"
+              className="text-lg md:text-xl text-text-secondary font-inter mb-8 max-w-2xl mx-auto"
             >
               Sehen Sie, was wir bereits umgesetzt haben und was als Nächstes
               kommt.
@@ -145,10 +145,10 @@ export function RoadmapPage() {
                   stiffness: 400,
                   damping: 17,
                 }}
-                className="bg-[#0B0C0E]/5 border border-[#0B0C0E]/10 rounded-2xl p-8"
+                className="bg-surface border border-border-subtle rounded-2xl p-8"
               >
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-2xl font-jakarta font-medium tracking-tight text-[#0B0C0E]">
+                  <h2 className="text-2xl font-jakarta font-medium tracking-tight text-text-primary">
                     {item.quarter}
                   </h2>
                   {getStatusBadge(item.status)}
@@ -157,7 +157,7 @@ export function RoadmapPage() {
                   {item.items.map((roadmapItem, i) => (
                     <li
                       key={i}
-                      className="flex items-center gap-3 text-[#0B0C0E]/70 font-inter"
+                      className="flex items-center gap-3 text-text-secondary font-inter"
                     >
                       <div className="h-1.5 w-1.5 rounded-full bg-blue-500" />
                       {roadmapItem}

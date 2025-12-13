@@ -75,9 +75,9 @@ export function CustomersPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative py-24 border-b border-[#0B0C0E]/10">
+      <section className="relative py-24 border-b border-border-subtle">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             ref={ref}
@@ -88,13 +88,13 @@ export function CustomersPage() {
           >
             <motion.h1
               variants={itemVariants}
-              className="text-5xl sm:text-6xl md:text-7xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6"
+              className="text-5xl sm:text-6xl md:text-7xl font-jakarta font-medium tracking-tight text-text-primary mb-6"
             >
               The CRM behind thousands of companies.
             </motion.h1>
             <motion.p
               variants={itemVariants}
-              className="text-lg md:text-xl text-[#0B0C0E]/70 font-inter mb-8 max-w-2xl mx-auto"
+              className="text-lg md:text-xl text-text-secondary font-inter mb-8 max-w-2xl mx-auto"
             >
               Sieh, wie Teams IntroKI nutzen, um ihre Revenue-Operations zu stärken und bessere Kundenbeziehungen aufzubauen.
             </motion.p>
@@ -118,20 +118,20 @@ export function CustomersPage() {
                   stiffness: 400,
                   damping: 17,
                 }}
-                className="bg-[#0B0C0E]/5 border border-[#0B0C0E]/10 rounded-2xl p-8"
+                className="bg-surface border border-border-subtle rounded-2xl p-8"
               >
-                <blockquote className="text-lg font-inter text-[#0B0C0E]/80 mb-6">
+                <blockquote className="text-lg font-inter text-text-primary/80 mb-6">
                   &ldquo;{customer.quote}&rdquo;
                 </blockquote>
-                <div className="border-t border-[#0B0C0E]/10 pt-6">
-                  <p className="font-jakarta font-medium text-[#0B0C0E] mb-1">
+                <div className="border-t border-border-subtle pt-6">
+                  <p className="font-jakarta font-medium text-text-primary mb-1">
                     {customer.name}
                   </p>
-                  <p className="text-sm text-[#0B0C0E]/50 font-inter mb-4">
+                  <p className="text-sm text-text-primary/50 font-inter mb-4">
                     {customer.role} · {customer.company}
                   </p>
                   <div>
-                    <p className="text-xs text-[#0B0C0E]/50 font-inter mb-2">
+                    <p className="text-xs text-text-primary/50 font-inter mb-2">
                       {customer.company}&apos;s favorite features
                     </p>
                     <div className="flex flex-wrap gap-2">
@@ -139,7 +139,7 @@ export function CustomersPage() {
                         <Badge
                           key={feature}
                           variant="outline"
-                          className="text-xs border-[#0B0C0E]/10 text-[#0B0C0E]/70"
+                          className="text-xs border-border-subtle text-text-secondary"
                         >
                           {feature}
                         </Badge>
@@ -153,7 +153,7 @@ export function CustomersPage() {
 
           {/* Company Logos Grid - Using LogoCarousel */}
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-2xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-12 text-center">
+            <h2 className="text-2xl font-jakarta font-medium tracking-tight text-text-primary mb-12 text-center">
               Vertraut von führenden Unternehmen
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
@@ -169,7 +169,7 @@ export function CustomersPage() {
                     stiffness: 400,
                     damping: 17,
                   }}
-                  className="flex items-center justify-center h-20 bg-white border border-[#0B0C0E]/10 rounded-xl hover:border-[#0B0C0E]/20 hover:shadow-sm transition-all group"
+                  className="flex items-center justify-center h-20 bg-background border border-border-subtle rounded-xl hover:border-border-active hover:shadow-sm transition-all group"
                 >
                   {/* Logo Image Placeholder - Add real logos to public/logos/ */}
                   <div className="relative w-full h-full flex items-center justify-center px-4">
@@ -186,7 +186,7 @@ export function CustomersPage() {
                         const parent = target.parentElement
                         if (parent) {
                           const fallback = document.createElement('span')
-                          fallback.className = 'text-[#0B0C0E]/70 font-inter font-medium text-sm'
+                          fallback.className = 'text-text-secondary font-inter font-medium text-sm'
                           fallback.textContent = company
                           parent.appendChild(fallback)
                         }
@@ -201,7 +201,7 @@ export function CustomersPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 border-t border-[#0B0C0E]/10">
+      <section className="py-24 border-t border-border-subtle">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="max-w-4xl mx-auto text-center"
@@ -210,14 +210,14 @@ export function CustomersPage() {
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
-            <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6">
+            <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-text-primary mb-6">
               Schließe dich Tausenden von Unternehmen an, die IntroKI nutzen
             </h2>
-            <p className="text-lg text-[#0B0C0E]/70 font-inter mb-8">
+            <p className="text-lg text-text-secondary font-inter mb-8">
               Start your 14-day free trial today. No credit card required.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <Button className="bg-[#0B0C0E] text-white rounded-full px-8 py-4">
+              <Button className="bg-text-primary text-white rounded-full px-8 py-4">
                 Start for free
               </Button>
               <Button variant="outline" className="rounded-full px-8 py-4">

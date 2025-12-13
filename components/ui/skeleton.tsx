@@ -10,7 +10,7 @@ function Skeleton({
 }: React.HTMLAttributes<HTMLDivElement> & {
   variant?: "default" | "text" | "avatar" | "card" | "table"
 }) {
-  const baseClasses = "relative overflow-hidden rounded-md bg-[#0B0C0E]/5"
+  const baseClasses = "relative overflow-hidden rounded-md bg-surface"
   
   const variantClasses = {
     default: "h-4 w-full",

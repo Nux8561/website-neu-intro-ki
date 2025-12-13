@@ -75,7 +75,7 @@ export function BuiltForScaleSection() {
   return (
     <section
       ref={ref}
-      className="relative py-24 overflow-hidden bg-white border-y border-[#0B0C0E]/10"
+      className="relative py-24 overflow-hidden bg-background border-y border-border-subtle"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -89,15 +89,15 @@ export function BuiltForScaleSection() {
           }}
         >
           {/* Section Number */}
-          <div className="text-sm font-mono text-[#0B0C0E]/50 mb-4">
+          <div className="text-sm font-mono text-text-muted mb-4">
             [04] Built for scale
           </div>
 
           {/* Header */}
-          <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-4">
+          <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-text-primary mb-4">
             The system of action for the next generation.
           </h2>
-          <p className="text-lg text-[#0B0C0E]/70 font-inter mb-12 max-w-2xl">
+          <p className="text-lg text-text-secondary font-inter mb-12 max-w-2xl">
             IntroKI ist für Skalierung gebaut. Unsere Kunden durchsuchen Millionen von Datensätzen mit unter 50ms Latenz.
           </p>
 
@@ -116,19 +116,19 @@ export function BuiltForScaleSection() {
                     stiffness: 400,
                     damping: 17,
                   }}
-                  className="bg-[#0B0C0E]/5 border border-[#0B0C0E]/10 rounded-xl p-6"
+                  className="bg-surface border border-border-subtle rounded-xl p-6"
                 >
                   <div className="flex items-center gap-3 mb-2">
-                    <Icon className="h-5 w-5 text-[#0B0C0E]/70" />
+                    <Icon className="h-5 w-5 text-text-secondary" />
                   </div>
-                  <div className="text-3xl font-jakarta font-medium text-[#0B0C0E] mb-1">
+                  <div className="text-3xl font-jakarta font-medium text-text-primary mb-1">
                     {stat.animate && isInView 
                       ? countedValue.toLocaleString() 
                       : stat.value
                     }
                     {stat.suffix}
                   </div>
-                  <div className="text-sm text-[#0B0C0E]/70 font-inter">
+                  <div className="text-sm text-text-secondary font-inter">
                     {stat.label}
                   </div>
                 </motion.div>
@@ -137,11 +137,11 @@ export function BuiltForScaleSection() {
           </div>
 
           {/* Security Section */}
-          <div className="bg-[#0B0C0E]/5 border border-[#0B0C0E]/10 rounded-2xl p-8">
-            <h3 className="text-2xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-4">
+          <div className="bg-surface border border-border-subtle rounded-2xl p-8">
+            <h3 className="text-2xl font-jakarta font-medium tracking-tight text-text-primary mb-4">
               Scale with security.
             </h3>
-            <p className="text-[#0B0C0E]/70 font-inter mb-6 max-w-2xl">
+            <p className="text-text-secondary font-inter mb-6 max-w-2xl">
               IntroKI wird von branchenführenden Drittanbietern geprüft und zertifiziert.
             </p>
             
@@ -159,10 +159,10 @@ export function BuiltForScaleSection() {
                       stiffness: 400,
                       damping: 17,
                     }}
-                    className="flex items-center gap-2 px-4 py-2 bg-white border border-[#0B0C0E]/10 rounded-full"
+                    className="flex items-center gap-2 px-4 py-2 bg-background border border-border-subtle rounded-full"
                   >
-                    <Icon className="h-4 w-4 text-[#0B0C0E]/70" />
-                    <span className="text-sm font-inter text-[#0B0C0E] font-medium">
+                    <Icon className="h-4 w-4 text-text-secondary" />
+                    <span className="text-sm font-inter text-text-primary font-medium">
                       {badge.name}
                     </span>
                   </motion.div>

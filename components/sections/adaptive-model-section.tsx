@@ -59,7 +59,7 @@ export function AdaptiveModelSection() {
   return (
     <section
       ref={ref}
-      className="relative py-24 overflow-hidden bg-white border-y border-[#0B0C0E]/10"
+      className="relative py-24 overflow-hidden bg-background border-y border-border-subtle"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -73,15 +73,15 @@ export function AdaptiveModelSection() {
           }}
         >
           {/* Section Number */}
-          <div className="text-sm font-mono text-[#0B0C0E]/50 mb-4">
+          <div className="text-sm font-mono text-text-muted mb-4">
             [02] Adaptive model
           </div>
 
           {/* Header */}
-          <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-4">
+          <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-text-primary mb-4">
             Ein Paradigmenwechsel in CRM-Flexibilität.
           </h2>
-          <p className="text-lg text-[#0B0C0E]/70 font-inter mb-12 max-w-2xl">
+          <p className="text-lg text-text-secondary font-inter mb-12 max-w-2xl">
             IntroKIs leistungsstarkes Datenmodell passt sich an dein Geschäftsmodell an, nicht umgekehrt. Dein Geschäftsmodell – perfekt widergespiegelt in deinem CRM.
           </p>
 
@@ -96,8 +96,8 @@ export function AdaptiveModelSection() {
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-inter transition-all ${
                     isActive
-                      ? "bg-[#0B0C0E] text-white"
-                      : "bg-[#0B0C0E]/5 text-[#0B0C0E]/70 hover:bg-[#0B0C0E]/10 hover:text-[#0B0C0E] border border-[#0B0C0E]/10 hover:border-[#0B0C0E]/20"
+                      ? "bg-text-primary text-white"
+                      : "bg-surface text-text-secondary hover:bg-surface-elevated hover:text-text-primary border border-border-subtle hover:border-border-active"
                   }`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -134,11 +134,11 @@ export function AdaptiveModelSection() {
                     stiffness: 400,
                     damping: 17,
                   }}
-                  className="bg-[#0B0C0E]/5 border border-[#0B0C0E]/10 rounded-xl p-4 hover:border-[#0B0C0E]/20 transition-all"
+                  className="bg-surface border border-border-subtle rounded-xl p-4 hover:border-border-active transition-all"
                 >
                   <div className="flex items-center justify-between mb-3">
                     <div>
-                      <h4 className="font-jakarta font-medium text-[#0B0C0E] mb-1">
+                      <h4 className="font-jakarta font-medium text-text-primary mb-1">
                         {object.name}
                       </h4>
                       <Badge 
@@ -153,13 +153,13 @@ export function AdaptiveModelSection() {
                     {object.attributes.slice(0, 3).map((attr, attrIndex) => (
                       <div
                         key={attrIndex}
-                        className="text-sm text-[#0B0C0E]/70 font-inter"
+                        className="text-sm text-text-secondary font-inter"
                       >
                         {attr}
                       </div>
                     ))}
                     {object.attributes.length > 3 && (
-                      <button className="text-xs text-[#0B0C0E]/50 font-inter hover:text-[#0B0C0E]/70 transition-colors">
+                      <button className="text-xs text-text-muted font-inter hover:text-text-secondary transition-colors">
                         {object.attributes[3]}
                       </button>
                     )}
@@ -177,10 +177,10 @@ export function AdaptiveModelSection() {
                   stiffness: 400,
                   damping: 17,
                 }}
-                className="bg-[#0B0C0E]/5 border-2 border-dashed border-[#0B0C0E]/20 rounded-xl p-6 flex flex-col items-center justify-center hover:border-[#0B0C0E]/40 hover:bg-[#0B0C0E]/10 transition-all group"
+                className="bg-surface border-2 border-dashed border-border-active rounded-xl p-6 flex flex-col items-center justify-center hover:border-white/40 hover:bg-surface-elevated transition-all group"
               >
-                <Plus className="h-6 w-6 text-[#0B0C0E]/50 group-hover:text-[#0B0C0E] mb-2 transition-colors" />
-                <span className="text-sm font-inter text-[#0B0C0E]/70 group-hover:text-[#0B0C0E]">
+                <Plus className="h-6 w-6 text-text-muted group-hover:text-text-primary mb-2 transition-colors" />
+                <span className="text-sm font-inter text-text-secondary group-hover:text-text-primary">
                   Add object
                 </span>
               </motion.button>

@@ -34,18 +34,18 @@ export function FilterPills({ filters, onRemove, className }: FilterPillsProps) 
               stiffness: 400,
               damping: 17,
             }}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-[#0B0C0E]/10 text-sm font-inter text-[#0B0C0E] hover:border-[#0B0C0E]/20 transition-all"
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-background border border-border-subtle text-sm font-inter text-text-primary hover:border-border-active transition-all"
           >
             <span>{filter.label}</span>
             {filter.count !== undefined && (
-              <span className="text-xs font-mono text-[#0B0C0E]/50 bg-[#0B0C0E]/5 px-1.5 py-0.5 rounded">
+              <span className="text-xs font-mono text-text-muted bg-surface px-1.5 py-0.5 rounded">
                 {filter.count}
               </span>
             )}
             {onRemove && (
               <button
                 onClick={() => onRemove(filter.id)}
-                className="ml-1 p-0.5 rounded-full hover:bg-[#0B0C0E]/10 transition-colors"
+                className="ml-1 p-0.5 rounded-full hover:bg-surface-elevated transition-colors"
                 aria-label={`Remove ${filter.label} filter`}
               >
                 <X className="h-3 w-3" />

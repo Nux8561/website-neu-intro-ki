@@ -30,19 +30,19 @@ export function Breadcrumbs({ items, className }: BreadcrumbsProps) {
             {item.href && !isLast ? (
               <Link
                 href={item.href}
-                className="text-[#0B0C0E]/70 hover:text-[#0B0C0E] transition-colors"
+                className="text-text-secondary hover:text-text-primary transition-colors"
               >
                 {item.label}
               </Link>
             ) : (
               <span
-                className={isActive ? "text-[#0B0C0E] font-medium" : "text-[#0B0C0E]/70"}
+                className={isActive ? "text-text-primary font-medium" : "text-text-secondary"}
               >
                 {item.label}
               </span>
             )}
             {!isLast && (
-              <ChevronRight className="h-4 w-4 text-[#0B0C0E]/30" />
+              <ChevronRight className="h-4 w-4 text-text-muted/50" />
             )}
           </React.Fragment>
         )

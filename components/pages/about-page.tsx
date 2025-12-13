@@ -58,9 +58,9 @@ export function AboutPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative py-24 border-b border-[#0B0C0E]/10">
+      <section className="relative py-24 border-b border-border-subtle">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             ref={ref}
@@ -71,13 +71,13 @@ export function AboutPage() {
           >
             <motion.h1
               variants={itemVariants}
-              className="text-5xl sm:text-6xl md:text-7xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6"
+              className="text-5xl sm:text-6xl md:text-7xl font-jakarta font-medium tracking-tight text-text-primary mb-6"
             >
               Über Intro KI
             </motion.h1>
             <motion.p
               variants={itemVariants}
-              className="text-lg md:text-xl text-[#0B0C0E]/70 font-inter mb-8 max-w-2xl mx-auto"
+              className="text-lg md:text-xl text-text-secondary font-inter mb-8 max-w-2xl mx-auto"
             >
               Wir sind ein Team von Entwicklern, Designern und Vertriebsexperten, die daran glauben,
               dass KI den Vertrieb revolutionieren kann.
@@ -96,10 +96,10 @@ export function AboutPage() {
               viewport={{ once: true }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              <h2 className="text-3xl md:text-4xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6">
+              <h2 className="text-3xl md:text-4xl font-jakarta font-medium tracking-tight text-text-primary mb-6">
                 Unsere Geschichte
               </h2>
-              <div className="space-y-4 text-[#0B0C0E]/70 font-inter">
+              <div className="space-y-4 text-text-secondary font-inter">
                 <p>
                   Intro KI wurde mit der Vision gegründet, Vertriebsteams zu helfen, ihre
                   Produktivität zu steigern und bessere Ergebnisse zu erzielen. Wir glauben, dass
@@ -117,7 +117,7 @@ export function AboutPage() {
       </section>
 
       {/* Values Section */}
-      <section className="py-24 bg-[#0B0C0E]/5">
+      <section className="py-24 bg-surface">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="max-w-6xl mx-auto"
@@ -128,7 +128,7 @@ export function AboutPage() {
           >
             <motion.h2
               variants={itemVariants}
-              className="text-3xl md:text-4xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-12 text-center"
+              className="text-3xl md:text-4xl font-jakarta font-medium tracking-tight text-text-primary mb-12 text-center"
             >
               Unsere Werte
             </motion.h2>
@@ -139,17 +139,17 @@ export function AboutPage() {
                   <motion.div
                     key={index}
                     variants={itemVariants}
-                    className="bg-white border border-[#0B0C0E]/10 rounded-xl p-6"
+                    className="bg-background border border-border-subtle rounded-xl p-6"
                   >
                     <div className="flex items-start gap-4">
-                      <div className="p-3 rounded-lg bg-[#0B0C0E]/5 border border-[#0B0C0E]/10">
-                        <Icon className="h-6 w-6 text-[#0B0C0E]" />
+                      <div className="p-3 rounded-lg bg-surface border border-border-subtle">
+                        <Icon className="h-6 w-6 text-text-primary" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-2">
+                        <h3 className="text-xl font-jakarta font-medium tracking-tight text-text-primary mb-2">
                           {value.title}
                         </h3>
-                        <p className="text-[#0B0C0E]/70 font-inter">
+                        <p className="text-text-secondary font-inter">
                           {value.description}
                         </p>
                       </div>
@@ -172,15 +172,15 @@ export function AboutPage() {
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
-            <h2 className="text-3xl md:text-4xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6">
+            <h2 className="text-3xl md:text-4xl font-jakarta font-medium tracking-tight text-text-primary mb-6">
               Werde Teil unseres Teams
             </h2>
-            <p className="text-lg text-[#0B0C0E]/70 font-inter mb-8">
+            <p className="text-lg text-text-secondary font-inter mb-8">
               Wir suchen talentierte Menschen, die mit uns die Zukunft des CRMs gestalten wollen.
             </p>
             <Button
               size="lg"
-              className="bg-[#0B0C0E] text-white hover:bg-[#0B0C0E]/90 font-semibold rounded-full px-8"
+              className="bg-text-primary text-white hover:bg-text-primary/90 font-semibold rounded-full px-8"
               asChild
             >
               <Link href="/careers">Karriere bei Intro KI</Link>

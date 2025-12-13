@@ -37,12 +37,12 @@ export function LogoCarousel({
   showTitle = true,
 }: LogoCarouselProps) {
   return (
-    <section className={cn("py-16 border-y border-[#0B0C0E]/10 bg-white", className)}>
+    <section className={cn("py-16 border-y border-border-subtle bg-background", className)}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center">
           {showTitle && (
             <div className="md:max-w-44 md:border-r md:pr-6 mb-6 md:mb-0 w-full md:w-auto">
-              <p className="text-center md:text-end text-sm text-[#0B0C0E]/50 font-inter">
+              <p className="text-center md:text-end text-sm text-text-muted font-inter">
                 {title}
               </p>
             </div>
@@ -120,7 +120,7 @@ function LogoItem({ logo, grayscale }: { logo: LogoItem; grayscale: boolean }) {
             {logo.fallbackSvg}
           </div>
         ) : (
-          <div className="text-[#0B0C0E]/40 font-inter text-sm font-medium">
+          <div className="text-text-muted font-inter text-sm font-medium">
             {logo.name}
           </div>
         )}

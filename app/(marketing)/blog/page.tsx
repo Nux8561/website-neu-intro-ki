@@ -46,7 +46,7 @@ export default function BlogPage() {
   const heroInView = useInView(heroRef, { once: true, margin: "-100px" })
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <section ref={heroRef} className="relative pt-32 pb-24 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 via-transparent to-transparent" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -56,10 +56,10 @@ export default function BlogPage() {
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h1 className="text-5xl md:text-6xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6">
+            <h1 className="text-5xl md:text-6xl font-jakarta font-medium tracking-tight text-text-primary mb-6">
               Engineering Blog
             </h1>
-            <p className="text-xl text-[#0B0C0E]/70 font-inter mb-12 max-w-3xl mx-auto">
+            <p className="text-xl text-text-secondary font-inter mb-12 max-w-3xl mx-auto">
               Insights von unserem Engineering-Team. Erfahre mehr über unsere Technologie, Best Practices und die Zukunft von Sales-CRM.
             </p>
           </motion.div>
@@ -76,9 +76,9 @@ export default function BlogPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="group p-8 rounded-2xl border border-[#0B0C0E]/10 bg-white/50 backdrop-blur-sm hover:shadow-xl transition-all cursor-pointer"
+                className="group p-8 rounded-2xl border border-border-subtle bg-white/50 backdrop-blur-sm hover:shadow-xl transition-all cursor-pointer"
               >
-                <div className="flex items-center gap-4 mb-4 text-sm text-[#0B0C0E]/60 font-inter">
+                <div className="flex items-center gap-4 mb-4 text-sm text-text-muted font-inter">
                   <div className="flex items-center gap-2">
                     <Calendar className="h-4 w-4" />
                     {post.date}
@@ -98,10 +98,10 @@ export default function BlogPage() {
                 <h2 className="text-2xl font-jakarta font-semibold mb-3 group-hover:text-blue-600 transition-colors">
                   {post.title}
                 </h2>
-                <p className="text-[#0B0C0E]/70 font-inter mb-6 leading-relaxed">
+                <p className="text-text-secondary font-inter mb-6 leading-relaxed">
                   {post.description}
                 </p>
-                <Button variant="ghost" className="text-[#0B0C0E]/70 hover:text-[#0B0C0E] p-0 h-auto">
+                <Button variant="ghost" className="text-text-secondary hover:text-text-primary p-0 h-auto">
                   Weiterlesen <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </motion.article>

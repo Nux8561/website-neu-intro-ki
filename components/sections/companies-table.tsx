@@ -257,25 +257,25 @@ export function CompaniesTable() {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
           <div>
-            <h2 className="text-2xl font-jakarta font-medium tracking-tight text-[#0B0C0E]">
+            <h2 className="text-2xl font-jakarta font-medium tracking-tight text-text-primary">
               Companies
             </h2>
-            <p className="text-sm text-[#0B0C0E]/50 font-inter mt-1">
+            <p className="text-sm text-text-muted font-inter mt-1">
               +1
             </p>
           </div>
           <div className="flex items-center gap-2">
             <button 
-              className="p-2 rounded-lg border border-[#0B0C0E]/10 bg-[#0B0C0E]/5 hover:bg-[#0B0C0E]/10 hover:border-[#0B0C0E]/20 transition-all"
+              className="p-2 rounded-lg border border-border-subtle bg-surface hover:bg-surface-elevated hover:border-border-active transition-all"
               aria-label="Search companies"
             >
-              <Search className="h-4 w-4 text-[#0B0C0E]/70" />
+              <Search className="h-4 w-4 text-text-secondary" />
             </button>
             <button 
-              className="p-2 rounded-lg border border-[#0B0C0E]/10 bg-[#0B0C0E]/5 hover:bg-[#0B0C0E]/10 hover:border-[#0B0C0E]/20 transition-all"
+              className="p-2 rounded-lg border border-border-subtle bg-surface hover:bg-surface-elevated hover:border-border-active transition-all"
               aria-label="Filter companies"
             >
-              <Filter className="h-4 w-4 text-[#0B0C0E]/70" />
+              <Filter className="h-4 w-4 text-text-secondary" />
             </button>
           </div>
         </div>
@@ -283,7 +283,7 @@ export function CompaniesTable() {
           <Button
             variant="outline"
             size="sm"
-            className="border-[#0B0C0E]/10 bg-[#0B0C0E]/5 text-[#0B0C0E]/70 hover:text-[#0B0C0E] hover:bg-[#0B0C0E]/10 rounded-full"
+            className="border-border-subtle bg-surface text-text-secondary hover:text-text-primary hover:bg-surface-elevated rounded-full"
           >
             <Settings className="h-4 w-4 mr-2" />
             View settings
@@ -291,7 +291,7 @@ export function CompaniesTable() {
           <Button
             variant="outline"
             size="sm"
-            className="border-[#0B0C0E]/10 bg-[#0B0C0E]/5 text-[#0B0C0E]/70 hover:text-[#0B0C0E] hover:bg-[#0B0C0E]/10 rounded-full"
+            className="border-border-subtle bg-surface text-text-secondary hover:text-text-primary hover:bg-surface-elevated rounded-full"
           >
             <ChevronDown className="h-4 w-4 mr-2" />
             Import / Export
@@ -300,59 +300,59 @@ export function CompaniesTable() {
       </div>
 
       {/* Sort Bar */}
-      <div className="flex items-center gap-4 text-sm text-[#0B0C0E]/50 font-inter">
+      <div className="flex items-center gap-4 text-sm text-text-muted font-inter">
         <span>Sorted by</span>
         <button 
-          className="text-[#0B0C0E]/70 hover:text-[#0B0C0E] transition-colors flex items-center gap-1"
+          className="text-text-secondary hover:text-text-primary transition-colors flex items-center gap-1"
           aria-label="Sort by last email interaction"
         >
           Last email interaction
           <ArrowUpDown className="h-3 w-3" />
         </button>
         <button 
-          className="text-[#0B0C0E]/50 hover:text-[#0B0C0E]/70 transition-colors flex items-center gap-1"
+          className="text-text-muted hover:text-text-secondary transition-colors flex items-center gap-1"
           aria-label="Advanced filter"
         >
           <Filter className="h-3 w-3" />
           Advanced filter 3
         </button>
-        <span className="text-[#0B0C0E]/30">1,439 count</span>
+        <span className="text-text-muted/50">1,439 count</span>
       </div>
 
       {/* Table */}
-      <div className="border border-[#0B0C0E]/10 rounded-xl overflow-hidden bg-white">
+      <div className="border border-border-subtle rounded-xl overflow-hidden bg-background">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-[#0B0C0E]/10 bg-[#0B0C0E]/5">
+              <tr className="border-b border-border-subtle bg-surface">
                 <th className="px-4 py-3 text-left">
                   <Checkbox
                     checked={selected.size === companies.length}
                     onCheckedChange={toggleSelectAll}
                   />
                 </th>
-                <th className="px-4 py-3 text-left text-sm font-inter text-[#0B0C0E]/70">
+                <th className="px-4 py-3 text-left text-sm font-inter text-text-secondary">
                   Company
                 </th>
-                <th className="px-4 py-3 text-left text-sm font-inter text-[#0B0C0E]/70">
+                <th className="px-4 py-3 text-left text-sm font-inter text-text-secondary">
                   Domains
                 </th>
-                <th className="px-4 py-3 text-left text-sm font-inter text-[#0B0C0E]/70">
+                <th className="px-4 py-3 text-left text-sm font-inter text-text-secondary">
                   Associated deals
                 </th>
-                <th className="px-4 py-3 text-left text-sm font-inter text-[#0B0C0E]/70">
+                <th className="px-4 py-3 text-left text-sm font-inter text-text-secondary">
                   ICP Fit
                 </th>
-                <th className="px-4 py-3 text-left text-sm font-inter text-[#0B0C0E]/70">
+                <th className="px-4 py-3 text-left text-sm font-inter text-text-secondary">
                   AI
                 </th>
-                <th className="px-4 py-3 text-left text-sm font-inter text-[#0B0C0E]/70">
+                <th className="px-4 py-3 text-left text-sm font-inter text-text-secondary">
                   Estimated ARR
                 </th>
-                <th className="px-4 py-3 text-left text-sm font-inter text-[#0B0C0E]/70">
+                <th className="px-4 py-3 text-left text-sm font-inter text-text-secondary">
                   Connection strength
                 </th>
-                <th className="px-4 py-3 text-left text-sm font-inter text-[#0B0C0E]/70">
+                <th className="px-4 py-3 text-left text-sm font-inter text-text-secondary">
                   Actions
                 </th>
               </tr>
@@ -371,7 +371,7 @@ export function CompaniesTable() {
                       stiffness: 400,
                       damping: 17,
                     }}
-                    className="border-b border-[#0B0C0E]/5 hover:bg-[#0B0C0E]/5 hover:border-[#0B0C0E]/10 transition-all group cursor-pointer"
+                    className="border-b border-border-subtle hover:bg-surface hover:border-border-subtle transition-all group cursor-pointer"
                   >
                     <td className="px-4 py-3">
                       <Checkbox
@@ -381,12 +381,12 @@ export function CompaniesTable() {
                     </td>
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-lg bg-[#0B0C0E]/5 border border-[#0B0C0E]/10 flex items-center justify-center">
-                          <span className="text-xs font-semibold text-[#0B0C0E]/70">
+                        <div className="w-8 h-8 rounded-lg bg-surface border border-border-subtle flex items-center justify-center">
+                          <span className="text-xs font-semibold text-text-secondary">
                             {company.name.charAt(0)}
                           </span>
                         </div>
-                        <span className="text-[#0B0C0E] font-inter font-medium">
+                        <span className="text-text-primary font-inter font-medium">
                           {company.name}
                         </span>
                       </div>
@@ -407,13 +407,13 @@ export function CompaniesTable() {
                       </div>
                     </td>
                     <td className="px-4 py-3">
-                      <span className="text-[#0B0C0E]/70 font-inter text-sm">
+                      <span className="text-text-secondary font-inter text-sm">
                         {company.associatedDeals}
                       </span>
                     </td>
                     <td className="px-4 py-3">
                       {company.aiThinking?.icpFit ? (
-                        <div className="flex items-center gap-2 text-sm text-[#0B0C0E]/50">
+                        <div className="flex items-center gap-2 text-sm text-text-muted">
                           <Loader2 className="h-3 w-3 animate-spin" />
                           <span className="font-inter">AI is thinking...</span>
                         </div>
@@ -431,7 +431,7 @@ export function CompaniesTable() {
                         <Tooltip>
                           <TooltipTrigger asChild>
                             <div className="flex items-center gap-2">
-                              <div className="w-16 h-2 rounded-full bg-[#0B0C0E]/10 overflow-hidden">
+                              <div className="w-16 h-2 rounded-full bg-surface-elevated overflow-hidden">
                                 <motion.div
                                   className={`h-full ${getConnectionStrengthColor(company.connectionStrength)}`}
                                   initial={{ width: 0 }}
@@ -446,7 +446,7 @@ export function CompaniesTable() {
                               </div>
                             </div>
                           </TooltipTrigger>
-                          <TooltipContent className="bg-white border-[#0B0C0E]/10 text-[#0B0C0E]">
+                          <TooltipContent className="bg-background border-border-subtle text-text-primary">
                             <p className="text-xs">Connection Strength</p>
                           </TooltipContent>
                         </Tooltip>
@@ -454,27 +454,27 @@ export function CompaniesTable() {
                     </td>
                     <td className="px-4 py-3">
                       {company.aiThinking?.arr ? (
-                        <div className="flex items-center gap-2 text-sm text-[#0B0C0E]/50">
+                        <div className="flex items-center gap-2 text-sm text-text-muted">
                           <Loader2 className="h-3 w-3 animate-spin" />
                           <span className="font-inter">AI is thinking...</span>
                         </div>
                       ) : (
-                        <span className="text-[#0B0C0E]/70 font-inter text-sm">
+                        <span className="text-text-secondary font-inter text-sm">
                           {company.estimatedARR}
                         </span>
                       )}
                     </td>
                     <td className="px-4 py-3">
-                      <span className="text-[#0B0C0E]/70 font-inter text-sm capitalize">
+                      <span className="text-text-secondary font-inter text-sm capitalize">
                         {company.connectionStrength}
                       </span>
                     </td>
                     <td className="px-4 py-3">
                       <button 
-                        className="p-2 rounded-lg border border-[#0B0C0E]/10 bg-[#0B0C0E]/5 hover:bg-[#0B0C0E]/10 hover:border-[#0B0C0E]/20 transition-all opacity-0 group-hover:opacity-100"
+                        className="p-2 rounded-lg border border-border-subtle bg-surface hover:bg-surface-elevated hover:border-border-active transition-all opacity-0 group-hover:opacity-100"
                         aria-label={`More actions for ${company.name}`}
                       >
-                        <MoreHorizontal className="h-4 w-4 text-[#0B0C0E]/70" />
+                        <MoreHorizontal className="h-4 w-4 text-text-secondary" />
                       </button>
                     </td>
                   </motion.tr>
@@ -486,23 +486,23 @@ export function CompaniesTable() {
       </div>
 
       {/* Add calculation buttons */}
-      <div className="flex items-center gap-2 text-sm text-[#0B0C0E]/50">
+      <div className="flex items-center gap-2 text-sm text-text-muted">
         <button 
-          className="hover:text-[#0B0C0E]/70 transition-colors font-inter"
+          className="hover:text-text-secondary transition-colors font-inter"
           aria-label="Add calculation"
         >
           Add calculation
         </button>
-        <span className="text-[#0B0C0E]/30">+</span>
+        <span className="text-text-muted/50">+</span>
         <button 
-          className="hover:text-[#0B0C0E]/70 transition-colors font-inter"
+          className="hover:text-text-secondary transition-colors font-inter"
           aria-label="Add calculation"
         >
           Add calculation
         </button>
-        <span className="text-[#0B0C0E]/30">+</span>
+        <span className="text-text-muted/50">+</span>
         <button 
-          className="hover:text-[#0B0C0E]/70 transition-colors font-inter"
+          className="hover:text-text-secondary transition-colors font-inter"
           aria-label="Add calculation"
         >
           Add calculation

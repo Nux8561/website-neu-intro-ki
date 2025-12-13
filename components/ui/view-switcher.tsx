@@ -21,7 +21,7 @@ const views: Array<{ id: ViewType; label: string; icon: React.ComponentType<{ cl
 
 export function ViewSwitcher({ activeView, onViewChange, className }: ViewSwitcherProps) {
   return (
-    <div className={cn("flex items-center gap-1 p-1 bg-[#0B0C0E]/5 rounded-lg border border-[#0B0C0E]/10", className)}>
+    <div className={cn("flex items-center gap-1 p-1 bg-surface rounded-lg border border-border-subtle", className)}>
       {views.map((view) => {
         const Icon = view.icon
         const isActive = activeView === view.id
@@ -33,8 +33,8 @@ export function ViewSwitcher({ activeView, onViewChange, className }: ViewSwitch
             className={cn(
               "flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-inter transition-all relative",
               isActive
-                ? "bg-white text-[#0B0C0E] shadow-sm"
-                : "text-[#0B0C0E]/70 hover:text-[#0B0C0E] hover:bg-white/50"
+                ? "bg-background text-text-primary shadow-sm"
+                : "text-text-secondary hover:text-text-primary hover:bg-white/50"
             )}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}

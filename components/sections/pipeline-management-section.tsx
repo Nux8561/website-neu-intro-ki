@@ -36,7 +36,7 @@ export function PipelineManagementSection() {
   return (
     <section
       ref={ref}
-      className="relative py-24 overflow-hidden bg-white"
+      className="relative py-24 overflow-hidden bg-background"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -80,7 +80,7 @@ export function PipelineManagementSection() {
 
             {/* Visual Demo */}
             <div className="bg-black/5 border border-black/10 rounded-2xl p-8 backdrop-blur-sm">
-              <div className="bg-white rounded-xl p-6 border border-black/10">
+              <div className="bg-background rounded-xl p-6 border border-black/10">
                 <PipelineKanbanCard />
               </div>
             </div>

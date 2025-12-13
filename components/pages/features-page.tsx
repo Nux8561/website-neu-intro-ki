@@ -234,9 +234,9 @@ export function FeaturesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative py-24 border-b border-[#0B0C0E]/10">
+      <section className="relative py-24 border-b border-border-subtle">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             ref={ref}
@@ -255,7 +255,7 @@ export function FeaturesPage() {
             </motion.div>
             <motion.h1
               variants={itemVariants}
-              className="text-5xl sm:text-6xl md:text-7xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6"
+              className="text-5xl sm:text-6xl md:text-7xl font-jakarta font-medium tracking-tight text-text-primary mb-6"
             >
               Alles was Sie für
               <br />
@@ -263,7 +263,7 @@ export function FeaturesPage() {
             </motion.h1>
             <motion.p
               variants={itemVariants}
-              className="text-lg md:text-xl text-[#0B0C0E]/70 font-inter mb-8 max-w-2xl mx-auto"
+              className="text-lg md:text-xl text-text-secondary font-inter mb-8 max-w-2xl mx-auto"
             >
               KI-gestützte Tools für Research, Coaching, Scoring und Automation
               – alles in einer Plattform.
@@ -273,7 +273,7 @@ export function FeaturesPage() {
       </section>
 
       {/* Category Tabs */}
-      <section className="sticky top-16 z-40 bg-white/95 backdrop-blur-md border-b border-[#0B0C0E]/10">
+      <section className="sticky top-16 z-40 bg-background/95 backdrop-blur-md border-b border-border-subtle">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3 overflow-x-auto hide-scrollbar py-4">
             {featureCategories.map((category) => {
@@ -286,7 +286,7 @@ export function FeaturesPage() {
                   className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-inter transition-all touch-manipulation min-h-[44px] whitespace-nowrap ${
                     isActive
                       ? "bg-blue-600 text-white"
-                      : "bg-[#0B0C0E]/5 text-[#0B0C0E]/70 hover:bg-[#0B0C0E]/10 hover:text-[#0B0C0E] border border-[#0B0C0E]/10 hover:border-[#0B0C0E]/20"
+                      : "bg-surface text-text-secondary hover:bg-white/10 hover:text-text-primary border border-border-subtle hover:border-border-active"
                   }`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -330,24 +330,24 @@ export function FeaturesPage() {
                         stiffness: 400,
                         damping: 17,
                       }}
-                      className="bg-[#0B0C0E]/5 border border-[#0B0C0E]/10 rounded-2xl p-8 hover:bg-[#0B0C0E]/10 transition-colors group"
+                      className="bg-surface border border-border-subtle rounded-2xl p-8 hover:bg-white/10 transition-colors group"
                     >
                       <div className="flex items-start gap-4 mb-4">
-                        <div className="p-3 rounded-lg bg-[#0B0C0E]/5 border border-[#0B0C0E]/10 group-hover:bg-blue-500/20 group-hover:border-blue-500/30 transition-colors">
-                          <Icon className="h-6 w-6 text-[#0B0C0E]/70 group-hover:text-blue-400 transition-colors" />
+                        <div className="p-3 rounded-lg bg-surface border border-border-subtle group-hover:bg-blue-500/20 group-hover:border-blue-500/30 transition-colors">
+                          <Icon className="h-6 w-6 text-text-secondary group-hover:text-blue-400 transition-colors" />
                         </div>
                         <div className="flex-1">
-                          <h3 className="text-xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-2">
+                          <h3 className="text-xl font-jakarta font-medium tracking-tight text-text-primary mb-2">
                             {feature.title}
                           </h3>
-                          <p className="text-[#0B0C0E]/70 font-inter text-sm mb-4">
+                          <p className="text-text-secondary font-inter text-sm mb-4">
                             {feature.description}
                           </p>
                           <ul className="space-y-2">
                             {feature.highlights.map((highlight, i) => (
                               <li
                                 key={i}
-                                className="flex items-center gap-2 text-[#0B0C0E]/60 font-inter text-sm"
+                                className="flex items-center gap-2 text-text-primary/60 font-inter text-sm"
                               >
                                 <div className="h-1.5 w-1.5 rounded-full bg-blue-500" />
                                 {highlight}
@@ -366,7 +366,7 @@ export function FeaturesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 border-t border-[#0B0C0E]/10">
+      <section className="py-24 border-t border-border-subtle">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="max-w-2xl mx-auto text-center"
@@ -379,10 +379,10 @@ export function FeaturesPage() {
               damping: 17,
             }}
           >
-            <h2 className="text-3xl md:text-4xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-4">
+            <h2 className="text-3xl md:text-4xl font-jakarta font-medium tracking-tight text-text-primary mb-4">
               Bereit loszulegen?
             </h2>
-            <p className="text-[#0B0C0E]/70 font-inter mb-8">
+            <p className="text-text-secondary font-inter mb-8">
               Starten Sie noch heute mit IntroKI und transformieren Sie Ihren
               Vertrieb.
             </p>
@@ -397,7 +397,7 @@ export function FeaturesPage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-[#0B0C0E]/10 text-[#0B0C0E] hover:bg-[#0B0C0E]/5 rounded-full px-8"
+                className="border-border-subtle text-text-primary hover:bg-surface rounded-full px-8"
                 asChild
               >
                 <Link href="/kontakt">Demo buchen</Link>

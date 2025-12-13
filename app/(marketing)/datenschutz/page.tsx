@@ -37,7 +37,7 @@ export default function DatenschutzPage() {
   const heroInView = useInView(heroRef, { once: true, margin: "-100px" })
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <section ref={heroRef} className="relative pt-32 pb-24 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-green-500/5 via-transparent to-transparent" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -47,10 +47,10 @@ export default function DatenschutzPage() {
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h1 className="text-5xl md:text-6xl font-jakarta font-medium tracking-tight text-[#0B0C0E] mb-6">
+            <h1 className="text-5xl md:text-6xl font-jakarta font-medium tracking-tight text-text-primary mb-6">
               Datenschutzerklärung
             </h1>
-            <p className="text-xl text-[#0B0C0E]/70 font-inter mb-12 max-w-3xl mx-auto">
+            <p className="text-xl text-text-secondary font-inter mb-12 max-w-3xl mx-auto">
               Deine Privatsphäre ist uns wichtig. Erfahre, wie wir deine Daten schützen und verwenden.
             </p>
           </motion.div>
@@ -67,27 +67,27 @@ export default function DatenschutzPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="p-8 rounded-2xl border border-[#0B0C0E]/10 bg-white/50 backdrop-blur-sm"
+                className="p-8 rounded-2xl border border-border-subtle bg-white/50 backdrop-blur-sm"
               >
                 <h2 className="text-2xl font-jakarta font-semibold mb-4">{section.title}</h2>
-                <p className="text-[#0B0C0E]/70 font-inter leading-relaxed">{section.content}</p>
+                <p className="text-text-secondary font-inter leading-relaxed">{section.content}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-24 bg-[#0B0C0E]/2">
+      <section className="py-24 bg-surface">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="p-8 rounded-2xl border border-[#0B0C0E]/10 bg-white/50 backdrop-blur-sm"
+              className="p-8 rounded-2xl border border-border-subtle bg-white/50 backdrop-blur-sm"
             >
               <h2 className="text-2xl font-jakarta font-semibold mb-4">Stand der Datenschutzerklärung</h2>
-              <p className="text-[#0B0C0E]/70 font-inter">
+              <p className="text-text-secondary font-inter">
                 Diese Datenschutzerklärung wurde zuletzt am 15. Dezember 2024 aktualisiert. Wir behalten uns vor, diese Datenschutzerklärung von Zeit zu Zeit zu aktualisieren, um Änderungen in unseren Praktiken oder aus anderen betrieblichen, rechtlichen oder regulatorischen Gründen widerzuspiegeln.
               </p>
             </motion.div>

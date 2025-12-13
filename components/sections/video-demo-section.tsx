@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Play, X, Volume2, VolumeX, Maximize, Pause } from "lucide-react"
+import { Play, X, Volume2, VolumeX, Maximize, Pause, AlertCircle } from "lucide-react"
 
 interface VideoDemoSectionProps {
   videoSrc?: string
@@ -13,24 +13,40 @@ interface VideoDemoSectionProps {
 
 export function VideoDemoSection({
   videoSrc = "/videos/demo.mp4",
-  posterSrc = "/images/video-poster.jpg",
+  posterSrc = "/images/video-poster.svg",
   title = "Sieh IntroKI in Aktion",
   description = "Entdecke, wie IntroKI dein Sales-Team in nur wenigen Minuten transformiert.",
 }: VideoDemoSectionProps) {
   const [isPlaying, setIsPlaying] = React.useState(false)
   const [isModalOpen, setIsModalOpen] = React.useState(false)
-  const [isMuted, setIsMuted] = React.useState(true)
+  const [isMuted, setIsMuted] = React.useState(false) // Start unmuted for better UX
+  const [videoError, setVideoError] = React.useState(false)
+  const [isVideoLoaded, setIsVideoLoaded] = React.useState(false)
+  const [currentTime, setCurrentTime] = React.useState(0)
+  const [duration, setDuration] = React.useState(0)
   const videoRef = React.useRef<HTMLVideoElement>(null)
   const modalVideoRef = React.useRef<HTMLVideoElement>(null)
 
+  // Handle preview video autoplay
+  React.useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {
+        // Autoplay blocked, that's okay
+      })
+    }
+  }, [])
+
   const handlePlayClick = () => {
     setIsModalOpen(true)
+    setVideoError(false)
   }
 
   const handleCloseModal = () => {
     setIsModalOpen(false)
+    setIsPlaying(false)
     if (modalVideoRef.current) {
       modalVideoRef.current.pause()
+      modalVideoRef.current.currentTime = 0
     }
   }
 
@@ -46,9 +62,8 @@ export function VideoDemoSection({
       if (isPlaying) {
         modalVideoRef.current.pause()
       } else {
-        modalVideoRef.current.play()
+        modalVideoRef.current.play().catch(() => setVideoError(true))
       }
-      setIsPlaying(!isPlaying)
     }
   }
 
@@ -59,6 +74,41 @@ export function VideoDemoSection({
       }
     }
   }
+
+  const handleVideoError = () => {
+    setVideoError(true)
+    setIsVideoLoaded(false)
+  }
+
+  const handleVideoLoaded = () => {
+    setIsVideoLoaded(true)
+    setVideoError(false)
+    if (modalVideoRef.current) {
+      setDuration(modalVideoRef.current.duration)
+    }
+  }
+
+  const handleTimeUpdate = () => {
+    if (modalVideoRef.current) {
+      setCurrentTime(modalVideoRef.current.currentTime)
+    }
+  }
+
+  const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (modalVideoRef.current && duration > 0) {
+      const rect = e.currentTarget.getBoundingClientRect()
+      const pos = (e.clientX - rect.left) / rect.width
+      modalVideoRef.current.currentTime = pos * duration
+    }
+  }
+
+  const formatTime = (time: number) => {
+    const minutes = Math.floor(time / 60)
+    const seconds = Math.floor(time % 60)
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`
+  }
+
+  const progress = duration > 0 ? (currentTime / duration) * 100 : 0
 
   return (
     <>
@@ -78,9 +128,6 @@ export function VideoDemoSection({
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
             className="text-center mb-12"
           >
-            <span className="pill-button mb-6 inline-flex">
-              <Play className="h-3 w-3 mr-1" /> Video Demo
-            </span>
             <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-text-primary mb-4">
               {title}
             </h2>
@@ -113,7 +160,17 @@ export function VideoDemoSection({
                 loop
                 playsInline
                 autoPlay
+                preload="metadata"
                 className="w-full h-full object-cover"
+                onError={() => {
+                  // If video fails, show poster as fallback
+                }}
+              />
+              
+              {/* Fallback Poster Background (shows if video fails) */}
+              <div 
+                className="absolute inset-0 bg-cover bg-center -z-10"
+                style={{ backgroundImage: `url(${posterSrc})` }}
               />
 
               {/* Overlay */}
@@ -194,6 +251,7 @@ export function VideoDemoSection({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
+            onClick={handleCloseModal}
           >
             {/* Close Button */}
             <button
@@ -210,60 +268,114 @@ export function VideoDemoSection({
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
               className="relative w-full max-w-6xl mx-4"
+              onClick={(e) => e.stopPropagation()}
             >
-              <video
-                ref={modalVideoRef}
-                src={videoSrc}
-                autoPlay
-                muted={isMuted}
-                controls={false}
-                className="w-full rounded-2xl shadow-2xl"
-                onPlay={() => setIsPlaying(true)}
-                onPause={() => setIsPlaying(false)}
-                onEnded={() => setIsPlaying(false)}
-              />
-
-              {/* Custom Controls */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent rounded-b-2xl">
-                <div className="flex items-center gap-4">
-                  {/* Play/Pause */}
-                  <button
-                    onClick={togglePlay}
-                    className="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors"
-                  >
-                    {isPlaying ? (
-                      <Pause className="h-5 w-5" />
-                    ) : (
-                      <Play className="h-5 w-5 ml-0.5" fill="currentColor" />
-                    )}
-                  </button>
-
-                  {/* Progress Bar Placeholder */}
-                  <div className="flex-1 h-1 bg-white/20 rounded-full">
-                    <div className="h-full w-1/3 bg-white rounded-full" />
+              {/* Video Error State */}
+              {videoError && (
+                <div className="aspect-video rounded-2xl bg-surface border border-border-subtle flex items-center justify-center">
+                  <div className="text-center">
+                    <AlertCircle className="h-12 w-12 text-red-400 mx-auto mb-4" />
+                    <p className="text-text-primary font-medium mb-2">Video konnte nicht geladen werden</p>
+                    <p className="text-text-muted text-sm">Bitte überprüfe deine Internetverbindung</p>
                   </div>
-
-                  {/* Mute/Unmute */}
-                  <button
-                    onClick={toggleMute}
-                    className="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors"
-                  >
-                    {isMuted ? (
-                      <VolumeX className="h-5 w-5" />
-                    ) : (
-                      <Volume2 className="h-5 w-5" />
-                    )}
-                  </button>
-
-                  {/* Fullscreen */}
-                  <button
-                    onClick={handleFullscreen}
-                    className="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors"
-                  >
-                    <Maximize className="h-5 w-5" />
-                  </button>
                 </div>
-              </div>
+              )}
+              
+              {/* Video Player */}
+              {!videoError && (
+                <>
+                  <video
+                    ref={modalVideoRef}
+                    src={videoSrc}
+                    poster={posterSrc}
+                    autoPlay
+                    muted={isMuted}
+                    controls={false}
+                    playsInline
+                    preload="auto"
+                    className="w-full rounded-2xl shadow-2xl bg-black"
+                    onPlay={() => setIsPlaying(true)}
+                    onPause={() => setIsPlaying(false)}
+                    onEnded={() => setIsPlaying(false)}
+                    onError={handleVideoError}
+                    onLoadedData={handleVideoLoaded}
+                    onTimeUpdate={handleTimeUpdate}
+                  />
+
+                  {/* Loading State */}
+                  {!isVideoLoaded && (
+                    <div className="absolute inset-0 rounded-2xl bg-surface flex items-center justify-center">
+                      <div className="text-center">
+                        <div className="w-12 h-12 border-2 border-white/20 border-t-white rounded-full animate-spin mx-auto mb-4" />
+                        <p className="text-text-muted text-sm">Video wird geladen...</p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Click to Play/Pause Overlay */}
+                  <div 
+                    className="absolute inset-0 cursor-pointer rounded-2xl"
+                    onClick={togglePlay}
+                  />
+
+                  {/* Custom Controls */}
+                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent rounded-b-2xl">
+                    {/* Progress Bar */}
+                    <div 
+                      className="w-full h-1.5 bg-white/20 rounded-full mb-4 cursor-pointer group"
+                      onClick={handleProgressClick}
+                    >
+                      <div 
+                        className="h-full bg-white rounded-full relative transition-all"
+                        style={{ width: `${progress}%` }}
+                      >
+                        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center gap-4">
+                      {/* Play/Pause */}
+                      <button
+                        onClick={(e) => { e.stopPropagation(); togglePlay(); }}
+                        className="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors"
+                      >
+                        {isPlaying ? (
+                          <Pause className="h-5 w-5" />
+                        ) : (
+                          <Play className="h-5 w-5 ml-0.5" fill="currentColor" />
+                        )}
+                      </button>
+
+                      {/* Time Display */}
+                      <span className="text-white/80 text-sm font-mono min-w-[80px]">
+                        {formatTime(currentTime)} / {formatTime(duration)}
+                      </span>
+
+                      <div className="flex-1" />
+
+                      {/* Mute/Unmute */}
+                      <button
+                        onClick={(e) => { e.stopPropagation(); toggleMute(); }}
+                        className="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors"
+                      >
+                        {isMuted ? (
+                          <VolumeX className="h-5 w-5" />
+                        ) : (
+                          <Volume2 className="h-5 w-5" />
+                        )}
+                      </button>
+
+                      {/* Fullscreen */}
+                      <button
+                        onClick={(e) => { e.stopPropagation(); handleFullscreen(); }}
+                        className="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors"
+                      >
+                        <Maximize className="h-5 w-5" />
+                      </button>
+                    </div>
+                  </div>
+                </>
+              )}
             </motion.div>
           </motion.div>
         )}

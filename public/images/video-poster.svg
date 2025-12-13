@@ -1,0 +1,64 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="#0B0C0E"/>
+  
+  <!-- Gradient Orbs -->
+  <ellipse cx="480" cy="270" rx="400" ry="300" fill="url(#blueGlow)" opacity="0.3"/>
+  <ellipse cx="1440" cy="810" rx="500" ry="350" fill="url(#purpleGlow)" opacity="0.25"/>
+  <ellipse cx="960" cy="540" rx="600" ry="400" fill="url(#centerGlow)" opacity="0.15"/>
+  
+  <!-- Subtle Grid Pattern -->
+  <defs>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" stroke-opacity="0.03" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#grid)"/>
+  
+  <!-- IntroKI Logo/Text -->
+  <text x="960" y="420" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="72" font-weight="600" fill="white">
+    IntroKI
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="960" y="500" text-anchor="middle" font-family="Inter, sans-serif" font-size="28" fill="#94A3B8">
+    KI-gestütztes Sales Intelligence
+  </text>
+  
+  <!-- Decorative Elements -->
+  <rect x="860" y="550" width="200" height="4" rx="2" fill="url(#accentGradient)"/>
+  
+  <!-- Play Button Circle -->
+  <circle cx="960" cy="680" r="60" fill="white" fill-opacity="0.1" stroke="white" stroke-opacity="0.2" stroke-width="2"/>
+  <circle cx="960" cy="680" r="50" fill="white" fill-opacity="0.15"/>
+  
+  <!-- Play Triangle -->
+  <path d="M945 655 L985 680 L945 705 Z" fill="white"/>
+  
+  <!-- Bottom Text -->
+  <text x="960" y="800" text-anchor="middle" font-family="Inter, sans-serif" font-size="18" fill="#64748B">
+    Demo Video ansehen
+  </text>
+  
+  <!-- Gradients -->
+  <defs>
+    <radialGradient id="blueGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="purpleGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="centerGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#6366F1" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="50%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#EC4899"/>
+    </linearGradient>
+  </defs>
+</svg>
+

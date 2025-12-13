@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ArrowRight, Play, Sparkles } from "lucide-react"
+import { ArrowRight, Sparkles } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 
@@ -48,7 +48,6 @@ interface HeroAttioProps {
 
 export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
   const [activeTab, setActiveTab] = React.useState<"data" | "workflows" | "reporting" | "pipeline">("data")
-  const [isVideoModalOpen, setIsVideoModalOpen] = React.useState(false)
 
   const tabs = [
     { id: "data", label: "Data" },
@@ -119,15 +118,6 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
               <Link href="/kontakt" className="btn-secondary">
                 Demo buchen
               </Link>
-              {showVideo && videoUrl && (
-                <button
-                  onClick={() => setIsVideoModalOpen(true)}
-                  className="btn-secondary flex items-center gap-2"
-                >
-                  <Play className="h-4 w-4" />
-                  Video ansehen
-                </button>
-              )}
             </motion.div>
           </motion.div>
 
@@ -248,40 +238,6 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
         </div>
       </section>
 
-      {/* Video Modal */}
-      <AnimatePresence>
-        {isVideoModalOpen && videoUrl && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
-            onClick={() => setIsVideoModalOpen(false)}
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className="relative w-full max-w-4xl mx-4"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <video
-                src={videoUrl}
-                controls
-                autoPlay
-                className="w-full rounded-2xl shadow-2xl"
-              />
-              <button
-                onClick={() => setIsVideoModalOpen(false)}
-                className="absolute -top-12 right-0 text-white/70 hover:text-white transition-colors"
-              >
-                Schließen
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </>
   )
 }

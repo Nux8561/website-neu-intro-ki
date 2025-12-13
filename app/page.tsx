@@ -26,13 +26,14 @@ export default function Home() {
       <main className="min-h-screen bg-background">
         {/* Premium Hero with Product Demo (Attio-Style) */}
         <HeroAttio 
-          videoUrl="/revision (1).MP4"
+          videoUrl="/videos/demo.mp4"
           showVideo={true}
         />
         
         {/* Video Demo Section */}
         <VideoDemoSection 
-          videoSrc="/revision (1).MP4"
+          videoSrc="/videos/demo.mp4"
+          posterSrc="/images/video-poster.svg"
           title="Sieh IntroKI in Aktion"
           description="Entdecke, wie IntroKI dein Sales-Team in nur wenigen Minuten transformiert."
         />

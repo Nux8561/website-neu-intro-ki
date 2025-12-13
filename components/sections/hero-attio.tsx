@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { ArrowRight, Sparkles } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import { DataFlowAnimation } from "@/components/ui/data-flow-animation"
 
 // Animation variants
 const containerVariants = {
@@ -153,8 +154,8 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
               ))}
             </div>
 
-            {/* Product Screenshot */}
-            <div className="product-demo bg-white">
+            {/* Product Demo Area */}
+            <div className="product-demo overflow-hidden rounded-2xl border border-white/10">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeTab}
@@ -162,26 +163,33 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  className="relative aspect-[16/10] bg-surface rounded-lg overflow-hidden"
+                  className="relative aspect-[16/10] bg-[#0B0C0E] rounded-xl overflow-hidden"
                 >
-                  {/* Placeholder for Product Screenshots - Replace with actual screenshots */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-full h-full bg-gradient-to-br from-surface to-surface-elevated" />
-                      {/* Add your actual product screenshots here */}
-                      <Image
-                        src={`/screenshots/${activeTab}-view.png`}
-                        alt={`IntroKI ${activeTab} View`}
-                        fill
-                        className="object-cover"
-                        onError={(e) => {
-                          // Fallback if image not found
-                          const target = e.target as HTMLImageElement
-                          target.style.display = 'none'
-                        }}
-                      />
+                  {activeTab === "data" ? (
+                    <DataFlowAnimation />
+                  ) : (
+                    /* Placeholder for other tabs - can add more animations later */
+                    <div className="absolute inset-0 flex items-center justify-center p-6">
+                      <div className="text-center">
+                        <Image
+                          src={`/screenshots/${activeTab}-view.png`}
+                          alt={`IntroKI ${activeTab} View`}
+                          fill
+                          className="object-cover"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement
+                            target.style.display = 'none'
+                          }}
+                        />
+                        {/* Fallback content when no image */}
+                        <div className="text-slate-400 text-sm">
+                          {activeTab === "workflows" && "Workflow Automation kommt bald..."}
+                          {activeTab === "reporting" && "Reporting Dashboard kommt bald..."}
+                          {activeTab === "pipeline" && "Pipeline View kommt bald..."}
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </motion.div>
               </AnimatePresence>
             </div>

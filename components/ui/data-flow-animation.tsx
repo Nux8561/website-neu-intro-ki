@@ -3,7 +3,6 @@
 import * as React from "react"
 import { motion, useMotionValue, useTransform, animate } from "framer-motion"
 import { ArrowRight } from "lucide-react"
-import Image from "next/image"
 
 // Data source configuration
 const dataSources = [
@@ -119,95 +118,18 @@ function SalesforceLogo({ className }: { className?: string }) {
   )
 }
 
-// Logo component with PNG fallback to SVG
+// Logo component - uses PNG image directly
 function LogoWithFallback() {
-  const [imageError, setImageError] = React.useState(false)
-  
-  if (imageError) {
-    return <IntroKILogo className="w-20 h-20" animate={false} />
-  }
-  
   return (
-    <Image
-      src="/images/introki-logo.png"
+    <img
+      src="/images/app logo.png"
       alt="IntroKI Logo"
-      width={80}
-      height={80}
-      className="w-20 h-20 object-contain"
-      onError={() => setImageError(true)}
+      className="w-24 h-24 object-contain"
+      style={{ display: 'block' }}
     />
   )
 }
 
-// IntroKI Logo - exact recreation from the image (organic loops with blobs)
-function IntroKILogo({ className, animate: shouldAnimate = false }: { className?: string; animate?: boolean }) {
-  return (
-    <svg className={className} viewBox="0 0 100 100" fill="none">
-      <rect width="100" height="100" rx="22" fill="#0B0C0E"/>
-      
-      {/* First curved loop - from bottom-left sweeping up to top-right */}
-      <motion.path
-        d="M 24 72 
-           C 22 58, 28 48, 42 42
-           C 56 36, 68 30, 76 24"
-        stroke="white"
-        strokeWidth="4.5"
-        strokeLinecap="round"
-        fill="none"
-        initial={shouldAnimate ? { pathLength: 0 } : { pathLength: 1 }}
-        animate={{ pathLength: 1 }}
-        transition={{ duration: 1, ease: "easeInOut" }}
-      />
-      
-      {/* Second curved loop - from top-left sweeping down to bottom-right */}
-      <motion.path
-        d="M 24 28 
-           C 32 34, 44 42, 50 50
-           C 56 58, 68 68, 76 76"
-        stroke="white"
-        strokeWidth="4.5"
-        strokeLinecap="round"
-        fill="none"
-        initial={shouldAnimate ? { pathLength: 0 } : { pathLength: 1 }}
-        animate={{ pathLength: 1 }}
-        transition={{ duration: 1, ease: "easeInOut", delay: 0.1 }}
-      />
-      
-      {/* Bottom left blob - organic shape */}
-      <motion.path
-        d="M 24 72 C 18 72, 16 68, 18 64 C 20 60, 26 58, 30 62 C 34 66, 32 72, 28 74 C 26 75, 24 74, 24 72 Z"
-        fill="white"
-        initial={shouldAnimate ? { scale: 0, opacity: 0 } : { scale: 1, opacity: 1 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-      />
-      
-      {/* Top right blob - organic shape */}
-      <motion.ellipse 
-        cx="76" cy="24" rx="7" ry="6" fill="white"
-        initial={shouldAnimate ? { scale: 0 } : { scale: 1 }}
-        animate={{ scale: 1 }}
-        transition={{ delay: 0.4, type: "spring", stiffness: 200 }}
-      />
-      
-      {/* Top left blob - small circle */}
-      <motion.circle 
-        cx="24" cy="28" r="6" fill="white"
-        initial={shouldAnimate ? { scale: 0 } : { scale: 1 }}
-        animate={{ scale: 1 }}
-        transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
-      />
-      
-      {/* Bottom right blob */}
-      <motion.circle 
-        cx="76" cy="76" r="6" fill="white"
-        initial={shouldAnimate ? { scale: 0 } : { scale: 1 }}
-        animate={{ scale: 1 }}
-        transition={{ delay: 0.6, type: "spring", stiffness: 200 }}
-      />
-    </svg>
-  )
-}
 
 // Source card component - larger and more prominent
 function SourceCard({ 

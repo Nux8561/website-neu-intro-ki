@@ -144,7 +144,7 @@ export function FeaturesBentoGrid() {
             >
               <CardHeader className="pb-3">
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="p-2 rounded-lg bg-white/5 border border-border-subtle group-hover:bg-white/10 group-hover:border-border-active transition-all">
+                  <div className="p-2 rounded-lg bg-surface border border-border group-hover:bg-surface-elevated group-hover:border-border-active transition-all">
                     <Icon className="h-5 w-5 text-text-secondary" />
                   </div>
                   <CardTitle className="text-lg font-jakarta font-medium tracking-tight text-text-primary">
@@ -170,13 +170,13 @@ export function FeaturesBentoGrid() {
     <LazyMotion features={domAnimation}>
       <section id="features" className="py-24 bg-background relative overflow-hidden">
         {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-[0.03]">
+        <div className="absolute inset-0 opacity-[0.5]">
           <div
             className="w-full h-full"
             style={{
               backgroundImage: `
-                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px)
+                linear-gradient(rgba(11, 12, 14, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(11, 12, 14, 0.03) 1px, transparent 1px)
               `,
               backgroundSize: "50px 50px",
             }}

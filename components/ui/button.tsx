@@ -8,25 +8,22 @@ import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium font-jakarta tracking-tight transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 rounded-full",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium font-inter tracking-tight transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/20 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-accent text-background hover:bg-accent-light border border-accent/20 shadow-inner-glow",
-        destructive:
-          "bg-red-500 text-white hover:bg-red-600 border border-red-500/20",
-        outline:
-          "border border-border bg-surface hover:bg-surface-elevated hover:border-border-active text-text-primary",
-        secondary:
-          "bg-surface text-text-primary border border-border-subtle hover:border-border-active",
-        ghost: "hover:bg-white/5 text-text-primary hover:border-border-subtle border border-transparent",
-        link: "text-accent underline-offset-4 hover:underline",
+        default: "bg-brand text-text-inverse hover:bg-brand-light rounded-lg shadow-sm",
+        destructive: "bg-red-500 text-white hover:bg-red-600 rounded-lg",
+        outline: "border border-border bg-white hover:bg-surface hover:border-border-active text-text-primary rounded-lg",
+        secondary: "bg-surface text-text-primary border border-border hover:bg-surface-elevated rounded-lg",
+        ghost: "hover:bg-surface text-text-secondary hover:text-text-primary rounded-lg",
+        link: "text-accent-blue underline-offset-4 hover:underline",
       },
       size: {
-        default: "h-10 px-4 py-2 rounded-lg",
-        sm: "h-9 rounded-lg px-3 text-xs",
-        lg: "h-11 rounded-lg px-8",
-        icon: "h-10 w-10 rounded-full",
+        default: "h-10 px-4 py-2",
+        sm: "h-9 px-3 text-xs",
+        lg: "h-12 px-6 text-base",
+        icon: "h-10 w-10",
       },
     },
     defaultVariants: {
@@ -56,9 +53,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       )
     }
 
-    // Use motion("button") instead of motion.button to avoid TypeScript drag handler conflicts
-    // This approach avoids the type conflict between HTML's onDrag and Framer Motion's onDrag
-    // We don't spread props to avoid drag handler conflicts
     return (
       <MotionButton
         type={type}
@@ -68,12 +62,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         onMouseLeave={onMouseLeave}
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
-        whileHover={{ scale: 1.01 }}
+        whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         transition={{
           type: "spring",
           stiffness: 400,
-          damping: 17,
+          damping: 25,
         }}
       >
         {children}

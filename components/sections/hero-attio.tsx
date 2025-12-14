@@ -229,7 +229,6 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
                         />
                         {/* Fallback content when no image */}
                         <div className="text-slate-400 text-sm">
-                          {activeTab === "workflows" && "Workflow Automation kommt bald..."}
                           {activeTab === "reporting" && "Reporting Dashboard kommt bald..."}
                           {activeTab === "pipeline" && "Pipeline View kommt bald..."}
                         </div>

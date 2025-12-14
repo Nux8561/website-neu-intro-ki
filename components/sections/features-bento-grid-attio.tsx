@@ -34,30 +34,9 @@ function DataIntegrationIcons() {
   return <SkeletalUI variant="data-sync" />
 }
 
-// AI Enrichment Card (für "Deploy AI" Kachel)
+// AI Enrichment Card (für "Deploy AI" Kachel) - Nutzt jetzt lebendige Enrichment-Animation
 function AIEnrichmentCard() {
-  return (
-    <div className="mt-4 space-y-3">
-      <div className="p-4 bg-white border border-attio-subtle rounded-lg shadow-attio-card">
-        <div className="flex items-start justify-between mb-2">
-          <div className="flex-1">
-            <div className="text-sm font-inter font-medium text-[#0A0A0A] mb-1">
-              Company: Vercel
-            </div>
-            <div className="text-xs font-inter text-text-muted mb-2">
-              Missing: Email domain
-            </div>
-            <div className="text-xs font-inter text-green-600 font-medium">
-              ✓ AI enriched: vercel.com
-            </div>
-          </div>
-          <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 ml-2">
-            <CheckCircle2 className="h-4 w-4 text-green-600" />
-          </div>
-        </div>
-      </div>
-    </div>
-  )
+  return <SkeletalUI variant="enrichment" />
 }
 
 // Revenue Growth Chart - Nutzt jetzt Skeletal UI
@@ -135,11 +114,7 @@ const bentoCells = [
     rowSpan: 1,
     title: "Advanced Reporting",
     description: "Create custom reports with drag-and-drop simplicity.",
-    content: (
-      <div className="mt-4 flex items-center justify-center">
-        <FeatureIcon icon={BarChart3} size="lg" color="blue" />
-      </div>
-    ),
+    content: <SkeletalUI variant="pipeline" />,
   },
 ]
 

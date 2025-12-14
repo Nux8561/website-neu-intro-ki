@@ -36,7 +36,7 @@ export function PipelineManagementSection() {
   return (
     <section
       ref={ref}
-      className="relative py-24 overflow-hidden bg-background"
+      className="relative py-16 sm:py-20 md:py-24 overflow-hidden bg-background"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -55,23 +55,23 @@ export function PipelineManagementSection() {
           </div>
 
           {/* Header */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center mb-12 sm:mb-16">
             <div>
-              <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-black mb-4">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-black mb-3 sm:mb-4">
                 Pipeline mit AI-Power.
               </h2>
-              <p className="text-lg text-black/70 font-inter mb-8 max-w-2xl">
+              <p className="text-base sm:text-lg text-black/70 font-inter mb-6 sm:mb-8 max-w-2xl">
                 Verwalte deine Pipeline wie ein Profi. Drag & Drop Kanban-Board mit
                 AI-gestützten Empfehlungen für jeden Lead. Real-time Updates und Bulk
                 Actions für maximale Effizienz.
               </p>
-              <div className="flex gap-4">
-                <Button className="rounded-full bg-black text-white hover:bg-black/90">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <Button className="rounded-full bg-black text-white hover:bg-black/90 w-full sm:w-auto">
                   Kostenlos starten
                 </Button>
                 <Button
                   variant="outline"
-                  className="rounded-full border-black/20 text-black hover:bg-black/5"
+                  className="rounded-full border-black/20 text-black hover:bg-black/5 w-full sm:w-auto"
                 >
                   Demo ansehen
                 </Button>

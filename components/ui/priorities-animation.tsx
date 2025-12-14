@@ -426,29 +426,11 @@ export function PrioritiesAnimation() {
   const [activeSource, setActiveSource] = React.useState(0)
   const [aiProgress, setAiProgress] = React.useState(0)
 
-  // Refs for components - Create individual refs for AnimatedBeam
+  // Refs for components
   const sourceRefs = React.useRef<(HTMLDivElement | null)[]>([])
-  const sourceRefObjects = React.useRef<React.RefObject<HTMLDivElement>[]>([])
   const aiCenterRef = React.useRef<HTMLDivElement>(null)
   const cardRefs = React.useRef<(HTMLDivElement | null)[]>([])
-  const cardRefObjects = React.useRef<React.RefObject<HTMLDivElement>[]>([])
   const containerRef = React.useRef<HTMLDivElement>(null)
-
-  // Initialize ref objects
-  React.useEffect(() => {
-    sourceRefObjects.current = dataSources.map((_, i) => {
-      if (!sourceRefObjects.current[i]) {
-        sourceRefObjects.current[i] = React.createRef<HTMLDivElement>()
-      }
-      return sourceRefObjects.current[i]
-    })
-    cardRefObjects.current = priorityLeads.map((_, i) => {
-      if (!cardRefObjects.current[i]) {
-        cardRefObjects.current[i] = React.createRef<HTMLDivElement>()
-      }
-      return cardRefObjects.current[i]
-    })
-  }, [])
 
   // Store calculated positions
   const [positions, setPositions] = React.useState({
@@ -611,9 +593,6 @@ export function PrioritiesAnimation() {
                       key={source.id}
                       ref={(ref) => { 
                         sourceRefs.current[index] = ref
-                        if (sourceRefObjects.current[index]) {
-                          sourceRefObjects.current[index].current = ref
-                        }
                       }}
                       className="flex flex-col items-center gap-2"
                       initial={{ opacity: 0, y: -20 }}
@@ -757,9 +736,6 @@ export function PrioritiesAnimation() {
                     key={lead.id}
                     ref={(ref) => { 
                       cardRefs.current[index] = ref
-                      if (cardRefObjects.current[index]) {
-                        cardRefObjects.current[index].current = ref
-                      }
                     }}
                   >
                     <PriorityCard

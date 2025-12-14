@@ -12,7 +12,7 @@ export function FeaturesBentoGrid() {
       {/* 3D Gallery Section - Full Screen */}
       <section 
         id="gallery-section" 
-        className="relative h-screen w-full bg-background overflow-hidden"
+        className="relative h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-screen w-full bg-background overflow-hidden"
         style={{ position: 'relative' }}
       >
         {/* 3D Gallery - Full Screen */}
@@ -44,9 +44,9 @@ export function FeaturesBentoGrid() {
         </div>
 
         {/* Text Overlay in Center */}
-        <div className="absolute inset-0 z-10 pointer-events-none flex items-center justify-center text-center px-3">
+        <div className="absolute inset-0 z-10 pointer-events-none flex items-center justify-center text-center px-4 sm:px-6 lg:px-8">
           <motion.h1 
-            className="font-serif text-4xl md:text-7xl tracking-tight italic mix-blend-exclusion text-white"
+            className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl tracking-tight italic mix-blend-exclusion text-white"
             style={{
               WebkitTextStroke: '2px rgba(0, 0, 0, 0.5)',
               paintOrder: 'stroke fill',
@@ -64,7 +64,7 @@ export function FeaturesBentoGrid() {
       <ResearchOrchestratorSection />
 
       {/* Security Scanner Section */}
-      <section className="relative min-h-screen w-full overflow-hidden" style={{ backgroundColor: '#F5F5F5' }}>
+      <section className="relative min-h-[80vh] sm:min-h-[90vh] md:min-h-screen w-full overflow-hidden" style={{ backgroundColor: '#F5F5F5' }}>
         {/* Subtle Pattern Background for Contrast */}
         <div className="absolute inset-0 opacity-30" style={{
           backgroundImage: `radial-gradient(circle, rgba(0, 0, 0, 0.1) 1px, transparent 1px)`,
@@ -72,7 +72,7 @@ export function FeaturesBentoGrid() {
         }} />
         
         {/* Headline Section */}
-        <div className="absolute top-0 left-0 right-0 z-30 pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+        <div className="absolute top-0 left-0 right-0 z-30 pt-16 sm:pt-20 md:pt-24 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8">
           <div className="container mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -80,10 +80,10 @@ export function FeaturesBentoGrid() {
               viewport={{ once: true }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-jakarta font-medium tracking-tight text-text-primary mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-jakarta font-medium tracking-tight text-text-primary mb-3 sm:mb-4 px-2">
                 Deine Daten sind sicher
               </h2>
-              <p className="text-lg md:text-xl text-text-secondary font-inter max-w-3xl mx-auto">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-text-secondary font-inter max-w-3xl mx-auto px-2">
                 Eine vorab existierende CRM-Lösung mit KI-Power für erfolgreichen Vertrieb. 
                 Mit End-to-End-Verschlüsselung, GDPR-Compliance und höchsten Sicherheitsstandards.
               </p>

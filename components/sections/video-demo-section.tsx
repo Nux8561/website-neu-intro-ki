@@ -126,12 +126,12 @@ export function VideoDemoSection({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
-            className="text-center mb-12"
+            className="text-center mb-8 sm:mb-12 px-4"
           >
-            <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-text-primary mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-text-primary mb-3 sm:mb-4">
               {title}
             </h2>
-            <p className="text-lg text-text-muted max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-text-muted max-w-2xl mx-auto">
               {description}
             </p>
           </motion.div>
@@ -187,9 +187,9 @@ export function VideoDemoSection({
                   <div className="absolute inset-0 rounded-full bg-white/30 animate-ping" />
                   
                   {/* Button */}
-                  <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full bg-white flex items-center justify-center shadow-2xl group-hover:shadow-white/25 transition-shadow">
+                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full bg-white flex items-center justify-center shadow-2xl group-hover:shadow-white/25 transition-shadow touch-manipulation">
                     <Play
-                      className="h-8 w-8 md:h-10 md:w-10 text-brand ml-1"
+                      className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 text-brand ml-1"
                       fill="currentColor"
                     />
                   </div>
@@ -197,12 +197,12 @@ export function VideoDemoSection({
               </div>
 
               {/* Duration Badge */}
-              <div className="absolute bottom-4 right-4 px-3 py-1.5 rounded-full bg-black/50 backdrop-blur-sm text-white text-sm font-medium">
+              <div className="absolute bottom-3 sm:bottom-4 right-3 sm:right-4 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-black/50 backdrop-blur-sm text-white text-xs sm:text-sm font-medium">
                 2:45
               </div>
 
               {/* Click to Play Text */}
-              <div className="absolute bottom-4 left-4 text-white/80 text-sm font-medium">
+              <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 text-white/80 text-xs sm:text-sm font-medium hidden sm:block">
                 Klicken zum Abspielen
               </div>
             </div>
@@ -214,7 +214,7 @@ export function VideoDemoSection({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+            className="mt-8 sm:mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto px-4"
           >
             {[
               {

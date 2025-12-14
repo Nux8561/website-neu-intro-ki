@@ -96,8 +96,8 @@ function CTAButton({
       <Link href={href}>
         <motion.button
           className={`
-            relative flex items-center gap-3 px-8 py-4 rounded-full font-jakarta font-semibold text-lg
-            transition-colors ${variants[variant]}
+            relative flex items-center justify-center gap-3 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-jakarta font-semibold text-base sm:text-lg
+            transition-colors w-full sm:w-auto ${variants[variant]}
           `}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
@@ -164,7 +164,7 @@ export function CTASection() {
   return (
     <section
       ref={ref}
-      className="relative py-32 overflow-hidden bg-background"
+      className="relative py-16 sm:py-24 md:py-32 overflow-hidden bg-background"
       onMouseMove={handleMouseMove}
     >
       {/* Animated Background Orbs */}
@@ -224,7 +224,7 @@ export function CTASection() {
           {/* Headline */}
           <motion.h2
             variants={itemVariants}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-jakarta font-medium tracking-tight text-text-primary mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-jakarta font-medium tracking-tight text-text-primary mb-4 sm:mb-6 px-4"
             style={{ textWrap: "balance" }}
           >
             Bereit, deinen Vertrieb zu{" "}
@@ -244,7 +244,7 @@ export function CTASection() {
           {/* Subheadline */}
           <motion.p
             variants={itemVariants}
-            className="text-lg md:text-xl text-text-secondary font-inter mb-12 max-w-2xl mx-auto"
+            className="text-base sm:text-lg md:text-xl text-text-secondary font-inter mb-8 sm:mb-12 max-w-2xl mx-auto px-4"
           >
             Schließe dich über 500+ Sales-Teams an, die mit IntroKI ihre Pipeline verdoppelt haben.
           </motion.p>
@@ -262,7 +262,7 @@ export function CTASection() {
           {/* CTA Buttons */}
           <motion.div 
             variants={itemVariants} 
-            className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center items-center"
+            className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center items-center px-4"
           >
             <CTAButton variant="primary" icon={Sparkles} href="/pricing">
               Kostenlos starten

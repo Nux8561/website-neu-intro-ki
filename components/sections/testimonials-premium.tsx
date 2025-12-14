@@ -204,12 +204,12 @@ export function TestimonialsPremium() {
           <span className="pill-button mb-6 inline-flex">
             Kundenstimmen
           </span>
-          <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-text-primary mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-text-primary mb-3 sm:mb-4 px-4">
             Von führenden Sales-Teams
             <br />
             <span className="text-text-secondary">geliebt und empfohlen.</span>
           </h2>
-          <p className="text-lg text-text-muted max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-text-muted max-w-2xl mx-auto px-4">
             Erfahre, wie Unternehmen mit IntroKI ihre Revenue-Operations transformieren.
           </p>
         </motion.div>
@@ -220,7 +220,7 @@ export function TestimonialsPremium() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
         >
           {testimonials.map((testimonial) => (
             <TestimonialCard key={testimonial.id} testimonial={testimonial} />
@@ -233,9 +233,9 @@ export function TestimonialsPremium() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="mt-16 p-8 rounded-2xl bg-brand text-text-inverse"
+          className="mt-12 sm:mt-16 p-6 sm:p-8 rounded-2xl bg-brand text-text-inverse"
         >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
             {[
               { value: "10,000+", label: "Aktive Nutzer" },
               { value: "95%", label: "Kundenzufriedenheit" },
@@ -243,10 +243,10 @@ export function TestimonialsPremium() {
               { value: "60 Sek", label: "Deep Research Zeit" },
             ].map((stat, index) => (
               <div key={index} className="text-center">
-                <p className="text-3xl md:text-4xl font-jakarta font-semibold mb-2">
+                <p className="text-2xl sm:text-3xl md:text-4xl font-jakarta font-semibold mb-1 sm:mb-2">
                   {stat.value}
                 </p>
-                <p className="text-sm text-text-inverse/70">
+                <p className="text-xs sm:text-sm text-text-inverse/70 px-2">
                   {stat.label}
                 </p>
               </div>

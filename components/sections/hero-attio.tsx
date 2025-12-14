@@ -76,18 +76,20 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
   return (
     <>
       {/* Announcement Banner */}
-      <div className="bg-brand text-text-inverse py-3 px-4">
-        <div className="container mx-auto flex items-center justify-center gap-2 text-sm">
-          <Sparkles className="h-4 w-4" />
-          <span>Neu: Multi-Agent Research System mit Echtzeit-Recherche</span>
-          <Link href="/features" className="inline-flex items-center gap-1 font-medium hover:underline">
+      <div className="bg-brand text-text-inverse py-2 sm:py-3 px-4">
+        <div className="container mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 text-xs sm:text-sm text-center">
+          <div className="flex items-center gap-2">
+            <Sparkles className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
+            <span className="line-clamp-1">Neu: Multi-Agent Research System mit Echtzeit-Recherche</span>
+          </div>
+          <Link href="/features" className="inline-flex items-center gap-1 font-medium hover:underline whitespace-nowrap">
             Mehr erfahren <ArrowRight className="h-3 w-3" />
           </Link>
         </div>
       </div>
 
       {/* Hero Section with MeshGradient Background */}
-      <section className="relative bg-background pt-20 pb-16 overflow-hidden">
+      <section className="relative bg-background pt-16 sm:pt-20 pb-12 sm:pb-16 overflow-hidden">
         {/* MeshGradient Background - ONLY until tabs, not further */}
         <div className="absolute top-0 left-0 right-0 bottom-auto overflow-hidden" style={{ height: '520px' }}>
           {mounted && (
@@ -133,7 +135,7 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
             {/* Headline */}
             <motion.h1
               variants={itemVariants}
-              className="text-5xl sm:text-6xl md:text-7xl font-jakarta font-medium tracking-tight text-text-primary mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-jakarta font-medium tracking-tight text-text-primary mb-4 sm:mb-6 px-4"
             >
               Sales Intelligence
               <br />
@@ -145,17 +147,17 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
             {/* Subheadline */}
             <motion.p
               variants={itemVariants}
-              className="text-xl text-text-secondary font-inter mb-10 max-w-2xl mx-auto"
+              className="text-base sm:text-lg md:text-xl text-text-secondary font-inter mb-8 md:mb-10 max-w-2xl mx-auto px-4"
             >
               IntroKI ist das KI-native CRM für moderne Sales-Teams. Deep Research in 60 Sekunden, Live Call Coaching und intelligentes Lead Scoring.
             </motion.p>
 
             {/* CTA Buttons */}
-            <motion.div variants={itemVariants} className="flex flex-wrap items-center justify-center gap-4 mb-16">
-              <Link href="/dashboard" className="btn-primary">
+            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 md:mb-16">
+              <Link href="/dashboard" className="btn-primary w-full sm:w-auto text-center">
                 Kostenlos starten
               </Link>
-              <Link href="/kontakt" className="btn-secondary">
+              <Link href="/kontakt" className="btn-secondary w-full sm:w-auto text-center">
                 Demo buchen
               </Link>
             </motion.div>
@@ -170,12 +172,12 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
             className="max-w-5xl mx-auto relative z-10"
           >
             {/* Tab Navigation */}
-            <div className="flex items-center justify-center gap-2 mb-6 border-b border-border">
+            <div className="flex items-center justify-center gap-1 sm:gap-2 mb-6 border-b border-border overflow-x-auto hide-scrollbar">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as typeof activeTab)}
-                  className={`px-6 py-3 text-sm font-medium transition-all relative ${
+                  className={`px-3 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-medium transition-all relative whitespace-nowrap touch-manipulation min-h-[44px] ${
                     activeTab === tab.id
                       ? "text-text-primary"
                       : "text-text-muted hover:text-text-secondary"

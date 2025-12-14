@@ -337,14 +337,14 @@ export function Navbar() {
             <Button
               variant="ghost"
               size="sm"
-              className="text-text-secondary hover:text-text-primary hover:bg-surface"
+              className="text-text-secondary hover:text-text-primary hover:bg-surface touch-manipulation"
               asChild
             >
               <Link href="/dashboard">Sign in</Link>
             </Button>
             <Button
               size="sm"
-              className="bg-brand text-text-inverse hover:bg-brand-light font-medium rounded-lg px-4"
+              className="bg-brand text-text-inverse hover:bg-brand-light font-medium rounded-lg px-4 touch-manipulation"
               asChild
             >
               <Link href="/pricing">Start for free</Link>

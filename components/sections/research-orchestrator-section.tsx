@@ -36,7 +36,7 @@ export function ResearchOrchestratorSection() {
   return (
     <section
       ref={ref}
-      className="relative py-24 overflow-hidden bg-background border-y border-black/10"
+      className="relative py-16 sm:py-20 md:py-24 overflow-hidden bg-background border-y border-black/10"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -55,22 +55,22 @@ export function ResearchOrchestratorSection() {
           </div>
 
           {/* Header */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center mb-12 sm:mb-16">
             <div>
-              <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-black mb-4">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-black mb-3 sm:mb-4">
                 Research in Sekunden, nicht Stunden.
               </h2>
-              <p className="text-lg text-black/70 font-inter mb-8 max-w-2xl">
+              <p className="text-base sm:text-lg text-black/70 font-inter mb-6 sm:mb-8 max-w-2xl">
                 Unser Multi-Agent-System führt parallele Recherchen durch und liefert
                 vollständige Lead-Profile in unter 60 Sekunden. Mit intelligenter
                 Caching-Strategie und Circuit Breaker Protection für maximale
                 Zuverlässigkeit.
               </p>
-              <div className="flex gap-4">
-                <Button className="rounded-full bg-black text-white">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <Button className="rounded-full bg-black text-white w-full sm:w-auto">
                   Kostenlos starten
                 </Button>
-                <Button variant="outline" className="rounded-full border-black/20 text-black">
+                <Button variant="outline" className="rounded-full border-black/20 text-black w-full sm:w-auto">
                   Mehr erfahren
                 </Button>
               </div>

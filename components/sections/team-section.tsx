@@ -244,10 +244,10 @@ export function TeamSection() {
           <span className="pill-button mb-6 inline-flex">
             Unser Team
           </span>
-          <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-text-primary mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-text-primary mb-3 sm:mb-4 px-4">
             Die Menschen hinter IntroKI
           </h2>
-          <p className="text-lg text-text-muted max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-text-muted max-w-2xl mx-auto px-4">
             Ein leidenschaftliches Team aus Sales-Experten, Engineers und Designern, 
             das die Zukunft des CRM gestaltet.
           </p>
@@ -263,7 +263,7 @@ export function TeamSection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto px-4"
           >
             {founders.map((founder) => (
               <TeamMemberCard key={founder.id} member={founder} isFounder />
@@ -281,7 +281,7 @@ export function TeamSection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 px-4"
           >
             {team.map((member) => (
               <TeamMemberCard key={member.id} member={member} />
@@ -297,18 +297,18 @@ export function TeamSection() {
           transition={{ delay: 0.3 }}
           className="mt-20 text-center"
         >
-          <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-8 rounded-2xl bg-white border border-border">
-            <div className="text-left">
-              <h3 className="font-jakarta font-medium text-text-primary text-xl mb-2">
+          <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 sm:p-8 rounded-2xl bg-white border border-border mx-4 sm:mx-0">
+            <div className="text-center sm:text-left">
+              <h3 className="font-jakarta font-medium text-text-primary text-lg sm:text-xl mb-2">
                 Werde Teil unseres Teams
               </h3>
-              <p className="text-text-muted">
+              <p className="text-sm sm:text-base text-text-muted">
                 Wir suchen talentierte Menschen, die mit uns die Zukunft gestalten.
               </p>
             </div>
             <Link
               href="/careers"
-              className="btn-primary whitespace-nowrap"
+              className="btn-primary whitespace-nowrap w-full sm:w-auto text-center"
             >
               Offene Stellen ansehen
             </Link>

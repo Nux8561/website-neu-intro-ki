@@ -3,7 +3,7 @@
 import * as React from "react"
 import { motion, useInView } from "framer-motion"
 import { FeatureIcon } from "@/components/ui/feature-icon"
-import { snappySpring } from "@/lib/animations"
+import { snappySpring, attioTransition } from "@/lib/animations"
 import { Button } from "@/components/ui/button"
 import { PipelineKanbanCard } from "@/components/ui/pipeline-kanban-card"
 import { GitBranch, Sparkles, RefreshCw, Users } from "lucide-react"
@@ -45,11 +45,7 @@ export function PipelineManagementSection() {
           className="max-w-7xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{
-            type: "spring",
-            stiffness: 400,
-            damping: 17,
-          }}
+          transition={attioTransition}
         >
           {/* Section Number */}
           <div className="text-sm font-mono text-black/50 mb-4">

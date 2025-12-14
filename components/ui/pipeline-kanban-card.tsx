@@ -3,6 +3,7 @@
 import * as React from "react"
 import { motion } from "framer-motion"
 import { Sparkles } from "lucide-react"
+import { attioTransition } from "@/lib/animations"
 
 interface Lead {
   id: string
@@ -77,12 +78,10 @@ export function PipelineKanbanCard({ stages = defaultStages }: PipelineKanbanCar
             key={stage.id}
             initial={{ opacity: 0, x: -20 }}
             animate={mounted ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-            transition={{
-              delay: stageIndex * 0.1,
-              type: "spring",
-              stiffness: 400,
-              damping: 17,
-            }}
+              transition={{
+                delay: stageIndex * 0.1,
+                ...attioTransition,
+              }}
             className="flex-1 flex flex-col gap-2"
           >
             <div className="flex items-center justify-between mb-1">
@@ -101,35 +100,33 @@ export function PipelineKanbanCard({ stages = defaultStages }: PipelineKanbanCar
                   animate={mounted ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
                   transition={{
                     delay: stageIndex * 0.1 + leadIndex * 0.05,
-                    type: "spring",
-                    stiffness: 400,
-                    damping: 17,
+                    ...attioTransition,
                   }}
                   onMouseEnter={() => setHoveredLead(lead.id)}
                   onMouseLeave={() => setHoveredLead(null)}
-                  className={`rounded-lg border p-2 backdrop-blur-sm ${stage.color} cursor-pointer transition-all ${
-                    hoveredLead === lead.id ? "scale-[1.02] border-white/30" : ""
+                  className={`rounded-lg border p-2 bg-white ${stage.color} cursor-pointer transition-all ${
+                    hoveredLead === lead.id ? "scale-[1.02] border-attio-subtle shadow-attio-card" : ""
                   }`}
                 >
                   <div className="flex items-start justify-between mb-1">
-                    <span className="text-xs font-inter font-medium text-white truncate">
+                    <span className="text-xs font-inter font-medium text-text-primary truncate">
                       {lead.company}
                     </span>
                     <div
                       className={`h-1.5 w-1.5 rounded-full ${getScoreColor(lead.score)}`}
                     />
                   </div>
-                  <div className="text-[10px] text-white/70 font-mono">
+                  <div className="text-[10px] text-text-secondary font-mono">
                     €{lead.value.toLocaleString()}
                   </div>
                   {hoveredLead === lead.id && (
                     <motion.div
                       initial={{ opacity: 0, y: -5 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="mt-2 pt-2 border-t border-white/10 flex items-center gap-1"
+                      className="mt-2 pt-2 border-t border-attio-subtle flex items-center gap-1"
                     >
-                      <Sparkles className="h-3 w-3 text-white/70" />
-                      <span className="text-[10px] text-white/70 font-inter">
+                      <Sparkles className="h-3 w-3 text-text-secondary" />
+                      <span className="text-[10px] text-text-secondary font-inter">
                         AI-Empfehlung: Follow-up heute
                       </span>
                     </motion.div>

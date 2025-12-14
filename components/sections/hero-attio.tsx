@@ -7,7 +7,11 @@ import Link from "next/link"
 import Image from "next/image"
 import { DataFlowAnimation } from "@/components/ui/data-flow-animation"
 import { PrioritiesAnimation } from "@/components/ui/priorities-animation"
+import { WorkflowSimulation } from "@/components/visuals/WorkflowSimulation"
+import { ReportingVisual } from "@/components/visuals/ReportingVisual"
+import { PipelineVisual } from "@/components/visuals/PipelineVisual"
 import { MeshGradient } from "@paper-design/shaders-react"
+import { attioTransition } from "@/lib/animations"
 
 // Animation variants
 const containerVariants = {
@@ -51,13 +55,13 @@ interface HeroAttioProps {
 
 const tabs = [
   { id: "data" as const, label: "Data" },
-  { id: "priorities" as const, label: "Prioritäten" },
+  { id: "workflows" as const, label: "Workflows" },
   { id: "reporting" as const, label: "Reporting" },
   { id: "pipeline" as const, label: "Pipeline" },
 ]
 
 export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
-  const [activeTab, setActiveTab] = React.useState<"data" | "priorities" | "reporting" | "pipeline">("data")
+  const [activeTab, setActiveTab] = React.useState<"data" | "workflows" | "reporting" | "pipeline">("data")
   const [dimensions, setDimensions] = React.useState({ width: 1920, height: 1080 })
   const [mounted, setMounted] = React.useState(false)
   const [isUserInteracting, setIsUserInteracting] = React.useState(false)
@@ -182,20 +186,19 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
               {/* Tab Navigation (oben im Fenster) - Attio Style */}
               <div className="bg-attio-gray border-b border-attio-subtle px-6 py-3">
                 <div className="flex items-center gap-1">
-                  {["Data", "Workflows", "Reporting", "Pipeline"].map(
-                    (tab, index) => (
-                      <button
-                        key={tab}
-                        className={`px-4 py-2 text-sm font-inter font-medium transition-colors ${
-                          index === 0
-                            ? "text-gray-900 border-b-2 border-black"
-                            : "text-gray-500 hover:text-gray-700"
-                        }`}
-                      >
-                        {tab}
-                      </button>
-                    )
-                  )}
+                  {tabs.map((tab) => (
+                    <button
+                      key={tab.id}
+                      onClick={() => handleTabChange(tab.id)}
+                      className={`px-4 py-2 text-sm font-inter font-medium transition-colors ${
+                        activeTab === tab.id
+                          ? "text-gray-900 border-b-2 border-black"
+                          : "text-gray-500 hover:text-gray-700"
+                      }`}
+                    >
+                      {tab.label}
+                    </button>
+                  ))}
                 </div>
               </div>
 
@@ -208,28 +211,37 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
                       role="tabpanel"
                       id="tabpanel-data"
                       aria-labelledby="tab-data"
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -20 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                      exit={{ opacity: 0, y: -30 }}
+                      transition={attioTransition}
                       className="absolute inset-0 bg-attio-gray overflow-hidden"
                     >
                       <DataFlowAnimation key="data-animation" />
                     </motion.div>
                   )}
-                  {activeTab === "priorities" && (
+                  {activeTab === "workflows" && (
                     <motion.div
-                      key="priorities-tab"
+                      key="workflows-tab"
                       role="tabpanel"
-                      id="tabpanel-priorities"
-                      aria-labelledby="tab-priorities"
-                      initial={{ opacity: 0, y: 20 }}
+                      id="tabpanel-workflows"
+                      aria-labelledby="tab-workflows"
+                      initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -20 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                      className="absolute inset-0 bg-gray-50"
+                      exit={{ opacity: 0, y: -30 }}
+                      transition={attioTransition}
+                      className="absolute inset-0 bg-attio-gray overflow-hidden"
                     >
-                      <PrioritiesAnimation key="priorities-animation" />
+                      <motion.div 
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={attioTransition}
+                        className="absolute inset-0 flex items-center justify-center p-6 bg-attio-gray"
+                      >
+                        <div className="w-full max-w-sm">
+                          <WorkflowSimulation />
+                        </div>
+                      </motion.div>
                     </motion.div>
                   )}
                   {activeTab === "reporting" && (
@@ -238,37 +250,20 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
                       role="tabpanel"
                       id="tabpanel-reporting"
                       aria-labelledby="tab-reporting"
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -20 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                      exit={{ opacity: 0, y: -30 }}
+                      transition={attioTransition}
                       className="absolute inset-0 bg-attio-gray overflow-hidden"
                     >
                       <motion.div 
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ type: "spring", stiffness: 400, damping: 17, delay: 0.1 }}
+                        transition={attioTransition}
                         className="absolute inset-0 flex items-center justify-center p-6 bg-attio-gray"
                       >
-                        <div className="text-center">
-                          <Image
-                            src={`/screenshots/reporting-view.png`}
-                            alt={`IntroKI Reporting View`}
-                            fill
-                            className="object-cover rounded-xl"
-                            onError={(e) => {
-                              const target = e.target as HTMLImageElement
-                              target.style.display = 'none'
-                            }}
-                          />
-                          <motion.div 
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.2 }}
-                            className="relative z-10 text-gray-500 text-sm"
-                          >
-                            Reporting Dashboard kommt bald...
-                          </motion.div>
+                        <div className="w-full max-w-md">
+                          <ReportingVisual />
                         </div>
                       </motion.div>
                     </motion.div>
@@ -279,37 +274,20 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
                       role="tabpanel"
                       id="tabpanel-pipeline"
                       aria-labelledby="tab-pipeline"
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -20 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                      exit={{ opacity: 0, y: -30 }}
+                      transition={attioTransition}
                       className="absolute inset-0 bg-attio-gray overflow-hidden"
                     >
                       <motion.div 
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ type: "spring", stiffness: 400, damping: 17, delay: 0.1 }}
+                        transition={attioTransition}
                         className="absolute inset-0 flex items-center justify-center p-6 bg-attio-gray"
                       >
-                        <div className="text-center">
-                          <Image
-                            src={`/screenshots/pipeline-view.png`}
-                            alt={`IntroKI Pipeline View`}
-                            fill
-                            className="object-cover rounded-xl"
-                            onError={(e) => {
-                              const target = e.target as HTMLImageElement
-                              target.style.display = 'none'
-                            }}
-                          />
-                          <motion.div 
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.2 }}
-                            className="relative z-10 text-gray-500 text-sm"
-                          >
-                            Pipeline View kommt bald...
-                          </motion.div>
+                        <div className="w-full max-w-lg">
+                          <PipelineVisual />
                         </div>
                       </motion.div>
                     </motion.div>

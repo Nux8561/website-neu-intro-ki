@@ -4,6 +4,7 @@ import * as React from "react"
 import { motion } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import { Search, Users, Brain, CheckCircle2, Loader2 } from "lucide-react"
+import { attioTransition, attioTransitionSmooth } from "@/lib/animations"
 
 interface Agent {
   id: string
@@ -86,9 +87,7 @@ export function ResearchAgentCard({ agents = defaultAgents }: ResearchAgentCardP
               animate={mounted ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
               transition={{
                 delay: index * 0.1,
-                type: "spring",
-                stiffness: 400,
-                damping: 17,
+                ...attioTransition,
               }}
               className={`relative rounded-xl border p-3 backdrop-blur-sm ${agent.color} ${
                 isRunning ? "animate-pulse" : ""
@@ -97,7 +96,7 @@ export function ResearchAgentCard({ agents = defaultAgents }: ResearchAgentCardP
               <div className="flex items-start justify-between mb-2">
                 <div className="flex items-center gap-2">
                   <Icon className="h-4 w-4" />
-                  <span className="text-xs font-inter font-medium">{agent.name}</span>
+                  <span className="text-xs font-inter font-medium text-text-primary">{agent.name}</span>
                 </div>
                 {getStatusIcon(agent.status)}
               </div>
@@ -105,7 +104,7 @@ export function ResearchAgentCard({ agents = defaultAgents }: ResearchAgentCardP
                 <div className="mt-2">
                   <Badge
                     variant="outline"
-                    className="text-[10px] px-1.5 py-0.5 bg-white/10 border-white/20 text-white/70"
+                    className="text-[10px] px-1.5 py-0.5 bg-white border border-attio-subtle text-text-secondary"
                   >
                     {agent.provider}
                   </Badge>
@@ -118,9 +117,8 @@ export function ResearchAgentCard({ agents = defaultAgents }: ResearchAgentCardP
                     opacity: [0.3, 0.6, 0.3],
                   }}
                   transition={{
-                    duration: 1.5,
+                    ...attioTransitionSmooth,
                     repeat: Infinity,
-                    ease: "easeInOut",
                   }}
                 />
               )}
@@ -128,8 +126,8 @@ export function ResearchAgentCard({ agents = defaultAgents }: ResearchAgentCardP
           )
         })}
       </div>
-      <div className="pt-2 border-t border-white/10">
-        <div className="flex items-center justify-between text-xs text-white/70 font-inter">
+      <div className="pt-2 border-t border-attio-subtle">
+        <div className="flex items-center justify-between text-xs text-text-secondary font-inter">
           <span>Parallel Execution</span>
           <span className="font-mono">2.3s</span>
         </div>

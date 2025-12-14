@@ -614,13 +614,19 @@ export function PrioritiesAnimation() {
                       }}
                       animate={isActive && (phase === "collecting" || phase === "analyzing") ? { 
                         scale: [1, 1.05, 1],
-                        boxShadow: [
-                          "0 1px 3px rgba(0,0,0,0.1)",
-                          `0 4px 12px ${source.color}30`,
-                          "0 1px 3px rgba(0,0,0,0.1)"
-                        ]
                       } : {}}
-                      transition={{ ...attioTransitionSmooth, repeat: isActive ? Infinity : 0 }}
+                      transition={{ 
+                        scale: {
+                          duration: 2,
+                          repeat: isActive ? Infinity : 0,
+                          ease: "easeInOut"
+                        }
+                      }}
+                      style={{
+                        boxShadow: isActive && (phase === "collecting" || phase === "analyzing")
+                          ? `0 4px 12px ${source.color}30`
+                          : "0 1px 3px rgba(0,0,0,0.1)"
+                      }}
                     >
                       <Icon className="w-10 h-10" style={{ color: isActive ? source.color : colors.text.muted }} strokeWidth={1.5} />
                     </motion.div>
@@ -658,13 +664,18 @@ export function PrioritiesAnimation() {
                     backgroundColor: "#F5F3FF"
                   }}
                   animate={{
-                    boxShadow: [
-                      "0 4px 12px rgba(139, 92, 246, 0.2)",
-                      "0 8px 24px rgba(139, 92, 246, 0.3)",
-                      "0 4px 12px rgba(139, 92, 246, 0.2)"
-                    ]
+                    scale: [1, 1.02, 1],
                   }}
-                  transition={{ ...attioTransitionSmooth, repeat: Infinity }}
+                  transition={{ 
+                    scale: {
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }
+                  }}
+                  style={{
+                    boxShadow: "0 4px 12px rgba(139, 92, 246, 0.2)"
+                  }}
                 >
                   <div className="w-24 h-24 relative">
                     <Image

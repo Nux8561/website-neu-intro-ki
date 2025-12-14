@@ -4,6 +4,7 @@ import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { X } from "lucide-react"
+import { attioTransition } from "@/lib/animations"
 
 export function CookieConsent() {
   const [isVisible, setIsVisible] = React.useState(false)
@@ -32,20 +33,16 @@ export function CookieConsent() {
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
-          transition={{
-            type: "spring",
-            stiffness: 400,
-            damping: 17,
-          }}
+          transition={attioTransition}
           className="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-4 sm:w-auto z-50 max-w-md"
         >
-          <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-6 shadow-lg">
-            <p className="text-white/70 font-inter text-sm mb-4">
+          <div className="bg-white border border-attio-subtle rounded-xl p-6 shadow-attio-card">
+            <p className="text-text-secondary font-inter text-sm mb-4">
               We use cookies to improve your experience. You can opt out of
               certain cookies.{" "}
               <a
                 href="/privacy"
-                className="text-white hover:text-white/80 underline"
+                className="text-text-primary hover:text-text-secondary underline"
               >
                 Find out more in our privacy policy.
               </a>
@@ -53,14 +50,14 @@ export function CookieConsent() {
             <div className="flex flex-col sm:flex-row gap-3">
               <Button
                 onClick={handleAccept}
-                className="bg-white/10 hover:bg-white/20 text-white border border-white/10 rounded-lg touch-manipulation min-h-[44px]"
+                className="bg-text-primary hover:bg-text-primary/90 text-white border border-text-primary rounded-lg touch-manipulation min-h-[44px]"
               >
                 Continue
               </Button>
               <Button
                 onClick={handleReject}
                 variant="outline"
-                className="border-white/10 text-white/70 hover:text-white hover:border-white/20 rounded-lg touch-manipulation min-h-[44px]"
+                className="border-attio-subtle text-text-secondary hover:text-text-primary hover:border-attio-subtle rounded-lg touch-manipulation min-h-[44px]"
               >
                 Reject
               </Button>

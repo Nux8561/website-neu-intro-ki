@@ -91,7 +91,7 @@ export function DataEnrichmentSection() {
             <div className="bg-background rounded-xl p-6 border border-border-subtle">
               {/* Header */}
               <div className="flex items-start gap-4 mb-6">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center border-2 border-border-subtle">
+                <div className="w-16 h-16 rounded-full bg-white border-2 border-attio-subtle shadow-attio-card flex items-center justify-center">
                   <span className="text-2xl font-jakarta font-semibold text-text-primary">
                     SJ
                   </span>

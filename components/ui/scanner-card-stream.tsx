@@ -454,7 +454,7 @@ const ScannerCardStream = ({
                 <img 
                   src={card.image} 
                   alt="Card" 
-                  className="w-full h-full object-cover rounded-[15px] transition-all duration-300 ease-in-out brightness-110 contrast-110 shadow-[inset_0_0_20px_rgba(0,0,0,0.1)] hover:brightness-125 hover:contrast-125" 
+                  className="w-full h-full object-cover rounded-[15px] transition-all duration-attio ease-attio-ease-out brightness-110 contrast-110 shadow-[inset_0_0_20px_rgba(0,0,0,0.1)] hover:brightness-125 hover:contrast-125" 
                 />
               </div>
               <div className="card-ascii card absolute top-0 left-0 w-full h-full rounded-[15px] overflow-hidden bg-transparent z-[1] [clip-path:inset(0_calc(100%-var(--clip-left,0%))_0_0)]">

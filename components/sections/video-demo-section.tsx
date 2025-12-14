@@ -113,11 +113,6 @@ export function VideoDemoSection({
   return (
     <>
       <section className="section-spacing bg-background relative overflow-hidden">
-        {/* Background Gradient */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent-blue/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-purple/5 rounded-full blur-3xl" />
-        </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Section Header */}
@@ -125,7 +120,7 @@ export function VideoDemoSection({
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ type: "spring", stiffness: 400, damping: 25 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
             className="text-center mb-8 sm:mb-12 px-4"
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-text-primary mb-3 sm:mb-4">
@@ -174,7 +169,7 @@ export function VideoDemoSection({
               />
 
               {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent group-hover:from-black/70 transition-all duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent group-hover:from-black/70 transition-all duration-attio ease-attio-ease-out" />
 
               {/* Play Button */}
               <div className="absolute inset-0 flex items-center justify-center">
@@ -266,7 +261,7 @@ export function VideoDemoSection({
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ type: "spring", stiffness: 400, damping: 25 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
               className="relative w-full max-w-6xl mx-4"
               onClick={(e) => e.stopPropagation()}
             >
@@ -319,7 +314,7 @@ export function VideoDemoSection({
                   />
 
                   {/* Custom Controls */}
-                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent rounded-b-2xl">
+                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 via-black/50 to-transparent rounded-b-2xl">
                     {/* Progress Bar */}
                     <div 
                       className="w-full h-1.5 bg-white/20 rounded-full mb-4 cursor-pointer group"

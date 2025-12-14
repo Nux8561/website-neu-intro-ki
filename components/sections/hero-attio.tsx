@@ -29,7 +29,7 @@ const itemVariants = {
     transition: {
       type: "spring",
       stiffness: 400,
-      damping: 25,
+      damping: 17,
     },
   },
 }

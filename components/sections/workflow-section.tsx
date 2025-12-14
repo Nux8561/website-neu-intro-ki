@@ -148,7 +148,7 @@ export function WorkflowSection() {
                           }}
                           className="mb-4 flex items-center justify-center"
                         >
-                          <div className="p-6 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-black/10">
+                          <div className="p-6 rounded-2xl bg-white border border-attio-subtle shadow-attio-card">
                             {React.createElement(workflowSteps[activeStep].icon, {
                               className: "h-16 w-16 text-black",
                               strokeWidth: 1.5,
@@ -182,7 +182,7 @@ export function WorkflowSection() {
                         }}
                         className="mb-4 flex items-center justify-center"
                       >
-                        <div className="p-4 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-black/10">
+                        <div className="p-4 rounded-xl bg-white border border-attio-subtle shadow-attio-card">
                           {React.createElement(workflowSteps[activeStep].icon, {
                             className: "h-12 w-12 text-black",
                             strokeWidth: 1.5,

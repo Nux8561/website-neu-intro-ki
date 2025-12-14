@@ -81,15 +81,15 @@ function CTAButton({
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
     >
-      {/* Glow effect for primary button */}
+      {/* Subtle hover effect for primary button */}
       {variant === "primary" && (
         <motion.div
-          className="absolute -inset-1 rounded-full bg-gradient-to-r from-blue-500/30 via-purple-500/30 to-pink-500/30 blur-xl"
+          className="absolute -inset-1 rounded-full bg-white/10"
           animate={{
-            opacity: isHovered ? 0.8 : 0,
-            scale: isHovered ? 1.1 : 1,
+            opacity: isHovered ? 0.3 : 0,
+            scale: isHovered ? 1.02 : 1,
           }}
-          transition={{ type: "spring", stiffness: 400, damping: 25 }}
+          transition={{ type: "spring", stiffness: 400, damping: 17 }}
         />
       )}
       
@@ -101,13 +101,13 @@ function CTAButton({
           `}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          transition={{ type: "spring", stiffness: 400, damping: 25 }}
+          transition={{ type: "spring", stiffness: 400, damping: 17 }}
         >
           {Icon && <Icon className="h-5 w-5" strokeWidth={1.5} />}
           {children}
           <motion.div
             animate={{ x: isHovered ? 4 : 0 }}
-            transition={{ type: "spring", stiffness: 400, damping: 25 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
             <ArrowRight className="h-5 w-5" strokeWidth={1.5} />
           </motion.div>
@@ -273,8 +273,8 @@ export function CTASection() {
         </motion.div>
       </div>
 
-      {/* Bottom Gradient Fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" />
+      {/* Bottom Fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-attio-gray to-transparent pointer-events-none" />
     </section>
   )
 }

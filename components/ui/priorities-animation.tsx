@@ -6,8 +6,9 @@ import Image from "next/image"
 import { Phone, CheckCircle2, TrendingUp, Brain, Sparkles, FileText, Target, PhoneCall, Database } from "lucide-react"
 import { AnimatedBeam } from "@/components/ui/animated-beam"
 import { ShiningText } from "@/components/ui/shining-text"
+import { attioTransition, attioTransitionSmooth } from "@/lib/animations"
 
-const smoothSpring = { type: "spring", stiffness: 400, damping: 17 }
+const smoothSpring = attioTransition
 
 // Professional color palette
 const colors = {
@@ -335,7 +336,7 @@ function FlowLinesSVG({
               strokeLinecap="round"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
-              transition={{ duration: 1, delay: index * 0.1 }}
+              transition={{ ...attioTransition, delay: index * 0.1 }}
               style={{ filter: `drop-shadow(0 0 8px ${source.color}60)` }}
             />
             <motion.circle
@@ -397,7 +398,7 @@ function FlowLinesSVG({
               strokeLinecap="round"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
-              transition={{ duration: 1, delay: index * 0.1 }}
+              transition={{ ...attioTransition, delay: index * 0.1 }}
               style={{ filter: `drop-shadow(0 0 8px ${lineColor}60)` }}
             />
             <motion.circle
@@ -619,7 +620,7 @@ export function PrioritiesAnimation() {
                           "0 1px 3px rgba(0,0,0,0.1)"
                         ]
                       } : {}}
-                      transition={{ duration: 2, repeat: isActive ? Infinity : 0 }}
+                      transition={{ ...attioTransitionSmooth, repeat: isActive ? Infinity : 0 }}
                     >
                       <Icon className="w-10 h-10" style={{ color: isActive ? source.color : colors.text.muted }} strokeWidth={1.5} />
                     </motion.div>
@@ -648,7 +649,7 @@ export function PrioritiesAnimation() {
                 className="flex flex-col items-center justify-center w-full h-full"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
+                transition={attioTransition}
               >
                 <motion.div 
                   className="w-36 h-36 rounded-3xl border-2 flex items-center justify-center shadow-lg relative overflow-hidden"
@@ -663,7 +664,7 @@ export function PrioritiesAnimation() {
                       "0 4px 12px rgba(139, 92, 246, 0.2)"
                     ]
                   }}
-                  transition={{ duration: 2, repeat: Infinity }}
+                  transition={{ ...attioTransitionSmooth, repeat: Infinity }}
                 >
                   <div className="w-24 h-24 relative">
                     <Image
@@ -695,7 +696,7 @@ export function PrioritiesAnimation() {
                       strokeDasharray={`${2 * Math.PI * 68}`}
                       initial={{ strokeDashoffset: 2 * Math.PI * 68 }}
                       animate={{ strokeDashoffset: 2 * Math.PI * 68 * (1 - aiProgress / 100) }}
-                      transition={{ duration: 0.3 }}
+                      transition={attioTransition}
                     />
                   </svg>
                 </motion.div>
@@ -715,7 +716,7 @@ export function PrioritiesAnimation() {
               style={{ zIndex: 40 }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              transition={attioTransition}
             >
               <div className="flex items-center justify-between mb-6 w-full max-w-4xl px-4">
                 <div className="flex items-center gap-2">

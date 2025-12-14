@@ -126,7 +126,7 @@ const itemVariants = {
     transition: {
       type: "spring",
       stiffness: 400,
-      damping: 25,
+      damping: 17,
     },
   },
 }
@@ -168,7 +168,7 @@ function TeamMemberCard({ member, isFounder = false }: { member: TeamMember; isF
           unoptimized
         />
         {/* Fallback - only shown if image fails to load */}
-        <div className="avatar-fallback absolute inset-0 flex items-center justify-center bg-gradient-to-br from-accent-blue/20 to-accent-purple/20" style={{ zIndex: 0, display: 'none' }}>
+        <div className="avatar-fallback absolute inset-0 flex items-center justify-center bg-white border border-attio-subtle" style={{ zIndex: 0, display: 'none' }}>
           <span className="text-4xl font-jakarta font-medium text-text-primary/30">
             {member.name.split(' ').map(n => n[0]).join('')}
           </span>
@@ -238,7 +238,7 @@ export function TeamSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ type: "spring", stiffness: 400, damping: 25 }}
+          transition={{ type: "spring", stiffness: 400, damping: 17 }}
           className="text-center mb-16"
         >
           <span className="pill-button mb-6 inline-flex">

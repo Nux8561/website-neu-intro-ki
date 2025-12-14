@@ -38,13 +38,13 @@ function DataIntegrationIcons() {
 function AIEnrichmentCard() {
   return (
     <div className="mt-4 space-y-3">
-      <div className="p-4 bg-zinc-50 border border-zinc-200 rounded-lg">
+      <div className="p-4 bg-white border border-attio-subtle rounded-lg shadow-attio-card">
         <div className="flex items-start justify-between mb-2">
           <div className="flex-1">
             <div className="text-sm font-inter font-medium text-[#0A0A0A] mb-1">
               Company: Vercel
             </div>
-            <div className="text-xs font-inter text-zinc-500 mb-2">
+            <div className="text-xs font-inter text-text-muted mb-2">
               Missing: Email domain
             </div>
             <div className="text-xs font-inter text-green-600 font-medium">
@@ -73,7 +73,7 @@ const bentoCells = [
     rowSpan: 1,
     content: (
       <div>
-        <div className="text-xs font-inter text-gray-500 uppercase tracking-wider mb-2">
+        <div className="text-xs font-inter text-text-muted uppercase tracking-wider mb-2">
           01 Powerful platform
         </div>
         <h2 className="text-4xl md:text-5xl font-inter-display font-bold tracking-tight text-[#0A0A0A]">
@@ -123,7 +123,7 @@ const bentoCells = [
     content: (
           <div className="mt-4 flex items-center gap-3">
             <FeatureIcon icon={Brain} size="md" color="purple" />
-            <div className="text-sm font-inter text-zinc-500">
+            <div className="text-sm font-inter text-text-muted">
               Analyzing patterns...
             </div>
           </div>
@@ -180,7 +180,7 @@ export function FeaturesBentoGridAttio() {
                   <h3 className="text-lg md:text-xl font-inter-display font-bold text-[#0A0A0A] mb-2 leading-tight">
                     {cell.title}
                   </h3>
-                  <p className="text-sm font-inter text-zinc-500 mb-4 leading-relaxed">
+                  <p className="text-sm font-inter text-text-muted mb-4 leading-relaxed">
                     {cell.description}
                   </p>
                   {cell.content}

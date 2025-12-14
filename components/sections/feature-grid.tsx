@@ -5,29 +5,10 @@ import { LazyMotion, motion, domAnimation } from "framer-motion"
 import { SpotlightCard } from "@/components/ui/spotlight-card"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Users, TrendingUp, Workflow } from "lucide-react"
+import { snappyStaggerContainer, snappyStaggerItem, attioTransition } from "@/lib/animations"
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: "spring",
-      stiffness: 400,
-      damping: 17,
-    },
-  },
-}
+const containerVariants = snappyStaggerContainer
+const itemVariants = snappyStaggerItem
 
 // Mock Graph Component
 function MockGraph() {
@@ -57,7 +38,7 @@ function MockGraph() {
           strokeLinecap="round"
           initial={{ pathLength: 0 }}
           animate={{ pathLength: 1 }}
-          transition={{ duration: 2, ease: "easeInOut" }}
+          transition={attioTransition}
         />
         <defs>
           <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -246,7 +227,7 @@ export function FeatureGrid() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            transition={attioTransition}
           >
             <h2 className="text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-text-primary mb-4">
               Alles was du brauchst
@@ -260,7 +241,7 @@ export function FeatureGrid() {
             className="grid grid-cols-1 md:grid-cols-3 gap-6"
             variants={containerVariants}
             initial="hidden"
-            whileInView="visible"
+            whileInView="show"
             viewport={{ once: true, margin: "-100px" }}
           >
             {features.map((feature, index) => (

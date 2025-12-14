@@ -8,37 +8,42 @@ export function PipelineVisual() {
   const [cardState, setCardState] = React.useState<"idle" | "picking" | "moving" | "dropping" | "success">("idle")
   const [cardInColumn, setCardInColumn] = React.useState<1 | 2>(1)
   const [column2Highlight, setColumn2Highlight] = React.useState(false)
+  const [column2Hover, setColumn2Hover] = React.useState(false)
 
   React.useEffect(() => {
     const interval = setInterval(() => {
-      // Phase 1: Pick up (0.5s)
+      // Phase 1: Pick up (schnell - 0.3s)
       setCardState("picking")
       setCardInColumn(1)
       setColumn2Highlight(false)
+      setColumn2Hover(false)
 
-      // Phase 2: Move (nach 0.8s)
+      // Phase 2: Move (nach 0.5s)
       setTimeout(() => {
         setCardState("moving")
-      }, 800)
+        setColumn2Hover(true) // Drop-Target Indikator
+      }, 500)
 
-      // Phase 3: Drop (nach 2s)
+      // Phase 3: Drop (nach 2.2s)
       setTimeout(() => {
         setCardState("dropping")
         setCardInColumn(2)
-      }, 2000)
+        setColumn2Hover(false)
+      }, 2200)
 
-      // Phase 4: Success flash (nach 2.3s)
+      // Phase 4: Success flash (nach 2.4s)
       setTimeout(() => {
         setCardState("success")
         setColumn2Highlight(true)
-      }, 2300)
+      }, 2400)
 
-      // Phase 5: Reset (nach 3s)
+      // Phase 5: Reset (nach 3.2s)
       setTimeout(() => {
         setCardState("idle")
         setCardInColumn(1)
         setColumn2Highlight(false)
-      }, 3000)
+        setColumn2Hover(false)
+      }, 3200)
     }, 4000) // Loop alle 4 Sekunden
 
     return () => clearInterval(interval)
@@ -75,14 +80,19 @@ export function PipelineVisual() {
                 <motion.div
                   key="card-dragging-col1"
                   animate={{
-                    scale: cardState === "picking" || cardState === "moving" ? 1.05 : 1,
+                    scale: cardState === "picking" ? 0.98 : cardState === "moving" ? 1.05 : 1,
                     rotate: cardState === "picking" || cardState === "moving" ? 2 : 0,
                     y: cardState === "picking" || cardState === "moving" ? -8 : 0,
                     x: cardState === "moving" ? "100%" : 0,
                   }}
                   transition={attioTransition}
                   className="bg-white border border-attio-subtle rounded-md p-2 shadow-lg absolute"
-                  style={{ zIndex: 20 }}
+                  style={{ 
+                    zIndex: 20,
+                    boxShadow: cardState === "picking" || cardState === "moving" 
+                      ? "0 10px 25px rgba(0, 0, 0, 0.15)" 
+                      : "0 1px 3px rgba(0, 0, 0, 0.1)",
+                  }}
                 >
                   <div className="h-2 bg-gray-300 rounded w-20 mb-1" />
                   <div className="h-1.5 bg-gray-200 rounded w-16" />
@@ -102,7 +112,11 @@ export function PipelineVisual() {
           <motion.div
             className="bg-attio-gray rounded-lg p-3 min-h-[100px] relative"
             animate={{
-              backgroundColor: column2Highlight ? "rgb(220, 252, 231)" : undefined,
+              backgroundColor: column2Highlight 
+                ? "rgb(220, 252, 231)" 
+                : column2Hover 
+                ? "rgb(243, 244, 246)" 
+                : undefined,
             }}
             transition={snappySpring}
           >
@@ -132,7 +146,12 @@ export function PipelineVisual() {
                   }}
                   transition={attioTransition}
                   className="bg-white border border-attio-subtle rounded-md p-2 shadow-lg absolute"
-                  style={{ zIndex: 20 }}
+                  style={{ 
+                    zIndex: 20,
+                    boxShadow: cardState === "dropping" 
+                      ? "0 1px 3px rgba(0, 0, 0, 0.1)" 
+                      : "0 10px 25px rgba(0, 0, 0, 0.15)",
+                  }}
                 >
                   <div className="h-2 bg-gray-300 rounded w-20 mb-1" />
                   <div className="h-1.5 bg-gray-200 rounded w-16" />
@@ -145,4 +164,3 @@ export function PipelineVisual() {
     </div>
   )
 }
-

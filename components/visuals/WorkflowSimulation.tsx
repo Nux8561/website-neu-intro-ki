@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { User, Database, Mail, CheckCircle2 } from "lucide-react"
+import { User, Filter, Hash } from "lucide-react"
 import { attioTransition, snappySpring } from "@/lib/animations"
 
 interface WorkflowNode {
@@ -22,57 +22,69 @@ const workflowNodes: WorkflowNode[] = [
     activeBorderColor: "border-blue-500",
   },
   {
-    id: "enrich-data",
-    label: "Enrich Data",
-    icon: Database,
+    id: "qualify",
+    label: "Qualify",
+    icon: Filter,
     activeColor: "text-purple-600",
     activeBorderColor: "border-purple-500",
   },
   {
-    id: "send-email",
-    label: "Send Email",
-    icon: Mail,
+    id: "slack-alert",
+    label: "Slack Alert",
+    icon: Hash,
     activeColor: "text-green-600",
     activeBorderColor: "border-green-500",
   },
 ]
 
 export function WorkflowSimulation() {
+  const [dataBallPosition, setDataBallPosition] = React.useState<"node1" | "traveling1-2" | "node2" | "traveling2-3" | "node3" | "idle">("idle")
   const [activeNode, setActiveNode] = React.useState<string | null>(null)
-  const [dataPointPosition, setDataPointPosition] = React.useState<number>(0)
-  const [showSuccess, setShowSuccess] = React.useState(false)
+  const [showNotification, setShowNotification] = React.useState(false)
 
   React.useEffect(() => {
     const interval = setInterval(() => {
       // Reset
+      setDataBallPosition("idle")
       setActiveNode(null)
-      setDataPointPosition(0)
-      setShowSuccess(false)
+      setShowNotification(false)
 
-      // Phase 1: Daten-Punkt startet oben (0.3s)
+      // Phase 1: Daten-Ball erscheint bei Node 1 (0.2s)
       setTimeout(() => {
-        setDataPointPosition(1)
+        setDataBallPosition("node1")
         setActiveNode("new-lead")
-      }, 300)
+      }, 200)
 
-      // Phase 2: Punkt bewegt sich zu Node 2 (1.2s)
+      // Phase 2: Ball reist zu Node 2 (0.8s)
       setTimeout(() => {
-        setDataPointPosition(2)
-        setActiveNode("enrich-data")
-      }, 1200)
-
-      // Phase 3: Punkt bewegt sich zu Node 3 (2.1s)
-      setTimeout(() => {
-        setDataPointPosition(3)
-        setActiveNode("send-email")
-        setShowSuccess(true)
-      }, 2100)
-
-      // Phase 4: Reset (3.5s)
-      setTimeout(() => {
+        setDataBallPosition("traveling1-2")
         setActiveNode(null)
-        setDataPointPosition(0)
-        setShowSuccess(false)
+      }, 800)
+
+      // Phase 3: Ball erreicht Node 2 (1.4s)
+      setTimeout(() => {
+        setDataBallPosition("node2")
+        setActiveNode("qualify")
+      }, 1400)
+
+      // Phase 4: Ball reist zu Node 3 (2.0s)
+      setTimeout(() => {
+        setDataBallPosition("traveling2-3")
+        setActiveNode(null)
+      }, 2000)
+
+      // Phase 5: Ball erreicht Node 3 (2.6s)
+      setTimeout(() => {
+        setDataBallPosition("node3")
+        setActiveNode("slack-alert")
+        setShowNotification(true)
+      }, 2600)
+
+      // Phase 6: Reset (3.5s)
+      setTimeout(() => {
+        setDataBallPosition("idle")
+        setActiveNode(null)
+        setShowNotification(false)
       }, 3500)
     }, 4000) // Loop alle 4 Sekunden
 
@@ -85,7 +97,8 @@ export function WorkflowSimulation() {
       {workflowNodes.map((node, index) => {
         const Icon = node.icon
         const isActive = activeNode === node.id
-        const isPast = workflowNodes.findIndex(n => n.id === activeNode) > index
+        const nodePosition = index === 0 ? "node1" : index === 1 ? "node2" : "node3"
+        const isDataBallHere = dataBallPosition === nodePosition
 
         return (
           <React.Fragment key={node.id}>
@@ -104,25 +117,21 @@ export function WorkflowSimulation() {
               <div className="flex items-center gap-3">
                 <motion.div
                   animate={{
-                    color: isActive || isPast ? undefined : undefined,
+                    scale: isActive ? 1.1 : 1,
                   }}
                   transition={snappySpring}
                 >
                   <Icon 
-                    className={`h-5 w-5 ${
+                    className={`h-5 w-5 transition-colors ${
                       isActive 
-                        ? node.activeColor 
-                        : isPast 
                         ? node.activeColor 
                         : "text-gray-400"
                     }`}
                   />
                 </motion.div>
                 <span 
-                  className={`text-sm font-inter font-medium ${
+                  className={`text-sm font-inter font-medium transition-colors ${
                     isActive 
-                      ? node.activeColor 
-                      : isPast 
                       ? node.activeColor 
                       : "text-gray-400"
                   }`}
@@ -131,11 +140,11 @@ export function WorkflowSimulation() {
                 </span>
               </div>
 
-              {/* Daten-Punkt über dem Node */}
+              {/* Daten-Ball über dem Node */}
               <AnimatePresence>
-                {dataPointPosition === index + 1 && (
+                {isDataBallHere && (
                   <motion.div
-                    key={`data-point-${index}`}
+                    key={`data-ball-${node.id}`}
                     initial={{ opacity: 0, scale: 0, y: -20 }}
                     animate={{ 
                       opacity: 1, 
@@ -143,7 +152,7 @@ export function WorkflowSimulation() {
                       y: -12,
                     }}
                     exit={{ opacity: 0, scale: 0, y: -20 }}
-                    transition={attioTransition}
+                    transition={snappySpring}
                     className="absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-blue-500 shadow-lg z-20"
                   />
                 )}
@@ -153,18 +162,22 @@ export function WorkflowSimulation() {
             {/* Connection Line (außer nach dem letzten Node) */}
             {index < workflowNodes.length - 1 && (
               <div className="w-px h-8 bg-gray-200 relative z-0">
-                {/* Fliegender Daten-Punkt auf der Linie */}
+                {/* Reisender Daten-Ball auf der Linie */}
                 <AnimatePresence>
-                  {dataPointPosition > index + 1 && dataPointPosition < index + 2 && (
+                  {(dataBallPosition === "traveling1-2" && index === 0) || 
+                   (dataBallPosition === "traveling2-3" && index === 1) ? (
                     <motion.div
-                      key={`data-point-line-${index}`}
+                      key={`data-ball-traveling-${index}`}
                       initial={{ y: 0, opacity: 1 }}
                       animate={{ y: "100%", opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      transition={attioTransition}
+                      transition={{
+                        ...attioTransition,
+                        duration: 0.6, // Reisezeit
+                      }}
                       className="absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-blue-500 shadow-lg z-20"
                     />
-                  )}
+                  ) : null}
                 </AnimatePresence>
               </div>
             )}
@@ -172,22 +185,23 @@ export function WorkflowSimulation() {
         )
       })}
 
-      {/* Success Badge */}
+      {/* Slack Notification */}
       <AnimatePresence>
-        {showSuccess && (
+        {showNotification && (
           <motion.div
-            initial={{ opacity: 0, y: -10, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.9 }}
+            initial={{ opacity: 0, x: -20, scale: 0.9 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            exit={{ opacity: 0, x: -20, scale: 0.9 }}
             transition={snappySpring}
-            className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-3 py-1.5 bg-green-50 border border-green-200 rounded-full"
+            className="absolute -right-8 top-1/2 -translate-y-1/2 bg-white border border-attio-subtle rounded-md p-2 shadow-lg z-30"
           >
-            <CheckCircle2 className="h-4 w-4 text-green-600" strokeWidth={1.5} />
-            <span className="text-xs font-inter font-medium text-green-700">Success</span>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-green-500" />
+              <span className="text-xs font-inter font-medium text-gray-700">New notification</span>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
     </div>
   )
 }
-

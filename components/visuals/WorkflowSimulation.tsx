@@ -115,8 +115,7 @@ export function WorkflowSimulation() {
                         : isPast 
                         ? node.activeColor 
                         : "text-gray-400"
-                    }`} 
-                    strokeWidth={1.5} 
+                    }`}
                   />
                 </motion.div>
                 <span 

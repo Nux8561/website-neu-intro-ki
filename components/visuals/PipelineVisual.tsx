@@ -120,7 +120,7 @@ export function PipelineVisual() {
                   <div className="h-1.5 bg-gray-200 rounded w-16" />
                 </motion.div>
               )}
-              {isDragging && cardState === "moving" && cardInColumn === 1 && (
+              {isDragging && (cardState === "moving" || cardState === "dropping") && cardInColumn === 1 && (
                 <motion.div
                   key="card-dragging-col2"
                   initial={{ x: "-100%", y: -8, scale: 1.05, rotate: 2 }}

@@ -2,14 +2,15 @@
 
 import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { User, Filter, Hash, Plus, Settings, ZoomIn } from "lucide-react"
+import Image from "next/image"
+import { User, Filter, Plus, Settings, ZoomIn } from "lucide-react"
 import { AnimatedBeam } from "@/components/ui/animated-beam"
 import { snappySpring, attioTransition } from "@/lib/animations"
 
 interface WorkflowNode {
   id: string
   label: string
-  icon: React.ComponentType<{ className?: string }>
+  icon: React.ComponentType<{ className?: string }> | null
   activeColor: string
   activeBorderColor: string
 }
@@ -32,7 +33,7 @@ const workflowNodes: WorkflowNode[] = [
   {
     id: "slack-alert",
     label: "Intro KI Nachricht",
-    icon: Hash,
+    icon: null, // Will use Image instead
     activeColor: "text-green-600",
     activeBorderColor: "border-green-500",
   },
@@ -138,14 +139,28 @@ export function WorkflowSimulation() {
                       scale: isActive ? 1.1 : 1,
                     }}
                     transition={snappySpring}
+                    className="relative w-5 h-5 flex-shrink-0"
                   >
-                    <Icon 
-                      className={`h-5 w-5 transition-colors ${
-                        isActive 
-                          ? node.activeColor 
-                          : "text-gray-400"
-                      }`}
-                    />
+                    {node.id === "slack-alert" ? (
+                      <Image
+                        src="/images/app logo.png"
+                        alt="Intro KI Logo"
+                        fill
+                        className={`object-contain transition-opacity ${
+                          isActive ? "opacity-100" : "opacity-50"
+                        }`}
+                      />
+                    ) : (
+                      Icon && (
+                        <Icon 
+                          className={`h-5 w-5 transition-colors ${
+                            isActive 
+                              ? node.activeColor 
+                              : "text-gray-400"
+                          }`}
+                        />
+                      )
+                    )}
                   </motion.div>
                   <span 
                     className={`text-sm font-inter font-medium transition-colors ${

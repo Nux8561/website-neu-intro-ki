@@ -58,7 +58,7 @@ export function AppWindowFrame({
       <div className="flex" style={{ height: "calc(100% - 2.5rem)" }}>
         {/* Sidebar (Optional) */}
         {withSidebar && (
-          <div className="w-[200px] border-r border-attio-subtle bg-attio-gray p-4 flex-shrink-0">
+          <div className="w-[200px] border-r border-attio-subtle bg-attio-gray p-4 flex-shrink-0 overflow-hidden">
             <div className="space-y-2">
               {[1, 2, 3, 4, 5].map((i) => (
                 <div
@@ -71,7 +71,7 @@ export function AppWindowFrame({
         )}
 
         {/* Content Area */}
-        <div className="flex-1 bg-white relative overflow-hidden">
+        <div className="flex-1 bg-white relative overflow-hidden rounded-br-xl">
           {children}
         </div>
       </div>

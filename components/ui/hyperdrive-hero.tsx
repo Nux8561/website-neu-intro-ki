@@ -37,10 +37,10 @@ const StarfieldCanvas = () => {
             z: number;
             pz: number;
 
-            constructor() {
-                this.x = Math.random() * canvas.width - canvas.width / 2;
-                this.y = Math.random() * canvas.height - canvas.height / 2;
-                this.z = Math.random() * canvas.width;
+            constructor(canvasWidth: number, canvasHeight: number) {
+                this.x = Math.random() * canvasWidth - canvasWidth / 2;
+                this.y = Math.random() * canvasHeight - canvasHeight / 2;
+                this.z = Math.random() * canvasWidth;
                 this.pz = this.z;
             }
 
@@ -92,8 +92,10 @@ const StarfieldCanvas = () => {
 
         const init = () => {
             stars = [];
+            const canvasWidth = canvas.width || 1920;
+            const canvasHeight = canvas.height || 1080;
             for (let i = 0; i < numStars; i++) {
-                stars.push(new Star());
+                stars.push(new Star(canvasWidth, canvasHeight));
             }
         };
 

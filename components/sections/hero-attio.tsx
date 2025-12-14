@@ -169,13 +169,13 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
             >
               <Link
                 href="/pricing"
-                className="bg-black text-white hover:bg-gray-900 px-8 py-3.5 rounded-lg font-medium text-base transition-all duration-200 hover:scale-[1.02] font-inter"
+                className="bg-black text-white hover:bg-gray-900 px-8 py-3.5 rounded-lg font-medium text-base transition-all duration-attio ease-attio-ease-out hover:scale-[1.02] font-inter"
               >
                 Start for free
               </Link>
               <Link
                 href="/contact"
-                className="bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 px-8 py-3.5 rounded-lg font-medium text-base transition-all duration-200 font-inter"
+                className="bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 px-8 py-3.5 rounded-lg font-medium text-base transition-all duration-attio ease-attio-ease-out font-inter"
               >
                 Talk to sales
               </Link>

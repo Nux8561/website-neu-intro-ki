@@ -260,7 +260,7 @@ export function FeaturesBentoGridAttio() {
             <motion.div
               key={cell.id}
               variants={itemVariants}
-              className="bg-white p-6 hover:bg-gray-50/50 hover:shadow-sm transition-all duration-200"
+              className="bg-white p-6 hover:bg-gray-50/50 hover:shadow-sm transition-all duration-attio ease-attio-ease-out"
               style={{
                 gridColumn: isDesktop ? `span ${cell.colSpan}` : '1 / -1',
                 gridRow: isDesktop ? `span ${cell.rowSpan}` : 'auto',

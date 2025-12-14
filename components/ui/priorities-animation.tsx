@@ -238,9 +238,40 @@ function FlowLinesSVG({
   aiCenterRef: React.RefObject<HTMLDivElement>
   cardRefs: React.MutableRefObject<(HTMLDivElement | null)[]>
   containerRef: React.RefObject<HTMLDivElement>
-  dataSources: typeof dataSources
-  priorityLeads: typeof priorityLeads
-  colors: typeof colors
+  dataSources: Array<{
+    id: string
+    name: string
+    icon: React.ComponentType<{ className?: string; style?: React.CSSProperties; strokeWidth?: number }>
+    color: string
+    bgColor: string
+    count: number
+  }>
+  priorityLeads: Array<{
+    id: string
+    company: string
+    priority: number
+    score: number
+    status: "dringend" | "hoch"
+    lastContact: string
+    action: string
+  }>
+  colors: {
+    background: string
+    surface: string
+    border: string
+    text: {
+      primary: string
+      secondary: string
+      muted: string
+    }
+    accent: {
+      blue: string
+      purple: string
+      green: string
+      orange: string
+      red: string
+    }
+  }
 }) {
   const [, forceUpdate] = React.useReducer(x => x + 1, 0)
 

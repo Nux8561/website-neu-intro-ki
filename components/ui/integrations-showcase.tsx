@@ -94,7 +94,7 @@ function GmailCard() {
               </motion.div>
             </div>
             <p className="text-[11px] font-inter text-gray-500 truncate">
-              Thanks for reaching out. Let's schedule...
+              Thanks for reaching out. Let&apos;s schedule...
             </p>
           </div>
         </div>

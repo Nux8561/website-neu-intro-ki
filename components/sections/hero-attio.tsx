@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ArrowRight, Sparkles, X } from "lucide-react"
+import { ArrowRight, Sparkles } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { DataFlowAnimation } from "@/components/ui/data-flow-animation"
@@ -108,25 +108,8 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
 
   return (
     <>
-      {/* Top Banner - Attio Style */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-black text-white h-12 flex items-center justify-between px-4 sm:px-6">
-        <Link
-          href="/developers"
-          className="flex items-center gap-2 text-sm font-inter font-medium hover:opacity-80 transition-opacity"
-        >
-          <span>Meet the Attio Developer Platform</span>
-          <ArrowRight className="h-3 w-3" />
-        </Link>
-        <button
-          className="p-1 hover:opacity-60 transition-opacity"
-          aria-label="Close banner"
-        >
-          <X className="h-4 w-4" />
-        </button>
-      </div>
-
       {/* Hero Section - Attio Style */}
-      <section className="relative bg-[#FAFAFB] pt-24 pb-20 sm:pb-24 overflow-hidden">
+      <section className="relative bg-[#FAFAFB] pt-16 pb-20 sm:pb-24 overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
           <motion.div
             className="max-w-4xl mx-auto text-center"

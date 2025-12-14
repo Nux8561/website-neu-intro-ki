@@ -207,7 +207,7 @@ export function Navbar() {
 
   return (
     <motion.nav
-      className="fixed top-12 left-0 right-0 z-40"
+      className="fixed top-0 left-0 right-0 z-40"
       initial={{ y: 0 }}
       animate={{
         backgroundColor: isScrolled 

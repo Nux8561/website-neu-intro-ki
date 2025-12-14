@@ -38,7 +38,27 @@ export function TextShimmer({
 
 }: TextShimmerProps) {
 
-  const MotionComponent = motion(Component as keyof JSX.IntrinsicElements);
+  // Verwende direkte motion-Komponenten für bessere Typ-Sicherheit
+  const MotionP = motion.p;
+  const MotionSpan = motion.span;
+  const MotionDiv = motion.div;
+  const MotionH1 = motion.h1;
+  const MotionH2 = motion.h2;
+  const MotionH3 = motion.h3;
+  const MotionH4 = motion.h4;
+  const MotionH5 = motion.h5;
+  const MotionH6 = motion.h6;
+
+  const MotionComponent = 
+    Component === 'span' ? MotionSpan :
+    Component === 'div' ? MotionDiv :
+    Component === 'h1' ? MotionH1 :
+    Component === 'h2' ? MotionH2 :
+    Component === 'h3' ? MotionH3 :
+    Component === 'h4' ? MotionH4 :
+    Component === 'h5' ? MotionH5 :
+    Component === 'h6' ? MotionH6 :
+    MotionP;
 
 
 

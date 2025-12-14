@@ -85,7 +85,7 @@ const team: TeamMember[] = [
     name: "Sarah Klein",
     role: "Head of Marketing",
     bio: "Marketing-Expertin mit Fokus auf Growth und Brand Building im B2B-SaaS-Bereich.",
-    avatar: "/team/sarah.jpg",
+    avatar: "/images/Gemini_Generated_Image_r70y1r70y1r70y1r.png",
     linkedin: "#",
     twitter: "#",
   },

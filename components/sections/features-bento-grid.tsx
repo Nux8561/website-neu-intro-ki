@@ -10,6 +10,7 @@ import { CallCoachingPanel } from "@/components/ui/call-coaching-panel"
 import { FlowchartPreview } from "@/components/ui/flowchart-preview"
 import { ScoreChart } from "@/components/ui/score-chart"
 import { IntegrationGrid } from "@/components/ui/integration-grid"
+import InfiniteGallery from "@/components/ui/3d-gallery-photography"
 import {
   Search,
   GitBranch,
@@ -200,6 +201,59 @@ export function FeaturesBentoGrid() {
             </p>
           </motion.div>
 
+          {/* 3D Gallery für Research Feature */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            className="mb-16"
+          >
+            <Card className="border-border-subtle bg-surface/50 backdrop-blur-sm overflow-hidden">
+              <CardHeader className="pb-3">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="p-2 rounded-lg bg-surface border border-border">
+                    <Search className="h-5 w-5 text-text-secondary" />
+                  </div>
+                  <CardTitle className="text-lg font-jakarta font-medium tracking-tight text-text-primary">
+                    Research in Sekunden
+                  </CardTitle>
+                </div>
+                <CardDescription className="text-text-secondary font-inter text-sm">
+                  Multi-Agent-System mit paralleler Ausführung
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="p-0">
+                <InfiniteGallery
+                  images={[
+                    { src: 'https://images.unsplash.com/photo-1741332966416-414d8a5b8887?w=800&auto=format&fit=crop&q=80', alt: 'Company Agent' },
+                    { src: 'https://images.unsplash.com/photo-1754769440490-2eb64d715775?w=800&auto=format&fit=crop&q=80', alt: 'People Agent' },
+                    { src: 'https://images.unsplash.com/photo-1758640920659-0bb864175983?w=800&auto=format&fit=crop&q=80', alt: 'AI Agent' },
+                    { src: 'https://plus.unsplash.com/premium_photo-1758367454070-731d3cc11774?w=800&auto=format&fit=crop&q=80', alt: 'Validation Agent' },
+                    { src: 'https://images.unsplash.com/photo-1746023841657-e5cd7cc90d2c?w=800&auto=format&fit=crop&q=80', alt: 'Research 1' },
+                    { src: 'https://images.unsplash.com/photo-1741715661559-6149723ea89a?w=800&auto=format&fit=crop&q=80', alt: 'Research 2' },
+                    { src: 'https://images.unsplash.com/photo-1725878746053-407492aa4034?w=800&auto=format&fit=crop&q=80', alt: 'Research 3' },
+                    { src: 'https://images.unsplash.com/photo-1752588975168-d2d7965a6d64?w=800&auto=format&fit=crop&q=80', alt: 'Research 4' },
+                  ]}
+                  speed={1.2}
+                  visibleCount={12}
+                  className="h-[600px] w-full rounded-lg"
+                  enableScrollLimit={true}
+                  fadeSettings={{
+                    fadeIn: { start: 0.05, end: 0.25 },
+                    fadeOut: { start: 0.4, end: 0.43 },
+                  }}
+                  blurSettings={{
+                    blurIn: { start: 0.0, end: 0.1 },
+                    blurOut: { start: 0.4, end: 0.43 },
+                    maxBlur: 8.0,
+                  }}
+                />
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* Restliche Features */}
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
             variants={containerVariants}
@@ -210,7 +264,7 @@ export function FeaturesBentoGrid() {
               gridAutoRows: "minmax(200px, auto)",
             }}
           >
-            {features.map((feature, index) => (
+            {features.filter(f => f.id !== 'research').map((feature, index) => (
               <FeatureItem key={feature.id} feature={feature} index={index} />
             ))}
           </motion.div>

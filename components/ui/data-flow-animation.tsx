@@ -317,41 +317,44 @@ function CentralHub({ count }: { count: number }) {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ ...smoothSpring, delay: 0.4 }}
     >
-      {/* Outer pulsing ring */}
-      <motion.div
-        className="absolute w-48 h-48 rounded-full border-2 border-gray-400"
-        animate={{ scale: [1, 1.06, 1], opacity: [0.5, 0.2, 0.5] }}
-        transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-      />
-      
-      {/* Middle ring with orbiting dots */}
-      <motion.div
-        className="absolute w-40 h-40 rounded-full border-2 border-gray-300"
-        animate={{ rotate: 360 }}
-        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-      >
-        {[0, 90, 180, 270].map((angle, i) => (
-          <div
-            key={i}
-            className="absolute w-2 h-2 rounded-full bg-gray-500"
-            style={{
-              top: "50%",
-              left: "50%",
-              transform: `rotate(${angle}deg) translateX(80px) translateY(-50%)`
-            }}
-          />
-        ))}
-      </motion.div>
-      
-      {/* Center card with logo - using PNG image with SVG fallback */}
-      <motion.div 
-        className="relative w-28 h-28 rounded-2xl bg-white shadow-2xl border-2 border-gray-300 flex flex-col items-center justify-center overflow-hidden"
-        whileHover={{ scale: 1.05 }}
-        transition={{ type: "spring", stiffness: 400, damping: 25 }}
-      >
-        {/* Use PNG logo if available, otherwise use SVG */}
-        <LogoWithFallback />
-      </motion.div>
+      {/* Wrapper for rings and card - sized to fit the largest ring */}
+      <div className="relative w-48 h-48 flex items-center justify-center">
+        {/* Outer pulsing ring */}
+        <motion.div
+          className="absolute w-48 h-48 rounded-full border-2 border-gray-400"
+          animate={{ scale: [1, 1.06, 1], opacity: [0.5, 0.2, 0.5] }}
+          transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+        />
+        
+        {/* Middle ring with orbiting dots */}
+        <motion.div
+          className="absolute w-40 h-40 rounded-full border-2 border-gray-300"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+        >
+          {[0, 90, 180, 270].map((angle, i) => (
+            <div
+              key={i}
+              className="absolute w-2 h-2 rounded-full bg-gray-500"
+              style={{
+                top: "50%",
+                left: "50%",
+                transform: `rotate(${angle}deg) translateX(80px) translateY(-50%)`
+              }}
+            />
+          ))}
+        </motion.div>
+        
+        {/* Center card with logo - using PNG image with SVG fallback */}
+        <motion.div 
+          className="relative w-28 h-28 rounded-2xl bg-white shadow-2xl border-2 border-gray-300 flex flex-col items-center justify-center overflow-hidden z-10"
+          whileHover={{ scale: 1.05 }}
+          transition={{ type: "spring", stiffness: 400, damping: 25 }}
+        >
+          {/* Use PNG logo if available, otherwise use SVG */}
+          <LogoWithFallback />
+        </motion.div>
+      </div>
       
       {/* Counter below */}
       <motion.div 
@@ -452,10 +455,10 @@ export function DataFlowAnimation() {
           transition={smoothSpring}
         >
           <div>
-            <h3 className="text-base font-semibold text-gray-900 mb-0.5">
+            <h3 className="text-base font-jakarta font-semibold tracking-tight text-gray-900 mb-0.5">
               Dein intelligentes Daten-Gehirn
             </h3>
-            <p className="text-sm text-gray-500 max-w-xs">
+            <p className="text-sm font-inter text-gray-500 max-w-xs">
               Alle deine Vertriebsdaten vereint – die KI lernt aus deiner gesamten Geschichte
             </p>
           </div>

@@ -115,6 +115,8 @@ const config: Config = {
         'slide-in': 'slideIn 0.3s ease-out',
         'slide-up': 'slideUp 0.4s ease-out',
         'scale-in': 'scaleIn 0.2s ease-out',
+        // Line Shadow Text Animation
+        'line-shadow': 'line-shadow 15s linear infinite',
       },
       keyframes: {
         // Attio Keyframes (basierend auf Analyse)
@@ -154,6 +156,11 @@ const config: Config = {
         scaleIn: {
           '0%': { transform: 'scale(0.95)', opacity: '0' },
           '100%': { transform: 'scale(1)', opacity: '1' },
+        },
+        // Line Shadow Text Keyframes
+        'line-shadow': {
+          '0%': { 'background-position': '0 0' },
+          '100%': { 'background-position': '100% -100%' },
         },
       },
     },

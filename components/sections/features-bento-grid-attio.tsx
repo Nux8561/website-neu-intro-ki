@@ -16,6 +16,10 @@ import {
 import { SkeletalUI } from "@/components/ui/skeletal-ui"
 import { FeatureIcon } from "@/components/ui/feature-icon"
 import { WorkflowSimulation } from "@/components/visuals/WorkflowSimulation"
+import { ActivityTicker } from "@/components/visuals/ActivityTicker"
+import { TextShimmer } from "@/components/ui/text-shimmer"
+import { LineShadowText } from "@/components/ui/line-shadow-text"
+import AnimatedLoadingSkeleton from "@/components/ui/animated-loading-skeleton"
 import { snappySpring, snappyStaggerContainer, snappyStaggerItem } from "@/lib/animations"
 
 // Animation variants - Snappy Spring Physics
@@ -60,7 +64,11 @@ const bentoCells = [
           01 Leistungsstarke Plattform
         </div>
         <h2 className="text-4xl md:text-5xl font-inter-display font-bold tracking-tight text-[#0A0A0A]">
-          GTM auf vollen Touren.
+          GTM auf{' '}
+          <LineShadowText shadowColor="#0A0A0A" className="italic">
+            vollen Touren
+          </LineShadowText>
+          .
         </h2>
       </div>
     ),
@@ -106,9 +114,14 @@ const bentoCells = [
     content: (
           <div className="mt-4 flex items-center gap-3">
             <FeatureIcon logo="/images/openai-1-5u0onpsnpplsd0el4s93im.webp" size="md" color="purple" />
-            <div className="text-sm font-inter text-text-muted">
+            <TextShimmer 
+              as="div"
+              className="text-sm font-inter text-text-muted"
+              duration={2}
+              spread={2}
+            >
               Muster analysieren...
-            </div>
+            </TextShimmer>
           </div>
     ),
   },
@@ -119,6 +132,22 @@ const bentoCells = [
     title: "Erweiterte Berichte",
     description: "Erstelle benutzerdefinierte Berichte mit Drag-and-Drop-Einfachheit.",
     content: <SkeletalUI variant="pipeline" />,
+  },
+  {
+    id: "activity",
+    colSpan: 6,
+    rowSpan: 1,
+    content: <ActivityTicker />,
+  },
+  {
+    id: "logo",
+    colSpan: 3,
+    rowSpan: 1,
+    content: (
+      <div className="w-full h-full -m-6">
+        <AnimatedLoadingSkeleton />
+      </div>
+    ),
   },
 ]
 

@@ -1,7 +1,7 @@
-"use client"
-
 import React, { useEffect, useState } from 'react'
+
 import { motion, useAnimation } from 'framer-motion'
+import { Search } from 'lucide-react'
 
 // Interface for grid configuration structure
 interface GridConfig {
@@ -13,22 +13,21 @@ interface GridConfig {
     yStep: number // Vertical step between cards
 }
 
-export const AnimatedLoadingSkeleton = () => {
+const AnimatedLoadingSkeleton = () => {
     const [windowWidth, setWindowWidth] = useState(0) // State to store window width for responsiveness
     const controls = useAnimation() // Controls for Framer Motion animations
 
     // Dynamically calculates grid configuration based on window width
     const getGridConfig = (width: number): GridConfig => {
-        const numCards = 6 // Fixed number of cards
-        const cols = width >= 1024 ? 3 : width >= 640 ? 2 : 1 // Set columns based on screen width
-
+        const numCards = 4 // Reduced to 4 cards for compact layout
+        const cols = width >= 1024 ? 2 : width >= 640 ? 2 : 2 // Always 2 columns for square format
         return {
             numCards,
             cols,
-            xBase: 40, // Starting x-coordinate
-            yBase: 60, // Starting y-coordinate
-            xStep: 210, // Horizontal spacing
-            yStep: 230 // Vertical spacing
+            xBase: 30, // Starting x-coordinate
+            yBase: 40, // Starting y-coordinate
+            xStep: 140, // Horizontal spacing (reduced)
+            yStep: 140 // Vertical spacing (reduced for square)
         }
     }
 
@@ -75,8 +74,11 @@ export const AnimatedLoadingSkeleton = () => {
     // Handles window resize events and updates the window width
     useEffect(() => {
         setWindowWidth(window.innerWidth)
+
         const handleResize = () => setWindowWidth(window.innerWidth)
+
         window.addEventListener('resize', handleResize)
+
         return () => window.removeEventListener('resize', handleResize)
     }, [])
 
@@ -123,41 +125,32 @@ export const AnimatedLoadingSkeleton = () => {
 
     return (
         <motion.div
-            className="w-full max-w-4xl mx-auto"
+            className="w-full h-full p-3 bg-white rounded-xl shadow-lg"
             variants={frameVariants}
             initial="hidden"
             animate="visible"
         >
-            <div className="relative overflow-hidden rounded-lg bg-white p-8 border border-gray-200 shadow-sm">
+            <div className="relative overflow-hidden rounded-lg bg-gradient-to-br from-gray-50 to-gray-100 p-4 h-full">
                 {/* Search icon with animation */}
                 <motion.div
                     className="absolute z-10 pointer-events-none"
                     animate={controls}
-                    style={{ left: 24, top: 24 }}
+                    style={{ left: 16, top: 16 }}
                 >
                     <motion.div
-                        className="bg-blue-500/20 p-3 rounded-full backdrop-blur-sm"
+                        className="bg-blue-500/20 p-2 rounded-full backdrop-blur-sm"
                         variants={glowVariants}
                         animate="animate"
                     >
-                        <svg
-                            className="w-6 h-6 text-blue-600"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                            />
-                        </svg>
+                        <Search
+                            className="w-4 h-4 text-blue-600"
+                            strokeWidth={2}
+                        />
                     </motion.div>
                 </motion.div>
 
-                {/* Grid of animated cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {/* Grid of animated cards - Compact 2x2 layout */}
+                <div className="grid grid-cols-2 gap-2 h-full">
                     {[...Array(config.numCards)].map((_, i) => (
                         <motion.div
                             key={i}
@@ -166,27 +159,25 @@ export const AnimatedLoadingSkeleton = () => {
                             animate="visible"
                             custom={i} // Index-based animation delay
                             whileHover={{ scale: 1.02 }} // Slight scale on hover
-                            className="bg-white rounded-lg shadow-sm p-4"
+                            className="bg-white rounded-lg shadow-sm p-2"
                         >
-                            {/* Card placeholders */}
+                            {/* Card placeholders - Compact */}
                             <motion.div
-                                className="h-32 bg-gray-200 rounded-md mb-3"
+                                className="h-16 bg-gray-200 rounded-md mb-2"
                                 animate={{
                                     background: ["#f3f4f6", "#e5e7eb", "#f3f4f6"],
                                 }}
                                 transition={{ duration: 1.5, repeat: Infinity }}
                             />
-
                             <motion.div
-                                className="h-3 w-3/4 bg-gray-200 rounded mb-2"
+                                className="h-2 w-3/4 bg-gray-200 rounded mb-1"
                                 animate={{
                                     background: ["#f3f4f6", "#e5e7eb", "#f3f4f6"],
                                 }}
                                 transition={{ duration: 1.5, repeat: Infinity }}
                             />
-
                             <motion.div
-                                className="h-3 w-1/2 bg-gray-200 rounded"
+                                className="h-2 w-1/2 bg-gray-200 rounded"
                                 animate={{
                                     background: ["#f3f4f6", "#e5e7eb", "#f3f4f6"],
                                 }}
@@ -201,4 +192,3 @@ export const AnimatedLoadingSkeleton = () => {
 }
 
 export default AnimatedLoadingSkeleton
-

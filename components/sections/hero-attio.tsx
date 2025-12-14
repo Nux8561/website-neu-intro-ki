@@ -201,17 +201,17 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
 
               {/* App Preview Area - Attio Style */}
               <div className="relative aspect-[16/10] bg-white">
-                <AnimatePresence mode="sync">
+                <AnimatePresence mode="wait">
                   {activeTab === "data" && (
                     <motion.div
                       key="data-tab"
                       role="tabpanel"
                       id="tabpanel-data"
                       aria-labelledby="tab-data"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 17, duration: 0.3 }}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
                       className="absolute inset-0 bg-attio-gray overflow-hidden"
                     >
                       <DataFlowAnimation key="data-animation" />
@@ -223,10 +223,10 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
                       role="tabpanel"
                       id="tabpanel-priorities"
                       aria-labelledby="tab-priorities"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 17, duration: 0.3 }}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
                       className="absolute inset-0 bg-gray-50"
                     >
                       <PrioritiesAnimation key="priorities-animation" />
@@ -238,13 +238,18 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
                       role="tabpanel"
                       id="tabpanel-reporting"
                       aria-labelledby="tab-reporting"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 17, duration: 0.3 }}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
                       className="absolute inset-0 bg-attio-gray overflow-hidden"
                     >
-                      <div className="absolute inset-0 flex items-center justify-center p-6 bg-attio-gray">
+                      <motion.div 
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 17, delay: 0.1 }}
+                        className="absolute inset-0 flex items-center justify-center p-6 bg-attio-gray"
+                      >
                         <div className="text-center">
                           <Image
                             src={`/screenshots/reporting-view.png`}
@@ -256,11 +261,16 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
                               target.style.display = 'none'
                             }}
                           />
-                          <div className="relative z-10 text-gray-500 text-sm">
+                          <motion.div 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.2 }}
+                            className="relative z-10 text-gray-500 text-sm"
+                          >
                             Reporting Dashboard kommt bald...
-                          </div>
+                          </motion.div>
                         </div>
-                      </div>
+                      </motion.div>
                     </motion.div>
                   )}
                   {activeTab === "pipeline" && (
@@ -269,13 +279,18 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
                       role="tabpanel"
                       id="tabpanel-pipeline"
                       aria-labelledby="tab-pipeline"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 17, duration: 0.3 }}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
                       className="absolute inset-0 bg-attio-gray overflow-hidden"
                     >
-                      <div className="absolute inset-0 flex items-center justify-center p-6 bg-attio-gray">
+                      <motion.div 
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 17, delay: 0.1 }}
+                        className="absolute inset-0 flex items-center justify-center p-6 bg-attio-gray"
+                      >
                         <div className="text-center">
                           <Image
                             src={`/screenshots/pipeline-view.png`}
@@ -287,11 +302,16 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
                               target.style.display = 'none'
                             }}
                           />
-                          <div className="relative z-10 text-gray-500 text-sm">
+                          <motion.div 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.2 }}
+                            className="relative z-10 text-gray-500 text-sm"
+                          >
                             Pipeline View kommt bald...
-                          </div>
+                          </motion.div>
                         </div>
-                      </div>
+                      </motion.div>
                     </motion.div>
                   )}
                 </AnimatePresence>

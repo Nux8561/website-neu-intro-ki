@@ -81,7 +81,26 @@ const config: Config = {
         'card': '0 0 0 1px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.05)',
         'card-hover': '0 0 0 1px rgba(0, 0, 0, 0.08), 0 8px 16px rgba(0, 0, 0, 0.1)',
       },
+      transitionDuration: {
+        'attio': '300ms', // Attio Standard (am häufigsten: 622x verwendet)
+        'attio-fast': '150ms', // Zweithäufigste (138x)
+        'attio-slow': '400ms', // Für langsamere Animationen (49x)
+        'attio-instant': '50ms', // Für schnelle Feedback (88x)
+      },
+      transitionTimingFunction: {
+        'attio-ease': 'cubic-bezier(0.32, 0.72, 0, 1)', // Attio Standard (am häufigsten)
+        'attio-ease-alt': 'cubic-bezier(0.33, 0.00, 0.00, 1.00)', // Alternative
+        'attio-smooth': 'cubic-bezier(0.45, 0, 0.2, 1)',
+        'attio-ease-out': 'ease-out', // Sehr häufig (620x)
+        'attio-ease-in': 'ease-in', // Häufig (92x)
+      },
       animation: {
+        // Attio Animationen (basierend auf Analyse)
+        'attio-fade-in': 'fadeIn 300ms ease-out', // duration-300 + ease-out (häufigste Kombination)
+        'attio-fade-out': 'fadeOut 300ms ease-out',
+        'attio-slide-up': 'slideFromBottom 300ms ease-out',
+        'attio-slide-down': 'slideToBottom 300ms ease-out',
+        // Legacy (behalten für Kompatibilität)
         'pulse-slow': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'fade-in': 'fadeIn 0.5s ease-in-out',
         'slide-in': 'slideIn 0.3s ease-out',
@@ -89,10 +108,32 @@ const config: Config = {
         'scale-in': 'scaleIn 0.2s ease-out',
       },
       keyframes: {
+        // Attio Keyframes (basierend auf Analyse)
         fadeIn: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
         },
+        fadeOut: {
+          '0%': { opacity: '1' },
+          '100%': { opacity: '0' },
+        },
+        slideFromBottom: {
+          '0%': { transform: 'translate3d(0, 100%, 0)', opacity: '0' },
+          '100%': { transform: 'translate3d(0, 0, 0)', opacity: '1' },
+        },
+        slideToBottom: {
+          '0%': { transform: 'translate3d(0, 0, 0)', opacity: '1' },
+          '100%': { transform: 'translate3d(0, 100%, 0)', opacity: '0' },
+        },
+        slideFromTop: {
+          '0%': { transform: 'translate3d(0, -100%, 0)', opacity: '0' },
+          '100%': { transform: 'translate3d(0, 0, 0)', opacity: '1' },
+        },
+        slideToTop: {
+          '0%': { transform: 'translate3d(0, 0, 0)', opacity: '1' },
+          '100%': { transform: 'translate3d(0, -100%, 0)', opacity: '0' },
+        },
+        // Legacy (behalten für Kompatibilität)
         slideIn: {
           '0%': { transform: 'translateX(-20px)', opacity: '0' },
           '100%': { transform: 'translateX(0)', opacity: '1' },

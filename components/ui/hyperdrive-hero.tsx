@@ -31,32 +31,34 @@ const StarfieldCanvas = () => {
             y: number;
             z: number;
             pz: number;
+            private canvas: HTMLCanvasElement;
 
-            constructor() {
-                this.x = Math.random() * canvas.width - canvas.width / 2;
-                this.y = Math.random() * canvas.height - canvas.height / 2;
-                this.z = Math.random() * canvas.width;
+            constructor(canvasElement: HTMLCanvasElement) {
+                this.canvas = canvasElement;
+                this.x = Math.random() * this.canvas.width - this.canvas.width / 2;
+                this.y = Math.random() * this.canvas.height - this.canvas.height / 2;
+                this.z = Math.random() * this.canvas.width;
                 this.pz = this.z; // previous z
             }
 
             update() {
                 this.z = this.z - speed;
                 if (this.z < 1) {
-                    this.z = canvas.width;
-                    this.x = Math.random() * canvas.width - canvas.width / 2;
-                    this.y = Math.random() * canvas.height - canvas.height / 2;
+                    this.z = this.canvas.width;
+                    this.x = Math.random() * this.canvas.width - this.canvas.width / 2;
+                    this.y = Math.random() * this.canvas.height - this.canvas.height / 2;
                     this.pz = this.z;
                 }
             }
 
-            draw() {
-                const sx = (this.x / this.z) * canvas.width / 2 + canvas.width / 2;
-                const sy = (this.y / this.z) * canvas.height / 2 + canvas.height / 2;
+            draw(ctx: CanvasRenderingContext2D) {
+                const sx = (this.x / this.z) * this.canvas.width / 2 + this.canvas.width / 2;
+                const sy = (this.y / this.z) * this.canvas.height / 2 + this.canvas.height / 2;
                 
-                const r = Math.max(0.1, (1 - this.z / canvas.width) * 2.5);
+                const r = Math.max(0.1, (1 - this.z / this.canvas.width) * 2.5);
 
-                const px = (this.x / this.pz) * canvas.width / 2 + canvas.width / 2;
-                const py = (this.y / this.pz) * canvas.height / 2 + canvas.height / 2;
+                const px = (this.x / this.pz) * this.canvas.width / 2 + this.canvas.width / 2;
+                const py = (this.y / this.pz) * this.canvas.height / 2 + this.canvas.height / 2;
 
                 this.pz = this.z;
 
@@ -65,7 +67,7 @@ const StarfieldCanvas = () => {
                 ctx.lineTo(sx, sy);
                 ctx.lineWidth = r * 2;
                 // Dunkle Sterne auf hellem Hintergrund - subtil
-                ctx.strokeStyle = `rgba(0, 0, 0, ${0.15 * (1 - this.z / canvas.width)})`;
+                ctx.strokeStyle = `rgba(0, 0, 0, ${0.15 * (1 - this.z / this.canvas.width)})`;
                 ctx.stroke();
             }
         }
@@ -73,7 +75,7 @@ const StarfieldCanvas = () => {
         const init = () => {
             stars = [];
             for (let i = 0; i < numStars; i++) {
-                stars.push(new Star());
+                stars.push(new Star(canvas));
             }
         };
 
@@ -84,7 +86,7 @@ const StarfieldCanvas = () => {
             
             stars.forEach(star => {
                 star.update();
-                star.draw();
+                star.draw(ctx);
             });
 
             animationFrameId = requestAnimationFrame(animate);

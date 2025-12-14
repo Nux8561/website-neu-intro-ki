@@ -15,7 +15,7 @@ import {
 import { cn } from "@/lib/utils"
 
 interface ActivityEvent {
-  icon: React.ComponentType<{ className?: string; strokeWidth?: number }>
+  icon: React.ComponentType<{ className?: string; strokeWidth?: string | number }>
   text: string
   color: "blue" | "green" | "purple" | "orange"
 }

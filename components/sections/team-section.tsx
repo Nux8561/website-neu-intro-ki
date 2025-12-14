@@ -69,7 +69,7 @@ const team: TeamMember[] = [
     name: "Julia Hoffmann",
     role: "Head of Customer Success",
     bio: "Sorgt dafür, dass unsere Kunden erfolgreich sind und das Beste aus IntroKI herausholen.",
-    avatar: "/team/julia.jpg",
+    avatar: "/images/Gemini_Generated_Image_up8vydup8vydup8v.png",
     linkedin: "#",
   },
   {
@@ -94,7 +94,7 @@ const team: TeamMember[] = [
     name: "David Schmidt",
     role: "Head of Sales",
     bio: "Sales-Veteran mit über 15 Jahren Erfahrung im Enterprise-Vertrieb und Account Management.",
-    avatar: "/team/david.jpg",
+    avatar: "/images/Gemini_Generated_Image_j18hrgj18hrgj18h.png",
     linkedin: "#",
   },
   {

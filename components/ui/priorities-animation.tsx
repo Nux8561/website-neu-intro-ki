@@ -610,7 +610,10 @@ export function PrioritiesAnimation() {
                       className="w-20 h-20 rounded-2xl border-2 flex items-center justify-center shadow-sm relative"
                       style={{
                         borderColor: isActive ? source.color : colors.border,
-                        backgroundColor: isActive ? source.bgColor : colors.surface
+                        backgroundColor: isActive ? source.bgColor : colors.surface,
+                        boxShadow: isActive && (phase === "collecting" || phase === "analyzing")
+                          ? `0 4px 12px ${source.color}30`
+                          : "0 1px 3px rgba(0,0,0,0.1)"
                       }}
                       animate={isActive && (phase === "collecting" || phase === "analyzing") ? { 
                         scale: [1, 1.05, 1],
@@ -621,11 +624,6 @@ export function PrioritiesAnimation() {
                           repeat: isActive ? Infinity : 0,
                           ease: "easeInOut"
                         }
-                      }}
-                      style={{
-                        boxShadow: isActive && (phase === "collecting" || phase === "analyzing")
-                          ? `0 4px 12px ${source.color}30`
-                          : "0 1px 3px rgba(0,0,0,0.1)"
                       }}
                     >
                       <Icon className="w-10 h-10" style={{ color: isActive ? source.color : colors.text.muted }} strokeWidth={1.5} />
@@ -661,7 +659,8 @@ export function PrioritiesAnimation() {
                   className="w-36 h-36 rounded-3xl border-2 flex items-center justify-center shadow-lg relative overflow-hidden"
                   style={{
                     borderColor: colors.accent.purple,
-                    backgroundColor: "#F5F3FF"
+                    backgroundColor: "#F5F3FF",
+                    boxShadow: "0 4px 12px rgba(139, 92, 246, 0.2)"
                   }}
                   animate={{
                     scale: [1, 1.02, 1],
@@ -672,9 +671,6 @@ export function PrioritiesAnimation() {
                       repeat: Infinity,
                       ease: "easeInOut"
                     }
-                  }}
-                  style={{
-                    boxShadow: "0 4px 12px rgba(139, 92, 246, 0.2)"
                   }}
                 >
                   <div className="w-24 h-24 relative">

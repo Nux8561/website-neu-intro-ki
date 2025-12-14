@@ -218,6 +218,177 @@ function PriorityCard({ lead, index, isVisible }: PriorityCardProps) {
   )
 }
 
+// Flow Lines SVG Component - calculates paths dynamically
+function FlowLinesSVG({
+  phase,
+  activeSource,
+  visibleCards,
+  sourceRefs,
+  aiCenterRef,
+  cardRefs,
+  containerRef,
+  dataSources,
+  priorityLeads,
+  colors
+}: {
+  phase: "collecting" | "analyzing" | "prioritizing" | "resetting"
+  activeSource: number
+  visibleCards: number
+  sourceRefs: React.MutableRefObject<(HTMLDivElement | null)[]>
+  aiCenterRef: React.RefObject<HTMLDivElement>
+  cardRefs: React.MutableRefObject<(HTMLDivElement | null)[]>
+  containerRef: React.RefObject<HTMLDivElement>
+  dataSources: typeof dataSources
+  priorityLeads: typeof priorityLeads
+  colors: typeof colors
+}) {
+  const [, forceUpdate] = React.useReducer(x => x + 1, 0)
+
+  // Force re-render to update paths when elements move
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      forceUpdate()
+    }, 100)
+    return () => clearInterval(interval)
+  }, [phase, activeSource, visibleCards])
+
+  if (!containerRef.current) return null
+
+  const containerRect = containerRef.current.getBoundingClientRect()
+
+  return (
+    <svg 
+      className="absolute inset-0 w-full h-full pointer-events-none"
+      style={{ zIndex: 30 }}
+    >
+      {/* Flow from SOURCES to AI */}
+      {(phase === "collecting" || phase === "analyzing") && dataSources.map((source, index) => {
+        const isActive = phase === "analyzing" || activeSource === index
+        if (!isActive) return null
+
+        const sourceEl = sourceRefs.current[index]
+        const aiEl = aiCenterRef.current
+        if (!sourceEl || !aiEl) return null
+
+        const sourceRect = sourceEl.getBoundingClientRect()
+        const aiRect = aiEl.getBoundingClientRect()
+
+        // Start: Bottom center of source card
+        const startX = sourceRect.left - containerRect.left + sourceRect.width / 2
+        const startY = sourceRect.bottom - containerRect.top
+
+        // End: Center of logo
+        const endX = aiRect.left - containerRect.left + aiRect.width / 2
+        const endY = aiRect.top - containerRect.top + aiRect.height / 2
+
+        // Bezier curve
+        const midX = (startX + endX) / 2
+        const controlY = startY - 100 + (index * 30)
+        const pathD = `M ${startX} ${startY} Q ${midX} ${controlY} ${endX} ${endY}`
+
+        return (
+          <g key={`source-to-ai-${source.id}`}>
+            <defs>
+              <linearGradient id={`grad-${source.id}`} x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor={source.color} stopOpacity="0.8" />
+                <stop offset="50%" stopColor={source.color} stopOpacity="1" />
+                <stop offset="100%" stopColor={colors.accent.purple} stopOpacity="0.9" />
+              </linearGradient>
+            </defs>
+            <motion.path
+              d={pathD}
+              fill="none"
+              stroke={`url(#grad-${source.id})`}
+              strokeWidth="6"
+              strokeLinecap="round"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ duration: 1, delay: index * 0.1 }}
+              style={{ filter: `drop-shadow(0 0 8px ${source.color}60)` }}
+            />
+            <motion.circle
+              r="8"
+              fill={source.color}
+              style={{ filter: `drop-shadow(0 0 12px ${source.color})` }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: index * 0.1 + 0.3 }}
+            >
+              <animateMotion
+                dur="2s"
+                repeatCount="indefinite"
+                path={pathD}
+              />
+            </motion.circle>
+          </g>
+        )
+      })}
+
+      {/* Flow from AI to CARDS */}
+      {phase === "prioritizing" && priorityLeads.slice(0, visibleCards).map((lead, index) => {
+        const lineColor = lead.status === "dringend" ? colors.accent.red : colors.accent.orange
+        
+        const cardEl = cardRefs.current[index]
+        const aiEl = aiCenterRef.current
+        if (!cardEl || !aiEl) return null
+
+        const cardRect = cardEl.getBoundingClientRect()
+        const aiRect = aiEl.getBoundingClientRect()
+
+        // Start: Center of logo
+        const startX = aiRect.left - containerRect.left + aiRect.width / 2
+        const startY = aiRect.top - containerRect.top + aiRect.height / 2
+
+        // End: Top center of card
+        const endX = cardRect.left - containerRect.left + cardRect.width / 2
+        const endY = cardRect.top - containerRect.top
+
+        // Bezier curve
+        const midX = (startX + endX) / 2
+        const controlY = startY + 80 + (index % 2 === 0 ? -1 : 1) * 40
+        const pathD = `M ${startX} ${startY} Q ${midX} ${controlY} ${endX} ${endY}`
+
+        return (
+          <g key={`ai-to-card-${lead.id}`}>
+            <defs>
+              <linearGradient id={`grad-card-${lead.id}`} x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor={colors.accent.purple} stopOpacity="0.8" />
+                <stop offset="50%" stopColor={colors.accent.purple} stopOpacity="1" />
+                <stop offset="100%" stopColor={lineColor} stopOpacity="0.9" />
+              </linearGradient>
+            </defs>
+            <motion.path
+              d={pathD}
+              fill="none"
+              stroke={`url(#grad-card-${lead.id})`}
+              strokeWidth="6"
+              strokeLinecap="round"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ duration: 1, delay: index * 0.1 }}
+              style={{ filter: `drop-shadow(0 0 8px ${lineColor}60)` }}
+            />
+            <motion.circle
+              r="8"
+              fill={lineColor}
+              style={{ filter: `drop-shadow(0 0 12px ${lineColor})` }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: index * 0.1 + 0.3 }}
+            >
+              <animateMotion
+                dur="2s"
+                repeatCount="indefinite"
+                path={pathD}
+              />
+            </motion.circle>
+          </g>
+        )
+      })}
+    </svg>
+  )
+}
+
 export function PrioritiesAnimation() {
   const [phase, setPhase] = React.useState<"collecting" | "analyzing" | "prioritizing" | "resetting">("collecting")
   const [visibleCards, setVisibleCards] = React.useState(0)
@@ -255,59 +426,15 @@ export function PrioritiesAnimation() {
     cards: Array(4).fill(null).map(() => ({ x: 0, y: 0 }))
   })
 
-  // Update positions continuously
+  // Force re-render when elements change position
+  const [, forceUpdate] = React.useReducer(x => x + 1, 0)
+  
   React.useEffect(() => {
-    const updatePositions = () => {
-      if (!containerRef.current) return
-
-      const containerRect = containerRef.current.getBoundingClientRect()
-      
-      // Update source positions - Startpunkt: Unten-Mitte der Karte
-      const newSources = sourceRefs.current.map((ref, i) => {
-        if (!ref) return positions.sources[i] || { x: 0, y: 0 }
-        const rect = ref.getBoundingClientRect()
-        return {
-          x: rect.left + rect.width / 2 - containerRect.left,
-          y: rect.bottom - containerRect.top // Unten-Mitte der Karte
-        }
-      })
-
-      // Update AI position - Endpunkt: Exakte Mitte des Logos
-      let newAI = positions.ai || { x: 0, y: 0 }
-      if (aiCenterRef.current) {
-        const rect = aiCenterRef.current.getBoundingClientRect()
-        newAI = {
-          x: rect.left + rect.width / 2 - containerRect.left,
-          y: rect.top + rect.height / 2 - containerRect.top // Exakte Mitte
-        }
-      }
-
-      // Update card positions - Endpunkt: Oben-Mitte der Card
-      const newCards = cardRefs.current.map((ref, i) => {
-        if (!ref) return positions.cards[i] || { x: 0, y: 0 }
-        const rect = ref.getBoundingClientRect()
-        return {
-          x: rect.left + rect.width / 2 - containerRect.left,
-          y: rect.top - containerRect.top // Oben-Mitte der Card
-        }
-      })
-
-      setPositions({
-        sources: newSources,
-        ai: newAI,
-        cards: newCards
-      })
-    }
-
-    updatePositions()
-    const interval = setInterval(updatePositions, 100)
-    window.addEventListener('resize', updatePositions)
-    
-    return () => {
-      clearInterval(interval)
-      window.removeEventListener('resize', updatePositions)
-    }
-  }, [phase, visibleCards])
+    const updateInterval = setInterval(() => {
+      forceUpdate()
+    }, 100)
+    return () => clearInterval(updateInterval)
+  }, [phase, visibleCards, activeSource])
 
   // Animation loop
   React.useEffect(() => {
@@ -424,75 +551,19 @@ export function PrioritiesAnimation() {
 
         {/* Main visualization */}
         <div className="flex-1 relative" style={{ minHeight: '600px', overflow: 'visible' }}>
-          {/* Animated Beams - Flow from SOURCES to AI - MUST BE ABOVE LOGO (z-index) */}
-          {(phase === "collecting" || phase === "analyzing") && dataSources.map((source, index) => {
-            const isActive = phase === "analyzing" || activeSource === index
-            
-            if (!isActive) return null
-
-            const sourceRefObj = sourceRefObjects.current[index]
-            if (!sourceRefObj || !sourceRefs.current[index] || !aiCenterRef.current) return null
-
-            // Sync refs directly - no hooks in map!
-            if (sourceRefs.current[index] && sourceRefObj) {
-              sourceRefObj.current = sourceRefs.current[index]
-            }
-
-            return (
-              <div key={`beam-wrapper-${source.id}`} style={{ position: 'absolute', inset: 0, zIndex: 25, pointerEvents: 'none' }}>
-                <AnimatedBeam
-                  key={`source-to-ai-${source.id}-${phase}-${activeSource}`}
-                  containerRef={containerRef}
-                  fromRef={sourceRefObj}
-                  toRef={aiCenterRef}
-                  curvature={-100 + (index * 40)} // Vary curvature for each line
-                  pathColor={source.color}
-                  pathWidth={6}
-                  pathOpacity={0.6}
-                  gradientStartColor={source.color}
-                  gradientStopColor={colors.accent.purple}
-                  delay={index * 0.2}
-                  duration={4}
-                  startYOffset={35} // Start from bottom of source card
-                  endYOffset={0} // End at center of logo - line goes INTO logo
-                />
-              </div>
-            )
-          })}
-
-          {/* Animated Beams - Flow from AI to CARDS - MUST BE ABOVE CARDS */}
-          {phase === "prioritizing" && priorityLeads.slice(0, visibleCards).map((lead, index) => {
-            const lineColor = lead.status === "dringend" ? colors.accent.red : colors.accent.orange
-            
-            const cardRefObj = cardRefObjects.current[index]
-            if (!cardRefObj || !cardRefs.current[index] || !aiCenterRef.current) return null
-
-            // Sync refs directly - no hooks in map!
-            if (cardRefs.current[index] && cardRefObj) {
-              cardRefObj.current = cardRefs.current[index]
-            }
-
-            return (
-              <div key={`beam-wrapper-card-${lead.id}`} style={{ position: 'absolute', inset: 0, zIndex: 25, pointerEvents: 'none' }}>
-                <AnimatedBeam
-                  key={`ai-to-card-${lead.id}-${visibleCards}`}
-                  containerRef={containerRef}
-                  fromRef={aiCenterRef}
-                  toRef={cardRefObj}
-                  curvature={-60 + (index % 2 === 0 ? -1 : 1) * 50} // Vary curvature
-                  pathColor={lineColor}
-                  pathWidth={6}
-                  pathOpacity={0.6}
-                  gradientStartColor={colors.accent.purple}
-                  gradientStopColor={lineColor}
-                  delay={index * 0.2}
-                  duration={4}
-                  startYOffset={0} // Start from center of logo
-                  endYOffset={-20} // End at top of card
-                />
-              </div>
-            )
-          })}
+          {/* SVG Container for Flow Lines - ABOVE everything */}
+          <FlowLinesSVG
+            phase={phase}
+            activeSource={activeSource}
+            visibleCards={visibleCards}
+            sourceRefs={sourceRefs}
+            aiCenterRef={aiCenterRef}
+            cardRefs={cardRefs}
+            containerRef={containerRef}
+            dataSources={dataSources}
+            priorityLeads={priorityLeads}
+            colors={colors}
+          />
 
           {/* Phase 1 & 2: Data Sources */}
           {(phase === "collecting" || phase === "analyzing") && (

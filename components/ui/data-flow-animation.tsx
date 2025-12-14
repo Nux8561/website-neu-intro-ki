@@ -455,10 +455,10 @@ export function DataFlowAnimation() {
           transition={smoothSpring}
         >
           <div>
-            <h3 className="text-base font-jakarta font-semibold tracking-tight text-gray-900 mb-0.5">
+            <h3 className="text-base font-semibold text-gray-900 mb-0.5">
               Dein intelligentes Daten-Gehirn
             </h3>
-            <p className="text-sm font-inter text-gray-500 max-w-xs">
+            <p className="text-sm text-gray-500 max-w-xs">
               Alle deine Vertriebsdaten vereint – die KI lernt aus deiner gesamten Geschichte
             </p>
           </div>

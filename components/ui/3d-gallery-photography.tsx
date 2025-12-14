@@ -41,8 +41,6 @@ interface InfiniteGalleryProps {
 	blurSettings?: BlurSettings;
 	className?: string;
 	style?: React.CSSProperties;
-	enableScrollLimit?: boolean;
-	onScrollComplete?: () => void;
 }
 
 interface PlaneData {
@@ -157,13 +155,11 @@ function ImagePlane({
 	position,
 	scale,
 	material,
-	zoomProgress = 0,
 }: {
 	texture: THREE.Texture;
 	position: [number, number, number];
 	scale: [number, number, number];
 	material: THREE.ShaderMaterial;
-	zoomProgress?: number;
 }) {
 	const meshRef = useRef<THREE.Mesh>(null);
 	const [isHovered, setIsHovered] = useState(false);
@@ -180,27 +176,11 @@ function ImagePlane({
 		}
 	}, [material, isHovered]);
 
-	// Calculate zoom scale - images get larger as they approach camera
-	const zoomScale = 1 + zoomProgress * 2; // Scale from 1x to 3x
-	const currentScale: [number, number, number] = [
-		scale[0] * zoomScale,
-		scale[1] * zoomScale,
-		scale[2],
-	];
-
-	// Move closer to camera when zooming
-	const zOffset = -zoomProgress * 15; // Move forward in Z when zooming
-	const currentPosition: [number, number, number] = [
-		position[0],
-		position[1],
-		position[2] + zOffset,
-	];
-
 	return (
 		<mesh
 			ref={meshRef}
-			position={currentPosition}
-			scale={currentScale}
+			position={position}
+			scale={scale}
 			material={material}
 			onPointerEnter={() => setIsHovered(true)}
 			onPointerLeave={() => setIsHovered(false)}
@@ -208,19 +188,6 @@ function ImagePlane({
 			<planeGeometry args={[1, 1, 32, 32]} />
 		</mesh>
 	);
-}
-
-function CameraController({ zoomProgress, currentImageZ }: { zoomProgress: number; currentImageZ: number }) {
-	const { camera } = useThree();
-	
-	useFrame(() => {
-		// Move camera closer to the current image when zooming
-		const zoomOffset = zoomProgress * 20; // Move camera forward
-		camera.position.z = -zoomOffset;
-		camera.lookAt(0, 0, currentImageZ - zoomOffset);
-	});
-	
-	return null;
 }
 
 function GalleryScene({
@@ -236,16 +203,10 @@ function GalleryScene({
 		blurOut: { start: 0.9, end: 1.0 },
 		maxBlur: 3.0,
 	},
-	enableScrollLimit = false,
-	onScrollComplete,
 }: Omit<InfiniteGalleryProps, 'className' | 'style'>) {
 	const [scrollVelocity, setScrollVelocity] = useState(0);
 	const [autoPlay, setAutoPlay] = useState(true);
-	const [scrollProgress, setScrollProgress] = useState(0);
-	const [currentImageIndex, setCurrentImageIndex] = useState(0);
-	const [isScrollComplete, setIsScrollComplete] = useState(false);
 	const lastInteraction = useRef(Date.now());
-	const totalScrollDistance = useRef(0);
 
 	const normalizedImages = useMemo(
 		() =>
@@ -291,21 +252,14 @@ function GalleryScene({
 	const totalImages = normalizedImages.length;
 	const depthRange = DEFAULT_DEPTH_RANGE;
 
-	// Calculate scroll distance needed per image (for zoom effect)
-	const scrollPerImage = useMemo(() => {
-		if (!enableScrollLimit || totalImages === 0) return Infinity;
-		// Each image needs enough scroll to fully zoom in
-		return depthRange * 0.8; // 80% of depth range per image
-	}, [enableScrollLimit, totalImages, depthRange]);
-
 	// Initialize plane data
 	const planesData = useRef<PlaneData[]>(
 		Array.from({ length: visibleCount }, (_, i) => ({
 			index: i,
 			z: visibleCount > 0 ? ((depthRange / visibleCount) * i) % depthRange : 0,
 			imageIndex: totalImages > 0 ? i % totalImages : 0,
-			x: spatialPositions[i]?.x ?? 0,
-			y: spatialPositions[i]?.y ?? 0,
+			x: spatialPositions[i]?.x ?? 0, // Use spatial positions for x
+			y: spatialPositions[i]?.y ?? 0, // Use spatial positions for y
 		}))
 	);
 
@@ -322,190 +276,61 @@ function GalleryScene({
 		}));
 	}, [depthRange, spatialPositions, totalImages, visibleCount]);
 
-	// Handle scroll input with zoom and limit
+	// Handle scroll input
 	const handleWheel = useCallback(
 		(event: WheelEvent) => {
-			if (enableScrollLimit && isScrollComplete) {
-				// Allow normal scrolling after gallery is complete
-				return;
-			}
-
-			// Only prevent default if we're within the gallery scroll area
-			if (enableScrollLimit) {
-				event.preventDefault();
-			}
-			
-			const delta = event.deltaY * 0.01 * speed;
-			
-			if (enableScrollLimit) {
-				const scrollDelta = Math.abs(delta);
-				const newTotalScroll = totalScrollDistance.current + scrollDelta;
-				const maxScroll = scrollPerImage * totalImages;
-				
-				if (newTotalScroll >= maxScroll) {
-					// Reached the end - allow normal scrolling
-					setScrollVelocity(0);
-					setIsScrollComplete(true);
-					setCurrentImageIndex(totalImages - 1);
-					setScrollProgress(1);
-					totalScrollDistance.current = maxScroll;
-					if (onScrollComplete) {
-						onScrollComplete();
-					}
-					return;
-				}
-
-				// Update total scroll distance
-				totalScrollDistance.current = newTotalScroll;
-
-				// Update current image index based on scroll progress
-				const newImageIndex = Math.min(
-					Math.floor(newTotalScroll / scrollPerImage),
-					totalImages - 1
-				);
-				setCurrentImageIndex(newImageIndex);
-				
-				// Calculate progress within current image (0 to 1)
-				const progressInImage = (newTotalScroll % scrollPerImage) / scrollPerImage;
-				setScrollProgress(progressInImage);
-				
-				// Don't set scroll velocity in limit mode - we control it directly
-				setAutoPlay(false);
-				lastInteraction.current = Date.now();
-			} else {
-				// Normal infinite scroll mode
-				setScrollVelocity((prev) => prev + delta);
-				setAutoPlay(false);
-				lastInteraction.current = Date.now();
-			}
+			event.preventDefault();
+			setScrollVelocity((prev) => prev + event.deltaY * 0.01 * speed);
+			setAutoPlay(false);
+			lastInteraction.current = Date.now();
 		},
-		[speed, enableScrollLimit, isScrollComplete, scrollPerImage, totalImages, onScrollComplete]
+		[speed]
 	);
 
 	// Handle keyboard input
 	const handleKeyDown = useCallback(
 		(event: KeyboardEvent) => {
-			if (enableScrollLimit && isScrollComplete) {
-				return;
+			if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
+				setScrollVelocity((prev) => prev - 2 * speed);
+				setAutoPlay(false);
+				lastInteraction.current = Date.now();
+			} else if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
+				setScrollVelocity((prev) => prev + 2 * speed);
+				setAutoPlay(false);
+				lastInteraction.current = Date.now();
 			}
-
-			const delta = (event.key === 'ArrowUp' || event.key === 'ArrowLeft') ? -2 * speed : 
-			              (event.key === 'ArrowDown' || event.key === 'ArrowRight') ? 2 * speed : 0;
-			
-			if (delta === 0) return;
-
-			if (enableScrollLimit) {
-				const newTotalScroll = totalScrollDistance.current + Math.abs(delta);
-				const maxScroll = scrollPerImage * totalImages;
-				
-				if (newTotalScroll >= maxScroll) {
-					setScrollVelocity(0);
-					setIsScrollComplete(true);
-					setCurrentImageIndex(totalImages - 1);
-					setScrollProgress(1);
-					if (onScrollComplete) {
-						onScrollComplete();
-					}
-					return;
-				}
-
-				const newImageIndex = Math.min(
-					Math.floor(newTotalScroll / scrollPerImage),
-					totalImages - 1
-				);
-				setCurrentImageIndex(newImageIndex);
-				
-				const progressInImage = (newTotalScroll % scrollPerImage) / scrollPerImage;
-				setScrollProgress(progressInImage);
-			}
-
-			setScrollVelocity((prev) => prev + delta);
-			setAutoPlay(false);
-			lastInteraction.current = Date.now();
 		},
-		[speed, enableScrollLimit, isScrollComplete, scrollPerImage, totalImages, onScrollComplete]
+		[speed]
 	);
 
 	useEffect(() => {
-		if (!enableScrollLimit) {
-			// Original behavior - listen on canvas
-			const canvas = document.querySelector('canvas');
-			if (canvas) {
-				canvas.addEventListener('wheel', handleWheel, { passive: false });
-				document.addEventListener('keydown', handleKeyDown);
-
-				return () => {
-					canvas.removeEventListener('wheel', handleWheel);
-					document.removeEventListener('keydown', handleKeyDown);
-				};
-			}
-		} else {
-			// With scroll limit - listen on window for better scroll capture
-			window.addEventListener('wheel', handleWheel, { passive: false });
+		const canvas = document.querySelector('canvas');
+		if (canvas) {
+			canvas.addEventListener('wheel', handleWheel, { passive: false });
 			document.addEventListener('keydown', handleKeyDown);
 
 			return () => {
-				window.removeEventListener('wheel', handleWheel);
+				canvas.removeEventListener('wheel', handleWheel);
 				document.removeEventListener('keydown', handleKeyDown);
 			};
 		}
-	}, [handleWheel, handleKeyDown, enableScrollLimit]);
+	}, [handleWheel, handleKeyDown]);
 
 	// Auto-play logic
 	useEffect(() => {
-		if (enableScrollLimit && isScrollComplete) {
-			setAutoPlay(false);
-			return;
-		}
-
 		const interval = setInterval(() => {
 			if (Date.now() - lastInteraction.current > 3000) {
 				setAutoPlay(true);
 			}
 		}, 1000);
 		return () => clearInterval(interval);
-	}, [enableScrollLimit, isScrollComplete]);
+	}, []);
 
 	useFrame((state, delta) => {
-		// Stop auto-play if scroll limit reached
-		if (enableScrollLimit && isScrollComplete) {
-			return;
-		}
-
 		// Apply auto-play
-		if (autoPlay && !isScrollComplete) {
-			const deltaVelocity = 0.3 * delta;
-			
-			if (enableScrollLimit) {
-				const newTotalScroll = totalScrollDistance.current + Math.abs(deltaVelocity);
-				const maxScroll = scrollPerImage * totalImages;
-				
-				if (newTotalScroll >= maxScroll) {
-					setScrollVelocity(0);
-					setIsScrollComplete(true);
-					setCurrentImageIndex(totalImages - 1);
-					setScrollProgress(1);
-					if (onScrollComplete) {
-						onScrollComplete();
-					}
-					return;
-				}
-
-				const newImageIndex = Math.min(
-					Math.floor(newTotalScroll / scrollPerImage),
-					totalImages - 1
-				);
-				setCurrentImageIndex(newImageIndex);
-				
-				const progressInImage = (newTotalScroll % scrollPerImage) / scrollPerImage;
-				setScrollProgress(progressInImage);
-			}
-			
-			setScrollVelocity((prev) => prev + deltaVelocity);
+		if (autoPlay) {
+			setScrollVelocity((prev) => prev + 0.3 * delta);
 		}
-
-		// Track total scroll distance (already updated in handleWheel)
-		// No need to update here as it's handled in the event handler
 
 		// Damping
 		setScrollVelocity((prev) => prev * 0.95);
@@ -562,24 +387,29 @@ function GalleryScene({
 				normalizedPosition >= fadeSettings.fadeIn.start &&
 				normalizedPosition <= fadeSettings.fadeIn.end
 			) {
+				// Fade in: opacity goes from 0 to 1 within the fade in range
 				const fadeInProgress =
 					(normalizedPosition - fadeSettings.fadeIn.start) /
 					(fadeSettings.fadeIn.end - fadeSettings.fadeIn.start);
 				opacity = fadeInProgress;
 			} else if (normalizedPosition < fadeSettings.fadeIn.start) {
+				// Before fade in starts: fully transparent
 				opacity = 0;
 			} else if (
 				normalizedPosition >= fadeSettings.fadeOut.start &&
 				normalizedPosition <= fadeSettings.fadeOut.end
 			) {
+				// Fade out: opacity goes from 1 to 0 within the fade out range
 				const fadeOutProgress =
 					(normalizedPosition - fadeSettings.fadeOut.start) /
 					(fadeSettings.fadeOut.end - fadeSettings.fadeOut.start);
 				opacity = 1 - fadeOutProgress;
 			} else if (normalizedPosition > fadeSettings.fadeOut.end) {
+				// After fade out ends: fully transparent
 				opacity = 0;
 			}
 
+			// Clamp opacity between 0 and 1
 			opacity = Math.max(0, Math.min(1, opacity));
 
 			// Calculate blur based on blur settings
@@ -589,24 +419,29 @@ function GalleryScene({
 				normalizedPosition >= blurSettings.blurIn.start &&
 				normalizedPosition <= blurSettings.blurIn.end
 			) {
+				// Blur in: blur goes from maxBlur to 0 within the blur in range
 				const blurInProgress =
 					(normalizedPosition - blurSettings.blurIn.start) /
 					(blurSettings.blurIn.end - blurSettings.blurIn.start);
 				blur = blurSettings.maxBlur * (1 - blurInProgress);
 			} else if (normalizedPosition < blurSettings.blurIn.start) {
+				// Before blur in starts: full blur
 				blur = blurSettings.maxBlur;
 			} else if (
 				normalizedPosition >= blurSettings.blurOut.start &&
 				normalizedPosition <= blurSettings.blurOut.end
 			) {
+				// Blur out: blur goes from 0 to maxBlur within the blur out range
 				const blurOutProgress =
 					(normalizedPosition - blurSettings.blurOut.start) /
 					(blurSettings.blurOut.end - blurSettings.blurOut.start);
 				blur = blurSettings.maxBlur * blurOutProgress;
 			} else if (normalizedPosition > blurSettings.blurOut.end) {
+				// After blur out ends: full blur
 				blur = blurSettings.maxBlur;
 			}
 
+			// Clamp blur to reasonable values
 			blur = Math.max(0, Math.min(blurSettings.maxBlur, blur));
 
 			// Update material uniforms
@@ -620,16 +455,8 @@ function GalleryScene({
 
 	if (normalizedImages.length === 0) return null;
 
-	// Calculate current image Z position for camera
-	const currentImageZ = enableScrollLimit && planesData.current.length > 0
-		? (planesData.current.find(p => p.imageIndex === currentImageIndex)?.z ?? 0) - depthRange / 2
-		: 0;
-
 	return (
 		<>
-			{enableScrollLimit && (
-				<CameraController zoomProgress={scrollProgress} currentImageZ={currentImageZ} />
-			)}
 			{planesData.current.map((plane, i) => {
 				const texture = textures[plane.imageIndex];
 				const material = materials[i];
@@ -642,30 +469,16 @@ function GalleryScene({
 				const aspect = texture.image
 					? texture.image.width / texture.image.height
 					: 1;
-				const baseScale: [number, number, number] =
+				const scale: [number, number, number] =
 					aspect > 1 ? [2 * aspect, 2, 1] : [2, 2 / aspect, 1];
-
-				// Calculate zoom progress for this image
-				let zoomProgress = 0;
-				if (enableScrollLimit) {
-					// If this is the current image being zoomed, apply zoom progress
-					if (plane.imageIndex === currentImageIndex) {
-						zoomProgress = scrollProgress;
-					}
-					// If this image was already zoomed, keep it at max zoom
-					else if (plane.imageIndex < currentImageIndex) {
-						zoomProgress = 1;
-					}
-				}
 
 				return (
 					<ImagePlane
 						key={plane.index}
 						texture={texture}
-						position={[plane.x, plane.y, worldZ]}
-						scale={baseScale}
+						position={[plane.x, plane.y, worldZ]} // Position planes relative to camera center
+						scale={scale}
 						material={material}
-						zoomProgress={zoomProgress}
 					/>
 				);
 			})}
@@ -715,8 +528,6 @@ export default function InfiniteGallery({
 		blurOut: { start: 0.4, end: 0.43 },
 		maxBlur: 8.0,
 	},
-	enableScrollLimit = false,
-	onScrollComplete,
 }: InfiniteGalleryProps) {
 	const [webglSupported, setWebglSupported] = useState(true);
 
@@ -752,8 +563,6 @@ export default function InfiniteGallery({
 					images={images}
 					fadeSettings={fadeSettings}
 					blurSettings={blurSettings}
-					enableScrollLimit={enableScrollLimit}
-					onScrollComplete={onScrollComplete}
 				/>
 			</Canvas>
 		</div>

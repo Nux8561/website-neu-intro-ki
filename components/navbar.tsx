@@ -12,24 +12,175 @@ import {
 import { Menu, X, ChevronDown, Users, FileText, Mail, Smartphone, Shield, BookOpen, HelpCircle, Code, Download, TrendingUp, Zap } from "lucide-react"
 import Link from "next/link"
 import { IntroKILogo } from "@/components/ui/introki-logo"
+import { MegaDropdown, IconComponents } from "@/components/ui/mega-dropdown"
+import Image from "next/image"
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = React.useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false)
+  const [openDropdown, setOpenDropdown] = React.useState<string | null>(null)
+  const platformTriggerRef = React.useRef<HTMLButtonElement>(null)
+  const resourcesTriggerRef = React.useRef<HTMLButtonElement>(null)
   const { scrollY } = useScroll()
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 50)
   })
 
-  const platformItems: Array<{ label: string; href: string; badge?: string; icon?: React.ComponentType<{ className?: string }> }> = [
-    { label: "Features", href: "/features", icon: Zap },
-    { label: "Platform", href: "/platform", icon: Code },
-    { label: "Security", href: "/security", icon: Shield },
-    { label: "Changelog", href: "/changelog", icon: FileText },
-    { label: "Downloads", href: "/downloads", icon: Download },
+  // Platform Mega Dropdown Sections - Using exact same images as Gallery
+  const platformSections = [
+    {
+      title: "CRM PLATFORM",
+      items: [
+        {
+          label: "Data model",
+          href: "/platform/data-model",
+          description: "Sync and enrich your data",
+          icon: IconComponents.DataModel,
+          visualization: (
+            <Image
+              src="https://images.unsplash.com/photo-1741332966416-414d8a5b8887?w=800&auto=format&fit=crop&q=80"
+              alt="Company Agent"
+              fill
+              className="rounded-lg object-cover"
+            />
+          ),
+        },
+        {
+          label: "Productivity & collaboration",
+          href: "/platform/productivity",
+          description: "Context for your team operations",
+          icon: IconComponents.Productivity,
+          visualization: (
+            <Image
+              src="https://images.unsplash.com/photo-1754769440490-2eb64d715775?w=800&auto=format&fit=crop&q=80"
+              alt="People Agent"
+              fill
+              className="rounded-lg object-cover"
+            />
+          ),
+        },
+        {
+          label: "AI",
+          href: "/platform/ai",
+          description: "Native to your CRM",
+          icon: IconComponents.AI,
+          visualization: (
+            <Image
+              src="https://images.unsplash.com/photo-1758640920659-0bb864175983?w=800&auto=format&fit=crop&q=80"
+              alt="AI Agent"
+              fill
+              className="rounded-lg object-cover"
+            />
+          ),
+        },
+        {
+          label: "Apps & integrations",
+          href: "/platform/integrations",
+          description: "Connect all your favorite tools",
+          icon: IconComponents.Apps,
+          visualization: (
+            <Image
+              src="https://plus.unsplash.com/premium_photo-1758367454070-731d3cc11774?w=800&auto=format&fit=crop&q=80"
+              alt="Validation Agent"
+              fill
+              className="rounded-lg object-cover"
+            />
+          ),
+        },
+      ],
+    },
+    {
+      title: "AUTOMATIONS",
+      items: [
+        {
+          label: "Workflows",
+          href: "/platform/workflows",
+          description: "Automate any process",
+          icon: IconComponents.Workflows,
+          visualization: (
+            <Image
+              src="https://images.unsplash.com/photo-1746023841657-e5cd7cc90d2c?w=800&auto=format&fit=crop&q=80"
+              alt="Research 1"
+              fill
+              className="rounded-lg object-cover"
+            />
+          ),
+        },
+        {
+          label: "Sequences",
+          href: "/platform/sequences",
+          description: "Personalized outreach",
+          icon: IconComponents.Sequences,
+          visualization: (
+            <Image
+              src="https://images.unsplash.com/photo-1741715661559-6149723ea89a?w=800&auto=format&fit=crop&q=80"
+              alt="Research 2"
+              fill
+              className="rounded-lg object-cover"
+            />
+          ),
+        },
+      ],
+    },
+    {
+      title: "INSIGHTS",
+      items: [
+        {
+          label: "Call intelligence",
+          href: "/platform/call-intelligence",
+          description: "Record and analyze meetings",
+          icon: IconComponents.CallIntelligence,
+          visualization: (
+            <Image
+              src="https://images.unsplash.com/photo-1725878746053-407492aa4034?w=800&auto=format&fit=crop&q=80"
+              alt="Research 3"
+              fill
+              className="rounded-lg object-cover"
+            />
+          ),
+        },
+        {
+          label: "Reporting",
+          href: "/platform/reporting",
+          description: "Insights in real time",
+          icon: IconComponents.Reporting,
+          visualization: (
+            <Image
+              src="https://images.unsplash.com/photo-1752588975168-d2d7965a6d64?w=800&auto=format&fit=crop&q=80"
+              alt="Research 4"
+              fill
+              className="rounded-lg object-cover"
+            />
+          ),
+        },
+      ],
+    },
+    {
+      title: "DEVELOPERS",
+      items: [
+        {
+          label: "Developer Platform",
+          href: "/developers",
+          description: "Build with the IntroKI API and SDK",
+          icon: IconComponents.DeveloperPlatform,
+        },
+      ],
+    },
   ]
 
+  const platformGetStartedItems = [
+    { label: "IntroKI 101", href: "/getting-started" },
+    { label: "Hire an expert", href: "/experts" },
+  ]
+
+  const platformTabs = [
+    { label: "Data", href: "/platform/data" },
+    { label: "Workflows", href: "/platform/workflows" },
+    { label: "Reporting", href: "/platform/reporting" },
+  ]
+
+  // Resources Dropdown (simpler)
   const resourcesItems: Array<{ label: string; href: string; badge?: string; icon?: React.ComponentType<{ className?: string }> }> = [
     { label: "Help center", href: "/help", icon: HelpCircle },
     { label: "Developers", href: "/developers", icon: Code },
@@ -42,7 +193,7 @@ export function Navbar() {
       label: "Platform", 
       href: "/platform",
       hasDropdown: true,
-      items: platformItems,
+      isMega: true,
     },
     { 
       label: "Resources", 
@@ -82,6 +233,42 @@ export function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => {
+              if (item.hasDropdown && item.isMega && item.label === "Platform") {
+                return (
+                  <div 
+                    key={item.label} 
+                    className="relative"
+                    onMouseEnter={() => setOpenDropdown("platform")}
+                    onMouseLeave={() => setOpenDropdown(null)}
+                  >
+                    <motion.button
+                      ref={platformTriggerRef}
+                      className="text-sm text-text-secondary hover:text-text-primary transition-colors font-inter relative group flex items-center gap-1"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                    >
+                      <span className={openDropdown === "platform" ? "text-text-primary" : ""}>
+                        {item.label}
+                      </span>
+                      <ChevronDown 
+                        className={`w-4 h-4 text-text-muted group-hover:text-text-secondary transition-transform ${
+                          openDropdown === "platform" ? "rotate-180" : ""
+                        }`}
+                      />
+                    </motion.button>
+                    <MegaDropdown
+                      sections={platformSections}
+                      getStartedItems={platformGetStartedItems}
+                      tabs={platformTabs}
+                      isOpen={openDropdown === "platform"}
+                      onClose={() => setOpenDropdown(null)}
+                      triggerRef={platformTriggerRef}
+                    />
+                  </div>
+                )
+              }
+              
               if (item.hasDropdown && item.items) {
                 return (
                   <DropdownMenu key={item.label}>

@@ -40,14 +40,18 @@ const itemVariants = {
   },
 }
 
-// Customer logos
+// Customer logos - ONLY real, official company logos
+// IMPORTANT: All logos must be downloaded from official brand asset pages
+// Sources: https://brandfetch.com or official company brand pages
+// Do NOT use placeholder or retrofitted logos
 const customerLogos = [
-  { name: "Vercel", logo: "/logos/vercel.svg" },
-  { name: "Stripe", logo: "/logos/stripe.svg" },
-  { name: "GitHub", logo: "/logos/github.svg" },
-  { name: "Figma", logo: "/logos/figma.svg" },
-  { name: "Linear", logo: "/logos/linear.svg" },
-  { name: "Notion", logo: "/logos/notion.svg" },
+  { name: "OpenAI", logo: "/images/openai-1-5u0onpsnpplsd0el4s93im.webp" }, // OpenAI Logo
+  { name: "Stripe", logo: "/logos/stripe.svg" },      // https://stripe.com/about/brand-assets
+  { name: "Linear", logo: "/logos/linear.svg" },     // https://linear.app/brand
+  { name: "Notion", logo: "/logos/notion.svg" },      // https://www.notion.so/logo-and-brand-guidelines
+  { name: "Slack", logo: "/logos/slack.svg" },        // https://slack.com/intl/en-de/media-kit
+  { name: "HubSpot", logo: "/logos/hubspot.svg" },    // https://www.hubspot.com/brand-kit
+  { name: "Zapier", logo: "/logos/zapier.svg" },       // https://zapier.com/about/brand-assets
 ]
 
 interface HeroAttioProps {
@@ -350,18 +354,11 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
                     alt={logo.name}
                     width={120}
                     height={40}
-                    className="h-8 w-auto object-contain"
+                    className="h-8 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity"
                     onError={(e) => {
-                      // Fallback to text if logo not found
+                      // Hide logo if file doesn't exist - no fallback text
                       const target = e.target as HTMLImageElement
                       target.style.display = 'none'
-                      const parent = target.parentElement
-                      if (parent) {
-                        const fallback = document.createElement('span')
-                        fallback.className = 'text-text-muted font-inter font-medium text-sm'
-                        fallback.textContent = logo.name
-                        parent.appendChild(fallback)
-                      }
                     }}
                   />
                 </motion.div>

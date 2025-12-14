@@ -9,11 +9,13 @@
 import * as React from "react"
 import { motion } from "framer-motion"
 import { LucideIcon } from "lucide-react"
+import Image from "next/image"
 import { cn } from "@/lib/utils"
 import { snappySpring } from "@/lib/animations"
 
 interface FeatureIconProps {
-  icon: LucideIcon
+  icon?: LucideIcon
+  logo?: string // Path to logo image (e.g., "/logos/slack.svg")
   size?: "sm" | "md" | "lg"
   color?: "blue" | "purple" | "green" | "orange" | "pink" | "gray"
   className?: string
@@ -52,6 +54,7 @@ const iconColors = {
 
 export function FeatureIcon({
   icon: Icon,
+  logo,
   size = "md",
   color = "gray",
   className,
@@ -78,14 +81,27 @@ export function FeatureIcon({
         className
       )}
     >
-      <Icon
-        className={cn(
-          iconSizes[size],
-          iconColors[color],
-          "transition-colors duration-attio"
-        )}
-        strokeWidth={1.5}
-      />
+      {logo ? (
+        <Image
+          src={logo}
+          alt="Logo"
+          width={size === "sm" ? 16 : size === "md" ? 20 : 24}
+          height={size === "sm" ? 16 : size === "md" ? 20 : 24}
+          className={cn(
+            iconSizes[size],
+            "object-contain"
+          )}
+        />
+      ) : Icon ? (
+        <Icon
+          className={cn(
+            iconSizes[size],
+            iconColors[color],
+            "transition-colors duration-attio"
+          )}
+          strokeWidth={1.5}
+        />
+      ) : null}
     </motion.div>
   )
 }

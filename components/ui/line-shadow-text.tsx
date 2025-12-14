@@ -1,11 +1,10 @@
 import { cn } from "@/lib/utils";
-import { motion, MotionProps } from "framer-motion";
+import { motion, HTMLMotionProps } from "framer-motion";
 
-interface LineShadowTextProps
-  extends Omit<React.HTMLAttributes<HTMLElement>, keyof MotionProps>,
-    MotionProps {
+interface LineShadowTextProps extends Omit<HTMLMotionProps<"span">, "children"> {
   shadowColor?: string;
-  as?: React.ElementType;
+  as?: keyof JSX.IntrinsicElements;
+  children: string;
 }
 
 export function LineShadowText({
@@ -15,7 +14,7 @@ export function LineShadowText({
   as: Component = "span",
   ...props
 }: LineShadowTextProps) {
-  const MotionComponent = motion(Component as keyof JSX.IntrinsicElements);
+  const MotionComponent = motion(Component);
   const content = typeof children === "string" ? children : null;
 
   if (!content) {

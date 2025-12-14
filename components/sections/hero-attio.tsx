@@ -7,7 +7,9 @@ import Link from "next/link"
 import Image from "next/image"
 import { DataFlowAnimation } from "@/components/ui/data-flow-animation"
 import { PrioritiesAnimation } from "@/components/ui/priorities-animation"
+import { AppWindowFrame } from "@/components/ui/app-window-frame"
 import { WorkflowSimulation } from "@/components/visuals/WorkflowSimulation"
+import { DataEnrichmentVisual } from "@/components/visuals/DataEnrichmentVisual"
 import { ReportingVisual } from "@/components/visuals/ReportingVisual"
 import { PipelineVisual } from "@/components/visuals/PipelineVisual"
 import { MeshGradient } from "@paper-design/shaders-react"
@@ -217,7 +219,22 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
                       transition={attioTransition}
                       className="absolute inset-0 bg-attio-gray overflow-hidden"
                     >
-                      <DataFlowAnimation key="data-animation" />
+                      <motion.div 
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={attioTransition}
+                        className="absolute inset-0 flex items-center justify-center p-6 bg-attio-gray h-full"
+                      >
+                        <div className="w-full h-full max-w-4xl">
+                          <AppWindowFrame withSidebar title="Data Enrichment" className="h-full">
+                            <div className="h-full flex items-center justify-center p-8">
+                              <div className="w-full max-w-md">
+                                <DataEnrichmentVisual />
+                              </div>
+                            </div>
+                          </AppWindowFrame>
+                        </div>
+                      </motion.div>
                     </motion.div>
                   )}
                   {activeTab === "workflows" && (
@@ -236,10 +253,12 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={attioTransition}
-                        className="absolute inset-0 flex items-center justify-center p-6 bg-attio-gray"
+                        className="absolute inset-0 flex items-center justify-center p-6 bg-attio-gray h-full"
                       >
-                        <div className="w-full max-w-sm">
-                          <WorkflowSimulation />
+                        <div className="w-full h-full max-w-4xl">
+                          <AppWindowFrame withSidebar title="Workflow Automation" className="h-full">
+                            <WorkflowSimulation />
+                          </AppWindowFrame>
                         </div>
                       </motion.div>
                     </motion.div>
@@ -260,10 +279,12 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={attioTransition}
-                        className="absolute inset-0 flex items-center justify-center p-6 bg-attio-gray"
+                        className="absolute inset-0 flex items-center justify-center p-6 bg-attio-gray h-full"
                       >
-                        <div className="w-full max-w-md">
-                          <ReportingVisual />
+                        <div className="w-full h-full max-w-4xl">
+                          <AppWindowFrame withSidebar title="Revenue Analytics" className="h-full">
+                            <ReportingVisual />
+                          </AppWindowFrame>
                         </div>
                       </motion.div>
                     </motion.div>
@@ -284,10 +305,12 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={attioTransition}
-                        className="absolute inset-0 flex items-center justify-center p-6 bg-attio-gray"
+                        className="absolute inset-0 flex items-center justify-center p-6 bg-attio-gray h-full"
                       >
-                        <div className="w-full max-w-lg">
-                          <PipelineVisual />
+                        <div className="w-full h-full max-w-4xl">
+                          <AppWindowFrame withSidebar title="Sales Pipeline" className="h-full">
+                            <PipelineVisual />
+                          </AppWindowFrame>
                         </div>
                       </motion.div>
                     </motion.div>

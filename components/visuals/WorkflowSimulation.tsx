@@ -2,8 +2,9 @@
 
 import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { User, Filter, Hash } from "lucide-react"
-import { attioTransition, snappySpring } from "@/lib/animations"
+import { User, Filter, Hash, Plus, Settings, ZoomIn } from "lucide-react"
+import { AnimatedBeam } from "@/components/ui/animated-beam"
+import { snappySpring, attioTransition } from "@/lib/animations"
 
 interface WorkflowNode {
   id: string
@@ -38,170 +39,188 @@ const workflowNodes: WorkflowNode[] = [
 ]
 
 export function WorkflowSimulation() {
-  const [dataBallPosition, setDataBallPosition] = React.useState<"node1" | "traveling1-2" | "node2" | "traveling2-3" | "node3" | "idle">("idle")
+  const containerRef = React.useRef<HTMLDivElement>(null)
+  const node1Ref = React.useRef<HTMLDivElement>(null)
+  const node2Ref = React.useRef<HTMLDivElement>(null)
+  const node3Ref = React.useRef<HTMLDivElement>(null)
+
   const [activeNode, setActiveNode] = React.useState<string | null>(null)
   const [showNotification, setShowNotification] = React.useState(false)
 
   React.useEffect(() => {
     const interval = setInterval(() => {
       // Reset
-      setDataBallPosition("idle")
       setActiveNode(null)
       setShowNotification(false)
 
-      // Phase 1: Daten-Ball erscheint bei Node 1 (0.2s)
+      // Phase 1: Node 1 aktiv (0.2s)
       setTimeout(() => {
-        setDataBallPosition("node1")
         setActiveNode("new-lead")
       }, 200)
 
-      // Phase 2: Ball reist zu Node 2 (0.8s)
+      // Phase 2: Node 2 aktiv (1.0s)
       setTimeout(() => {
-        setDataBallPosition("traveling1-2")
-        setActiveNode(null)
-      }, 800)
-
-      // Phase 3: Ball erreicht Node 2 (1.4s)
-      setTimeout(() => {
-        setDataBallPosition("node2")
         setActiveNode("qualify")
-      }, 1400)
+      }, 1000)
 
-      // Phase 4: Ball reist zu Node 3 (2.0s)
+      // Phase 3: Node 3 aktiv + Notification (1.8s)
       setTimeout(() => {
-        setDataBallPosition("traveling2-3")
-        setActiveNode(null)
-      }, 2000)
-
-      // Phase 5: Ball erreicht Node 3 (2.6s)
-      setTimeout(() => {
-        setDataBallPosition("node3")
         setActiveNode("slack-alert")
         setShowNotification(true)
-      }, 2600)
+      }, 1800)
 
-      // Phase 6: Reset (3.5s)
+      // Phase 4: Reset (3.0s)
       setTimeout(() => {
-        setDataBallPosition("idle")
         setActiveNode(null)
         setShowNotification(false)
-      }, 3500)
+      }, 3000)
     }, 4000) // Loop alle 4 Sekunden
 
     return () => clearInterval(interval)
   }, [])
 
   return (
-    <div className="relative flex flex-col items-center gap-0 py-8">
-      {/* Workflow Nodes */}
-      {workflowNodes.map((node, index) => {
-        const Icon = node.icon
-        const isActive = activeNode === node.id
-        const nodePosition = index === 0 ? "node1" : index === 1 ? "node2" : "node3"
-        const isDataBallHere = dataBallPosition === nodePosition
+    <div className="relative w-full h-full bg-white">
+      {/* Background Pattern */}
+      <div 
+        className="absolute inset-0 opacity-30"
+        style={{
+          backgroundImage: `radial-gradient(#e5e7eb 1px, transparent 1px)`,
+          backgroundSize: '16px 16px',
+        }}
+      />
 
-        return (
-          <React.Fragment key={node.id}>
-            {/* Node */}
-            <motion.div
-              className={`
-                relative w-48 bg-white rounded-md border p-3 shadow-sm z-10
-                ${isActive ? node.activeBorderColor : "border-attio-subtle"}
-                transition-colors duration-attio ease-attio-ease-out
-              `}
-              animate={{
-                scale: isActive ? 1.05 : 1,
-              }}
-              transition={snappySpring}
-            >
-              <div className="flex items-center gap-3">
-                <motion.div
-                  animate={{
-                    scale: isActive ? 1.1 : 1,
-                  }}
-                  transition={snappySpring}
-                >
-                  <Icon 
-                    className={`h-5 w-5 transition-colors ${
+      {/* Toolbar */}
+      <div className="absolute top-4 left-4 right-4 z-20 flex items-center justify-between">
+        <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-attio-subtle rounded-lg px-3 py-2 shadow-sm">
+          <button className="p-1.5 hover:bg-attio-gray rounded transition-colors">
+            <Plus className="h-4 w-4 text-text-muted" />
+          </button>
+          <div className="w-px h-4 bg-attio-subtle" />
+          <button className="p-1.5 hover:bg-attio-gray rounded transition-colors">
+            <Settings className="h-4 w-4 text-text-muted" />
+          </button>
+          <button className="p-1.5 hover:bg-attio-gray rounded transition-colors">
+            <ZoomIn className="h-4 w-4 text-text-muted" />
+          </button>
+        </div>
+      </div>
+
+      {/* Workflow Canvas */}
+      <div 
+        ref={containerRef}
+        className="relative flex flex-col items-center justify-center gap-0 py-8 w-full h-full z-10"
+      >
+        {/* Workflow Nodes */}
+        {workflowNodes.map((node, index) => {
+          const Icon = node.icon
+          const isActive = activeNode === node.id
+          const nodeRef = index === 0 ? node1Ref : index === 1 ? node2Ref : node3Ref
+
+          return (
+            <React.Fragment key={node.id}>
+              {/* Node */}
+              <motion.div
+                ref={nodeRef}
+                className={`
+                  relative w-48 bg-white rounded-md border p-3 shadow-sm z-10
+                  ${isActive ? node.activeBorderColor : "border-attio-subtle"}
+                  transition-colors duration-attio ease-attio-ease-out
+                `}
+                animate={{
+                  scale: isActive ? 1.05 : 1,
+                }}
+                transition={snappySpring}
+              >
+                <div className="flex items-center gap-3">
+                  <motion.div
+                    animate={{
+                      scale: isActive ? 1.1 : 1,
+                    }}
+                    transition={snappySpring}
+                  >
+                    <Icon 
+                      className={`h-5 w-5 transition-colors ${
+                        isActive 
+                          ? node.activeColor 
+                          : "text-gray-400"
+                      }`}
+                    />
+                  </motion.div>
+                  <span 
+                    className={`text-sm font-inter font-medium transition-colors ${
                       isActive 
                         ? node.activeColor 
                         : "text-gray-400"
                     }`}
-                  />
-                </motion.div>
-                <span 
-                  className={`text-sm font-inter font-medium transition-colors ${
-                    isActive 
-                      ? node.activeColor 
-                      : "text-gray-400"
-                  }`}
-                >
-                  {node.label}
-                </span>
-              </div>
+                  >
+                    {node.label}
+                  </span>
+                </div>
+              </motion.div>
 
-              {/* Daten-Ball über dem Node */}
-              <AnimatePresence>
-                {isDataBallHere && (
-                  <motion.div
-                    key={`data-ball-${node.id}`}
-                    initial={{ opacity: 0, scale: 0, y: -20 }}
-                    animate={{ 
-                      opacity: 1, 
-                      scale: 1,
-                      y: -12,
-                    }}
-                    exit={{ opacity: 0, scale: 0, y: -20 }}
-                    transition={snappySpring}
-                    className="absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-blue-500 shadow-lg z-20"
-                  />
-                )}
-              </AnimatePresence>
-            </motion.div>
+              {/* Connection Line (außer nach dem letzten Node) */}
+              {index < workflowNodes.length - 1 && (
+                <div className="w-px h-8 bg-gray-200 relative z-0" />
+              )}
+            </React.Fragment>
+          )
+        })}
 
-            {/* Connection Line (außer nach dem letzten Node) */}
-            {index < workflowNodes.length - 1 && (
-              <div className="w-px h-8 bg-gray-200 relative z-0">
-                {/* Reisender Daten-Ball auf der Linie */}
-                <AnimatePresence>
-                  {(dataBallPosition === "traveling1-2" && index === 0) || 
-                   (dataBallPosition === "traveling2-3" && index === 1) ? (
-                    <motion.div
-                      key={`data-ball-traveling-${index}`}
-                      initial={{ y: 0, opacity: 1 }}
-                      animate={{ y: "100%", opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{
-                        ...attioTransition,
-                        duration: 0.6, // Reisezeit
-                      }}
-                      className="absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-blue-500 shadow-lg z-20"
-                    />
-                  ) : null}
-                </AnimatePresence>
-              </div>
-            )}
-          </React.Fragment>
-        )
-      })}
-
-      {/* Slack Notification */}
-      <AnimatePresence>
-        {showNotification && (
-          <motion.div
-            initial={{ opacity: 0, x: -20, scale: 0.9 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            exit={{ opacity: 0, x: -20, scale: 0.9 }}
-            transition={snappySpring}
-            className="absolute -right-8 top-1/2 -translate-y-1/2 bg-white border border-attio-subtle rounded-md p-2 shadow-lg z-30"
-          >
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-500" />
-              <span className="text-xs font-inter font-medium text-gray-700">New notification</span>
-            </div>
-          </motion.div>
+        {/* Animated Beams */}
+        {containerRef.current && node1Ref.current && node2Ref.current && (
+          <AnimatedBeam
+            containerRef={containerRef}
+            fromRef={node1Ref}
+            toRef={node2Ref}
+            curvature={-30}
+            duration={3}
+            delay={0.2}
+            pathColor="#9CA3AF"
+            pathWidth={1}
+            pathOpacity={0.3}
+            gradientStartColor="#3B82F6"
+            gradientStopColor="#8B5CF6"
+            startYOffset={20}
+            endYOffset={-20}
+          />
         )}
-      </AnimatePresence>
+        {containerRef.current && node2Ref.current && node3Ref.current && (
+          <AnimatedBeam
+            containerRef={containerRef}
+            fromRef={node2Ref}
+            toRef={node3Ref}
+            curvature={-30}
+            duration={3}
+            delay={1.0}
+            pathColor="#9CA3AF"
+            pathWidth={1}
+            pathOpacity={0.3}
+            gradientStartColor="#8B5CF6"
+            gradientStopColor="#10B981"
+            startYOffset={20}
+            endYOffset={-20}
+          />
+        )}
+
+        {/* Slack Notification */}
+        <AnimatePresence>
+          {showNotification && (
+            <motion.div
+              initial={{ opacity: 0, x: -20, scale: 0.9 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: -20, scale: 0.9 }}
+              transition={snappySpring}
+              className="absolute -right-8 top-1/2 -translate-y-1/2 bg-white border border-attio-subtle rounded-md p-2 shadow-lg z-30"
+            >
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-green-500" />
+                <span className="text-xs font-inter font-medium text-gray-700">New notification</span>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   )
 }

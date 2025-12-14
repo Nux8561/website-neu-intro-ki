@@ -22,6 +22,7 @@ export function EmailAutomationSkeleton() {
             <div className="h-3 bg-gray-200 rounded w-3/4" />
             <div className="h-2 bg-gray-100 rounded w-full" />
             <div className="h-2 bg-gray-100 rounded w-5/6" />
+            <div className="text-[10px] font-inter text-gray-500 mt-1">Find Email</div>
           </div>
         </div>
       </div>
@@ -40,6 +41,7 @@ export function EmailAutomationSkeleton() {
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-blue-600" />
           <div className="h-2 bg-blue-200 rounded flex-1" />
+          <div className="text-[10px] font-inter text-blue-700 font-medium">Synced</div>
         </div>
       </motion.div>
     </div>
@@ -53,7 +55,8 @@ export function WorkflowSkeleton() {
       <div className="flex items-center gap-2">
         {/* Trigger Node */}
         <div className="px-3 py-2 bg-purple-50 border border-purple-200 rounded-md">
-          <div className="h-2 w-12 bg-purple-300 rounded" />
+          <div className="h-2 w-16 bg-purple-300 rounded" />
+          <div className="text-[10px] font-inter text-purple-700 mt-0.5">New Lead</div>
         </div>
         
         {/* Connection Line */}
@@ -61,7 +64,8 @@ export function WorkflowSkeleton() {
         
         {/* Condition Node */}
         <div className="px-3 py-2 bg-blue-50 border border-blue-200 rounded-md">
-          <div className="h-2 w-16 bg-blue-300 rounded" />
+          <div className="h-2 w-20 bg-blue-300 rounded" />
+          <div className="text-[10px] font-inter text-blue-700 mt-0.5">Qualify</div>
         </div>
         
         {/* Connection Line */}
@@ -69,7 +73,8 @@ export function WorkflowSkeleton() {
         
         {/* Action Node */}
         <div className="px-3 py-2 bg-green-50 border border-green-200 rounded-md">
-          <div className="h-2 w-10 bg-green-300 rounded" />
+          <div className="h-2 w-16 bg-green-300 rounded" />
+          <div className="text-[10px] font-inter text-green-700 mt-0.5">Book Meeting</div>
         </div>
       </div>
     </div>
@@ -86,6 +91,7 @@ export function DataSyncSkeleton() {
           <div className="h-2 bg-gray-300 rounded w-20" />
           <div className="h-1.5 bg-gray-200 rounded w-full" />
           <div className="h-1.5 bg-gray-200 rounded w-3/4" />
+          <div className="text-[10px] font-inter text-gray-500 mt-1">LinkedIn</div>
         </div>
       </div>
       
@@ -102,6 +108,7 @@ export function DataSyncSkeleton() {
           <div className="h-2 bg-blue-400 rounded w-24" />
           <div className="h-1.5 bg-blue-200 rounded w-full" />
           <div className="h-1.5 bg-blue-200 rounded w-5/6" />
+          <div className="text-[10px] font-inter text-blue-700 font-medium mt-1">IntroKI CRM</div>
         </div>
       </div>
     </div>
@@ -151,6 +158,7 @@ export function ContactCardSkeleton() {
           <div className="flex items-center gap-2 mt-2">
             <div className="w-4 h-4 rounded bg-green-100 border border-green-300" />
             <div className="h-2 bg-gray-200 rounded w-20" />
+            <div className="text-[10px] font-inter text-green-700 font-medium">Qualified</div>
           </div>
         </div>
       </div>

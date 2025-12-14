@@ -145,7 +145,7 @@ function TeamMemberCard({ member, isFounder = false }: { member: TeamMember; isF
           src={member.avatar}
           alt={member.name}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="object-cover"
           style={{ position: 'absolute', zIndex: 10 }}
           onError={(e) => {
             const target = e.target as HTMLImageElement
@@ -175,7 +175,7 @@ function TeamMemberCard({ member, isFounder = false }: { member: TeamMember; isF
         </div>
         
         {/* Hover Overlay with Social Links */}
-        <div className="absolute inset-0 bg-brand/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+        <div className="absolute inset-0 bg-brand/80 opacity-0 group-hover:opacity-100 transition-opacity duration-attio ease-attio-ease-out flex items-end p-4">
           <div className="flex gap-3">
             {member.linkedin && (
               <Link

@@ -15,30 +15,12 @@ import {
   Circle
 } from "lucide-react"
 import { SkeletalUI } from "@/components/ui/skeletal-ui"
+import { FeatureIcon } from "@/components/ui/feature-icon"
+import { snappySpring, snappyStaggerContainer, snappyStaggerItem } from "@/lib/animations"
 
-// Animation variants - sehr subtil
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.05,
-    },
-  },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 10 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: "spring",
-      stiffness: 400,
-      damping: 17,
-    },
-  },
-}
+// Animation variants - Snappy Spring Physics
+const containerVariants = snappyStaggerContainer
+const itemVariants = snappyStaggerItem
 
 // Workflow Editor Component (für "Automate everything" Kachel)
 // Nutzt jetzt Skeletal UI statt Icons
@@ -94,7 +76,7 @@ const bentoCells = [
         <div className="text-xs font-inter text-gray-500 uppercase tracking-wider mb-2">
           01 Powerful platform
         </div>
-        <h2 className="text-4xl md:text-5xl font-inter-display font-semibold tracking-tight text-[#0A0A0A]">
+        <h2 className="text-4xl md:text-5xl font-inter-display font-bold tracking-tight text-[#0A0A0A]">
           GTM at full throttle.
         </h2>
       </div>
@@ -139,14 +121,12 @@ const bentoCells = [
     title: "AI Insights",
     description: "Get intelligent recommendations powered by machine learning.",
     content: (
-      <div className="mt-4 flex items-center gap-3">
-        <div className="w-10 h-10 rounded-lg bg-purple-50 border border-purple-200 flex items-center justify-center">
-          <Brain className="h-5 w-5 text-purple-600" />
-        </div>
-        <div className="text-sm font-inter text-zinc-500">
-          Analyzing patterns...
-        </div>
-      </div>
+          <div className="mt-4 flex items-center gap-3">
+            <FeatureIcon icon={Brain} size="md" color="purple" />
+            <div className="text-sm font-inter text-zinc-500">
+              Analyzing patterns...
+            </div>
+          </div>
     ),
   },
   {
@@ -157,9 +137,7 @@ const bentoCells = [
     description: "Create custom reports with drag-and-drop simplicity.",
     content: (
       <div className="mt-4 flex items-center justify-center">
-        <div className="w-12 h-12 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center">
-          <BarChart3 className="h-6 w-6 text-blue-600" />
-        </div>
+        <FeatureIcon icon={BarChart3} size="lg" color="blue" />
       </div>
     ),
   },
@@ -182,14 +160,16 @@ export function FeaturesBentoGridAttio() {
           className="grid grid-cols-1 md:grid-cols-12 gap-px bg-attio-border border border-attio-subtle"
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
+          whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
         >
           {bentoCells.map((cell, index) => (
             <motion.div
               key={cell.id}
               variants={itemVariants}
-              className="bg-white p-6 hover:bg-gray-50/50 hover:shadow-sm transition-all duration-attio ease-attio-ease-out"
+              className="bg-white p-6 hover:bg-gray-50/50 hover:shadow-sm"
+              whileHover={{ scale: 1.01 }}
+              transition={snappySpring}
               style={{
                 gridColumn: isDesktop ? `span ${cell.colSpan}` : '1 / -1',
                 gridRow: isDesktop ? `span ${cell.rowSpan}` : 'auto',
@@ -197,7 +177,7 @@ export function FeaturesBentoGridAttio() {
             >
               {cell.title ? (
                 <>
-                  <h3 className="text-lg md:text-xl font-inter-display font-semibold text-[#0A0A0A] mb-2 leading-tight">
+                  <h3 className="text-lg md:text-xl font-inter-display font-bold text-[#0A0A0A] mb-2 leading-tight">
                     {cell.title}
                   </h3>
                   <p className="text-sm font-inter text-zinc-500 mb-4 leading-relaxed">

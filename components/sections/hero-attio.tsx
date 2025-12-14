@@ -178,7 +178,7 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
             transition={{ delay: 0.3 }}
             className="mt-16 sm:mt-20 max-w-6xl mx-auto"
           >
-            <div className="relative rounded-2xl border border-gray-200 bg-white shadow-2xl overflow-hidden">
+            <div className="relative rounded-2xl border border-gray-200 bg-white shadow-attio-card overflow-hidden">
               {/* Tab Navigation (oben im Fenster) - Attio Style */}
               <div className="bg-attio-gray border-b border-attio-subtle px-6 py-3">
                 <div className="flex items-center gap-1">

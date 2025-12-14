@@ -11,6 +11,15 @@
  * - Keyframes: fadeIn, fadeOut, slideFromBottom, slideToBottom, etc.
  */
 
+// Snappy Spring Physics (Vercel/Attio Style)
+// Hohe Spannung, gute Dämpfung, leicht = reaktionsfreudig
+export const snappySpring = {
+  type: "spring" as const,
+  stiffness: 350, // Hohe Spannung = schnell
+  damping: 25,    // Gute Dämpfung = kein wabbeliges Nachfedern
+  mass: 0.5,      // Leicht = reaktionsfreudig
+}
+
 // Framer Motion Spring-Physics (Attio-Standard)
 // Basierend auf dem "Snappy"-Gefühl der Interaktionen
 export const attioTransition = {
@@ -63,6 +72,28 @@ export const attioSlideUp = {
 }
 
 // Stagger Container (für Listen/Grids)
+// Snappy Stagger (sehr schnelles Nacheinander)
+export const snappyStaggerContainer = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08, // Sehr schnelles Nacheinander
+      delayChildren: 0.05,
+    },
+  },
+}
+
+export const snappyStaggerItem = {
+  hidden: { opacity: 0, y: 10 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: snappySpring,
+  },
+}
+
+// Legacy Stagger (behalten für Kompatibilität)
 export const attioStaggerContainer = {
   hidden: { opacity: 0 },
   visible: {

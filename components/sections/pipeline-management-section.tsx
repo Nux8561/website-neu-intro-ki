@@ -2,6 +2,8 @@
 
 import * as React from "react"
 import { motion, useInView } from "framer-motion"
+import { FeatureIcon } from "@/components/ui/feature-icon"
+import { snappySpring } from "@/lib/animations"
 import { Button } from "@/components/ui/button"
 import { PipelineKanbanCard } from "@/components/ui/pipeline-kanban-card"
 import { GitBranch, Sparkles, RefreshCw, Users } from "lucide-react"
@@ -99,14 +101,13 @@ export function PipelineManagementSection() {
                   }
                   transition={{
                     delay: index * 0.1,
-                    type: "spring",
-                    stiffness: 400,
-                    damping: 17,
+                    ...snappySpring,
                   }}
-                  className="bg-black/5 border border-black/10 rounded-xl p-6 hover:border-black/20 transition-all backdrop-blur-sm"
+                  whileHover={{ scale: 1.01 }}
+                  className="bg-black/5 border border-black/10 rounded-xl p-6 hover:border-black/20 backdrop-blur-sm"
                 >
-                  <div className="p-3 rounded-lg bg-black/5 border border-black/10 w-fit mb-4">
-                    <Icon className="h-6 w-6 text-black/70" />
+                  <div className="mb-4">
+                    <FeatureIcon icon={Icon} size="md" color="gray" />
                   </div>
                   <h3 className="text-lg font-jakarta font-medium tracking-tight text-black mb-2">
                     {feature.title}

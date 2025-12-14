@@ -412,23 +412,17 @@ function StatsRow({ totalRecords }: { totalRecords: number }) {
 export function DataFlowAnimation() {
   const [activeSource, setActiveSource] = React.useState<number>(0)
   const [totalRecords, setTotalRecords] = React.useState(12390)
-  const [isMounted, setIsMounted] = React.useState(false)
   
+  // Auto-cycle through sources - start immediately
   React.useEffect(() => {
-    setIsMounted(true)
-  }, [])
-  
-  // Auto-cycle through sources
-  React.useEffect(() => {
-    if (!isMounted) return
-    
+    // Start immediately with first render
     const interval = setInterval(() => {
       setActiveSource(prev => (prev + 1) % dataSources.length)
       setTotalRecords(prev => prev + Math.floor(Math.random() * 50) + 30)
     }, 2800)
     
     return () => clearInterval(interval)
-  }, [isMounted])
+  }, [])
   
   const handleSourceClick = (index: number) => {
     setActiveSource(index)

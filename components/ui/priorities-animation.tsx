@@ -449,7 +449,7 @@ export function PrioritiesAnimation() {
     return () => clearInterval(updateInterval)
   }, [phase, visibleCards, activeSource])
 
-  // Animation loop
+  // Animation loop - start immediately
   React.useEffect(() => {
     let timeout1: NodeJS.Timeout
     let timeout2: NodeJS.Timeout
@@ -459,7 +459,7 @@ export function PrioritiesAnimation() {
     let progressInterval: NodeJS.Timeout
 
     const startLoop = () => {
-      // Phase 1: Collecting
+      // Phase 1: Collecting - start immediately
       setPhase("collecting")
       setVisibleCards(0)
       setActiveSource(0)
@@ -528,7 +528,7 @@ export function PrioritiesAnimation() {
   return (
     <div 
       ref={containerRef}
-      className="relative w-full h-full rounded-xl overflow-visible flow-container" 
+      className="relative w-full h-full rounded-xl flow-container" 
       style={{ 
         position: 'absolute',
         inset: 0,
@@ -536,7 +536,9 @@ export function PrioritiesAnimation() {
         width: '100%', 
         display: 'flex', 
         flexDirection: 'column',
-        backgroundColor: colors.background
+        backgroundColor: colors.background,
+        minHeight: '600px',
+        overflow: 'visible'
       }}
     >
       {/* Dot pattern */}
@@ -549,23 +551,18 @@ export function PrioritiesAnimation() {
       />
       
       <div className="relative z-10 flex flex-col p-6" style={{ flex: '1 1 auto', minHeight: 0 }}>
-        {/* Header */}
-        <motion.div 
-          className="mb-6 text-center"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={smoothSpring}
-        >
+        {/* Header - Always visible */}
+        <div className="mb-6 text-center">
           <h2 className="text-xl font-jakarta font-semibold tracking-tight text-gray-900 mb-1.5">
             Ihre Top 20 Prioritäts-Leads
           </h2>
           <p className="text-sm text-gray-600">
             KI-gestützte Empfehlungen basierend auf Telefonie, Notizen, Umsatzziele und Daten
           </p>
-        </motion.div>
+        </div>
 
         {/* Main visualization */}
-        <div className="flex-1 relative" style={{ minHeight: '600px', overflow: 'visible' }}>
+        <div className="flex-1 relative" style={{ minHeight: '600px', overflow: 'visible', position: 'relative', zIndex: 1 }}>
           {/* SVG Container for Flow Lines - ABOVE everything */}
           <FlowLinesSVG
             phase={phase}
@@ -580,8 +577,59 @@ export function PrioritiesAnimation() {
             colors={colors}
           />
 
-          {/* Phase 1 & 2: Data Sources */}
-          {(phase === "collecting" || phase === "analyzing") && (
+          {/* Phase 1 & 2: Data Sources - Always show, start immediately */}
+          <div className="absolute top-0 left-0 right-0 flex justify-center" style={{ zIndex: 40 }}>
+            <div className="flex items-center gap-12">
+              {dataSources.map((source, index) => {
+                const Icon = source.icon
+                const isActive = phase === "analyzing" || activeSource === index
+                
+                return (
+                  <motion.div
+                    key={source.id}
+                    ref={(ref) => { 
+                      sourceRefs.current[index] = ref
+                    }}
+                    className="flex flex-col items-center gap-2"
+                    initial={false}
+                    animate={{ 
+                      opacity: (phase === "collecting" || phase === "analyzing") ? (isActive ? 1 : 0.4) : 0,
+                      y: (phase === "collecting" || phase === "analyzing") ? 0 : -20
+                    }}
+                    transition={{ 
+                      delay: index * 0.1,
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 25
+                    }}
+                  >
+                    <motion.div 
+                      className="w-20 h-20 rounded-2xl border-2 flex items-center justify-center shadow-sm relative"
+                      style={{
+                        borderColor: isActive ? source.color : colors.border,
+                        backgroundColor: isActive ? source.bgColor : colors.surface
+                      }}
+                      animate={isActive && (phase === "collecting" || phase === "analyzing") ? { 
+                        scale: [1, 1.05, 1],
+                        boxShadow: [
+                          "0 1px 3px rgba(0,0,0,0.1)",
+                          `0 4px 12px ${source.color}30`,
+                          "0 1px 3px rgba(0,0,0,0.1)"
+                        ]
+                      } : {}}
+                      transition={{ duration: 2, repeat: isActive ? Infinity : 0 }}
+                    >
+                      <Icon className="w-10 h-10" style={{ color: isActive ? source.color : colors.text.muted }} strokeWidth={1.5} />
+                    </motion.div>
+                    <span className="text-xs font-medium text-gray-600 whitespace-nowrap">{source.name}</span>
+                  </motion.div>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Phase 2: AI Center */}
+          {phase === "analyzing" && (
             <div className="absolute top-0 left-0 right-0 flex justify-center" style={{ zIndex: 40 }}>
               <div className="flex items-center gap-12">
                 {dataSources.map((source, index) => {

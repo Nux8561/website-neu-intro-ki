@@ -49,10 +49,19 @@ interface HeroAttioProps {
   showVideo?: boolean
 }
 
+const tabs = [
+  { id: "data" as const, label: "Data" },
+  { id: "priorities" as const, label: "Prioritäten" },
+  { id: "reporting" as const, label: "Reporting" },
+  { id: "pipeline" as const, label: "Pipeline" },
+]
+
 export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
   const [activeTab, setActiveTab] = React.useState<"data" | "priorities" | "reporting" | "pipeline">("data")
   const [dimensions, setDimensions] = React.useState({ width: 1920, height: 1080 })
   const [mounted, setMounted] = React.useState(false)
+  const [isUserInteracting, setIsUserInteracting] = React.useState(false)
+  const [animationKey, setAnimationKey] = React.useState(0)
 
   React.useEffect(() => {
     setMounted(true)
@@ -66,12 +75,41 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
     return () => window.removeEventListener("resize", update)
   }, [])
 
-  const tabs = [
-    { id: "data", label: "Data" },
-    { id: "priorities", label: "Prioritäten" },
-    { id: "reporting", label: "Reporting" },
-    { id: "pipeline", label: "Pipeline" },
-  ]
+  // Auto-rotate tabs every 12 seconds
+  React.useEffect(() => {
+    if (isUserInteracting) return
+
+    const interval = setInterval(() => {
+      setActiveTab((current) => {
+        const currentIndex = tabs.findIndex((tab) => tab.id === current)
+        const nextIndex = (currentIndex + 1) % tabs.length
+        const nextTab = tabs[nextIndex].id
+        // Force remount of animation components on auto-rotate
+        setAnimationKey(prev => prev + 1)
+        return nextTab
+      })
+    }, 12000) // 12 seconds
+
+    return () => clearInterval(interval)
+  }, [isUserInteracting])
+
+  // Reset user interaction flag after 15 seconds of no interaction
+  React.useEffect(() => {
+    if (!isUserInteracting) return
+
+    const timeout = setTimeout(() => {
+      setIsUserInteracting(false)
+    }, 15000)
+
+    return () => clearTimeout(timeout)
+  }, [isUserInteracting, activeTab])
+
+  const handleTabChange = (tabId: typeof activeTab) => {
+    setIsUserInteracting(true)
+    // Force remount of animation components before changing tab
+    setAnimationKey(prev => prev + 1)
+    setActiveTab(tabId)
+  }
 
   return (
     <>
@@ -171,73 +209,121 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
             transition={{ delay: 0.4 }}
             className="max-w-5xl mx-auto relative z-10"
           >
-            {/* Tab Navigation */}
-            <div className="flex items-center justify-center gap-1 sm:gap-2 mb-6 border-b border-border overflow-x-auto hide-scrollbar">
-              {tabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id as typeof activeTab)}
-                  className={`px-3 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-medium transition-all relative whitespace-nowrap touch-manipulation min-h-[44px] ${
-                    activeTab === tab.id
-                      ? "text-text-primary"
-                      : "text-text-muted hover:text-text-secondary"
-                  }`}
-                >
-                  {tab.label}
-                  {activeTab === tab.id && (
-                    <motion.div
-                      layoutId="activeTab"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand"
-                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                    />
-                  )}
-                </button>
-              ))}
+            {/* Tab Navigation with Frame */}
+            <div className="mb-6 rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md shadow-lg p-2 sm:p-2.5">
+              <div className="flex items-center justify-center gap-1 sm:gap-2 overflow-x-auto hide-scrollbar">
+                {tabs.map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => handleTabChange(tab.id)}
+                    className={`relative px-4 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-medium transition-all whitespace-nowrap touch-manipulation min-h-[44px] rounded-lg ${
+                      activeTab === tab.id
+                        ? "text-text-primary bg-white/20"
+                        : "text-text-muted hover:text-text-secondary hover:bg-white/10"
+                    }`}
+                  >
+                    {tab.label}
+                    {activeTab === tab.id && (
+                      <motion.div
+                        layoutId="activeTab"
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand rounded-full"
+                        transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                      />
+                    )}
+                  </button>
+                ))}
+              </div>
             </div>
 
             {/* Product Demo Area */}
-            <div className="product-demo overflow-hidden rounded-2xl border border-white/10">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeTab}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  className="relative aspect-[16/10] bg-[#0B0C0E] rounded-xl overflow-hidden"
-                  style={{ position: 'relative', width: '100%', height: '100%' }}
-                >
-                  {activeTab === "data" ? (
-                    <div style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
-                      <DataFlowAnimation />
-                    </div>
-                  ) : activeTab === "priorities" ? (
-                    <div style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
-                      <PrioritiesAnimation />
-                    </div>
-                  ) : (
-                    /* Placeholder for other tabs - can add more animations later */
-                    <div className="absolute inset-0 flex items-center justify-center p-6">
+            <div className="product-demo overflow-hidden rounded-2xl border border-white/10 bg-white">
+              <AnimatePresence mode="wait" initial={false}>
+                {activeTab === "data" && (
+                  <motion.div
+                    key={`data-tab-${animationKey}`}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                    className="relative aspect-[16/10] bg-gray-50 rounded-xl overflow-hidden"
+                    style={{ position: 'relative', width: '100%', height: '100%', minHeight: '400px' }}
+                  >
+                    <DataFlowAnimation key={`data-animation-${animationKey}`} />
+                  </motion.div>
+                )}
+                {activeTab === "priorities" && (
+                  <motion.div
+                    key={`priorities-tab-${animationKey}`}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                    className="relative aspect-[16/10] bg-gray-50 rounded-xl"
+                    style={{ position: 'relative', width: '100%', height: '100%', minHeight: '600px', overflow: 'visible' }}
+                  >
+                    <PrioritiesAnimation key={`priorities-animation-${animationKey}`} />
+                  </motion.div>
+                )}
+                {activeTab === "reporting" && (
+                  <motion.div
+                    key={`reporting-tab-${animationKey}`}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                    className="relative aspect-[16/10] bg-[#0B0C0E] rounded-xl overflow-hidden"
+                    style={{ position: 'relative', width: '100%', height: '100%' }}
+                  >
+                    <div className="absolute inset-0 flex items-center justify-center p-6 bg-[#0B0C0E]">
                       <div className="text-center">
                         <Image
-                          src={`/screenshots/${activeTab}-view.png`}
-                          alt={`IntroKI ${activeTab} View`}
+                          src={`/screenshots/reporting-view.png`}
+                          alt={`IntroKI Reporting View`}
                           fill
-                          className="object-cover"
+                          className="object-cover rounded-xl"
                           onError={(e) => {
                             const target = e.target as HTMLImageElement
                             target.style.display = 'none'
                           }}
                         />
                         {/* Fallback content when no image */}
-                        <div className="text-slate-400 text-sm">
-                          {activeTab === "reporting" && "Reporting Dashboard kommt bald..."}
-                          {activeTab === "pipeline" && "Pipeline View kommt bald..."}
+                        <div className="relative z-10 text-slate-400 text-sm">
+                          Reporting Dashboard kommt bald...
                         </div>
                       </div>
                     </div>
-                  )}
-                </motion.div>
+                  </motion.div>
+                )}
+                {activeTab === "pipeline" && (
+                  <motion.div
+                    key={`pipeline-tab-${animationKey}`}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                    className="relative aspect-[16/10] bg-[#0B0C0E] rounded-xl overflow-hidden"
+                    style={{ position: 'relative', width: '100%', height: '100%' }}
+                  >
+                    <div className="absolute inset-0 flex items-center justify-center p-6 bg-[#0B0C0E]">
+                      <div className="text-center">
+                        <Image
+                          src={`/screenshots/pipeline-view.png`}
+                          alt={`IntroKI Pipeline View`}
+                          fill
+                          className="object-cover rounded-xl"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement
+                            target.style.display = 'none'
+                          }}
+                        />
+                        {/* Fallback content when no image */}
+                        <div className="relative z-10 text-slate-400 text-sm">
+                          Pipeline View kommt bald...
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
               </AnimatePresence>
             </div>
           </motion.div>

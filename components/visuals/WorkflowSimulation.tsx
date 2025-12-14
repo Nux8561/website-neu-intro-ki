@@ -1,241 +1,172 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import Image from "next/image"
-import { User, Filter, Plus, Settings, ZoomIn } from "lucide-react"
-import { AnimatedBeam } from "@/components/ui/animated-beam"
-import { snappySpring, attioTransition } from "@/lib/animations"
+import React, { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { User, GitBranch, Mail, CheckCircle2 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-interface WorkflowNode {
-  id: string
-  label: string
-  icon: React.ComponentType<{ className?: string }> | null
-  activeColor: string
-  activeBorderColor: string
-}
+// --- Configuration ---
+const COLORS = {
+  active: "#22c55e", // Green
+  inactive: "#e2e4e7", // Gray Border
+  bg: "#fafafb",
+};
 
-const workflowNodes: WorkflowNode[] = [
-  {
-    id: "new-lead",
-    label: "New Lead",
-    icon: User,
-    activeColor: "text-blue-600",
-    activeBorderColor: "border-blue-500",
-  },
-  {
-    id: "qualify",
-    label: "Qualify",
-    icon: Filter,
-    activeColor: "text-purple-600",
-    activeBorderColor: "border-purple-500",
-  },
-  {
-    id: "slack-alert",
-    label: "Intro KI Nachricht",
-    icon: null, // Will use Image instead
-    activeColor: "text-green-600",
-    activeBorderColor: "border-green-500",
-  },
-]
+export const WorkflowSimulation = () => {
+  // Wir nutzen einen Timer, um die Phasen zu steuern
+  const [phase, setPhase] = useState(0);
 
-export function WorkflowSimulation() {
-  const containerRef = React.useRef<HTMLDivElement>(null)
-  const node1Ref = React.useRef<HTMLDivElement>(null)
-  const node2Ref = React.useRef<HTMLDivElement>(null)
-  const node3Ref = React.useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const loop = () => {
+        // Phase 0: Reset
+        setPhase(0);
+        setTimeout(() => setPhase(1), 500); // Start Linie 1
+        setTimeout(() => setPhase(2), 1500); // Box 1 Umrandung
+        setTimeout(() => setPhase(3), 2500); // Linie 2
+        setTimeout(() => setPhase(4), 3500); // Box 2 Umrandung
+        setTimeout(() => setPhase(5), 4500); // Linie 3
+        setTimeout(() => setPhase(6), 5500); // Box 3 Umrandung
+        setTimeout(() => setPhase(0), 8000); // Reset nach Pause
+    };
+    
+    loop();
+    const interval = setInterval(loop, 8000);
+    return () => clearInterval(interval);
+  }, []);
 
-  const [activeNode, setActiveNode] = React.useState<string | null>(null)
-  const [showNotification, setShowNotification] = React.useState(false)
-
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      // Reset
-      setActiveNode(null)
-      setShowNotification(false)
-
-      // Phase 1: Node 1 aktiv (0.2s)
-      setTimeout(() => {
-        setActiveNode("new-lead")
-      }, 200)
-
-      // Phase 2: Node 2 aktiv (1.0s)
-      setTimeout(() => {
-        setActiveNode("qualify")
-      }, 1000)
-
-      // Phase 3: Node 3 aktiv + Notification (1.8s)
-      setTimeout(() => {
-        setActiveNode("slack-alert")
-        setShowNotification(true)
-      }, 1800)
-
-      // Phase 4: Reset (3.0s)
-      setTimeout(() => {
-        setActiveNode(null)
-        setShowNotification(false)
-      }, 3000)
-    }, 4000) // Loop alle 4 Sekunden
-
-    return () => clearInterval(interval)
-  }, [])
+  // Helfer für die Animationen
+  const lineTransition = { duration: 1, ease: "easeInOut" };
+  const borderTransition = { duration: 1, ease: "linear" };
 
   return (
-    <div className="relative w-full h-full bg-white">
-      {/* Background Pattern */}
+    <div className="relative w-full h-full bg-[#FAFAFB] overflow-hidden flex items-center justify-center select-none">
+      {/* 1. Hintergrund Pattern (Füllt alles aus) */}
       <div 
-        className="absolute inset-0 opacity-30"
+        className="absolute inset-0 opacity-[0.6]"
         style={{
-          backgroundImage: `radial-gradient(#e5e7eb 1px, transparent 1px)`,
-          backgroundSize: '16px 16px',
+            backgroundImage: "radial-gradient(#cbd5e1 1px, transparent 1px)",
+            backgroundSize: "20px 20px"
         }}
       />
 
-      {/* Toolbar */}
-      <div className="absolute top-4 left-4 right-4 z-20 flex items-center justify-between">
-        <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-attio-subtle rounded-lg px-3 py-2 shadow-sm">
-          <button className="p-1.5 hover:bg-attio-gray rounded transition-colors">
-            <Plus className="h-4 w-4 text-text-muted" />
-          </button>
-          <div className="w-px h-4 bg-attio-subtle" />
-          <button className="p-1.5 hover:bg-attio-gray rounded transition-colors">
-            <Settings className="h-4 w-4 text-text-muted" />
-          </button>
-          <button className="p-1.5 hover:bg-attio-gray rounded transition-colors">
-            <ZoomIn className="h-4 w-4 text-text-muted" />
-          </button>
-        </div>
-      </div>
+      {/* 2. SVG Container (Skaliert, passt immer) */}
+      <div className="relative w-[300px] h-[380px] scale-[0.85] sm:scale-100">
+        <svg className="w-full h-full overflow-visible">
+            <defs>
+                <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="2" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+            </defs>
 
-      {/* Workflow Canvas */}
-      <div 
-        ref={containerRef}
-        className="relative flex flex-col items-center justify-center gap-0 py-8 w-full h-full z-10"
-      >
-        {/* Workflow Nodes */}
-        {workflowNodes.map((node, index) => {
-          const Icon = node.icon
-          const isActive = activeNode === node.id
-          const nodeRef = index === 0 ? node1Ref : index === 1 ? node2Ref : node3Ref
+            {/* --- STATIC GRAY LAYER (Die "Spur") --- */}
+            {/* Line 1 */}
+            <path d="M 150 0 L 150 40" stroke={COLORS.inactive} strokeWidth="2" />
 
-          return (
-            <React.Fragment key={node.id}>
-              {/* Node */}
-              <motion.div
-                ref={nodeRef}
-                className={`
-                  relative w-48 bg-white rounded-md border p-3 shadow-sm z-10
-                  ${isActive ? node.activeBorderColor : "border-attio-subtle"}
-                  transition-colors duration-attio ease-attio-ease-out
-                `}
-                animate={{
-                  scale: isActive ? 1.05 : 1,
-                }}
-                transition={snappySpring}
-              >
-                <div className="flex items-center gap-3">
-                  <motion.div
-                    animate={{
-                      scale: isActive ? 1.1 : 1,
-                    }}
-                    transition={snappySpring}
-                    className="relative w-5 h-5 flex-shrink-0"
-                  >
-                    {node.id === "slack-alert" ? (
-                      <Image
-                        src="/images/app logo.png"
-                        alt="Intro KI Logo"
-                        fill
-                        className={`object-contain transition-opacity ${
-                          isActive ? "opacity-100" : "opacity-50"
-                        }`}
-                      />
-                    ) : (
-                      Icon && (
-                        <Icon 
-                          className={`h-5 w-5 transition-colors ${
-                            isActive 
-                              ? node.activeColor 
-                              : "text-gray-400"
-                          }`}
-                        />
-                      )
-                    )}
-                  </motion.div>
-                  <span 
-                    className={`text-sm font-inter font-medium transition-colors ${
-                      isActive 
-                        ? node.activeColor 
-                        : "text-gray-400"
-                    }`}
-                  >
-                    {node.label}
-                  </span>
+            {/* Box 1 */}
+            <rect x="50" y="40" width="200" height="60" rx="8" stroke={COLORS.inactive} strokeWidth="2" fill="white" />
+
+            {/* Line 2 */}
+            <path d="M 150 100 L 150 140" stroke={COLORS.inactive} strokeWidth="2" />
+
+            {/* Box 2 */}
+            <rect x="50" y="140" width="200" height="60" rx="8" stroke={COLORS.inactive} strokeWidth="2" fill="white" />
+
+            {/* Line 3 */}
+            <path d="M 150 200 L 150 240" stroke={COLORS.inactive} strokeWidth="2" />
+
+            {/* Box 3 */}
+            <rect x="50" y="240" width="200" height="60" rx="8" stroke={COLORS.inactive} strokeWidth="2" fill="white" />
+
+            {/* --- ANIMATED GREEN LAYER (Die "Schlange") --- */}
+            
+            {/* 1. Linie zu Box 1 */}
+            <motion.path 
+                d="M 150 0 L 150 40" 
+                stroke={COLORS.active} strokeWidth="2" fill="none"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: phase >= 1 ? 1 : 0 }}
+                transition={lineTransition}
+            />
+
+            {/* 2. Umrandung Box 1 (Trigger) */}
+            <motion.rect 
+                x="50" y="40" width="200" height="60" rx="8" 
+                stroke={COLORS.active} strokeWidth="2" fill="none"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: phase >= 2 ? 1 : 0 }}
+                transition={borderTransition}
+            />
+
+            {/* 3. Linie zu Box 2 */}
+            <motion.path 
+                d="M 150 100 L 150 140" 
+                stroke={COLORS.active} strokeWidth="2" fill="none"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: phase >= 3 ? 1 : 0 }}
+                transition={lineTransition}
+            />
+
+            {/* 4. Umrandung Box 2 (Filter) */}
+            <motion.rect 
+                x="50" y="140" width="200" height="60" rx="8" 
+                stroke={COLORS.active} strokeWidth="2" fill="none"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: phase >= 4 ? 1 : 0 }}
+                transition={borderTransition}
+            />
+
+            {/* 5. Linie zu Box 3 */}
+            <motion.path 
+                d="M 150 200 L 150 240" 
+                stroke={COLORS.active} strokeWidth="2" fill="none"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: phase >= 5 ? 1 : 0 }}
+                transition={lineTransition}
+            />
+
+            {/* 6. Umrandung Box 3 (Action) */}
+            <motion.rect 
+                x="50" y="240" width="200" height="60" rx="8" 
+                stroke={COLORS.active} strokeWidth="2" fill="none"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: phase >= 6 ? 1 : 0 }}
+                transition={borderTransition}
+            />
+
+            {/* --- CONTENT LAYER (HTML über SVG) --- */}
+            <foreignObject x="50" y="40" width="200" height="60">
+                <div className="flex items-center h-full px-4 gap-3">
+                    <div className={cn("p-1.5 rounded-md transition-colors duration-500", phase >= 2 ? "bg-green-100 text-green-600" : "bg-gray-100 text-gray-400")}>
+                        <User size={16} />
+                    </div>
+                    <span className={cn("text-sm font-medium transition-colors duration-500", phase >= 2 ? "text-gray-900" : "text-gray-400")}>New Lead</span>
+                    {phase >= 2 && <motion.div initial={{scale:0}} animate={{scale:1}} className="ml-auto"><CheckCircle2 size={14} className="text-green-500" /></motion.div>}
                 </div>
-              </motion.div>
+            </foreignObject>
 
-              {/* Connection Line (außer nach dem letzten Node) */}
-              {index < workflowNodes.length - 1 && (
-                <div className="w-px h-8 bg-gray-200 relative z-0" />
-              )}
-            </React.Fragment>
-          )
-        })}
+            <foreignObject x="50" y="140" width="200" height="60">
+                <div className="flex items-center h-full px-4 gap-3">
+                    <div className={cn("p-1.5 rounded-md transition-colors duration-500", phase >= 4 ? "bg-green-100 text-green-600" : "bg-gray-100 text-gray-400")}>
+                        <GitBranch size={16} />
+                    </div>
+                    <span className={cn("text-sm font-medium transition-colors duration-500", phase >= 4 ? "text-gray-900" : "text-gray-400")}>Filter: Tech?</span>
+                    {phase >= 4 && <motion.div initial={{scale:0}} animate={{scale:1}} className="ml-auto"><CheckCircle2 size={14} className="text-green-500" /></motion.div>}
+                </div>
+            </foreignObject>
 
-        {/* Animated Beams */}
-        {containerRef.current && node1Ref.current && node2Ref.current && (
-          <AnimatedBeam
-            containerRef={containerRef}
-            fromRef={node1Ref}
-            toRef={node2Ref}
-            curvature={-30}
-            duration={3}
-            delay={0.2}
-            pathColor="#9CA3AF"
-            pathWidth={1}
-            pathOpacity={0.3}
-            gradientStartColor="#3B82F6"
-            gradientStopColor="#8B5CF6"
-            startYOffset={20}
-            endYOffset={-20}
-          />
-        )}
-        {containerRef.current && node2Ref.current && node3Ref.current && (
-          <AnimatedBeam
-            containerRef={containerRef}
-            fromRef={node2Ref}
-            toRef={node3Ref}
-            curvature={-30}
-            duration={3}
-            delay={1.0}
-            pathColor="#9CA3AF"
-            pathWidth={1}
-            pathOpacity={0.3}
-            gradientStartColor="#8B5CF6"
-            gradientStopColor="#10B981"
-            startYOffset={20}
-            endYOffset={-20}
-          />
-        )}
+            <foreignObject x="50" y="240" width="200" height="60">
+                <div className="flex items-center h-full px-4 gap-3">
+                    <div className={cn("p-1.5 rounded-md transition-colors duration-500", phase >= 6 ? "bg-green-100 text-green-600" : "bg-gray-100 text-gray-400")}>
+                        <Mail size={16} />
+                    </div>
+                    <span className={cn("text-sm font-medium transition-colors duration-500", phase >= 6 ? "text-gray-900" : "text-gray-400")}>Send Email</span>
+                    {phase >= 6 && <motion.div initial={{scale:0}} animate={{scale:1}} className="ml-auto"><CheckCircle2 size={14} className="text-green-500" /></motion.div>}
+                </div>
+            </foreignObject>
 
-        {/* Slack Notification */}
-        <AnimatePresence>
-          {showNotification && (
-            <motion.div
-              initial={{ opacity: 0, x: -20, scale: 0.9 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              exit={{ opacity: 0, x: -20, scale: 0.9 }}
-              transition={snappySpring}
-              className="absolute -right-8 top-1/2 -translate-y-1/2 bg-white border border-attio-subtle rounded-md p-2 shadow-lg z-30"
-            >
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-green-500" />
-                <span className="text-xs font-inter font-medium text-gray-700">Intro KI Nachricht</span>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        </svg>
       </div>
     </div>
-  )
-}
+  );
+};

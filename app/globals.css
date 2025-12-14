@@ -91,13 +91,23 @@
     @apply bg-white text-text-primary border border-border hover:bg-surface hover:border-border-active transition-all;
   }
   
-  /* Logo Grid */
+  /* Logo Grid - Responsive, alle in einer Linie */
   .logo-grid {
-    @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8;
+    @apply flex flex-wrap items-center justify-center gap-6 sm:gap-8 md:gap-12;
+    @apply overflow-x-auto;
+    @apply -mx-4 px-4 sm:-mx-6 sm:px-6;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+  }
+  
+  .logo-grid::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
   }
   
   .logo-item {
-    @apply flex items-center justify-center h-12 opacity-60 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300;
+    @apply flex items-center justify-center h-12 flex-shrink-0;
+    @apply opacity-60 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300;
+    min-width: 120px;
   }
   
   /* Section Spacing */

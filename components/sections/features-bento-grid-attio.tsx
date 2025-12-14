@@ -16,6 +16,7 @@ import {
 } from "lucide-react"
 import { SkeletalUI } from "@/components/ui/skeletal-ui"
 import { FeatureIcon } from "@/components/ui/feature-icon"
+import { WorkflowSimulation } from "@/components/visuals/WorkflowSimulation"
 import { snappySpring, snappyStaggerContainer, snappyStaggerItem } from "@/lib/animations"
 
 // Animation variants - Snappy Spring Physics
@@ -23,9 +24,13 @@ const containerVariants = snappyStaggerContainer
 const itemVariants = snappyStaggerItem
 
 // Workflow Editor Component (für "Automate everything" Kachel)
-// Nutzt jetzt Skeletal UI statt Icons
+// Nutzt jetzt die neue WorkflowSimulation mit Whiteboard-Look
 function WorkflowEditor() {
-  return <SkeletalUI variant="workflow" />
+  return (
+    <div className="relative w-full h-full -m-6 overflow-hidden z-0" style={{ minHeight: "300px" }}>
+      <WorkflowSimulation />
+    </div>
+  )
 }
 
 // Data Integration (für "Connect any type of data" Kachel)
@@ -142,7 +147,7 @@ export function FeaturesBentoGridAttio() {
             <motion.div
               key={cell.id}
               variants={itemVariants}
-              className="bg-white p-6 hover:bg-gray-50/50 hover:shadow-sm"
+              className="bg-white p-6 hover:bg-gray-50/50 hover:shadow-sm relative overflow-hidden"
               whileHover={{ scale: 1.01 }}
               transition={snappySpring}
               style={{
@@ -152,13 +157,17 @@ export function FeaturesBentoGridAttio() {
             >
               {cell.title ? (
                 <>
-                  <h3 className="text-lg md:text-xl font-inter-display font-bold text-[#0A0A0A] mb-2 leading-tight">
-                    {cell.title}
-                  </h3>
-                  <p className="text-sm font-inter text-text-muted mb-4 leading-relaxed">
-                    {cell.description}
-                  </p>
-                  {cell.content}
+                  <div className="relative z-10">
+                    <h3 className="text-lg md:text-xl font-inter-display font-bold text-[#0A0A0A] mb-2 leading-tight">
+                      {cell.title}
+                    </h3>
+                    <p className="text-sm font-inter text-text-muted mb-4 leading-relaxed">
+                      {cell.description}
+                    </p>
+                  </div>
+                  <div className="relative z-0 mt-4">
+                    {cell.content}
+                  </div>
                 </>
               ) : (
                 cell.content

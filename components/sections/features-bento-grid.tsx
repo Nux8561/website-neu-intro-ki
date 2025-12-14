@@ -49,9 +49,8 @@ export function FeaturesBentoGrid() {
             className="font-serif text-4xl md:text-7xl tracking-tight italic mix-blend-exclusion text-white"
             style={{
               WebkitTextStroke: '2px rgba(0, 0, 0, 0.5)',
-              textStroke: '2px rgba(0, 0, 0, 0.5)',
               paintOrder: 'stroke fill',
-            }}
+            } as React.CSSProperties}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ type: "spring", stiffness: 400, damping: 17 }}

@@ -5,7 +5,6 @@ import { motion } from "framer-motion"
 import { 
   Zap, 
   Link2, 
-  Brain, 
   Workflow, 
   Database, 
   BarChart3,
@@ -106,7 +105,7 @@ const bentoCells = [
     description: "Erhalte intelligente Empfehlungen, die von maschinellem Lernen angetrieben werden.",
     content: (
           <div className="mt-4 flex items-center gap-3">
-            <FeatureIcon icon={Brain} size="md" color="purple" />
+            <FeatureIcon logo="/images/openai-1-5u0onpsnpplsd0el4s93im.webp" size="md" color="purple" />
             <div className="text-sm font-inter text-text-muted">
               Muster analysieren...
             </div>

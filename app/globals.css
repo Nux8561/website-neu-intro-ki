@@ -93,21 +93,23 @@
   
   /* Logo Grid - Responsive, alle in einer Linie */
   .logo-grid {
-    @apply flex flex-wrap items-center justify-center gap-6 sm:gap-8 md:gap-12;
+    @apply flex flex-nowrap items-center justify-center gap-6 sm:gap-8 md:gap-12;
     @apply overflow-x-auto;
     @apply -mx-4 px-4 sm:-mx-6 sm:px-6;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE/Edge */
+    width: 100%;
   }
-  
+
   .logo-grid::-webkit-scrollbar {
     display: none; /* Chrome/Safari */
   }
-  
+
   .logo-item {
     @apply flex items-center justify-center h-12 flex-shrink-0;
     @apply opacity-60 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300;
     min-width: 120px;
+    max-width: 160px;
   }
   
   /* Section Spacing */

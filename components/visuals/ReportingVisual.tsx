@@ -2,283 +2,303 @@
 
 import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ArrowUp, ChevronDown } from "lucide-react"
+import { Phone, Calendar, Trophy, ArrowUp, ArrowDown } from "lucide-react"
 import { NumberTicker } from "@/components/ui/number-ticker"
-import { attioTransition } from "@/lib/animations"
+import { attioTransition, snappySpring, snappyStaggerContainer, snappyStaggerItem } from "@/lib/animations"
 
-// Sample data points for the chart
-const dataPoints = [
-  { x: 0, y: 100 },    // Start
-  { x: 20, y: 95 },
-  { x: 40, y: 85 },
-  { x: 60, y: 70 },
-  { x: 80, y: 45 },
-  { x: 100, y: 20 },   // Peak
+// Chart data points for revenue over months
+const chartData = [
+  { month: "Jan", value: 0 },
+  { month: "Feb", value: 5 },
+  { month: "Mär", value: 12 },
+  { month: "Apr", value: 18 },
+  { month: "Mai", value: 25 },
+  { month: "Jun", value: 35 },
+  { month: "Jul", value: 45 },
+  { month: "Aug", value: 52 },
+  { month: "Sep", value: 58 },
+  { month: "Okt", value: 62 },
+  { month: "Nov", value: 65 },
+  { month: "Dez", value: 70 },
 ]
 
 export function ReportingVisual() {
-  const [pathDrawn, setPathDrawn] = React.useState(false)
-  const [showTooltip, setShowTooltip] = React.useState(false)
-  const [pathProgress, setPathProgress] = React.useState(0)
-
-  // Generate SVG path from data points
-  const pathD = React.useMemo(() => {
-    const width = 600
-    const height = 200
-    const maxY = Math.max(...dataPoints.map(p => p.y))
-    const minY = Math.min(...dataPoints.map(p => p.y))
-    const rangeY = maxY - minY
-
-    const points = dataPoints.map(point => {
-      const x = (point.x / 100) * width
-      const y = height - ((point.y - minY) / rangeY) * (height - 40) - 20
-      return `${x},${y}`
-    })
-
-    return `M ${points[0]} ${points.slice(1).map((p, i) => `L ${p}`).join(' ')}`
-  }, [])
-
-  // Area path for gradient fill
-  const areaPathD = React.useMemo(() => {
-    const width = 600
-    const height = 200
-    const maxY = Math.max(...dataPoints.map(p => p.y))
-    const minY = Math.min(...dataPoints.map(p => p.y))
-    const rangeY = maxY - minY
-
-    const linePath = dataPoints.map((point, index) => {
-      const x = (point.x / 100) * width
-      const y = height - ((point.y - minY) / rangeY) * (height - 40) - 20
-      return index === 0 ? `M ${x} ${y}` : `L ${x} ${y}`
-    }).join(' ')
-
-    const lastPoint = dataPoints[dataPoints.length - 1]
-    const firstPoint = dataPoints[0]
-    const lastX = (lastPoint.x / 100) * width
-    const firstX = (firstPoint.x / 100) * width
-
-    return `${linePath} L ${lastX} ${height} L ${firstX} ${height} Z`
-  }, [])
-
-  // Get tooltip position (at the peak)
-  const tooltipPosition = React.useMemo(() => {
-    const width = 600
-    const height = 200
-    const maxY = Math.max(...dataPoints.map(p => p.y))
-    const minY = Math.min(...dataPoints.map(p => p.y))
-    const rangeY = maxY - minY
-
-    const peakPoint = dataPoints[dataPoints.length - 1]
-    const x = (peakPoint.x / 100) * width
-    const y = height - ((peakPoint.y - minY) / rangeY) * (height - 40) - 20
-
-    return { x, y }
-  }, [])
-
-  // Get point position along path based on progress
-  const getPointPosition = React.useCallback((progress: number) => {
-    const width = 600
-    const height = 200
-    const maxY = Math.max(...dataPoints.map(p => p.y))
-    const minY = Math.min(...dataPoints.map(p => p.y))
-    const rangeY = maxY - minY
-
-    const totalPoints = dataPoints.length
-    const segmentIndex = Math.floor(progress * (totalPoints - 1))
-    const segmentProgress = (progress * (totalPoints - 1)) % 1
-
-    if (segmentIndex >= totalPoints - 1) {
-      const lastPoint = dataPoints[totalPoints - 1]
-      return {
-        x: (lastPoint.x / 100) * width,
-        y: height - ((lastPoint.y - minY) / rangeY) * (height - 40) - 20,
-      }
-    }
-
-    const point1 = dataPoints[segmentIndex]
-    const point2 = dataPoints[segmentIndex + 1]
-
-    const x1 = (point1.x / 100) * width
-    const y1 = height - ((point1.y - minY) / rangeY) * (height - 40) - 20
-    const x2 = (point2.x / 100) * width
-    const y2 = height - ((point2.y - minY) / rangeY) * (height - 40) - 20
-
-    return {
-      x: x1 + (x2 - x1) * segmentProgress,
-      y: y1 + (y2 - y1) * segmentProgress,
-    }
-  }, [])
+  const [chartDrawn, setChartDrawn] = React.useState(false)
+  const [showMetrics, setShowMetrics] = React.useState(false)
+  const [animationStarted, setAnimationStarted] = React.useState(false)
 
   React.useEffect(() => {
-    // Animate path drawing
-    const startTime = Date.now()
-    const duration = 1500
-
-    const animate = () => {
-      const elapsed = Date.now() - startTime
-      const progress = Math.min(elapsed / duration, 1)
-      
-      setPathProgress(progress)
-      setPathDrawn(progress >= 1)
-
-      if (progress < 1) {
-        requestAnimationFrame(animate)
-      } else {
-        // Show tooltip after path is drawn
-        setTimeout(() => {
-          setShowTooltip(true)
-        }, 200)
-      }
-    }
-
+    // Start animation sequence
     const timer = setTimeout(() => {
-      animate()
+      setAnimationStarted(true)
+      // Animate chart drawing
+      setTimeout(() => {
+        setChartDrawn(true)
+        setTimeout(() => {
+          setShowMetrics(true)
+        }, 500)
+      }, 800)
     }, 500)
 
     return () => clearTimeout(timer)
   }, [])
 
-  const pointPosition = getPointPosition(pathProgress)
+  // Generate SVG path for chart
+  const chartPath = React.useMemo(() => {
+    const width = 600
+    const height = 200
+    const maxValue = 70
+    const padding = 40
+
+    const points = chartData.map((point, index) => {
+      const x = padding + (index / (chartData.length - 1)) * (width - padding * 2)
+      const y = height - padding - (point.value / maxValue) * (height - padding * 2)
+      return `${x},${y}`
+    })
+
+    return `M ${points[0]} ${points.slice(1).map(p => `L ${p}`).join(' ')}`
+  }, [])
+
+  // Area path for gradient
+  const areaPath = React.useMemo(() => {
+    const width = 600
+    const height = 200
+    const maxValue = 70
+    const padding = 40
+
+    const linePath = chartData.map((point, index) => {
+      const x = padding + (index / (chartData.length - 1)) * (width - padding * 2)
+      const y = height - padding - (point.value / maxValue) * (height - padding * 2)
+      return index === 0 ? `M ${x} ${y}` : `L ${x} ${y}`
+    }).join(' ')
+
+    const firstX = padding
+    const lastX = padding + ((chartData.length - 1) / (chartData.length - 1)) * (width - padding * 2)
+    const bottomY = height - padding
+
+    return `${linePath} L ${lastX} ${bottomY} L ${firstX} ${bottomY} Z`
+  }, [])
+
+  // Activity card values - these will animate from 0 to target
+  const activityValues = [
+    { label: "Wählversuche", value: 245, subtitle: "Anrufe im Zeitraum", color: "bg-white" },
+    { label: "Termin vereinbart", value: 128, subtitle: "Termine geplant", color: "bg-white" },
+    { label: "Erstgespräche", value: 89, subtitle: "Erste Kontakte", color: "bg-white" },
+    { label: "Zweitgespräche", value: 56, subtitle: "Follow-up Calls", color: "bg-white" },
+    { label: "Abschlüsse", value: 23, subtitle: "Geschlossene Deals", color: "bg-blue-600 text-white" },
+  ]
+
+  // Rate values
+  const rateValues = [
+    { label: "Terminrate", value: 52.2, trend: "down" },
+    { label: "Qualifikationsrate", value: 69.5, trend: "down" },
+    { label: "Abschlussrate", value: 41.1, trend: "down" },
+    { label: "Nicht erschienen Rate", value: 8.3, trend: "up" },
+  ]
+
+  // Revenue values
+  const revenueValues = [
+    { label: "Umsatz", value: 125000 },
+    { label: "Umsatz pro Kunde", value: 5435 },
+    { label: "Umsatz pro Wählversuch", value: 510 },
+  ]
 
   return (
-    <div className="h-full w-full bg-white p-6 flex flex-col">
-      {/* Header Section */}
-      <div className="flex items-start justify-between mb-6">
-        <div>
-          <div className="flex items-baseline gap-2 mb-1">
-            <span className="text-3xl font-bold font-inter text-gray-900">
-              $<NumberTicker value={124500} direction="up" delay={300} />
-            </span>
-          </div>
-          <div className="flex items-center gap-1.5 text-sm text-green-600 font-inter font-medium">
-            <ArrowUp className="h-3.5 w-3.5" />
-            <span>+<NumberTicker value={12.5} direction="up" delay={500} decimals={1} />% vs last month</span>
-          </div>
-        </div>
-        
-        {/* Dropdown */}
-        <div className="flex items-center gap-2 px-3 py-1.5 border border-attio-subtle rounded-md bg-white text-xs font-inter text-text-muted cursor-pointer hover:bg-attio-gray transition-colors">
-          <span>Last 30 Days</span>
-          <ChevronDown className="h-3 w-3" />
-        </div>
-      </div>
-
-      {/* Chart Section */}
-      <div className="flex-1 relative">
-        <svg
-          viewBox="0 0 600 200"
-          className="w-full h-full"
-          preserveAspectRatio="none"
-        >
-          <defs>
-            <linearGradient id="chart-gradient-reporting" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.3" />
-              <stop offset="100%" stopColor="#3B82F6" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-
-          {/* Grid Lines (Horizontal) */}
-          <g opacity={0.15}>
-            {[0, 25, 50, 75, 100].map((y) => (
-              <line
-                key={y}
-                x1="0"
-                y1={200 - (y / 100) * 160}
-                x2="600"
-                y2={200 - (y / 100) * 160}
-                stroke="#9CA3AF"
-                strokeWidth="0.5"
-                strokeDasharray="2 2"
-              />
-            ))}
-          </g>
-
-          {/* Gradient Area */}
-          <motion.path
-            d={areaPathD}
-            fill="url(#chart-gradient-reporting)"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: pathDrawn ? 1 : 0 }}
-            transition={attioTransition}
-          />
-
-          {/* Chart Line */}
-          <motion.path
-            d={pathD}
-            fill="none"
-            stroke="#3B82F6"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: pathDrawn ? 1 : pathProgress }}
-            transition={{
-              duration: 1.5,
-              ease: "easeOut",
-            }}
-          />
-
-          {/* Traveling Point */}
-          <AnimatePresence>
-            {pathProgress > 0 && pathProgress < 1 && (
-              <motion.circle
-                key="traveling-point"
-                cx={pointPosition.x}
-                cy={pointPosition.y}
-                r="4"
-                fill="#3B82F6"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0 }}
-                transition={attioTransition}
-              />
-            )}
-          </AnimatePresence>
-        </svg>
-
-        {/* Tooltip with Number Ticker */}
-        <AnimatePresence>
-          {showTooltip && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8, y: tooltipPosition.y - 10 }}
-              animate={{ 
-                opacity: 1, 
-                scale: 1,
-                y: tooltipPosition.y,
-              }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              transition={attioTransition}
-              className="absolute left-0 -translate-x-1/2 -translate-y-1/2 px-3 py-1.5 bg-text-primary text-white text-xs font-inter font-medium rounded whitespace-nowrap shadow-lg"
-              style={{ 
-                left: `${(tooltipPosition.x / 600) * 100}%`,
-              }}
-            >
+    <div className="h-full w-full bg-[#F5F5F5] p-6 overflow-auto">
+      <motion.div
+        variants={snappyStaggerContainer}
+        initial="hidden"
+        animate="show"
+        className="space-y-4"
+      >
+        {/* Top Section: Activity Cards */}
+        <motion.div variants={snappyStaggerItem} className="grid grid-cols-5 gap-3">
+          {activityValues.map((card, index) => {
+            const Icon = card.label === "Wählversuche" || card.label === "Erstgespräche" || card.label === "Zweitgespräche" 
+              ? Phone 
+              : card.label === "Termin vereinbart" 
+              ? Calendar 
+              : Trophy
+            return (
               <motion.div
-                animate={{
-                  y: [0, -5, 0],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="flex items-center gap-1"
+                key={card.label}
+                variants={snappyStaggerItem}
+                className={`${card.color} rounded-lg p-4 border border-attio-subtle shadow-sm`}
               >
-                <span>+</span>
-                <NumberTicker 
-                  value={124} 
-                  direction="up"
-                  delay={200}
-                  className="inline-block"
-                />
-                <span>% Revenue</span>
+                <div className="flex items-center justify-between mb-2">
+                  <Icon className={`h-5 w-5 ${card.color === "bg-blue-600" ? "text-white" : "text-gray-400"}`} />
+                </div>
+                <div className={`text-2xl font-bold font-inter mb-1 ${card.color === "bg-blue-600" ? "text-white" : "text-gray-900"}`}>
+                  {animationStarted ? (
+                    <NumberTicker 
+                      value={card.value} 
+                      direction="up" 
+                      delay={index * 150 + 300} 
+                    />
+                  ) : (
+                    "0"
+                  )}
+                </div>
+                <div className={`text-xs font-inter ${card.color === "bg-blue-600" ? "text-blue-100" : "text-gray-500"}`}>
+                  {card.label}
+                </div>
+                <div className={`text-[10px] font-inter mt-1 ${card.color === "bg-blue-600" ? "text-blue-200" : "text-gray-400"}`}>
+                  {card.subtitle}
+                </div>
               </motion.div>
-              {/* Tooltip Arrow */}
-              <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-t-[4px] border-t-text-primary" />
+            )
+          })}
+        </motion.div>
+
+        {/* Middle Section: Chart and Rates */}
+        <div className="grid grid-cols-3 gap-4">
+          {/* Chart Section */}
+          <motion.div variants={snappyStaggerItem} className="col-span-2 bg-white rounded-lg p-4 border border-attio-subtle shadow-sm">
+            <h3 className="text-sm font-inter font-semibold text-gray-900 mb-4">Übersicht Umsatz</h3>
+            <div className="relative h-48">
+              <svg
+                viewBox="0 0 600 200"
+                className="w-full h-full"
+                preserveAspectRatio="none"
+              >
+                <defs>
+                  <linearGradient id="chart-gradient-reporting" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#10B981" stopOpacity="0.3" />
+                    <stop offset="100%" stopColor="#10B981" stopOpacity="0" />
+                  </linearGradient>
+                </defs>
+
+                {/* Y-axis labels */}
+                <g className="text-[8px] font-inter fill-gray-500">
+                  {[0, 10, 20, 30, 40, 50, 60, 70].map((value) => {
+                    const y = 200 - 40 - (value / 70) * 120
+                    return (
+                      <text key={value} x="5" y={y + 3} textAnchor="start">
+                        {value}
+                      </text>
+                    )
+                  })}
+                </g>
+
+                {/* Grid lines */}
+                <g opacity={0.2}>
+                  {[0, 10, 20, 30, 40, 50, 60, 70].map((value) => {
+                    const y = 200 - 40 - (value / 70) * 120
+                    return (
+                      <line
+                        key={value}
+                        x1="40"
+                        y1={y}
+                        x2="560"
+                        y2={y}
+                        stroke="#9CA3AF"
+                        strokeWidth="0.5"
+                      />
+                    )
+                  })}
+                </g>
+
+                {/* X-axis labels */}
+                <g className="text-[8px] font-inter fill-gray-500">
+                  {chartData.map((point, index) => {
+                    const x = 40 + (index / (chartData.length - 1)) * 520
+                    return (
+                      <text key={point.month} x={x} y="195" textAnchor="middle">
+                        {point.month}
+                      </text>
+                    )
+                  })}
+                </g>
+
+                {/* Gradient Area */}
+                <motion.path
+                  d={areaPath}
+                  fill="url(#chart-gradient-reporting)"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: chartDrawn ? 1 : 0 }}
+                  transition={attioTransition}
+                />
+
+                {/* Chart Line */}
+                <motion.path
+                  d={chartPath}
+                  fill="none"
+                  stroke="#10B981"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: chartDrawn ? 1 : 0 }}
+                  transition={{
+                    duration: 2,
+                    ease: "easeOut",
+                  }}
+                />
+              </svg>
+            </div>
+          </motion.div>
+
+          {/* Rate Metrics */}
+          <motion.div variants={snappyStaggerItem} className="space-y-3">
+            {rateValues.map((rate, index) => (
+              <motion.div
+                key={rate.label}
+                variants={snappyStaggerItem}
+                className="bg-white rounded-lg p-3 border border-attio-subtle shadow-sm"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-inter text-gray-600">{rate.label}</span>
+                  {rate.trend === "down" ? (
+                    <ArrowDown className="h-3 w-3 text-red-500" />
+                  ) : (
+                    <ArrowUp className="h-3 w-3 text-green-500" />
+                  )}
+                </div>
+                <div className="text-lg font-bold font-inter text-gray-900 mt-1">
+                  {animationStarted ? (
+                    <NumberTicker 
+                      value={rate.value} 
+                      direction="up" 
+                      delay={index * 100 + 1200} 
+                      decimals={2} 
+                    />
+                  ) : (
+                    "0.00"
+                  )}
+                  <span className="text-sm font-normal text-gray-500">%</span>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Bottom Section: Revenue Metrics */}
+        <motion.div variants={snappyStaggerItem} className="grid grid-cols-3 gap-3">
+          {revenueValues.map((metric, index) => (
+            <motion.div
+              key={metric.label}
+              variants={snappyStaggerItem}
+              className="bg-white rounded-lg p-4 border border-attio-subtle shadow-sm"
+            >
+              <div className="text-xs font-inter text-gray-500 mb-2">{metric.label}</div>
+              <div className="text-xl font-bold font-inter text-gray-900">
+                {animationStarted ? (
+                  <>
+                    <NumberTicker 
+                      value={metric.value} 
+                      direction="up" 
+                      delay={index * 150 + 1800} 
+                    />
+                    <span className="text-sm font-normal"> €</span>
+                  </>
+                ) : (
+                  "0 €"
+                )}
+              </div>
             </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+          ))}
+        </motion.div>
+      </motion.div>
     </div>
   )
 }

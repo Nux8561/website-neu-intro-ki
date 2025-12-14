@@ -136,7 +136,7 @@ export function PipelineVisual() {
         <div className="flex-1 flex flex-col">
           <div className="mb-3">
             <h4 className="text-xs font-inter font-medium text-text-muted uppercase tracking-wider">
-              Qualified
+              Qualifiziert
             </h4>
             <span className="text-xs text-text-muted">3</span>
           </div>
@@ -228,7 +228,7 @@ export function PipelineVisual() {
         <div className="flex-1 flex flex-col">
           <div className="mb-3">
             <h4 className="text-xs font-inter font-medium text-text-muted uppercase tracking-wider">
-              Negotiation
+              Verloren
             </h4>
             <span className="text-xs text-text-muted">1</span>
           </div>

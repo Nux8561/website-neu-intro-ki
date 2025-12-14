@@ -31,7 +31,7 @@ const workflowNodes: WorkflowNode[] = [
   },
   {
     id: "slack-alert",
-    label: "Slack Alert",
+    label: "Intro KI Nachricht",
     icon: Hash,
     activeColor: "text-green-600",
     activeBorderColor: "border-green-500",
@@ -215,7 +215,7 @@ export function WorkflowSimulation() {
             >
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-green-500" />
-                <span className="text-xs font-inter font-medium text-gray-700">New notification</span>
+                <span className="text-xs font-inter font-medium text-gray-700">Intro KI Nachricht</span>
               </div>
             </motion.div>
           )}

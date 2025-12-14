@@ -3,6 +3,7 @@
 import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { CheckCircle2 } from "lucide-react"
+import Image from "next/image"
 import { MovingBorder } from "@/components/ui/moving-border"
 import { snappySpring } from "@/lib/animations"
 
@@ -125,7 +126,7 @@ export function DataEnrichmentVisual() {
           {/* Card Content */}
           <div className="flex gap-3">
             {/* Avatar */}
-            <div className="relative w-12 h-12 rounded-full overflow-hidden bg-gray-200 flex-shrink-0">
+            <div className="relative w-12 h-12 rounded-lg overflow-hidden bg-gray-200 flex-shrink-0">
               <AnimatePresence>
                 {showAvatar ? (
                   <motion.div
@@ -134,8 +135,15 @@ export function DataEnrichmentVisual() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0 }}
                     transition={snappySpring}
-                    className="w-full h-full bg-gradient-to-br from-blue-400 to-purple-500"
-                  />
+                    className="w-full h-full relative"
+                  >
+                    <Image
+                      src="/images/Bosch-Logo-PNG-File.png"
+                      alt="Bosch Logo"
+                      fill
+                      className="object-contain p-1"
+                    />
+                  </motion.div>
                 ) : (
                   <motion.div
                     key="avatar-placeholder"
@@ -161,7 +169,7 @@ export function DataEnrichmentVisual() {
                     transition={snappySpring}
                     className="h-4 bg-transparent text-sm font-inter font-semibold text-gray-900"
                   >
-                    Elon Musk
+                    Bosch
                   </motion.div>
                 ) : (
                   <motion.div
@@ -185,7 +193,7 @@ export function DataEnrichmentVisual() {
                     transition={snappySpring}
                     className="h-3 bg-transparent text-xs font-inter text-gray-600"
                   >
-                    CEO @ Tesla
+                    Robert Bosch GmbH
                   </motion.div>
                 ) : (
                   <motion.div
@@ -209,7 +217,7 @@ export function DataEnrichmentVisual() {
                     transition={snappySpring}
                     className="flex items-center gap-1.5 h-3"
                   >
-                    <span className="text-xs font-inter text-gray-600">elon@tesla.com</span>
+                    <span className="text-xs font-inter text-gray-600">info@bosch.com</span>
                     <CheckCircle2 className="h-3 w-3 text-green-600" />
                   </motion.div>
                 ) : (

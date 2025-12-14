@@ -259,7 +259,7 @@ function FlowLinesSVG({
   return (
     <svg 
       className="absolute inset-0 w-full h-full pointer-events-none"
-      style={{ zIndex: 30 }}
+      style={{ zIndex: 50 }}
     >
       {/* Flow from SOURCES to AI */}
       {(phase === "collecting" || phase === "analyzing") && dataSources.map((source, index) => {
@@ -277,7 +277,7 @@ function FlowLinesSVG({
         const startX = sourceRect.left - containerRect.left + sourceRect.width / 2
         const startY = sourceRect.bottom - containerRect.top
 
-        // End: Center of logo
+        // End: EXACT center of logo (not just the container, but the actual logo center)
         const endX = aiRect.left - containerRect.left + aiRect.width / 2
         const endY = aiRect.top - containerRect.top + aiRect.height / 2
 
@@ -335,7 +335,7 @@ function FlowLinesSVG({
         const cardRect = cardEl.getBoundingClientRect()
         const aiRect = aiEl.getBoundingClientRect()
 
-        // Start: Center of logo
+        // Start: EXACT center of logo (not just the container, but the actual logo center)
         const startX = aiRect.left - containerRect.left + aiRect.width / 2
         const startY = aiRect.top - containerRect.top + aiRect.height / 2
 
@@ -517,6 +517,8 @@ export function PrioritiesAnimation() {
       ref={containerRef}
       className="relative w-full h-full rounded-xl overflow-visible flow-container" 
       style={{ 
+        position: 'absolute',
+        inset: 0,
         height: '100%', 
         width: '100%', 
         display: 'flex', 
@@ -567,7 +569,7 @@ export function PrioritiesAnimation() {
 
           {/* Phase 1 & 2: Data Sources */}
           {(phase === "collecting" || phase === "analyzing") && (
-            <div className="absolute top-0 left-0 right-0 flex justify-center" style={{ zIndex: 20 }}>
+            <div className="absolute top-0 left-0 right-0 flex justify-center" style={{ zIndex: 40 }}>
               <div className="flex items-center gap-12">
                 {dataSources.map((source, index) => {
                   const Icon = source.icon
@@ -626,11 +628,11 @@ export function PrioritiesAnimation() {
             <div
               ref={aiCenterRef}
               className="absolute flex items-center justify-center"
-              style={{
+              style={{ 
                 left: '50%',
                 top: '50%',
                 transform: 'translate(-50%, -50%)',
-                zIndex: 20 // Logo is BELOW the beams (z-index 25)
+                zIndex: 40 // Logo is BELOW the beams (z-index 50)
               }}
             >
               <motion.div
@@ -701,7 +703,7 @@ export function PrioritiesAnimation() {
           {phase === "prioritizing" && (
             <motion.div
               className="absolute bottom-0 left-0 right-0 flex flex-col items-center"
-              style={{ zIndex: 20 }}
+              style={{ zIndex: 40 }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}

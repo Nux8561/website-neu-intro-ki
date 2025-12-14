@@ -23,7 +23,7 @@ const founders: TeamMember[] = [
     name: "Dominik Scherwinsky",
     role: "CEO & Co-Founder",
     bio: "10+ Jahre Erfahrung in Sales und GTM. Zuvor VP Sales bei einem führenden SaaS-Unicorn.",
-    avatar: "/team/dominik.jpg",
+    avatar: "/images/Gemini_Generated_Image_ljmubdljmubdljmu.png",
     linkedin: "https://linkedin.com/in/dominik-scherwinsky",
     twitter: "https://twitter.com/dscherwinsky",
   },

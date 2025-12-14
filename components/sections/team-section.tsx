@@ -110,14 +110,22 @@ function TeamMemberCard({ member, isFounder = false }: { member: TeamMember; isF
           src={member.avatar}
           alt={member.name}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="object-cover transition-transform duration-500 group-hover:scale-105 relative z-10"
           onError={(e) => {
             const target = e.target as HTMLImageElement
             target.style.display = 'none'
           }}
+          onLoad={(e) => {
+            // Hide fallback when image loads successfully
+            const container = (e.target as HTMLImageElement).parentElement
+            const fallback = container?.querySelector('.avatar-fallback')
+            if (fallback) {
+              (fallback as HTMLElement).style.display = 'none'
+            }
+          }}
         />
-        {/* Fallback */}
-        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-accent-blue/20 to-accent-purple/20">
+        {/* Fallback - only shown if image fails to load */}
+        <div className="avatar-fallback absolute inset-0 flex items-center justify-center bg-gradient-to-br from-accent-blue/20 to-accent-purple/20 z-0">
           <span className="text-4xl font-jakarta font-medium text-text-primary/30">
             {member.name.split(' ').map(n => n[0]).join('')}
           </span>

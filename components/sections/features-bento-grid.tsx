@@ -34,7 +34,6 @@ export function FeaturesBentoGrid() {
             speed={1.2}
             visibleCount={12}
             className="h-full w-full"
-            sectionRef={gallerySectionRef}
             fadeSettings={{
               fadeIn: { start: 0.05, end: 0.25 },
               fadeOut: { start: 0.4, end: 0.43 },

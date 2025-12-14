@@ -241,7 +241,7 @@ function FlowLinesSVG({
   dataSources: Array<{
     id: string
     name: string
-    icon: React.ComponentType<{ className?: string; style?: React.CSSProperties; strokeWidth?: number }>
+    icon: React.ComponentType<any>
     color: string
     bgColor: string
     count: number

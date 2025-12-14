@@ -121,6 +121,7 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
       {/* Hero Section - Attio Style */}
       <section className="relative bg-[#FAFAFB] pt-16 pb-20 sm:pb-24 overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
+          {/* Animation nur bis hier - Hero Content Bereich */}
           <motion.div
             className="max-w-4xl mx-auto text-center"
             variants={containerVariants}
@@ -175,16 +176,10 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
             </motion.div>
           </motion.div>
 
-          {/* Product Demo Visual - Attio Style */}
-          <motion.div
-            variants={itemVariants}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.3 }}
-            className="mt-16 sm:mt-20 max-w-6xl mx-auto"
-          >
+          {/* Product Demo Visual - Attio Style - Animation endet hier */}
+          <div className="mt-16 sm:mt-20 max-w-6xl mx-auto">
             <div className="relative rounded-2xl border border-gray-200 bg-white shadow-attio-card overflow-hidden">
-              {/* Tab Navigation (oben im Fenster) - Attio Style */}
+              {/* Tab Navigation (oben im Fenster) - Attio Style - Keine Animation ab hier */}
               <div className="bg-attio-gray border-b border-attio-subtle px-6 py-3 relative z-10">
                 <div className="flex items-center gap-1">
                   {tabs.map((tab) => (
@@ -323,7 +318,7 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
                 </AnimatePresence>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

@@ -1,132 +1,145 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { motion } from "framer-motion"
-import { attioTransition } from "@/lib/animations"
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 interface TechBeamDividerProps {
-  className?: string
-  color?: "green" | "blue" | "purple"
-}
-
-const colorConfig = {
-  green: {
-    beam: "#22c55e",
-    glow: "rgba(34, 197, 94, 0.4)",
-    node: "#10b981",
-  },
-  blue: {
-    beam: "#3b82f6",
-    glow: "rgba(59, 130, 246, 0.4)",
-    node: "#2563eb",
-  },
-  purple: {
-    beam: "#a855f7",
-    glow: "rgba(168, 85, 247, 0.4)",
-    node: "#7c3aed",
-  },
+  color?: "green" | "blue" | "purple";
+  className?: string;
 }
 
 export function TechBeamDivider({ 
-  className,
-  color = "green" 
+  color = "green", 
+  className 
 }: TechBeamDividerProps) {
-  const [beamPosition, setBeamPosition] = React.useState(0)
-  const [activeNode, setActiveNode] = React.useState<number | null>(null)
+  const [beamPosition, setBeamPosition] = useState(0);
+  const [activeNode, setActiveNode] = useState<number | null>(null);
 
-  const config = colorConfig[color]
-  const nodeCount = 8 // Anzahl der Knotenpunkte
-  const nodeSpacing = 100 // Abstand zwischen Knoten in px
+  const beamColorClass = {
+    green: "bg-green-500 shadow-green-500/50",
+    blue: "bg-blue-500 shadow-blue-500/50",
+    purple: "bg-purple-500 shadow-purple-500/50",
+  }[color];
 
-  React.useEffect(() => {
+  const nodeActiveColorClass = {
+    green: "border-green-500 bg-green-100",
+    blue: "border-blue-500 bg-blue-100",
+    purple: "border-purple-500 bg-purple-100",
+  }[color];
+
+  const beamGlowClass = {
+    green: "shadow-green-500/30",
+    blue: "shadow-blue-500/30",
+    purple: "shadow-purple-500/30",
+  }[color];
+
+  useEffect(() => {
+    const getContainerWidth = () => {
+      if (typeof window !== 'undefined') {
+        return window.innerWidth > 768 ? 800 : Math.min(window.innerWidth - 100, 600);
+      }
+      return 800;
+    };
+
     const interval = setInterval(() => {
-      // Reset
-      setBeamPosition(0)
-      setActiveNode(null)
+      setBeamPosition(0); // Reset beam
+      setActiveNode(null);
 
-      // Animation: Beam bewegt sich von 0% zu 100%
-      const duration = 3000 // 3 Sekunden für einen Durchlauf
-      const steps = 100
-      const stepDuration = duration / steps
+      // Animate beam across the line
+      const beamAnimationDuration = 2500; // 2.5 seconds
+      const nodeCount = 6; // Reduced for better visibility
+      const containerWidth = getContainerWidth();
+      const nodeSpacing = containerWidth / (nodeCount + 1);
 
-      let currentStep = 0
-      const animation = setInterval(() => {
-        currentStep++
-        const progress = currentStep / steps
-        const position = progress * 100
-        setBeamPosition(position)
+      // Simulate beam movement and node activation
+      let currentBeamX = 0;
+      const beamMoveInterval = setInterval(() => {
+        currentBeamX += (containerWidth / (beamAnimationDuration / 16)); // Smooth movement
+        setBeamPosition(currentBeamX);
 
-        // Berechne, welcher Knoten aktiv sein sollte
-        const nodeIndex = Math.floor((position / 100) * (nodeCount - 1))
-        if (nodeIndex >= 0 && nodeIndex < nodeCount) {
-          setActiveNode(nodeIndex)
-        } else {
-          setActiveNode(null)
+        // Check for node activation
+        for (let i = 0; i < nodeCount; i++) {
+          const nodeX = (i + 1) * nodeSpacing;
+          if (currentBeamX >= nodeX - 20 && currentBeamX <= nodeX + 20) {
+            setActiveNode(i);
+            break;
+          } else if (currentBeamX > nodeX + 20) {
+            setActiveNode(null);
+          }
         }
 
-        if (currentStep >= steps) {
-          clearInterval(animation)
-          setBeamPosition(0)
-          setActiveNode(null)
+        if (currentBeamX > containerWidth) {
+          clearInterval(beamMoveInterval);
+          setActiveNode(null);
         }
-      }, stepDuration)
+      }, 16); // ~60fps (16ms per frame)
 
-      return () => clearInterval(animation)
-    }, 4000) // Loop alle 4 Sekunden (3s Animation + 1s Pause)
+      // Reset after animation + pause
+      setTimeout(() => {
+        clearInterval(beamMoveInterval);
+        setBeamPosition(0);
+        setActiveNode(null);
+      }, beamAnimationDuration + 1500); // 1.5 second pause
 
-    return () => clearInterval(interval)
-  }, [])
+    }, 4000); // Loop every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [color]);
 
   return (
-    <div className={`relative w-full h-16 flex items-center justify-center overflow-hidden ${className || ""}`}>
-      {/* Basis-Linie */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-full h-[1px] bg-gray-200" />
-      </div>
+    <div className={cn("relative w-full h-16 flex items-center justify-center overflow-hidden bg-white", className)}>
+      {/* Horizontal Line */}
+      <div className="absolute w-full h-[1px] bg-gray-200" />
 
-      {/* Knotenpunkte */}
-      {Array.from({ length: nodeCount }).map((_, index) => {
-        const leftPosition = (index / (nodeCount - 1)) * 100
-        const isActive = activeNode === index
+      {/* Nodes - Responsive positioning */}
+      {[...Array(6)].map((_, i) => {
+        const getNodePosition = () => {
+          if (typeof window !== 'undefined') {
+            const containerWidth = window.innerWidth > 768 ? 800 : Math.min(window.innerWidth - 100, 600);
+            const nodeSpacing = containerWidth / 7; // 6 nodes + 1 spacing
+            return (i + 1) * nodeSpacing;
+          }
+          return (i + 1) * (800 / 7);
+        };
 
         return (
           <motion.div
-            key={index}
-            className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2"
-            style={{ left: `${leftPosition}%` }}
-            animate={{
-              scale: isActive ? 1.5 : 1,
-              borderColor: isActive ? config.node : "#d1d5db",
-              backgroundColor: isActive ? config.node : "white",
+            key={i}
+            className={cn(
+              "absolute w-3 h-3 border-2 border-gray-300 rounded-full bg-white transition-all duration-150 ease-out z-10",
+              activeNode === i && nodeActiveColorClass
+            )}
+            style={{ 
+              left: `calc(${((i + 1) / 7) * 100}% - 6px)`, // Center nodes evenly
             }}
-            transition={{
-              duration: 0.2,
-              ease: "easeOut",
+            animate={{ 
+              scale: activeNode === i ? 1.8 : 1,
+              borderWidth: activeNode === i ? 3 : 2,
             }}
-          >
-            <div className="w-2 h-2 rounded-full border-2 bg-white" />
-          </motion.div>
-        )
+            transition={{ duration: 0.2, ease: "easeOut" }}
+          />
+        );
       })}
 
-      {/* Licht-Paket (Beam) */}
+      {/* Animated Beam */}
       <motion.div
-        className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2"
-        style={{
-          left: `${beamPosition}%`,
-          width: "60px",
-          height: "2px",
-          background: `linear-gradient(90deg, transparent, ${config.beam}, transparent)`,
-          boxShadow: `0 0 10px ${config.glow}, 0 0 20px ${config.glow}`,
+        className={cn(
+          "absolute h-1.5 w-16 rounded-full blur-[2px] z-20",
+          beamColorClass,
+          beamGlowClass
+        )}
+        style={{ 
+          left: `${beamPosition - 32}px`, // Adjust for beam width
+          boxShadow: `0 0 12px currentColor, 0 0 24px currentColor`,
+          filter: 'brightness(1.2)',
         }}
-        animate={{
-          opacity: beamPosition > 0 && beamPosition < 100 ? 1 : 0,
+        initial={{ opacity: 0 }}
+        animate={{ 
+          opacity: beamPosition > 0 ? 1 : 0,
         }}
-        transition={{
-          duration: 0.1,
-        }}
+        transition={{ duration: 0.1 }}
       />
     </div>
-  )
+  );
 }
-

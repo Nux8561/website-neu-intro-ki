@@ -17,6 +17,8 @@ import { SkeletalUI } from "@/components/ui/skeletal-ui"
 import { FeatureIcon } from "@/components/ui/feature-icon"
 import { WorkflowSimulation } from "@/components/visuals/WorkflowSimulation"
 import { ActivityTicker } from "@/components/visuals/ActivityTicker"
+import { TechBeamDivider } from "@/components/visuals/TechBeamDivider"
+import { PulseBeamsDemo } from "@/components/visuals/PulseBeamsDemo"
 import { TextShimmer } from "@/components/ui/text-shimmer"
 import { LineShadowText } from "@/components/ui/line-shadow-text"
 import AnimatedLoadingSkeleton from "@/components/ui/animated-loading-skeleton"
@@ -136,8 +138,8 @@ const bentoCells = [
   {
     id: "activity",
     colSpan: 6,
-    rowSpan: 1,
-    content: <ActivityTicker />,
+    rowSpan: 2,
+    content: <PulseBeamsDemo />,
   },
   {
     id: "logo",

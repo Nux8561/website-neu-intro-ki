@@ -139,16 +139,15 @@ const gradientColors = {
 
 export const PulseBeamsDemo = () => {
   return (
-    <div className="w-full h-full -m-6 relative overflow-hidden bg-white">
-      <PulseBeams
-        beams={beams}
-        gradientColors={gradientColors}
-        className="bg-white h-full"
-        width={858}
-        height={434}
-        baseColor="#e2e8f0"
-        accentColor="#cbd5e1"
-      >
+    <PulseBeams
+      beams={beams}
+      gradientColors={gradientColors}
+      className="absolute inset-0 w-full h-full bg-white"
+      width={858}
+      height={434}
+      baseColor="#e2e8f0"
+      accentColor="#cbd5e1"
+    >
         <button className="bg-slate-800 w-[180px] z-40 h-[60px] no-underline group cursor-pointer relative shadow-2xl shadow-zinc-900 rounded-full p-px text-xs font-semibold leading-6 text-white inline-block">
           <span className="absolute inset-0 overflow-hidden rounded-full">
             <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -159,8 +158,7 @@ export const PulseBeamsDemo = () => {
             </span>
           </div>
         </button>
-      </PulseBeams>
-    </div>
+    </PulseBeams>
   );
 };
 

@@ -14,6 +14,7 @@ import { ReportingVisual } from "@/components/visuals/ReportingVisual"
 import { PipelineVisual } from "@/components/visuals/PipelineVisual"
 import { MeshGradient } from "@paper-design/shaders-react"
 import { attioTransition } from "@/lib/animations"
+import { StarfieldBackground } from "@/components/ui/hyperdrive-hero"
 
 // Animation variants
 const containerVariants = {
@@ -120,6 +121,9 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
     <>
       {/* Hero Section - Attio Style */}
       <section className="relative bg-[#FAFAFB] pt-16 pb-20 sm:pb-24 overflow-hidden">
+        {/* Starfield Animation im Hintergrund */}
+        <StarfieldBackground />
+        
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
           {/* Animation nur bis hier - Hero Content Bereich */}
           <motion.div

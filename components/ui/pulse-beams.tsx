@@ -65,13 +65,13 @@ export const PulseBeams = ({
   return (
     <div
       className={cn(
-        "w-full h-full relative flex items-center justify-center antialiased overflow-hidden",
+        "absolute inset-0 w-full h-full relative flex items-center justify-center antialiased",
         className
       )}
     >
       {background}
       <div className="relative z-10">{children}</div>
-      <div className="absolute inset-0 w-full h-full">
+      <div className="absolute inset-0 w-full h-full pointer-events-none">
         <SVGs
           beams={beams}
           width={width}
@@ -108,6 +108,11 @@ const SVGs = ({ beams, width, height, baseColor, accentColor, gradientColors }: 
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className="absolute inset-0 w-full h-full"
+      style={{
+        width: '100%',
+        height: '100%',
+        display: 'block'
+      }}
     >
       {beams.map((beam, index) => (
         <React.Fragment key={index}>

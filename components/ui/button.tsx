@@ -39,7 +39,7 @@ export interface ButtonProps
   asChild?: boolean
 }
 
-const MotionButton = motion("button")
+const MotionButton = motion.button
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, type, disabled, onClick, onMouseEnter, onMouseLeave, children, ...props }, ref) => {

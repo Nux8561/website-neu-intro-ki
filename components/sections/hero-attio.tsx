@@ -110,6 +110,11 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
     <>
       {/* Hero Section - Attio Style */}
       <section className="relative bg-[#FAFAFB] pt-16 pb-20 sm:pb-24 overflow-hidden">
+        {/* Data Flow Animation Background */}
+        <div className="absolute inset-0 z-0 opacity-30 pointer-events-none">
+          <DataFlowAnimation variant="horizontal" />
+        </div>
+        
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
           <motion.div
             className="max-w-4xl mx-auto text-center"
@@ -121,7 +126,7 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
             <motion.div variants={itemVariants} className="mb-8">
               <Link
                 href="/features"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-[#E6E7EA] bg-gray-100 hover:bg-gray-200/80 transition-colors text-sm font-inter font-medium text-gray-700"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-attio-subtle bg-attio-gray hover:bg-gray-50 transition-colors text-sm font-inter font-medium text-gray-700"
               >
                 <span className="h-2 w-2 rounded-full bg-blue-500" />
                 Explore our integration with Granola
@@ -158,7 +163,7 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
               </Link>
               <Link
                 href="/contact"
-                className="bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 px-8 py-3.5 rounded-lg font-medium text-base transition-all duration-attio ease-attio-ease-out font-inter"
+                className="bg-white border border-attio-subtle text-gray-700 hover:bg-gray-50 hover:border-gray-300 px-8 py-3.5 rounded-lg font-medium text-base transition-all duration-attio ease-attio-ease-out font-inter"
               >
                 Talk to sales
               </Link>
@@ -175,7 +180,7 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
           >
             <div className="relative rounded-2xl border border-gray-200 bg-white shadow-2xl overflow-hidden">
               {/* Tab Navigation (oben im Fenster) - Attio Style */}
-              <div className="bg-gray-50 border-b border-gray-200 px-6 py-3">
+              <div className="bg-attio-gray border-b border-attio-subtle px-6 py-3">
                 <div className="flex items-center gap-1">
                   {["Data", "Workflows", "Reporting", "Pipeline"].map(
                     (tab, index) => (
@@ -207,7 +212,7 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -20 }}
                       transition={{ type: "spring", stiffness: 400, damping: 17, duration: 0.3 }}
-                      className="absolute inset-0 bg-gray-50 overflow-hidden"
+                      className="absolute inset-0 bg-attio-gray overflow-hidden"
                     >
                       <DataFlowAnimation key="data-animation" />
                     </motion.div>
@@ -237,9 +242,9 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -20 }}
                       transition={{ type: "spring", stiffness: 400, damping: 17, duration: 0.3 }}
-                      className="absolute inset-0 bg-gray-50 overflow-hidden"
+                      className="absolute inset-0 bg-attio-gray overflow-hidden"
                     >
-                      <div className="absolute inset-0 flex items-center justify-center p-6 bg-gray-50">
+                      <div className="absolute inset-0 flex items-center justify-center p-6 bg-attio-gray">
                         <div className="text-center">
                           <Image
                             src={`/screenshots/reporting-view.png`}
@@ -268,9 +273,9 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -20 }}
                       transition={{ type: "spring", stiffness: 400, damping: 17, duration: 0.3 }}
-                      className="absolute inset-0 bg-gray-50 overflow-hidden"
+                      className="absolute inset-0 bg-attio-gray overflow-hidden"
                     >
-                      <div className="absolute inset-0 flex items-center justify-center p-6 bg-gray-50">
+                      <div className="absolute inset-0 flex items-center justify-center p-6 bg-attio-gray">
                         <div className="text-center">
                           <Image
                             src={`/screenshots/pipeline-view.png`}

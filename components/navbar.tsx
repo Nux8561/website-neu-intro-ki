@@ -211,7 +211,7 @@ export function Navbar() {
       initial={{ y: 0 }}
       animate={{
         backgroundColor: isScrolled 
-          ? "rgba(255, 255, 255, 0.95)" 
+          ? "rgba(250, 250, 251, 0.80)" 
           : "rgba(255, 255, 255, 1)",
         backdropFilter: isScrolled ? "blur(12px) saturate(180%)" : "none",
         borderBottom: isScrolled 

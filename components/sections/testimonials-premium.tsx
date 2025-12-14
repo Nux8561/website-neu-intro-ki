@@ -100,7 +100,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsVideoPlaying(true)}
-                className="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-xl"
+                className="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-attio-card"
               >
                 <Play className="h-6 w-6 text-brand ml-1" fill="currentColor" />
               </motion.button>

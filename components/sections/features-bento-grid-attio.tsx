@@ -14,6 +14,7 @@ import {
   CheckCircle2,
   Circle
 } from "lucide-react"
+import { SkeletalUI } from "@/components/ui/skeletal-ui"
 
 // Animation variants - sehr subtil
 const containerVariants = {
@@ -40,63 +41,15 @@ const itemVariants = {
 }
 
 // Workflow Editor Component (für "Automate everything" Kachel)
+// Nutzt jetzt Skeletal UI statt Icons
 function WorkflowEditor() {
-  return (
-    <div className="space-y-4 mt-4">
-      {/* Workflow Nodes mit Verbindungslinien */}
-      <div className="flex items-center gap-2 flex-wrap">
-        {/* Trigger Node */}
-        <div className="flex items-center gap-2 px-3 py-2 bg-purple-50 border border-purple-200 rounded-md">
-          <Zap className="h-3.5 w-3.5 text-purple-600" />
-          <span className="text-xs font-inter font-medium text-purple-900">Trigger</span>
-        </div>
-        <ArrowRight className="h-3 w-3 text-zinc-400" />
-        {/* Condition Node */}
-        <div className="flex items-center gap-2 px-3 py-2 bg-blue-50 border border-blue-200 rounded-md">
-          <CheckCircle2 className="h-3.5 w-3.5 text-blue-600" />
-          <span className="text-xs font-inter font-medium text-blue-900">Condition</span>
-        </div>
-        <ArrowRight className="h-3 w-3 text-zinc-400" />
-        {/* Action Node */}
-        <div className="flex items-center gap-2 px-3 py-2 bg-green-50 border border-green-200 rounded-md">
-          <Play className="h-3.5 w-3.5 text-green-600" />
-          <span className="text-xs font-inter font-medium text-green-900">Action</span>
-        </div>
-      </div>
-    </div>
-  )
+  return <SkeletalUI variant="workflow" />
 }
 
-// Data Integration Icons (für "Connect any type of data" Kachel)
+// Data Integration (für "Connect any type of data" Kachel)
+// Nutzt jetzt Skeletal UI für Data Sync
 function DataIntegrationIcons() {
-  const icons = [
-    { icon: Link2, label: "Email", color: "text-blue-600" },
-    { icon: Database, label: "Calendar", color: "text-purple-600" },
-    { icon: Workflow, label: "Slack", color: "text-pink-600" },
-    { icon: BarChart3, label: "Analytics", color: "text-yellow-600" },
-  ]
-
-  return (
-    <div className="flex items-center justify-center gap-3 mt-4 flex-wrap">
-      {icons.map((item, index) => {
-        const Icon = item.icon
-        return (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: index * 0.1, type: "spring", stiffness: 400, damping: 17 }}
-            className="flex flex-col items-center gap-2"
-          >
-            <div className="w-10 h-10 rounded-md bg-zinc-100 border border-zinc-200 flex items-center justify-center">
-              <Icon className={`h-5 w-5 ${item.color}`} />
-            </div>
-            <span className="text-xs font-inter text-zinc-500">{item.label}</span>
-          </motion.div>
-        )
-      })}
-    </div>
-  )
+  return <SkeletalUI variant="data-sync" />
 }
 
 // AI Enrichment Card (für "Deploy AI" Kachel)
@@ -125,33 +78,9 @@ function AIEnrichmentCard() {
   )
 }
 
-// Revenue Growth Chart (für eine weitere Kachel)
+// Revenue Growth Chart - Nutzt jetzt Skeletal UI
 function RevenueChart() {
-  const bars = [
-    { height: "40%", color: "bg-purple-400" },
-    { height: "60%", color: "bg-yellow-400" },
-    { height: "80%", color: "bg-pink-400" },
-    { height: "65%", color: "bg-blue-400" },
-  ]
-
-  return (
-    <div className="mt-4">
-      <div className="flex items-end justify-between gap-2 h-20">
-        {bars.map((bar, index) => (
-          <motion.div
-            key={index}
-            initial={{ height: 0 }}
-            animate={{ height: bar.height }}
-            transition={{ delay: index * 0.1, type: "spring", stiffness: 400, damping: 17 }}
-            className={`flex-1 ${bar.color} rounded-t`}
-          />
-        ))}
-      </div>
-      <div className="text-xs font-inter text-zinc-500 mt-2 text-center">
-        Revenue growth
-      </div>
-    </div>
-  )
+  return <SkeletalUI variant="analytics" />
 }
 
 // Bento Grid Kacheln Definition
@@ -250,7 +179,7 @@ export function FeaturesBentoGridAttio() {
     <section className="py-24 md:py-32 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-12 gap-px bg-zinc-200 border border-zinc-200"
+          className="grid grid-cols-1 md:grid-cols-12 gap-px bg-attio-border border border-attio-subtle"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"

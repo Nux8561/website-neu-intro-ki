@@ -15,6 +15,11 @@ const config: Config = {
         surface: "#FAFAFA",
         "surface-elevated": "#F5F5F5",
         
+        // Attio-spezifische Farben
+        "attio-gray": "#FAFAFB",
+        "attio-border": "#E6E7EA",
+        "attio-text": "#0A0A0A",
+        
         // Primary Brand Color
         brand: {
           DEFAULT: "#0B0C0E",
@@ -35,6 +40,7 @@ const config: Config = {
           subtle: "rgba(11, 12, 14, 0.08)",
           DEFAULT: "rgba(11, 12, 14, 0.12)",
           active: "rgba(11, 12, 14, 0.20)",
+          "attio-subtle": "#E6E7EA", // Attio Standard Border
         },
         
         // Accent Colors (for highlights)
@@ -80,6 +86,9 @@ const config: Config = {
         'glass': '0 4px 24px rgba(0, 0, 0, 0.08)',
         'card': '0 0 0 1px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.05)',
         'card-hover': '0 0 0 1px rgba(0, 0, 0, 0.08), 0 8px 16px rgba(0, 0, 0, 0.1)',
+        // Attio Card Shadow (sehr weich, großer Spread, geringe Opacity)
+        'attio-card': '0 0 0 1px rgba(0, 0, 0, 0.05), 0 2px 6px 0 rgba(28, 40, 64, 0.06)',
+        'attio-card-hover': '0 0 0 1px rgba(0, 0, 0, 0.08), 0 4px 12px 0 rgba(28, 40, 64, 0.08)',
       },
       transitionDuration: {
         'attio': '300ms', // Attio Standard (am häufigsten: 622x verwendet)

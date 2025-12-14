@@ -164,33 +164,21 @@ export function CTASection() {
   return (
     <section
       ref={ref}
-      className="relative py-16 sm:py-24 md:py-32 overflow-hidden bg-background"
-      onMouseMove={handleMouseMove}
+      className="relative py-16 sm:py-24 md:py-32 overflow-hidden bg-attio-gray"
     >
-      {/* Animated Background Orbs */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <GradientOrb 
-          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-blue-500/20 blur-3xl" 
-          delay={0}
-        />
-        <GradientOrb 
-          className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-purple-500/15 blur-3xl" 
-          delay={2}
-        />
-        <GradientOrb 
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 blur-3xl" 
-          delay={4}
+      {/* Subtle Grid Pattern (Attio Style) */}
+      <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: "50px 50px",
+          }}
         />
       </div>
-
-      {/* Interactive Gradient Spotlight */}
-      <motion.div
-        className="absolute w-[500px] h-[500px] rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 blur-3xl pointer-events-none"
-        style={{
-          x: useTransform(gradientX, (v) => v - 250),
-          y: useTransform(gradientY, (v) => v - 250),
-        }}
-      />
 
       {/* Grid Pattern Overlay */}
       <div className="absolute inset-0 opacity-[0.02]">
@@ -229,11 +217,11 @@ export function CTASection() {
           >
             Bereit, deinen Vertrieb zu{" "}
             <span className="relative inline-block">
-              <span className="relative z-10 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+              <span className="relative z-10 text-attio-text font-semibold">
                 transformieren
               </span>
               <motion.span
-                className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-pink-400/20 blur-xl"
+                className="absolute inset-0 bg-attio-gray"
                 animate={{ opacity: [0.5, 0.8, 0.5] }}
                 transition={{ duration: 3, repeat: Infinity }}
               />

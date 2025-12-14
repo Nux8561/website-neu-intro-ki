@@ -12,6 +12,7 @@ import { VideoDemoSection } from "@/components/sections/video-demo-section"
 import { TestimonialsPremium } from "@/components/sections/testimonials-premium"
 import { TeamSection } from "@/components/sections/team-section"
 import { FeaturesBentoGridAttio } from "@/components/sections/features-bento-grid-attio"
+import { IntegrationsSection } from "@/components/sections/integrations-section"
 
 // Lazy load heavy components for better performance
 const FeaturesBentoGrid = dynamic(() => import("@/components/sections/features-bento-grid").then(mod => ({ default: mod.FeaturesBentoGrid })), { ssr: true })
@@ -33,6 +34,9 @@ export default function Home() {
         
         {/* Features Bento Grid - Attio Style */}
         <FeaturesBentoGridAttio />
+        
+        {/* Integrations Section */}
+        <IntegrationsSection />
         
         {/* Video Demo Section */}
         <VideoDemoSection 

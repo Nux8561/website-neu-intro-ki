@@ -53,10 +53,10 @@ const bentoCells = [
     content: (
       <div>
         <div className="text-xs font-inter text-text-muted uppercase tracking-wider mb-2">
-          01 Powerful platform
+          01 Leistungsstarke Plattform
         </div>
         <h2 className="text-4xl md:text-5xl font-inter-display font-bold tracking-tight text-[#0A0A0A]">
-          GTM at full throttle.
+          GTM auf vollen Touren.
         </h2>
       </div>
     ),
@@ -65,45 +65,45 @@ const bentoCells = [
     id: "automate",
     colSpan: 4,
     rowSpan: 2,
-    title: "Automate everything",
-    description: "Build workflows that connect your tools and automate repetitive tasks.",
+    title: "Alles automatisieren",
+    description: "Erstelle Workflows, die deine Tools verbinden und repetitive Aufgaben automatisieren.",
     content: <WorkflowEditor />,
   },
   {
     id: "connect",
     colSpan: 3,
     rowSpan: 1,
-    title: "Connect any type of data",
-    description: "Sync data from all your favorite tools in real-time.",
+    title: "Jede Art von Daten verbinden",
+    description: "Synchronisiere Daten von all deinen Lieblingstools in Echtzeit.",
     content: <DataIntegrationIcons />,
   },
   {
     id: "deploy",
     colSpan: 5,
     rowSpan: 2,
-    title: "Deploy AI",
-    description: "Enrich records automatically with AI-powered data enrichment.",
+    title: "KI einsetzen",
+    description: "Reichere Datensätze automatisch mit KI-gestützter Datenanreicherung an.",
     content: <AIEnrichmentCard />,
   },
   {
     id: "revenue",
     colSpan: 4,
     rowSpan: 1,
-    title: "Revenue growth",
-    description: "Track and visualize your revenue metrics in real-time.",
+    title: "Umsatzwachstum",
+    description: "Verfolge und visualisiere deine Umsatzmetriken in Echtzeit.",
     content: <RevenueChart />,
   },
   {
     id: "insights",
     colSpan: 3,
     rowSpan: 1,
-    title: "AI Insights",
-    description: "Get intelligent recommendations powered by machine learning.",
+    title: "KI-Erkenntnisse",
+    description: "Erhalte intelligente Empfehlungen, die von maschinellem Lernen angetrieben werden.",
     content: (
           <div className="mt-4 flex items-center gap-3">
             <FeatureIcon icon={Brain} size="md" color="purple" />
             <div className="text-sm font-inter text-text-muted">
-              Analyzing patterns...
+              Muster analysieren...
             </div>
           </div>
     ),
@@ -112,8 +112,8 @@ const bentoCells = [
     id: "reporting",
     colSpan: 3,
     rowSpan: 1,
-    title: "Advanced Reporting",
-    description: "Create custom reports with drag-and-drop simplicity.",
+    title: "Erweiterte Berichte",
+    description: "Erstelle benutzerdefinierte Berichte mit Drag-and-Drop-Einfachheit.",
     content: <SkeletalUI variant="pipeline" />,
   },
 ]

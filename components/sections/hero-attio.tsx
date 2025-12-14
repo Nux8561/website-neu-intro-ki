@@ -61,7 +61,7 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
   const [dimensions, setDimensions] = React.useState({ width: 1920, height: 1080 })
   const [mounted, setMounted] = React.useState(false)
   const [isUserInteracting, setIsUserInteracting] = React.useState(false)
-  const [animationKey, setAnimationKey] = React.useState(0)
+  const [isHoveringTabs, setIsHoveringTabs] = React.useState(false)
 
   React.useEffect(() => {
     setMounted(true)
@@ -75,23 +75,20 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
     return () => window.removeEventListener("resize", update)
   }, [])
 
-  // Auto-rotate tabs every 12 seconds
+  // Auto-rotate tabs every 12 seconds (pause on user interaction or hover)
   React.useEffect(() => {
-    if (isUserInteracting) return
+    if (isUserInteracting || isHoveringTabs) return
 
     const interval = setInterval(() => {
       setActiveTab((current) => {
         const currentIndex = tabs.findIndex((tab) => tab.id === current)
         const nextIndex = (currentIndex + 1) % tabs.length
-        const nextTab = tabs[nextIndex].id
-        // Force remount of animation components on auto-rotate
-        setAnimationKey(prev => prev + 1)
-        return nextTab
+        return tabs[nextIndex].id
       })
     }, 12000) // 12 seconds
 
     return () => clearInterval(interval)
-  }, [isUserInteracting])
+  }, [isUserInteracting, isHoveringTabs])
 
   // Reset user interaction flag after 15 seconds of no interaction
   React.useEffect(() => {
@@ -106,8 +103,6 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
 
   const handleTabChange = (tabId: typeof activeTab) => {
     setIsUserInteracting(true)
-    // Force remount of animation components before changing tab
-    setAnimationKey(prev => prev + 1)
     setActiveTab(tabId)
   }
 
@@ -210,13 +205,29 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
             className="max-w-5xl mx-auto relative z-10"
           >
             {/* Tab Navigation with Frame */}
-            <div className="mb-6 rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md shadow-lg p-2 sm:p-2.5">
+            <div 
+              className="mb-6 rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md shadow-lg p-2 sm:p-2.5"
+              onMouseEnter={() => setIsHoveringTabs(true)}
+              onMouseLeave={() => setIsHoveringTabs(false)}
+              role="tablist"
+              aria-label="Feature Navigation"
+            >
               <div className="flex items-center justify-center gap-1 sm:gap-2 overflow-x-auto hide-scrollbar">
                 {tabs.map((tab) => (
                   <button
                     key={tab.id}
+                    role="tab"
+                    aria-selected={activeTab === tab.id}
+                    aria-controls={`tabpanel-${tab.id}`}
+                    id={`tab-${tab.id}`}
                     onClick={() => handleTabChange(tab.id)}
-                    className={`relative px-4 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-medium transition-all whitespace-nowrap touch-manipulation min-h-[44px] rounded-lg ${
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault()
+                        handleTabChange(tab.id)
+                      }
+                    }}
+                    className={`relative px-4 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-medium transition-all whitespace-nowrap touch-manipulation min-h-[44px] rounded-lg focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 focus:ring-offset-background ${
                       activeTab === tab.id
                         ? "text-text-primary bg-white/20"
                         : "text-text-muted hover:text-text-secondary hover:bg-white/10"
@@ -240,7 +251,10 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
               <AnimatePresence mode="wait" initial={false}>
                 {activeTab === "data" && (
                   <motion.div
-                    key={`data-tab-${animationKey}`}
+                    key="data-tab"
+                    role="tabpanel"
+                    id="tabpanel-data"
+                    aria-labelledby="tab-data"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
@@ -248,12 +262,15 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
                     className="relative aspect-[16/10] bg-gray-50 rounded-xl overflow-hidden"
                     style={{ position: 'relative', width: '100%', height: '100%', minHeight: '400px' }}
                   >
-                    <DataFlowAnimation key={`data-animation-${animationKey}`} />
+                    <DataFlowAnimation key="data-animation" />
                   </motion.div>
                 )}
                 {activeTab === "priorities" && (
                   <motion.div
-                    key={`priorities-tab-${animationKey}`}
+                    key="priorities-tab"
+                    role="tabpanel"
+                    id="tabpanel-priorities"
+                    aria-labelledby="tab-priorities"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
@@ -261,20 +278,23 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
                     className="relative aspect-[16/10] bg-gray-50 rounded-xl"
                     style={{ position: 'relative', width: '100%', height: '100%', minHeight: '600px', overflow: 'visible' }}
                   >
-                    <PrioritiesAnimation key={`priorities-animation-${animationKey}`} />
+                    <PrioritiesAnimation key="priorities-animation" />
                   </motion.div>
                 )}
                 {activeTab === "reporting" && (
                   <motion.div
-                    key={`reporting-tab-${animationKey}`}
+                    key="reporting-tab"
+                    role="tabpanel"
+                    id="tabpanel-reporting"
+                    aria-labelledby="tab-reporting"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                    className="relative aspect-[16/10] bg-[#0B0C0E] rounded-xl overflow-hidden"
+                    className="relative aspect-[16/10] bg-gray-50 rounded-xl overflow-hidden"
                     style={{ position: 'relative', width: '100%', height: '100%' }}
                   >
-                    <div className="absolute inset-0 flex items-center justify-center p-6 bg-[#0B0C0E]">
+                    <div className="absolute inset-0 flex items-center justify-center p-6 bg-gray-50">
                       <div className="text-center">
                         <Image
                           src={`/screenshots/reporting-view.png`}
@@ -287,7 +307,7 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
                           }}
                         />
                         {/* Fallback content when no image */}
-                        <div className="relative z-10 text-slate-400 text-sm">
+                        <div className="relative z-10 text-gray-500 text-sm">
                           Reporting Dashboard kommt bald...
                         </div>
                       </div>
@@ -296,15 +316,18 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
                 )}
                 {activeTab === "pipeline" && (
                   <motion.div
-                    key={`pipeline-tab-${animationKey}`}
+                    key="pipeline-tab"
+                    role="tabpanel"
+                    id="tabpanel-pipeline"
+                    aria-labelledby="tab-pipeline"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                    className="relative aspect-[16/10] bg-[#0B0C0E] rounded-xl overflow-hidden"
+                    className="relative aspect-[16/10] bg-gray-50 rounded-xl overflow-hidden"
                     style={{ position: 'relative', width: '100%', height: '100%' }}
                   >
-                    <div className="absolute inset-0 flex items-center justify-center p-6 bg-[#0B0C0E]">
+                    <div className="absolute inset-0 flex items-center justify-center p-6 bg-gray-50">
                       <div className="text-center">
                         <Image
                           src={`/screenshots/pipeline-view.png`}
@@ -317,7 +340,7 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
                           }}
                         />
                         {/* Fallback content when no image */}
-                        <div className="relative z-10 text-slate-400 text-sm">
+                        <div className="relative z-10 text-gray-500 text-sm">
                           Pipeline View kommt bald...
                         </div>
                       </div>

@@ -304,17 +304,18 @@ function FlowLinesSVG({
         const sourceRect = sourceEl.getBoundingClientRect()
         const aiRect = aiEl.getBoundingClientRect()
 
-        // Start: Bottom center of source card
+        // Start: EXACT center of source icon container (w-20 h-20 = 80px)
         const startX = sourceRect.left - containerRect.left + sourceRect.width / 2
-        const startY = sourceRect.bottom - containerRect.top
+        const startY = sourceRect.top - containerRect.top + sourceRect.height / 2
 
-        // End: EXACT center of logo (not just the container, but the actual logo center)
+        // End: EXACT center of logo container (w-36 h-36 = 144px)
         const endX = aiRect.left - containerRect.left + aiRect.width / 2
         const endY = aiRect.top - containerRect.top + aiRect.height / 2
 
-        // Bezier curve
+        // Bezier curve with better control points for smooth arcs
         const midX = (startX + endX) / 2
-        const controlY = startY - 100 + (index * 30)
+        const distance = Math.abs(endY - startY)
+        const controlY = Math.min(startY, endY) - (distance * 0.3) + (index * 20)
         const pathD = `M ${startX} ${startY} Q ${midX} ${controlY} ${endX} ${endY}`
 
         return (
@@ -421,6 +422,7 @@ function FlowLinesSVG({
 }
 
 export function PrioritiesAnimation() {
+  // Initialize immediately - no delays
   const [phase, setPhase] = React.useState<"collecting" | "analyzing" | "prioritizing" | "resetting">("collecting")
   const [visibleCards, setVisibleCards] = React.useState(0)
   const [activeSource, setActiveSource] = React.useState(0)
@@ -550,8 +552,8 @@ export function PrioritiesAnimation() {
         }}
       />
       
-      <div className="relative z-10 flex flex-col p-6" style={{ flex: '1 1 auto', minHeight: 0 }}>
-        {/* Header - Always visible */}
+      <div className="relative z-10 flex flex-col p-6" style={{ flex: '1 1 auto', minHeight: 0, width: '100%', height: '100%' }}>
+        {/* Header - Always visible, render immediately */}
         <div className="mb-6 text-center">
           <h2 className="text-xl font-jakarta font-semibold tracking-tight text-gray-900 mb-1.5">
             Ihre Top 20 Prioritäts-Leads
@@ -561,8 +563,8 @@ export function PrioritiesAnimation() {
           </p>
         </div>
 
-        {/* Main visualization */}
-        <div className="flex-1 relative" style={{ minHeight: '600px', overflow: 'visible', position: 'relative', zIndex: 1 }}>
+        {/* Main visualization - Always render */}
+        <div className="flex-1 relative" style={{ minHeight: '600px', overflow: 'visible', position: 'relative', zIndex: 1, width: '100%', height: '100%' }}>
           {/* SVG Container for Flow Lines - ABOVE everything */}
           <FlowLinesSVG
             phase={phase}
@@ -630,59 +632,6 @@ export function PrioritiesAnimation() {
 
           {/* Phase 2: AI Center */}
           {phase === "analyzing" && (
-            <div className="absolute top-0 left-0 right-0 flex justify-center" style={{ zIndex: 40 }}>
-              <div className="flex items-center gap-12">
-                {dataSources.map((source, index) => {
-                  const Icon = source.icon
-                  const isActive = phase === "analyzing" || activeSource === index
-                  
-                  return (
-                    <motion.div
-                      key={source.id}
-                      ref={(ref) => { 
-                        sourceRefs.current[index] = ref
-                      }}
-                      className="flex flex-col items-center gap-2"
-                      initial={{ opacity: 0, y: -20 }}
-                      animate={{ 
-                        opacity: isActive ? 1 : 0.4,
-                        y: 0
-                      }}
-                      transition={{ 
-                        delay: index * 0.1,
-                        type: "spring",
-                        stiffness: 300,
-                        damping: 25
-                      }}
-                    >
-                      <motion.div 
-                        className="w-20 h-20 rounded-2xl border-2 flex items-center justify-center shadow-sm relative"
-                        style={{
-                          borderColor: isActive ? source.color : colors.border,
-                          backgroundColor: isActive ? source.bgColor : colors.surface
-                        }}
-                        animate={isActive ? { 
-                          scale: [1, 1.05, 1],
-                          boxShadow: [
-                            "0 1px 3px rgba(0,0,0,0.1)",
-                            `0 4px 12px ${source.color}30`,
-                            "0 1px 3px rgba(0,0,0,0.1)"
-                          ]
-                        } : {}}
-                        transition={{ duration: 2, repeat: isActive ? Infinity : 0 }}
-                      >
-                        <Icon className="w-10 h-10" style={{ color: isActive ? source.color : colors.text.muted }} strokeWidth={1.5} />
-                      </motion.div>
-                      <span className="text-xs font-medium text-gray-600 whitespace-nowrap">{source.name}</span>
-                    </motion.div>
-                  )
-                })}
-              </div>
-            </div>
-          )}
-
-          {/* Phase 2: AI Center */}
-          {phase === "analyzing" && (
             <div
               ref={aiCenterRef}
               className="absolute flex items-center justify-center"
@@ -690,11 +639,13 @@ export function PrioritiesAnimation() {
                 left: '50%',
                 top: '50%',
                 transform: 'translate(-50%, -50%)',
-                zIndex: 40 // Logo is BELOW the beams (z-index 50)
+                zIndex: 40,
+                width: '144px',
+                height: '144px'
               }}
             >
               <motion.div
-                className="flex flex-col items-center justify-center"
+                className="flex flex-col items-center justify-center w-full h-full"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}

@@ -57,6 +57,8 @@ const config: Config = {
       fontFamily: {
         jakarta: ["var(--font-jakarta)", "sans-serif"],
         inter: ["var(--font-inter)", "sans-serif"],
+        "inter-display": ["var(--font-inter-display)", "sans-serif"],
+        tiempos: ["Georgia", "serif"], // Fallback für Tiempos Text
         mono: ["var(--font-mono)", "monospace"],
       },
       borderRadius: {

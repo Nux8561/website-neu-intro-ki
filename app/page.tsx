@@ -11,6 +11,7 @@ import { HeroAttio } from "@/components/sections/hero-attio"
 import { VideoDemoSection } from "@/components/sections/video-demo-section"
 import { TestimonialsPremium } from "@/components/sections/testimonials-premium"
 import { TeamSection } from "@/components/sections/team-section"
+import { FeaturesBentoGridAttio } from "@/components/sections/features-bento-grid-attio"
 
 // Lazy load heavy components for better performance
 const FeaturesBentoGrid = dynamic(() => import("@/components/sections/features-bento-grid").then(mod => ({ default: mod.FeaturesBentoGrid })), { ssr: true })
@@ -30,6 +31,9 @@ export default function Home() {
           showVideo={true}
         />
         
+        {/* Features Bento Grid - Attio Style */}
+        <FeaturesBentoGridAttio />
+        
         {/* Video Demo Section */}
         <VideoDemoSection 
           videoSrc="/videos/demo.mp4"
@@ -38,7 +42,7 @@ export default function Home() {
           description="Entdecke, wie IntroKI dein Sales-Team in nur wenigen Minuten transformiert."
         />
         
-        {/* Features Bento Grid */}
+        {/* Legacy Features Bento Grid (falls noch benötigt) */}
         <FeaturesBentoGrid />
         
         {/* Deep Dive Sections */}

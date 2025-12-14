@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ArrowRight, Sparkles } from "lucide-react"
+import { ArrowRight, Sparkles, X } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { DataFlowAnimation } from "@/components/ui/data-flow-animation"
@@ -108,253 +108,213 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
 
   return (
     <>
-      {/* Announcement Banner */}
-      <div className="bg-brand text-text-inverse py-2 sm:py-3 px-4">
-        <div className="container mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 text-xs sm:text-sm text-center">
-          <div className="flex items-center gap-2">
-            <Sparkles className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
-            <span className="line-clamp-1">Neu: Multi-Agent Research System mit Echtzeit-Recherche</span>
-          </div>
-          <Link href="/features" className="inline-flex items-center gap-1 font-medium hover:underline whitespace-nowrap">
-            Mehr erfahren <ArrowRight className="h-3 w-3" />
-          </Link>
-        </div>
+      {/* Top Banner - Attio Style */}
+      <div className="fixed top-0 left-0 right-0 z-50 bg-black text-white h-12 flex items-center justify-between px-4 sm:px-6">
+        <Link
+          href="/developers"
+          className="flex items-center gap-2 text-sm font-inter font-medium hover:opacity-80 transition-opacity"
+        >
+          <span>Meet the Attio Developer Platform</span>
+          <ArrowRight className="h-3 w-3" />
+        </Link>
+        <button
+          className="p-1 hover:opacity-60 transition-opacity"
+          aria-label="Close banner"
+        >
+          <X className="h-4 w-4" />
+        </button>
       </div>
 
-      {/* Hero Section with MeshGradient Background */}
-      <section className="relative bg-background pt-16 sm:pt-20 pb-12 sm:pb-16 overflow-hidden">
-        {/* MeshGradient Background - ONLY until tabs, not further */}
-        <div className="absolute top-0 left-0 right-0 bottom-auto overflow-hidden" style={{ height: '520px' }}>
-          {mounted && (
-            <>
-              <MeshGradient
-                width={dimensions.width}
-                height={520}
-                colors={["#3B82F6", "#8B5CF6", "#6366F1", "#A855F7", "#EC4899", "#06B6D4"]}
-                distortion={0.5}
-                swirl={0.3}
-                grainMixer={0}
-                grainOverlay={0}
-                speed={0.25}
-                offsetX={0.04}
-              />
-              <div className="absolute inset-0 pointer-events-none bg-black/40" />
-              {/* Smooth fade transition at the bottom - longer fade for smoother transition */}
-              <div className="absolute bottom-0 left-0 right-0 h-48 pointer-events-none bg-gradient-to-b from-transparent via-background/30 to-background" />
-            </>
-          )}
-        </div>
-        
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
+      {/* Hero Section - Attio Style */}
+      <section className="relative bg-[#FAFAFB] pt-24 pb-20 sm:pb-24 overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
           <motion.div
-            className="max-w-4xl mx-auto text-center relative z-10"
+            className="max-w-4xl mx-auto text-center"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
-            {/* Pill Button */}
+            {/* Ankündigungs-Pill (Badge) - Attio Style */}
             <motion.div variants={itemVariants} className="mb-8">
               <Link
                 href="/features"
-                className="pill-button inline-flex items-center gap-2 text-text-secondary hover:text-text-primary"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-[#E6E7EA] bg-gray-100 hover:bg-gray-200/80 transition-colors text-sm font-inter font-medium text-gray-700"
               >
-                <span className="h-2 w-2 rounded-full bg-accent-green animate-pulse" />
-                Entdecke unsere KI-Integrationen
+                <span className="h-2 w-2 rounded-full bg-blue-500" />
+                Explore our integration with Granola
                 <ArrowRight className="h-3 w-3" />
               </Link>
             </motion.div>
 
-            {/* Headline */}
+            {/* Hauptüberschrift (H1) - Attio Style */}
             <motion.h1
               variants={itemVariants}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-jakarta font-medium tracking-tight text-text-primary mb-4 sm:mb-6 px-4"
+              className="text-5xl sm:text-6xl md:text-7xl font-inter-display font-bold tracking-tighter text-[#0A0A0A] mb-6"
             >
-              Sales Intelligence
-              <br />
-              <span className="text-gradient bg-gradient-to-r from-accent-blue to-accent-purple bg-clip-text text-transparent">
-                neu definiert.
-              </span>
+              Customer relationship magic.
             </motion.h1>
 
-            {/* Subheadline */}
+            {/* Subheadline - Attio Style */}
             <motion.p
               variants={itemVariants}
-              className="text-base sm:text-lg md:text-xl text-text-secondary font-inter mb-8 md:mb-10 max-w-2xl mx-auto px-4"
+              className="text-lg sm:text-xl font-inter font-normal text-gray-600 mb-10 max-w-2xl mx-auto"
             >
-              IntroKI ist das KI-native CRM für moderne Sales-Teams. Deep Research in 60 Sekunden, Live Call Coaching und intelligentes Lead Scoring.
+              Attio is the AI-native CRM for GTM builders.
             </motion.p>
 
-            {/* CTA Buttons */}
-            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 md:mb-16">
-              <Link href="/dashboard" className="btn-primary w-full sm:w-auto text-center">
-                Kostenlos starten
+            {/* CTA Buttons - Attio Style */}
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            >
+              <Link
+                href="/pricing"
+                className="bg-black text-white hover:bg-gray-900 px-8 py-3.5 rounded-lg font-medium text-base transition-all duration-200 hover:scale-[1.02] font-inter"
+              >
+                Start for free
               </Link>
-              <Link href="/kontakt" className="btn-secondary w-full sm:w-auto text-center">
-                Demo buchen
+              <Link
+                href="/contact"
+                className="bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 px-8 py-3.5 rounded-lg font-medium text-base transition-all duration-200 font-inter"
+              >
+                Talk to sales
               </Link>
             </motion.div>
           </motion.div>
 
-          {/* Product Demo Tabs */}
+          {/* Product Demo Visual - Attio Style */}
           <motion.div
             variants={itemVariants}
             initial="hidden"
             animate="visible"
-            transition={{ delay: 0.4 }}
-            className="max-w-5xl mx-auto relative z-10"
+            transition={{ delay: 0.3 }}
+            className="mt-16 sm:mt-20 max-w-6xl mx-auto"
           >
-            {/* Tab Navigation with Frame */}
-            <div 
-              className="mb-6 rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md shadow-lg p-2 sm:p-2.5"
-              onMouseEnter={() => setIsHoveringTabs(true)}
-              onMouseLeave={() => setIsHoveringTabs(false)}
-              role="tablist"
-              aria-label="Feature Navigation"
-            >
-              <div className="flex items-center justify-center gap-1 sm:gap-2 overflow-x-auto hide-scrollbar">
-                {tabs.map((tab) => (
-                  <button
-                    key={tab.id}
-                    role="tab"
-                    aria-selected={activeTab === tab.id}
-                    aria-controls={`tabpanel-${tab.id}`}
-                    id={`tab-${tab.id}`}
-                    onClick={() => handleTabChange(tab.id)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault()
-                        handleTabChange(tab.id)
-                      }
-                    }}
-                    className={`relative px-4 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-medium transition-all whitespace-nowrap touch-manipulation min-h-[44px] rounded-lg focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 focus:ring-offset-background ${
-                      activeTab === tab.id
-                        ? "text-text-primary bg-white/20"
-                        : "text-text-muted hover:text-text-secondary hover:bg-white/10"
-                    }`}
-                  >
-                    {tab.label}
-                    {activeTab === tab.id && (
-                      <motion.div
-                        layoutId="activeTab"
-                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand rounded-full"
-                        transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                      />
-                    )}
-                  </button>
-                ))}
+            <div className="relative rounded-2xl border border-gray-200 bg-white shadow-2xl overflow-hidden">
+              {/* Tab Navigation (oben im Fenster) - Attio Style */}
+              <div className="bg-gray-50 border-b border-gray-200 px-6 py-3">
+                <div className="flex items-center gap-1">
+                  {["Data", "Workflows", "Reporting", "Pipeline"].map(
+                    (tab, index) => (
+                      <button
+                        key={tab}
+                        className={`px-4 py-2 text-sm font-inter font-medium transition-colors ${
+                          index === 0
+                            ? "text-gray-900 border-b-2 border-black"
+                            : "text-gray-500 hover:text-gray-700"
+                        }`}
+                      >
+                        {tab}
+                      </button>
+                    )
+                  )}
+                </div>
               </div>
-            </div>
 
-            {/* Product Demo Area */}
-            <div className="product-demo overflow-hidden rounded-2xl border border-white/10 bg-white">
-              <AnimatePresence mode="wait" initial={false}>
-                {activeTab === "data" && (
-                  <motion.div
-                    key="data-tab"
-                    role="tabpanel"
-                    id="tabpanel-data"
-                    aria-labelledby="tab-data"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                    className="relative aspect-[16/10] bg-gray-50 rounded-xl overflow-hidden"
-                    style={{ position: 'relative', width: '100%', height: '100%', minHeight: '400px' }}
-                  >
-                    <DataFlowAnimation key="data-animation" />
-                  </motion.div>
-                )}
-                {activeTab === "priorities" && (
-                  <motion.div
-                    key="priorities-tab"
-                    role="tabpanel"
-                    id="tabpanel-priorities"
-                    aria-labelledby="tab-priorities"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                    className="relative aspect-[16/10] bg-gray-50 rounded-xl"
-                    style={{ position: 'relative', width: '100%', height: '100%', minHeight: '600px', overflow: 'visible' }}
-                  >
-                    <PrioritiesAnimation key="priorities-animation" />
-                  </motion.div>
-                )}
-                {activeTab === "reporting" && (
-                  <motion.div
-                    key="reporting-tab"
-                    role="tabpanel"
-                    id="tabpanel-reporting"
-                    aria-labelledby="tab-reporting"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                    className="relative aspect-[16/10] bg-gray-50 rounded-xl overflow-hidden"
-                    style={{ position: 'relative', width: '100%', height: '100%' }}
-                  >
-                    <div className="absolute inset-0 flex items-center justify-center p-6 bg-gray-50">
-                      <div className="text-center">
-                        <Image
-                          src={`/screenshots/reporting-view.png`}
-                          alt={`IntroKI Reporting View`}
-                          fill
-                          className="object-cover rounded-xl"
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement
-                            target.style.display = 'none'
-                          }}
-                        />
-                        {/* Fallback content when no image */}
-                        <div className="relative z-10 text-gray-500 text-sm">
-                          Reporting Dashboard kommt bald...
+              {/* App Preview Area - Attio Style */}
+              <div className="relative aspect-[16/10] bg-white">
+                <AnimatePresence mode="sync">
+                  {activeTab === "data" && (
+                    <motion.div
+                      key="data-tab"
+                      role="tabpanel"
+                      id="tabpanel-data"
+                      aria-labelledby="tab-data"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 17, duration: 0.3 }}
+                      className="absolute inset-0 bg-gray-50 overflow-hidden"
+                    >
+                      <DataFlowAnimation key="data-animation" />
+                    </motion.div>
+                  )}
+                  {activeTab === "priorities" && (
+                    <motion.div
+                      key="priorities-tab"
+                      role="tabpanel"
+                      id="tabpanel-priorities"
+                      aria-labelledby="tab-priorities"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 17, duration: 0.3 }}
+                      className="absolute inset-0 bg-gray-50"
+                    >
+                      <PrioritiesAnimation key="priorities-animation" />
+                    </motion.div>
+                  )}
+                  {activeTab === "reporting" && (
+                    <motion.div
+                      key="reporting-tab"
+                      role="tabpanel"
+                      id="tabpanel-reporting"
+                      aria-labelledby="tab-reporting"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 17, duration: 0.3 }}
+                      className="absolute inset-0 bg-gray-50 overflow-hidden"
+                    >
+                      <div className="absolute inset-0 flex items-center justify-center p-6 bg-gray-50">
+                        <div className="text-center">
+                          <Image
+                            src={`/screenshots/reporting-view.png`}
+                            alt={`IntroKI Reporting View`}
+                            fill
+                            className="object-cover rounded-xl"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement
+                              target.style.display = 'none'
+                            }}
+                          />
+                          <div className="relative z-10 text-gray-500 text-sm">
+                            Reporting Dashboard kommt bald...
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </motion.div>
-                )}
-                {activeTab === "pipeline" && (
-                  <motion.div
-                    key="pipeline-tab"
-                    role="tabpanel"
-                    id="tabpanel-pipeline"
-                    aria-labelledby="tab-pipeline"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                    className="relative aspect-[16/10] bg-gray-50 rounded-xl overflow-hidden"
-                    style={{ position: 'relative', width: '100%', height: '100%' }}
-                  >
-                    <div className="absolute inset-0 flex items-center justify-center p-6 bg-gray-50">
-                      <div className="text-center">
-                        <Image
-                          src={`/screenshots/pipeline-view.png`}
-                          alt={`IntroKI Pipeline View`}
-                          fill
-                          className="object-cover rounded-xl"
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement
-                            target.style.display = 'none'
-                          }}
-                        />
-                        {/* Fallback content when no image */}
-                        <div className="relative z-10 text-gray-500 text-sm">
-                          Pipeline View kommt bald...
+                    </motion.div>
+                  )}
+                  {activeTab === "pipeline" && (
+                    <motion.div
+                      key="pipeline-tab"
+                      role="tabpanel"
+                      id="tabpanel-pipeline"
+                      aria-labelledby="tab-pipeline"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 17, duration: 0.3 }}
+                      className="absolute inset-0 bg-gray-50 overflow-hidden"
+                    >
+                      <div className="absolute inset-0 flex items-center justify-center p-6 bg-gray-50">
+                        <div className="text-center">
+                          <Image
+                            src={`/screenshots/pipeline-view.png`}
+                            alt={`IntroKI Pipeline View`}
+                            fill
+                            className="object-cover rounded-xl"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement
+                              target.style.display = 'none'
+                            }}
+                          />
+                          <div className="relative z-10 text-gray-500 text-sm">
+                            Pipeline View kommt bald...
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Customer Logos Section - NO gradient background */}
-      <section className="py-16 border-t border-border bg-surface/50">
+      {/* Customer Logos Section - Attio Style */}
+      <section className="py-20 border-t border-gray-200 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

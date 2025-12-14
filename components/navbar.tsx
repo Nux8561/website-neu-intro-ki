@@ -207,31 +207,31 @@ export function Navbar() {
 
   return (
     <motion.nav
-      className="fixed top-0 left-0 right-0 z-50"
+      className="fixed top-12 left-0 right-0 z-40"
       initial={{ y: 0 }}
       animate={{
         backgroundColor: isScrolled 
-          ? "rgba(255, 255, 255, 0.9)" 
+          ? "rgba(255, 255, 255, 0.95)" 
           : "rgba(255, 255, 255, 1)",
-        backdropFilter: isScrolled ? "blur(20px) saturate(180%)" : "none",
+        backdropFilter: isScrolled ? "blur(12px) saturate(180%)" : "none",
         borderBottom: isScrolled 
-          ? "1px solid rgba(11, 12, 14, 0.08)" 
+          ? "1px solid rgba(230, 231, 234, 0.5)" 
           : "1px solid transparent",
       }}
       transition={{ type: "spring", stiffness: 400, damping: 17 }}
       style={{
-        WebkitBackdropFilter: isScrolled ? "blur(20px) saturate(180%)" : "none",
+        WebkitBackdropFilter: isScrolled ? "blur(12px) saturate(180%)" : "none",
       }}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-16 sm:h-18 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <IntroKILogo size="md" variant="default" animated={true} />
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          {/* Desktop Navigation - Attio Style */}
+          <div className="hidden md:flex items-center gap-9">
             {navItems.map((item) => {
               if (item.hasDropdown && item.isMega && item.label === "Platform") {
                 return (
@@ -243,16 +243,16 @@ export function Navbar() {
                   >
                     <motion.button
                       ref={platformTriggerRef}
-                      className="text-sm text-text-secondary hover:text-text-primary transition-colors font-inter relative group flex items-center gap-1"
-                      whileHover={{ scale: 1.02 }}
+                      className="text-[15px] text-gray-700 hover:text-gray-900 transition-colors font-inter font-medium relative group flex items-center gap-1"
+                      whileHover={{ scale: 1.01 }}
                       whileTap={{ scale: 0.98 }}
                       transition={{ type: "spring", stiffness: 400, damping: 17 }}
                     >
-                      <span className={openDropdown === "platform" ? "text-text-primary" : ""}>
+                      <span className={openDropdown === "platform" ? "text-gray-900" : ""}>
                         {item.label}
                       </span>
                       <ChevronDown 
-                        className={`w-4 h-4 text-text-muted group-hover:text-text-secondary transition-transform ${
+                        className={`w-4 h-4 text-gray-500 group-hover:text-gray-700 transition-transform ${
                           openDropdown === "platform" ? "rotate-180" : ""
                         }`}
                       />
@@ -274,13 +274,13 @@ export function Navbar() {
                   <DropdownMenu key={item.label}>
                     <DropdownMenuTrigger asChild>
                       <motion.button
-                        className="text-sm text-text-secondary hover:text-text-primary transition-colors font-inter relative group flex items-center gap-1"
-                        whileHover={{ scale: 1.02 }}
+                        className="text-[15px] text-gray-700 hover:text-gray-900 transition-colors font-inter font-medium relative group flex items-center gap-1"
+                        whileHover={{ scale: 1.01 }}
                         whileTap={{ scale: 0.98 }}
                         transition={{ type: "spring", stiffness: 400, damping: 17 }}
                       >
                         <span>{item.label}</span>
-                        <ChevronDown className="w-4 h-4 text-text-muted group-hover:text-text-secondary transition-colors" />
+                        <ChevronDown className="w-4 h-4 text-gray-500 group-hover:text-gray-700 transition-colors" />
                       </motion.button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent 
@@ -324,7 +324,7 @@ export function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-sm text-text-secondary hover:text-text-primary transition-colors font-inter"
+                  className="text-[15px] text-gray-700 hover:text-gray-900 transition-colors font-inter font-medium"
                 >
                   {item.label}
                 </Link>
@@ -332,19 +332,19 @@ export function Navbar() {
             })}
           </div>
 
-          {/* CTA Buttons */}
+          {/* CTA Buttons - Attio Style */}
           <div className="hidden md:flex items-center gap-3">
             <Button
               variant="ghost"
               size="sm"
-              className="text-text-secondary hover:text-text-primary hover:bg-surface touch-manipulation"
+              className="text-gray-700 hover:text-gray-900 hover:bg-gray-50 border border-gray-300 rounded-lg px-4 py-2 touch-manipulation font-inter font-medium"
               asChild
             >
               <Link href="/dashboard">Sign in</Link>
             </Button>
             <Button
               size="sm"
-              className="bg-brand text-text-inverse hover:bg-brand-light font-medium rounded-lg px-4 touch-manipulation"
+              className="bg-black text-white hover:bg-gray-900 font-medium rounded-lg px-6 py-2 touch-manipulation font-inter"
               asChild
             >
               <Link href="/pricing">Start for free</Link>

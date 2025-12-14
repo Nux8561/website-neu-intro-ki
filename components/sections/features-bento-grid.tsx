@@ -7,13 +7,10 @@ import { ResearchOrchestratorSection } from "@/components/sections/research-orch
 import { ScannerCardStream } from "@/components/ui/scanner-card-stream"
 
 export function FeaturesBentoGrid() {
-  const gallerySectionRef = React.useRef<HTMLElement>(null)
-
   return (
     <LazyMotion features={domAnimation}>
       {/* 3D Gallery Section - Full Screen */}
       <section 
-        ref={gallerySectionRef}
         id="gallery-section" 
         className="relative h-screen w-full bg-background overflow-hidden"
         style={{ position: 'relative' }}

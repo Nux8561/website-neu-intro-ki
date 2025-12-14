@@ -32,9 +32,18 @@ const founders: TeamMember[] = [
     name: "Tech Co-Founder",
     role: "CTO & Co-Founder",
     bio: "Ex-Google Engineer. Spezialisiert auf AI/ML und skalierbare Cloud-Architekturen.",
-    avatar: "/team/cto.jpg",
+    avatar: "/images/Gemini_Generated_Image_ukzf8vukzf8vukzf.png",
     linkedin: "#",
     github: "#",
+  },
+  {
+    id: "3",
+    name: "Product Co-Founder",
+    role: "CPO & Co-Founder",
+    bio: "Product-Visionär mit über 10 Jahren Erfahrung in der Entwicklung von Enterprise-SaaS-Produkten.",
+    avatar: "/images/Gemini_Generated_Image_o0qaeo0qaeo0qaeo.png",
+    linkedin: "#",
+    twitter: "#",
   },
 ]
 
@@ -69,6 +78,32 @@ const team: TeamMember[] = [
     role: "AI/ML Engineer",
     bio: "Entwickelt die KI-Modelle hinter unserer Deep Research und Lead Scoring Technologie.",
     avatar: "/team/tim.jpg",
+    github: "#",
+  },
+  {
+    id: "7",
+    name: "Sarah Klein",
+    role: "Head of Marketing",
+    bio: "Marketing-Expertin mit Fokus auf Growth und Brand Building im B2B-SaaS-Bereich.",
+    avatar: "/team/sarah.jpg",
+    linkedin: "#",
+    twitter: "#",
+  },
+  {
+    id: "8",
+    name: "David Schmidt",
+    role: "Head of Sales",
+    bio: "Sales-Veteran mit über 15 Jahren Erfahrung im Enterprise-Vertrieb und Account Management.",
+    avatar: "/team/david.jpg",
+    linkedin: "#",
+  },
+  {
+    id: "9",
+    name: "Lisa Bauer",
+    role: "UX/UI Designer",
+    bio: "Designerin mit Passion für intuitive Interfaces und moderne Design-Systeme.",
+    avatar: "/team/lisa.jpg",
+    linkedin: "#",
     github: "#",
   },
 ]
@@ -110,10 +145,17 @@ function TeamMemberCard({ member, isFounder = false }: { member: TeamMember; isF
           src={member.avatar}
           alt={member.name}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105 relative z-10"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          style={{ position: 'absolute', zIndex: 10 }}
           onError={(e) => {
             const target = e.target as HTMLImageElement
             target.style.display = 'none'
+            // Show fallback when image fails
+            const container = (e.target as HTMLImageElement).parentElement
+            const fallback = container?.querySelector('.avatar-fallback')
+            if (fallback) {
+              (fallback as HTMLElement).style.display = 'flex'
+            }
           }}
           onLoad={(e) => {
             // Hide fallback when image loads successfully
@@ -123,9 +165,10 @@ function TeamMemberCard({ member, isFounder = false }: { member: TeamMember; isF
               (fallback as HTMLElement).style.display = 'none'
             }
           }}
+          unoptimized
         />
         {/* Fallback - only shown if image fails to load */}
-        <div className="avatar-fallback absolute inset-0 flex items-center justify-center bg-gradient-to-br from-accent-blue/20 to-accent-purple/20 z-0">
+        <div className="avatar-fallback absolute inset-0 flex items-center justify-center bg-gradient-to-br from-accent-blue/20 to-accent-purple/20" style={{ zIndex: 0, display: 'none' }}>
           <span className="text-4xl font-jakarta font-medium text-text-primary/30">
             {member.name.split(' ').map(n => n[0]).join('')}
           </span>
@@ -220,7 +263,7 @@ export function TeamSection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto"
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto"
           >
             {founders.map((founder) => (
               <TeamMemberCard key={founder.id} member={founder} isFounder />

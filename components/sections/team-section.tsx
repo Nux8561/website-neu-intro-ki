@@ -53,7 +53,7 @@ const team: TeamMember[] = [
     name: "Anna Weber",
     role: "Head of Product",
     bio: "Product Leader mit Fokus auf User Experience und datengetriebene Entscheidungen.",
-    avatar: "/team/anna.jpg",
+    avatar: "/images/Gemini_Generated_Image_vytwh6vytwh6vytw.png",
     linkedin: "#",
   },
   {
@@ -61,7 +61,7 @@ const team: TeamMember[] = [
     name: "Max Fischer",
     role: "Head of Engineering",
     bio: "Full-Stack Engineer mit Passion für performante und elegante Software.",
-    avatar: "/team/max.jpg",
+    avatar: "/images/Gemini_Generated_Image_c8ji0yc8ji0yc8ji.png",
     github: "#",
   },
   {
@@ -77,7 +77,7 @@ const team: TeamMember[] = [
     name: "Tim Müller",
     role: "AI/ML Engineer",
     bio: "Entwickelt die KI-Modelle hinter unserer Deep Research und Lead Scoring Technologie.",
-    avatar: "/team/tim.jpg",
+    avatar: "/images/Gemini_Generated_Image_eztezmeztezmezte.png",
     github: "#",
   },
   {
@@ -91,10 +91,10 @@ const team: TeamMember[] = [
   },
   {
     id: "8",
-    name: "David Schmidt",
+    name: "Luke Sperner",
     role: "Head of Sales",
     bio: "Sales-Veteran mit über 15 Jahren Erfahrung im Enterprise-Vertrieb und Account Management.",
-    avatar: "/images/Gemini_Generated_Image_j18hrgj18hrgj18h.png",
+    avatar: "/images/Gemini_Generated_Image_xm25r1xm25r1xm25.png",
     linkedin: "#",
   },
   {
@@ -102,7 +102,7 @@ const team: TeamMember[] = [
     name: "Lisa Bauer",
     role: "UX/UI Designer",
     bio: "Designerin mit Passion für intuitive Interfaces und moderne Design-Systeme.",
-    avatar: "/team/lisa.jpg",
+    avatar: "/images/Gemini_Generated_Image_7lpka57lpka57lpk.png",
     linkedin: "#",
     github: "#",
   },

@@ -24,7 +24,6 @@ import {
   Calendar,
   Play,
   Boxes,
-  Cube,
   Blocks,
   FileStack,
   LayoutGrid,

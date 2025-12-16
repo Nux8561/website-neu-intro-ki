@@ -41,7 +41,6 @@ const config: Config = {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
         },
-        border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         
@@ -69,10 +68,10 @@ const config: Config = {
           inverse: "#FFFFFF",
         },
         
-        // Border Colors
+        // Border Colors (shadcn/ui compatible with CSS variables)
         border: {
+          DEFAULT: "hsl(var(--border))", // shadcn/ui compatibility
           subtle: "rgba(11, 12, 14, 0.08)",
-          DEFAULT: "rgba(11, 12, 14, 0.12)",
           active: "rgba(11, 12, 14, 0.20)",
           "attio-subtle": "#E6E7EA", // Attio Standard Border
         },

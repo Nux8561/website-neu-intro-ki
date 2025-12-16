@@ -211,8 +211,20 @@
     background-color: rgba(255, 255, 255, 0.97) !important;
   }
   
+  /* Sections mit bg-surface-elevated - leicht transparent */
+  section.bg-surface-elevated {
+    background-color: rgba(245, 245, 245, 0.97) !important;
+  }
+  
   /* Content innerhalb Sections sollte über Grid liegen */
   section > * {
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Container innerhalb Sections sollten über Grid liegen */
+  section .container,
+  section [class*="container"] {
     position: relative;
     z-index: 1;
   }

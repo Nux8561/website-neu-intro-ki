@@ -64,7 +64,7 @@ export function FeaturesBentoGrid() {
       <ResearchOrchestratorSection />
 
       {/* Security Scanner Section */}
-      <section className="relative min-h-[80vh] sm:min-h-[90vh] md:min-h-screen w-full overflow-hidden" style={{ backgroundColor: '#F5F5F5' }}>
+      <section className="relative min-h-[80vh] sm:min-h-[90vh] md:min-h-screen w-full overflow-hidden bg-surface-elevated">
         {/* Subtle Pattern Background for Contrast */}
         <div className="absolute inset-0 opacity-30" style={{
           backgroundImage: `radial-gradient(circle, rgba(0, 0, 0, 0.1) 1px, transparent 1px)`,

@@ -17,15 +17,19 @@ export function IntegrationsSection() {
     <AttioWrapper variant="section" className="bg-white">
       <div className="container-responsive max-w-7xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{
             type: "spring",
             stiffness: 400,
             damping: 17,
           }}
-          className="text-center mb-8 sm:mb-12 md:mb-16"
+          className="text-center mb-8 sm:mb-12 md:mb-16 motion-safe"
+          style={{
+            willChange: "opacity",
+            transform: "translateZ(0)",
+          }}
         >
           <h2 className="heading-responsive font-inter-display font-semibold tracking-tight text-[#0A0A0A] mb-4">
             Passt perfekt zu deinem bestehenden System
@@ -52,8 +56,8 @@ export function IntegrationsSection() {
 
         {/* Feature Highlights */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{
             type: "spring",
@@ -61,7 +65,11 @@ export function IntegrationsSection() {
             damping: 17,
             delay: 0.2,
           }}
-          className="mt-8 sm:mt-12 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto"
+          className="mt-8 sm:mt-12 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto motion-safe"
+          style={{
+            willChange: "opacity",
+            transform: "translateZ(0)",
+          }}
         >
           {[
             {
@@ -82,11 +90,15 @@ export function IntegrationsSection() {
           ].map((feature, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="text-center card-responsive bg-gray-50 rounded-xl border border-gray-200 flex flex-col items-center"
+              className="text-center card-responsive bg-gray-50 rounded-xl border border-gray-200 flex flex-col items-center motion-safe"
+              style={{
+                willChange: "opacity",
+                transform: "translateZ(0)",
+              }}
             >
               <div className="flex justify-center mb-3 sm:mb-4">
                 {feature.icon}

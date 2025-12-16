@@ -516,10 +516,10 @@ export function PipelineSkeleton() {
   }, [])
 
   return (
-    <div className="mt-4 space-y-3 overflow-hidden">
+    <div className="mt-4 space-y-3 overflow-hidden" style={{ contain: "layout style paint" }}>
       <div className="flex gap-2 sm:gap-3 overflow-hidden">
         {/* Column: New */}
-        <div className="flex-1">
+        <div className="flex-1" style={{ contain: "layout style" }}>
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-inter text-text-muted">New</span>
             <motion.span
@@ -528,36 +528,43 @@ export function PipelineSkeleton() {
               animate={{ scale: 1 }}
               transition={snappySpring}
               className="text-xs font-inter font-medium text-text-primary bg-white px-1.5 py-0.5 rounded"
+              style={{ willChange: "transform", transform: "translateZ(0)" }}
             >
               {counters.new}
             </motion.span>
           </div>
-          <div className="space-y-2 min-h-[60px] relative overflow-hidden">
-            {draggedCard === 0 && targetColumn === "new" ? (
+          <div className="space-y-2 min-h-[60px] relative overflow-visible" style={{ contain: "layout style paint" }}>
+            {/* Placeholder für Layout-Stabilität */}
+            <div className="p-2 bg-transparent rounded-lg pointer-events-none" style={{ visibility: draggedCard === 0 && targetColumn === "new" ? "hidden" : "visible" }}>
+              <div className="h-2 bg-gray-300 rounded w-16 mb-1" />
+              <div className="h-1.5 bg-gray-200 rounded w-20" />
+            </div>
+            {/* Animierte Karte - absolut positioniert */}
+            {draggedCard === 0 && targetColumn === "new" && (
               <motion.div
-                className="p-2 bg-white border border-attio-subtle rounded-lg shadow-lg"
+                className="p-2 bg-white border border-attio-subtle rounded-lg shadow-lg absolute top-0 left-0 w-full"
                 animate={{
                   x: cardPosition.x,
                   y: cardPosition.y,
                   scale: cardPosition.y < 0 ? 1.02 : 1,
                 }}
                 transition={attioTransition}
-                style={{ willChange: 'transform' }}
+                style={{ 
+                  willChange: 'transform',
+                  transform: "translateZ(0)",
+                  contain: "layout style paint",
+                  zIndex: 10,
+                }}
               >
                 <div className="h-2 bg-gray-300 rounded w-16 mb-1" />
                 <div className="h-1.5 bg-gray-200 rounded w-20" />
               </motion.div>
-            ) : (
-              <div className="p-2 bg-white border border-attio-subtle rounded-lg">
-                <div className="h-2 bg-gray-300 rounded w-16 mb-1" />
-                <div className="h-1.5 bg-gray-200 rounded w-20" />
-              </div>
             )}
           </div>
         </div>
 
         {/* Column: Qualified */}
-        <div className="flex-1">
+        <div className="flex-1" style={{ contain: "layout style" }}>
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-inter text-text-muted">Qualified</span>
             <motion.span
@@ -566,44 +573,52 @@ export function PipelineSkeleton() {
               animate={{ scale: 1 }}
               transition={snappySpring}
               className="text-xs font-inter font-medium text-text-primary bg-white px-1.5 py-0.5 rounded"
+              style={{ willChange: "transform", transform: "translateZ(0)" }}
             >
               {counters.qualified}
             </motion.span>
           </div>
-          <div className="space-y-2 min-h-[60px] relative overflow-hidden">
-            {draggedCard === 0 && targetColumn === "qualified" && (
-              <motion.div
-                className="p-2 bg-white border border-attio-subtle rounded-lg shadow-lg"
-                animate={{
-                  x: cardPosition.x - (typeof window !== 'undefined' && window.innerWidth < 640 ? 80 : 120),
-                  y: cardPosition.y,
-                  scale: cardPosition.y < 0 ? 1.02 : 1,
-                }}
-                transition={attioTransition}
-                style={{ willChange: 'transform' }}
-              >
-                <div className="h-2 bg-gray-300 rounded w-16 mb-1" />
-                <div className="h-1.5 bg-gray-200 rounded w-20" />
-              </motion.div>
-            )}
+          <div className="space-y-2 min-h-[60px] relative overflow-visible" style={{ contain: "layout style paint" }}>
+            {/* Placeholder für Layout-Stabilität */}
             {counters.qualified > 0 && (
               <div className="p-2 bg-white border border-attio-subtle rounded-lg">
                 <div className="h-2 bg-gray-300 rounded w-16 mb-1" />
                 <div className="h-1.5 bg-gray-200 rounded w-20" />
               </div>
             )}
+            {/* Animierte Karte - absolut positioniert */}
+            {draggedCard === 0 && targetColumn === "qualified" && (
+              <motion.div
+                className="p-2 bg-white border border-attio-subtle rounded-lg shadow-lg absolute top-0 left-0 w-full"
+                animate={{
+                  x: cardPosition.x - (typeof window !== 'undefined' && window.innerWidth < 640 ? 80 : 120),
+                  y: cardPosition.y,
+                  scale: cardPosition.y < 0 ? 1.02 : 1,
+                }}
+                transition={attioTransition}
+                style={{ 
+                  willChange: 'transform',
+                  transform: "translateZ(0)",
+                  contain: "layout style paint",
+                  zIndex: 10,
+                }}
+              >
+                <div className="h-2 bg-gray-300 rounded w-16 mb-1" />
+                <div className="h-1.5 bg-gray-200 rounded w-20" />
+              </motion.div>
+            )}
           </div>
         </div>
 
         {/* Column: Won */}
-        <div className="flex-1">
+        <div className="flex-1" style={{ contain: "layout style" }}>
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-inter text-text-muted">Won</span>
             <span className="text-xs font-inter font-medium text-text-primary bg-white px-1.5 py-0.5 rounded">
               {counters.won}
             </span>
           </div>
-          <div className="space-y-2 min-h-[60px]">
+          <div className="space-y-2 min-h-[60px]" style={{ contain: "layout style" }}>
             {counters.won > 0 && (
               <div className="p-2 bg-white border border-attio-subtle rounded-lg">
                 <div className="h-2 bg-gray-300 rounded w-16 mb-1" />

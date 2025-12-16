@@ -21,6 +21,7 @@ const SmartTargetingSection = dynamic(() => import("@/components/sections/smart-
 const PipelineManagementSection = dynamic(() => import("@/components/sections/pipeline-management-section").then(mod => ({ default: mod.PipelineManagementSection })), { ssr: true })
 const CallCoachingSection = dynamic(() => import("@/components/sections/call-coaching-section").then(mod => ({ default: mod.CallCoachingSection })), { ssr: true })
 const CTASection = dynamic(() => import("@/components/sections/cta-section").then(mod => ({ default: mod.CTASection })), { ssr: true })
+const CTAAttioStyle = dynamic(() => import("@/components/sections/cta-attio-style").then(mod => ({ default: mod.CTAAttioStyle })), { ssr: true })
 
 export default function Home() {
   return (
@@ -62,6 +63,9 @@ export default function Home() {
         
         {/* Team/Founder Section */}
         <TeamSection />
+        
+        {/* Attio-Style CTA */}
+        <CTAAttioStyle />
         
         {/* Final CTA */}
         <CTASection />

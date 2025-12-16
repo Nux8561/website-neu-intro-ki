@@ -204,8 +204,12 @@ export function FeaturesBentoGridAttio() {
                   ? {
                       gridColumn: `span ${cell.colSpan}`,
                       gridRow: `span ${cell.rowSpan}`,
-                      transformOrigin: "center",
+                      transformOrigin: "center center",
                       willChange: "transform",
+                      contain: "layout style paint",
+                      isolation: "isolate",
+                      transform: "translateZ(0)",
+                      backfaceVisibility: "hidden",
                     }
                   : undefined
               }

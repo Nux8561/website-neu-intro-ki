@@ -100,11 +100,15 @@ function FeatureItem({
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ ...attioTransition, delay }}
-      className="flex flex-col items-center text-center max-w-xs"
+      className="flex flex-col items-center text-center max-w-xs motion-safe"
+      style={{
+        willChange: "opacity",
+        transform: "translateZ(0)",
+      }}
     >
       <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mb-4">
         <Icon className="h-6 w-6 text-blue-600" strokeWidth={1.5} />
@@ -222,11 +226,15 @@ export function VideoDemoSection({
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Section Header */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            className="text-center mb-8 sm:mb-12 px-4"
+            className="text-center mb-8 sm:mb-12 px-4 motion-safe"
+            style={{
+              willChange: "opacity",
+              transform: "translateZ(0)",
+            }}
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-inter-display font-semibold tracking-tight text-[#0A0A0A] mb-3 sm:mb-4">
               {title}
@@ -238,11 +246,16 @@ export function VideoDemoSection({
 
           {/* Video Container mit Browser-Frame */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 400, damping: 25, delay: 0.1 }}
-            className="max-w-6xl mx-auto relative"
+            className="max-w-6xl mx-auto relative motion-safe"
+            style={{
+              willChange: "opacity",
+              transform: "translateZ(0)",
+            }}
+          >
           >
             {/* Ambient Glow hinter dem Video - Verstärkt */}
             <motion.div
@@ -304,11 +317,15 @@ export function VideoDemoSection({
 
           {/* Feature Row unter dem Video */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ ...attioTransition, delay: 0.3 }}
-            className="mt-12 flex flex-wrap justify-center gap-8 md:gap-12"
+            className="mt-12 flex flex-wrap justify-center gap-8 md:gap-12 motion-safe"
+            style={{
+              willChange: "opacity",
+              transform: "translateZ(0)",
+            }}
           >
             <FeatureItem
               icon={Zap}

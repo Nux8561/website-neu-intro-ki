@@ -42,10 +42,15 @@ export function PipelineManagementSection() {
     >
       <div className="container-responsive max-w-7xl mx-auto">
         <motion.div
-          className="max-w-7xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          className="max-w-7xl mx-auto motion-safe"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={attioTransition}
+          style={{
+            willChange: "opacity",
+            transform: "translateZ(0)",
+            backfaceVisibility: "hidden",
+          }}
         >
           {/* Section Number */}
           <div className="text-sm font-mono text-gray-500 mb-4">
@@ -92,15 +97,19 @@ export function PipelineManagementSection() {
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0 }}
                   animate={
-                    isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+                    isInView ? { opacity: 1 } : { opacity: 0 }
                   }
                   transition={{
                     delay: index * 0.1,
                     ...snappySpring,
                   }}
                   whileHover={{ scale: 1.01 }}
+                  style={{
+                    willChange: "opacity, transform",
+                    transform: "translateZ(0)",
+                  }}
                   className="bg-gray-50 border border-gray-200 rounded-xl p-6 hover:border-gray-300 transition-colors"
                 >
                   <div className="mb-4">

@@ -226,15 +226,23 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
                       role="tabpanel"
                       id="tabpanel-data"
                       aria-labelledby="tab-data"
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -30 }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      style={{
+                        willChange: "opacity",
+                        transform: "translateZ(0)",
+                      }}
                       transition={attioTransition}
                       className="absolute inset-0 bg-attio-gray overflow-hidden z-0"
                     >
                       <motion.div 
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        style={{
+                          willChange: "opacity",
+                          transform: "translateZ(0)",
+                        }}
                         transition={attioTransition}
                         className="absolute inset-0 flex items-center justify-center p-6 bg-attio-gray h-full z-0"
                       >
@@ -256,15 +264,23 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
                       role="tabpanel"
                       id="tabpanel-workflows"
                       aria-labelledby="tab-workflows"
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -30 }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      style={{
+                        willChange: "opacity",
+                        transform: "translateZ(0)",
+                      }}
                       transition={attioTransition}
                       className="absolute inset-0 bg-attio-gray overflow-hidden z-0"
                     >
                       <motion.div 
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        style={{
+                          willChange: "opacity",
+                          transform: "translateZ(0)",
+                        }}
                         transition={attioTransition}
                         className="absolute inset-0 flex items-center justify-center p-6 bg-attio-gray h-full z-0"
                       >
@@ -284,15 +300,23 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
                       role="tabpanel"
                       id="tabpanel-reporting"
                       aria-labelledby="tab-reporting"
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -30 }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      style={{
+                        willChange: "opacity",
+                        transform: "translateZ(0)",
+                      }}
                       transition={attioTransition}
                       className="absolute inset-0 bg-attio-gray overflow-hidden z-0"
                     >
                       <motion.div 
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        style={{
+                          willChange: "opacity",
+                          transform: "translateZ(0)",
+                        }}
                         transition={attioTransition}
                         className="absolute inset-0 flex items-center justify-center p-6 bg-attio-gray h-full z-0"
                       >
@@ -312,15 +336,23 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
                       role="tabpanel"
                       id="tabpanel-pipeline"
                       aria-labelledby="tab-pipeline"
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -30 }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      style={{
+                        willChange: "opacity",
+                        transform: "translateZ(0)",
+                      }}
                       transition={attioTransition}
                       className="absolute inset-0 bg-attio-gray overflow-hidden z-0"
                     >
                       <motion.div 
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        style={{
+                          willChange: "opacity",
+                          transform: "translateZ(0)",
+                        }}
                         transition={attioTransition}
                         className="absolute inset-0 flex items-center justify-center p-6 bg-attio-gray h-full z-0"
                       >
@@ -345,11 +377,15 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
       <section className="py-20 border-t border-gray-200 bg-white">
         <div className="container-responsive max-w-7xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
-            className="text-center"
+            className="text-center motion-safe"
+            style={{
+              willChange: "opacity",
+              transform: "translateZ(0)",
+            }}
           >
             <p className="text-sm text-text-muted mb-8 font-inter">
               Vertraut von führenden Unternehmen
@@ -358,11 +394,15 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
               {customerLogos.map((logo, index) => (
                 <motion.div
                   key={logo.name}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.05 }}
-                  className="logo-item"
+                  className="logo-item motion-safe"
+                  style={{
+                    willChange: "opacity",
+                    transform: "translateZ(0)",
+                  }}
                 >
                   <Image
                     src={logo.logo}

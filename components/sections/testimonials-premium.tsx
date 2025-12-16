@@ -4,6 +4,7 @@ import * as React from "react"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { Play, Star, Quote } from "lucide-react"
+import { Marquee } from "@/components/ui/marquee"
 
 interface Testimonial {
   id: string
@@ -84,7 +85,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
     <motion.div
       variants={itemVariants}
-      className="card-attio p-8 h-full flex flex-col"
+      className="card-attio attio-card-hover-border p-8 h-full flex flex-col"
     >
       {/* Video Thumbnail (if has video) */}
       {testimonial.videoUrl && (
@@ -214,13 +215,24 @@ export function TestimonialsPremium() {
           </p>
         </motion.div>
 
-        {/* Testimonials Grid */}
+        {/* Testimonials Marquee (Attio-Style) */}
+        <div className="mb-12 sm:mb-16">
+          <Marquee speed={30} direction="left" pauseOnHover={true} repeat={2}>
+            {testimonials.map((testimonial) => (
+              <div key={testimonial.id} className="w-[350px] sm:w-[400px]">
+                <TestimonialCard testimonial={testimonial} />
+              </div>
+            ))}
+          </Marquee>
+        </div>
+
+        {/* Alternative: Testimonials Grid (für Desktop) */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+          className="hidden lg:grid grid-cols-3 gap-6 sm:gap-8"
         >
           {testimonials.map((testimonial) => (
             <TestimonialCard key={testimonial.id} testimonial={testimonial} />

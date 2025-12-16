@@ -136,7 +136,7 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
             <motion.div variants={itemVariants} className="mb-8">
               <Link
                 href="/features"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-attio-subtle bg-attio-gray hover:bg-gray-50 transition-colors text-sm font-inter font-medium text-gray-700"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-attio-subtle bg-attio-gray hover:bg-gray-50 transition-colors text-sm font-inter font-medium text-gray-700 attio-link-underline"
               >
                 <span className="h-2 w-2 rounded-full bg-blue-500" />
                 Explore our integration with Granola

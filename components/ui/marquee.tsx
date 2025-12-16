@@ -1,3 +1,8 @@
+/**
+ * Marquee Component - Attio-Style
+ * Endlose horizontale Scroll-Animation für Testimonials, Logos, etc.
+ */
+
 "use client"
 
 import * as React from "react"
@@ -7,45 +12,71 @@ import { cn } from "@/lib/utils"
 interface MarqueeProps {
   children: React.ReactNode
   className?: string
-  duration?: number
+  speed?: number
+  direction?: "left" | "right"
+  pauseOnHover?: boolean
+  repeat?: number
 }
 
-export function Marquee({ children, className, duration = 20 }: MarqueeProps) {
+export function Marquee({
+  children,
+  className,
+  speed = 50,
+  direction = "left",
+  pauseOnHover = true,
+  repeat = 2,
+}: MarqueeProps) {
+  const childrenArray = React.Children.toArray(children)
+  
+  // Dupliziere Children für nahtlose Loop
+  const duplicatedChildren = Array.from({ length: repeat }, () => childrenArray).flat()
+  
+  const [isPaused, setIsPaused] = React.useState(false)
+
   return (
-    <div className={cn("relative overflow-hidden", className)}>
+    <div
+      className={cn(
+        "relative flex w-full overflow-hidden",
+        className
+      )}
+      onMouseEnter={pauseOnHover ? () => setIsPaused(true) : undefined}
+      onMouseLeave={pauseOnHover ? () => setIsPaused(false) : undefined}
+    >
       <motion.div
-        className="flex gap-12"
+        className="flex"
         animate={{
-          x: ["0%", "-50%"],
+          x: direction === "left" ? `-50%` : `50%`,
         }}
         transition={{
           x: {
             repeat: Infinity,
             repeatType: "loop",
-            duration,
+            duration: speed,
             ease: "linear",
           },
+          ...(isPaused && { duration: 0 }),
         }}
         style={{
           width: "fit-content",
         }}
       >
-        {/* First set */}
-        <div className="flex gap-12 shrink-0">{children}</div>
-        {/* Duplicate set for seamless loop */}
-        <div className="flex gap-12 shrink-0">{children}</div>
+        {/* Erste Reihe */}
+        <div className="flex shrink-0 gap-4">
+          {duplicatedChildren.map((child, i) => (
+            <div key={`first-${i}`} className="shrink-0">
+              {child}
+            </div>
+          ))}
+        </div>
+        {/* Zweite Reihe (für nahtlose Loop) */}
+        <div className="flex shrink-0 gap-4">
+          {duplicatedChildren.map((child, i) => (
+            <div key={`second-${i}`} className="shrink-0">
+              {child}
+            </div>
+          ))}
+        </div>
       </motion.div>
-      {/* Gradient masks */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          maskImage:
-            "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
-          WebkitMaskImage:
-            "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
-        }}
-      />
     </div>
   )
 }
-

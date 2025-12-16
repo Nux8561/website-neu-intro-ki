@@ -183,6 +183,10 @@ export function FeaturesBentoGridAttio() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
+          style={{ 
+            contain: "layout style paint",
+            willChange: "auto"
+          }}
         >
           {bentoCells.map((cell, index) => (
             <motion.div
@@ -193,13 +197,15 @@ export function FeaturesBentoGridAttio() {
                 "card-responsive",
                 !isDesktop && "col-span-1"
               )}
-              whileHover={{ scale: isDesktop ? 1.01 : 1 }}
+              whileHover={isDesktop ? { scale: 1.01 } : {}}
               transition={snappySpring}
               style={
                 isDesktop
                   ? {
                       gridColumn: `span ${cell.colSpan}`,
                       gridRow: `span ${cell.rowSpan}`,
+                      transformOrigin: "center",
+                      willChange: "transform",
                     }
                   : undefined
               }

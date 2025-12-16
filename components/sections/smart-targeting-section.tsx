@@ -3,34 +3,34 @@
 import * as React from "react"
 import { motion, useInView } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { ResearchAgentCard } from "@/components/ui/research-agent-card"
+import { ProfileCardVisual } from "@/components/ui/profile-card-visual"
 import { CustomIcon } from "@/components/icons/custom-icon"
-import { snappySpring } from "@/lib/animations"
+import { snappySpring, attioTransition } from "@/lib/animations"
 
-export function ResearchOrchestratorSection() {
+export function SmartTargetingSection() {
   const ref = React.useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   const features = [
     {
-      iconName: "automation",
-      title: "Parallele Ausführung",
-      description: "6 Agents arbeiten gleichzeitig für maximale Geschwindigkeit",
+      iconName: "feature2",
+      title: "LinkedIn-Integration",
+      description: "Automatische Profil-Erkennung und Verifizierung",
     },
     {
-      iconName: "infrastructure",
-      title: "Multi-Layer Caching",
-      description: "L1 Memory, L2 Supabase, L3 Qdrant für optimale Performance",
+      iconName: "dataFlow",
+      title: "E-Mail-Validierung",
+      description: "Echtzeit-Verifizierung von E-Mail-Adressen",
     },
     {
-      iconName: "platform",
-      title: "Circuit Breaker Protection",
-      description: "Automatische Fehlerbehandlung und Retry-Logik",
+      iconName: "analytics",
+      title: "Decision-Maker-Identifikation",
+      description: "KI erkennt automatisch die richtigen Ansprechpartner",
     },
     {
-      iconName: "intelligence",
-      title: "Query Deduplication",
-      description: "Verhindert Duplicate API-Calls und reduziert Kosten",
+      iconName: "aiBrain",
+      title: "Kontaktdaten-Enrichment",
+      description: "Vollständige Profile mit verifizierten Kontaktdaten",
     },
   ]
 
@@ -44,25 +44,31 @@ export function ResearchOrchestratorSection() {
           className="max-w-7xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{
-            type: "spring",
-            stiffness: 400,
-            damping: 17,
-          }}
+          transition={attioTransition}
         >
           {/* Section Number */}
           <div className="text-sm font-mono text-gray-500 mb-4">
-            [01] Research Orchestrator
+            [02] Smart Targeting
           </div>
 
-          {/* Header */}
+          {/* Header - Alternating Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center mb-12 sm:mb-16">
-            <div>
+            {/* Visual on left */}
+            <div className="order-2 lg:order-1">
+              <div className="bg-gray-50 border border-gray-200 rounded-2xl p-8 backdrop-blur-sm">
+                <div className="bg-white rounded-xl p-6 border border-gray-200">
+                  <ProfileCardVisual />
+                </div>
+              </div>
+            </div>
+
+            {/* Text on right */}
+            <div className="order-1 lg:order-2">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-inter-display font-semibold tracking-tight text-[#0A0A0A] mb-3 sm:mb-4">
-                Automatisierte Recherche
+                Die richtigen Entscheider
               </h2>
               <p className="text-base sm:text-lg text-gray-600 font-inter mb-6 sm:mb-8 max-w-2xl">
-                Wir finden alles über die Firma. News, Tech-Stack, Mitarbeiter.
+                Identifiziere sofort, wer entscheidet. E-Mails und LinkedIn-Profile, verifiziert.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Button className="rounded-full bg-[#0A0A0A] text-white hover:bg-[#0A0A0A]/90 w-full sm:w-auto">
@@ -72,15 +78,8 @@ export function ResearchOrchestratorSection() {
                   variant="outline"
                   className="rounded-full border-gray-300 text-[#0A0A0A] hover:bg-gray-50 w-full sm:w-auto"
                 >
-                  Mehr erfahren
+                  Demo ansehen
                 </Button>
-              </div>
-            </div>
-
-            {/* Visual Demo */}
-            <div className="bg-gray-50 border border-gray-200 rounded-2xl p-8 backdrop-blur-sm">
-              <div className="bg-white rounded-xl p-6 border border-gray-200">
-                <ResearchAgentCard />
               </div>
             </div>
           </div>

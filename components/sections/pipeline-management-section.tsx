@@ -5,7 +5,7 @@ import { motion, useInView } from "framer-motion"
 import { FeatureIcon } from "@/components/ui/feature-icon"
 import { snappySpring, attioTransition } from "@/lib/animations"
 import { Button } from "@/components/ui/button"
-import { PipelineKanbanCard } from "@/components/ui/pipeline-kanban-card"
+import { KanbanVisual } from "@/components/ui/kanban-visual"
 import { GitBranch, Sparkles, RefreshCw, Users } from "lucide-react"
 
 export function PipelineManagementSection() {
@@ -38,7 +38,7 @@ export function PipelineManagementSection() {
   return (
     <section
       ref={ref}
-      className="relative section-spacing overflow-hidden bg-background"
+      className="relative section-spacing overflow-hidden bg-white border-y border-gray-200"
     >
       <div className="container-responsive max-w-7xl mx-auto">
         <motion.div
@@ -48,38 +48,39 @@ export function PipelineManagementSection() {
           transition={attioTransition}
         >
           {/* Section Number */}
-          <div className="text-sm font-mono text-black/50 mb-4">
-            [02] Pipeline Management
+          <div className="text-sm font-mono text-gray-500 mb-4">
+            [03] Pipeline Management
           </div>
 
-          {/* Header */}
+          {/* Header - Alternating Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center mb-12 sm:mb-16">
+            {/* Text on left */}
             <div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-black mb-3 sm:mb-4">
-                Pipeline mit AI-Power.
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-inter-display font-semibold tracking-tight text-[#0A0A0A] mb-3 sm:mb-4">
+                Intelligente Pipeline
               </h2>
-              <p className="text-base sm:text-lg text-black/70 font-inter mb-6 sm:mb-8 max-w-2xl">
-                Verwalte deine Pipeline wie ein Profi. Drag & Drop Kanban-Board mit
-                AI-gestützten Empfehlungen für jeden Lead. Real-time Updates und Bulk
-                Actions für maximale Effizienz.
+              <p className="text-base sm:text-lg text-gray-600 font-inter mb-6 sm:mb-8 max-w-2xl">
+                Kein Chaos mehr. Deine Deals sortieren sich fast von selbst.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <Button className="rounded-full bg-black text-white hover:bg-black/90 w-full sm:w-auto">
+                <Button className="rounded-full bg-[#0A0A0A] text-white hover:bg-[#0A0A0A]/90 w-full sm:w-auto">
                   Kostenlos starten
                 </Button>
                 <Button
                   variant="outline"
-                  className="rounded-full border-black/20 text-black hover:bg-black/5 w-full sm:w-auto"
+                  className="rounded-full border-gray-300 text-[#0A0A0A] hover:bg-gray-50 w-full sm:w-auto"
                 >
                   Demo ansehen
                 </Button>
               </div>
             </div>
 
-            {/* Visual Demo */}
-            <div className="bg-black/5 border border-black/10 rounded-2xl p-8 backdrop-blur-sm">
-              <div className="bg-background rounded-xl p-6 border border-black/10">
-                <PipelineKanbanCard />
+            {/* Visual on right */}
+            <div>
+              <div className="bg-gray-50 border border-gray-200 rounded-2xl p-8 backdrop-blur-sm">
+                <div className="bg-white rounded-xl p-6 border border-gray-200">
+                  <KanbanVisual />
+                </div>
               </div>
             </div>
           </div>
@@ -100,15 +101,15 @@ export function PipelineManagementSection() {
                     ...snappySpring,
                   }}
                   whileHover={{ scale: 1.01 }}
-                  className="bg-black/5 border border-black/10 rounded-xl p-6 hover:border-black/20 backdrop-blur-sm"
+                  className="bg-gray-50 border border-gray-200 rounded-xl p-6 hover:border-gray-300 transition-colors"
                 >
                   <div className="mb-4">
                     <FeatureIcon icon={Icon} size="md" color="gray" />
                   </div>
-                  <h3 className="text-lg font-jakarta font-medium tracking-tight text-black mb-2">
+                  <h3 className="text-lg font-inter-display font-semibold tracking-tight text-[#0A0A0A] mb-2">
                     {feature.title}
                   </h3>
-                  <p className="text-sm text-black/70 font-inter">
+                  <p className="text-sm text-gray-600 font-inter">
                     {feature.description}
                   </p>
                 </motion.div>

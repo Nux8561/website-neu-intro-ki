@@ -17,6 +17,7 @@ import { IntegrationsSection } from "@/components/sections/integrations-section"
 // Lazy load heavy components for better performance
 const FeaturesBentoGrid = dynamic(() => import("@/components/sections/features-bento-grid").then(mod => ({ default: mod.FeaturesBentoGrid })), { ssr: true })
 const ResearchOrchestratorSection = dynamic(() => import("@/components/sections/research-orchestrator-section").then(mod => ({ default: mod.ResearchOrchestratorSection })), { ssr: true })
+const SmartTargetingSection = dynamic(() => import("@/components/sections/smart-targeting-section").then(mod => ({ default: mod.SmartTargetingSection })), { ssr: true })
 const PipelineManagementSection = dynamic(() => import("@/components/sections/pipeline-management-section").then(mod => ({ default: mod.PipelineManagementSection })), { ssr: true })
 const CallCoachingSection = dynamic(() => import("@/components/sections/call-coaching-section").then(mod => ({ default: mod.CallCoachingSection })), { ssr: true })
 const CTASection = dynamic(() => import("@/components/sections/cta-section").then(mod => ({ default: mod.CTASection })), { ssr: true })
@@ -50,8 +51,9 @@ export default function Home() {
         {/* Legacy Features Bento Grid */}
         <FeaturesBentoGrid />
         
-        {/* Deep Dive Sections */}
+        {/* Deep Dive Sections - 4-Step Journey */}
         <ResearchOrchestratorSection />
+        <SmartTargetingSection />
         <PipelineManagementSection />
         <CallCoachingSection />
         

@@ -3,7 +3,7 @@
 import * as React from "react"
 import { motion, useInView } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { CallCoachingPanel } from "@/components/ui/call-coaching-panel"
+import { AudioScoreVisual } from "@/components/ui/audio-score-visual"
 import { CustomIcon } from "@/components/icons/custom-icon"
 import { snappySpring } from "@/lib/animations"
 
@@ -37,7 +37,7 @@ export function CallCoachingSection() {
   return (
     <section
       ref={ref}
-      className="relative section-spacing overflow-hidden bg-background border-y border-black/10"
+      className="relative section-spacing overflow-hidden bg-white border-y border-gray-200"
     >
       <div className="container-responsive max-w-7xl mx-auto">
         <motion.div
@@ -51,37 +51,42 @@ export function CallCoachingSection() {
           }}
         >
           {/* Section Number */}
-          <div className="text-sm font-mono text-black/50 mb-4">
-            [03] Call Coaching
+          <div className="text-sm font-mono text-gray-500 mb-4">
+            [04] Call Assistant & Scoring
           </div>
 
-          {/* Header */}
+          {/* Header - Alternating Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center mb-12 sm:mb-16">
-            <div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-black mb-3 sm:mb-4">
-                Nie wieder unvorbereitet.
+            {/* Visual on left */}
+            <div className="order-2 lg:order-1">
+              <div className="bg-gray-50 border border-gray-200 rounded-2xl p-8 backdrop-blur-sm">
+                <div className="bg-white rounded-xl p-6 border border-gray-200">
+                  <AudioScoreVisual />
+                </div>
+              </div>
+            </div>
+
+            {/* Text on right */}
+            <div className="order-1 lg:order-2">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-inter-display font-semibold tracking-tight text-[#0A0A0A] mb-3 sm:mb-4">
+                Live Call & Scoring
               </h2>
-              <p className="text-base sm:text-lg text-black/70 font-inter mb-6 sm:mb-8 max-w-2xl">
-                Live Coaching während des Calls mit AI-generierten Talking Points und
-                Objection Handling. Automatische Transkription und Post-Call Analysis
-                für kontinuierliche Verbesserung.
+              <p className="text-base sm:text-lg text-gray-600 font-inter mb-6 sm:mb-8 max-w-2xl">
+                Gesprächsanalyse in Echtzeit. Wir sagen dir, wie gut der Call lief.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <Button className="rounded-full bg-black text-white w-full sm:w-auto">
+                <Button className="rounded-full bg-[#0A0A0A] text-white hover:bg-[#0A0A0A]/90 w-full sm:w-auto">
                   Kostenlos starten
                 </Button>
-                <Button variant="outline" className="rounded-full border-black/20 text-black w-full sm:w-auto">
+                <Button
+                  variant="outline"
+                  className="rounded-full border-gray-300 text-[#0A0A0A] hover:bg-gray-50 w-full sm:w-auto"
+                >
                   Demo ansehen
                 </Button>
               </div>
             </div>
 
-            {/* Visual Demo */}
-            <div className="bg-black/5 border border-black/10 rounded-2xl p-8 backdrop-blur-sm">
-              <div className="bg-background rounded-xl p-6 border border-black/10">
-                <CallCoachingPanel />
-              </div>
-            </div>
           </div>
 
           {/* Features Grid */}
@@ -98,15 +103,15 @@ export function CallCoachingSection() {
                   ...snappySpring,
                 }}
                 whileHover={{ scale: 1.01 }}
-                className="bg-black/5 border border-black/10 rounded-xl card-responsive hover:border-black/20"
+                className="bg-gray-50 border border-gray-200 rounded-xl p-6 hover:border-gray-300 transition-colors"
               >
                 <div className="mb-4">
                   <CustomIcon name={feature.iconName} size="md" variant="feature" />
                 </div>
-                <h3 className="text-base sm:text-lg font-jakarta font-medium tracking-tight text-black mb-2">
+                <h3 className="text-base sm:text-lg font-inter-display font-semibold tracking-tight text-[#0A0A0A] mb-2">
                   {feature.title}
                 </h3>
-                <p className="text-sm text-black/70 font-inter">
+                <p className="text-sm text-gray-600 font-inter">
                   {feature.description}
                 </p>
               </motion.div>

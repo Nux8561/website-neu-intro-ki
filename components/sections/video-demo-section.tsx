@@ -93,7 +93,7 @@ function FeatureItem({
   description,
   delay = 0,
 }: {
-  icon: React.ComponentType<{ className?: string }>
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
   title: string
   description: string
   delay?: number

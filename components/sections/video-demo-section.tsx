@@ -256,7 +256,6 @@ export function VideoDemoSection({
               transform: "translateZ(0)",
             }}
           >
-          >
             {/* Ambient Glow hinter dem Video - Verstärkt */}
             <motion.div
               className="absolute inset-0 -z-10"

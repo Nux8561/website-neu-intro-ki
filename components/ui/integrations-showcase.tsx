@@ -61,7 +61,7 @@ function IntroKIFocusCard() {
           </div>
           <div className="flex items-center gap-2 text-[10px] text-blue-600 mb-2">
             <Sparkles className="h-3 w-3" strokeWidth={1.5} />
-            <span className="font-medium">"Jetzt anrufen - beste Zeit"</span>
+            <span className="font-medium">&ldquo;Jetzt anrufen - beste Zeit&rdquo;</span>
           </div>
           <motion.button
             animate={{ scale: isHovered ? 1.05 : 1 }}
@@ -107,7 +107,7 @@ function GmailCard() {
             <div className="flex items-center justify-between gap-2 mb-1">
               <div className="flex items-center gap-2">
                 <span className="text-xs font-inter font-semibold text-gray-900 truncate">
-                  Sequence: "B2B Kaltakquise" • Schritt 2/5
+                  Sequence: &ldquo;B2B Kaltakquise&rdquo; • Schritt 2/5
                 </span>
               </div>
               <motion.div

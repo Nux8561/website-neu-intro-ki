@@ -34,8 +34,14 @@ const config: Config = {
           foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          DEFAULT: "hsl(var(--accent))", // shadcn/ui compatibility
+          foreground: "hsl(var(--accent-foreground))", // shadcn/ui compatibility
+          // Attio-specific accent colors
+          blue: "#2563EB",
+          purple: "#7C3AED",
+          green: "#059669",
+          orange: "#EA580C",
+          pink: "#DB2777",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
@@ -74,15 +80,6 @@ const config: Config = {
           subtle: "rgba(11, 12, 14, 0.08)",
           active: "rgba(11, 12, 14, 0.20)",
           "attio-subtle": "#E6E7EA", // Attio Standard Border
-        },
-        
-        // Accent Colors (for highlights)
-        accent: {
-          blue: "#2563EB",
-          purple: "#7C3AED",
-          green: "#059669",
-          orange: "#EA580C",
-          pink: "#DB2777",
         },
         
         // Agent Colors (for AI features)

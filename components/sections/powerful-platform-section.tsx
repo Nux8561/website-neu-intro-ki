@@ -46,9 +46,9 @@ export function PowerfulPlatformSection() {
   return (
     <section
       ref={ref}
-      className="relative py-24 overflow-hidden bg-background"
+      className="relative section-spacing overflow-hidden bg-background"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container-responsive max-w-7xl mx-auto">
         <motion.div
           className="max-w-7xl mx-auto"
           initial={{ opacity: 0, y: 20 }}

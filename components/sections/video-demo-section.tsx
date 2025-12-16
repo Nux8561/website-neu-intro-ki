@@ -1,8 +1,17 @@
+/**
+ * Video Demo Section - Cinematic Browser Experience
+ * Attio-Style: Browser-Container mit Ambient Glow, Glassmorphism Play Button
+ * Floating Images umrahmen das Video für 3D-Effekt
+ */
+
 "use client"
 
 import * as React from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion"
 import { Play, X, Volume2, VolumeX, Maximize, Pause, AlertCircle } from "lucide-react"
+import Image from "next/image"
+import { attioTransition } from "@/lib/animations"
+import { cn } from "@/lib/utils"
 
 interface VideoDemoSectionProps {
   videoSrc?: string
@@ -11,15 +20,170 @@ interface VideoDemoSectionProps {
   description?: string
 }
 
+// Browser Title Bar Component
+function BrowserTitleBar() {
+  return (
+    <div className="h-10 bg-[#1A1A1A] border-b border-white/10 rounded-t-xl flex items-center px-4 gap-2">
+      {/* Traffic Lights (macOS style) */}
+      <div className="flex items-center gap-1.5">
+        <div className="w-3 h-3 rounded-full bg-[#FF5F57]"></div>
+        <div className="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
+        <div className="w-3 h-3 rounded-full bg-[#28CA42]"></div>
+      </div>
+      {/* URL Bar (optional, subtil) */}
+      <div className="flex-1 flex items-center justify-center">
+        <div className="h-6 px-3 rounded-md bg-white/5 border border-white/10 text-xs text-white/40 font-mono max-w-xs truncate">
+          introki.app
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// Glassmorphism Play Button
+function GlassmorphismPlayButton({ onClick }: { onClick: () => void }) {
+  return (
+    <motion.button
+      onClick={onClick}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.95 }}
+      className="absolute inset-0 flex items-center justify-center z-20"
+      aria-label="Video abspielen"
+      title="Video abspielen"
+    >
+      <motion.div
+        className="relative"
+        animate={{
+          scale: [1, 1.05, 1],
+        }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      >
+        {/* Pulsing ring */}
+        <motion.div
+          className="absolute inset-0 rounded-full bg-white/20"
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.5, 0, 0.5],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        {/* Glassmorphism Button */}
+        <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl flex items-center justify-center group-hover:bg-white/15 transition-all duration-attio ease-attio-ease-out">
+          <Play
+            className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 text-white ml-1"
+            fill="currentColor"
+            strokeWidth={0}
+          />
+        </div>
+      </motion.div>
+    </motion.button>
+  )
+}
+
+// Floating Card Component (für 3D-Effekt)
+function FloatingCard({
+  image,
+  title,
+  description,
+  position,
+  delay = 0,
+}: {
+  image: string
+  title: string
+  description: string
+  position: "top-left" | "top-right" | "bottom-left" | "bottom-right"
+  delay?: number
+}) {
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+  const cardRef = React.useRef<HTMLDivElement>(null)
+
+  React.useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (cardRef.current) {
+        const rect = cardRef.current.getBoundingClientRect()
+        const centerX = rect.left + rect.width / 2
+        const centerY = rect.top + rect.height / 2
+        mouseX.set((e.clientX - centerX) / rect.width)
+        mouseY.set((e.clientY - centerY) / rect.height)
+      }
+    }
+    window.addEventListener("mousemove", handleMouseMove)
+    return () => window.removeEventListener("mousemove", handleMouseMove)
+  }, [mouseX, mouseY])
+
+  const rotateX = useSpring(useTransform(mouseY, [-1, 1], [-10, 10]), {
+    stiffness: 300,
+    damping: 30,
+  })
+  const rotateY = useSpring(useTransform(mouseX, [-1, 1], [-10, 10]), {
+    stiffness: 300,
+    damping: 30,
+  })
+
+  const positionClasses = {
+    "top-left": "top-0 left-0 -translate-x-1/4 -translate-y-1/4",
+    "top-right": "top-0 right-0 translate-x-1/4 -translate-y-1/4",
+    "bottom-left": "bottom-0 left-0 -translate-x-1/4 translate-y-1/4",
+    "bottom-right": "bottom-0 right-0 translate-x-1/4 translate-y-1/4",
+  }
+
+  return (
+    <motion.div
+      ref={cardRef}
+      initial={{ opacity: 0, scale: 0.8, y: 20 }}
+      whileInView={{ opacity: 1, scale: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ ...attioTransition, delay }}
+      className={cn(
+        "absolute w-64 md:w-80 lg:w-96 z-10",
+        positionClasses[position]
+      )}
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: "preserve-3d",
+      }}
+    >
+      <div className="bg-white rounded-xl border border-gray-200 shadow-2xl overflow-hidden p-6 backdrop-blur-sm">
+        <div className="relative aspect-video mb-4 rounded-lg overflow-hidden bg-gray-100">
+          <Image
+            src={image}
+            alt={title}
+            fill
+            className="object-cover"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement
+              target.style.display = "none"
+            }}
+          />
+        </div>
+        <h3 className="font-inter-display font-semibold text-[#0A0A0A] mb-2 text-lg">
+          {title}
+        </h3>
+        <p className="text-sm font-inter text-gray-600">{description}</p>
+      </div>
+    </motion.div>
+  )
+}
+
 export function VideoDemoSection({
   videoSrc = "/videos/demo.mp4",
   posterSrc = "/images/video-poster.svg",
   title = "Sieh IntroKI in Aktion",
-  description = "Entdecke, wie IntroKI dein Sales-Team in nur wenigen Minuten transformiert.",
+  description = "In 60 Sekunden erklärt.",
 }: VideoDemoSectionProps) {
   const [isPlaying, setIsPlaying] = React.useState(false)
   const [isModalOpen, setIsModalOpen] = React.useState(false)
-  const [isMuted, setIsMuted] = React.useState(false) // Start unmuted for better UX
+  const [isMuted, setIsMuted] = React.useState(false)
   const [videoError, setVideoError] = React.useState(false)
   const [isVideoLoaded, setIsVideoLoaded] = React.useState(false)
   const [currentTime, setCurrentTime] = React.useState(0)
@@ -105,15 +269,14 @@ export function VideoDemoSection({
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60)
     const seconds = Math.floor(time % 60)
-    return `${minutes}:${seconds.toString().padStart(2, '0')}`
+    return `${minutes}:${seconds.toString().padStart(2, "0")}`
   }
 
   const progress = duration > 0 ? (currentTime / duration) * 100 : 0
 
   return (
     <>
-      <section className="section-spacing bg-background relative overflow-hidden">
-
+      <section className="section-spacing bg-white relative overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Section Header */}
           <motion.div
@@ -123,117 +286,108 @@ export function VideoDemoSection({
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
             className="text-center mb-8 sm:mb-12 px-4"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-jakarta font-medium tracking-tight text-text-primary mb-3 sm:mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-inter-display font-semibold tracking-tight text-[#0A0A0A] mb-3 sm:mb-4">
               {title}
             </h2>
-            <p className="text-base sm:text-lg text-text-muted max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg font-inter text-gray-600 max-w-2xl mx-auto">
               {description}
             </p>
           </motion.div>
 
-          {/* Video Container */}
+          {/* Video Container mit Browser-Frame */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 400, damping: 25, delay: 0.1 }}
-            className="max-w-5xl mx-auto"
+            className="max-w-6xl mx-auto relative"
           >
-            <div
-              className="relative aspect-video rounded-2xl overflow-hidden cursor-pointer group"
-              onClick={handlePlayClick}
-              style={{
-                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+            {/* Ambient Glow hinter dem Video */}
+            <motion.div
+              className="absolute inset-0 -z-10"
+              animate={{
+                opacity: [0.3, 0.5, 0.3],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut",
               }}
             >
-              {/* Video Preview (muted, autoplay loop) */}
-              <video
-                ref={videoRef}
-                src={videoSrc}
-                poster={posterSrc}
-                muted
-                loop
-                playsInline
-                autoPlay
-                preload="metadata"
-                className="w-full h-full object-cover"
-                onError={() => {
-                  // If video fails, show poster as fallback
-                }}
-              />
-              
-              {/* Fallback Poster Background (shows if video fails) */}
-              <div 
-                className="absolute inset-0 bg-cover bg-center -z-10"
-                style={{ backgroundImage: `url(${posterSrc})` }}
-              />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-r from-blue-500/30 via-purple-500/30 to-pink-500/30 rounded-full blur-3xl" />
+            </motion.div>
 
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent group-hover:from-black/70 transition-all duration-attio ease-attio-ease-out" />
+            {/* Floating Cards (umrahmen das Video) */}
+            <FloatingCard
+              image="/images/app logo.png"
+              title="Deep Research"
+              description="KI-gestützte Recherche in unter 60 Sekunden"
+              position="top-left"
+              delay={0.2}
+            />
+            <FloatingCard
+              image="/images/app logo.png"
+              title="Live Coaching"
+              description="Echtzeit-Unterstützung während Gesprächen"
+              position="top-right"
+              delay={0.3}
+            />
+            <FloatingCard
+              image="/images/app logo.png"
+              title="Smart Pipeline"
+              description="Intelligente Lead-Priorisierung und Scoring"
+              position="bottom-left"
+              delay={0.4}
+            />
+            <FloatingCard
+              image="/images/app logo.png"
+              title="Automation"
+              description="Workflows, die deine Tools verbinden"
+              position="bottom-right"
+              delay={0.5}
+            />
 
-              {/* Play Button */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <motion.div
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="relative"
-                >
-                  {/* Pulsing ring */}
-                  <div className="absolute inset-0 rounded-full bg-white/30 animate-ping" />
-                  
-                  {/* Button */}
-                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full bg-white flex items-center justify-center shadow-2xl group-hover:shadow-white/25 transition-shadow touch-manipulation">
-                    <Play
-                      className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 text-brand ml-1"
-                      fill="currentColor"
-                    />
-                  </div>
-                </motion.div>
-              </div>
+            {/* Browser Container */}
+            <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#0A0A0A]">
+              {/* Browser Title Bar */}
+              <BrowserTitleBar />
 
-              {/* Duration Badge */}
-              <div className="absolute bottom-3 sm:bottom-4 right-3 sm:right-4 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-black/50 backdrop-blur-sm text-white text-xs sm:text-sm font-medium">
-                2:45
-              </div>
+              {/* Video Area */}
+              <div className="relative aspect-video bg-black cursor-pointer group">
+                {/* Video Preview (muted, autoplay loop) */}
+                <video
+                  ref={videoRef}
+                  src={videoSrc}
+                  poster={posterSrc}
+                  muted
+                  loop
+                  playsInline
+                  autoPlay
+                  preload="metadata"
+                  className="w-full h-full object-cover"
+                  onError={() => {
+                    // If video fails, show poster as fallback
+                  }}
+                />
 
-              {/* Click to Play Text */}
-              <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 text-white/80 text-xs sm:text-sm font-medium hidden sm:block">
-                Klicken zum Abspielen
+                {/* Fallback Poster Background */}
+                <div
+                  className="absolute inset-0 bg-cover bg-center -z-10"
+                  style={{ backgroundImage: `url(${posterSrc})` }}
+                />
+
+                {/* Subtle Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent group-hover:from-black/50 transition-all duration-attio ease-attio-ease-out" />
+
+                {/* Glassmorphism Play Button */}
+                <GlassmorphismPlayButton onClick={handlePlayClick} />
+
+                {/* Duration Badge */}
+                <div className="absolute bottom-4 right-4 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-sm text-white text-sm font-medium z-10">
+                  2:45
+                </div>
               </div>
             </div>
-          </motion.div>
-
-          {/* Feature Highlights below video */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="mt-8 sm:mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto px-4"
-          >
-            {[
-              {
-                title: "Deep Research",
-                description: "KI-gestützte Recherche in unter 60 Sekunden",
-              },
-              {
-                title: "Live Coaching",
-                description: "Echtzeit-Unterstützung während Gesprächen",
-              },
-              {
-                title: "Smart Pipeline",
-                description: "Intelligente Lead-Priorisierung und Scoring",
-              },
-            ].map((feature, index) => (
-              <div key={index} className="text-center">
-                <h3 className="font-jakarta font-medium text-text-primary mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-sm text-text-muted">
-                  {feature.description}
-                </p>
-              </div>
-            ))}
           </motion.div>
         </div>
       </section>
@@ -252,6 +406,8 @@ export function VideoDemoSection({
             <button
               onClick={handleCloseModal}
               className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors z-10"
+              aria-label="Video schließen"
+              title="Video schließen"
             >
               <X className="h-6 w-6" />
             </button>
@@ -270,12 +426,16 @@ export function VideoDemoSection({
                 <div className="aspect-video rounded-2xl bg-surface border border-border-subtle flex items-center justify-center">
                   <div className="text-center">
                     <AlertCircle className="h-12 w-12 text-red-400 mx-auto mb-4" />
-                    <p className="text-text-primary font-medium mb-2">Video konnte nicht geladen werden</p>
-                    <p className="text-text-muted text-sm">Bitte überprüfe deine Internetverbindung</p>
+                    <p className="text-text-primary font-medium mb-2">
+                      Video konnte nicht geladen werden
+                    </p>
+                    <p className="text-text-muted text-sm">
+                      Bitte überprüfe deine Internetverbindung
+                    </p>
                   </div>
                 </div>
               )}
-              
+
               {/* Video Player */}
               {!videoError && (
                 <>
@@ -308,7 +468,7 @@ export function VideoDemoSection({
                   )}
 
                   {/* Click to Play/Pause Overlay */}
-                  <div 
+                  <div
                     className="absolute inset-0 cursor-pointer rounded-2xl"
                     onClick={togglePlay}
                   />
@@ -316,23 +476,28 @@ export function VideoDemoSection({
                   {/* Custom Controls */}
                   <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 via-black/50 to-transparent rounded-b-2xl">
                     {/* Progress Bar */}
-                    <div 
+                    <div
                       className="w-full h-1.5 bg-white/20 rounded-full mb-4 cursor-pointer group"
                       onClick={handleProgressClick}
                     >
-                      <div 
+                      <div
                         className="h-full bg-white rounded-full relative transition-all"
                         style={{ width: `${progress}%` }}
                       >
                         <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                       </div>
                     </div>
-                    
+
                     <div className="flex items-center gap-4">
                       {/* Play/Pause */}
                       <button
-                        onClick={(e) => { e.stopPropagation(); togglePlay(); }}
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          togglePlay()
+                        }}
                         className="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors"
+                        aria-label={isPlaying ? "Pause" : "Abspielen"}
+                        title={isPlaying ? "Pause" : "Abspielen"}
                       >
                         {isPlaying ? (
                           <Pause className="h-5 w-5" />
@@ -350,8 +515,13 @@ export function VideoDemoSection({
 
                       {/* Mute/Unmute */}
                       <button
-                        onClick={(e) => { e.stopPropagation(); toggleMute(); }}
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          toggleMute()
+                        }}
                         className="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors"
+                        aria-label={isMuted ? "Ton einschalten" : "Ton ausschalten"}
+                        title={isMuted ? "Ton einschalten" : "Ton ausschalten"}
                       >
                         {isMuted ? (
                           <VolumeX className="h-5 w-5" />
@@ -362,8 +532,13 @@ export function VideoDemoSection({
 
                       {/* Fullscreen */}
                       <button
-                        onClick={(e) => { e.stopPropagation(); handleFullscreen(); }}
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          handleFullscreen()
+                        }}
                         className="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors"
+                        aria-label="Vollbild"
+                        title="Vollbild"
                       >
                         <Maximize className="h-5 w-5" />
                       </button>
@@ -378,4 +553,3 @@ export function VideoDemoSection({
     </>
   )
 }
-

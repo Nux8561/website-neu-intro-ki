@@ -15,6 +15,7 @@ import { PipelineVisual } from "@/components/visuals/PipelineVisual"
 import { MeshGradient } from "@paper-design/shaders-react"
 import { attioTransition } from "@/lib/animations"
 import { StarfieldBackground } from "@/components/ui/hyperdrive-hero"
+import { CustomIcon } from "@/components/icons/custom-icon"
 
 // Animation variants
 const containerVariants = {
@@ -120,11 +121,11 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
   return (
     <>
       {/* Hero Section - Attio Style */}
-      <section className="relative bg-[#FAFAFB] pt-16 pb-20 sm:pb-24 overflow-hidden">
+      <section className="relative bg-[#FAFAFB] pt-12 sm:pt-16 pb-16 sm:pb-20 md:pb-24 overflow-hidden">
         {/* Starfield Animation im Hintergrund */}
         <StarfieldBackground />
         
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
+        <div className="container-responsive max-w-7xl mx-auto relative z-10">
           {/* Animation nur bis hier - Hero Content Bereich */}
           <motion.div
             className="max-w-4xl mx-auto text-center"
@@ -163,7 +164,7 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
             {/* CTA Buttons - Attio Style */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4"
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8"
             >
               <Link
                 href="/pricing"
@@ -177,6 +178,20 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
               >
                 Talk to sales
               </Link>
+            </motion.div>
+
+            {/* Feature Icons - USP Highlight */}
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mb-8"
+            >
+              <CustomIcon name="platform" size="sm" variant="decorative" />
+              <CustomIcon name="integration" size="sm" variant="decorative" />
+              <CustomIcon name="aiBrain" size="sm" variant="decorative" />
+              <CustomIcon name="automation" size="sm" variant="decorative" />
+              <span className="text-xs sm:text-sm text-gray-500 font-inter">
+                + 50 weitere Features
+              </span>
             </motion.div>
           </motion.div>
 
@@ -328,7 +343,7 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
 
       {/* Customer Logos Section - Attio Style */}
       <section className="py-20 border-t border-gray-200 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container-responsive max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

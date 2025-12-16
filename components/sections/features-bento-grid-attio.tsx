@@ -15,6 +15,7 @@ import {
 } from "lucide-react"
 import { SkeletalUI } from "@/components/ui/skeletal-ui"
 import { FeatureIcon } from "@/components/ui/feature-icon"
+import { CustomIcon } from "@/components/icons/custom-icon"
 import { WorkflowSimulation } from "@/components/visuals/WorkflowSimulation"
 import { ActivityTicker } from "@/components/visuals/ActivityTicker"
 import { TechBeamDivider } from "@/components/visuals/TechBeamDivider"
@@ -23,6 +24,7 @@ import { TextShimmer } from "@/components/ui/text-shimmer"
 import { LineShadowText } from "@/components/ui/line-shadow-text"
 import AnimatedLoadingSkeleton from "@/components/ui/animated-loading-skeleton"
 import { snappySpring, snappyStaggerContainer, snappyStaggerItem } from "@/lib/animations"
+import { cn } from "@/lib/utils"
 
 // Animation variants - Snappy Spring Physics
 const containerVariants = snappyStaggerContainer
@@ -81,6 +83,7 @@ const bentoCells = [
     rowSpan: 2,
     title: "Alles automatisieren",
     description: "Erstelle Workflows, die deine Tools verbinden und repetitive Aufgaben automatisieren.",
+    icon: <CustomIcon name="workflow" size="lg" variant="feature" />,
     content: <WorkflowEditor />,
   },
   {
@@ -89,6 +92,7 @@ const bentoCells = [
     rowSpan: 1,
     title: "Jede Art von Daten verbinden",
     description: "Synchronisiere Daten von all deinen Lieblingstools in Echtzeit.",
+    icon: <CustomIcon name="dataFlow" size="md" variant="feature" />,
     content: <DataIntegrationIcons />,
   },
   {
@@ -97,6 +101,7 @@ const bentoCells = [
     rowSpan: 2,
     title: "KI einsetzen",
     description: "Reichere Datensätze automatisch mit KI-gestützter Datenanreicherung an.",
+    icon: <CustomIcon name="aiBrain" size="lg" variant="feature" />,
     content: <AIEnrichmentCard />,
   },
   {
@@ -105,6 +110,7 @@ const bentoCells = [
     rowSpan: 1,
     title: "Umsatzwachstum",
     description: "Verfolge und visualisiere deine Umsatzmetriken in Echtzeit.",
+    icon: <CustomIcon name="analytics" size="md" variant="feature" />,
     content: <RevenueChart />,
   },
   {
@@ -113,6 +119,7 @@ const bentoCells = [
     rowSpan: 1,
     title: "KI-Erkenntnisse",
     description: "Erhalte intelligente Empfehlungen, die von maschinellem Lernen angetrieben werden.",
+    icon: <CustomIcon name="intelligence" size="md" variant="feature" />,
     content: (
           <div className="mt-4 flex items-center gap-3">
             <FeatureIcon logo="/images/openai-1-5u0onpsnpplsd0el4s93im.webp" size="md" color="purple" />
@@ -133,6 +140,7 @@ const bentoCells = [
     rowSpan: 1,
     title: "Erweiterte Berichte",
     description: "Erstelle benutzerdefinierte Berichte mit Drag-and-Drop-Einfachheit.",
+    icon: <CustomIcon name="feature1" size="md" variant="feature" />,
     content: <SkeletalUI variant="pipeline" />,
   },
   {
@@ -164,10 +172,13 @@ export function FeaturesBentoGridAttio() {
   }, [])
 
   return (
-    <section className="py-24 md:py-32 bg-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+    <section className="section-spacing bg-white">
+      <div className="container-responsive max-w-7xl mx-auto">
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-12 gap-px bg-attio-border border border-attio-subtle"
+          className={cn(
+            "grid gap-px bg-attio-border border border-attio-subtle",
+            isDesktop ? "grid-cols-12" : "grid-cols-1"
+          )}
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
@@ -177,17 +188,30 @@ export function FeaturesBentoGridAttio() {
             <motion.div
               key={cell.id}
               variants={itemVariants}
-              className="bg-white p-6 hover:bg-gray-50/50 hover:shadow-sm relative overflow-hidden"
-              whileHover={{ scale: 1.01 }}
+              className={cn(
+                "bg-white hover:bg-gray-50/50 hover:shadow-sm relative overflow-hidden",
+                "card-responsive",
+                !isDesktop && "col-span-1"
+              )}
+              whileHover={{ scale: isDesktop ? 1.01 : 1 }}
               transition={snappySpring}
-              style={{
-                gridColumn: isDesktop ? `span ${cell.colSpan}` : '1 / -1',
-                gridRow: isDesktop ? `span ${cell.rowSpan}` : 'auto',
-              } as React.CSSProperties}
+              style={
+                isDesktop
+                  ? {
+                      gridColumn: `span ${cell.colSpan}`,
+                      gridRow: `span ${cell.rowSpan}`,
+                    }
+                  : undefined
+              }
             >
               {cell.title ? (
                 <>
                   <div className="relative z-10">
+                    {cell.icon && (
+                      <div className="mb-4">
+                        {cell.icon}
+                      </div>
+                    )}
                     <h3 className="text-lg md:text-xl font-inter-display font-bold text-[#0A0A0A] mb-2 leading-tight">
                       {cell.title}
                     </h3>

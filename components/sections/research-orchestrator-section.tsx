@@ -4,8 +4,7 @@ import * as React from "react"
 import { motion, useInView } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ResearchAgentCard } from "@/components/ui/research-agent-card"
-import { Search, Zap, Database, Layers } from "lucide-react"
-import { FeatureIcon } from "@/components/ui/feature-icon"
+import { CustomIcon } from "@/components/icons/custom-icon"
 import { snappySpring } from "@/lib/animations"
 
 export function ResearchOrchestratorSection() {
@@ -14,22 +13,22 @@ export function ResearchOrchestratorSection() {
 
   const features = [
     {
-      icon: Zap,
+      iconName: "automation",
       title: "Parallele Ausführung",
       description: "6 Agents arbeiten gleichzeitig für maximale Geschwindigkeit",
     },
     {
-      icon: Database,
+      iconName: "infrastructure",
       title: "Multi-Layer Caching",
       description: "L1 Memory, L2 Supabase, L3 Qdrant für optimale Performance",
     },
     {
-      icon: Layers,
+      iconName: "platform",
       title: "Circuit Breaker Protection",
       description: "Automatische Fehlerbehandlung und Retry-Logik",
     },
     {
-      icon: Search,
+      iconName: "intelligence",
       title: "Query Deduplication",
       description: "Verhindert Duplicate API-Calls und reduziert Kosten",
     },
@@ -38,9 +37,9 @@ export function ResearchOrchestratorSection() {
   return (
     <section
       ref={ref}
-      className="relative py-16 sm:py-20 md:py-24 overflow-hidden bg-background border-y border-black/10"
+      className="relative section-spacing overflow-hidden bg-background border-y border-black/10"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container-responsive max-w-7xl mx-auto">
         <motion.div
           className="max-w-7xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
@@ -87,35 +86,32 @@ export function ResearchOrchestratorSection() {
           </div>
 
           {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((feature, index) => {
-              const Icon = feature.icon
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={
-                    isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
-                  }
-                  transition={{
-                    delay: index * 0.1,
-                    ...snappySpring,
-                  }}
-                  whileHover={{ scale: 1.01 }}
-                  className="bg-black/5 border border-black/10 rounded-xl p-6 hover:border-black/20"
-                >
-                  <div className="mb-4">
-                    <FeatureIcon icon={Icon} size="md" color="gray" />
-                  </div>
-                  <h3 className="text-lg font-jakarta font-medium tracking-tight text-black mb-2">
-                    {feature.title}
-                  </h3>
-                  <p className="text-sm text-black/70 font-inter">
-                    {feature.description}
-                  </p>
-                </motion.div>
-              )
-            })}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {features.map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={
+                  isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+                }
+                transition={{
+                  delay: index * 0.1,
+                  ...snappySpring,
+                }}
+                whileHover={{ scale: 1.01 }}
+                className="bg-black/5 border border-black/10 rounded-xl card-responsive hover:border-black/20"
+              >
+                <div className="mb-4">
+                  <CustomIcon name={feature.iconName} size="md" variant="feature" />
+                </div>
+                <h3 className="text-base sm:text-lg font-jakarta font-medium tracking-tight text-black mb-2">
+                  {feature.title}
+                </h3>
+                <p className="text-sm text-black/70 font-inter">
+                  {feature.description}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
       </div>

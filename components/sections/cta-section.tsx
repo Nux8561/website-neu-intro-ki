@@ -164,10 +164,10 @@ export function CTASection() {
   return (
     <section
       ref={ref}
-      className="relative py-16 sm:py-24 md:py-32 overflow-hidden bg-attio-gray"
+      className="relative section-spacing overflow-hidden bg-attio-gray"
     >
       {/* Grid Pattern wird jetzt global vom main Element bereitgestellt */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="container-responsive max-w-7xl mx-auto relative z-10">
         <motion.div
           className="max-w-4xl mx-auto text-center"
           variants={containerVariants}

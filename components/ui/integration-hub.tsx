@@ -283,9 +283,13 @@ function CenterHub({ x, y }: { x: number; y: number }) {
       {/* IntroKI Logo/Icon */}
       <foreignObject x={x - 24} y={y - 24} width="48" height="48">
         <div className="w-full h-full flex items-center justify-center">
-          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg">
-            <span className="text-sm font-inter font-bold text-white">IK</span>
-          </div>
+          <Image
+            src="/images/app logo.png"
+            alt="IntroKI Logo"
+            width={40}
+            height={40}
+            className="h-10 w-10 object-contain"
+          />
         </div>
       </foreignObject>
     </g>

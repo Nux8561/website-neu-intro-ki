@@ -232,7 +232,7 @@ function TeamMemberCard({ member, isFounder = false }: { member: TeamMember; isF
 export function TeamSection() {
   return (
     <section className="section-spacing bg-surface/50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container-responsive max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

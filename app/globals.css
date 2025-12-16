@@ -98,6 +98,41 @@
     @apply bg-white text-text-primary border border-border hover:bg-surface hover:border-border-active transition-all;
   }
   
+  /* Responsive Container Utilities */
+  /* Mobile-First Spacing */
+  .section-spacing {
+    @apply py-12 sm:py-16 md:py-24 lg:py-32;
+  }
+  
+  /* Responsive Text Sizes */
+  .heading-responsive {
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl;
+  }
+  
+  .subheading-responsive {
+    @apply text-lg sm:text-xl md:text-2xl;
+  }
+  
+  /* Responsive Grid */
+  .grid-responsive {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8;
+  }
+  
+  /* Responsive Padding */
+  .container-responsive {
+    @apply px-4 sm:px-6 md:px-8 lg:px-12;
+  }
+  
+  /* Mobile-Optimierte Cards */
+  .card-responsive {
+    @apply p-4 sm:p-6 md:p-8;
+  }
+  
+  /* Responsive Icon Sizes */
+  .icon-responsive {
+    @apply w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12;
+  }
+  
   /* Logo Grid - Responsive, alle in einer Linie */
   .logo-grid {
     @apply flex flex-nowrap items-center justify-center gap-6 sm:gap-8 md:gap-12;
@@ -119,9 +154,9 @@
     max-width: 160px;
   }
   
-  /* Section Spacing */
+  /* Section Spacing - Enhanced Responsive */
   .section-spacing {
-    @apply py-16 sm:py-20 md:py-24 lg:py-32;
+    @apply py-12 sm:py-16 md:py-24 lg:py-32;
   }
 
   .section-spacing-sm {

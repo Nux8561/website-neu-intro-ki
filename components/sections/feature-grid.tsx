@@ -220,8 +220,8 @@ export function FeatureGrid() {
 
   return (
     <LazyMotion features={domAnimation}>
-      <section id="features" className="py-24 bg-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="features" className="section-spacing bg-background">
+        <div className="container-responsive max-w-7xl mx-auto">
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}

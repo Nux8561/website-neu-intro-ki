@@ -10,11 +10,12 @@ import * as React from "react"
 import { motion } from "framer-motion"
 import { IntegrationHub } from "@/components/ui/integration-hub"
 import { AttioWrapper } from "@/components/ui/attio-wrapper"
+import { CustomIcon } from "@/components/icons/custom-icon"
 
 export function IntegrationsSection() {
   return (
     <AttioWrapper variant="section" className="bg-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div className="container-responsive max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -24,12 +25,12 @@ export function IntegrationsSection() {
             stiffness: 400,
             damping: 17,
           }}
-          className="text-center mb-12 md:mb-16"
+          className="text-center mb-8 sm:mb-12 md:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-inter-display font-semibold tracking-tight text-[#0A0A0A] mb-4">
+          <h2 className="heading-responsive font-inter-display font-semibold tracking-tight text-[#0A0A0A] mb-4">
             Passt perfekt zu deinem bestehenden System
           </h2>
-          <p className="text-lg font-inter text-gray-600 max-w-2xl mx-auto">
+          <p className="subheading-responsive font-inter text-gray-600 max-w-2xl mx-auto px-4">
             IntroKI ist der zentrale Knotenpunkt für all deine Tools. Daten fließen automatisch – 
             ohne dass dein Team etwas Neues lernen muss.
           </p>
@@ -60,33 +61,43 @@ export function IntegrationsSection() {
             damping: 17,
             delay: 0.2,
           }}
-          className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto"
+          className="mt-8 sm:mt-12 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto"
         >
           {[
             {
               title: "Native Integrationen",
               description: "Direkte Verbindung zu deinen Tools – keine Zwischenschritte",
+              icon: <CustomIcon name="connectivity" size="md" variant="feature" />,
             },
             {
               title: "Echtzeit-Synchronisation",
               description: "Daten fließen kontinuierlich – immer aktuell, immer verfügbar",
+              icon: <CustomIcon name="dataFlow" size="md" variant="feature" />,
             },
             {
               title: "Zero Learning Curve",
               description: "Dein Team arbeitet wie gewohnt – IntroKI arbeitet im Hintergrund",
+              icon: <CustomIcon name="platform" size="md" variant="feature" />,
             },
           ].map((feature, index) => (
-            <div
+            <motion.div
               key={index}
-              className="text-center p-6 bg-gray-50 rounded-xl border border-gray-200"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="text-center card-responsive bg-gray-50 rounded-xl border border-gray-200"
             >
-              <h3 className="font-inter-display font-semibold text-[#0A0A0A] mb-2">
+              <div className="flex justify-center mb-4">
+                {feature.icon}
+              </div>
+              <h3 className="font-inter-display font-semibold text-[#0A0A0A] mb-2 text-base sm:text-lg">
                 {feature.title}
               </h3>
               <p className="text-sm font-inter text-gray-600">
                 {feature.description}
               </p>
-            </div>
+            </motion.div>
           ))}
         </motion.div>
       </div>

@@ -193,7 +193,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
 export function TestimonialsPremium() {
   return (
     <section className="section-spacing bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container-responsive max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -134,15 +134,15 @@ const bentoCells = [
           </div>
     ),
   },
-  {
-    id: "reporting",
-    colSpan: 3,
-    rowSpan: 1,
-    title: "Erweiterte Berichte",
-    description: "Erstelle benutzerdefinierte Berichte mit Drag-and-Drop-Einfachheit.",
-    icon: <CustomIcon name="feature1" size="md" variant="feature" />,
-    content: <SkeletalUI variant="pipeline" />,
-  },
+    {
+      id: "reporting",
+      colSpan: 3,
+      rowSpan: 1,
+      title: "Erweiterte Berichte",
+      description: "Erstelle benutzerdefinierte Berichte mit Drag-and-Drop-Einfachheit.",
+      icon: <CustomIcon name="feature1" size="md" variant="feature" />,
+      content: <div className="overflow-hidden"><SkeletalUI variant="pipeline" /></div>,
+    },
   {
     id: "activity",
     colSpan: 6,

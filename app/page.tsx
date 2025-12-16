@@ -27,7 +27,7 @@ export default function Home() {
     <>
       <Navbar />
       {/* Globales Grid-Pattern für die gesamte Seite */}
-      <main className="min-h-screen bg-background attio-grid-pattern relative">
+            <main className="min-h-screen bg-background attio-grid-pattern relative overflow-x-hidden w-full">
         {/* Premium Hero with Product Demo (Attio-Style) */}
         <HeroAttio 
           videoUrl="/videos/demo.mp4"

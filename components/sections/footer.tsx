@@ -77,7 +77,7 @@ export function Footer() {
   return (
     <footer
       ref={ref}
-      className="bg-white border-t border-attio-subtle"
+      className="bg-white border-t border-attio-subtle overflow-x-hidden w-full"
     >
       <AttioContainer size="xl">
         <motion.div

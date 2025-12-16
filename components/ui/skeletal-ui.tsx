@@ -480,20 +480,22 @@ export function PipelineSkeleton() {
 
   React.useEffect(() => {
     const interval = setInterval(() => {
-      // Phase 1: Karte hebt sich an (0.5s)
+      // Phase 1: Karte hebt sich an (0.5s) - Reduzierte y-Bewegung für Mobile
       setDraggedCard(0)
-      setCardPosition({ x: 0, y: -8 })
+      setCardPosition({ x: 0, y: -4 })
       setTargetColumn("new")
 
-      // Phase 2: Karte bewegt sich (nach 1s)
+      // Phase 2: Karte bewegt sich (nach 1s) - Responsive x-Bewegung
       setTimeout(() => {
-        setCardPosition({ x: 120, y: -8 })
+        const moveX = typeof window !== 'undefined' && window.innerWidth < 640 ? 80 : 120
+        setCardPosition({ x: moveX, y: -4 })
         setTargetColumn("qualified")
       }, 1000)
 
       // Phase 3: Karte landet (nach 2s)
       setTimeout(() => {
-        setCardPosition({ x: 120, y: 0 })
+        const moveX = typeof window !== 'undefined' && window.innerWidth < 640 ? 80 : 120
+        setCardPosition({ x: moveX, y: 0 })
         setTargetColumn("qualified")
         setCounters((prev) => ({
           ...prev,
@@ -514,8 +516,8 @@ export function PipelineSkeleton() {
   }, [])
 
   return (
-    <div className="mt-4 space-y-3">
-      <div className="flex gap-3">
+    <div className="mt-4 space-y-3 overflow-hidden">
+      <div className="flex gap-2 sm:gap-3 overflow-hidden">
         {/* Column: New */}
         <div className="flex-1">
           <div className="flex items-center justify-between mb-2">
@@ -530,17 +532,17 @@ export function PipelineSkeleton() {
               {counters.new}
             </motion.span>
           </div>
-          <div className="space-y-2 min-h-[60px] relative">
+          <div className="space-y-2 min-h-[60px] relative overflow-hidden">
             {draggedCard === 0 && targetColumn === "new" ? (
               <motion.div
                 className="p-2 bg-white border border-attio-subtle rounded-lg shadow-lg"
                 animate={{
                   x: cardPosition.x,
                   y: cardPosition.y,
-                  scale: cardPosition.y < 0 ? 1.05 : 1,
-                  rotate: cardPosition.y < 0 ? 2 : 0,
+                  scale: cardPosition.y < 0 ? 1.02 : 1,
                 }}
                 transition={attioTransition}
+                style={{ willChange: 'transform' }}
               >
                 <div className="h-2 bg-gray-300 rounded w-16 mb-1" />
                 <div className="h-1.5 bg-gray-200 rounded w-20" />
@@ -568,17 +570,17 @@ export function PipelineSkeleton() {
               {counters.qualified}
             </motion.span>
           </div>
-          <div className="space-y-2 min-h-[60px] relative">
+          <div className="space-y-2 min-h-[60px] relative overflow-hidden">
             {draggedCard === 0 && targetColumn === "qualified" && (
               <motion.div
                 className="p-2 bg-white border border-attio-subtle rounded-lg shadow-lg"
                 animate={{
-                  x: cardPosition.x - 120,
+                  x: cardPosition.x - (typeof window !== 'undefined' && window.innerWidth < 640 ? 80 : 120),
                   y: cardPosition.y,
-                  scale: cardPosition.y < 0 ? 1.05 : 1,
-                  rotate: cardPosition.y < 0 ? 2 : 0,
+                  scale: cardPosition.y < 0 ? 1.02 : 1,
                 }}
                 transition={attioTransition}
+                style={{ willChange: 'transform' }}
               >
                 <div className="h-2 bg-gray-300 rounded w-16 mb-1" />
                 <div className="h-1.5 bg-gray-200 rounded w-20" />

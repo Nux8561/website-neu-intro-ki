@@ -173,6 +173,7 @@
     /* Responsive background-size wie auf Attio.com (9.1% 11.5% auf mobile, größer auf desktop) */
     background-size: 9.1% 11.5%;
     background-position: center;
+    /* Grid auf niedriger Ebene, Sections Hintergründe müssen leicht transparent sein */
     z-index: 0;
   }
 
@@ -188,6 +189,32 @@
     .attio-grid-pattern::before {
       background-size: 11.14% 9.15%;
     }
+  }
+
+  /* Sections Hintergründe sollten das Grid durchscheinen lassen */
+  /* Auf Attio.com scheint das Grid durch alle Sections durch */
+  /* Lösung: Sections mit Hintergründen bekommen leicht transparente Hintergründe */
+  
+  /* Sections mit bg-white - leicht transparent damit Grid durchscheint */
+  section.bg-white {
+    background-color: rgba(255, 255, 255, 0.97) !important;
+  }
+  
+  /* Sections mit bg-attio-gray - leicht transparent */
+  section.bg-attio-gray,
+  section[class*="bg-\[#FAFAFB\]"] {
+    background-color: rgba(250, 250, 251, 0.97) !important;
+  }
+  
+  /* Sections mit bg-background - leicht transparent */
+  section.bg-background {
+    background-color: rgba(255, 255, 255, 0.97) !important;
+  }
+  
+  /* Content innerhalb Sections sollte über Grid liegen */
+  section > * {
+    position: relative;
+    z-index: 1;
   }
 
   /* Verbindungslinien zwischen Sections */

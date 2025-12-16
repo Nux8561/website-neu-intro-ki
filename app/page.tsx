@@ -27,64 +27,42 @@ export default function Home() {
       <Navbar />
       {/* Globales Grid-Pattern für die gesamte Seite */}
       <main className="min-h-screen bg-background attio-grid-pattern relative">
-        {/* Premium Hero with Product Demo (Attio-Style) - Kein Connector oben */}
+        {/* Premium Hero with Product Demo (Attio-Style) */}
         <HeroAttio 
           videoUrl="/videos/demo.mp4"
           showVideo={true}
         />
         
-        {/* Features Bento Grid - Attio Style mit Connector */}
-        <div className="attio-section-connector">
-          <FeaturesBentoGridAttio />
-        </div>
+        {/* Features Bento Grid - Attio Style */}
+        <FeaturesBentoGridAttio />
         
-        {/* Integrations Section mit Connector */}
-        <div className="attio-section-connector">
-          <IntegrationsSection />
-        </div>
+        {/* Integrations Section */}
+        <IntegrationsSection />
         
-        {/* Video Demo Section mit Connector */}
-        <div className="attio-section-connector">
-          <VideoDemoSection 
-            videoSrc="/videos/demo.mp4"
-            posterSrc="/images/video-poster.svg"
-            title="Sieh IntroKI in Aktion"
-            description="Entdecke, wie IntroKI dein Sales-Team in nur wenigen Minuten transformiert."
-          />
-        </div>
+        {/* Video Demo Section */}
+        <VideoDemoSection 
+          videoSrc="/videos/demo.mp4"
+          posterSrc="/images/video-poster.svg"
+          title="Sieh IntroKI in Aktion"
+          description="Entdecke, wie IntroKI dein Sales-Team in nur wenigen Minuten transformiert."
+        />
         
-        {/* Legacy Features Bento Grid mit Connector */}
-        <div className="attio-section-connector">
-          <FeaturesBentoGrid />
-        </div>
+        {/* Legacy Features Bento Grid */}
+        <FeaturesBentoGrid />
         
-        {/* Deep Dive Sections mit Connectors */}
-        <div className="attio-section-connector">
-          <ResearchOrchestratorSection />
-        </div>
+        {/* Deep Dive Sections */}
+        <ResearchOrchestratorSection />
+        <PipelineManagementSection />
+        <CallCoachingSection />
         
-        <div className="attio-section-connector">
-          <PipelineManagementSection />
-        </div>
+        {/* Premium Testimonials */}
+        <TestimonialsPremium />
         
-        <div className="attio-section-connector">
-          <CallCoachingSection />
-        </div>
+        {/* Team/Founder Section */}
+        <TeamSection />
         
-        {/* Premium Testimonials mit Connector */}
-        <div className="attio-section-connector">
-          <TestimonialsPremium />
-        </div>
-        
-        {/* Team/Founder Section mit Connector */}
-        <div className="attio-section-connector">
-          <TeamSection />
-        </div>
-        
-        {/* Final CTA mit Connector oben, aber nicht unten */}
-        <div className="attio-section-connector">
-          <CTASection />
-        </div>
+        {/* Final CTA */}
+        <CTASection />
       </main>
       <Footer />
       <CookieConsent />

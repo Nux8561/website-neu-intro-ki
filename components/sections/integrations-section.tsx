@@ -86,15 +86,15 @@ export function IntegrationsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="text-center card-responsive bg-gray-50 rounded-xl border border-gray-200"
+              className="text-center card-responsive bg-gray-50 rounded-xl border border-gray-200 flex flex-col items-center"
             >
-              <div className="flex justify-center mb-4">
+              <div className="flex justify-center mb-3 sm:mb-4">
                 {feature.icon}
               </div>
               <h3 className="font-inter-display font-semibold text-[#0A0A0A] mb-2 text-base sm:text-lg">
                 {feature.title}
               </h3>
-              <p className="text-sm font-inter text-gray-600">
+              <p className="text-xs sm:text-sm font-inter text-gray-600">
                 {feature.description}
               </p>
             </motion.div>

@@ -324,17 +324,17 @@ export function IntegrationHub({ className }: { className?: string }) {
   // Responsive distance basierend auf Container-Größe
   const orbitDistance = React.useMemo(() => {
     const baseSize = Math.min(dimensions.width, dimensions.height)
-    // Mobile: 120px, Tablet: 150px, Desktop: 180px
-    if (baseSize < 500) return 120
-    if (baseSize < 700) return 150
+    // Mobile: 140px (größer für bessere Lesbarkeit), Tablet: 160px, Desktop: 180px
+    if (baseSize < 500) return 140
+    if (baseSize < 700) return 160
     return 180
   }, [dimensions])
 
   // Responsive Logo-Größe
   const logoSize = React.useMemo(() => {
     const baseSize = Math.min(dimensions.width, dimensions.height)
-    if (baseSize < 500) return 24
-    if (baseSize < 700) return 28
+    if (baseSize < 500) return 28
+    if (baseSize < 700) return 30
     return 32
   }, [dimensions])
 

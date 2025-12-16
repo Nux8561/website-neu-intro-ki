@@ -212,8 +212,8 @@
     background-image: 
       linear-gradient(to right, rgb(237, 239, 243) 1px, transparent 1px),
       linear-gradient(to bottom, rgb(237, 239, 243) 1px, transparent 1px);
-    /* Responsive background-size wie auf Attio.com (9.1% 11.5% auf mobile, größer auf desktop) */
-    background-size: 9.1% 11.5%;
+    /* Responsive background-size wie auf Attio.com - Mobile: größere Abstände für bessere Lesbarkeit */
+    background-size: 12% 15%;
     background-position: center;
     /* Grid auf niedriger Ebene, Sections Hintergründe müssen leicht transparent sein */
     z-index: 0;

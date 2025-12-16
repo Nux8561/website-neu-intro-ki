@@ -85,21 +85,21 @@ export function Footer() {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          <div className="grid grid-cols-5 gap-8 py-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8 py-8 sm:py-12">
             {/* Logo & Description */}
-            <motion.div variants={itemVariants} className="col-span-1">
+            <motion.div variants={itemVariants} className="col-span-1 sm:col-span-2 lg:col-span-1 text-center sm:text-left">
               <Link href="/" className="inline-block mb-3">
                 <IntroKILogo size="md" variant="default" animated={false} />
               </Link>
-              <p className="text-xs text-gray-500 max-w-xs leading-relaxed">
+              <p className="text-xs sm:text-sm text-gray-500 max-w-xs leading-relaxed mx-auto sm:mx-0">
                 Das KI-native CRM für moderne Sales-Teams.
               </p>
             </motion.div>
 
             {/* Footer Columns */}
             {footerColumns.map((column) => (
-              <motion.div key={column.title} variants={itemVariants}>
-                <h3 className="text-xs font-inter font-medium text-attio-text mb-3">
+              <motion.div key={column.title} variants={itemVariants} className="text-center sm:text-left">
+                <h3 className="text-xs sm:text-sm font-inter font-medium text-attio-text mb-3">
                   {column.title}
                 </h3>
                 <ul className="space-y-2">
@@ -107,7 +107,7 @@ export function Footer() {
                     <li key={link.label}>
                       <Link
                         href={link.href}
-                        className="text-xs font-inter text-gray-500 hover:text-attio-text transition-colors duration-attio ease-attio-ease-out block"
+                        className="text-xs sm:text-sm font-inter text-gray-500 hover:text-attio-text transition-colors duration-attio ease-attio-ease-out block"
                       >
                         {link.label}
                       </Link>

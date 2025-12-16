@@ -199,13 +199,13 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
           <div className="mt-16 sm:mt-20 max-w-6xl mx-auto">
             <div className="relative rounded-2xl border border-gray-200 bg-white shadow-attio-card overflow-hidden">
               {/* Tab Navigation (oben im Fenster) - Attio Style - Keine Animation ab hier */}
-              <div className="bg-attio-gray border-b border-attio-subtle px-6 py-3 relative z-10">
-                <div className="flex items-center gap-1">
+              <div className="bg-attio-gray border-b border-attio-subtle px-3 sm:px-6 py-2 sm:py-3 relative z-10 overflow-x-auto">
+                <div className="flex items-center gap-1 min-w-max">
                   {tabs.map((tab) => (
                     <button
                       key={tab.id}
                       onClick={() => handleTabChange(tab.id)}
-                      className={`px-4 py-2 text-sm font-inter font-medium transition-colors ${
+                      className={`px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-inter font-medium transition-colors whitespace-nowrap ${
                         activeTab === tab.id
                           ? "text-gray-900 border-b-2 border-black"
                           : "text-gray-500 hover:text-gray-700"

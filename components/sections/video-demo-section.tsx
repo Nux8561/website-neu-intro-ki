@@ -1,17 +1,15 @@
 /**
  * Video Demo Section - Cinematic Browser Experience
- * Attio-Style: Browser-Container mit Ambient Glow, Glassmorphism Play Button
- * Floating Images umrahmen das Video für 3D-Effekt
+ * Attio-Style: Sauberer Browser-Container mit Ambient Glow, Glassmorphism Play Button
+ * Fokus auf das Video - keine Ablenkung
  */
 
 "use client"
 
 import * as React from "react"
-import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion"
-import { Play, X, Volume2, VolumeX, Maximize, Pause, AlertCircle } from "lucide-react"
-import Image from "next/image"
+import { motion, AnimatePresence } from "framer-motion"
+import { Play, X, Volume2, VolumeX, Maximize, Pause, AlertCircle, Zap, Database, Shield } from "lucide-react"
 import { attioTransition } from "@/lib/animations"
-import { cn } from "@/lib/utils"
 
 interface VideoDemoSectionProps {
   videoSrc?: string
@@ -88,89 +86,33 @@ function GlassmorphismPlayButton({ onClick }: { onClick: () => void }) {
   )
 }
 
-// Floating Card Component (für 3D-Effekt)
-function FloatingCard({
-  image,
+// Feature Item Component (für Feature Row unter dem Video)
+function FeatureItem({
+  icon: Icon,
   title,
   description,
-  position,
   delay = 0,
 }: {
-  image: string
+  icon: React.ComponentType<{ className?: string }>
   title: string
   description: string
-  position: "top-left" | "top-right" | "bottom-left" | "bottom-right"
   delay?: number
 }) {
-  const mouseX = useMotionValue(0)
-  const mouseY = useMotionValue(0)
-  const cardRef = React.useRef<HTMLDivElement>(null)
-
-  React.useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (cardRef.current) {
-        const rect = cardRef.current.getBoundingClientRect()
-        const centerX = rect.left + rect.width / 2
-        const centerY = rect.top + rect.height / 2
-        mouseX.set((e.clientX - centerX) / rect.width)
-        mouseY.set((e.clientY - centerY) / rect.height)
-      }
-    }
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
-  }, [mouseX, mouseY])
-
-  const rotateX = useSpring(useTransform(mouseY, [-1, 1], [-10, 10]), {
-    stiffness: 300,
-    damping: 30,
-  })
-  const rotateY = useSpring(useTransform(mouseX, [-1, 1], [-10, 10]), {
-    stiffness: 300,
-    damping: 30,
-  })
-
-  const positionClasses = {
-    "top-left": "top-0 left-0 -translate-x-1/4 -translate-y-1/4",
-    "top-right": "top-0 right-0 translate-x-1/4 -translate-y-1/4",
-    "bottom-left": "bottom-0 left-0 -translate-x-1/4 translate-y-1/4",
-    "bottom-right": "bottom-0 right-0 translate-x-1/4 translate-y-1/4",
-  }
-
   return (
     <motion.div
-      ref={cardRef}
-      initial={{ opacity: 0, scale: 0.8, y: 20 }}
-      whileInView={{ opacity: 1, scale: 1, y: 0 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ ...attioTransition, delay }}
-      className={cn(
-        "absolute w-64 md:w-80 lg:w-96 z-10",
-        positionClasses[position]
-      )}
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: "preserve-3d",
-      }}
+      className="flex flex-col items-center text-center max-w-xs"
     >
-      <div className="bg-white rounded-xl border border-gray-200 shadow-2xl overflow-hidden p-6 backdrop-blur-sm">
-        <div className="relative aspect-video mb-4 rounded-lg overflow-hidden bg-gray-100">
-          <Image
-            src={image}
-            alt={title}
-            fill
-            className="object-cover"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement
-              target.style.display = "none"
-            }}
-          />
-        </div>
-        <h3 className="font-inter-display font-semibold text-[#0A0A0A] mb-2 text-lg">
-          {title}
-        </h3>
-        <p className="text-sm font-inter text-gray-600">{description}</p>
+      <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mb-4">
+        <Icon className="h-6 w-6 text-blue-600" strokeWidth={1.5} />
       </div>
+      <h3 className="font-inter-display font-semibold text-[#0A0A0A] mb-2 text-lg">
+        {title}
+      </h3>
+      <p className="text-sm font-inter text-gray-600">{description}</p>
     </motion.div>
   )
 }
@@ -302,11 +244,11 @@ export function VideoDemoSection({
             transition={{ type: "spring", stiffness: 400, damping: 25, delay: 0.1 }}
             className="max-w-6xl mx-auto relative"
           >
-            {/* Ambient Glow hinter dem Video */}
+            {/* Ambient Glow hinter dem Video - Verstärkt */}
             <motion.div
               className="absolute inset-0 -z-10"
               animate={{
-                opacity: [0.3, 0.5, 0.3],
+                opacity: [0.4, 0.6, 0.4],
               }}
               transition={{
                 duration: 4,
@@ -314,41 +256,11 @@ export function VideoDemoSection({
                 ease: "easeInOut",
               }}
             >
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-r from-blue-500/30 via-purple-500/30 to-pink-500/30 rounded-full blur-3xl" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-gradient-to-r from-blue-500/40 via-purple-500/40 to-pink-500/40 rounded-full blur-3xl" />
             </motion.div>
 
-            {/* Floating Cards (umrahmen das Video) */}
-            <FloatingCard
-              image="/images/app logo.png"
-              title="Deep Research"
-              description="KI-gestützte Recherche in unter 60 Sekunden"
-              position="top-left"
-              delay={0.2}
-            />
-            <FloatingCard
-              image="/images/app logo.png"
-              title="Live Coaching"
-              description="Echtzeit-Unterstützung während Gesprächen"
-              position="top-right"
-              delay={0.3}
-            />
-            <FloatingCard
-              image="/images/app logo.png"
-              title="Smart Pipeline"
-              description="Intelligente Lead-Priorisierung und Scoring"
-              position="bottom-left"
-              delay={0.4}
-            />
-            <FloatingCard
-              image="/images/app logo.png"
-              title="Automation"
-              description="Workflows, die deine Tools verbinden"
-              position="bottom-right"
-              delay={0.5}
-            />
-
-            {/* Browser Container */}
-            <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#0A0A0A]">
+            {/* Browser Container - Verfeinert */}
+            <div className="relative rounded-2xl overflow-hidden border border-gray-200 shadow-2xl bg-[#0A0A0A]">
               {/* Browser Title Bar */}
               <BrowserTitleBar />
 
@@ -388,6 +300,34 @@ export function VideoDemoSection({
                 </div>
               </div>
             </div>
+          </motion.div>
+
+          {/* Feature Row unter dem Video */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ ...attioTransition, delay: 0.3 }}
+            className="mt-12 flex flex-wrap justify-center gap-8 md:gap-12"
+          >
+            <FeatureItem
+              icon={Zap}
+              title="Schnelle Integration"
+              description="In unter 5 Minuten eingerichtet"
+              delay={0.1}
+            />
+            <FeatureItem
+              icon={Database}
+              title="Echtzeit Daten"
+              description="Kontinuierliche Synchronisation"
+              delay={0.2}
+            />
+            <FeatureItem
+              icon={Shield}
+              title="Volle Kontrolle"
+              description="Deine Daten, deine Regeln"
+              delay={0.3}
+            />
           </motion.div>
         </div>
       </section>

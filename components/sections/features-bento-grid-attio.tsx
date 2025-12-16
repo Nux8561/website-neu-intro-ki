@@ -67,7 +67,7 @@ const bentoCells = [
         <div className="text-xs font-inter text-text-muted uppercase tracking-wider mb-2">
           01 Leistungsstarke Plattform
         </div>
-        <h2 className="text-4xl md:text-5xl font-inter-display font-bold tracking-tight text-[#0A0A0A]">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-inter-display font-bold tracking-tight text-[#0A0A0A] leading-tight">
           GTM auf{' '}
           <LineShadowText shadowColor="#0A0A0A" className="italic">
             vollen Touren
@@ -208,18 +208,18 @@ export function FeaturesBentoGridAttio() {
                 <>
                   <div className="relative z-10">
                     {cell.icon && (
-                      <div className="mb-4">
+                      <div className="mb-3 sm:mb-4 flex justify-center sm:justify-start">
                         {cell.icon}
                       </div>
                     )}
-                    <h3 className="text-lg md:text-xl font-inter-display font-bold text-[#0A0A0A] mb-2 leading-tight">
+                    <h3 className="text-base sm:text-lg md:text-xl font-inter-display font-bold text-[#0A0A0A] mb-2 leading-tight text-center sm:text-left">
                       {cell.title}
                     </h3>
-                    <p className="text-sm font-inter text-text-muted mb-4 leading-relaxed">
+                    <p className="text-xs sm:text-sm font-inter text-text-muted mb-3 sm:mb-4 leading-relaxed text-center sm:text-left">
                       {cell.description}
                     </p>
                   </div>
-                  <div className="relative z-0 mt-4">
+                  <div className="relative z-0 mt-3 sm:mt-4">
                     {cell.content}
                   </div>
                 </>

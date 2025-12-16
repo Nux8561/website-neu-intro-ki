@@ -26,10 +26,10 @@ export function IntegrationsSection() {
           className="text-center mb-12"
         >
           <h2 className="text-4xl md:text-5xl font-inter-display font-semibold tracking-tight text-attio-text mb-4">
-            Works with the tools you already use
+            Passt perfekt zu deinem bestehenden System
           </h2>
           <p className="text-lg font-inter text-gray-600 max-w-2xl mx-auto">
-            Deep integrations that work seamlessly with your existing tech stack.
+            IntroKI erweitert dein CRM, Gmail und Calendar – ohne dass dein Team etwas Neues lernen muss. Mehr Deals, weniger Aufwand.
           </p>
         </motion.div>
 

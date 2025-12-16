@@ -154,7 +154,8 @@
   }
 
   /* Attio-Style Grid Pattern System */
-  /* Subtiles Grid-Pattern für Hintergrund-Verbindungen */
+  /* Vollständiges Grid-Pattern mit horizontalen UND vertikalen Linien */
+  /* Genau wie auf attio.com: linear-gradient(to_right) + linear-gradient(to_bottom) */
   .attio-grid-pattern {
     position: relative;
   }
@@ -164,12 +165,29 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: 0.03;
+    /* Attio.com verwendet: linear-gradient(to_right, #EDEFF3 1px, transparent 1px), linear-gradient(to_bottom, #EDEFF3 1px, transparent 1px) */
+    /* #EDEFF3 ist bereits sehr hell, daher keine zusätzliche Opacity nötig */
     background-image: 
-      linear-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
-    background-size: 40px 40px;
+      linear-gradient(to right, rgb(237, 239, 243) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(237, 239, 243) 1px, transparent 1px);
+    /* Responsive background-size wie auf Attio.com (9.1% 11.5% auf mobile, größer auf desktop) */
+    background-size: 9.1% 11.5%;
+    background-position: center;
     z-index: 0;
+  }
+
+  /* Desktop-Variante mit größerem Grid */
+  @media (min-width: 1024px) {
+    .attio-grid-pattern::before {
+      background-size: 10.3% 9.15%;
+      background-position: right;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .attio-grid-pattern::before {
+      background-size: 11.14% 9.15%;
+    }
   }
 
   /* Verbindungslinien zwischen Sections */
@@ -265,15 +283,15 @@
   }
 
   /* Grid Pattern für spezifische Hintergründe (z.B. attio-gray) */
+  /* Alternative mit fester Pixel-Größe für kleinere Bereiche */
   .attio-grid-pattern-overlay {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: 0.02;
     background-image: 
-      linear-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
-    background-size: 50px 50px;
+      linear-gradient(to right, rgb(237, 239, 243) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(237, 239, 243) 1px, transparent 1px);
+    background-size: 40px 40px;
     z-index: 0;
   }
 }

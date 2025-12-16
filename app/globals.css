@@ -152,6 +152,130 @@
   .announcement-banner {
     @apply bg-brand text-text-inverse py-3 px-4 text-sm text-center;
   }
+
+  /* Attio-Style Grid Pattern System */
+  /* Subtiles Grid-Pattern für Hintergrund-Verbindungen */
+  .attio-grid-pattern {
+    position: relative;
+  }
+
+  .attio-grid-pattern::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.03;
+    background-image: 
+      linear-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 0;
+  }
+
+  /* Verbindungslinien zwischen Sections */
+  .attio-section-connector {
+    position: relative;
+  }
+
+  .attio-section-connector::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.06) 20%,
+      rgba(0, 0, 0, 0.06) 80%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Connector nur unten (für letzte Section) */
+  .attio-section-connector-bottom::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.06) 20%,
+      rgba(0, 0, 0, 0.06) 80%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Connector oben und unten */
+  .attio-section-connector-both::before,
+  .attio-section-connector-both::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.06) 20%,
+      rgba(0, 0, 0, 0.06) 80%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .attio-section-connector-both::before {
+    top: 0;
+  }
+
+  .attio-section-connector-both::after {
+    bottom: 0;
+  }
+
+  /* Vertikale Verbindungslinien für Sidebar/Content-Layouts */
+  .attio-vertical-connector {
+    position: relative;
+  }
+
+  .attio-vertical-connector::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0, 0, 0, 0.06) 10%,
+      rgba(0, 0, 0, 0.06) 90%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Grid Pattern für spezifische Hintergründe (z.B. attio-gray) */
+  .attio-grid-pattern-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.02;
+    background-image: 
+      linear-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: 0;
+  }
 }
 
 /* Animations */

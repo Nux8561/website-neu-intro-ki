@@ -12,21 +12,42 @@ interface AttioWrapperProps {
   children: React.ReactNode
   className?: string
   variant?: "section" | "card" | "container"
+  showGridPattern?: boolean
+  showConnector?: boolean
+  connectorPosition?: "top" | "bottom" | "both"
 }
 
 export function AttioWrapper({ 
   children, 
   className,
-  variant = "section"
+  variant = "section",
+  showGridPattern = false,
+  showConnector = false,
+  connectorPosition = "top"
 }: AttioWrapperProps) {
   const variants = {
-    section: "py-24 md:py-32 bg-attio-gray",
-    card: "bg-white border border-attio-border rounded-xl p-6 shadow-attio-card hover:shadow-attio-card-hover transition-all duration-attio ease-attio-ease-out",
-    container: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+    section: "py-24 md:py-32 bg-attio-gray relative",
+    card: "bg-white border border-attio-border rounded-xl p-6 shadow-attio-card hover:shadow-attio-card-hover transition-all duration-attio ease-attio-ease-out relative",
+    container: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative",
   }
 
+  const connectorClasses = {
+    top: showConnector && connectorPosition === "top" ? "attio-section-connector" : "",
+    bottom: showConnector && connectorPosition === "bottom" ? "attio-section-connector-bottom" : "",
+    both: showConnector && connectorPosition === "both" ? "attio-section-connector-both" : "",
+  }
+
+  const connectorClass = connectorClasses[connectorPosition] || ""
+
   return (
-    <div className={cn(variants[variant], className)}>
+    <div 
+      className={cn(
+        variants[variant], 
+        showGridPattern && "attio-grid-pattern",
+        connectorClass,
+        className
+      )}
+    >
       {children}
     </div>
   )

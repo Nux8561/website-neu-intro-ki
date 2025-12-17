@@ -9,9 +9,7 @@
 import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Play, X, Volume2, VolumeX, Maximize, Pause, AlertCircle, Zap, Database, Shield } from "lucide-react"
-import { WorkflowSimulation } from "@/components/visuals/WorkflowSimulation"
-import { DataEnrichmentVisual } from "@/components/visuals/DataEnrichmentVisual"
-import { ReportingVisual } from "@/components/visuals/ReportingVisual"
+import { IntroFeatureStory, IntroFeatureKey } from "@/components/visuals/IntroFeatureStory"
 import { attioTransition } from "@/lib/animations"
 
 interface VideoDemoSectionProps {
@@ -152,9 +150,8 @@ export function VideoDemoSection({
   title = "Sieh IntroKI in Aktion",
   description = "In 60 Sekunden erklärt.",
 }: VideoDemoSectionProps) {
-  const [activeFeature, setActiveFeature] = React.useState<
-    "integration" | "realtime" | "control"
-  >("integration")
+  const [activeFeature, setActiveFeature] =
+    React.useState<IntroFeatureKey>("integration")
   const [isPlaying, setIsPlaying] = React.useState(false)
   const [isModalOpen, setIsModalOpen] = React.useState(false)
   const [isMuted, setIsMuted] = React.useState(false)
@@ -380,52 +377,15 @@ export function VideoDemoSection({
             />
           </motion.div>
 
-          {/* Interaktive Demo unter den Feature-Kacheln */}
+          {/* Neue, eigenständige Intro-Animation unter den Feature-Kacheln */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ ...attioTransition, delay: 0.4 }}
-            className="mt-10 w-full max-w-5xl mx-auto"
+            className="mt-10 w-full max-w-5xl mx-auto h-[260px]"
           >
-            <AnimatePresence mode="wait">
-              {activeFeature === "integration" && (
-                <motion.div
-                  key="integration-demo"
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 12 }}
-                  transition={attioTransition}
-                  className="h-[260px] rounded-2xl border border-attio-subtle bg-white shadow-attio-card overflow-hidden"
-                >
-                  <WorkflowSimulation />
-                </motion.div>
-              )}
-              {activeFeature === "realtime" && (
-                <motion.div
-                  key="realtime-demo"
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 12 }}
-                  transition={attioTransition}
-                  className="h-[260px] rounded-2xl border border-attio-subtle bg-white shadow-attio-card overflow-hidden"
-                >
-                  <DataEnrichmentVisual />
-                </motion.div>
-              )}
-              {activeFeature === "control" && (
-                <motion.div
-                  key="control-demo"
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 12 }}
-                  transition={attioTransition}
-                  className="h-[260px] rounded-2xl border border-attio-subtle bg-white shadow-attio-card overflow-hidden"
-                >
-                  <ReportingVisual />
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <IntroFeatureStory active={activeFeature} />
           </motion.div>
         </div>
       </section>

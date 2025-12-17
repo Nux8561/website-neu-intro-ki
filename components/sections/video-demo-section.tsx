@@ -383,7 +383,7 @@ export function VideoDemoSection({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ ...attioTransition, delay: 0.4 }}
-            className="mt-10 w-full max-w-5xl mx-auto h-[260px]"
+            className="mt-10 w-full max-w-5xl mx-auto"
           >
             <IntroFeatureStory active={activeFeature} />
           </motion.div>

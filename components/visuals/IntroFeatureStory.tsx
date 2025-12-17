@@ -49,12 +49,12 @@ export function IntroFeatureStory({ active }: IntroFeatureStoryProps) {
 
   return (
     <motion.div
-      className="relative w-full h-full overflow-hidden rounded-2xl border border-attio-subtle bg-white shadow-attio-card"
+      className="relative w-full h-full min-h-[260px] md:min-h-[280px] overflow-hidden rounded-2xl border border-attio-subtle bg-white shadow-attio-card"
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={attioTransition}
     >
-      {/* Ambient Gradient Background */}
+      {/* Ambient Gradient Background + feine Linien im Hintergrund */}
       <motion.div
         key={active}
         className="pointer-events-none absolute inset-0"
@@ -63,8 +63,23 @@ export function IntroFeatureStory({ active }: IntroFeatureStoryProps) {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.4 }}
       >
+        {/* Weicher Farbverlauf */}
         <div
           className={`absolute -inset-24 bg-gradient-to-br ${config.bgFrom} ${config.bgTo} blur-3xl`}
+        />
+        {/* Attio-artige Grid / Border Lines */}
+        <div className="absolute inset-0 opacity-[0.55]">
+          <div
+            className="absolute inset-[-1px] bg-[linear-gradient(to_right,rgba(148,163,184,0.16)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.14)_1px,transparent_1px)] bg-[length:32px_32px]"
+            style={{ maskImage: "radial-gradient(circle at top, black, transparent 70%)" }}
+          />
+        </div>
+        {/* Pulsierende Diagonal-Linie */}
+        <motion.div
+          className="absolute -inset-x-40 top-1/2 h-px bg-gradient-to-r from-transparent via-sky-400/60 to-transparent"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: [0.3, 0.7, 0.3], y: [-8, 8, -8] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         />
       </motion.div>
 

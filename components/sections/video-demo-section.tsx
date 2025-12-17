@@ -9,6 +9,9 @@
 import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Play, X, Volume2, VolumeX, Maximize, Pause, AlertCircle, Zap, Database, Shield } from "lucide-react"
+import { WorkflowSimulation } from "@/components/visuals/WorkflowSimulation"
+import { DataEnrichmentVisual } from "@/components/visuals/DataEnrichmentVisual"
+import { ReportingVisual } from "@/components/visuals/ReportingVisual"
 import { attioTransition } from "@/lib/animations"
 
 interface VideoDemoSectionProps {
@@ -92,19 +95,27 @@ function FeatureItem({
   title,
   description,
   delay = 0,
+  isActive = false,
+  onClick,
 }: {
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
   title: string
   description: string
   delay?: number
+  isActive?: boolean
+  onClick?: () => void
 }) {
   return (
-    <motion.div
+    <motion.button
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ ...attioTransition, delay }}
-      className="group flex flex-col items-center text-center max-w-xs px-5 py-4 rounded-2xl border border-slate-200/70 bg-white/60 shadow-[0_18px_45px_rgba(15,23,42,0.06)] backdrop-blur-sm motion-safe transition-all duration-300 hover:-translate-y-1 hover:border-slate-300/80 hover:shadow-[0_20px_60px_rgba(15,23,42,0.14)]"
+      onClick={onClick}
+      type="button"
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.97 }}
+      className="group flex flex-col items-center text-center max-w-xs px-5 py-4 rounded-2xl border border-slate-200/70 bg-white/60 shadow-[0_18px_45px_rgba(15,23,42,0.06)] backdrop-blur-sm motion-safe transition-all duration-300 hover:-translate-y-1 hover:border-slate-300/80 hover:shadow-[0_20px_60px_rgba(15,23,42,0.14)] focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
       style={{
         willChange: "opacity",
         transform: "translateZ(0)",
@@ -119,7 +130,19 @@ function FeatureItem({
       <p className="text-sm font-inter text-gray-600">
         {description}
       </p>
-    </motion.div>
+      <motion.div
+        className="mt-3 h-0.5 w-full rounded-full bg-slate-200/80 overflow-hidden"
+      >
+        <motion.div
+          initial={false}
+          animate={{
+            width: isActive ? "100%" : "0%",
+          }}
+          transition={{ ...attioTransition, stiffness: 450 }}
+          className="h-full rounded-full bg-gradient-to-r from-blue-500 via-sky-400 to-indigo-500"
+        />
+      </motion.div>
+    </motion.button>
   )
 }
 
@@ -129,6 +152,9 @@ export function VideoDemoSection({
   title = "Sieh IntroKI in Aktion",
   description = "In 60 Sekunden erklärt.",
 }: VideoDemoSectionProps) {
+  const [activeFeature, setActiveFeature] = React.useState<
+    "integration" | "realtime" | "control"
+  >("integration")
   const [isPlaying, setIsPlaying] = React.useState(false)
   const [isModalOpen, setIsModalOpen] = React.useState(false)
   const [isMuted, setIsMuted] = React.useState(false)
@@ -333,19 +359,73 @@ export function VideoDemoSection({
               title="Schnelle Integration"
               description="In unter 5 Minuten eingerichtet"
               delay={0.1}
+              isActive={activeFeature === "integration"}
+              onClick={() => setActiveFeature("integration")}
             />
             <FeatureItem
               icon={Database}
               title="Echtzeit Daten"
               description="Kontinuierliche Synchronisation"
               delay={0.2}
+              isActive={activeFeature === "realtime"}
+              onClick={() => setActiveFeature("realtime")}
             />
             <FeatureItem
               icon={Shield}
               title="Volle Kontrolle"
               description="Deine Daten, deine Regeln"
               delay={0.3}
+              isActive={activeFeature === "control"}
+              onClick={() => setActiveFeature("control")}
             />
+          </motion.div>
+
+          {/* Interaktive Demo unter den Feature-Kacheln */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ ...attioTransition, delay: 0.4 }}
+            className="mt-10 w-full max-w-5xl mx-auto"
+          >
+            <AnimatePresence mode="wait">
+              {activeFeature === "integration" && (
+                <motion.div
+                  key="integration-demo"
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 12 }}
+                  transition={attioTransition}
+                  className="h-[260px] rounded-2xl border border-attio-subtle bg-white shadow-attio-card overflow-hidden"
+                >
+                  <WorkflowSimulation />
+                </motion.div>
+              )}
+              {activeFeature === "realtime" && (
+                <motion.div
+                  key="realtime-demo"
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 12 }}
+                  transition={attioTransition}
+                  className="h-[260px] rounded-2xl border border-attio-subtle bg-white shadow-attio-card overflow-hidden"
+                >
+                  <DataEnrichmentVisual />
+                </motion.div>
+              )}
+              {activeFeature === "control" && (
+                <motion.div
+                  key="control-demo"
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 12 }}
+                  transition={attioTransition}
+                  className="h-[260px] rounded-2xl border border-attio-subtle bg-white shadow-attio-card overflow-hidden"
+                >
+                  <ReportingVisual />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
         </div>
       </section>

@@ -19,14 +19,15 @@ export function FeaturesBentoGrid() {
         <div className="absolute inset-0 z-0">
           <InfiniteGallery
             images={[
-              { src: 'https://images.unsplash.com/photo-1741332966416-414d8a5b8887?w=800&auto=format&fit=crop&q=80', alt: 'Company Agent' },
-              { src: 'https://images.unsplash.com/photo-1754769440490-2eb64d715775?w=800&auto=format&fit=crop&q=80', alt: 'People Agent' },
-              { src: 'https://images.unsplash.com/photo-1758640920659-0bb864175983?w=800&auto=format&fit=crop&q=80', alt: 'AI Agent' },
-              { src: 'https://plus.unsplash.com/premium_photo-1758367454070-731d3cc11774?w=800&auto=format&fit=crop&q=80', alt: 'Validation Agent' },
-              { src: 'https://images.unsplash.com/photo-1746023841657-e5cd7cc90d2c?w=800&auto=format&fit=crop&q=80', alt: 'Research 1' },
-              { src: 'https://images.unsplash.com/photo-1741715661559-6149723ea89a?w=800&auto=format&fit=crop&q=80', alt: 'Research 2' },
-              { src: 'https://images.unsplash.com/photo-1725878746053-407492aa4034?w=800&auto=format&fit=crop&q=80', alt: 'Research 3' },
-              { src: 'https://images.unsplash.com/photo-1752588975168-d2d7965a6d64?w=800&auto=format&fit=crop&q=80', alt: 'Research 4' },
+              { src: '/images/36yKAhdd9x9dcFSS2FHeptQAe7w.svg', alt: 'Vector 1' },
+              { src: '/images/36yKAjMivaURft5yY0O7PGw2HIH.svg', alt: 'Vector 2' },
+              { src: '/images/36yKAlKafQLQDwvOsnGIrpxwo3k.svg', alt: 'Vector 3' },
+              { src: '/images/36yKAma7Tal0KERnlqcjTSkcXif.svg', alt: 'Vector 4' },
+              { src: '/images/36yKPQ9ixalIbSmxtFwXr6FZ9PC.svg', alt: 'Vector 5' },
+              { src: '/images/36yKPRNWPCQ4g8LDoZTXhiPPl20.svg', alt: 'Vector 6' },
+              { src: '/images/36yKPSNmcrPHrJQ2w1q3JT0j8PX.svg', alt: 'Vector 7' },
+              { src: '/images/36yKPU1sR7o74m9rWaGsVxZCQXZ.svg', alt: 'Vector 8' },
+              { src: '/images/36yKPWAsOrOttsjjojZqmJeOda1.svg', alt: 'Vector 9' },
             ]}
             speed={1.2}
             visibleCount={12}

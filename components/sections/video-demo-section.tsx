@@ -104,19 +104,21 @@ function FeatureItem({
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ ...attioTransition, delay }}
-      className="flex flex-col items-center text-center max-w-xs motion-safe"
+      className="group flex flex-col items-center text-center max-w-xs px-5 py-4 rounded-2xl border border-slate-200/70 bg-white/60 shadow-[0_18px_45px_rgba(15,23,42,0.06)] backdrop-blur-sm motion-safe transition-all duration-300 hover:-translate-y-1 hover:border-slate-300/80 hover:shadow-[0_20px_60px_rgba(15,23,42,0.14)]"
       style={{
         willChange: "opacity",
         transform: "translateZ(0)",
       }}
     >
-      <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mb-4">
+      <div className="w-12 h-12 rounded-full bg-gradient-to-b from-blue-50 via-blue-50/80 to-blue-100/60 border border-blue-100 shadow-inner flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-105">
         <Icon className="h-6 w-6 text-blue-600" strokeWidth={1.5} />
       </div>
-      <h3 className="font-inter-display font-semibold text-[#0A0A0A] mb-2 text-lg">
+      <h3 className="font-inter-display font-semibold text-[#0A0A0A] mb-1 text-base sm:text-lg tracking-tight">
         {title}
       </h3>
-      <p className="text-sm font-inter text-gray-600">{description}</p>
+      <p className="text-sm font-inter text-gray-600">
+        {description}
+      </p>
     </motion.div>
   )
 }

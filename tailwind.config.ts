@@ -97,6 +97,19 @@ const config: Config = {
         tiempos: ["Georgia", "serif"], // Fallback für Tiempos Text
         mono: ["var(--font-mono)", "monospace"],
       },
+      fontSize: {
+        // Attio-inspirierte Typo-Scale
+        "xs": ["0.75rem", { lineHeight: "1.2" }],
+        "sm": ["0.8125rem", { lineHeight: "1.4" }], // UI-Labels
+        "base": ["0.9375rem", { lineHeight: "1.5" }], // Body (leicht kleiner, hohe Dichte)
+        "lg": ["1.0625rem", { lineHeight: "1.5" }],
+        "xl": ["1.25rem", { lineHeight: "1.4" }],
+        "2xl": ["1.5rem", { lineHeight: "1.3" }],
+        "3xl": ["1.875rem", { lineHeight: "1.2" }],
+        "4xl": ["2.25rem", { lineHeight: "1.1" }],
+        "5xl": ["3rem", { lineHeight: "1.05" }],
+        "6xl": ["3.75rem", { lineHeight: "1.02" }],
+      },
       borderRadius: {
         squircle: "24px",
         "2xl": "16px",

@@ -28,7 +28,7 @@ export default function Home() {
     <>
       <Navbar />
       {/* Globales Grid-Pattern für die gesamte Seite */}
-            <main className="min-h-screen bg-background attio-grid-pattern relative overflow-x-hidden w-full">
+      <main className="min-h-screen bg-background relative overflow-x-hidden w-full">
         {/* Premium Hero with Product Demo (Attio-Style) */}
         <HeroAttio 
           videoUrl="/videos/demo.mp4"
@@ -48,12 +48,15 @@ export default function Home() {
           title="Sieh IntroKI in Aktion"
           description="Entdecke, wie IntroKI dein Sales-Team in nur wenigen Minuten transformiert."
         />
-        
+
+        {/* Deep Dive Sections - 4-Step Journey - früher platziert */}
+        <ResearchOrchestratorSection />
+
+        {/* Attio-Style CTA – früher platziert (Free Trial) */}
+        <CTAAttioStyle />
+
         {/* Legacy Features Bento Grid */}
         <FeaturesBentoGrid />
-        
-        {/* Deep Dive Sections - 4-Step Journey */}
-        <ResearchOrchestratorSection />
         <SmartTargetingSection />
         <PipelineManagementSection />
         <CallCoachingSection />
@@ -63,10 +66,7 @@ export default function Home() {
         
         {/* Team/Founder Section */}
         <TeamSection />
-        
-        {/* Attio-Style CTA */}
-        <CTAAttioStyle />
-        
+
         {/* Final CTA */}
         <CTASection />
       </main>

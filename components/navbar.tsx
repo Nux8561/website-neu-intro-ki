@@ -123,7 +123,7 @@ export function Navbar() {
               Log in
             </Link>
             <Link
-              href="/contact"
+              href="/demo"
               className="inline-flex items-center justify-center bg-black text-white hover:bg-gray-800 rounded-md px-4 py-2 text-sm font-medium transition-all duration-attio ease-attio-ease-out hover:scale-[1.02]"
             >
               Book a demo
@@ -190,7 +190,7 @@ export function Navbar() {
                     Log in
                   </Link>
                   <Link
-                    href="/contact"
+                    href="/demo"
                     className="inline-flex items-center justify-center bg-black text-white hover:bg-gray-800 rounded-md px-4 py-2.5 text-sm font-medium transition-all"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >

@@ -67,7 +67,7 @@ export default function Home() {
                 </p>
                 <div className="flex flex-col sm:flex-row items-start gap-4">
                   <Link
-                    href="/contact"
+                    href="/demo"
                     className="inline-flex items-center justify-center bg-black text-white hover:bg-gray-800 rounded-md px-6 py-3 text-sm font-medium transition-all duration-attio ease-attio-ease-out hover:scale-[1.02]"
                   >
                     Demo buchen
@@ -324,7 +324,7 @@ export default function Home() {
                 Ersetzen Sie Ihre Schatten-Tabellen durch ein System, das Ihr Team liebt.
               </p>
               <Link
-                href="/contact"
+                href="/demo"
                 className="inline-flex items-center justify-center bg-black text-white hover:bg-gray-800 rounded-md px-8 py-3.5 text-sm font-medium transition-all duration-attio ease-attio-ease-out hover:scale-[1.02]"
               >
                 Demo buchen

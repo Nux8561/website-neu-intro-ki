@@ -140,7 +140,7 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-attio-subtle bg-attio-gray hover:bg-gray-50 transition-colors text-sm font-inter font-medium text-gray-700 attio-link-underline"
               >
                 <span className="h-2 w-2 rounded-full bg-blue-500" />
-                Explore our integration with Granola
+                Vertraut von modernen Vertriebsteams
                 <ArrowRight className="h-3 w-3" />
               </Link>
             </motion.div>
@@ -150,7 +150,7 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
               variants={itemVariants}
               className="text-5xl sm:text-6xl md:text-7xl font-inter-display font-bold tracking-tighter text-[#0A0A0A] mb-6"
             >
-              Customer relationship magic.
+              Das CRM, das Ihnen sagt, was zu tun ist.
             </motion.h1>
 
             {/* Subheadline - Attio Style */}
@@ -158,7 +158,7 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
               variants={itemVariants}
               className="text-lg sm:text-xl font-inter font-normal text-gray-600 mb-10 max-w-2xl mx-auto"
             >
-              Attio is the AI-native CRM for GTM builders.
+              Verabschieden Sie sich von passiven Datenfriedhöfen und Excel-Chaos. IntroKI passt sich Ihrem Geschäftsmodell an und führt Ihr Team proaktiv durch den Tag.
             </motion.p>
 
             {/* CTA Buttons - Attio Style */}
@@ -167,16 +167,16 @@ export function HeroAttio({ videoUrl, showVideo = false }: HeroAttioProps) {
               className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8"
             >
               <Link
-                href="/pricing"
+                href="/contact"
                 className="bg-black text-white hover:bg-gray-900 px-8 py-3.5 rounded-lg font-medium text-base transition-all duration-attio ease-attio-ease-out hover:scale-[1.02] font-inter"
               >
-                Start for free
+                Demo buchen
               </Link>
               <Link
-                href="/contact"
+                href="/developers"
                 className="bg-white border border-attio-subtle text-gray-700 hover:bg-gray-50 hover:border-gray-300 px-8 py-3.5 rounded-lg font-medium text-base transition-all duration-attio ease-attio-ease-out font-inter"
               >
-                Talk to sales
+                Dokumentation ansehen
               </Link>
             </motion.div>
 

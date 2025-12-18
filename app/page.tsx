@@ -1,74 +1,337 @@
 "use client"
 
 import * as React from "react"
-import dynamic from "next/dynamic"
+import { motion, useInView } from "framer-motion"
+import Link from "next/link"
+import Image from "next/image"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/sections/footer"
 import { CookieConsent } from "@/components/ui/cookie-consent"
-
-// Premium Sections - Keep all original components
-import { HeroAttio } from "@/components/sections/hero-attio"
-import { VideoDemoSection } from "@/components/sections/video-demo-section"
-import { TestimonialsPremium } from "@/components/sections/testimonials-premium"
-import { TeamSection } from "@/components/sections/team-section"
-import { FeaturesBentoGridAttio } from "@/components/sections/features-bento-grid-attio"
-import { IntegrationsSection } from "@/components/sections/integrations-section"
-
-// Lazy load heavy components for better performance
-const FeaturesBentoGrid = dynamic(() => import("@/components/sections/features-bento-grid").then(mod => ({ default: mod.FeaturesBentoGrid })), { ssr: true })
-const ResearchOrchestratorSection = dynamic(() => import("@/components/sections/research-orchestrator-section").then(mod => ({ default: mod.ResearchOrchestratorSection })), { ssr: true })
-const SmartTargetingSection = dynamic(() => import("@/components/sections/smart-targeting-section").then(mod => ({ default: mod.SmartTargetingSection })), { ssr: true })
-const PipelineManagementSection = dynamic(() => import("@/components/sections/pipeline-management-section").then(mod => ({ default: mod.PipelineManagementSection })), { ssr: true })
-const CallCoachingSection = dynamic(() => import("@/components/sections/call-coaching-section").then(mod => ({ default: mod.CallCoachingSection })), { ssr: true })
-const CTASection = dynamic(() => import("@/components/sections/cta-section").then(mod => ({ default: mod.CTASection })), { ssr: true })
-const CTAAttioStyle = dynamic(() => import("@/components/sections/cta-attio-style").then(mod => ({ default: mod.CTAAttioStyle })), { ssr: true })
+import { HeroSimulation } from "@/components/hero-simulation"
+import { 
+  ArrowRight, 
+  Shield, 
+  GitBranch, 
+  Database, 
+  CheckCircle2,
+  Search,
+  Settings
+} from "lucide-react"
+import { ENTERPRISE_SPRING } from "@/lib/animations"
 
 export default function Home() {
+  const heroRef = React.useRef(null)
+  const heroInView = useInView(heroRef, { once: true, margin: "-100px" })
+
+  const socialProofRef = React.useRef(null)
+  const socialProofInView = useInView(socialProofRef, { once: true, margin: "-100px" })
+
+  const whyRef = React.useRef(null)
+  const whyInView = useInView(whyRef, { once: true, margin: "-100px" })
+
+  const productHubRef = React.useRef(null)
+  const productHubInView = useInView(productHubRef, { once: true, margin: "-100px" })
+
+  const ctaRef = React.useRef(null)
+  const ctaInView = useInView(ctaRef, { once: true, margin: "-100px" })
+
+  // Customer Logos (grayscale, opacity-50)
+  const customerLogos = [
+    { name: "Stripe", logo: "/logos/stripe.svg" },
+    { name: "Linear", logo: "/logos/linear.svg" },
+    { name: "Notion", logo: "/logos/notion.svg" },
+    { name: "Slack", logo: "/logos/slack.svg" },
+    { name: "HubSpot", logo: "/logos/hubspot.svg" },
+  ]
+
   return (
     <>
       <Navbar />
       {/* Globales Grid-Pattern für die gesamte Seite - zeigt Automatisierung und Verbindung */}
       <main className="min-h-screen bg-background relative overflow-x-hidden w-full attio-grid-pattern">
-        {/* Premium Hero with Product Demo (Attio-Style) - Mit StarfieldBackground Animation */}
-        <HeroAttio 
-          videoUrl="/videos/demo.mp4"
-          showVideo={true}
-        />
-        
-        {/* Features Bento Grid - Attio Style - Mit allen Animationen */}
-        <FeaturesBentoGridAttio />
-        
-        {/* Integrations Section - Mit Animationen */}
-        <IntegrationsSection />
-        
-        {/* Video Demo Section - Mit Video und Animationen */}
-        <VideoDemoSection 
-          videoSrc="/videos/demo.mp4"
-          posterSrc="/images/video-poster.svg"
-          title="Sieh IntroKI in Aktion"
-          description="Entdecke, wie IntroKI dein Sales-Team in nur wenigen Minuten transformiert."
-        />
+        {/* Hero Section */}
+        <section ref={heroRef} className="py-24 md:py-32 border-b border-gray-200">
+          <div className="max-w-[1200px] mx-auto px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              {/* Text Content (Left) */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={ENTERPRISE_SPRING}
+              >
+                <h1 className="text-5xl md:text-6xl leading-[1.1] tracking-tight font-medium text-gray-900 mb-6">
+                  Das CRM, das Ihnen sagt, was zu tun ist.
+                </h1>
+                <p className="text-xl text-gray-500 max-w-2xl leading-relaxed mb-8">
+                  Verabschieden Sie sich von passiven Datenfriedhöfen. Intro KI analysiert Ihre Pipeline und liefert proaktive Handlungsempfehlungen, damit Sie Excel endlich abschalten können.
+                </p>
+                <div className="flex flex-col sm:flex-row items-start gap-4">
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center justify-center bg-black text-white hover:bg-gray-800 rounded-md px-6 py-3 text-sm font-medium transition-all duration-attio ease-attio-ease-out hover:scale-[1.02]"
+                  >
+                    Demo buchen
+                  </Link>
+                  <Link
+                    href="/developers"
+                    className="inline-flex items-center justify-center bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300 rounded-md px-6 py-3 text-sm font-medium transition-all duration-attio ease-attio-ease-out"
+                  >
+                    Dokumentation
+                  </Link>
+                </div>
+              </motion.div>
 
-        {/* Deep Dive Sections - 4-Step Journey - Mit allen Animationen */}
-        <ResearchOrchestratorSection />
+              {/* Hero Simulation (Right) */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ ...ENTERPRISE_SPRING, delay: 0.2 }}
+                className="relative"
+              >
+                <HeroSimulation />
+              </motion.div>
+            </div>
+          </div>
+        </section>
 
-        {/* Attio-Style CTA – Mit Animationen */}
-        <CTAAttioStyle />
+        {/* Social Proof */}
+        <section ref={socialProofRef} className="py-12 md:py-16 border-b border-gray-200 bg-gray-50">
+          <div className="max-w-[1200px] mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={socialProofInView ? { opacity: 1 } : { opacity: 0 }}
+              transition={ENTERPRISE_SPRING}
+              className="text-center"
+            >
+              <p className="text-sm text-gray-500 mb-8">
+                Vertraut von modernen Vertriebsteams
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
+                {customerLogos.map((logo, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0 }}
+                    animate={socialProofInView ? { opacity: 0.5 } : { opacity: 0 }}
+                    transition={{ ...ENTERPRISE_SPRING, delay: index * 0.1 }}
+                    className="h-8 md:h-10 w-auto grayscale hover:opacity-70 hover:grayscale-0 transition-all duration-attio"
+                  >
+                    {logo.logo ? (
+                      <Image
+                        src={logo.logo}
+                        alt={logo.name}
+                        width={120}
+                        height={40}
+                        className="h-full w-auto object-contain"
+                      />
+                    ) : (
+                      <div className="h-full w-24 bg-gray-300 rounded" />
+                    )}
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </section>
 
-        {/* Legacy Features Bento Grid - Mit Animationen */}
-        <FeaturesBentoGrid />
-        <SmartTargetingSection />
-        <PipelineManagementSection />
-        <CallCoachingSection />
-        
-        {/* Premium Testimonials - Mit Animationen */}
-        <TestimonialsPremium />
-        
-        {/* Team/Founder Section - Mit Animationen */}
-        <TeamSection />
+        {/* The "Why" Section - Problem/Solution */}
+        <section ref={whyRef} className="py-24 md:py-32 border-b border-gray-200">
+          <div className="max-w-[1200px] mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={whyInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={ENTERPRISE_SPRING}
+              className="text-center max-w-3xl mx-auto mb-16"
+            >
+              <h2 className="text-3xl md:text-4xl tracking-tight font-medium text-gray-900 mb-6">
+                Die Flexibilität von Excel. Die Führung eines Enterprise-Systems.
+              </h2>
+              <p className="text-[16px] leading-[24px] text-gray-600">
+                Warum nutzen Teams Excel? Weil es flexibel ist. Warum hassen Chefs Excel? Weil es unübersichtlich ist. IntroKI vereint beides: Bauen Sie Ihr System so, wie Sie Geld verdienen – ohne die Kontrolle zu verlieren.
+              </p>
+            </motion.div>
 
-        {/* Final CTA - Mit Animationen */}
-        <CTASection />
+            {/* Grid: Problem -> Solution */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Problem Column */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={whyInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                transition={{ ...ENTERPRISE_SPRING, delay: 0.2 }}
+                className="p-8 border border-gray-200 rounded-lg bg-white"
+              >
+                <h3 className="text-[20px] leading-[28px] -tracking-[0.01em] font-medium text-gray-900 mb-4">
+                  Das Problem: "Suchen" statt "Finden"
+                </h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3 text-[16px] leading-[24px] text-gray-600">
+                    <Search className="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" strokeWidth={1.5} />
+                    <span>Mitarbeiter suchen stundenlang in Excel-Tabellen</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-[16px] leading-[24px] text-gray-600">
+                    <Settings className="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" strokeWidth={1.5} />
+                    <span>Chefs verwalten statt zu automatisieren</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-[16px] leading-[24px] text-gray-600">
+                    <span className="w-5 h-5 mt-0.5 flex-shrink-0">→</span>
+                    <span>Passive Datenspeicherung statt aktiver Führung</span>
+                  </li>
+                </ul>
+              </motion.div>
+
+              {/* Solution Column */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={whyInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+                transition={{ ...ENTERPRISE_SPRING, delay: 0.3 }}
+                className="p-8 border border-gray-200 rounded-lg bg-white"
+              >
+                <h3 className="text-[20px] leading-[28px] -tracking-[0.01em] font-medium text-gray-900 mb-4">
+                  Die Lösung: "Finden" und "Automatisieren"
+                </h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3 text-[16px] leading-[24px] text-gray-600">
+                    <CheckCircle2 className="w-5 h-5 text-gray-900 mt-0.5 flex-shrink-0" strokeWidth={1.5} />
+                    <span>IntroKI findet automatisch, was zu tun ist</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-[16px] leading-[24px] text-gray-600">
+                    <CheckCircle2 className="w-5 h-5 text-gray-900 mt-0.5 flex-shrink-0" strokeWidth={1.5} />
+                    <span>Automatisierung ersetzt manuelle Verwaltung</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-[16px] leading-[24px] text-gray-600">
+                    <CheckCircle2 className="w-5 h-5 text-gray-900 mt-0.5 flex-shrink-0" strokeWidth={1.5} />
+                    <span>Proaktive Führung statt passiver Datensammlung</span>
+                  </li>
+                </ul>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Product Hub - Bento Grid */}
+        <section ref={productHubRef} className="py-24 md:py-32 border-b border-gray-200 bg-gray-50">
+          <div className="max-w-[1200px] mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={productHubInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={ENTERPRISE_SPRING}
+              className="mb-12 text-center"
+            >
+              <h2 className="text-3xl md:text-4xl tracking-tight font-medium text-gray-900 mb-4">
+                Die drei Säulen von IntroKI
+              </h2>
+              <p className="text-[16px] leading-[24px] text-gray-600 max-w-2xl mx-auto">
+                Entdecken Sie, wie IntroKI die Flexibilität von Excel mit der Struktur eines Enterprise-Systems vereint.
+              </p>
+            </motion.div>
+
+            {/* Bento Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* Card 1: Datenmodell (Large - spans 2 columns on desktop) */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={productHubInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ ...ENTERPRISE_SPRING, delay: 0.1 }}
+                className="md:col-span-2"
+              >
+                <Link
+                  href="/product/data-model"
+                  className="block p-8 md:p-12 border border-gray-200 rounded-lg bg-white hover:border-gray-300 transition-colors duration-attio h-full group"
+                >
+                  <div className="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center mb-6">
+                    <Database className="w-6 h-6 text-gray-900" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="text-[24px] leading-[32px] -tracking-[0.02em] font-medium text-gray-900 mb-3">
+                    Datenmodell
+                  </h3>
+                  <p className="text-[16px] leading-[24px] text-gray-600 mb-6">
+                    Bauen Sie Ihr System so, wie Sie Geld verdienen.
+                  </p>
+                  <div className="flex items-center text-[14px] font-medium text-gray-900 group-hover:text-gray-700 transition-colors">
+                    Mehr erfahren
+                    <ArrowRight className="w-4 h-4 ml-2" strokeWidth={1.5} />
+                  </div>
+                </Link>
+              </motion.div>
+
+              {/* Card 2: Workflows */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={productHubInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ ...ENTERPRISE_SPRING, delay: 0.2 }}
+              >
+                <Link
+                  href="/product/workflows"
+                  className="block p-8 border border-gray-200 rounded-lg bg-white hover:border-gray-300 transition-colors duration-attio h-full group"
+                >
+                  <div className="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center mb-6">
+                    <GitBranch className="w-6 h-6 text-gray-900" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="text-[20px] leading-[28px] -tracking-[0.01em] font-medium text-gray-900 mb-3">
+                    Workflows
+                  </h3>
+                  <p className="text-[16px] leading-[24px] text-gray-600 mb-6">
+                    Automatisierung ohne Code.
+                  </p>
+                  <div className="flex items-center text-[14px] font-medium text-gray-900 group-hover:text-gray-700 transition-colors">
+                    Mehr erfahren
+                    <ArrowRight className="w-4 h-4 ml-2" strokeWidth={1.5} />
+                  </div>
+                </Link>
+              </motion.div>
+
+              {/* Card 3: Security */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={productHubInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ ...ENTERPRISE_SPRING, delay: 0.3 }}
+              >
+                <Link
+                  href="/security"
+                  className="block p-8 border border-gray-200 rounded-lg bg-white hover:border-gray-300 transition-colors duration-attio h-full group"
+                >
+                  <div className="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center mb-6">
+                    <Shield className="w-6 h-6 text-gray-900" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="text-[20px] leading-[28px] -tracking-[0.01em] font-medium text-gray-900 mb-3">
+                    Security
+                  </h3>
+                  <p className="text-[16px] leading-[24px] text-gray-600 mb-6">
+                    SOC2 & DSGVO bereit.
+                  </p>
+                  <div className="flex items-center text-[14px] font-medium text-gray-900 group-hover:text-gray-700 transition-colors">
+                    Mehr erfahren
+                    <ArrowRight className="w-4 h-4 ml-2" strokeWidth={1.5} />
+                  </div>
+                </Link>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Final CTA */}
+        <section ref={ctaRef} className="py-24 md:py-32">
+          <div className="max-w-[1200px] mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={ctaInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={ENTERPRISE_SPRING}
+              className="text-center"
+            >
+              <h2 className="text-3xl md:text-4xl tracking-tight font-medium text-gray-900 mb-4">
+                Bereit für den digitalen Wandel?
+              </h2>
+              <p className="text-[16px] leading-[24px] text-gray-600 mb-8 max-w-2xl mx-auto">
+                Ersetzen Sie Ihre Schatten-Tabellen durch ein System, das Ihr Team liebt.
+              </p>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center bg-black text-white hover:bg-gray-800 rounded-md px-8 py-3.5 text-sm font-medium transition-all duration-attio ease-attio-ease-out hover:scale-[1.02]"
+              >
+                Demo buchen
+              </Link>
+            </motion.div>
+          </div>
+        </section>
       </main>
       <Footer />
       <CookieConsent />

@@ -369,7 +369,7 @@ function NodeCircle({
   size = "md",
   label,
 }: {
-  Icon: React.ComponentType<{ className?: string; strokeWidth?: number }>
+  Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
   size?: "sm" | "md" | "lg"
   label?: string
 }) {

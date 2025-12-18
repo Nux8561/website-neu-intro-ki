@@ -191,7 +191,7 @@ function NodeCircle({
   label,
   isPulsing = false,
 }: {
-  Icon: LucideIcon
+  Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
   size?: "sm" | "md" | "lg"
   label?: string
   isPulsing?: boolean

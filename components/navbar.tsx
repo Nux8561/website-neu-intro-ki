@@ -11,13 +11,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { IntroKILogo } from "@/components/ui/introki-logo"
-
-// Attio Spring Physics
-const attioTransition = {
-  type: "spring" as const,
-  stiffness: 400,
-  damping: 17,
-}
+import { ENTERPRISE_SPRING } from "@/lib/animations"
+import { cn } from "@/lib/utils"
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = React.useState(false)
@@ -48,16 +43,16 @@ export function Navbar() {
 
   return (
     <motion.nav
-      className="fixed top-0 left-0 right-0 z-[100] h-16 bg-white border-b border-gray-200"
-      initial={{ y: 0 }}
+      className={cn(
+        "sticky top-0 left-0 right-0 z-50",
+        "bg-white/60 backdrop-blur-xl",
+        "border-b border-white/50",
+        "shadow-sm"
+      )}
       animate={{
-        backgroundColor: isScrolled ? "rgba(255, 255, 255, 0.8)" : "rgba(255, 255, 255, 1)",
-        backdropFilter: isScrolled ? "blur(12px) saturate(180%)" : "none",
+        height: isScrolled ? 56 : 64, // h-14 (56px) when scrolled, h-16 (64px) when not
       }}
-      transition={attioTransition}
-      style={{
-        WebkitBackdropFilter: isScrolled ? "blur(12px) saturate(180%)" : "none",
-      }}
+      transition={ENTERPRISE_SPRING}
     >
       <div className="container mx-auto px-4 h-full">
         <div className="flex h-full items-center justify-between">
@@ -73,14 +68,14 @@ export function Navbar() {
                 return (
                   <DropdownMenu key={item.label}>
                     <DropdownMenuTrigger asChild>
-                      <button className="flex items-center gap-1 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                      <button className="flex items-center gap-1 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-black/5 rounded-full px-3 py-1 transition-all">
                         <span>{item.label}</span>
                         <ChevronDown className="w-4 h-4 text-gray-500" strokeWidth={1.5} />
                       </button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent 
                       align="start" 
-                      className="w-48 p-2 mt-2 bg-white border border-gray-200 shadow-lg rounded-lg"
+                      className="w-48 p-2 mt-2 bg-white/80 backdrop-blur-xl border border-white/50 shadow-lg rounded-lg"
                       sideOffset={8}
                     >
                       {item.dropdownItems.map((dropdownItem) => (
@@ -106,7 +101,7 @@ export function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+                  className="text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-black/5 rounded-full px-3 py-1 transition-all"
                 >
                   {item.label}
                 </Link>
@@ -124,7 +119,7 @@ export function Navbar() {
             </Link>
             <Link
               href="/demo"
-              className="inline-flex items-center justify-center bg-black text-white hover:bg-gray-800 rounded-md px-4 py-2 text-sm font-medium transition-all duration-attio ease-attio-ease-out hover:scale-[1.02]"
+              className="inline-flex items-center justify-center bg-black text-white hover:bg-gray-800 rounded-md px-4 py-2 text-sm font-medium transition-all ring-1 ring-white/20 hover:scale-[1.02]"
             >
               Book a demo
             </Link>
@@ -149,11 +144,11 @@ export function Navbar() {
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
-              className="md:hidden border-t border-gray-200 bg-white"
+              className="md:hidden border-t border-white/50 bg-white/60 backdrop-blur-xl"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              transition={attioTransition}
+              transition={ENTERPRISE_SPRING}
             >
               <div className="flex flex-col py-4 gap-4">
                 {navItems.map((item) => (
@@ -191,7 +186,7 @@ export function Navbar() {
                   </Link>
                   <Link
                     href="/demo"
-                    className="inline-flex items-center justify-center bg-black text-white hover:bg-gray-800 rounded-md px-4 py-2.5 text-sm font-medium transition-all"
+                    className="inline-flex items-center justify-center bg-black text-white hover:bg-gray-800 rounded-md px-4 py-2.5 text-sm font-medium transition-all ring-1 ring-white/20"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Book a demo

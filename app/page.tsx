@@ -9,14 +9,18 @@ import { Footer } from "@/components/sections/footer"
 import { CookieConsent } from "@/components/ui/cookie-consent"
 import { HeroSimulation } from "@/components/hero-simulation"
 import { RichFeatureCard } from "@/components/feature-card-rich"
+import {
+  ExcelChaosVisualization,
+  SearchVisualization,
+  AutomationVisualization,
+  DashboardPreviewVisualization,
+} from "@/components/ui/why-section-visualizations"
 import { 
   ArrowRight, 
   Shield, 
   GitBranch, 
   Database, 
-  CheckCircle2,
-  Search,
-  Settings
+  CheckCircle2
 } from "lucide-react"
 import { ENTERPRISE_SPRING } from "@/lib/animations"
 
@@ -158,23 +162,29 @@ export default function Home() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={whyInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                 transition={{ ...ENTERPRISE_SPRING, delay: 0.2 }}
-                className="p-8 border border-gray-200 rounded-lg bg-white"
+                className="p-8 rounded-lg bg-white/50 backdrop-blur-xl border border-white/60 shadow-attio-diffuse flex flex-col"
               >
+                {/* Fake UI Visualization - Top */}
+                <div className="mb-6">
+                  <ExcelChaosVisualization />
+                </div>
+                <div className="mb-4">
+                  <SearchVisualization />
+                </div>
+
+                {/* Text Content - Bottom */}
                 <h3 className="text-[20px] leading-[28px] -tracking-[0.01em] font-medium text-gray-900 mb-4">
                   Das Problem: &ldquo;Suchen&rdquo; statt &ldquo;Finden&rdquo;
                 </h3>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3 text-[16px] leading-[24px] text-gray-600">
-                    <Search className="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" strokeWidth={1.5} />
-                    <span>Mitarbeiter suchen stundenlang in Excel-Tabellen</span>
+                <ul className="space-y-2.5">
+                  <li className="text-[16px] leading-[24px] text-gray-600">
+                    Mitarbeiter suchen stundenlang in Excel-Tabellen
                   </li>
-                  <li className="flex items-start gap-3 text-[16px] leading-[24px] text-gray-600">
-                    <Settings className="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" strokeWidth={1.5} />
-                    <span>Chefs verwalten statt zu automatisieren</span>
+                  <li className="text-[16px] leading-[24px] text-gray-600">
+                    Chefs verwalten statt zu automatisieren
                   </li>
-                  <li className="flex items-start gap-3 text-[16px] leading-[24px] text-gray-600">
-                    <span className="w-5 h-5 mt-0.5 flex-shrink-0">→</span>
-                    <span>Passive Datenspeicherung statt aktiver Führung</span>
+                  <li className="text-[16px] leading-[24px] text-gray-600">
+                    Passive Datenspeicherung statt aktiver Führung
                   </li>
                 </ul>
               </motion.div>
@@ -184,23 +194,29 @@ export default function Home() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={whyInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
                 transition={{ ...ENTERPRISE_SPRING, delay: 0.3 }}
-                className="p-8 border border-gray-200 rounded-lg bg-white"
+                className="p-8 rounded-lg bg-white/50 backdrop-blur-xl border border-white/60 shadow-attio-diffuse flex flex-col"
               >
+                {/* Fake UI Visualization - Top */}
+                <div className="mb-6">
+                  <DashboardPreviewVisualization />
+                </div>
+                <div className="mb-4">
+                  <AutomationVisualization />
+                </div>
+
+                {/* Text Content - Bottom */}
                 <h3 className="text-[20px] leading-[28px] -tracking-[0.01em] font-medium text-gray-900 mb-4">
                   Die Lösung: &ldquo;Finden&rdquo; und &ldquo;Automatisieren&rdquo;
                 </h3>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3 text-[16px] leading-[24px] text-gray-600">
-                    <CheckCircle2 className="w-5 h-5 text-gray-900 mt-0.5 flex-shrink-0" strokeWidth={1.5} />
-                    <span>IntroKI findet automatisch, was zu tun ist</span>
+                <ul className="space-y-2.5">
+                  <li className="text-[16px] leading-[24px] text-gray-600">
+                    IntroKI findet automatisch, was zu tun ist
                   </li>
-                  <li className="flex items-start gap-3 text-[16px] leading-[24px] text-gray-600">
-                    <CheckCircle2 className="w-5 h-5 text-gray-900 mt-0.5 flex-shrink-0" strokeWidth={1.5} />
-                    <span>Automatisierung ersetzt manuelle Verwaltung</span>
+                  <li className="text-[16px] leading-[24px] text-gray-600">
+                    Automatisierung ersetzt manuelle Verwaltung
                   </li>
-                  <li className="flex items-start gap-3 text-[16px] leading-[24px] text-gray-600">
-                    <CheckCircle2 className="w-5 h-5 text-gray-900 mt-0.5 flex-shrink-0" strokeWidth={1.5} />
-                    <span>Proaktive Führung statt passiver Datensammlung</span>
+                  <li className="text-[16px] leading-[24px] text-gray-600">
+                    Proaktive Führung statt passiver Datensammlung
                   </li>
                 </ul>
               </motion.div>
@@ -218,7 +234,7 @@ export default function Home() {
               className="mb-12 text-center"
             >
               <h2 className="text-3xl md:text-4xl tracking-tight font-medium text-gray-900 mb-4">
-                Die drei Säulen von IntroKI
+                Die Säulen von IntroKI
               </h2>
               <p className="text-[16px] leading-[24px] text-gray-600 max-w-2xl mx-auto">
                 Entdecken Sie, wie IntroKI die Flexibilität von Excel mit der Struktur eines Enterprise-Systems vereint.
@@ -226,7 +242,7 @@ export default function Home() {
             </motion.div>
 
             {/* Bento Grid - Rich Feature Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4">
               <RichFeatureCard
                 title="Datenmodell"
                 description="Bauen Sie Ihr System so, wie Sie Geld verdienen."
@@ -252,6 +268,42 @@ export default function Home() {
                 size="small"
                 variant="security"
                 index={2}
+                isInView={productHubInView}
+              />
+              <RichFeatureCard
+                title="API Sync"
+                description="Echtzeit-Synchronisation mit Ihren Tools."
+                href="/product/api"
+                size="small"
+                variant="api-sync"
+                index={3}
+                isInView={productHubInView}
+              />
+              <RichFeatureCard
+                title="Audit Logs"
+                description="Vollständige Transparenz über alle Aktivitäten."
+                href="/product/audit"
+                size="small"
+                variant="audit-logs"
+                index={4}
+                isInView={productHubInView}
+              />
+              <RichFeatureCard
+                title="Permissions"
+                description="Granulare Berechtigungen für jedes Team."
+                href="/product/permissions"
+                size="small"
+                variant="permissions"
+                index={5}
+                isInView={productHubInView}
+              />
+              <RichFeatureCard
+                title="Integrations"
+                description="Verbinden Sie IntroKI mit Ihrer Tech-Stack."
+                href="/integrations"
+                size="small"
+                variant="integrations"
+                index={6}
                 isInView={productHubInView}
               />
             </div>

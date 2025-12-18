@@ -166,6 +166,15 @@ section.bg-background {
     pointer-events: none;
     mix-blend-mode: multiply;
   }
+  
+  /* Attio-Style Diffuse Shadows (Enterprise Depth) */
+  .shadow-attio-diffuse {
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .shadow-attio-diffuse-hover {
+    box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.08);
+  }
 }
 
 section[class*="bg-\[#FAFAFB\]"],

@@ -3,50 +3,60 @@
 import { RefObject, useEffect, useId, useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { createOrthogonalPath, ENTERPRISE_LINE_STYLE, DATA_FLOW_LINE_STYLE } from "@/lib/orthogonal-connector";
+import { ENTERPRISE_SPRING } from "@/lib/animations";
 
 export interface AnimatedBeamProps {
   className?: string;
   containerRef: RefObject<HTMLElement>;
   fromRef: RefObject<HTMLElement>;
   toRef: RefObject<HTMLElement>;
-  curvature?: number;
   reverse?: boolean;
   pathColor?: string;
   pathWidth?: number;
   pathOpacity?: number;
-  gradientStartColor?: string;
-  gradientStopColor?: string;
+  beamColor?: string;
+  beamWidth?: number;
   delay?: number;
   duration?: number;
   startXOffset?: number;
   startYOffset?: number;
   endXOffset?: number;
   endYOffset?: number;
+  cornerRadius?: number;
 }
 
+/**
+ * AnimatedBeam - Enterprise "Structured Magic" Version
+ * Uses orthogonal paths (horizontal/vertical only) with rounded corners
+ * Track: Gray-200, 1px (static background line)
+ * Beam: Blue accent, 1.5px (animated data flow)
+ */
 export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
   className,
   containerRef,
   fromRef,
   toRef,
-  curvature = 0,
   reverse = false,
-  duration = Math.random() * 3 + 4,
+  pathColor = ENTERPRISE_LINE_STYLE.stroke, // #E5E7EB (Gray-200)
+  pathWidth = ENTERPRISE_LINE_STYLE.strokeWidth, // 1px
+  pathOpacity = 1,
+  beamColor = DATA_FLOW_LINE_STYLE.stroke, // #2563EB (Blue)
+  beamWidth = 1.5, // Slightly thicker to pop
+  duration = 3,
   delay = 0,
-  pathColor = "gray",
-  pathWidth = 2,
-  pathOpacity = 0.2,
-  gradientStartColor = "#ffaa40",
-  gradientStopColor = "#9c40ff",
   startXOffset = 0,
   startYOffset = 0,
   endXOffset = 0,
   endYOffset = 0,
+  cornerRadius = 8,
 }) => {
   const id = useId();
   const [pathD, setPathD] = useState("");
   const [svgDimensions, setSvgDimensions] = useState({ width: 0, height: 0 });
+  const [pathLength, setPathLength] = useState(0);
 
+  // Gradient coordinates for animated beam
   const gradientCoordinates = reverse
     ? {
         x1: ["90%", "-10%"],
@@ -71,6 +81,7 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
         const svgHeight = containerRect.height;
         setSvgDimensions({ width: svgWidth, height: svgHeight });
 
+        // Calculate start and end points with offsets
         const startX =
           rectA.left - containerRect.left + rectA.width / 2 + startXOffset;
         const startY =
@@ -80,14 +91,21 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
         const endY =
           rectB.top - containerRect.top + rectB.height / 2 + endYOffset;
 
-        const controlY = startY - curvature;
-        const d = `M ${startX},${startY} Q ${
-          (startX + endX) / 2
-        },${controlY} ${endX},${endY}`;
-        setPathD(d);
+        // Create orthogonal path (replaces bezier curve)
+        const { path, totalLength } = createOrthogonalPath(
+          startX,
+          startY,
+          endX,
+          endY,
+          cornerRadius
+        );
+        
+        setPathD(path);
+        setPathLength(totalLength);
       } else {
         // Clear path if refs are not ready
         setPathD("");
+        setPathLength(0);
       }
     };
 
@@ -124,12 +142,16 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
     containerRef,
     fromRef,
     toRef,
-    curvature,
     startXOffset,
     startYOffset,
     endXOffset,
     endYOffset,
+    cornerRadius,
   ]);
+
+  if (!pathD || svgDimensions.width === 0 || svgDimensions.height === 0) {
+    return null;
+  }
 
   return (
     <svg
@@ -138,26 +160,35 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
       height={svgDimensions.height}
       xmlns="http://www.w3.org/2000/svg"
       className={cn(
-        "pointer-events-none absolute left-0 top-0 transform-gpu stroke-2 z-50",
+        "pointer-events-none absolute left-0 top-0 transform-gpu z-50",
         className,
       )}
       viewBox={`0 0 ${svgDimensions.width} ${svgDimensions.height}`}
     >
+      {/* Track: Static background line (Gray-200, 1px) */}
       <path
         d={pathD}
         stroke={pathColor}
         strokeWidth={pathWidth}
         strokeOpacity={pathOpacity}
+        fill="none"
         strokeLinecap="round"
+        strokeLinejoin="round"
       />
+      
+      {/* Beam: Animated data flow line (Blue accent, 1.5px) */}
       <path
         d={pathD}
-        strokeWidth={pathWidth}
+        strokeWidth={beamWidth}
         stroke={`url(#${id})`}
         strokeOpacity="1"
+        fill="none"
         strokeLinecap="round"
+        strokeLinejoin="round"
       />
+      
       <defs>
+        {/* Animated gradient for the beam */}
         <motion.linearGradient
           className="transform-gpu"
           id={id}
@@ -177,22 +208,21 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
           transition={{
             delay,
             duration,
-            ease: [0.16, 1, 0.3, 1],
+            ease: "linear", // Smooth, linear flow for data movement
             repeat: Infinity,
             repeatDelay: 0,
           }}
         >
-          <stop stopColor={gradientStartColor} stopOpacity="0"></stop>
-          <stop stopColor={gradientStartColor}></stop>
-          <stop offset="32.5%" stopColor={gradientStopColor}></stop>
+          <stop stopColor={beamColor} stopOpacity="0" />
+          <stop stopColor={beamColor} stopOpacity="1" />
+          <stop offset="50%" stopColor={beamColor} stopOpacity="1" />
           <stop
             offset="100%"
-            stopColor={gradientStopColor}
+            stopColor={beamColor}
             stopOpacity="0"
-          ></stop>
+          />
         </motion.linearGradient>
       </defs>
     </svg>
   );
 };
-

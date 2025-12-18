@@ -59,7 +59,7 @@ export default function Home() {
                 animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={ENTERPRISE_SPRING}
               >
-                <h1 className="text-5xl md:text-6xl leading-[1.1] tracking-tight font-medium text-gray-900 mb-6">
+                <h1 className="text-5xl md:text-6xl leading-[1.1] tracking-tight font-medium bg-clip-text text-transparent bg-gradient-to-b from-gray-900 to-gray-600 mb-6">
                   Das CRM, das Ihnen sagt, was zu tun ist.
                 </h1>
                 <p className="text-xl text-gray-500 max-w-2xl leading-relaxed mb-8">

@@ -160,7 +160,7 @@ export default function Home() {
                 className="p-8 border border-gray-200 rounded-lg bg-white"
               >
                 <h3 className="text-[20px] leading-[28px] -tracking-[0.01em] font-medium text-gray-900 mb-4">
-                  Das Problem: "Suchen" statt "Finden"
+                  Das Problem: &ldquo;Suchen&rdquo; statt &ldquo;Finden&rdquo;
                 </h3>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3 text-[16px] leading-[24px] text-gray-600">
@@ -186,7 +186,7 @@ export default function Home() {
                 className="p-8 border border-gray-200 rounded-lg bg-white"
               >
                 <h3 className="text-[20px] leading-[28px] -tracking-[0.01em] font-medium text-gray-900 mb-4">
-                  Die Lösung: "Finden" und "Automatisieren"
+                  Die Lösung: &ldquo;Finden&rdquo; und &ldquo;Automatisieren&rdquo;
                 </h3>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3 text-[16px] leading-[24px] text-gray-600">

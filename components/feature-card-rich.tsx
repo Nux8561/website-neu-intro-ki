@@ -99,7 +99,7 @@ function DataModelVisualization() {
     }, 2000)
 
     return () => clearInterval(interval)
-  }, [])
+  }, [fields.length])
 
   return (
     <div className="w-full max-w-md">
@@ -145,8 +145,11 @@ function WorkflowVisualization() {
     return () => clearInterval(interval)
   }, [])
 
-  const path = createSimpleOrthogonalPath(20, 60, 180, 60)
-  const pathLength = path.totalLength
+  const pathData = React.useMemo(
+    () => createSimpleOrthogonalPath(20, 60, 180, 60),
+    []
+  )
+  const pathLength = pathData.totalLength
 
   return (
     <div className="relative w-full h-[120px] flex items-center justify-center">

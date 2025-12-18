@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { fontFamily } from "tailwindcss/defaultTheme";
 
 const config: Config = {
   darkMode: ["class"],
@@ -7,8 +8,21 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  prefix: "",
   theme: {
+    container: {
+      center: true,
+      padding: "1rem", // 16px padding as per PDF
+      screens: {
+        "2xl": "1400px",
+      },
+    },
     extend: {
+      // PDF Grid System: Base unit is 4px (Tailwind default), but ensuring specific mappings
+      spacing: {
+        '3': '12px', // Gutter
+        '4': '16px', // Margins
+      },
       colors: {
         // CSS Variables (for shadcn/ui compatibility)
         background: "hsl(var(--background))",
@@ -91,17 +105,40 @@ const config: Config = {
         },
       },
       fontFamily: {
+        sans: ["var(--font-sans)", ...fontFamily.sans], // Ensure you have Inter or Plus Jakarta Sans loaded
         jakarta: ["var(--font-jakarta)", "sans-serif"],
         inter: ["var(--font-inter)", "sans-serif"],
         "inter-display": ["var(--font-inter-display)", "sans-serif"],
         tiempos: ["Georgia", "serif"], // Fallback für Tiempos Text
         mono: ["var(--font-mono)", "monospace"],
       },
+      // Strict Typography Mapping from "Mastering Mobile UI" PDF
       fontSize: {
-        // Attio-inspirierte Typo-Scale
+        // Headline 32pt -> 32px font / 40px line-height / -2% tracking
+        'h1': ['32px', { lineHeight: '40px', letterSpacing: '-0.02em', fontWeight: '500' }],
+        
+        // Headline 24pt -> 24px font / 32px line-height / -2% tracking
+        'h2': ['24px', { lineHeight: '32px', letterSpacing: '-0.02em', fontWeight: '500' }],
+        
+        // Headline 20pt -> 20px font / 28px line-height / -1% tracking
+        'h3': ['20px', { lineHeight: '28px', letterSpacing: '-0.01em', fontWeight: '500' }],
+        
+        // Headline 18pt -> 18px font / 26px line-height / -1% tracking
+        'h4': ['18px', { lineHeight: '26px', letterSpacing: '-0.01em', fontWeight: '500' }],
+
+        // Body 16pt -> 16px font / 24px line-height / 0% tracking
+        'body': ['16px', { lineHeight: '24px', letterSpacing: '0', fontWeight: '400' }],
+        
+        // Body 14pt -> 14px font / 20px line-height / 0% tracking
+        'body-sm': ['14px', { lineHeight: '20px', letterSpacing: '0', fontWeight: '400' }],
+
+        // Caption 12pt -> 12px font / 16px line-height / 1% tracking
+        'caption': ['12px', { lineHeight: '16px', letterSpacing: '0.01em', fontWeight: '500' }],
+
+        // Legacy sizes (kept for compatibility)
         "xs": ["0.75rem", { lineHeight: "1.2" }],
-        "sm": ["0.8125rem", { lineHeight: "1.4" }], // UI-Labels
-        "base": ["0.9375rem", { lineHeight: "1.5" }], // Body (leicht kleiner, hohe Dichte)
+        "sm": ["0.8125rem", { lineHeight: "1.4" }],
+        "base": ["0.9375rem", { lineHeight: "1.5" }],
         "lg": ["1.0625rem", { lineHeight: "1.5" }],
         "xl": ["1.25rem", { lineHeight: "1.4" }],
         "2xl": ["1.5rem", { lineHeight: "1.3" }],
@@ -111,6 +148,9 @@ const config: Config = {
         "6xl": ["3.75rem", { lineHeight: "1.02" }],
       },
       borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
         squircle: "24px",
         "2xl": "16px",
         "3xl": "24px",
@@ -147,6 +187,8 @@ const config: Config = {
         'attio-ease-in': 'ease-in', // Häufig (92x)
       },
       animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
         // Attio Animationen (basierend auf Analyse)
         'attio-fade-in': 'fadeIn 300ms ease-out', // duration-300 + ease-out (häufigste Kombination)
         'attio-fade-out': 'fadeOut 300ms ease-out',
@@ -162,6 +204,14 @@ const config: Config = {
         'line-shadow': 'line-shadow 15s linear infinite',
       },
       keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
         // Attio Keyframes (basierend auf Analyse)
         fadeIn: {
           '0%': { opacity: '0' },

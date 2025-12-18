@@ -50,7 +50,7 @@ export default function RootLayout({
   return (
     <html lang="de">
       <body
-        className={`${jakarta.variable} ${inter.variable} ${interDisplay.variable} ${mono.variable} antialiased attio-grid-pattern min-h-screen`}
+        className={`${jakarta.variable} ${inter.variable} ${interDisplay.variable} ${mono.variable} antialiased attio-grid-pattern bg-noise min-h-screen`}
       >
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>

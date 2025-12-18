@@ -8,6 +8,7 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/sections/footer"
 import { CookieConsent } from "@/components/ui/cookie-consent"
 import { HeroSimulation } from "@/components/hero-simulation"
+import { RichFeatureCard } from "@/components/feature-card-rich"
 import { 
   ArrowRight, 
   Shield, 
@@ -224,86 +225,35 @@ export default function Home() {
               </p>
             </motion.div>
 
-            {/* Bento Grid */}
+            {/* Bento Grid - Rich Feature Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Card 1: Datenmodell (Large - spans 2 columns on desktop) */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={productHubInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ ...ENTERPRISE_SPRING, delay: 0.1 }}
-                className="md:col-span-2"
-              >
-                <Link
-                  href="/product/data-model"
-                  className="block p-8 md:p-12 border border-gray-200 rounded-lg bg-white hover:border-gray-300 transition-colors duration-attio h-full group"
-                >
-                  <div className="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center mb-6">
-                    <Database className="w-6 h-6 text-gray-900" strokeWidth={1.5} />
-                  </div>
-                  <h3 className="text-[24px] leading-[32px] -tracking-[0.02em] font-medium text-gray-900 mb-3">
-                    Datenmodell
-                  </h3>
-                  <p className="text-[16px] leading-[24px] text-gray-600 mb-6">
-                    Bauen Sie Ihr System so, wie Sie Geld verdienen.
-                  </p>
-                  <div className="flex items-center text-[14px] font-medium text-gray-900 group-hover:text-gray-700 transition-colors">
-                    Mehr erfahren
-                    <ArrowRight className="w-4 h-4 ml-2" strokeWidth={1.5} />
-                  </div>
-                </Link>
-              </motion.div>
-
-              {/* Card 2: Workflows */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={productHubInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ ...ENTERPRISE_SPRING, delay: 0.2 }}
-              >
-                <Link
-                  href="/product/workflows"
-                  className="block p-8 border border-gray-200 rounded-lg bg-white hover:border-gray-300 transition-colors duration-attio h-full group"
-                >
-                  <div className="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center mb-6">
-                    <GitBranch className="w-6 h-6 text-gray-900" strokeWidth={1.5} />
-                  </div>
-                  <h3 className="text-[20px] leading-[28px] -tracking-[0.01em] font-medium text-gray-900 mb-3">
-                    Workflows
-                  </h3>
-                  <p className="text-[16px] leading-[24px] text-gray-600 mb-6">
-                    Automatisierung ohne Code.
-                  </p>
-                  <div className="flex items-center text-[14px] font-medium text-gray-900 group-hover:text-gray-700 transition-colors">
-                    Mehr erfahren
-                    <ArrowRight className="w-4 h-4 ml-2" strokeWidth={1.5} />
-                  </div>
-                </Link>
-              </motion.div>
-
-              {/* Card 3: Security */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={productHubInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ ...ENTERPRISE_SPRING, delay: 0.3 }}
-              >
-                <Link
-                  href="/security"
-                  className="block p-8 border border-gray-200 rounded-lg bg-white hover:border-gray-300 transition-colors duration-attio h-full group"
-                >
-                  <div className="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center mb-6">
-                    <Shield className="w-6 h-6 text-gray-900" strokeWidth={1.5} />
-                  </div>
-                  <h3 className="text-[20px] leading-[28px] -tracking-[0.01em] font-medium text-gray-900 mb-3">
-                    Security
-                  </h3>
-                  <p className="text-[16px] leading-[24px] text-gray-600 mb-6">
-                    SOC2 & DSGVO bereit.
-                  </p>
-                  <div className="flex items-center text-[14px] font-medium text-gray-900 group-hover:text-gray-700 transition-colors">
-                    Mehr erfahren
-                    <ArrowRight className="w-4 h-4 ml-2" strokeWidth={1.5} />
-                  </div>
-                </Link>
-              </motion.div>
+              <RichFeatureCard
+                title="Datenmodell"
+                description="Bauen Sie Ihr System so, wie Sie Geld verdienen."
+                href="/product/data-model"
+                size="large"
+                variant="data-model"
+                index={0}
+                isInView={productHubInView}
+              />
+              <RichFeatureCard
+                title="Workflows"
+                description="Automatisierung ohne Code."
+                href="/product/workflows"
+                size="small"
+                variant="workflows"
+                index={1}
+                isInView={productHubInView}
+              />
+              <RichFeatureCard
+                title="Security"
+                description="SOC2 & DSGVO bereit."
+                href="/security"
+                size="small"
+                variant="security"
+                index={2}
+                isInView={productHubInView}
+              />
             </div>
           </div>
         </section>

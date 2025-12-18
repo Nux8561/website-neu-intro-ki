@@ -2,92 +2,91 @@
 
 import * as React from "react"
 import { FeaturePageTemplate, FeatureItem, BentoGridItem } from "@/components/templates/feature-page-template"
-import { Workflow, GitBranch, Zap, Bell, Mail, Database } from "lucide-react"
+import { Workflow, GitBranch, Zap, Bell, Mail, Database, MessageSquare } from "lucide-react"
 
 export default function WorkflowsPage() {
-  // Zig-Zag Features
+  // Zig-Zag Features - Excel Replacement + Kognitive Entlastung
   const features: FeatureItem[] = [
     {
-      kicker: "VISUAL BUILDER",
-      title: "Visual builder",
-      description: "Design complex workflows with an intuitive drag-and-drop interface. No code required. Connect triggers, actions, and conditions visually. See your automation logic at a glance and iterate quickly.",
+      kicker: "KEIN BRAINSTORM",
+      title: "Automatisierung, die sich natürlich anfühlt—nicht komplex",
+      description: "Wenn das Erstellen von Workflows sich schwerer anfühlt als Excel zu aktualisieren, werden Teams widerstehen. Deshalb haben wir es so einfach gemacht: 'Wenn dies passiert, mache das.' Visuell, intuitiv und sofort nützlich—sogar für nicht-technische Teams.",
       items: [
-        "Drag-and-drop workflow canvas",
-        "Pre-built templates for common automations",
-        "Real-time workflow validation and testing",
-        "Version history and rollback capabilities",
+        "Drag-and-Drop-Interface—keine technischen Kenntnisse nötig",
+        "Starte mit Vorlagen, die gängige Excel-Workflows abbilden",
+        "Ein-Klick-Automatisierung für repetitive Aufgaben",
+        "Sofortiger Mehrwert, keine lange Einrichtung nötig",
       ],
       image: "/images/workflows-visual-builder.png",
       imagePosition: "left",
     },
     {
-      kicker: "LOGIC",
-      title: "Conditional logic",
-      description: "Build intelligent workflows that adapt to your data. Use conditional branches, loops, and filters to handle complex business rules. Route records based on criteria, update fields conditionally, and create dynamic paths through your automation.",
+      kicker: "LOGIK",
+      title: "Konditionale Logik für intelligente Automatisierung",
+      description: "Baue intelligente Workflows, die sich an deine Daten anpassen. Nutze konditionale Verzweigungen, Schleifen und Filter, um komplexe Geschäftsregeln zu handhaben. Leite Datensätze basierend auf Kriterien weiter, aktualisiere Felder bedingt und erstelle dynamische Pfade durch deine Automatisierung.",
       items: [
-        "If/else branching and multi-condition logic",
-        "Filter and transform data on the fly",
-        "Loop through collections and batch operations",
-        "Error handling and retry mechanisms",
+        "If/Else-Verzweigungen und Multi-Bedingungs-Logik",
+        "Daten filtern und transformieren im laufenden Betrieb",
+        "Schleifen durch Sammlungen und Batch-Operationen",
+        "Fehlerbehandlung und Wiederholungsmechanismen",
       ],
       image: "/images/workflows-conditional-logic.png",
       imagePosition: "right",
     },
     {
-      kicker: "TRIGGERS",
-      title: "Instant triggers",
-      description: "Workflows run automatically when data changes. Trigger on record creation, field updates, status changes, or external webhooks. Keep your CRM in sync and your team informed—instantly and reliably.",
+      kicker: "AUTOMATISCH",
+      title: "Sofortige Trigger—keine manuellen Aktionen mehr",
+      description: "Workflows laufen automatisch, wenn sich Daten ändern. Triggere bei Datensatzerstellung, Feldaktualisierungen, Statusänderungen oder externen Webhooks. Halte dein CRM synchronisiert und dein Team informiert—sofort und zuverlässig.",
       items: [
-        "Event-based triggers (create, update, delete)",
-        "Field-level change detection",
-        "Webhook triggers for external integrations",
-        "Scheduled and recurring workflows",
+        "Ereignis-basierte Trigger (Erstellen, Aktualisieren, Löschen)",
+        "Feldebenen-Änderungserkennung",
+        "Webhook-Trigger für externe Integrationen",
+        "Geplante und wiederkehrende Workflows",
       ],
       image: "/images/workflows-triggers.png",
       imagePosition: "left",
     },
   ]
 
-  // Bento Grid Items
+  // Bento Grid Items - Fokus auf Einfachheit und Proaktive Führung
   const bentoGridItems: BentoGridItem[] = [
     {
+      icon: MessageSquare,
+      title: "Chat-ähnliche Einfachheit",
+      description: "Interagiere mit IntroKI wie mit WhatsApp. Einfach, schnell, intuitiv. Kein Training nötig—dein Team wird es am ersten Tag verstehen.",
+    },
+    {
       icon: Bell,
-      title: "Slack notifications",
-      description: "Automatically notify your team in Slack when deals move, leads are assigned, or milestones are reached. Keep everyone in sync without manual updates.",
+      title: "Slack-Benachrichtigungen",
+      description: "Benachrichtige dein Team automatisch in Slack, wenn Deals sich bewegen, Leads zugewiesen werden oder Meilensteine erreicht werden. Halte alle synchronisiert ohne manuelle Updates.",
     },
     {
-      icon: Mail,
-      title: "Email sequences",
-      description: "Trigger personalized email sequences based on lead behavior, deal stages, or custom events. Send the right message at the right time, automatically.",
-    },
-    {
-      icon: Database,
-      title: "Data enrichment",
-      description: "Automatically enrich records with external data sources. Update company information, verify email addresses, and append missing fields as records are created or updated.",
+      icon: Zap,
+      title: "0% bis 100% Steuerung",
+      description: "Wähle dein Automatisierungslevel. Starte mit 0%—manuelle Kontrolle, genau wie Excel. Füge schrittweise Automatisierung hinzu, wenn du Mehrwert siehst. Keine Alles-oder-Nichts-Entscheidung.",
     },
   ]
 
-  // Hero Image Placeholder
+  // Hero Image Placeholder - Clean Attio Style
   const heroImagePlaceholder = (
-    <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+    <div className="w-full h-full bg-gray-50 border border-gray-200 flex items-center justify-center rounded-lg">
       <div className="text-center">
         <Workflow className="w-16 h-16 text-gray-400 mx-auto mb-4" strokeWidth={1.5} />
-        <p className="text-sm text-gray-500">Workflow Automation Preview</p>
+        <p className="text-sm text-gray-500">Workflow-Automatisierung Vorschau</p>
       </div>
     </div>
   )
 
   return (
     <FeaturePageTemplate
-      title="Automate your revenue engine"
-      subtitle="Build powerful workflows that trigger on data changes. Eliminate manual tasks and keep your team focused on selling."
+      title="Keine morgendlichen Tabellensuchen mehr"
+      subtitle="Anstatt Excel zu öffnen, um herauszufinden, was zu tun ist, sagt dir IntroKI: 'Hier ist, worauf du dich heute konzentrieren musst.' Aktive Steuerung, nicht passive Datenspeicherung."
       heroImage={heroImagePlaceholder}
       documentationLink="/developers/workflows"
       features={features}
       bentoGridItems={bentoGridItems}
-      ctaTitle="Ready to automate your sales process?"
-      ctaSubtitle="Book a demo to see how workflow automation can eliminate hours of manual work and accelerate your revenue operations."
+      ctaTitle="Bereit, deinen Verkaufsprozess zu automatisieren?"
+      ctaSubtitle="Buche eine Demo, um zu sehen, wie Workflow-Automatisierung Stunden manueller Arbeit eliminiert und deine Revenue-Operationen beschleunigt."
     />
   )
 }
-

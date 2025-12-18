@@ -53,6 +53,81 @@ export interface FeaturePageTemplateProps {
   ctaSubtitle?: string
 }
 
+// Feature Section Component (separate component for proper hooks usage)
+function FeatureSection({ feature, index }: { feature: FeatureItem; index: number }) {
+  const ref = React.useRef(null)
+  const inView = useInView(ref, { once: true, margin: "-100px" })
+  const isLeft = feature.imagePosition === "left" || (index % 2 === 0 && !feature.imagePosition)
+
+  return (
+    <section
+      ref={ref}
+      className="py-24 md:py-32 border-b border-gray-200"
+    >
+      <div className="max-w-[1200px] mx-auto px-4">
+        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center ${
+          !isLeft ? "lg:grid-flow-dense" : ""
+        }`}>
+          {/* Text Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ ...attioTransition, delay: 0.1 }}
+            className={!isLeft ? "lg:col-start-2" : ""}
+          >
+            {feature.kicker && (
+              <p className="text-[12px] uppercase tracking-wide text-gray-500 mb-4">
+                {feature.kicker}
+              </p>
+            )}
+            <h2 className="text-[32px] leading-[40px] -tracking-[0.02em] font-medium text-gray-900 mb-4">
+              {feature.title}
+            </h2>
+            <p className="text-[16px] leading-[24px] text-gray-600 mb-6">
+              {feature.description}
+            </p>
+            {feature.items && feature.items.length > 0 && (
+              <ul className="space-y-3">
+                {feature.items.map((item, itemIndex) => (
+                  <li key={itemIndex} className="flex items-start gap-3">
+                    <Check className="w-5 h-5 text-gray-900 mt-0.5 flex-shrink-0" strokeWidth={1.5} />
+                    <span className="text-[16px] leading-[24px] text-gray-600">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </motion.div>
+
+          {/* Image */}
+          {feature.image && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ ...attioTransition, delay: 0.2 }}
+              className={`relative w-full h-[300px] md:h-[400px] rounded-lg border border-gray-200 bg-gray-100 overflow-hidden ${
+                !isLeft ? "lg:col-start-1 lg:row-start-1" : ""
+              }`}
+            >
+              {typeof feature.image === "string" ? (
+                <Image
+                  src={feature.image}
+                  alt={feature.title}
+                  fill
+                  className="object-cover"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center">
+                  {feature.image}
+                </div>
+              )}
+            </motion.div>
+          )}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 export function FeaturePageTemplate({
   title,
   subtitle,
@@ -66,9 +141,6 @@ export function FeaturePageTemplate({
 }: FeaturePageTemplateProps) {
   const heroRef = React.useRef(null)
   const heroInView = useInView(heroRef, { once: true, margin: "-100px" })
-
-  const featureRefs = features.map(() => React.useRef(null))
-  const featureInViews = featureRefs.map((ref) => useInView(ref, { once: true, margin: "-100px" }))
 
   const bentoRef = React.useRef(null)
   const bentoInView = useInView(bentoRef, { once: true, margin: "-100px" })
@@ -175,80 +247,9 @@ export function FeaturePageTemplate({
       )}
 
       {/* Zig-Zag Feature Sections */}
-      {features.map((feature, index) => {
-        const isLeft = feature.imagePosition === "left" || (index % 2 === 0 && !feature.imagePosition)
-        const ref = featureRefs[index]
-        const inView = featureInViews[index]
-
-        return (
-          <section
-            key={index}
-            ref={ref}
-            className="py-24 md:py-32 border-b border-gray-200"
-          >
-            <div className="max-w-[1200px] mx-auto px-4">
-              <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center ${
-                !isLeft ? "lg:grid-flow-dense" : ""
-              }`}>
-                {/* Text Content */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ ...attioTransition, delay: 0.1 }}
-                  className={!isLeft ? "lg:col-start-2" : ""}
-                >
-                  {feature.kicker && (
-                    <p className="text-[12px] uppercase tracking-wide text-gray-500 mb-4">
-                      {feature.kicker}
-                    </p>
-                  )}
-                  <h2 className="text-[32px] leading-[40px] -tracking-[0.02em] font-medium text-gray-900 mb-4">
-                    {feature.title}
-                  </h2>
-                  <p className="text-[16px] leading-[24px] text-gray-600 mb-6">
-                    {feature.description}
-                  </p>
-                  {feature.items && feature.items.length > 0 && (
-                    <ul className="space-y-3">
-                      {feature.items.map((item, itemIndex) => (
-                        <li key={itemIndex} className="flex items-start gap-3">
-                          <Check className="w-5 h-5 text-gray-900 mt-0.5 flex-shrink-0" strokeWidth={1.5} />
-                          <span className="text-[16px] leading-[24px] text-gray-600">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </motion.div>
-
-                {/* Image */}
-                {feature.image && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ ...attioTransition, delay: 0.2 }}
-                    className={`relative w-full h-[300px] md:h-[400px] rounded-lg border border-gray-200 bg-gray-100 overflow-hidden ${
-                      !isLeft ? "lg:col-start-1 lg:row-start-1" : ""
-                    }`}
-                  >
-                    {typeof feature.image === "string" ? (
-                      <Image
-                        src={feature.image}
-                        alt={feature.title}
-                        fill
-                        className="object-cover"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        {feature.image}
-                      </div>
-                    )}
-                  </motion.div>
-                )}
-              </div>
-            </div>
-          </section>
-        )
-      })}
+      {features.map((feature, index) => (
+        <FeatureSection key={index} feature={feature} index={index} />
+      ))}
 
       {/* Bento Grid / Deep Dive */}
       {bentoGridItems && bentoGridItems.length > 0 && (

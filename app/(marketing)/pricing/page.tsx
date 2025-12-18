@@ -197,7 +197,6 @@ function PricingCard({
           : "border-gray-200 hover:border-gray-300 hover:shadow-md"
       )}
       whileHover={{ scale: tier.popular ? 1.05 : 1.02 }}
-      transition={ENTERPRISE_SPRING}
     >
       {tier.popular && tier.badge && (
         <div className="absolute -top-3 left-1/2 -translate-x-1/2">

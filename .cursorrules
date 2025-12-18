@@ -55,6 +55,47 @@ Before refactoring ANY file, check for:
 2. **Animations:** If a component was animated, it **MUST** remain animated. If it wasn't, add `framer-motion` (Enterprise Spring Physics).
 3. **Complex Logic:** Never delete automated logic or workflows. Refactor only for type-safety or performance.
 
+## 6. The 4 Ehernen Design-Gesetze (Attio-Level Enforcement)
+
+### Gesetz 1: Das Verbot von nackten Icons ("The Wireframe Ban")
+- **Regel:** Ein Icon (`Lucide`) darf **NIEMALS** alleinstehend als Hauptelement verwendet werden (z.B. in Feature-Cards oder Sections). Das wirkt billig und "MVP-like".
+- **Ersatz:** Jedes Icon muss durch eine **"Fake UI" (CSS-Visualisierung)** ersetzt werden.
+- **Beispiele:**
+  - Statt Search-Icon → Miniatur-Suchleiste (CSS) mit Glas-Effekt, Input-Feld und Schatten
+  - Statt Database-Icon → Miniatur-Tabelle (CSS) mit Header-Row und Skeleton-Content
+  - Statt Workflow-Icon → Mini Node-Graph (CSS) mit orthogonalen Verbindungslinien
+- **Prinzip:** "Show, don't tell." Der Nutzer muss *Software* sehen, nicht Symbole.
+
+### Gesetz 2: Tiefe durch Diffuse Schatten ("The Floating Effect")
+- **Regel:** Flache Borders (`border-gray-200`) reichen nicht. Elemente müssen schweben.
+- **Implementation:** Nutze **ausschließlich** `.shadow-attio-diffuse` für Cards:
+  ```css
+  box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05);
+  ```
+  Kombiniert mit `border-white/50` oder `border-white/60` und Glassmorphism (`bg-white/50 backdrop-blur-xl`).
+- **Layering:** Background (Noise) → Card (Diffuse Shadow) → Content (Glass).
+
+### Gesetz 3: Dichte und Struktur ("The Density Mandate")
+- **Regel:** Vermeide leeren Weißraum. Enterprise-Software ist **dicht**.
+- **Lösung:** Nutze **Bento Grids** mit striktem 4pt-Spacing (`gap-4` = 16px).
+- **Inhalt:** Fülle Karten mit "Micro-Content" (kleine Labels, Status-Badges, Progress-Bars, Tags), um Komplexität und Power zu simulieren. Eine leere Karte ist eine nutzlose Karte.
+
+### Gesetz 4: Physik statt linearer Animation ("Structured Magic")
+- **Regel:** Keine linearen Fades. Alles hat Gewicht.
+- **Physics:** Nutze global `ENTERPRISE_SPRING` (`stiffness: 400, damping: 17`).
+- **Datenfluss:** Verbindungslinien sind **orthogonal** (rechte Winkel), 1px dick, `#E5E7EB`. Keine Kurven.
+
+## 7. Definition of Done (Enterprise-Ready Checklist)
+
+Eine Komponente gilt erst als "Enterprise-Ready", wenn:
+
+1. ✅ Sie **kein** nacktes Icon mehr enthält (alle durch Fake UI ersetzt).
+2. ✅ Sie auf Hover mit **Spring-Physics** reagiert (`scale-[1.01]` oder `scale-[1.02]`).
+3. ✅ Sie eine **interne visuelle Story** (Fake UI) erzählt.
+4. ✅ Sie den **`.shadow-attio-diffuse`** nutzt und sich vom Hintergrund abhebt.
+5. ✅ Sie **Glassmorphism** verwendet (`bg-white/50 backdrop-blur-xl border border-white/60`).
+6. ✅ Alle Animationen nutzen `ENTERPRISE_SPRING` statt lineare Transitions.
+
 ## 6. Workflow
 
 1. **Analyze:** Check existing components for "organic" lines or "bouncy" animations.

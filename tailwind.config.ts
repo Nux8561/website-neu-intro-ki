@@ -129,6 +129,9 @@ const config: Config = {
         // Body 16pt -> 16px font / 24px line-height / 0% tracking
         'body': ['16px', { lineHeight: '24px', letterSpacing: '0', fontWeight: '400' }],
         
+        // Numbers: Use tabular-nums for data tables and metrics
+        'number': ['16px', { lineHeight: '24px', letterSpacing: '0', fontWeight: '400', fontVariantNumeric: 'tabular-nums' }],
+        
         // Body 14pt -> 14px font / 20px line-height / 0% tracking
         'body-sm': ['14px', { lineHeight: '20px', letterSpacing: '0', fontWeight: '400' }],
 

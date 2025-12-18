@@ -1,15 +1,22 @@
 /**
- * Attio Animation Configurations
- * Basierend auf Analyse der Attio HTML-Datei (1469 SVGs, 622x duration-300)
+ * Enterprise Animation Configurations
+ * "Structured Magic" - Strict Enterprise Spring Physics
  * 
- * Diese Konfigurationen replizieren das exakte "Look & Feel" von Attio
- * 
- * Analyse-Ergebnisse:
- * - Häufigste Duration: 300ms (622x)
- * - Häufigste Easing: ease-out (620x)
- * - Timing Function: cubic-bezier(0.32, 0.72, 0, 1) oder cubic-bezier(0.33, 0.00, 0.00, 1.00)
- * - Keyframes: fadeIn, fadeOut, slideFromBottom, slideToBottom, etc.
+ * Based on "Strategischer Forschungsbericht: Intro KI"
+ * Mission: "Protect & Polish" - Retain animations but enforce Enterprise precision
  */
+
+// ENTERPRISE_SPRING: Global standard for all interactive elements
+// Strict enforcement: No bouncy overshoot, precise snap to target
+export const ENTERPRISE_SPRING = {
+  type: "spring" as const,
+  stiffness: 400, // Snap to target (precise)
+  damping: 17,    // No bouncy overshoot (controlled)
+  mass: 0.8,      // Lightweight for responsiveness
+} as const
+
+// Legacy aliases (for backward compatibility, but prefer ENTERPRISE_SPRING)
+export const attioTransition = ENTERPRISE_SPRING
 
 // Snappy Spring Physics (Vercel/Attio Style)
 // Hohe Spannung, gute Dämpfung, leicht = reaktionsfreudig
@@ -18,15 +25,6 @@ export const snappySpring = {
   stiffness: 350, // Hohe Spannung = schnell
   damping: 25,    // Gute Dämpfung = kein wabbeliges Nachfedern
   mass: 0.5,      // Leicht = reaktionsfreudig
-}
-
-// Framer Motion Spring-Physics (Attio-Standard)
-// Basierend auf dem "Snappy"-Gefühl der Interaktionen
-export const attioTransition = {
-  type: "spring" as const,
-  stiffness: 400,
-  damping: 17,
-  mass: 1,
 }
 
 // Alternative: Für schnellere, weniger gedämpfte Animationen

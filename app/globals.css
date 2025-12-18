@@ -165,6 +165,12 @@ section [class*="container"] {
   z-index: 1;
 }
 
+/* Tabular Numbers - For data/metrics (Enterprise precision) */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
 /* Responsive Typography */
 .heading-responsive {
   @apply font-jakarta tracking-tight text-3xl md:text-4xl lg:text-5xl xl:text-6xl;

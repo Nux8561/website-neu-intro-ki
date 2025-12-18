@@ -153,7 +153,6 @@ section.bg-background {
   opacity: 0.04;
   pointer-events: none;
 }
-}
 
 section[class*="bg-\[#FAFAFB\]"],
 section.bg-muted,

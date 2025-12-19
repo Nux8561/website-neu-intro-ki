@@ -5,6 +5,8 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import { ArrowRight, Search, Command, CheckCircle2, Zap } from "lucide-react"
 import { ENTERPRISE_SPRING } from "@/lib/animations"
+import { ScrollReveal } from "@/components/ui/scroll-reveal"
+import { ExpensiveCard } from "@/components/ui/3d-card"
 
 export function HeroAttio() {
   return (
@@ -14,31 +16,52 @@ export function HeroAttio() {
 
       <div className="relative z-10 mx-auto flex max-w-[1200px] flex-col gap-16 px-4">
         {/* TEXT TEIL */}
-        <div className="mx-auto max-w-3xl text-center">
-          {/* Badge */}
-          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700 shadow-sm">
+        <ScrollReveal direction="up" distance={40}>
+          <div className="mx-auto max-w-3xl text-center">
+            {/* Badge */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ ...ENTERPRISE_SPRING, delay: 0.2 }}
+              className="mb-8 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700 shadow-sm"
+            >
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
             </span>
             <span className="text-slate-500">Neu:</span>
-            <span className="font-semibold text-slate-800">Research Orchestrator 2.0</span>
-          </div>
+              <span className="font-semibold text-slate-800">Research Orchestrator 2.0</span>
+            </motion.div>
 
-          {/* Headline - Tight & Heavy */}
-          <h1 className="mb-6 text-5xl font-semibold tracking-tighter text-slate-900 sm:text-7xl">
-            Dein CRM ist blind. <br className="hidden sm:block" />
-            <span className="text-slate-400">Intro KI sieht alles.</span>
-          </h1>
+            {/* Headline - Tight & Heavy */}
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ ...ENTERPRISE_SPRING, delay: 0.3 }}
+              className="mb-6 text-5xl font-semibold tracking-tighter text-slate-900 sm:text-7xl"
+            >
+              Dein CRM ist blind. <br className="hidden sm:block" />
+              <span className="text-slate-400">Intro KI sieht alles.</span>
+            </motion.h1>
 
-          {/* Subline */}
-          <p className="mx-auto mb-10 max-w-2xl text-sm md:text-lg text-slate-500 leading-relaxed">
-            Schluss mit manueller Dateneingabe. Intro KI überwacht Deals, News und Signale automatisch – und
-            sagt deinem Team proaktiv, was zu tun ist.
-          </p>
+            {/* Subline */}
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ ...ENTERPRISE_SPRING, delay: 0.4 }}
+              className="mx-auto mb-10 max-w-2xl text-sm md:text-lg text-slate-500 leading-relaxed"
+            >
+              Schluss mit manueller Dateneingabe. Intro KI überwacht Deals, News und Signale automatisch – und
+              sagt deinem Team proaktiv, was zu tun ist.
+            </motion.p>
 
-          {/* Buttons */}
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            {/* Buttons */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ ...ENTERPRISE_SPRING, delay: 0.5 }}
+              className="flex flex-col sm:flex-row justify-center gap-4"
+            >
             <Link
               href="/demo"
               className="inline-flex items-center justify-center rounded-lg bg-slate-900 px-6 py-3 text-sm font-medium text-white shadow-attio-md transition-all hover:scale-[1.02] hover:bg-slate-800 hover:shadow-attio-lg"
@@ -57,23 +80,31 @@ export function HeroAttio() {
               }}
               className="inline-flex items-center justify-center rounded-lg border border-slate-200 bg-white/80 backdrop-blur-sm px-6 py-3 text-sm font-medium text-slate-700 hover:bg-white hover:border-slate-300 transition-all shadow-attio-sm hover:shadow-attio-md hover:scale-[1.02]"
             >
-              Wie es funktioniert
+                Wie es funktioniert
             </Link>
+            </motion.div>
           </div>
-        </div>
+        </ScrollReveal>
 
-        {/* FAKE UI TEIL (Der "Attio Look") */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={ENTERPRISE_SPRING}
-          className="relative mx-auto w-full max-w-5xl"
-        >
-          {/* Glow hinter der UI */}
-          <div className="absolute -inset-1 -z-10 rounded-[3rem] bg-gradient-to-tr from-blue-100/40 via-purple-100/40 to-emerald-100/40 blur-2xl" />
+        {/* FAKE UI TEIL (Der "Attio Look") mit 3D-Card */}
+        <ScrollReveal direction="up" distance={60} offset={["start end", "center center"]}>
+          <div className="relative mx-auto w-full max-w-5xl">
+            {/* Glow hinter der UI */}
+            <motion.div 
+              animate={{ 
+                opacity: [0.3, 0.5, 0.3],
+                scale: [1, 1.05, 1]
+              }}
+              transition={{ 
+                duration: 4, 
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className="absolute -inset-1 -z-10 rounded-[3rem] bg-gradient-to-tr from-blue-100/40 via-purple-100/40 to-emerald-100/40 blur-2xl" 
+            />
 
-          {/* Das Fenster mit Glassmorphism */}
-          <div className="overflow-hidden rounded-xl border border-white/60 bg-white/80 backdrop-blur-xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.12)]">
+            {/* Das Fenster mit 3D-Card */}
+            <ExpensiveCard intensity={5} className="overflow-hidden">
             {/* Window Header */}
             <div className="flex h-11 items-center justify-between border-b border-slate-200/50 bg-white/60 backdrop-blur-sm px-4">
               <div className="flex gap-1.5">
@@ -173,8 +204,9 @@ export function HeroAttio() {
                 </div>
               </div>
             </div>
-          </div>
-        </motion.div>
+          </ExpensiveCard>
+        </div>
+        </ScrollReveal>
       </div>
     </section>
   )

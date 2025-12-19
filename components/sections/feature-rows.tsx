@@ -7,7 +7,8 @@ export function FeatureRows() {
   return (
     <section className="space-y-32 py-32 bg-white attio-grid-pattern">
       {/* FEATURE 1: DATA ENRICHMENT (Text Links, Bild Rechts) */}
-      <div className="mx-auto grid max-w-[1200px] gap-16 px-4 md:grid-cols-2 md:items-center">
+      <ScrollReveal direction="up" distance={80}>
+        <div className="mx-auto grid max-w-[1200px] gap-16 px-4 md:grid-cols-2 md:items-center">
         {/* Text Side */}
         <div className="max-w-md">
           {/* Fake UI: Mini Database Table statt Icon */}
@@ -45,7 +46,7 @@ export function FeatureRows() {
         </div>
 
         {/* Visual Side (Fake UI: Data Card) */}
-        <div className="relative rounded-2xl border border-white/60 bg-white/80 backdrop-blur-xl p-8 shadow-attio-diffuse">
+        <ExpensiveCard intensity={5} className="relative p-8">
           {/* Background Pattern */}
           <div
             className="absolute inset-0 opacity-[0.03]"
@@ -101,13 +102,15 @@ export function FeatureRows() {
               <span className="text-slate-600">Neuer Jobtitel erkannt</span>
             </div>
           </div>
-        </div>
+        </ExpensiveCard>
       </div>
+      </ScrollReveal>
 
       {/* FEATURE 2: WORKFLOWS (Bild Links, Text Rechts) */}
-      <div className="mx-auto grid max-w-[1200px] gap-16 px-4 md:grid-cols-2 md:items-center">
+      <ScrollReveal direction="up" distance={80}>
+        <div className="mx-auto grid max-w-[1200px] gap-16 px-4 md:grid-cols-2 md:items-center">
         {/* Visual Side (Fake UI: Workflow Node Graph) */}
-        <div className="order-2 md:order-1 group relative overflow-hidden rounded-2xl border border-slate-700/50 bg-slate-900/95 backdrop-blur-xl p-8 shadow-attio-diffuse">
+        <ExpensiveCard intensity={5} className="order-2 md:order-1 group relative overflow-hidden border-slate-700/50 bg-slate-900/95 p-8">
           {/* Dark Mode Grid */}
           <div
             className="absolute inset-0 opacity-20"
@@ -147,7 +150,7 @@ export function FeatureRows() {
               </div>
             </div>
           </div>
-        </div>
+        </ExpensiveCard>
 
         {/* Text Side */}
         <div className="order-1 max-w-md md:order-2">
@@ -174,6 +177,7 @@ export function FeatureRows() {
           </button>
         </div>
       </div>
+      </ScrollReveal>
     </section>
   );
 }

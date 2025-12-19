@@ -1,9 +1,12 @@
- "use client"
+"use client"
 
 import * as React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { ENTERPRISE_SPRING } from "@/lib/animations";
+import { ExpensiveCard } from "@/components/ui/3d-card";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { StaggerReveal } from "@/components/ui/stagger-reveal";
 
 export function FeaturesBento() {
   return (
@@ -11,24 +14,25 @@ export function FeaturesBento() {
       <div className="mx-auto max-w-[1200px] px-4">
         
         {/* Section Header */}
-        <div className="mb-16 max-w-2xl">
-          <h2 className="text-3xl font-semibold tracking-tighter text-slate-900 sm:text-4xl mb-4">
-            Die komplette Revenue-Architektur.
-          </h2>
-          <p className="text-lg text-slate-500">
-            Intro KI ersetzt isolierte Tools durch eine integrierte Plattform. 
-            Von der ersten Recherche bis zum Closing.
-          </p>
-        </div>
+        <ScrollReveal direction="up" distance={50}>
+          <div className="mb-16 max-w-2xl">
+            <h2 className="text-3xl font-semibold tracking-tighter text-slate-900 sm:text-4xl mb-4">
+              Die komplette Revenue-Architektur.
+            </h2>
+            <p className="text-lg text-slate-500">
+              Intro KI ersetzt isolierte Tools durch eine integrierte Plattform. 
+              Von der ersten Recherche bis zum Closing.
+            </p>
+          </div>
+        </ScrollReveal>
 
-        {/* BENTO GRID LAYOUT */}
-        <div className="grid gap-6 md:grid-cols-3 md:grid-rows-2 h-auto md:h-[600px]">
+        {/* BENTO GRID LAYOUT mit 3D-Cards */}
+        <StaggerReveal className="grid gap-6 md:grid-cols-3 md:grid-rows-2 h-auto md:h-[600px]">
           
           {/* CARD 1: RESEARCH ORCHESTRATOR (Groß, Links) */}
-          <motion.div 
-            whileHover={{ y: -4, scale: 1.01 }}
-            transition={ENTERPRISE_SPRING}
-            className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-white/60 bg-white/80 backdrop-blur-xl md:col-span-2 md:row-span-2 shadow-attio-diffuse hover:shadow-attio-diffuse-hover transition-all"
+          <ExpensiveCard 
+            intensity={8}
+            className="group relative flex flex-col justify-between overflow-hidden md:col-span-2 md:row-span-2"
           >
             <div className="p-8">
               <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200/50 bg-blue-50/80 backdrop-blur-sm px-3 py-1 text-[11px] font-medium text-blue-700">
@@ -86,14 +90,13 @@ export function FeaturesBento() {
                 <div className="absolute left-7 top-10 h-8 w-0.5 bg-slate-200 -z-10"></div>
               </div>
             </div>
-          </motion.div>
+          </ExpensiveCard>
 
 
           {/* CARD 2: PIPELINE (Rechts Oben) */}
-          <motion.div 
-            whileHover={{ y: -4, scale: 1.02 }}
-            transition={ENTERPRISE_SPRING}
-            className="group relative overflow-hidden rounded-xl border border-white/60 bg-white/80 backdrop-blur-xl md:col-span-1 md:row-span-1 shadow-attio-diffuse hover:shadow-attio-diffuse-hover transition-all"
+          <ExpensiveCard 
+            intensity={6}
+            className="group relative overflow-hidden md:col-span-1 md:row-span-1"
           >
             {/* Fake UI: Mini Chart statt Icon */}
             <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity duration-attio-fast">
@@ -127,14 +130,12 @@ export function FeaturesBento() {
                 </div>
               </div>
             </div>
-          </motion.div>
-
+          </ExpensiveCard>
 
           {/* CARD 3: CALL COACHING (Rechts Unten) */}
-          <motion.div 
-            whileHover={{ y: -4, scale: 1.02 }}
-            transition={ENTERPRISE_SPRING}
-            className="group relative overflow-hidden rounded-xl border border-slate-700/50 bg-slate-900/95 backdrop-blur-xl md:col-span-1 md:row-span-1 shadow-attio-diffuse hover:shadow-attio-diffuse-hover transition-all"
+          <ExpensiveCard 
+            intensity={6}
+            className="group relative overflow-hidden border-slate-700/50 bg-slate-900/95 md:col-span-1 md:row-span-1"
           >
             <div className="flex h-full flex-col justify-between p-6">
               <div className="relative z-10">
@@ -163,9 +164,9 @@ export function FeaturesBento() {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </ExpensiveCard>
 
-        </div>
+        </StaggerReveal>
       </div>
     </section>
   );

@@ -1,69 +1,88 @@
 "use client"
 
-import * as React from "react"
-import { gsap, ScrollTrigger } from "@/lib/gsap-utils"
-import { cn } from "@/lib/utils"
+import { motion, useScroll, useTransform } from "framer-motion"
+import { useRef, ReactNode } from "react"
 
 interface ScrollRevealProps {
-  children: React.ReactNode
+  children: ReactNode
   className?: string
-  delay?: number
-  direction?: "up" | "down" | "left" | "right"
-  duration?: number
-  start?: string
-  once?: boolean
+  offset?: [string, string]
+  direction?: "up" | "down" | "left" | "right" | "fade"
+  distance?: number
 }
 
-export function ScrollReveal({
-  children,
-  className,
-  delay = 0,
+/**
+ * Scroll-gebundene Reveal-Animation
+ * Elemente entfalten sich basierend auf Scroll-Position
+ * Wie bei Attio/Apple - keine einfachen Fade-Ins
+ */
+export function ScrollReveal({ 
+  children, 
+  className = "",
+  offset = ["start end", "end start"],
   direction = "up",
-  duration = 1,
-  start = "top 80%",
-  once = true,
+  distance = 100
 }: ScrollRevealProps) {
-  const ref = React.useRef<HTMLDivElement>(null)
+  const targetRef = useRef<HTMLDivElement>(null)
+  
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset,
+  })
 
-  React.useEffect(() => {
-    if (!ref.current) return
-
-    const element = ref.current
-    const offset = direction === "up" ? 50 : direction === "down" ? -50 : direction === "left" ? 50 : -50
-    const axis = direction === "up" || direction === "down" ? "y" : "x"
-
-    gsap.fromTo(
-      element,
-      {
-        opacity: 0,
-        [axis]: offset,
-      },
-      {
-        opacity: 1,
-        [axis]: 0,
-        duration,
-        delay,
-        scrollTrigger: {
-          trigger: element,
-          start,
-          toggleActions: once ? "play none none none" : "play none none reverse",
-        },
-      }
-    )
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => {
-        if (trigger.vars.trigger === element) {
-          trigger.kill()
+  // Berechne Transform basierend auf Direction
+  const getTransform = () => {
+    switch (direction) {
+      case "up":
+        return {
+          y: useTransform(scrollYProgress, [0, 0.3], [distance, 0]),
+          x: 0,
         }
-      })
+      case "down":
+        return {
+          y: useTransform(scrollYProgress, [0, 0.3], [-distance, 0]),
+          x: 0,
+        }
+      case "left":
+        return {
+          x: useTransform(scrollYProgress, [0, 0.3], [distance, 0]),
+          y: 0,
+        }
+      case "right":
+        return {
+          x: useTransform(scrollYProgress, [0, 0.3], [-distance, 0]),
+          y: 0,
+        }
+      case "fade":
+        return {
+          x: 0,
+          y: 0,
+        }
+      default:
+        return {
+          y: useTransform(scrollYProgress, [0, 0.3], [distance, 0]),
+          x: 0,
+        }
     }
-  }, [delay, direction, duration, start, once])
+  }
+
+  const transforms = getTransform()
+  
+  // Opacity und Scale für alle Directions
+  const opacity = useTransform(scrollYProgress, [0, 0.3], [0, 1])
+  const scale = useTransform(scrollYProgress, [0, 0.3], [0.95, 1])
 
   return (
-    <div ref={ref} className={cn(className)}>
+    <motion.div 
+      ref={targetRef} 
+      style={{ 
+        opacity, 
+        ...transforms,
+        scale: direction === "fade" ? scale : 1,
+      }} 
+      className={className}
+    >
       {children}
-    </div>
+    </motion.div>
   )
 }
-

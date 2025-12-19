@@ -1,12 +1,12 @@
 "use client"
 
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion, useScroll, useTransform, type UseScrollOptions } from "framer-motion"
 import { useRef, ReactNode } from "react"
 
 interface ScrollRevealProps {
   children: ReactNode
   className?: string
-  offset?: [string, string]
+  offset?: UseScrollOptions["offset"]
   direction?: "up" | "down" | "left" | "right" | "fade"
   distance?: number
 }
@@ -19,7 +19,7 @@ interface ScrollRevealProps {
 export function ScrollReveal({ 
   children, 
   className = "",
-  offset = ["start end", "end start"],
+  offset = ["start end", "end start"] as UseScrollOptions["offset"],
   direction = "up",
   distance = 100
 }: ScrollRevealProps) {

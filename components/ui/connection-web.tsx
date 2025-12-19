@@ -22,16 +22,18 @@ export function ConnectionWeb({ className = "", intensity = "subtle" }: Connecti
 
   return (
     <div className={`absolute inset-0 pointer-events-none overflow-hidden ${className}`}>
-      {/* Orthogonale Verbindungslinien - Horizontal */}
+      {/* Smart Verbindungslinien - Horizontal - GRAU */}
       <motion.div
         className="absolute inset-0"
         style={{
           backgroundImage: `linear-gradient(to right, 
             transparent 0%, 
-            rgba(226, 232, 240, ${opacityMap[intensity]}) 10%, 
-            rgba(226, 232, 240, ${opacityMap[intensity]}) 90%, 
+            rgba(148, 163, 184, ${opacityMap[intensity] * 0.8}) 10%, 
+            rgba(148, 163, 184, ${opacityMap[intensity]}) 30%,
+            rgba(148, 163, 184, ${opacityMap[intensity]}) 70%,
+            rgba(148, 163, 184, ${opacityMap[intensity] * 0.8}) 90%, 
             transparent 100%)`,
-          backgroundSize: "400px 1px",
+          backgroundSize: "600px 1px",
           backgroundRepeat: "repeat-y",
           backgroundPosition: "center",
         }}
@@ -45,16 +47,18 @@ export function ConnectionWeb({ className = "", intensity = "subtle" }: Connecti
         }}
       />
 
-      {/* Orthogonale Verbindungslinien - Vertical */}
+      {/* Smart Verbindungslinien - Vertical - GRAU */}
       <motion.div
         className="absolute inset-0"
         style={{
           backgroundImage: `linear-gradient(to bottom, 
             transparent 0%, 
-            rgba(226, 232, 240, ${opacityMap[intensity]}) 10%, 
-            rgba(226, 232, 240, ${opacityMap[intensity]}) 90%, 
+            rgba(148, 163, 184, ${opacityMap[intensity] * 0.8}) 10%, 
+            rgba(148, 163, 184, ${opacityMap[intensity]}) 30%,
+            rgba(148, 163, 184, ${opacityMap[intensity]}) 70%,
+            rgba(148, 163, 184, ${opacityMap[intensity] * 0.8}) 90%, 
             transparent 100%)`,
-          backgroundSize: "1px 400px",
+          backgroundSize: "1px 600px",
           backgroundRepeat: "repeat-x",
           backgroundPosition: "center",
         }}

@@ -16,13 +16,14 @@ interface GradientTracingProps {
 export const GradientTracing: React.FC<GradientTracingProps> = ({
   width,
   height,
-  baseColor = "black",
-  gradientColors = ["#2EB9DF", "#2EB9DF", "#9E00FF"],
+  baseColor = "#94A3B8",
+  gradientColors = ["#94A3B8", "#64748B", "#475569"],
   animationDuration = 2,
   strokeWidth = 2,
   path = `M0,${height / 2} L${width},${height / 2}`,
 }) => {
   const gradientId = `pulse-${Math.random().toString(36).substr(2, 9)}`
+
   return (
     <div className="relative" style={{ width, height }}>
       <svg
@@ -66,4 +67,3 @@ export const GradientTracing: React.FC<GradientTracingProps> = ({
     </div>
   )
 }
-

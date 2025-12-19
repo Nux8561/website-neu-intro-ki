@@ -30,6 +30,10 @@ export function Navbar() {
       isScroll: true
     },
     { 
+      label: "Team", 
+      href: "/team"
+    },
+    { 
       label: "Kontakt", 
       href: "/kontakt"
     },

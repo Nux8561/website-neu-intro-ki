@@ -248,7 +248,7 @@ export function VideoDemoSection({
 
   return (
     <>
-      <section className="py-24 bg-slate-50/50 relative overflow-hidden attio-grid-pattern">
+      <section className="py-24 bg-slate-50/50 relative overflow-hidden attio-grid-pattern attio-connection-lines">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Section Header */}
           <motion.div

@@ -22,7 +22,7 @@ interface BeamPath {
     transition?: {
       duration?: number;
       repeat?: number;
-      repeatType?: "loop" | "mirror" | "reverse";
+      repeatType?: string;
       ease?: string;
       repeatDelay?: number;
       delay?: number;
@@ -58,20 +58,20 @@ export const PulseBeams = ({
   beams,
   width = 858,
   height = 434,
-  baseColor = "var(--slate-800)",
-  accentColor = "var(--slate-600)",
+  baseColor = "#475569",
+  accentColor = "#64748B",
   gradientColors,
 }: PulseBeamsProps) => {
   return (
     <div
       className={cn(
-        "absolute inset-0 w-full h-full relative flex items-center justify-center antialiased",
+        "w-full h-screen relative flex items-center justify-center antialiased overflow-hidden",
         className
       )}
     >
       {background}
       <div className="relative z-10">{children}</div>
-      <div className="absolute inset-0 w-full h-full pointer-events-none">
+      <div className="absolute inset-0 flex items-center justify-center">
         <SVGs
           beams={beams}
           width={width}
@@ -85,34 +85,26 @@ export const PulseBeams = ({
   );
 };
 
-interface SVGsProps {
-  beams: BeamPath[];
-  width: number;
-  height: number;
-  baseColor: string;
-  accentColor: string;
+const SVGs = ({ beams, width, height, baseColor, accentColor, gradientColors }: {
+  beams: BeamPath[]
+  width: number
+  height: number
+  baseColor: string
+  accentColor: string
   gradientColors?: {
     start: string;
     middle: string;
     end: string;
-  };
-}
-
-const SVGs = ({ beams, width, height, baseColor, accentColor, gradientColors }: SVGsProps) => {
+  }
+}) => {
   return (
     <svg
-      width="100%"
-      height="100%"
+      width={width}
+      height={height}
       viewBox={`0 0 ${width} ${height}`}
-      preserveAspectRatio="none"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="absolute inset-0 w-full h-full"
-      style={{
-        width: '100%',
-        height: '100%',
-        display: 'block'
-      }}
+      className="flex flex-shrink-0"
     >
       {beams.map((beam, index) => (
         <React.Fragment key={index}>
@@ -120,6 +112,7 @@ const SVGs = ({ beams, width, height, baseColor, accentColor, gradientColors }: 
             d={beam.path}
             stroke={baseColor}
             strokeWidth="1"
+            opacity="0.3"
           />
           <path
             d={beam.path}
@@ -127,6 +120,16 @@ const SVGs = ({ beams, width, height, baseColor, accentColor, gradientColors }: 
             strokeWidth="2"
             strokeLinecap="round"
           />
+          {beam.connectionPoints?.map((point, pointIndex) => (
+            <circle
+              key={`${index}-${pointIndex}`}
+              cx={point.cx}
+              cy={point.cy}
+              r={point.r}
+              fill={baseColor}
+              stroke={accentColor}
+            />
+          ))}
         </React.Fragment>
       ))}
 
@@ -148,19 +151,17 @@ const SVGs = ({ beams, width, height, baseColor, accentColor, gradientColors }: 
   );
 };
 
-interface GradientColorsProps {
+const GradientColors = ({ colors = {
+  start: "#94A3B8",
+  middle: "#64748B",
+  end: "#475569"
+} }: {
   colors?: {
     start: string;
     middle: string;
     end: string;
-  };
-}
-
-const GradientColors = ({ colors = {
-  start: "#18CCFC",
-  middle: "#6344F5",
-  end: "#AE48FF"
-} }: GradientColorsProps) => {
+  }
+}) => {
   return (
     <>
       <stop offset="0%" stopColor={colors.start} stopOpacity="0" />

@@ -8,7 +8,7 @@ import { ENTERPRISE_SPRING } from "@/lib/animations";
 
 export function CTAFooter() {
   return (
-    <section className="bg-white py-24 attio-grid-pattern">
+    <section className="bg-white py-24 attio-grid-pattern attio-connection-lines">
       <div className="mx-auto max-w-[1000px] px-4">
         
         <motion.div 

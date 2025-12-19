@@ -41,6 +41,9 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+    
+    --brand: 50 100% 50%; /* Bright, punchy yellow */
+    --brand-foreground: 48 100% 40%; /* A slightly deeper, warm yellow */
   }
 
   .dark {
@@ -68,6 +71,9 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    
+    --brand: 50 100% 50%; /* Bright, punchy yellow */
+    --brand-foreground: 48 100% 40%; /* A slightly deeper, warm yellow */
   }
 }
 
@@ -122,12 +128,12 @@
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  /* Orthogonale Linien - Horizontal & Vertical */
+  /* Orthogonale Linien - Horizontal & Vertical - GRAU statt weiß */
   background-image: 
-    /* Horizontal Lines */
-    linear-gradient(to right, rgba(15, 23, 42, 0.03) 1px, transparent 1px),
-    /* Vertical Lines */
-    linear-gradient(to bottom, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+    /* Horizontal Lines - GRAU */
+    linear-gradient(to right, rgba(148, 163, 184, 0.15) 1px, transparent 1px),
+    /* Vertical Lines - GRAU */
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.15) 1px, transparent 1px);
   background-size: 32px 32px; /* 4pt Grid System (8 * 4 = 32px) */
   background-position: center;
   mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
@@ -147,9 +153,10 @@
   opacity: 0.6;
 }
 
-/* Connection Lines - Vernetzte Strukturen */
+/* Connection Lines - Smart Lines die Komponenten verbinden */
 .attio-connection-lines {
   position: relative;
+  overflow: hidden;
 }
 
 .attio-connection-lines::before {
@@ -158,16 +165,37 @@
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  /* Orthogonale Verbindungslinien - Rounded Corners */
+  /* Smart Verbindungslinien - GRAU, von links nach rechts */
   background-image: 
-    /* Horizontal Connection Lines */
-    linear-gradient(to right, transparent 0%, rgba(226, 232, 240, 0.4) 20%, rgba(226, 232, 240, 0.4) 80%, transparent 100%),
-    /* Vertical Connection Lines */
-    linear-gradient(to bottom, transparent 0%, rgba(226, 232, 240, 0.4) 20%, rgba(226, 232, 240, 0.4) 80%, transparent 100%);
-  background-size: 200px 200px;
+    /* Horizontal Smart Lines - GRAU */
+    linear-gradient(to right, 
+      transparent 0%, 
+      rgba(148, 163, 184, 0.2) 15%, 
+      rgba(148, 163, 184, 0.3) 30%,
+      rgba(148, 163, 184, 0.3) 70%,
+      rgba(148, 163, 184, 0.2) 85%, 
+      transparent 100%),
+    /* Vertical Smart Lines - GRAU */
+    linear-gradient(to bottom, 
+      transparent 0%, 
+      rgba(148, 163, 184, 0.2) 15%, 
+      rgba(148, 163, 184, 0.3) 30%,
+      rgba(148, 163, 184, 0.3) 70%,
+      rgba(148, 163, 184, 0.2) 85%, 
+      transparent 100%);
+  background-size: 400px 400px;
   background-position: center;
-  opacity: 0.3;
-  mask-image: radial-gradient(ellipse 80% 80% at center, black 30%, transparent 70%);
+  opacity: 0.4;
+  animation: connectionFlow 20s linear infinite;
+}
+
+@keyframes connectionFlow {
+  0% {
+    background-position: 0% 0%, 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%, 100% 100%;
+  }
 }
 
 /* Network Nodes - Kleine Verbindungspunkte */

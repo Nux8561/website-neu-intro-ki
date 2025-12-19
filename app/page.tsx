@@ -3,7 +3,6 @@ import { CookieConsent } from "@/components/ui/cookie-consent"
 import { HeroSimple } from "@/components/sections/hero-simple"
 import { FeaturesBento } from "@/components/sections/features-bento"
 import { WorkspacesInterfaceSection } from "@/components/sections/workspaces-interface-section"
-import { DataStructureSection } from "@/components/sections/data-structure-section"
 import { FeatureRows } from "@/components/sections/feature-rows"
 import { VideoDemoSection } from "@/components/sections/video-demo-section"
 import { TrustSection } from "@/components/sections/trust-section"
@@ -18,7 +17,6 @@ export default function Home() {
         <HeroSimple />
         <FeaturesBento />
         <WorkspacesInterfaceSection />
-        <DataStructureSection />
         <VideoDemoSection videoSrc="/videos/demo.mp4" />
         <FeatureRows />
         <TrustSection />

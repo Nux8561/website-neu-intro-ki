@@ -84,7 +84,8 @@ const config: Config = {
         "attio-border": "#E2E8F0",
         "attio-text": "#0F172A",
         brand: {
-          DEFAULT: "#0F172A",
+          DEFAULT: "hsl(var(--brand))",
+          foreground: "hsl(var(--brand-foreground))",
           light: "#334155",
           muted: "#64748B",
         },

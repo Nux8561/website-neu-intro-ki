@@ -7,6 +7,7 @@ import { ArrowRight } from "iconoir-react"
 import { ENTERPRISE_SPRING } from "@/lib/animations"
 import { ExpensiveCard } from "@/components/ui/3d-card"
 import { ConnectionWeb } from "@/components/ui/connection-web"
+import { AnimatedBadge } from "@/components/ui/animated-badge"
 
 /**
  * HERO SECTION - Attio-Style
@@ -27,20 +28,13 @@ export function HeroSimple() {
           transition={{ ...ENTERPRISE_SPRING, delay: 0.2 }}
           className="mx-auto max-w-3xl text-center"
         >
-          {/* Badge */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ ...ENTERPRISE_SPRING, delay: 0.2 }}
-            className="mb-8 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700 shadow-sm"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-            </span>
-            <span className="text-slate-500">Neu:</span>
-            <span className="font-semibold text-slate-800">Research Orchestrator 2.0</span>
-          </motion.div>
+          {/* Animated Badge */}
+          <div className="mb-8 flex justify-center">
+            <AnimatedBadge
+              text="Neu: Research Orchestrator 2.0"
+              color="#10b981"
+            />
+          </div>
 
           {/* Headline - Attio-Style */}
           <motion.h1 

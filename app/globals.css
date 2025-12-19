@@ -124,21 +124,23 @@
    ============================================ */
 
 /* Fixed Background Grid - Über die ganze Seite */
+/* Wird jetzt durch AnimatedGridLines Komponente ersetzt */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  /* Millimeterpapier-Raster - 64px (4rem) Kästchen */
+  /* Basis-Grid bleibt als Fallback */
   background-image: 
-    linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+    linear-gradient(to right, rgba(148, 163, 184, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.04) 1px, transparent 1px);
   background-size: 4rem 4rem; /* 64px Grid */
   background-position: center;
   /* Vignette außen für subtilen Fade */
   mask-image: radial-gradient(ellipse at center, black 50%, transparent 100%);
   -webkit-mask-image: radial-gradient(ellipse at center, black 50%, transparent 100%);
+  opacity: 0.5; /* Reduziert, da AnimatedGridLines die Hauptrolle übernimmt */
 }
 
 /* Base Grid Pattern - Für Sections (zusätzlich zum fixed Grid) */

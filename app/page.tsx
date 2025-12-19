@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/navbar"
 import { CookieConsent } from "@/components/ui/cookie-consent"
+import { AnimatedGridLines } from "@/components/ui/animated-grid-lines"
 import { HeroSimple } from "@/components/sections/hero-simple"
 import { FeaturesBento } from "@/components/sections/features-bento"
 import { WorkspacesInterfaceSection } from "@/components/sections/workspaces-interface-section"
@@ -13,6 +14,8 @@ export default function Home() {
   return (
     <>
       <Navbar />
+      {/* Animiertes Grid-System im Hintergrund */}
+      <AnimatedGridLines />
       {/* Main Container mit vertikalen Border-Eingrenzungen */}
       <div className="relative z-10 mx-auto max-w-[1200px] border-x border-slate-200/60 bg-white/40 backdrop-blur-sm">
         <main className="min-h-screen bg-white selection:bg-blue-100 selection:text-blue-900">

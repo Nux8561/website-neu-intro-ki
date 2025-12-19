@@ -35,9 +35,9 @@ export function FeaturesBento() {
             className="group relative flex flex-col justify-between overflow-hidden md:col-span-2 md:row-span-2"
           >
             <div className="p-8">
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200/50 bg-blue-50/80 backdrop-blur-sm px-3 py-1 text-[11px] font-medium text-blue-700">
-                <div className="h-3 w-3 rounded-full bg-blue-500/20 border border-blue-300/30 flex items-center justify-center">
-                  <div className="h-1.5 w-1.5 rounded-full bg-blue-600" />
+                  <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-medium text-slate-700">
+                <div className="h-3 w-3 rounded border border-slate-300 flex items-center justify-center">
+                  <div className="h-1.5 w-1.5 bg-slate-400 rounded" />
                 </div>
                 Global Research
               </div>
@@ -56,16 +56,16 @@ export function FeaturesBento() {
                 {/* Agent Item 1 */}
                 <div className="flex items-center justify-between rounded-lg border border-slate-200/60 bg-white/90 backdrop-blur-sm p-3 shadow-attio-sm group-hover:translate-x-1 transition-transform duration-attio-fast ease-attio-ease-out">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-emerald-200/50 bg-emerald-50/80 backdrop-blur-sm shadow-attio-sm">
-                      <div className="h-2 w-2 rounded-full bg-emerald-600" />
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 bg-white shadow-attio-sm">
+                      <div className="h-2 w-2 rounded-full bg-slate-400" />
                     </div>
                     <div>
                       <div className="text-xs font-semibold text-slate-900">Company Agent</div>
                       <div className="text-[10px] text-slate-500">Scraping TechStack & Funding</div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-1.5 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-medium text-emerald-700">
-                    <div className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500"></div>
+                  <div className="flex items-center gap-1.5 rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-medium text-slate-700">
+                    <div className="h-1.5 w-1.5 rounded-full bg-slate-400"></div>
                     Active
                   </div>
                 </div>
@@ -73,8 +73,8 @@ export function FeaturesBento() {
                 {/* Agent Item 2 */}
                 <div className="flex items-center justify-between rounded-lg border border-slate-200/60 bg-white/90 backdrop-blur-sm p-3 shadow-attio-sm group-hover:translate-x-1 transition-transform duration-attio-fast ease-attio-ease-out delay-75">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-blue-200/50 bg-blue-50/80 backdrop-blur-sm shadow-attio-sm">
-                      <div className="h-2 w-2 rounded-full bg-blue-600" />
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 bg-white shadow-attio-sm">
+                      <div className="h-2 w-2 rounded-full bg-slate-400" />
                     </div>
                     <div>
                       <div className="text-xs font-semibold text-slate-900">People Agent</div>
@@ -117,15 +117,15 @@ export function FeaturesBento() {
               <div className="mt-6 rounded-lg border border-slate-200/60 bg-white/90 backdrop-blur-sm p-3 shadow-attio-sm group-hover:scale-105 transition-transform duration-attio-fast ease-attio-ease-out">
                 <div className="flex justify-between items-start mb-2">
                   <div className="h-2 w-16 bg-slate-200 rounded"></div>
-                  <div className="h-2 w-8 bg-green-200 rounded"></div>
+                  <div className="h-2 w-8 bg-slate-200 rounded"></div>
                 </div>
                 <div className="space-y-1.5">
                    <div className="flex justify-between text-[10px] text-slate-500 font-medium">
                       <span>Win Probability</span>
-                      <span className="text-emerald-600">84%</span>
+                      <span className="text-slate-700">84%</span>
                    </div>
                    <div className="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
-                      <div className="h-full w-[84%] bg-emerald-500 rounded-full"></div>
+                      <div className="h-full w-[84%] bg-slate-400 rounded-full"></div>
                    </div>
                 </div>
               </div>

@@ -127,47 +127,65 @@ export function HeroSimple() {
               </div>
             </div>
 
-            {/* Content */}
-            <div className="p-8 bg-gradient-to-br from-slate-50 to-white min-h-[400px]">
-              {/* Lead Card */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 1.2 }}
-                className="bg-white rounded-lg border border-slate-200 p-6 shadow-sm mb-4"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-lg">
-                    AC
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-slate-900 mb-1">Acme Corp</h3>
-                    <p className="text-sm text-slate-500 mb-3">SaaS • Berlin • Series B</p>
-                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 border border-emerald-200 rounded-full text-xs font-medium text-emerald-700">
-                      Strong Buy Signal
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Action Card */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 1.4 }}
-                className="bg-white rounded-lg border border-slate-200 p-4 shadow-sm"
-              >
+            {/* Content - Professionelle UI wie echte Software */}
+            <div className="p-8 bg-white min-h-[500px]">
+              {/* Table Header */}
+              <div className="mb-6 flex items-center justify-between border-b border-slate-200 pb-4">
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center">
-                    <div className="w-3 h-3 rounded-full bg-purple-500" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="h-3 w-32 bg-slate-200 rounded mb-2" />
-                    <div className="h-2 w-24 bg-slate-100 rounded" />
-                  </div>
-                  <button className="px-4 py-2 bg-slate-900 text-white rounded text-sm font-medium">
-                    Generieren
-                  </button>
+                  <h3 className="text-sm font-semibold text-slate-900">Companies</h3>
+                  <span className="text-xs text-slate-500">24 active</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="h-8 w-24 bg-slate-100 rounded border border-slate-200" />
+                  <div className="h-8 w-8 bg-slate-100 rounded border border-slate-200" />
+                </div>
+              </div>
+
+              {/* Table Rows - Professionell */}
+              <div className="space-y-2">
+                {[
+                  { name: "Acme Corp", domain: "acme.com", status: "Strong Signal", revenue: "$10M-$50M" },
+                  { name: "TechStart GmbH", domain: "techstart.de", status: "Warm Lead", revenue: "$5M-$10M" },
+                  { name: "DataFlow Inc", domain: "dataflow.io", status: "New", revenue: "$1M-$5M" },
+                ].map((company, i) => (
+                  <motion.div
+                    key={company.name}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: 1.2 + i * 0.1 }}
+                    className="flex items-center gap-4 p-4 rounded-lg border border-slate-200 bg-slate-50/50 hover:bg-white transition-colors"
+                  >
+                    <div className="w-10 h-10 rounded-lg bg-slate-200 flex items-center justify-center text-slate-600 font-semibold text-sm">
+                      {company.name.substring(0, 2).toUpperCase()}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-3 mb-1">
+                        <span className="text-sm font-semibold text-slate-900">{company.name}</span>
+                        <span className="text-xs text-slate-500">{company.domain}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs px-2 py-0.5 bg-slate-200 rounded text-slate-700">{company.status}</span>
+                        <span className="text-xs text-slate-500">{company.revenue}</span>
+                      </div>
+                    </div>
+                    <div className="h-8 w-20 bg-slate-200 rounded" />
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Bottom Action Bar */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 1.6 }}
+                className="mt-6 pt-4 border-t border-slate-200 flex items-center justify-between"
+              >
+                <div className="flex items-center gap-2">
+                  <div className="h-6 w-6 bg-slate-200 rounded" />
+                  <span className="text-xs text-slate-500">3 neue Signale erkannt</span>
+                </div>
+                <div className="h-8 w-24 bg-slate-900 rounded text-white text-xs font-medium flex items-center justify-center">
+                  Actions
                 </div>
               </motion.div>
             </div>

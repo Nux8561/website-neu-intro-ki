@@ -3,7 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Shield, Lock, Server, Globe } from "lucide-react";
+// Icons entfernt - keine bunten Icons mehr
 import { ENTERPRISE_SPRING } from "@/lib/animations";
 
 const LOGOS = [
@@ -37,7 +37,7 @@ export function TrustSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ ...ENTERPRISE_SPRING, delay: 0.1 }}
-          className="mb-20 grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-6 md:gap-12"
+              className="mb-20 grid grid-cols-2 gap-12 md:grid-cols-3 lg:grid-cols-6 md:gap-16"
         >
           {LOGOS.map((logo, index) => (
             <motion.div
@@ -46,13 +46,13 @@ export function TrustSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ ...ENTERPRISE_SPRING, delay: index * 0.05 }}
-              className="flex items-center justify-center h-12 grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-300"
+              className="flex items-center justify-center h-16 grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-300"
             >
-              <Image
+                <Image
                 src={logo.src}
                 alt={logo.name}
-                width={120}
-                height={48}
+                width={140}
+                height={56}
                 className="object-contain max-w-full max-h-full"
               />
             </motion.div>
@@ -69,14 +69,14 @@ export function TrustSection() {
         >
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             
-            {/* Badge 1 */}
+            {/* Badge 1 - Keine bunten Icons, nur Text */}
             <motion.div 
               whileHover={{ scale: 1.02 }}
               transition={ENTERPRISE_SPRING}
               className="flex flex-col items-center gap-3 text-center"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-50 text-blue-600">
-                <Shield className="h-5 w-5" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-slate-200 bg-white">
+                <div className="h-6 w-6 border-2 border-slate-400 rounded" />
               </div>
               <div>
                 <h4 className="font-semibold text-slate-900 text-sm">SOC 2 Type II</h4>
@@ -90,8 +90,8 @@ export function TrustSection() {
               transition={ENTERPRISE_SPRING}
               className="flex flex-col items-center gap-3 text-center"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
-                <Lock className="h-5 w-5" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-slate-200 bg-white">
+                <div className="h-6 w-6 border-2 border-slate-400 rounded-full" />
               </div>
               <div>
                 <h4 className="font-semibold text-slate-900 text-sm">DSGVO / GDPR</h4>
@@ -105,8 +105,8 @@ export function TrustSection() {
               transition={ENTERPRISE_SPRING}
               className="flex flex-col items-center gap-3 text-center"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-purple-50 text-purple-600">
-                <Server className="h-5 w-5" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-slate-200 bg-white">
+                <div className="h-4 w-4 border-2 border-slate-400" />
               </div>
               <div>
                 <h4 className="font-semibold text-slate-900 text-sm">End-to-End Encrypted</h4>
@@ -120,8 +120,10 @@ export function TrustSection() {
               transition={ENTERPRISE_SPRING}
               className="flex flex-col items-center gap-3 text-center"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-50 text-amber-600">
-                <Globe className="h-5 w-5" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-slate-200 bg-white">
+                <div className="h-6 w-6 border-2 border-slate-400 rounded-full">
+                  <div className="h-2 w-2 bg-slate-400 rounded-full m-auto mt-1" />
+                </div>
               </div>
               <div>
                 <h4 className="font-semibold text-slate-900 text-sm">99.99% Uptime</h4>

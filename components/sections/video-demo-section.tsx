@@ -8,7 +8,7 @@
 
 import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Play, X, Volume2, VolumeX, Maximize, Pause, AlertCircle, Zap, Database, Shield } from "lucide-react"
+import { Play, Cancel, VolumeUp, VolumeOff, Expand, Pause, AlertCircle, Zap, Database, Shield } from "iconoir-react"
 import { IntroFeatureStory, IntroFeatureKey } from "@/components/visuals/IntroFeatureStory"
 import { attioTransition } from "@/lib/animations"
 
@@ -148,7 +148,7 @@ export function VideoDemoSection({
   videoSrc = "/videos/demo.mp4",
   posterSrc = "/images/video-poster.svg",
   title = "Sieh IntroKI in Aktion",
-  description = "In 60 Sekunden erklärt.",
+  description = "Wie IntroKI dein Sales-Team transformiert und die Produktivität steigert.",
 }: VideoDemoSectionProps) {
   const [activeFeature, setActiveFeature] =
     React.useState<IntroFeatureKey>("integration")
@@ -247,7 +247,7 @@ export function VideoDemoSection({
 
   return (
     <>
-      <section className="section-spacing bg-white relative overflow-hidden">
+      <section className="py-24 bg-slate-50/50 relative overflow-hidden attio-grid-pattern">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Section Header */}
           <motion.div
@@ -261,10 +261,10 @@ export function VideoDemoSection({
               transform: "translateZ(0)",
             }}
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-inter-display font-semibold tracking-tight text-[#0A0A0A] mb-3 sm:mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-slate-900 mb-3 sm:mb-4">
               {title}
             </h2>
-            <p className="text-base sm:text-lg font-inter text-gray-600 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto">
               {description}
             </p>
           </motion.div>
@@ -296,8 +296,8 @@ export function VideoDemoSection({
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-gradient-to-r from-blue-500/40 via-purple-500/40 to-pink-500/40 rounded-full blur-3xl" />
             </motion.div>
 
-            {/* Browser Container - Verfeinert */}
-            <div className="relative rounded-2xl overflow-hidden border border-gray-200 shadow-2xl bg-[#0A0A0A]">
+            {/* Browser Container - Professionell */}
+            <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-attio-diffuse bg-slate-900">
               {/* Browser Title Bar */}
               <BrowserTitleBar />
 
@@ -407,7 +407,7 @@ export function VideoDemoSection({
               aria-label="Video schließen"
               title="Video schließen"
             >
-              <X className="h-6 w-6" />
+              <Cancel className="h-6 w-6" />
             </button>
 
             {/* Video Container */}
@@ -522,9 +522,9 @@ export function VideoDemoSection({
                         title={isMuted ? "Ton einschalten" : "Ton ausschalten"}
                       >
                         {isMuted ? (
-                          <VolumeX className="h-5 w-5" />
+                          <VolumeOff className="h-5 w-5" />
                         ) : (
-                          <Volume2 className="h-5 w-5" />
+                          <VolumeUp className="h-5 w-5" />
                         )}
                       </button>
 
@@ -538,7 +538,7 @@ export function VideoDemoSection({
                         aria-label="Vollbild"
                         title="Vollbild"
                       >
-                        <Maximize className="h-5 w-5" />
+                        <Expand className="h-5 w-5" />
                       </button>
                     </div>
                   </div>

@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight } from "iconoir-react";
 import { ENTERPRISE_SPRING } from "@/lib/animations";
 import { ExpensiveCard } from "@/components/ui/3d-card";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";

@@ -14,8 +14,8 @@ export default function Home() {
       <Navbar />
       <main className="min-h-screen bg-slate-50 selection:bg-blue-100 selection:text-blue-900">
         <HeroSimple />
-        <VideoDemoSection videoSrc="/videos/demo.mp4" />
         <FeaturesBento />
+        <VideoDemoSection videoSrc="/videos/demo.mp4" />
         <FeatureRows />
         <TrustSection />
         <CTAFooter />

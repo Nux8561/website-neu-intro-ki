@@ -1,7 +1,7 @@
  "use client"
 
 import * as React from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight } from "iconoir-react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { ExpensiveCard } from "@/components/ui/3d-card";
 

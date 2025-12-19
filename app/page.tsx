@@ -23,6 +23,7 @@ import {
 import { ENTERPRISE_SPRING } from "@/lib/animations"
 import { HeroAttio } from "@/components/sections/hero-attio"
 import { FeaturesBento } from "@/components/sections/features-bento"
+import { FeatureRows } from "@/components/sections/feature-rows"
 
 export default function Home() {
   const socialProofRef = React.useRef(null)
@@ -181,6 +182,9 @@ export default function Home() {
 
         {/* Features Bento Grid */}
         <FeaturesBento />
+
+        {/* Deep Feature Rows */}
+        <FeatureRows />
 
         {/* Final CTA */}
         <section ref={ctaRef} className="py-24 md:py-32">

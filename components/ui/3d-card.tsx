@@ -78,6 +78,7 @@ export function ExpensiveCard({
       className={cn(
         "relative overflow-hidden rounded-xl border border-white/60 bg-white/80 backdrop-blur-xl",
         "shadow-attio-diffuse transition-shadow duration-300",
+        "hover:shadow-attio-diffuse-hover",
         className
       )}
     >

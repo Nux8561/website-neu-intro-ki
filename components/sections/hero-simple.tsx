@@ -6,6 +6,7 @@ import Link from "next/link"
 import { ArrowRight } from "iconoir-react"
 import { ENTERPRISE_SPRING } from "@/lib/animations"
 import { ExpensiveCard } from "@/components/ui/3d-card"
+import { ConnectionWeb } from "@/components/ui/connection-web"
 
 /**
  * HERO SECTION - Attio-Style
@@ -13,9 +14,12 @@ import { ExpensiveCard } from "@/components/ui/3d-card"
  */
 export function HeroSimple() {
   return (
-    <section className="relative w-full overflow-hidden bg-slate-50 pt-20 pb-24 md:pt-32 md:pb-32 border-b border-slate-200 attio-grid-pattern">
+    <section className="relative w-full overflow-hidden bg-slate-50 pt-20 pb-24 md:pt-32 md:pb-32 border-b border-slate-200 attio-grid-pattern attio-connection-lines attio-network-nodes">
       {/* Hintergrund: Subtiler Gradient für Tiefe */}
       <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-br from-slate-50 via-white to-slate-50/50" />
+      
+      {/* Connection Web - Animierte Vernetzungslinien */}
+      <ConnectionWeb intensity="subtle" />
 
       <div className="relative z-10 mx-auto flex max-w-[1200px] flex-col gap-16 px-4">
         {/* TEXT TEIL */}

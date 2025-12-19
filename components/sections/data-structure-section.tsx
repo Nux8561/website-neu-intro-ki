@@ -51,8 +51,10 @@ export function DataStructureSection() {
 
   return (
     <section className="py-24 bg-slate-900 relative overflow-hidden">
-      {/* Grid Pattern */}
+      {/* Grid Pattern - Dark Mode Variante */}
       <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:32px_32px]" />
+      {/* Connection Lines - Dark Mode */}
+      <div className="absolute inset-0 opacity-5 bg-[linear-gradient(to_right,transparent_0%,rgba(255,255,255,0.1)_20%,rgba(255,255,255,0.1)_80%,transparent_100%),linear-gradient(to_bottom,transparent_0%,rgba(255,255,255,0.1)_20%,rgba(255,255,255,0.1)_80%,transparent_100%)] [background-size:200px_200px]" />
       
       <div className="relative z-10 mx-auto max-w-[1200px] px-4">
         <ScrollReveal direction="up" distance={50}>
@@ -61,7 +63,7 @@ export function DataStructureSection() {
               A CRM for any use case.
             </h2>
             <p className="text-lg text-slate-400">
-              Easily create custom objects that match your business' unique data structure.
+              Easily create custom objects that match your business&apos; unique data structure.
             </p>
           </div>
         </ScrollReveal>

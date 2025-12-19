@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 
 export function FeatureRows() {
   return (
-    <section className="space-y-32 py-32 bg-white attio-grid-pattern">
+    <section className="space-y-32 py-32 bg-white attio-grid-pattern attio-connection-lines">
       <div className="mx-auto max-w-[1200px] px-4">
         
         {/* ROW 1: CLARITY & FOCUS */}

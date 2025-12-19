@@ -10,7 +10,7 @@ import { StaggerReveal } from "@/components/ui/stagger-reveal";
 
 export function FeaturesBento() {
   return (
-    <section id="features" className="bg-slate-50/50 py-24 border-b border-slate-200 attio-grid-pattern">
+    <section id="features" className="bg-slate-50/50 py-24 border-b border-slate-200 attio-grid-pattern attio-connection-lines">
       <div className="mx-auto max-w-[1200px] px-4">
         
         {/* Section Header */}

@@ -128,30 +128,17 @@
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  /* Orthogonale Linien - Horizontal & Vertical - GRAU statt weiß */
+  /* Orthogonale Linien - Horizontal & Vertical - SEHR SUBTIL GRAU */
   background-image: 
-    /* Horizontal Lines - GRAU */
-    linear-gradient(to right, rgba(148, 163, 184, 0.15) 1px, transparent 1px),
-    /* Vertical Lines - GRAU */
-    linear-gradient(to bottom, rgba(148, 163, 184, 0.15) 1px, transparent 1px);
+    /* Horizontal Lines - SEHR SUBTIL */
+    linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    /* Vertical Lines - SEHR SUBTIL */
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
   background-size: 32px 32px; /* 4pt Grid System (8 * 4 = 32px) */
   background-position: center;
-  mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
 }
 
-/* Dots Pattern - Subtile Punkte für Tiefe */
-.attio-grid-pattern::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  /* Dots Pattern - Wie Attio */
-  background-image: radial-gradient(circle, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
-  background-size: 16px 16px; /* Kleinere Dots */
-  background-position: center;
-  opacity: 0.6;
-}
+/* Dots Pattern entfernt - nur weiße Linien */
 
 /* Connection Lines - Smart Lines die Komponenten verbinden */
 .attio-connection-lines {
@@ -165,28 +152,28 @@
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  /* Smart Verbindungslinien - DUNKLER, von links nach rechts */
+  /* Smart Verbindungslinien - SUBTIL, von links nach rechts */
   background-image: 
-    /* Horizontal Smart Lines - DUNKLER */
+    /* Horizontal Smart Lines - SUBTIL */
     linear-gradient(to right, 
       transparent 0%, 
-      rgba(100, 116, 139, 0.4) 15%, 
-      rgba(71, 85, 105, 0.6) 30%,
-      rgba(71, 85, 105, 0.6) 70%,
-      rgba(100, 116, 139, 0.4) 85%, 
+      rgba(148, 163, 184, 0.15) 20%, 
+      rgba(148, 163, 184, 0.2) 40%,
+      rgba(148, 163, 184, 0.2) 60%,
+      rgba(148, 163, 184, 0.15) 80%, 
       transparent 100%),
-    /* Vertical Smart Lines - DUNKLER */
+    /* Vertical Smart Lines - SUBTIL */
     linear-gradient(to bottom, 
       transparent 0%, 
-      rgba(100, 116, 139, 0.4) 15%, 
-      rgba(71, 85, 105, 0.6) 30%,
-      rgba(71, 85, 105, 0.6) 70%,
-      rgba(100, 116, 139, 0.4) 85%, 
+      rgba(148, 163, 184, 0.15) 20%, 
+      rgba(148, 163, 184, 0.2) 40%,
+      rgba(148, 163, 184, 0.2) 60%,
+      rgba(148, 163, 184, 0.15) 80%, 
       transparent 100%);
   background-size: 400px 400px;
   background-position: center;
-  opacity: 0.6;
-  animation: connectionFlow 15s linear infinite;
+  opacity: 0.3;
+  animation: connectionFlow 20s linear infinite;
 }
 
 @keyframes connectionFlow {
@@ -198,28 +185,7 @@
   }
 }
 
-/* Network Nodes - Kleine Verbindungspunkte */
-.attio-network-nodes {
-  position: relative;
-}
-
-.attio-network-nodes::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  /* Network Nodes - Kleine Punkte an Verbindungsstellen */
-  background-image: 
-    radial-gradient(circle at 25% 25%, rgba(148, 163, 184, 0.15) 2px, transparent 2px),
-    radial-gradient(circle at 75% 25%, rgba(148, 163, 184, 0.15) 2px, transparent 2px),
-    radial-gradient(circle at 25% 75%, rgba(148, 163, 184, 0.15) 2px, transparent 2px),
-    radial-gradient(circle at 75% 75%, rgba(148, 163, 184, 0.15) 2px, transparent 2px),
-    radial-gradient(circle at 50% 50%, rgba(148, 163, 184, 0.1) 1.5px, transparent 1.5px);
-  background-size: 200px 200px;
-  background-position: center;
-  opacity: 0.4;
-}
+/* Network Nodes entfernt - nur weiße Linien */
 
 /* Sections leicht transparent, damit das Grid durchscheint */
 section.bg-white {

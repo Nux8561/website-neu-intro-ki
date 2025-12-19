@@ -14,9 +14,7 @@ import { ConnectionWeb } from "@/components/ui/connection-web"
  */
 export function HeroSimple() {
   return (
-    <section className="relative w-full overflow-hidden bg-white pt-32 pb-40 md:pt-40 md:pb-48 border-b border-slate-200 attio-grid-pattern attio-connection-lines attio-network-nodes">
-      {/* Connection Web - Animierte Vernetzungslinien */}
-      <ConnectionWeb intensity="subtle" />
+    <section className="relative w-full overflow-hidden bg-white pt-32 pb-40 md:pt-40 md:pb-48 border-b border-slate-200 attio-grid-pattern attio-connection-lines">
 
       <div className="relative z-10 mx-auto flex max-w-[1200px] flex-col gap-16 px-4">
         {/* TEXT TEIL */}
@@ -98,19 +96,6 @@ export function HeroSimple() {
           transition={{ duration: 1, delay: 0.8 }}
           className="relative mx-auto w-full max-w-6xl"
         >
-          {/* Ambient Glow */}
-          <motion.div 
-            animate={{ 
-              opacity: [0.3, 0.5, 0.3],
-              scale: [1, 1.05, 1]
-            }}
-            transition={{ 
-              duration: 4, 
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="absolute -inset-4 -z-10 rounded-[3rem] bg-gradient-to-tr from-blue-100/40 via-purple-100/40 to-emerald-100/40 blur-3xl" 
-          />
 
           {/* Dashboard Container mit 3D-Card */}
           <ExpensiveCard intensity={5} className="overflow-hidden">
@@ -133,7 +118,7 @@ export function HeroSimple() {
             {/* Dashboard Body - Split View */}
             <div className="flex h-[600px] text-left">
               {/* Sidebar */}
-              <div className="hidden w-64 border-r border-slate-200/50 bg-slate-50/40 backdrop-blur-sm p-4 md:block">
+              <div className="hidden w-64 border-r border-slate-200/50 bg-white p-4 md:block">
                 <div className="mb-6 space-y-1">
                   <div className="px-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400">
                     Workspace
@@ -159,9 +144,7 @@ export function HeroSimple() {
               </div>
 
               {/* Main Canvas - Detailliertes Dashboard */}
-              <div className="relative flex-1 bg-slate-50/30 backdrop-blur-sm p-6 md:p-8 overflow-y-auto">
-                {/* Hintergrund Grid */}
-                <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:20px_20px]" />
+              <div className="relative flex-1 bg-white p-6 md:p-8 overflow-y-auto">
 
                 {/* Top Section: Focus of the Day */}
                 <div className="relative mb-6">

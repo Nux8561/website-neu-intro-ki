@@ -17,151 +17,217 @@ export function FeaturesBento() {
         <ScrollReveal direction="up" distance={50}>
           <div className="mb-16 max-w-2xl">
             <h2 className="text-3xl font-semibold tracking-tighter text-slate-900 sm:text-4xl mb-4">
-              Die komplette Revenue-Architektur.
+              Clarity für dich und dein Team.
             </h2>
             <p className="text-lg text-slate-500">
-              Intro KI ersetzt isolierte Tools durch eine integrierte Plattform. 
-              Von der ersten Recherche bis zum Closing.
+              Intro KI sorgt dafür, dass nichts untergeht. Die ersten 20 Calls sind immer die mit dem besten Potential – nicht 100 zufällige.
             </p>
           </div>
         </ScrollReveal>
 
-        {/* BENTO GRID LAYOUT mit 3D-Cards */}
-        <StaggerReveal className="grid gap-6 md:grid-cols-3 md:grid-rows-2 h-auto md:h-[600px]">
+        {/* BENTO GRID LAYOUT mit echten CRM-Features */}
+        <StaggerReveal className="grid gap-6 md:grid-cols-3 md:grid-rows-3 h-auto md:h-[800px]">
           
-          {/* CARD 1: RESEARCH ORCHESTRATOR (Groß, Links) */}
+          {/* CARD 1: CLARITY & FOCUS (Groß, Links Oben) */}
           <ExpensiveCard 
             intensity={8}
-            className="group relative flex flex-col justify-between overflow-hidden md:col-span-2 md:row-span-2"
+            className="group relative flex flex-col justify-between overflow-hidden md:col-span-2 md:row-span-1"
           >
             <div className="p-8">
-                  <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-medium text-slate-700">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-medium text-slate-700">
                 <div className="h-3 w-3 rounded border border-slate-300 flex items-center justify-center">
                   <div className="h-1.5 w-1.5 bg-slate-400 rounded" />
                 </div>
-                Global Research
+                Focus of the Day
               </div>
-              <h3 className="mb-2 text-2xl font-semibold tracking-tight text-slate-900">Research Orchestrator</h3>
-              <p className="max-w-md text-slate-500 text-sm leading-relaxed">
-                Unser Multi-Agent-System durchsucht das Web, Handelsregister und News in Echtzeit. 
-                Du erhältst keine rohen Daten, sondern kuratierte Profile.
+              <h3 className="mb-2 text-2xl font-semibold tracking-tight text-slate-900">Clarity & Focus</h3>
+              <p className="max-w-md text-slate-500 text-sm leading-relaxed mb-6">
+                Immer die richtige Klarheit. Top Opportunities heute, was zu tun ist, worauf du dich heute fokussieren musst.
               </p>
             </div>
 
-            {/* FAKE UI: Agent Process */}
-            <div className="relative mt-auto h-64 w-full border-t border-slate-200/50 bg-white/60 backdrop-blur-sm p-6">
-              <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:16px_16px] opacity-30"></div>
-              
+            {/* Fake UI: Focus Dashboard */}
+            <div className="relative mt-auto h-48 w-full border-t border-slate-200/50 bg-white/60 backdrop-blur-sm p-6">
               <div className="relative z-10 space-y-3">
-                {/* Agent Item 1 */}
-                <div className="flex items-center justify-between rounded-lg border border-slate-200/60 bg-white/90 backdrop-blur-sm p-3 shadow-attio-sm group-hover:translate-x-1 transition-transform duration-attio-fast ease-attio-ease-out">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 bg-white shadow-attio-sm">
-                      <div className="h-2 w-2 rounded-full bg-slate-400" />
+                {/* Top Opportunity */}
+                <div className="flex items-center justify-between rounded-lg border border-slate-200/60 bg-white/90 backdrop-blur-sm p-4 shadow-attio-sm">
+                  <div className="flex items-center gap-3 flex-1">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 bg-white">
+                      <div className="h-6 w-6 rounded bg-slate-200" />
                     </div>
-                    <div>
-                      <div className="text-xs font-semibold text-slate-900">Company Agent</div>
-                      <div className="text-[10px] text-slate-500">Scraping TechStack & Funding</div>
+                    <div className="flex-1">
+                      <div className="text-xs font-semibold text-slate-900 mb-1">Acme Corp</div>
+                      <div className="text-[10px] text-slate-500">Strong Buy Signal • €50K Deal</div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-1.5 rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-medium text-slate-700">
-                    <div className="h-1.5 w-1.5 rounded-full bg-slate-400"></div>
-                    Active
-                  </div>
+                  <div className="text-xs font-medium text-slate-700 px-2 py-1 bg-slate-100 rounded">#1 Priority</div>
                 </div>
 
-                {/* Agent Item 2 */}
-                <div className="flex items-center justify-between rounded-lg border border-slate-200/60 bg-white/90 backdrop-blur-sm p-3 shadow-attio-sm group-hover:translate-x-1 transition-transform duration-attio-fast ease-attio-ease-out delay-75">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 bg-white shadow-attio-sm">
-                      <div className="h-2 w-2 rounded-full bg-slate-400" />
-                    </div>
-                    <div>
-                      <div className="text-xs font-semibold text-slate-900">People Agent</div>
-                      <div className="text-[10px] text-slate-500">Enriching Decision Makers</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-1.5 rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-medium text-slate-500">
-                    Done
+                {/* Today's Tasks */}
+                <div className="flex items-center gap-3 rounded-lg border border-slate-200/60 bg-white/90 backdrop-blur-sm p-3 shadow-attio-sm">
+                  <div className="h-2 w-2 rounded-full bg-slate-400" />
+                  <div className="flex-1">
+                    <div className="text-xs font-medium text-slate-900">Call Acme Corp - Decision Maker</div>
+                    <div className="text-[10px] text-slate-500">Heute 14:00 • Warm Lead</div>
                   </div>
                 </div>
-                
-                {/* Connection Lines */}
-                <div className="absolute left-7 top-10 h-8 w-0.5 bg-slate-200 -z-10"></div>
               </div>
             </div>
           </ExpensiveCard>
 
-
-          {/* CARD 2: PIPELINE (Rechts Oben) */}
+          {/* CARD 2: PROJECT MANAGEMENT (Rechts Oben) */}
           <ExpensiveCard 
             intensity={6}
             className="group relative overflow-hidden md:col-span-1 md:row-span-1"
           >
-            {/* Fake UI: Mini Chart statt Icon */}
-            <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity duration-attio-fast">
-              <div className="flex items-end gap-1 h-24 w-24">
-                {[40, 60, 45, 80, 55, 70].map((h, i) => (
-                  <div key={i} className="flex-1 bg-slate-400 rounded-t" style={{ height: `${h}%` }} />
-                ))}
-              </div>
-            </div>
-            
             <div className="flex h-full flex-col justify-between p-6">
               <div>
-                <h3 className="text-lg font-semibold tracking-tight text-slate-900">Smart Pipeline</h3>
-                <p className="mt-2 text-xs text-slate-500">Priorisierung basierend auf Buying-Signals.</p>
+                <h3 className="text-lg font-semibold tracking-tight text-slate-900 mb-2">Project Management</h3>
+                <p className="text-xs text-slate-500 mb-4">Goals, Sequences, Smart Automation.</p>
               </div>
 
-              {/* Fake UI: Deal Card */}
-              <div className="mt-6 rounded-lg border border-slate-200/60 bg-white/90 backdrop-blur-sm p-3 shadow-attio-sm group-hover:scale-105 transition-transform duration-attio-fast ease-attio-ease-out">
-                <div className="flex justify-between items-start mb-2">
-                  <div className="h-2 w-16 bg-slate-200 rounded"></div>
-                  <div className="h-2 w-8 bg-slate-200 rounded"></div>
+              {/* Fake UI: Sequence Flow */}
+              <div className="mt-auto space-y-2">
+                <div className="flex items-center gap-2 text-[10px] text-slate-600">
+                  <div className="h-1.5 w-1.5 rounded-full bg-slate-400" />
+                  Lead called → Not reached
                 </div>
-                <div className="space-y-1.5">
-                   <div className="flex justify-between text-[10px] text-slate-500 font-medium">
-                      <span>Win Probability</span>
-                      <span className="text-slate-700">84%</span>
-                   </div>
-                   <div className="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
-                      <div className="h-full w-[84%] bg-slate-400 rounded-full"></div>
-                   </div>
+                <div className="flex items-center gap-2 text-[10px] text-slate-600">
+                  <div className="h-1.5 w-1.5 rounded-full bg-slate-400" />
+                  Email sent → Tracking link
+                </div>
+                <div className="flex items-center gap-2 text-[10px] text-slate-600">
+                  <div className="h-1.5 w-1.5 rounded-full bg-slate-400" />
+                  Link opened → Task created
+                </div>
+                <div className="mt-3 pt-3 border-t border-slate-200">
+                  <div className="text-[10px] font-medium text-slate-700">Smart Automation</div>
+                  <div className="text-[9px] text-slate-500 mt-1">Automatisch • Kein manueller Input</div>
                 </div>
               </div>
             </div>
           </ExpensiveCard>
 
-          {/* CARD 3: CALL COACHING (Rechts Unten) */}
+          {/* CARD 3: DEAL MANAGEMENT (Links Mitte) */}
           <ExpensiveCard 
             intensity={6}
-            className="group relative overflow-hidden border-slate-700/50 bg-slate-900/95 md:col-span-1 md:row-span-1"
+            className="group relative overflow-hidden md:col-span-1 md:row-span-1"
           >
             <div className="flex h-full flex-col justify-between p-6">
-              <div className="relative z-10">
-                <div className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-blue-500/20 bg-blue-500/10 px-2 py-1 text-[10px] font-medium text-blue-400">
-                  <div className="h-2 w-2 rounded-full bg-blue-400 animate-pulse" /> Live Analysis
-                </div>
-                <h3 className="text-lg font-semibold tracking-tight text-white">Call Coaching</h3>
-                <p className="mt-2 text-xs text-slate-400">Echtzeit-Hilfe während des Calls.</p>
+              <div>
+                <h3 className="text-lg font-semibold tracking-tight text-slate-900 mb-2">Deal Management</h3>
+                <p className="text-xs text-slate-500 mb-4">Next Steps für Bestandskunden finden.</p>
               </div>
 
-              {/* Fake UI: Audio Wave */}
-              <div className="mt-4 flex items-center justify-center gap-1">
-                {[...Array(12)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    animate={{ height: [12, 24, 12] }}
-                    transition={{ 
-                      repeat: Infinity, 
-                      duration: 1.5, 
-                      ease: "easeInOut", 
-                      delay: i * 0.1 
-                    }}
-                    className="w-1 rounded-full bg-blue-500 opacity-80"
-                    style={{ height: 12 + Math.random() * 12 }}
-                  />
-                ))}
+              {/* Fake UI: Deal Card */}
+              <div className="mt-auto rounded-lg border border-slate-200/60 bg-white/90 backdrop-blur-sm p-4 shadow-attio-sm">
+                <div className="flex justify-between items-start mb-3">
+                  <div className="h-2 w-20 bg-slate-200 rounded" />
+                  <div className="h-2 w-12 bg-slate-200 rounded" />
+                </div>
+                <div className="space-y-2">
+                  <div className="text-[10px] text-slate-500">Next Step</div>
+                  <div className="text-xs font-medium text-slate-900">Follow-up Call • Q1 Review</div>
+                  <div className="text-[9px] text-slate-500 mt-2">Bestandskunde • 6 Monate inaktiv</div>
+                </div>
+              </div>
+            </div>
+          </ExpensiveCard>
+
+          {/* CARD 4: RESEARCH (Mitte) */}
+          <ExpensiveCard 
+            intensity={6}
+            className="group relative overflow-hidden md:col-span-1 md:row-span-1"
+          >
+            <div className="flex h-full flex-col justify-between p-6">
+              <div>
+                <h3 className="text-lg font-semibold tracking-tight text-slate-900 mb-2">Research</h3>
+                <p className="text-xs text-slate-500 mb-4">Kontaktpersonen & Insider-Infos finden.</p>
+              </div>
+
+              {/* Fake UI: Research Results */}
+              <div className="mt-auto space-y-2">
+                <div className="flex items-center gap-2 rounded border border-slate-200 bg-white p-2">
+                  <div className="h-6 w-6 rounded bg-slate-200" />
+                  <div className="flex-1">
+                    <div className="text-[10px] font-medium text-slate-900">CEO gefunden</div>
+                    <div className="text-[9px] text-slate-500">LinkedIn • Email</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 rounded border border-slate-200 bg-white p-2">
+                  <div className="h-6 w-6 rounded bg-slate-200" />
+                  <div className="flex-1">
+                    <div className="text-[10px] font-medium text-slate-900">Funding News</div>
+                    <div className="text-[9px] text-slate-500">Series B • €5M</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ExpensiveCard>
+
+          {/* CARD 5: DATA HUB (Rechts Mitte) */}
+          <ExpensiveCard 
+            intensity={6}
+            className="group relative overflow-hidden md:col-span-1 md:row-span-1"
+          >
+            <div className="flex h-full flex-col justify-between p-6">
+              <div>
+                <h3 className="text-lg font-semibold tracking-tight text-slate-900 mb-2">Data Hub</h3>
+                <p className="text-xs text-slate-500 mb-4">Excel, PDFs, alles verstehen.</p>
+              </div>
+
+              {/* Fake UI: Data Sources */}
+              <div className="mt-auto space-y-2">
+                <div className="flex items-center gap-2 text-[10px] text-slate-600">
+                  <div className="h-4 w-4 rounded border border-slate-300 bg-white" />
+                  <span>Leads.xlsx</span>
+                  <span className="ml-auto text-slate-400">1,234 rows</span>
+                </div>
+                <div className="flex items-center gap-2 text-[10px] text-slate-600">
+                  <div className="h-4 w-4 rounded border border-slate-300 bg-white" />
+                  <span>Company_Data.pdf</span>
+                  <span className="ml-auto text-slate-400">Processed</span>
+                </div>
+                <div className="mt-2 pt-2 border-t border-slate-200">
+                  <div className="text-[9px] text-slate-500">Smart Algorithm versteht alles</div>
+                </div>
+              </div>
+            </div>
+          </ExpensiveCard>
+
+          {/* CARD 6: AUTOMATION & CAMPAIGNS (Groß, Unten) */}
+          <ExpensiveCard 
+            intensity={8}
+            className="group relative flex flex-col justify-between overflow-hidden md:col-span-2 md:row-span-1"
+          >
+            <div className="p-8">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-medium text-slate-700">
+                <div className="h-3 w-3 rounded border border-slate-300 flex items-center justify-center">
+                  <div className="h-1.5 w-1.5 bg-slate-400 rounded" />
+                </div>
+                Automation
+              </div>
+              <h3 className="mb-2 text-2xl font-semibold tracking-tight text-slate-900">Email Campaigns & Lead Forms</h3>
+              <p className="max-w-md text-slate-500 text-sm leading-relaxed">
+                Erstelle Email-Kampagnen und Lead-Forms. Team-Management und ICP-Scoring für maximale Effizienz.
+              </p>
+            </div>
+
+            {/* Fake UI: Campaign Stats */}
+            <div className="relative mt-auto h-40 w-full border-t border-slate-200/50 bg-white/60 backdrop-blur-sm p-6">
+              <div className="relative z-10 grid grid-cols-3 gap-4">
+                <div className="text-center">
+                  <div className="text-lg font-semibold text-slate-900">24</div>
+                  <div className="text-[10px] text-slate-500">Active Campaigns</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-lg font-semibold text-slate-900">1,456</div>
+                  <div className="text-[10px] text-slate-500">Leads Generated</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-lg font-semibold text-slate-900">89%</div>
+                  <div className="text-[10px] text-slate-500">ICP Match Rate</div>
+                </div>
               </div>
             </div>
           </ExpensiveCard>
@@ -171,4 +237,3 @@ export function FeaturesBento() {
     </section>
   );
 }
-

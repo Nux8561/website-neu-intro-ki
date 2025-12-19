@@ -1,187 +1,280 @@
- "use client"
+"use client"
 
 import * as React from "react";
 import { ArrowRight } from "iconoir-react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { ExpensiveCard } from "@/components/ui/3d-card";
+import { ENTERPRISE_SPRING } from "@/lib/animations";
+import { motion } from "framer-motion";
 
 export function FeatureRows() {
   return (
     <section className="space-y-32 py-32 bg-white attio-grid-pattern">
-      {/* FEATURE 1: DATA ENRICHMENT (Text Links, Bild Rechts) */}
-      <ScrollReveal direction="up" distance={80}>
-        <div className="mx-auto grid max-w-[1200px] gap-16 px-4 md:grid-cols-2 md:items-center">
-        {/* Text Side */}
-        <div className="max-w-md">
-          {/* Fake UI: Mini Database Table statt Icon */}
-          <div className="mb-6 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-blue-200/50 bg-blue-50/80 backdrop-blur-sm shadow-attio-sm">
-            <div className="space-y-0.5">
-              <div className="h-1 w-6 bg-blue-600 rounded" />
-              <div className="h-1 w-4 bg-blue-400 rounded" />
-              <div className="h-1 w-5 bg-blue-500 rounded" />
+      <div className="mx-auto max-w-[1200px] px-4">
+        
+        {/* ROW 1: CLARITY & FOCUS */}
+        <ScrollReveal direction="up" distance={80}>
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700">
+                Focus of the Day
+              </div>
+              <h3 className="text-3xl font-semibold tracking-tighter text-slate-900 mb-4">
+                Immer wissen, was zu tun ist
+              </h3>
+              <p className="text-lg text-slate-500 mb-6">
+                Top Opportunities heute, was zu tun ist, worauf du dich heute fokussieren musst. 
+                Keine 100 zufälligen Calls – die ersten 20 sind immer die mit dem besten Potential.
+              </p>
+              <ul className="space-y-3 mb-8">
+                {[
+                  "Top Opportunities heute",
+                  "Focus of the Day",
+                  "Priorisierte Task-Liste",
+                  "Team-übergreifende Klarheit"
+                ].map((item, i) => (
+                  <motion.li
+                    key={item}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ ...ENTERPRISE_SPRING, delay: i * 0.1 }}
+                    className="flex items-center gap-3 text-slate-700"
+                  >
+                    <div className="h-1.5 w-1.5 rounded-full bg-slate-400" />
+                    <span>{item}</span>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+            <ExpensiveCard intensity={6} className="p-8">
+              {/* Fake UI: Focus Dashboard */}
+              <div className="space-y-4">
+                <div className="flex items-center justify-between mb-6">
+                  <h4 className="text-sm font-semibold text-slate-900">Heute</h4>
+                  <div className="text-xs text-slate-500">3 Prioritäten</div>
+                </div>
+                {[
+                  { name: "Acme Corp", type: "Strong Buy Signal", value: "€50K", priority: 1 },
+                  { name: "TechStart GmbH", type: "Warm Lead", value: "€25K", priority: 2 },
+                  { name: "DataFlow Inc", type: "Follow-up", value: "€15K", priority: 3 },
+                ].map((deal, i) => (
+                  <div key={i} className="flex items-center justify-between rounded-lg border border-slate-200 bg-white p-4">
+                    <div className="flex items-center gap-3 flex-1">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 bg-white text-xs font-semibold text-slate-600">
+                        #{deal.priority}
+                      </div>
+                      <div className="flex-1">
+                        <div className="text-sm font-semibold text-slate-900">{deal.name}</div>
+                        <div className="text-xs text-slate-500">{deal.type}</div>
+                      </div>
+                    </div>
+                    <div className="text-sm font-medium text-slate-700">{deal.value}</div>
+                  </div>
+                ))}
+              </div>
+            </ExpensiveCard>
+          </div>
+        </ScrollReveal>
+
+        {/* ROW 2: PROJECT MANAGEMENT & AUTOMATION */}
+        <ScrollReveal direction="up" distance={80}>
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <ExpensiveCard intensity={6} className="p-8 order-2 md:order-1">
+              {/* Fake UI: Sequence Flow */}
+              <div className="space-y-4">
+                <div className="mb-6">
+                  <h4 className="text-sm font-semibold text-slate-900 mb-2">Smart Automation</h4>
+                  <p className="text-xs text-slate-500">Wenn Lead nicht erreicht wird...</p>
+                </div>
+                <div className="space-y-3">
+                  {[
+                    { step: "1", action: "Lead called", status: "Not reached", icon: "📞" },
+                    { step: "2", action: "Email sent", status: "Tracking link", icon: "📧" },
+                    { step: "3", action: "Link opened", status: "Task created", icon: "✅" },
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-4">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 bg-white text-xs font-semibold text-slate-600">
+                        {item.step}
+                      </div>
+                      <div className="flex-1">
+                        <div className="text-sm font-medium text-slate-900">{item.action}</div>
+                        <div className="text-xs text-slate-500">{item.status}</div>
+                      </div>
+                      {i < 2 && (
+                        <div className="h-8 w-0.5 bg-slate-200" />
+                      )}
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-6 pt-4 border-t border-slate-200">
+                  <div className="text-xs font-medium text-slate-700">Automatisch • Kein manueller Input</div>
+                </div>
+              </div>
+            </ExpensiveCard>
+            <div className="order-1 md:order-2">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700">
+                Smart Automation
+              </div>
+              <h3 className="text-3xl font-semibold tracking-tighter text-slate-900 mb-4">
+                Project Management mit Sequences
+              </h3>
+              <p className="text-lg text-slate-500 mb-6">
+                Für jedes Project kannst du Goals definieren, viele Sources splitten und Sequences geben. 
+                Beispiel: Lead called, nicht erreicht → Email mit Tracking-Link wird automatisch gesendet. 
+                Person öffnet Link → Task "Call again" wird automatisch erstellt.
+              </p>
+              <ul className="space-y-3">
+                {[
+                  "Goals für jedes Project",
+                  "Multiple Sources",
+                  "Smart Sequences",
+                  "Vollautomatische Workflows"
+                ].map((item, i) => (
+                  <motion.li
+                    key={item}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ ...ENTERPRISE_SPRING, delay: i * 0.1 }}
+                    className="flex items-center gap-3 text-slate-700"
+                  >
+                    <div className="h-1.5 w-1.5 rounded-full bg-slate-400" />
+                    <span>{item}</span>
+                  </motion.li>
+                ))}
+              </ul>
             </div>
           </div>
-          <h2 className="mb-4 text-3xl font-semibold tracking-tighter text-slate-900 md:text-4xl">
-            Daten, die sich <br className="hidden lg:block" />
-            <span className="text-slate-400">selbst pflegen.</span>
-          </h2>
-          <p className="mb-8 text-lg text-slate-500 leading-relaxed">
-            Intro KI synchronisiert sich mit E-Mail, Kalender und LinkedIn. 
-            Jeder Kontakt wird automatisch angereichert – inklusive Jobwechsel, 
-            Funding-News und Tech-Stack.
-          </p>
-          
-          <ul className="space-y-4">
-            {[
-              "Automatische Deduplizierung",
-              "DSGVO-konforme Datenanreicherung",
-              "Echtzeit-Synchronisation (2-Way)"
-            ].map((item) => (
-              <li key={item} className="flex items-center gap-3 text-sm font-medium text-slate-700">
-                <div className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-50 border border-emerald-200/50">
-                  <div className="h-2 w-2 rounded-full bg-emerald-600" />
-                </div>
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
+        </ScrollReveal>
 
-        {/* Visual Side (Fake UI: Data Card) */}
-        <ExpensiveCard intensity={5} className="relative p-8">
-          {/* Background Pattern */}
-          <div
-            className="absolute inset-0 opacity-[0.03]"
-            style={{ backgroundImage: "linear-gradient(#000 1px, transparent 1px)", backgroundSize: "24px 24px" }}
-          />
-          
-          {/* The Card */}
-          <div className="relative rounded-xl border border-slate-200/60 bg-white/90 backdrop-blur-sm p-5 shadow-attio-md">
-            {/* Header */}
-            <div className="mb-6 flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-lg font-bold text-slate-500">
-                JD
+        {/* ROW 3: DEAL MANAGEMENT */}
+        <ScrollReveal direction="up" distance={80}>
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700">
+                Bestandskunden
               </div>
-              <div>
-                <div className="mb-2 h-3 w-32 rounded bg-slate-200" />
-                <div className="h-2 w-20 rounded bg-slate-100" />
-              </div>
-              <div className="ml-auto rounded-full bg-emerald-50 px-2 py-1 text-[10px] font-medium text-emerald-600">
-                Enriched
-              </div>
+              <h3 className="text-3xl font-semibold tracking-tighter text-slate-900 mb-4">
+                Deal Management für Bestandskunden
+              </h3>
+              <p className="text-lg text-slate-500 mb-6">
+                Auch für Menschen mit vielen Bestandskunden: Finde die Next Steps, damit du bestehende Kunden nicht ignorierst. 
+                Egal ob Deal oder Pipeline, neuer Kunde oder Bestandskunde – du weißt immer, was los ist.
+              </p>
+              <ul className="space-y-3">
+                {[
+                  "Next Steps für Bestandskunden",
+                  "Deal & Pipeline Management",
+                  "Automatische Follow-ups",
+                  "Nichts geht unter"
+                ].map((item, i) => (
+                  <motion.li
+                    key={item}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ ...ENTERPRISE_SPRING, delay: i * 0.1 }}
+                    className="flex items-center gap-3 text-slate-700"
+                  >
+                    <div className="h-1.5 w-1.5 rounded-full bg-slate-400" />
+                    <span>{item}</span>
+                  </motion.li>
+                ))}
+              </ul>
             </div>
-
-            {/* Data Fields */}
-            <div className="space-y-3">
-              {[1, 2, 3].map((i) => (
-                <div
-                  key={i}
-                  className="flex items-center gap-3 rounded border border-slate-50 p-2 transition-colors hover:bg-slate-50"
-                >
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-blue-200/50 bg-blue-50/80 backdrop-blur-sm shadow-attio-sm">
-                    <div className="space-y-0.5">
-                      <div className="h-0.5 w-3 bg-blue-600 rounded" />
-                      <div className="h-0.5 w-2 bg-blue-400 rounded" />
+            <ExpensiveCard intensity={6} className="p-8">
+              {/* Fake UI: Deal Cards */}
+              <div className="space-y-4">
+                <div className="mb-6">
+                  <h4 className="text-sm font-semibold text-slate-900 mb-2">Inaktive Bestandskunden</h4>
+                  <p className="text-xs text-slate-500">6 Monate keine Aktivität</p>
+                </div>
+                {[
+                  { name: "Acme Corp", deal: "€50K", nextStep: "Q1 Review Call", days: "180 Tage" },
+                  { name: "TechStart GmbH", deal: "€25K", nextStep: "Upsell Opportunity", days: "120 Tage" },
+                ].map((deal, i) => (
+                  <div key={i} className="rounded-lg border border-slate-200 bg-white p-4">
+                    <div className="flex items-start justify-between mb-3">
+                      <div>
+                        <div className="text-sm font-semibold text-slate-900">{deal.name}</div>
+                        <div className="text-xs text-slate-500">{deal.days} inaktiv</div>
+                      </div>
+                      <div className="text-sm font-medium text-slate-700">{deal.deal}</div>
+                    </div>
+                    <div className="pt-3 border-t border-slate-100">
+                      <div className="text-xs text-slate-500 mb-1">Next Step</div>
+                      <div className="text-sm font-medium text-slate-900">{deal.nextStep}</div>
                     </div>
                   </div>
-                  <div className="flex-1">
-                    <div className="mb-1 flex justify-between">
-                      <div className="h-2 w-16 rounded bg-slate-200" />
-                      <div className="h-2 w-4 rounded bg-slate-100" />
+                ))}
+              </div>
+            </ExpensiveCard>
+          </div>
+        </ScrollReveal>
+
+        {/* ROW 4: RESEARCH & DATA HUB */}
+        <ScrollReveal direction="up" distance={80}>
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <ExpensiveCard intensity={6} className="p-8 order-2 md:order-1">
+              {/* Fake UI: Research Results */}
+              <div className="space-y-4">
+                <div className="mb-6">
+                  <h4 className="text-sm font-semibold text-slate-900 mb-2">Research Results</h4>
+                  <p className="text-xs text-slate-500">Kontaktpersonen & Insider-Infos</p>
+                </div>
+                {[
+                  { type: "CEO gefunden", source: "LinkedIn", detail: "Email verfügbar" },
+                  { type: "Funding News", source: "Crunchbase", detail: "Series B • €5M" },
+                  { type: "Tech Stack", source: "BuiltWith", detail: "React, AWS, Stripe" },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3 rounded-lg border border-slate-200 bg-white p-3">
+                    <div className="h-8 w-8 rounded bg-slate-200" />
+                    <div className="flex-1">
+                      <div className="text-sm font-medium text-slate-900">{item.type}</div>
+                      <div className="text-xs text-slate-500">{item.source} • {item.detail}</div>
                     </div>
-                    <div className="h-1.5 w-24 rounded bg-slate-100" />
                   </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Floating Notification */}
-            <div className="absolute -right-6 top-10 flex items-center gap-3 rounded-lg border border-slate-200/60 bg-white/90 backdrop-blur-sm p-3 text-xs shadow-attio-lg">
-              <div className="relative h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-500" />
+                ))}
               </div>
-              <span className="text-slate-600">Neuer Jobtitel erkannt</span>
+            </ExpensiveCard>
+            <div className="order-1 md:order-2">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700">
+                Research & Data Hub
+              </div>
+              <h3 className="text-3xl font-semibold tracking-tighter text-slate-900 mb-4">
+                Research & Data Hub
+              </h3>
+              <p className="text-lg text-slate-500 mb-6">
+                Finde Kontaktpersonen im Internet, Informationen, Insider-Infos. 
+                Data Hub: Alle deine bestehenden Daten – Excel-Tabellen, PDFs, alles kannst du einspeisen. 
+                Der smarte Algorithmus im Hintergrund versteht alles.
+              </p>
+              <ul className="space-y-3">
+                {[
+                  "Kontaktpersonen finden",
+                  "Insider-Informationen",
+                  "Excel & PDF Import",
+                  "Smart Algorithm versteht alles"
+                ].map((item, i) => (
+                  <motion.li
+                    key={item}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ ...ENTERPRISE_SPRING, delay: i * 0.1 }}
+                    className="flex items-center gap-3 text-slate-700"
+                  >
+                    <div className="h-1.5 w-1.5 rounded-full bg-slate-400" />
+                    <span>{item}</span>
+                  </motion.li>
+                ))}
+              </ul>
             </div>
           </div>
-        </ExpensiveCard>
+        </ScrollReveal>
+
       </div>
-      </ScrollReveal>
-
-      {/* FEATURE 2: WORKFLOWS (Bild Links, Text Rechts) */}
-      <ScrollReveal direction="up" distance={80}>
-        <div className="mx-auto grid max-w-[1200px] gap-16 px-4 md:grid-cols-2 md:items-center">
-        {/* Visual Side (Fake UI: Workflow Node Graph) */}
-        <ExpensiveCard intensity={5} className="order-2 md:order-1 group relative overflow-hidden border-slate-700/50 bg-slate-900/95 p-8">
-          {/* Dark Mode Grid */}
-          <div
-            className="absolute inset-0 opacity-20"
-            style={{
-              backgroundImage:
-                "linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)",
-              backgroundSize: "32px 32px",
-            }}
-          />
-           
-          {/* Nodes */}
-          <div className="relative z-10 flex flex-col items-center gap-8 py-8">
-            {/* Trigger Node */}
-            <div className="flex w-48 items-center gap-3 rounded-lg border border-slate-700/50 bg-slate-800/90 backdrop-blur-sm p-3 text-xs text-white shadow-attio-md">
-              <div className="flex h-6 w-6 items-center justify-center rounded-lg border border-blue-500/30 bg-blue-500/20 backdrop-blur-sm">
-                <div className="h-2 w-2 rounded-full bg-blue-400" />
-              </div>
-              <span>New Lead Created</span>
-            </div>
-             
-            {/* Connector Line */}
-            <div className="relative h-8 w-0.5 bg-slate-700">
-              <div className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-slate-600" />
-            </div>
-
-            {/* Action Node (Split) */}
-            <div className="grid w-full max-w-sm grid-cols-2 gap-4">
-              <div className="flex items-center gap-2 rounded-lg border border-slate-700/50 bg-slate-800/60 backdrop-blur-sm p-3 text-xs text-white opacity-50 shadow-attio-sm">
-                <div className="flex h-5 w-5 items-center justify-center rounded-lg border border-slate-600 bg-slate-700/50">?</div>
-                <span>Check Size</span>
-              </div>
-              <div className="flex items-center gap-2 rounded-lg border border-emerald-900/50 bg-emerald-900/30 backdrop-blur-sm p-3 text-xs text-emerald-100 shadow-attio-md ring-1 ring-emerald-500/50">
-                <div className="flex h-5 w-5 items-center justify-center rounded-lg border border-emerald-500/30 bg-emerald-500/20">
-                  <div className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                </div>
-                <span>Enrich Data</span>
-              </div>
-            </div>
-          </div>
-        </ExpensiveCard>
-
-        {/* Text Side */}
-        <div className="order-1 max-w-md md:order-2">
-          {/* Fake UI: Mini Workflow Nodes statt Icon */}
-          <div className="mb-6 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-purple-200/50 bg-purple-50/80 backdrop-blur-sm shadow-attio-sm">
-            <div className="relative">
-              <div className="h-2 w-2 rounded-full bg-purple-600" />
-              <div className="absolute left-1 top-2 h-3 w-0.5 bg-purple-400" />
-              <div className="absolute left-0.5 top-4 h-2 w-2 rounded-full bg-purple-500" />
-            </div>
-          </div>
-          <h2 className="mb-4 text-3xl font-semibold tracking-tighter text-slate-900 md:text-4xl">
-            Workflows ohne <br className="hidden lg:block" />
-            <span className="text-slate-400">Ingenieurs-Studium.</span>
-          </h2>
-          <p className="mb-8 text-lg text-slate-500 leading-relaxed">
-            Baue komplexe Automatisierungen per Drag &amp; Drop. 
-            &ldquo;Wenn Lead &gt; 50 Mitarbeiter, dann erstelle Deal und benachrichtige Slack.&ldquo; 
-            So einfach wie Lego.
-          </p>
-          <button className="group inline-flex items-center text-sm font-medium text-slate-900">
-            Workflow Library ansehen
-            <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </button>
-        </div>
-      </div>
-      </ScrollReveal>
     </section>
   );
 }
-
-

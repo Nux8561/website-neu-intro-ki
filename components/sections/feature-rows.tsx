@@ -122,7 +122,7 @@ export function FeatureRows() {
               <p className="text-lg text-slate-500 mb-6">
                 Für jedes Project kannst du Goals definieren, viele Sources splitten und Sequences geben. 
                 Beispiel: Lead called, nicht erreicht → Email mit Tracking-Link wird automatisch gesendet. 
-                Person öffnet Link → Task &ldquo;Call again&rdquo; wird automatisch erstellt.
+                Person öffnet Link → Task {'"'}Call again{'"'} wird automatisch erstellt.
               </p>
               <ul className="space-y-3">
                 {[

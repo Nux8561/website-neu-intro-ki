@@ -8,8 +8,8 @@ import { ENTERPRISE_SPRING } from "@/lib/animations";
 
 export function CTAFooter() {
   return (
-    <section className="bg-white py-32 md:py-40 attio-grid-pattern attio-connection-lines">
-      <div className="mx-auto max-w-[1000px] px-4">
+    <section className="bg-white py-32 md:py-40 attio-grid-pattern attio-connection-lines border-b border-slate-200/60">
+      <div className="mx-auto max-w-full px-4">
         
         <motion.div 
           initial={{ opacity: 0, y: 20 }}

@@ -14,9 +14,12 @@ import { ConnectionWeb } from "@/components/ui/connection-web"
  */
 export function HeroSimple() {
   return (
-    <section className="relative w-full overflow-hidden bg-white pt-32 pb-40 md:pt-40 md:pb-48 border-b border-slate-200 attio-grid-pattern attio-connection-lines">
+    <section className="relative w-full overflow-hidden bg-white pt-32 pb-40 md:pt-40 md:pb-48 border-b border-slate-200/60 attio-grid-pattern attio-connection-lines">
+      {/* Glowing Gradients für Farbe */}
+      <div className="fixed -top-40 -left-40 h-96 w-96 rounded-full bg-blue-500/5 blur-[128px] pointer-events-none" />
+      <div className="fixed top-1/2 right-0 h-[500px] w-[500px] rounded-full bg-indigo-500/3 blur-[128px] pointer-events-none" />
 
-      <div className="relative z-10 mx-auto flex max-w-[1200px] flex-col gap-16 px-4">
+      <div className="relative z-10 mx-auto flex max-w-full flex-col gap-16 px-0">
         {/* TEXT TEIL */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

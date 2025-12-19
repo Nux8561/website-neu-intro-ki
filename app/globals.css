@@ -116,7 +116,32 @@
    Dots und Vernetzungs-Details
    ============================================ */
 
-/* Base Grid Pattern - Orthogonale Linien (1px) */
+/* ============================================
+   CONNECTED GRID SYSTEM - "The Grid is King"
+   ============================================
+   Durchgehendes Raster über die ganze Seite.
+   Alle Komponenten docken an die Linien an.
+   ============================================ */
+
+/* Fixed Background Grid - Über die ganze Seite */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  /* Millimeterpapier-Raster - 64px (4rem) Kästchen */
+  background-image: 
+    linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+  background-size: 4rem 4rem; /* 64px Grid */
+  background-position: center;
+  /* Vignette außen für subtilen Fade */
+  mask-image: radial-gradient(ellipse at center, black 50%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 50%, transparent 100%);
+}
+
+/* Base Grid Pattern - Für Sections (zusätzlich zum fixed Grid) */
 .attio-grid-pattern {
   position: relative;
   background-color: #FFFFFF; /* Weiß bleiben */
@@ -128,13 +153,13 @@
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  /* Orthogonale Linien - Horizontal & Vertical - SEHR SUBTIL GRAU */
+  /* Orthogonale Linien - Horizontal & Vertical - SUBTIL GRAU */
   background-image: 
-    /* Horizontal Lines - SEHR SUBTIL */
+    /* Horizontal Lines */
     linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
-    /* Vertical Lines - SEHR SUBTIL */
+    /* Vertical Lines */
     linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
-  background-size: 32px 32px; /* 4pt Grid System (8 * 4 = 32px) */
+  background-size: 4rem 4rem; /* 64px Grid - Match mit body::before */
   background-position: center;
 }
 

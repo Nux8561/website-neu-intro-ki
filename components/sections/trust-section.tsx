@@ -16,8 +16,8 @@ const LOGOS = [
 
 export function TrustSection() {
   return (
-    <section id="trust" className="border-b border-slate-200 bg-white py-32 md:py-40 attio-grid-pattern attio-connection-lines">
-      <div className="mx-auto max-w-[1200px] px-4 text-center relative z-10">
+    <section id="trust" className="border-b border-slate-200/60 bg-white py-32 md:py-40 attio-grid-pattern attio-connection-lines">
+      <div className="mx-auto max-w-full px-4 text-center relative z-10">
         
         {/* Headline */}
         <motion.p 

@@ -10,12 +10,14 @@ import { StaggerReveal } from "@/components/ui/stagger-reveal";
 
 export function FeaturesBento() {
   return (
-    <section id="features" className="bg-white py-32 md:py-40 border-b border-slate-200 attio-grid-pattern attio-connection-lines">
-      <div className="mx-auto max-w-[1200px] px-4">
+    <section id="features" className="bg-white py-32 md:py-40 border-b border-slate-200/60 attio-grid-pattern attio-connection-lines">
+      <div className="mx-auto max-w-full px-0">
         
-        {/* Section Header */}
+        {/* Section Header - Mit vertikaler Linie in der Mitte */}
         <ScrollReveal direction="up" distance={50}>
-          <div className="mb-20 max-w-3xl">
+          <div className="relative mb-20 max-w-3xl mx-auto px-4">
+            {/* Dekorative vertikale Linie in der Mitte */}
+            <div className="absolute top-0 bottom-0 left-1/2 w-px bg-gradient-to-b from-transparent via-slate-200/60 to-transparent -translate-x-1/2" />
             <h2 className="text-4xl md:text-5xl font-semibold tracking-tighter text-slate-900 mb-6">
               Clarity für dich und dein Team.
             </h2>
@@ -25,13 +27,14 @@ export function FeaturesBento() {
           </div>
         </ScrollReveal>
 
-        {/* BENTO GRID LAYOUT mit echten CRM-Features */}
-        <StaggerReveal className="grid gap-6 md:grid-cols-3 md:grid-rows-3 h-auto md:h-[800px]">
+        {/* BENTO GRID LAYOUT mit echten CRM-Features - GAP-TRICK PRINZIP */}
+        {/* Der Hintergrund ist hellgrau, gap-px erzeugt messerscharfe 1px Linien */}
+        <StaggerReveal className="grid gap-px bg-slate-200/40 md:grid-cols-3 md:grid-rows-3 h-auto md:h-[800px] border-b border-slate-200/60">
           
           {/* CARD 1: CLARITY & FOCUS (Groß, Links Oben) */}
           <ExpensiveCard 
             intensity={8}
-            className="group relative flex flex-col justify-between overflow-hidden md:col-span-2 md:row-span-1"
+            className="group relative flex flex-col justify-between overflow-hidden md:col-span-2 md:row-span-1 bg-white"
           >
             <div className="p-10">
               <h3 className="mb-4 text-3xl font-semibold tracking-tight text-slate-900">Clarity & Focus</h3>
@@ -72,8 +75,8 @@ export function FeaturesBento() {
           {/* CARD 2: PROJECT MANAGEMENT (Rechts Oben) */}
           <ExpensiveCard 
             intensity={6}
-                    className="group relative overflow-hidden md:col-span-1 md:row-span-1"
-                  >
+            className="group relative overflow-hidden md:col-span-1 md:row-span-1 bg-white"
+          >
                     <div className="flex h-full flex-col justify-between p-8">
                       <div>
                         <h3 className="text-xl font-semibold tracking-tight text-slate-900 mb-3">Project Management</h3>
@@ -105,8 +108,8 @@ export function FeaturesBento() {
           {/* CARD 3: DEAL MANAGEMENT (Links Mitte) */}
           <ExpensiveCard 
             intensity={6}
-                    className="group relative overflow-hidden md:col-span-1 md:row-span-1"
-                  >
+            className="group relative overflow-hidden md:col-span-1 md:row-span-1 bg-white"
+          >
                     <div className="flex h-full flex-col justify-between p-8">
                       <div>
                         <h3 className="text-xl font-semibold tracking-tight text-slate-900 mb-3">Deal Management</h3>
@@ -131,8 +134,8 @@ export function FeaturesBento() {
           {/* CARD 4: RESEARCH (Mitte) */}
           <ExpensiveCard 
             intensity={6}
-                    className="group relative overflow-hidden md:col-span-1 md:row-span-1"
-                  >
+            className="group relative overflow-hidden md:col-span-1 md:row-span-1 bg-white"
+          >
                     <div className="flex h-full flex-col justify-between p-8">
                       <div>
                         <h3 className="text-xl font-semibold tracking-tight text-slate-900 mb-3">Research</h3>
@@ -162,8 +165,8 @@ export function FeaturesBento() {
           {/* CARD 5: DATA HUB (Rechts Mitte) */}
           <ExpensiveCard 
             intensity={6}
-                    className="group relative overflow-hidden md:col-span-1 md:row-span-1"
-                  >
+            className="group relative overflow-hidden md:col-span-1 md:row-span-1 bg-white"
+          >
                     <div className="flex h-full flex-col justify-between p-8">
                       <div>
                         <h3 className="text-xl font-semibold tracking-tight text-slate-900 mb-3">Data Hub</h3>
@@ -192,7 +195,7 @@ export function FeaturesBento() {
           {/* CARD 6: AUTOMATION & CAMPAIGNS (Groß, Unten) */}
           <ExpensiveCard 
             intensity={8}
-            className="group relative flex flex-col justify-between overflow-hidden md:col-span-2 md:row-span-1"
+            className="group relative flex flex-col justify-between overflow-hidden md:col-span-2 md:row-span-1 bg-white"
           >
             <div className="p-10">
               <h3 className="mb-4 text-3xl font-semibold tracking-tight text-slate-900">Email Campaigns & Lead Forms</h3>

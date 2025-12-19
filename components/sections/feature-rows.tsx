@@ -9,8 +9,8 @@ import { motion } from "framer-motion";
 
 export function FeatureRows() {
   return (
-    <section className="space-y-40 py-40 md:py-48 bg-white attio-grid-pattern attio-connection-lines">
-      <div className="mx-auto max-w-[1200px] px-4">
+    <section className="space-y-40 py-40 md:py-48 bg-white attio-grid-pattern attio-connection-lines border-b border-slate-200/60">
+      <div className="mx-auto max-w-full px-4">
         
         {/* ROW 1: CLARITY & FOCUS */}
         <ScrollReveal direction="up" distance={80}>

@@ -13,16 +13,19 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-white selection:bg-blue-100 selection:text-blue-900">
-        <HeroSimple />
-        <FeaturesBento />
-        <WorkspacesInterfaceSection />
-        <VideoDemoSection videoSrc="/videos/demo.mp4" />
-        <FeatureRows />
-        <TrustSection />
-        <CTAFooter />
+      {/* Main Container mit vertikalen Border-Eingrenzungen */}
+      <div className="relative z-10 mx-auto max-w-[1200px] border-x border-slate-200/60 bg-white/40 backdrop-blur-sm">
+        <main className="min-h-screen bg-white selection:bg-blue-100 selection:text-blue-900">
+          <HeroSimple />
+          <FeaturesBento />
+          <WorkspacesInterfaceSection />
+          <VideoDemoSection videoSrc="/videos/demo.mp4" />
+          <FeatureRows />
+          <TrustSection />
+          <CTAFooter />
+        </main>
         <SiteFooter />
-      </main>
+      </div>
       <CookieConsent />
     </>
   )

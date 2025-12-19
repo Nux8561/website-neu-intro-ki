@@ -8,7 +8,8 @@
 
 import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Play, Cancel, VolumeUp, VolumeOff, Expand, Pause, AlertCircle, Zap, Database, Shield } from "iconoir-react"
+import { Play, Expand, Pause } from "iconoir-react"
+import { X, Volume2, VolumeX, Maximize, AlertCircle, Zap, Database, Shield } from "lucide-react"
 import { IntroFeatureStory, IntroFeatureKey } from "@/components/visuals/IntroFeatureStory"
 import { attioTransition } from "@/lib/animations"
 
@@ -407,7 +408,7 @@ export function VideoDemoSection({
               aria-label="Video schließen"
               title="Video schließen"
             >
-              <Cancel className="h-6 w-6" />
+              <X className="h-6 w-6" />
             </button>
 
             {/* Video Container */}
@@ -522,9 +523,9 @@ export function VideoDemoSection({
                         title={isMuted ? "Ton einschalten" : "Ton ausschalten"}
                       >
                         {isMuted ? (
-                          <VolumeOff className="h-5 w-5" />
+                          <VolumeX className="h-5 w-5" />
                         ) : (
-                          <VolumeUp className="h-5 w-5" />
+                          <Volume2 className="h-5 w-5" />
                         )}
                       </button>
 
@@ -538,7 +539,7 @@ export function VideoDemoSection({
                         aria-label="Vollbild"
                         title="Vollbild"
                       >
-                        <Expand className="h-5 w-5" />
+                        <Maximize className="h-5 w-5" />
                       </button>
                     </div>
                   </div>

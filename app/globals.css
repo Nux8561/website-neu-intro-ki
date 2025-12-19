@@ -76,7 +76,9 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-inter;
+    @apply bg-slate-50 text-slate-900 font-inter antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
@@ -102,8 +104,7 @@
 }
 
 /* Attio-Style Grid Pattern System */
-/* Vollständiges Grid-Pattern mit horizontalen UND vertikalen Linien */
-/* Genau wie auf attio.com: linear-gradient(to_right) + linear-gradient(to_bottom) */
+/* Subtiles Raster im Hintergrund für Tiefe */
 .attio-grid-pattern {
   position: relative;
 }
@@ -113,28 +114,13 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  /* Sehr feine, helle Linien – wie auf attio.com */
   background-image: 
-    linear-gradient(to right, rgb(237, 239, 243) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(237, 239, 243) 1px, transparent 1px);
-  /* Responsive background-size – Mobile: etwas größere Abstände für bessere Lesbarkeit */
-  background-size: 12% 15%;
+    linear-gradient(to right, rgba(15, 23, 42, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.025) 1px, transparent 1px);
+  background-size: 40px 40px;
   background-position: center;
   z-index: 0;
-}
-
-/* Desktop-Variante mit dichterem Grid */
-@media (min-width: 1024px) {
-  .attio-grid-pattern::before {
-    background-size: 10.3% 9.15%;
-    background-position: right;
-  }
-}
-
-@media (min-width: 1280px) {
-  .attio-grid-pattern::before {
-    background-size: 11.14% 9.15%;
-  }
+  mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
 }
 
 /* Sections leicht transparent, damit das Grid durchscheint */

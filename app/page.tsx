@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-white selection:bg-blue-100 selection:text-blue-900">
+      <main className="min-h-screen bg-slate-50 selection:bg-blue-100 selection:text-blue-900">
         <HeroAttio />
         <FeaturesBento />
         <FeatureRows />

@@ -3,13 +3,7 @@
 import * as React from "react"
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion"
 import Link from "next/link"
-import { Menu, X, ChevronDown } from "lucide-react"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+import { Menu, X } from "lucide-react"
 import { IntroKILogo } from "@/components/ui/introki-logo"
 import { ENTERPRISE_SPRING } from "@/lib/animations"
 import { cn } from "@/lib/utils"
@@ -23,23 +17,35 @@ export function Navbar() {
     setIsScrolled(latest > 20)
   })
 
-  // Navigation Items - B2B Enterprise Focus
+  // Navigation Items - B2B Enterprise Focus (nur existierende Seiten)
   const navItems = [
-    { label: "Product", href: "/product" },
-    { label: "Solutions", href: "/solutions" },
-    { label: "Pricing", href: "/pricing" },
     { 
-      label: "Resources", 
-      href: "/resources",
-      hasDropdown: true,
-      dropdownItems: [
-        { label: "Help Center", href: "/help" },
-        { label: "API Docs", href: "/developers" },
-        { label: "Blog", href: "/blog" },
-        { label: "Templates", href: "/templates" },
-      ]
+      label: "Features", 
+      href: "#features",
+      isScroll: true
+    },
+    { 
+      label: "Warum Intro KI", 
+      href: "#trust",
+      isScroll: true
+    },
+    { 
+      label: "Kontakt", 
+      href: "/kontakt"
     },
   ]
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: typeof navItems[0]) => {
+    if (item.isScroll) {
+      e.preventDefault()
+      const targetId = item.href.replace('#', '')
+      const element = document.getElementById(targetId)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        setIsMobileMenuOpen(false)
+      }
+    }
+  }
 
   return (
     <motion.nav
@@ -63,65 +69,31 @@ export function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => {
-              if (item.hasDropdown && item.dropdownItems) {
-                return (
-                  <DropdownMenu key={item.label}>
-                    <DropdownMenuTrigger asChild>
-                      <button className="flex items-center gap-1 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-black/5 rounded-full px-3 py-1 transition-all">
-                        <span>{item.label}</span>
-                        <ChevronDown className="w-4 h-4 text-gray-500" strokeWidth={1.5} />
-                      </button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent 
-                      align="start" 
-                      className="w-48 p-2 mt-2 bg-white/80 backdrop-blur-xl border border-white/50 shadow-lg rounded-lg"
-                      sideOffset={8}
-                    >
-                      {item.dropdownItems.map((dropdownItem) => (
-                        <DropdownMenuItem 
-                          key={dropdownItem.label} 
-                          asChild
-                          className="px-3 py-2 rounded-md hover:bg-gray-50 cursor-pointer transition-colors"
-                        >
-                          <Link 
-                            href={dropdownItem.href} 
-                            className="text-sm text-gray-600 hover:text-gray-900 block"
-                          >
-                            {dropdownItem.label}
-                          </Link>
-                        </DropdownMenuItem>
-                      ))}
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                )
-              }
-              
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-black/5 rounded-full px-3 py-1 transition-all"
-                >
-                  {item.label}
-                </Link>
-              )
-            })}
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={(e) => handleNavClick(e, item)}
+                className="text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100/50 rounded-full px-3 py-1 transition-all"
+              >
+                {item.label}
+              </Link>
+            ))}
           </div>
 
           {/* CTA Buttons - B2B Enterprise Focus */}
           <div className="hidden md:flex items-center gap-4">
             <Link
               href="/dashboard"
-              className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+              className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
             >
-              Log in
+              Anmelden
             </Link>
             <Link
               href="/demo"
-              className="inline-flex items-center justify-center bg-black text-white hover:bg-gray-800 rounded-md px-4 py-2 text-sm font-medium transition-all ring-1 ring-white/20 hover:scale-[1.02]"
+              className="inline-flex items-center justify-center bg-slate-900 text-white hover:bg-slate-800 rounded-md px-4 py-2 text-sm font-medium transition-all shadow-attio-sm hover:scale-[1.02]"
             >
-              Book a demo
+              Demo buchen
             </Link>
           </div>
 
@@ -152,44 +124,32 @@ export function Navbar() {
             >
               <div className="flex flex-col py-4 gap-4">
                 {navItems.map((item) => (
-                  <div key={item.href}>
-                    <Link
-                      href={item.href}
-                      className="block text-sm font-medium text-gray-600 hover:text-gray-900 py-2 transition-colors"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {item.label}
-                    </Link>
-                    {item.hasDropdown && item.dropdownItems && (
-                      <div className="ml-4 mt-2 space-y-2">
-                        {item.dropdownItems.map((dropdownItem) => (
-                          <Link
-                            key={dropdownItem.label}
-                            href={dropdownItem.href}
-                            className="block text-sm text-gray-500 hover:text-gray-900 py-1 transition-colors"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                          >
-                            {dropdownItem.label}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={(e) => {
+                      handleNavClick(e, item)
+                      setIsMobileMenuOpen(false)
+                    }}
+                    className="block text-sm font-medium text-slate-600 hover:text-slate-900 py-2 transition-colors"
+                  >
+                    {item.label}
+                  </Link>
                 ))}
-                <div className="flex flex-col gap-3 pt-4 border-t border-gray-200">
+                <div className="flex flex-col gap-3 pt-4 border-t border-slate-200">
                   <Link
                     href="/dashboard"
-                    className="text-sm font-medium text-gray-600 hover:text-gray-900 py-2 transition-colors"
+                    className="text-sm font-medium text-slate-600 hover:text-slate-900 py-2 transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    Log in
+                    Anmelden
                   </Link>
                   <Link
                     href="/demo"
-                    className="inline-flex items-center justify-center bg-black text-white hover:bg-gray-800 rounded-md px-4 py-2.5 text-sm font-medium transition-all ring-1 ring-white/20"
+                    className="inline-flex items-center justify-center bg-slate-900 text-white hover:bg-slate-800 rounded-md px-4 py-2.5 text-sm font-medium transition-all shadow-attio-sm"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    Book a demo
+                    Demo buchen
                   </Link>
                 </div>
               </div>

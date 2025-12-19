@@ -8,16 +8,9 @@ import { ENTERPRISE_SPRING } from "@/lib/animations"
 
 export function HeroAttio() {
   return (
-    <section className="relative w-full overflow-hidden bg-slate-50 pt-20 pb-24 md:pt-32 md:pb-32 border-b border-slate-200">
-      {/* Hintergrund: Technisches Grid */}
-      <div
-        className="pointer-events-none absolute inset-0 z-0 opacity-[0.03]"
-        style={{
-          backgroundImage:
-            "linear-gradient(#0f172a 1px, transparent 1px), linear-gradient(90deg, #0f172a 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
-        }}
-      />
+    <section className="relative w-full overflow-hidden bg-slate-50 pt-20 pb-24 md:pt-32 md:pb-32 border-b border-slate-200 attio-grid-pattern">
+      {/* Hintergrund: Subtiler Gradient für Tiefe */}
+      <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-br from-slate-50 via-white to-slate-50/50" />
 
       <div className="relative z-10 mx-auto flex max-w-[1200px] flex-col gap-16 px-4">
         {/* TEXT TEIL */}
@@ -48,14 +41,21 @@ export function HeroAttio() {
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link
               href="/demo"
-              className="inline-flex items-center justify-center rounded-lg bg-slate-900 px-6 py-3 text-sm font-medium text-white shadow-sm transition-transform duration-attio-fast ease-attio-ease-out hover:scale-[1.02] hover:bg-slate-800"
+              className="inline-flex items-center justify-center rounded-lg bg-slate-900 px-6 py-3 text-sm font-medium text-white shadow-attio-md transition-all hover:scale-[1.02] hover:bg-slate-800 hover:shadow-attio-lg"
             >
-              Kostenlos starten
+              Demo buchen
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
             <Link
-              href="/product"
-              className="inline-flex items-center justify-center rounded-lg border border-slate-200 bg-white px-6 py-3 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-colors"
+              href="#features"
+              onClick={(e) => {
+                e.preventDefault()
+                const element = document.getElementById('features')
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                }
+              }}
+              className="inline-flex items-center justify-center rounded-lg border border-slate-200 bg-white/80 backdrop-blur-sm px-6 py-3 text-sm font-medium text-slate-700 hover:bg-white hover:border-slate-300 transition-all shadow-attio-sm hover:shadow-attio-md hover:scale-[1.02]"
             >
               Wie es funktioniert
             </Link>
@@ -72,10 +72,10 @@ export function HeroAttio() {
           {/* Glow hinter der UI */}
           <div className="absolute -inset-1 -z-10 rounded-[3rem] bg-gradient-to-tr from-blue-100/40 via-purple-100/40 to-emerald-100/40 blur-2xl" />
 
-          {/* Das Fenster */}
-          <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+          {/* Das Fenster mit Glassmorphism */}
+          <div className="overflow-hidden rounded-xl border border-white/60 bg-white/80 backdrop-blur-xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.12)]">
             {/* Window Header */}
-            <div className="flex h-11 items-center justify-between border-b border-slate-100 bg-slate-50/50 px-4">
+            <div className="flex h-11 items-center justify-between border-b border-slate-200/50 bg-white/60 backdrop-blur-sm px-4">
               <div className="flex gap-1.5">
                 <div className="h-3 w-3 rounded-full bg-slate-200/80" />
                 <div className="h-3 w-3 rounded-full bg-slate-200/80" />
@@ -94,7 +94,7 @@ export function HeroAttio() {
             {/* Window Body (Split View) */}
             <div className="flex h-[450px] text-left">
               {/* Sidebar */}
-              <div className="hidden w-60 border-r border-slate-100 bg-slate-50/30 p-4 md:block">
+              <div className="hidden w-60 border-r border-slate-200/50 bg-slate-50/40 backdrop-blur-sm p-4 md:block">
                 <div className="mb-6 space-y-1">
                   <div className="px-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400">
                     Workspace
@@ -115,12 +115,12 @@ export function HeroAttio() {
               </div>
 
               {/* Main Canvas */}
-              <div className="relative flex-1 bg-slate-50/20 p-6 md:p-8">
+              <div className="relative flex-1 bg-slate-50/30 backdrop-blur-sm p-6 md:p-8">
                 {/* Hintergrund Grid im Canvas */}
-                <div className="absolute inset-0 opacity-50 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:20px_20px]" />
+                <div className="absolute inset-0 opacity-30 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:20px_20px]" />
 
                 {/* Card 1: Lead Signal */}
-                <div className="relative mb-4 flex items-start gap-4 rounded-lg border border-slate-200 bg-white p-4 text-xs text-slate-700 shadow-[0_1px_0_rgba(15,23,42,0.03)]">
+                <div className="relative mb-4 flex items-start gap-4 rounded-lg border border-slate-200/60 bg-white/90 backdrop-blur-sm p-4 text-xs text-slate-700 shadow-attio-sm">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-100 text-sm font-bold text-blue-600">
                     AC
                   </div>
@@ -142,7 +142,7 @@ export function HeroAttio() {
                 </div>
 
                 {/* Card 2: Action Suggestion (Skeleton-Style) */}
-                <div className="relative flex items-center gap-4 rounded-lg border border-slate-200 bg-white p-2 text-xs text-slate-600 opacity-90">
+                <div className="relative flex items-center gap-4 rounded-lg border border-slate-200/60 bg-white/80 backdrop-blur-sm p-2 text-xs text-slate-600 shadow-attio-sm">
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded bg-purple-100">
                     <div className="h-2 w-2 rounded-full bg-purple-500" />
                   </div>
@@ -156,7 +156,7 @@ export function HeroAttio() {
                 </div>
 
                 {/* Floating Metrics */}
-                <div className="absolute right-8 top-1/2 w-40 rounded-lg border border-slate-200 bg-white p-3 text-[11px] text-slate-600 shadow-sm">
+                <div className="absolute right-8 top-1/2 w-40 rounded-lg border border-slate-200/60 bg-white/90 backdrop-blur-sm p-3 text-[11px] text-slate-600 shadow-attio-md">
                   <div className="mb-2 flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-emerald-500" />
                     <span className="font-semibold text-slate-700">Enrichment</span>

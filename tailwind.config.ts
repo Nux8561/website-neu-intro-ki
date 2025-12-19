@@ -12,16 +12,15 @@ const config: Config = {
   theme: {
     container: {
       center: true,
-      padding: "1rem", // 16px padding as per PDF
+      padding: "1rem",
       screens: {
         "2xl": "1400px",
       },
     },
     extend: {
-      // PDF Grid System: Base unit is 4px (Tailwind default), but ensuring specific mappings
       spacing: {
-        '3': '12px', // Gutter
-        '4': '16px', // Margins
+        '3': '12px',
+        '4': '16px',
       },
       colors: {
         // CSS Variables (for shadcn/ui compatibility)
@@ -48,14 +47,8 @@ const config: Config = {
           foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))", // shadcn/ui compatibility
-          foreground: "hsl(var(--accent-foreground))", // shadcn/ui compatibility
-          // Attio-specific accent colors
-          blue: "#2563EB",
-          purple: "#7C3AED",
-          green: "#059669",
-          orange: "#EA580C",
-          pink: "#DB2777",
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
@@ -64,39 +57,49 @@ const config: Config = {
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         
-        // Light Mode (Attio-Style) - DEFAULT
-        surface: "#FAFAFA",
-        "surface-elevated": "#F5F5F5",
-        
-        // Attio-spezifische Farben
-        "attio-gray": "#FAFAFB",
-        "attio-border": "#E6E7EA",
-        "attio-text": "#0A0A0A",
-        
-        // Primary Brand Color
-        brand: {
-          DEFAULT: "#0B0C0E",
-          light: "#374151",
-          muted: "#6B7280",
+        // Attio Enterprise Farben (Slate statt Gray für Premium-Look)
+        slate: {
+          50: "#F8FAFC",
+          100: "#F1F5F9",
+          200: "#E2E8F0",
+          300: "#CBD5E1",
+          400: "#94A3B8",
+          500: "#64748B",
+          600: "#475569",
+          700: "#334155",
+          800: "#1E293B",
+          900: "#0F172A",
         },
         
-        // Text Colors
+        // Blue nur für Primary Actions (sparsam!)
+        blue: {
+          500: "#2563EB",
+          600: "#1D4ED8",
+        },
+        
+        // Legacy Support (behalten für Kompatibilität)
+        surface: "#FAFAFA",
+        "surface-elevated": "#F5F5F5",
+        "attio-gray": "#FAFAFB",
+        "attio-border": "#E2E8F0",
+        "attio-text": "#0F172A",
+        brand: {
+          DEFAULT: "#0F172A",
+          light: "#334155",
+          muted: "#64748B",
+        },
         text: {
-          primary: "#0B0C0E",
-          secondary: "rgba(11, 12, 14, 0.70)",
+          primary: "#0F172A",
+          secondary: "rgba(15, 23, 42, 0.70)",
           muted: "#64748B",
           inverse: "#FFFFFF",
         },
-        
-        // Border Colors (shadcn/ui compatible with CSS variables)
         border: {
-          DEFAULT: "hsl(var(--border))", // shadcn/ui compatibility
-          subtle: "rgba(11, 12, 14, 0.08)",
-          active: "rgba(11, 12, 14, 0.20)",
-          "attio-subtle": "#E6E7EA", // Attio Standard Border
+          DEFAULT: "hsl(var(--border))",
+          subtle: "rgba(15, 23, 42, 0.08)",
+          active: "rgba(15, 23, 42, 0.20)",
+          "attio-subtle": "#E2E8F0",
         },
-        
-        // Agent Colors (for AI features)
         agent: {
           company: '#3b82f6',
           people: '#a855f7',
@@ -162,17 +165,23 @@ const config: Config = {
         xs: "2px",
       },
       boxShadow: {
+        // Attio Enterprise Shadows (scharfe, feine Schatten)
+        'attio-sm': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+        'attio-md': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+        'attio-lg': '0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025)',
+        'attio-xl': '0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02)',
+        // Attio Diffuse Shadow (für schwebende Cards)
+        'attio-diffuse': '0 20px 40px -10px rgba(0, 0, 0, 0.05)',
+        'attio-diffuse-hover': '0 24px 48px -12px rgba(0, 0, 0, 0.08)',
+        // Glassmorphism Shadow
+        'glass': '0 4px 30px rgba(0, 0, 0, 0.1)',
+        // Legacy Support
         'sm': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
         'DEFAULT': '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
         'md': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
         'lg': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
         'xl': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
         '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-        'inner-glow': 'inset 0 1px 0 0 rgba(255, 255, 255, 0.8)',
-        'glass': '0 4px 24px rgba(0, 0, 0, 0.08)',
-        'card': '0 0 0 1px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.05)',
-        'card-hover': '0 0 0 1px rgba(0, 0, 0, 0.08), 0 8px 16px rgba(0, 0, 0, 0.1)',
-        // Attio Card Shadow (sehr weich, großer Spread, geringe Opacity)
         'attio-card': '0 0 0 1px rgba(0, 0, 0, 0.05), 0 2px 6px 0 rgba(28, 40, 64, 0.06)',
         'attio-card-hover': '0 0 0 1px rgba(0, 0, 0, 0.08), 0 4px 12px 0 rgba(28, 40, 64, 0.08)',
       },

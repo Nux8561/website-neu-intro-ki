@@ -7,7 +7,7 @@ import { ENTERPRISE_SPRING } from "@/lib/animations";
 
 export function FeaturesBento() {
   return (
-    <section className="bg-white py-24 border-b border-slate-100">
+    <section id="features" className="bg-white py-24 border-b border-slate-100">
       <div className="mx-auto max-w-[1200px] px-4">
         
         {/* Section Header */}

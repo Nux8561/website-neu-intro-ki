@@ -3,7 +3,6 @@
 import * as React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ShieldCheck, Lock, Server, Globe } from "iconoir-react";
 import { ENTERPRISE_SPRING } from "@/lib/animations";
 
 const LOGOS = [
@@ -69,63 +68,86 @@ export function TrustSection() {
         >
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             
-            {/* Badge 1 - Iconoir Icons */}
+            {/* GDPR Ready Badge */}
             <motion.div 
               whileHover={{ scale: 1.02 }}
               transition={ENTERPRISE_SPRING}
               className="flex flex-col items-center gap-3 text-center"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-slate-200 bg-white">
-                <ShieldCheck className="h-6 w-6 text-slate-700" strokeWidth={1.5} />
+              <div className="flex h-16 w-16 items-center justify-center rounded-lg border border-slate-200 bg-white p-3">
+                <div className="relative">
+                  <div className="h-8 w-8 rounded-full border-2 border-slate-300 flex items-center justify-center">
+                    <div className="h-4 w-4 rounded-full bg-slate-400" />
+                  </div>
+                  <div className="absolute -top-1 -right-1 flex gap-0.5">
+                    {[...Array(5)].map((_, i) => (
+                      <div key={i} className="h-1 w-1 rounded-full bg-slate-300" />
+                    ))}
+                  </div>
+                </div>
               </div>
               <div>
-                <h4 className="font-semibold text-slate-900 text-sm">SOC 2 Type II</h4>
-                <p className="text-xs text-slate-500 mt-1">Jährlich auditiert</p>
+                <h4 className="font-semibold text-slate-900 text-sm">GDPR</h4>
+                <p className="text-xs text-slate-500 mt-1 font-medium">READY</p>
               </div>
             </motion.div>
 
-            {/* Badge 2 */}
+            {/* CCPA Ready Badge */}
             <motion.div 
               whileHover={{ scale: 1.02 }}
               transition={ENTERPRISE_SPRING}
               className="flex flex-col items-center gap-3 text-center"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-slate-200 bg-white">
-                <Lock className="h-6 w-6 text-slate-700" strokeWidth={1.5} />
+              <div className="flex h-16 w-16 items-center justify-center rounded-lg border border-slate-200 bg-white p-3">
+                <div className="relative">
+                  <div className="h-8 w-6 rounded border border-slate-300 relative">
+                    <div className="absolute top-0 right-0 h-3 w-3 rounded-full border border-slate-300 bg-white flex items-center justify-center">
+                      <div className="h-1.5 w-1.5 rounded-full bg-slate-400" />
+                    </div>
+                  </div>
+                </div>
               </div>
               <div>
-                <h4 className="font-semibold text-slate-900 text-sm">DSGVO / GDPR</h4>
-                <p className="text-xs text-slate-500 mt-1">Server in Frankfurt</p>
+                <h4 className="font-semibold text-slate-900 text-sm">CCPA</h4>
+                <p className="text-xs text-slate-500 mt-1 font-medium">READY</p>
               </div>
             </motion.div>
 
-            {/* Badge 3 */}
+            {/* ISO 9001 Badge */}
             <motion.div 
               whileHover={{ scale: 1.02 }}
               transition={ENTERPRISE_SPRING}
               className="flex flex-col items-center gap-3 text-center"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-slate-200 bg-white">
-                <Server className="h-6 w-6 text-slate-700" strokeWidth={1.5} />
+              <div className="flex h-16 w-16 items-center justify-center rounded-lg border border-slate-200 bg-white p-3">
+                <div className="relative">
+                  <div className="h-8 w-8 rounded border border-slate-300 bg-slate-50 flex items-center justify-center">
+                    <div className="text-xs font-bold text-slate-600">LR</div>
+                  </div>
+                </div>
               </div>
               <div>
-                <h4 className="font-semibold text-slate-900 text-sm">End-to-End Encrypted</h4>
-                <p className="text-xs text-slate-500 mt-1">AES-256 Standard</p>
+                <h4 className="font-semibold text-slate-900 text-sm">ISO 9001</h4>
+                <p className="text-xs text-slate-500 mt-1 font-medium">CERTIFIED</p>
               </div>
             </motion.div>
 
-            {/* Badge 4 */}
+            {/* ISO 27001 Badge */}
             <motion.div 
               whileHover={{ scale: 1.02 }}
               transition={ENTERPRISE_SPRING}
               className="flex flex-col items-center gap-3 text-center"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-slate-200 bg-white">
-                <Globe className="h-6 w-6 text-slate-700" strokeWidth={1.5} />
+              <div className="flex h-16 w-16 items-center justify-center rounded-lg border border-slate-200 bg-white p-3">
+                <div className="relative">
+                  <div className="h-8 w-8 rounded border border-slate-300 bg-slate-50 flex items-center justify-center">
+                    <div className="text-xs font-bold text-slate-600">V</div>
+                  </div>
+                </div>
               </div>
               <div>
-                <h4 className="font-semibold text-slate-900 text-sm">99.99% Uptime</h4>
-                <p className="text-xs text-slate-500 mt-1">Status Page öffentlich</p>
+                <h4 className="font-semibold text-slate-900 text-sm">ISO 27001</h4>
+                <p className="text-xs text-slate-500 mt-1 font-medium">CERTIFIED</p>
               </div>
             </motion.div>
 

@@ -23,14 +23,14 @@ export function WorkspacesInterfaceSection() {
   ]
 
   return (
-    <section className="py-24 bg-white relative overflow-hidden attio-grid-pattern attio-connection-lines">
+    <section className="py-32 md:py-40 bg-white relative overflow-hidden attio-grid-pattern attio-connection-lines">
       <div className="mx-auto max-w-[1200px] px-4">
         <ScrollReveal direction="up" distance={50}>
-          <div className="mb-16 max-w-2xl">
-            <h2 className="text-3xl font-semibold tracking-tighter text-slate-900 sm:text-4xl mb-4">
+          <div className="mb-20 max-w-3xl">
+            <h2 className="text-4xl md:text-5xl font-semibold tracking-tighter text-slate-900 mb-6">
               Always connected to your data.
             </h2>
-            <p className="text-lg text-slate-500">
+            <p className="text-xl text-slate-600 leading-relaxed">
               Continually sync your product, billing, and relationship data into your workspace.
             </p>
           </div>

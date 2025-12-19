@@ -10,16 +10,16 @@ import { StaggerReveal } from "@/components/ui/stagger-reveal";
 
 export function FeaturesBento() {
   return (
-    <section id="features" className="bg-slate-50/50 py-24 border-b border-slate-200 attio-grid-pattern attio-connection-lines">
+    <section id="features" className="bg-slate-50/50 py-32 md:py-40 border-b border-slate-200 attio-grid-pattern attio-connection-lines">
       <div className="mx-auto max-w-[1200px] px-4">
         
         {/* Section Header */}
         <ScrollReveal direction="up" distance={50}>
-          <div className="mb-16 max-w-2xl">
-            <h2 className="text-3xl font-semibold tracking-tighter text-slate-900 sm:text-4xl mb-4">
+          <div className="mb-20 max-w-3xl">
+            <h2 className="text-4xl md:text-5xl font-semibold tracking-tighter text-slate-900 mb-6">
               Clarity für dich und dein Team.
             </h2>
-            <p className="text-lg text-slate-500">
+            <p className="text-xl text-slate-600 leading-relaxed">
               Intro KI sorgt dafür, dass nichts untergeht. Die ersten 20 Calls sind immer die mit dem besten Potential – nicht 100 zufällige.
             </p>
           </div>
@@ -33,15 +33,9 @@ export function FeaturesBento() {
             intensity={8}
             className="group relative flex flex-col justify-between overflow-hidden md:col-span-2 md:row-span-1"
           >
-            <div className="p-8">
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-medium text-slate-700">
-                <div className="h-3 w-3 rounded border border-slate-300 flex items-center justify-center">
-                  <div className="h-1.5 w-1.5 bg-slate-400 rounded" />
-                </div>
-                Focus of the Day
-              </div>
-              <h3 className="mb-2 text-2xl font-semibold tracking-tight text-slate-900">Clarity & Focus</h3>
-              <p className="max-w-md text-slate-500 text-sm leading-relaxed mb-6">
+            <div className="p-10">
+              <h3 className="mb-4 text-3xl font-semibold tracking-tight text-slate-900">Clarity & Focus</h3>
+              <p className="max-w-md text-slate-600 text-base leading-relaxed mb-8">
                 Immer die richtige Klarheit. Top Opportunities heute, was zu tun ist, worauf du dich heute fokussieren musst.
               </p>
             </div>
@@ -78,13 +72,13 @@ export function FeaturesBento() {
           {/* CARD 2: PROJECT MANAGEMENT (Rechts Oben) */}
           <ExpensiveCard 
             intensity={6}
-            className="group relative overflow-hidden md:col-span-1 md:row-span-1"
-          >
-            <div className="flex h-full flex-col justify-between p-6">
-              <div>
-                <h3 className="text-lg font-semibold tracking-tight text-slate-900 mb-2">Project Management</h3>
-                <p className="text-xs text-slate-500 mb-4">Goals, Sequences, Smart Automation.</p>
-              </div>
+                    className="group relative overflow-hidden md:col-span-1 md:row-span-1"
+                  >
+                    <div className="flex h-full flex-col justify-between p-8">
+                      <div>
+                        <h3 className="text-xl font-semibold tracking-tight text-slate-900 mb-3">Project Management</h3>
+                        <p className="text-sm text-slate-600 mb-6 leading-relaxed">Goals, Sequences, Smart Automation.</p>
+                      </div>
 
               {/* Fake UI: Sequence Flow */}
               <div className="mt-auto space-y-2">
@@ -111,13 +105,13 @@ export function FeaturesBento() {
           {/* CARD 3: DEAL MANAGEMENT (Links Mitte) */}
           <ExpensiveCard 
             intensity={6}
-            className="group relative overflow-hidden md:col-span-1 md:row-span-1"
-          >
-            <div className="flex h-full flex-col justify-between p-6">
-              <div>
-                <h3 className="text-lg font-semibold tracking-tight text-slate-900 mb-2">Deal Management</h3>
-                <p className="text-xs text-slate-500 mb-4">Next Steps für Bestandskunden finden.</p>
-              </div>
+                    className="group relative overflow-hidden md:col-span-1 md:row-span-1"
+                  >
+                    <div className="flex h-full flex-col justify-between p-8">
+                      <div>
+                        <h3 className="text-xl font-semibold tracking-tight text-slate-900 mb-3">Deal Management</h3>
+                        <p className="text-sm text-slate-600 mb-6 leading-relaxed">Next Steps für Bestandskunden finden.</p>
+                      </div>
 
               {/* Fake UI: Deal Card */}
               <div className="mt-auto rounded-lg border border-slate-200/60 bg-white/90 backdrop-blur-sm p-4 shadow-attio-sm">
@@ -137,13 +131,13 @@ export function FeaturesBento() {
           {/* CARD 4: RESEARCH (Mitte) */}
           <ExpensiveCard 
             intensity={6}
-            className="group relative overflow-hidden md:col-span-1 md:row-span-1"
-          >
-            <div className="flex h-full flex-col justify-between p-6">
-              <div>
-                <h3 className="text-lg font-semibold tracking-tight text-slate-900 mb-2">Research</h3>
-                <p className="text-xs text-slate-500 mb-4">Kontaktpersonen & Insider-Infos finden.</p>
-              </div>
+                    className="group relative overflow-hidden md:col-span-1 md:row-span-1"
+                  >
+                    <div className="flex h-full flex-col justify-between p-8">
+                      <div>
+                        <h3 className="text-xl font-semibold tracking-tight text-slate-900 mb-3">Research</h3>
+                        <p className="text-sm text-slate-600 mb-6 leading-relaxed">Kontaktpersonen & Insider-Infos finden.</p>
+                      </div>
 
               {/* Fake UI: Research Results */}
               <div className="mt-auto space-y-2">
@@ -168,13 +162,13 @@ export function FeaturesBento() {
           {/* CARD 5: DATA HUB (Rechts Mitte) */}
           <ExpensiveCard 
             intensity={6}
-            className="group relative overflow-hidden md:col-span-1 md:row-span-1"
-          >
-            <div className="flex h-full flex-col justify-between p-6">
-              <div>
-                <h3 className="text-lg font-semibold tracking-tight text-slate-900 mb-2">Data Hub</h3>
-                <p className="text-xs text-slate-500 mb-4">Excel, PDFs, alles verstehen.</p>
-              </div>
+                    className="group relative overflow-hidden md:col-span-1 md:row-span-1"
+                  >
+                    <div className="flex h-full flex-col justify-between p-8">
+                      <div>
+                        <h3 className="text-xl font-semibold tracking-tight text-slate-900 mb-3">Data Hub</h3>
+                        <p className="text-sm text-slate-600 mb-6 leading-relaxed">Excel, PDFs, alles verstehen.</p>
+                      </div>
 
               {/* Fake UI: Data Sources */}
               <div className="mt-auto space-y-2">
@@ -200,15 +194,9 @@ export function FeaturesBento() {
             intensity={8}
             className="group relative flex flex-col justify-between overflow-hidden md:col-span-2 md:row-span-1"
           >
-            <div className="p-8">
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-medium text-slate-700">
-                <div className="h-3 w-3 rounded border border-slate-300 flex items-center justify-center">
-                  <div className="h-1.5 w-1.5 bg-slate-400 rounded" />
-                </div>
-                Automation
-              </div>
-              <h3 className="mb-2 text-2xl font-semibold tracking-tight text-slate-900">Email Campaigns & Lead Forms</h3>
-              <p className="max-w-md text-slate-500 text-sm leading-relaxed">
+            <div className="p-10">
+              <h3 className="mb-4 text-3xl font-semibold tracking-tight text-slate-900">Email Campaigns & Lead Forms</h3>
+              <p className="max-w-md text-slate-600 text-base leading-relaxed">
                 Erstelle Email-Kampagnen und Lead-Forms. Team-Management und ICP-Scoring für maximale Effizienz.
               </p>
             </div>

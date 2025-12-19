@@ -8,7 +8,7 @@ import { ENTERPRISE_SPRING } from "@/lib/animations";
 
 export function CTAFooter() {
   return (
-    <section className="bg-white py-24 attio-grid-pattern attio-connection-lines">
+    <section className="bg-white py-32 md:py-40 attio-grid-pattern attio-connection-lines">
       <div className="mx-auto max-w-[1000px] px-4">
         
         <motion.div 
@@ -16,19 +16,19 @@ export function CTAFooter() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={ENTERPRISE_SPRING}
-          className="relative overflow-hidden rounded-3xl bg-slate-900 px-6 py-16 text-center shadow-attio-diffuse md:px-16 md:py-20"
+          className="relative overflow-hidden rounded-3xl bg-slate-900 px-8 py-20 text-center shadow-attio-diffuse md:px-20 md:py-24"
         >
           
           {/* Background Glow */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 h-64 w-96 rounded-full bg-blue-500/10 blur-[100px]"></div>
 
           <div className="relative z-10">
-            <h2 className="mx-auto mb-6 max-w-2xl text-3xl font-semibold tracking-tighter text-white sm:text-4xl md:text-5xl">
+            <h2 className="mx-auto mb-8 max-w-3xl text-4xl font-semibold tracking-tighter text-white md:text-5xl">
               Bereit, dein CRM <br />
               <span className="text-slate-400">intelligent zu machen?</span>
             </h2>
             
-            <p className="mx-auto mb-10 max-w-lg text-lg text-slate-400">
+            <p className="mx-auto mb-12 max-w-2xl text-xl text-slate-400 leading-relaxed">
               Maßgeschneiderte Enterprise-Lizenzen. Sprich mit unserem Sales-Team für eine individuelle Demo.
             </p>
 

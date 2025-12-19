@@ -16,7 +16,7 @@ const LOGOS = [
 
 export function TrustSection() {
   return (
-    <section id="trust" className="border-b border-slate-200 bg-slate-50/50 py-24 attio-grid-pattern attio-connection-lines attio-network-nodes">
+    <section id="trust" className="border-b border-slate-200 bg-slate-50/50 py-32 md:py-40 attio-grid-pattern attio-connection-lines attio-network-nodes">
       <div className="mx-auto max-w-[1200px] px-4 text-center relative z-10">
         
         {/* Headline */}
@@ -25,7 +25,7 @@ export function TrustSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={ENTERPRISE_SPRING}
-          className="mb-12 text-sm font-medium text-slate-500"
+          className="mb-16 text-base font-medium text-slate-600"
         >
           Vertraut von modernen GTM-Teams weltweit
         </motion.p>
@@ -36,7 +36,7 @@ export function TrustSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ ...ENTERPRISE_SPRING, delay: 0.1 }}
-              className="mb-20 grid grid-cols-2 gap-12 md:grid-cols-3 lg:grid-cols-6 md:gap-16"
+              className="grid grid-cols-2 gap-16 md:grid-cols-3 lg:grid-cols-6 md:gap-20"
         >
           {LOGOS.map((logo, index) => (
             <motion.div

@@ -9,45 +9,22 @@ import { motion } from "framer-motion";
 
 export function FeatureRows() {
   return (
-    <section className="space-y-32 py-32 bg-white attio-grid-pattern attio-connection-lines">
+    <section className="space-y-40 py-40 md:py-48 bg-white attio-grid-pattern attio-connection-lines">
       <div className="mx-auto max-w-[1200px] px-4">
         
         {/* ROW 1: CLARITY & FOCUS */}
         <ScrollReveal direction="up" distance={80}>
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
             <div>
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700">
-                Focus of the Day
-              </div>
-              <h3 className="text-3xl font-semibold tracking-tighter text-slate-900 mb-4">
+              <h3 className="text-4xl md:text-5xl font-semibold tracking-tighter text-slate-900 mb-6">
                 Immer wissen, was zu tun ist
               </h3>
-              <p className="text-lg text-slate-500 mb-6">
+              <p className="text-xl text-slate-600 mb-8 leading-relaxed">
                 Top Opportunities heute, was zu tun ist, worauf du dich heute fokussieren musst. 
                 Keine 100 zufälligen Calls – die ersten 20 sind immer die mit dem besten Potential.
               </p>
-              <ul className="space-y-3 mb-8">
-                {[
-                  "Top Opportunities heute",
-                  "Focus of the Day",
-                  "Priorisierte Task-Liste",
-                  "Team-übergreifende Klarheit"
-                ].map((item, i) => (
-                  <motion.li
-                    key={item}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ ...ENTERPRISE_SPRING, delay: i * 0.1 }}
-                    className="flex items-center gap-3 text-slate-700"
-                  >
-                    <div className="h-1.5 w-1.5 rounded-full bg-slate-400" />
-                    <span>{item}</span>
-                  </motion.li>
-                ))}
-              </ul>
             </div>
-            <ExpensiveCard intensity={6} className="p-8">
+            <ExpensiveCard intensity={6} className="p-10">
               {/* Fake UI: Focus Dashboard */}
               <div className="space-y-4">
                 <div className="flex items-center justify-between mb-6">
@@ -79,7 +56,7 @@ export function FeatureRows() {
 
         {/* ROW 2: PROJECT MANAGEMENT & AUTOMATION */}
         <ScrollReveal direction="up" distance={80}>
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
             <ExpensiveCard intensity={6} className="p-8 order-2 md:order-1">
               {/* Fake UI: Sequence Flow */}
               <div className="space-y-4">
@@ -112,78 +89,32 @@ export function FeatureRows() {
                 </div>
               </div>
             </ExpensiveCard>
-            <div className="order-1 md:order-2">
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700">
-                Smart Automation
-              </div>
-              <h3 className="text-3xl font-semibold tracking-tighter text-slate-900 mb-4">
-                Project Management mit Sequences
-              </h3>
-              <p className="text-lg text-slate-500 mb-6">
+                    <div className="order-1 md:order-2">
+                      <h3 className="text-4xl md:text-5xl font-semibold tracking-tighter text-slate-900 mb-6">
+                        Project Management mit Sequences
+                      </h3>
+                      <p className="text-xl text-slate-600 mb-8 leading-relaxed">
                 Für jedes Project kannst du Goals definieren, viele Sources splitten und Sequences geben. 
                 Beispiel: Lead called, nicht erreicht → Email mit Tracking-Link wird automatisch gesendet. 
                 Person öffnet Link → Task {'"'}Call again{'"'} wird automatisch erstellt.
               </p>
-              <ul className="space-y-3">
-                {[
-                  "Goals für jedes Project",
-                  "Multiple Sources",
-                  "Smart Sequences",
-                  "Vollautomatische Workflows"
-                ].map((item, i) => (
-                  <motion.li
-                    key={item}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ ...ENTERPRISE_SPRING, delay: i * 0.1 }}
-                    className="flex items-center gap-3 text-slate-700"
-                  >
-                    <div className="h-1.5 w-1.5 rounded-full bg-slate-400" />
-                    <span>{item}</span>
-                  </motion.li>
-                ))}
-              </ul>
             </div>
           </div>
         </ScrollReveal>
 
         {/* ROW 3: DEAL MANAGEMENT */}
         <ScrollReveal direction="up" distance={80}>
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700">
-                Bestandskunden
-              </div>
-              <h3 className="text-3xl font-semibold tracking-tighter text-slate-900 mb-4">
-                Deal Management für Bestandskunden
-              </h3>
-              <p className="text-lg text-slate-500 mb-6">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+                    <div>
+                      <h3 className="text-4xl md:text-5xl font-semibold tracking-tighter text-slate-900 mb-6">
+                        Deal Management für Bestandskunden
+                      </h3>
+                      <p className="text-xl text-slate-600 mb-8 leading-relaxed">
                 Auch für Menschen mit vielen Bestandskunden: Finde die Next Steps, damit du bestehende Kunden nicht ignorierst. 
                 Egal ob Deal oder Pipeline, neuer Kunde oder Bestandskunde – du weißt immer, was los ist.
               </p>
-              <ul className="space-y-3">
-                {[
-                  "Next Steps für Bestandskunden",
-                  "Deal & Pipeline Management",
-                  "Automatische Follow-ups",
-                  "Nichts geht unter"
-                ].map((item, i) => (
-                  <motion.li
-                    key={item}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ ...ENTERPRISE_SPRING, delay: i * 0.1 }}
-                    className="flex items-center gap-3 text-slate-700"
-                  >
-                    <div className="h-1.5 w-1.5 rounded-full bg-slate-400" />
-                    <span>{item}</span>
-                  </motion.li>
-                ))}
-              </ul>
             </div>
-            <ExpensiveCard intensity={6} className="p-8">
+            <ExpensiveCard intensity={6} className="p-10">
               {/* Fake UI: Deal Cards */}
               <div className="space-y-4">
                 <div className="mb-6">
@@ -215,8 +146,8 @@ export function FeatureRows() {
 
         {/* ROW 4: RESEARCH & DATA HUB */}
         <ScrollReveal direction="up" distance={80}>
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <ExpensiveCard intensity={6} className="p-8 order-2 md:order-1">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <ExpensiveCard intensity={6} className="p-10 order-2 md:order-1">
               {/* Fake UI: Research Results */}
               <div className="space-y-4">
                 <div className="mb-6">
@@ -238,38 +169,15 @@ export function FeatureRows() {
                 ))}
               </div>
             </ExpensiveCard>
-            <div className="order-1 md:order-2">
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700">
-                Research & Data Hub
-              </div>
-              <h3 className="text-3xl font-semibold tracking-tighter text-slate-900 mb-4">
-                Research & Data Hub
-              </h3>
-              <p className="text-lg text-slate-500 mb-6">
+                    <div className="order-1 md:order-2">
+                      <h3 className="text-4xl md:text-5xl font-semibold tracking-tighter text-slate-900 mb-6">
+                        Research & Data Hub
+                      </h3>
+                      <p className="text-xl text-slate-600 mb-8 leading-relaxed">
                 Finde Kontaktpersonen im Internet, Informationen, Insider-Infos. 
                 Data Hub: Alle deine bestehenden Daten – Excel-Tabellen, PDFs, alles kannst du einspeisen. 
                 Der smarte Algorithmus im Hintergrund versteht alles.
               </p>
-              <ul className="space-y-3">
-                {[
-                  "Kontaktpersonen finden",
-                  "Insider-Informationen",
-                  "Excel & PDF Import",
-                  "Smart Algorithm versteht alles"
-                ].map((item, i) => (
-                  <motion.li
-                    key={item}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ ...ENTERPRISE_SPRING, delay: i * 0.1 }}
-                    className="flex items-center gap-3 text-slate-700"
-                  >
-                    <div className="h-1.5 w-1.5 rounded-full bg-slate-400" />
-                    <span>{item}</span>
-                  </motion.li>
-                ))}
-              </ul>
             </div>
           </div>
         </ScrollReveal>

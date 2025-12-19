@@ -248,7 +248,7 @@ export function VideoDemoSection({
 
   return (
     <>
-      <section className="py-24 bg-slate-50/50 relative overflow-hidden attio-grid-pattern attio-connection-lines">
+      <section className="py-32 md:py-40 bg-slate-50/50 relative overflow-hidden attio-grid-pattern attio-connection-lines">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Section Header */}
           <motion.div
@@ -256,16 +256,16 @@ export function VideoDemoSection({
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            className="text-center mb-8 sm:mb-12 px-4 motion-safe"
+            className="text-center mb-16 px-4 motion-safe"
             style={{
               willChange: "opacity",
               transform: "translateZ(0)",
             }}
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tighter text-slate-900 mb-3 sm:mb-4">
+            <h2 className="text-4xl md:text-5xl font-semibold tracking-tighter text-slate-900 mb-6">
               {title}
             </h2>
-            <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto">
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
               {description}
             </p>
           </motion.div>

@@ -119,7 +119,15 @@ export function DataStructureSection() {
   )
 }
 
-function ObjectCard({ object }: { object: typeof objects[0] }) {
+type ObjectType = {
+  name: string
+  type: string
+  records: string
+  icon: string
+  connections: string[]
+}
+
+function ObjectCard({ object }: { object: ObjectType }) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}

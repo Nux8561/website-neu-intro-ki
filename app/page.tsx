@@ -6,7 +6,6 @@ import Link from "next/link"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/sections/footer"
 import { CookieConsent } from "@/components/ui/cookie-consent"
-import { RichFeatureCard } from "@/components/feature-card-rich"
 import Image from "next/image"
 import {
   ExcelChaosVisualization,
@@ -23,6 +22,7 @@ import {
 } from "lucide-react"
 import { ENTERPRISE_SPRING } from "@/lib/animations"
 import { HeroAttio } from "@/components/sections/hero-attio"
+import { FeaturesBento } from "@/components/sections/features-bento"
 
 export default function Home() {
   const socialProofRef = React.useRef(null)
@@ -179,91 +179,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Product Hub - Bento Grid */}
-        <section ref={productHubRef} className="py-24 md:py-32 border-b border-gray-200 bg-gray-50">
-          <div className="max-w-[1200px] mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={productHubInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={ENTERPRISE_SPRING}
-              className="mb-12 text-center"
-            >
-              <h2 className="text-3xl md:text-4xl tracking-tight font-medium text-gray-900 mb-4">
-                Die Säulen von IntroKI
-              </h2>
-              <p className="text-[16px] leading-[24px] text-gray-600 max-w-2xl mx-auto">
-                Entdecken Sie, wie IntroKI die Flexibilität von Excel mit der Struktur eines Enterprise-Systems vereint.
-              </p>
-            </motion.div>
-
-            {/* Bento Grid - Rich Feature Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4">
-              <RichFeatureCard
-                title="Datenmodell"
-                description="Bauen Sie Ihr System so, wie Sie Geld verdienen."
-                href="/product/data-model"
-                size="large"
-                variant="data-model"
-                index={0}
-                isInView={productHubInView}
-              />
-              <RichFeatureCard
-                title="Workflows"
-                description="Automatisierung ohne Code."
-                href="/product/workflows"
-                size="small"
-                variant="workflows"
-                index={1}
-                isInView={productHubInView}
-              />
-              <RichFeatureCard
-                title="Security"
-                description="SOC2 & DSGVO bereit."
-                href="/security"
-                size="small"
-                variant="security"
-                index={2}
-                isInView={productHubInView}
-              />
-              <RichFeatureCard
-                title="API Sync"
-                description="Echtzeit-Synchronisation mit Ihren Tools."
-                href="/product/api"
-                size="small"
-                variant="api-sync"
-                index={3}
-                isInView={productHubInView}
-              />
-              <RichFeatureCard
-                title="Audit Logs"
-                description="Vollständige Transparenz über alle Aktivitäten."
-                href="/product/audit"
-                size="small"
-                variant="audit-logs"
-                index={4}
-                isInView={productHubInView}
-              />
-              <RichFeatureCard
-                title="Permissions"
-                description="Granulare Berechtigungen für jedes Team."
-                href="/product/permissions"
-                size="small"
-                variant="permissions"
-                index={5}
-                isInView={productHubInView}
-              />
-              <RichFeatureCard
-                title="Integrations"
-                description="Verbinden Sie IntroKI mit Ihrer Tech-Stack."
-                href="/integrations"
-                size="small"
-                variant="integrations"
-                index={6}
-                isInView={productHubInView}
-              />
-            </div>
-          </div>
-        </section>
+        {/* Features Bento Grid */}
+        <FeaturesBento />
 
         {/* Final CTA */}
         <section ref={ctaRef} className="py-24 md:py-32">

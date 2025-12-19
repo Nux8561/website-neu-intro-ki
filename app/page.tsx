@@ -3,12 +3,11 @@
 import * as React from "react"
 import { motion, useInView } from "framer-motion"
 import Link from "next/link"
-import Image from "next/image"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/sections/footer"
 import { CookieConsent } from "@/components/ui/cookie-consent"
-import { HeroSimulation } from "@/components/hero-simulation"
 import { RichFeatureCard } from "@/components/feature-card-rich"
+import Image from "next/image"
 import {
   ExcelChaosVisualization,
   SearchVisualization,
@@ -23,11 +22,9 @@ import {
   CheckCircle2
 } from "lucide-react"
 import { ENTERPRISE_SPRING } from "@/lib/animations"
+import { HeroAttio } from "@/components/sections/hero-attio"
 
 export default function Home() {
-  const heroRef = React.useRef(null)
-  const heroInView = useInView(heroRef, { once: true, margin: "-100px" })
-
   const socialProofRef = React.useRef(null)
   const socialProofInView = useInView(socialProofRef, { once: true, margin: "-100px" })
 
@@ -54,50 +51,8 @@ export default function Home() {
       <Navbar />
       {/* Globales Grid-Pattern für die gesamte Seite - zeigt Automatisierung und Verbindung */}
       <main className="min-h-screen bg-background relative overflow-x-hidden w-full attio-grid-pattern">
-        {/* Hero Section */}
-        <section ref={heroRef} className="py-24 md:py-32 border-b border-gray-200">
-          <div className="max-w-[1200px] mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              {/* Text Content (Left) */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={ENTERPRISE_SPRING}
-              >
-                <h1 className="text-5xl md:text-6xl leading-[1.1] tracking-tight font-medium bg-clip-text text-transparent bg-gradient-to-b from-gray-900 to-gray-600 mb-6">
-                  Das CRM, das Ihnen sagt, was zu tun ist.
-                </h1>
-                <p className="text-xl text-gray-500 max-w-2xl leading-relaxed mb-8">
-                  Verabschieden Sie sich von passiven Datenfriedhöfen. Intro KI analysiert Ihre Pipeline und liefert proaktive Handlungsempfehlungen, damit Sie Excel endlich abschalten können.
-                </p>
-                <div className="flex flex-col sm:flex-row items-start gap-4">
-                  <Link
-                    href="/demo"
-                    className="inline-flex items-center justify-center bg-black text-white hover:bg-gray-800 rounded-md px-6 py-3 text-sm font-medium transition-all duration-attio ease-attio-ease-out hover:scale-[1.02]"
-                  >
-                    Demo buchen
-                  </Link>
-                  <Link
-                    href="/developers"
-                    className="inline-flex items-center justify-center bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300 rounded-md px-6 py-3 text-sm font-medium transition-all duration-attio ease-attio-ease-out"
-                  >
-                    Dokumentation
-                  </Link>
-                </div>
-              </motion.div>
-
-              {/* Hero Simulation (Right) */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ ...ENTERPRISE_SPRING, delay: 0.2 }}
-                className="relative"
-              >
-                <HeroSimulation />
-              </motion.div>
-            </div>
-          </div>
-        </section>
+        {/* Hero Section – Attio-Style Fake UI */}
+        <HeroAttio />
 
         {/* Social Proof */}
         <section ref={socialProofRef} className="py-12 md:py-16 border-b border-gray-200 bg-gray-50">

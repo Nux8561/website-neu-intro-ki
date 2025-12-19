@@ -1,3 +1,5 @@
+ "use client"
+
 import * as React from "react";
 import { Check, ArrowRight, GitBranch, Database, Zap } from "lucide-react";
 

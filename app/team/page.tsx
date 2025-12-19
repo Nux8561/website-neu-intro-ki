@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import Image from "next/image"
 import { motion } from "framer-motion"
 import { Navbar } from "@/components/navbar"
 import { SiteFooter } from "@/components/layout/site-footer"
@@ -48,18 +49,27 @@ export default function TeamPage() {
   const teamMembers = [
     {
       name: "Dominik Scherwinsky",
-      role: "Gründer & CEO",
+      role: "CEO & Programmierer",
+      image: "/images/Gemini_Generated_Image_ljmubdljmubdljmu.png",
       description: "Visionär für intelligente CRM-Lösungen",
     },
     {
-      name: "Max Mustermann",
+      name: "Maximilian",
       role: "CTO",
+      image: "/images/Gemini_Generated_Image_o0qaeo0qaeo0qaeo.png",
       description: "Technische Exzellenz & Innovation",
     },
     {
-      name: "Anna Schmidt",
-      role: "Head of Product",
-      description: "Produktstrategie & User Experience",
+      name: "Tony",
+      role: "Vertrieb",
+      image: "/images/Gemini_Generated_Image_ukzf8vukzf8vukzf.png",
+      description: "Kundenbeziehungen & Business Development",
+    },
+    {
+      name: "Lukas",
+      role: "Vertrieb",
+      image: "/images/Gemini_Generated_Image_xm25r1xm25r1xm25.png",
+      description: "Sales & Account Management",
     },
   ]
 
@@ -142,8 +152,8 @@ export default function TeamPage() {
               </div>
             </div>
 
-            {/* Team Grid */}
-            <div className="mt-24 grid md:grid-cols-3 gap-8">
+            {/* Team Grid - 4 Banner */}
+            <div className="mt-24 grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {teamMembers.map((member, i) => (
                 <TimelineContent
                   key={member.name}
@@ -155,7 +165,15 @@ export default function TeamPage() {
                   <ExpensiveCard intensity={6} className="p-8 relative overflow-hidden">
                     <BorderBeam lightColor="#94A3B8" duration={8} />
                     <div className="relative z-10">
-                      <div className="h-16 w-16 rounded-full bg-slate-200 mb-4" />
+                      <div className="relative h-48 w-full mb-6 rounded-lg overflow-hidden bg-slate-100">
+                        <Image
+                          src={member.image}
+                          alt={member.name}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                        />
+                      </div>
                       <h3 className="text-xl font-semibold text-slate-900 mb-1">{member.name}</h3>
                       <p className="text-sm font-medium text-slate-600 mb-3">{member.role}</p>
                       <p className="text-sm text-slate-500">{member.description}</p>

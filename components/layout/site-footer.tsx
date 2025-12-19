@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Twitter, Linkedin, Github } from "lucide-react";
 
 const FOOTER_LINKS = [
@@ -48,9 +49,13 @@ export function SiteFooter() {
           {/* LOGO & SOCIALS (Links, breiter) */}
           <div className="col-span-2">
             <Link href="/" className="mb-6 flex items-center gap-2 text-slate-900">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-sm font-semibold text-white">
-                IK
-              </div>
+              <Image 
+                src="/images/app logo.png" 
+                alt="Intro KI Logo" 
+                width={32} 
+                height={32} 
+                className="h-8 w-8 object-contain"
+              />
               <span className="text-sm font-medium">Intro KI</span>
             </Link>
             <p className="mb-6 max-w-xs text-sm leading-relaxed text-slate-500">

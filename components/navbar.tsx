@@ -25,11 +25,6 @@ export function Navbar() {
       isScroll: true
     },
     { 
-      label: "Warum Intro KI", 
-      href: "#trust",
-      isScroll: true
-    },
-    { 
       label: "Team", 
       href: "/team"
     },

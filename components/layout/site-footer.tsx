@@ -6,37 +6,22 @@ const FOOTER_LINKS = [
   {
     title: "Produkt",
     links: [
-      { label: "Funktionen", href: "/features" },
-      { label: "Preise", href: "/pricing" },
-      { label: "Changelog", href: "/changelog" },
-      { label: "Docs", href: "/docs" },
+      { label: "Features", href: "#features" },
+      { label: "Demo buchen", href: "/demo" },
     ],
   },
   {
     title: "Company",
     links: [
-      { label: "Über uns", href: "/about" },
-      { label: "Karriere", href: "/careers" },
-      { label: "Blog", href: "/blog" },
-      { label: "Kontakt", href: "/contact" },
-    ],
-  },
-  {
-    title: "Ressourcen",
-    links: [
-      { label: "Community", href: "/community" },
-      { label: "Help Center", href: "/help" },
-      { label: "Status", href: "/status" },
-      { label: "API", href: "/api" },
+      { label: "Team", href: "/team" },
+      { label: "Kontakt", href: "/kontakt" },
     ],
   },
   {
     title: "Rechtliches",
     links: [
-      { label: "Datenschutz", href: "/privacy" },
-      { label: "Impressum", href: "/imprint" },
-      { label: "AGB", href: "/terms" },
-      { label: "Cookie Einstellungen", href: "/cookies" },
+      { label: "Datenschutz", href: "/datenschutz" },
+      { label: "Impressum", href: "/impressum" },
     ],
   },
 ];

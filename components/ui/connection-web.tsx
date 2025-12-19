@@ -15,9 +15,9 @@ interface ConnectionWebProps {
 
 export function ConnectionWeb({ className = "", intensity = "subtle" }: ConnectionWebProps) {
   const opacityMap = {
-    subtle: 0.15,
-    medium: 0.25,
-    strong: 0.35
+    subtle: 0.4,
+    medium: 0.6,
+    strong: 0.8
   }
 
   return (
@@ -28,10 +28,10 @@ export function ConnectionWeb({ className = "", intensity = "subtle" }: Connecti
         style={{
           backgroundImage: `linear-gradient(to right, 
             transparent 0%, 
-            rgba(148, 163, 184, ${opacityMap[intensity] * 0.8}) 10%, 
-            rgba(148, 163, 184, ${opacityMap[intensity]}) 30%,
-            rgba(148, 163, 184, ${opacityMap[intensity]}) 70%,
-            rgba(148, 163, 184, ${opacityMap[intensity] * 0.8}) 90%, 
+            rgba(71, 85, 105, ${opacityMap[intensity] * 0.8}) 10%, 
+            rgba(51, 65, 85, ${opacityMap[intensity]}) 30%,
+            rgba(51, 65, 85, ${opacityMap[intensity]}) 70%,
+            rgba(71, 85, 105, ${opacityMap[intensity] * 0.8}) 90%, 
             transparent 100%)`,
           backgroundSize: "600px 1px",
           backgroundRepeat: "repeat-y",
@@ -41,7 +41,7 @@ export function ConnectionWeb({ className = "", intensity = "subtle" }: Connecti
           backgroundPosition: ["0% 0%", "0% 100%"],
         }}
         transition={{
-          duration: 20,
+          duration: 12,
           repeat: Infinity,
           ease: "linear",
         }}
@@ -53,10 +53,10 @@ export function ConnectionWeb({ className = "", intensity = "subtle" }: Connecti
         style={{
           backgroundImage: `linear-gradient(to bottom, 
             transparent 0%, 
-            rgba(148, 163, 184, ${opacityMap[intensity] * 0.8}) 10%, 
-            rgba(148, 163, 184, ${opacityMap[intensity]}) 30%,
-            rgba(148, 163, 184, ${opacityMap[intensity]}) 70%,
-            rgba(148, 163, 184, ${opacityMap[intensity] * 0.8}) 90%, 
+            rgba(71, 85, 105, ${opacityMap[intensity] * 0.8}) 10%, 
+            rgba(51, 65, 85, ${opacityMap[intensity]}) 30%,
+            rgba(51, 65, 85, ${opacityMap[intensity]}) 70%,
+            rgba(71, 85, 105, ${opacityMap[intensity] * 0.8}) 90%, 
             transparent 100%)`,
           backgroundSize: "1px 600px",
           backgroundRepeat: "repeat-x",
@@ -66,7 +66,7 @@ export function ConnectionWeb({ className = "", intensity = "subtle" }: Connecti
           backgroundPosition: ["0% 0%", "100% 0%"],
         }}
         transition={{
-          duration: 25,
+          duration: 15,
           repeat: Infinity,
           ease: "linear",
         }}

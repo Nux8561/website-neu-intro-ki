@@ -52,13 +52,34 @@ export function Navbar() {
         "sticky top-0 left-0 right-0 z-50",
         "bg-white/60 backdrop-blur-xl",
         "border-b border-white/50",
-        "shadow-sm"
+        "shadow-sm",
+        "relative overflow-hidden"
       )}
       animate={{
         height: isScrolled ? 56 : 64, // h-14 (56px) when scrolled, h-16 (64px) when not
       }}
       transition={ENTERPRISE_SPRING}
     >
+      {/* Animierter Hintergrund */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none opacity-30"
+        animate={{
+          backgroundPosition: ["0% 0%", "100% 100%"],
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+        style={{
+          backgroundImage: `
+            linear-gradient(45deg, transparent 48%, rgba(71, 85, 105, 0.1) 49%, rgba(71, 85, 105, 0.1) 51%, transparent 52%),
+            linear-gradient(-45deg, transparent 48%, rgba(71, 85, 105, 0.1) 49%, rgba(71, 85, 105, 0.1) 51%, transparent 52%)
+          `,
+          backgroundSize: "40px 40px",
+        }}
+      />
+      <div className="relative z-10">
       <div className="container mx-auto px-4 h-full">
         <div className="flex h-full items-center justify-between">
           {/* Logo */}
@@ -155,6 +176,7 @@ export function Navbar() {
             </motion.div>
           )}
         </AnimatePresence>
+      </div>
       </div>
     </motion.nav>
   )

@@ -9,7 +9,8 @@ import { TimelineContent } from "@/components/ui/timeline-animation"
 import { BorderBeam } from "@/components/ui/border-beam"
 import { ExpensiveCard } from "@/components/ui/3d-card"
 import { ENTERPRISE_SPRING } from "@/lib/animations"
-import { Zap } from "lucide-react"
+import { Zap, Sparkles } from "lucide-react"
+import { AnimatedText } from "@/components/ui/animated-text"
 
 export default function TeamPage() {
   const heroRef = React.useRef<HTMLDivElement>(null)
@@ -181,6 +182,108 @@ export default function TeamPage() {
                   </ExpensiveCard>
                 </TimelineContent>
               ))}
+            </div>
+
+            {/* Vision Section */}
+            <div className="mt-32">
+              <TimelineContent
+                as="div"
+                animationNum={10}
+                timelineRef={heroRef}
+                customVariants={revealVariants}
+                className="mb-12"
+              >
+                <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900 mb-6">
+                  Unsere Vision
+                </h2>
+              </TimelineContent>
+
+              <div className="space-y-8">
+                <TimelineContent
+                  as="div"
+                  animationNum={11}
+                  timelineRef={heroRef}
+                  customVariants={textVariants}
+                  className="prose prose-slate max-w-none"
+                >
+                  <AnimatedText variant="fade" delay={0.1} className="text-lg text-slate-600 leading-relaxed">
+                    Wir entwickeln Intro KI zu einem intelligenten CRM-System, das nicht nur Daten verwaltet, 
+                    sondern echte Intelligenz in jeden Vertriebsprozess bringt.
+                  </AnimatedText>
+                </TimelineContent>
+
+                {/* Future Projects */}
+                <div className="grid md:grid-cols-2 gap-6 mt-12">
+                  <ExpensiveCard intensity={4} className="p-6 relative overflow-hidden">
+                    <BorderBeam lightColor="#94A3B8" duration={8} />
+                    <div className="relative z-10">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="h-10 w-10 rounded-lg border border-slate-200 bg-white flex items-center justify-center">
+                          <Sparkles className="h-5 w-5 text-slate-600" />
+                        </div>
+                        <AnimatedText variant="slide" delay={0.2} className="text-lg font-semibold text-slate-900">
+                          Live Transcriptions
+                        </AnimatedText>
+                      </div>
+                      <AnimatedText variant="fade" delay={0.3} className="text-sm text-slate-600">
+                        Automatische Transkriptionen von Gesprächen in Echtzeit, direkt im CRM integriert.
+                      </AnimatedText>
+                    </div>
+                  </ExpensiveCard>
+
+                  <ExpensiveCard intensity={4} className="p-6 relative overflow-hidden">
+                    <BorderBeam lightColor="#94A3B8" duration={8} />
+                    <div className="relative z-10">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="h-10 w-10 rounded-lg border border-slate-200 bg-white flex items-center justify-center">
+                          <Sparkles className="h-5 w-5 text-slate-600" />
+                        </div>
+                        <AnimatedText variant="slide" delay={0.4} className="text-lg font-semibold text-slate-900">
+                          Life Coaching
+                        </AnimatedText>
+                      </div>
+                      <AnimatedText variant="fade" delay={0.5} className="text-sm text-slate-600">
+                        KI-gestütztes Coaching für Vertriebsteams, das kontinuierlich aus Gesprächen lernt.
+                      </AnimatedText>
+                    </div>
+                  </ExpensiveCard>
+
+                  <ExpensiveCard intensity={4} className="p-6 relative overflow-hidden">
+                    <BorderBeam lightColor="#94A3B8" duration={8} />
+                    <div className="relative z-10">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="h-10 w-10 rounded-lg border border-slate-200 bg-white flex items-center justify-center">
+                          <Sparkles className="h-5 w-5 text-slate-600" />
+                        </div>
+                        <AnimatedText variant="slide" delay={0.6} className="text-lg font-semibold text-slate-900">
+                          Eigenes Calling System
+                        </AnimatedText>
+                      </div>
+                      <AnimatedText variant="fade" delay={0.7} className="text-sm text-slate-600">
+                        Integriertes Telefonie-System direkt im CRM, mit automatischer Aufzeichnung und Analyse.
+                      </AnimatedText>
+                    </div>
+                  </ExpensiveCard>
+
+                  <ExpensiveCard intensity={4} className="p-6 relative overflow-hidden">
+                    <BorderBeam lightColor="#94A3B8" duration={8} />
+                    <div className="relative z-10">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="h-10 w-10 rounded-lg border border-slate-200 bg-white flex items-center justify-center">
+                          <Sparkles className="h-5 w-5 text-slate-600" />
+                        </div>
+                        <AnimatedText variant="slide" delay={0.8} className="text-lg font-semibold text-slate-900">
+                          Enterprise AI Integration
+                        </AnimatedText>
+                      </div>
+                      <AnimatedText variant="fade" delay={0.9} className="text-sm text-slate-600">
+                        Integration mit OpenAI, Google Cloud, Gemini und anderen führenden KI-Anbietern, 
+                        um das Potenzial eines intelligenten CRM-Systems deutlich zu erhöhen.
+                      </AnimatedText>
+                    </div>
+                  </ExpensiveCard>
+                </div>
+              </div>
             </div>
           </div>
         </section>

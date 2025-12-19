@@ -2,6 +2,8 @@
 
 import * as React from "react";
 import { ArrowRight } from "lucide-react";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { ExpensiveCard } from "@/components/ui/3d-card";
 
 export function FeatureRows() {
   return (
@@ -36,8 +38,8 @@ export function FeatureRows() {
               "Echtzeit-Synchronisation (2-Way)"
             ].map((item) => (
               <li key={item} className="flex items-center gap-3 text-sm font-medium text-slate-700">
-                <div className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
-                  <Check className="h-3 w-3" />
+                <div className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-50 border border-emerald-200/50">
+                  <div className="h-2 w-2 rounded-full bg-emerald-600" />
                 </div>
                 {item}
               </li>

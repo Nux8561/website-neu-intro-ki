@@ -425,7 +425,7 @@ function IntegrationsVisualization() {
       setPulseIndex((prev) => (prev + 1) % integrations.length)
     }, 1500)
     return () => clearInterval(interval)
-  }, [])
+  }, [integrations.length])
 
   return (
     <div className="grid grid-cols-2 gap-3 w-full max-w-xs">

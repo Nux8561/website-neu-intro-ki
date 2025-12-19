@@ -3,7 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-// Icons entfernt - keine bunten Icons mehr
+import { ShieldCheck, Lock, Server, Globe } from "iconoir-react";
 import { ENTERPRISE_SPRING } from "@/lib/animations";
 
 const LOGOS = [
@@ -69,14 +69,14 @@ export function TrustSection() {
         >
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             
-            {/* Badge 1 - Keine bunten Icons, nur Text */}
+            {/* Badge 1 - Iconoir Icons */}
             <motion.div 
               whileHover={{ scale: 1.02 }}
               transition={ENTERPRISE_SPRING}
               className="flex flex-col items-center gap-3 text-center"
             >
               <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-slate-200 bg-white">
-                <div className="h-6 w-6 border-2 border-slate-400 rounded" />
+                <ShieldCheck className="h-6 w-6 text-slate-700" strokeWidth={1.5} />
               </div>
               <div>
                 <h4 className="font-semibold text-slate-900 text-sm">SOC 2 Type II</h4>
@@ -91,7 +91,7 @@ export function TrustSection() {
               className="flex flex-col items-center gap-3 text-center"
             >
               <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-slate-200 bg-white">
-                <div className="h-6 w-6 border-2 border-slate-400 rounded-full" />
+                <Lock className="h-6 w-6 text-slate-700" strokeWidth={1.5} />
               </div>
               <div>
                 <h4 className="font-semibold text-slate-900 text-sm">DSGVO / GDPR</h4>
@@ -106,7 +106,7 @@ export function TrustSection() {
               className="flex flex-col items-center gap-3 text-center"
             >
               <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-slate-200 bg-white">
-                <div className="h-4 w-4 border-2 border-slate-400" />
+                <Server className="h-6 w-6 text-slate-700" strokeWidth={1.5} />
               </div>
               <div>
                 <h4 className="font-semibold text-slate-900 text-sm">End-to-End Encrypted</h4>
@@ -121,9 +121,7 @@ export function TrustSection() {
               className="flex flex-col items-center gap-3 text-center"
             >
               <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-slate-200 bg-white">
-                <div className="h-6 w-6 border-2 border-slate-400 rounded-full">
-                  <div className="h-2 w-2 bg-slate-400 rounded-full m-auto mt-1" />
-                </div>
+                <Globe className="h-6 w-6 text-slate-700" strokeWidth={1.5} />
               </div>
               <div>
                 <h4 className="font-semibold text-slate-900 text-sm">99.99% Uptime</h4>

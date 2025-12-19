@@ -23,7 +23,7 @@ export function WorkspacesInterfaceSection() {
   ]
 
   return (
-    <section className="py-32 md:py-40 bg-white relative overflow-hidden attio-grid-pattern attio-connection-lines">
+    <section className="py-32 md:py-40 bg-white relative overflow-hidden attio-grid-pattern attio-connection-lines border-b border-slate-200">
       <div className="mx-auto max-w-[1200px] px-4">
         <ScrollReveal direction="up" distance={50}>
           <div className="mb-20 max-w-3xl">

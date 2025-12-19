@@ -119,7 +119,7 @@
 /* Base Grid Pattern - Orthogonale Linien (1px) */
 .attio-grid-pattern {
   position: relative;
-  background-color: #FAFAFB; /* Attio Base Color */
+  background-color: #FFFFFF; /* Weiß bleiben */
 }
 
 .attio-grid-pattern::before {

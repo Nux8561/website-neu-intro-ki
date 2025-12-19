@@ -14,10 +14,7 @@ import { ConnectionWeb } from "@/components/ui/connection-web"
  */
 export function HeroSimple() {
   return (
-    <section className="relative w-full overflow-hidden bg-slate-50 pt-32 pb-40 md:pt-40 md:pb-48 border-b border-slate-200 attio-grid-pattern attio-connection-lines attio-network-nodes">
-      {/* Hintergrund: Subtiler Gradient für Tiefe */}
-      <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-br from-slate-50 via-white to-slate-50/50" />
-      
+    <section className="relative w-full overflow-hidden bg-white pt-32 pb-40 md:pt-40 md:pb-48 border-b border-slate-200 attio-grid-pattern attio-connection-lines attio-network-nodes">
       {/* Connection Web - Animierte Vernetzungslinien */}
       <ConnectionWeb intensity="subtle" />
 

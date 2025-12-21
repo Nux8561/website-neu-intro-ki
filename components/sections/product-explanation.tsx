@@ -81,7 +81,7 @@ export function ProductExplanation() {
         <ScrollReveal direction="up" distance={50}>
           <div className="rounded-2xl border border-black/10 bg-gradient-to-br from-slate-50 to-white p-8 md:p-12">
             <h3 className="mb-8 text-center text-2xl font-jakarta font-semibold text-black md:text-3xl">
-              So funktioniert's
+              So funktioniert es
             </h3>
             <div className="grid gap-6 md:grid-cols-4">
               {workflow.map((item, i) => (

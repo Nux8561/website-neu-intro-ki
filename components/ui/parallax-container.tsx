@@ -1,14 +1,14 @@
 "use client"
 
 import * as React from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion, useScroll, useTransform, UseScrollOptions } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 interface ParallaxContainerProps {
   children: React.ReactNode
   speed?: number
   className?: string
-  offset?: [string, string]
+  offset?: UseScrollOptions["offset"]
 }
 
 /**

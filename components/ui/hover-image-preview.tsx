@@ -69,7 +69,7 @@ const PreviewCard = ({
   data: (typeof previewData)[keyof typeof previewData] | null
   position: { x: number; y: number }
   isVisible: boolean
-  cardRef: React.RefObject<HTMLDivElement | null>
+  cardRef: React.RefObject<HTMLDivElement>
 }) => {
   if (!data) return null
 

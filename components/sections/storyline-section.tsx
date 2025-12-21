@@ -27,6 +27,21 @@ interface StorylineStep {
 export function StorylineSection() {
   const sectionRef = React.useRef<HTMLDivElement>(null)
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  })
+
+  // Video-ähnlicher Scroll-Flow: Berechne aktiven Step basierend auf Scroll-Progress
+  const activeStep = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75, 1], [0, 1, 2, 3, 3])
+  const [currentStepIndex, setCurrentStepIndex] = React.useState(0)
+
+  React.useEffect(() => {
+    const unsubscribe = activeStep.on("change", (latest) => {
+      setCurrentStepIndex(Math.round(latest))
+    })
+    return () => unsubscribe()
+  }, [activeStep])
 
   const steps: StorylineStep[] = [
     {
@@ -152,7 +167,7 @@ const priority = calculatePriority({
           </p>
         </motion.div>
 
-        {/* Storyline mit SVG Path */}
+        {/* Storyline mit SVG Path - Video-ähnlicher Flow */}
         <div className="relative">
           <SVGFollowScroll
             steps={steps.map((s) => ({
@@ -167,24 +182,52 @@ const priority = calculatePriority({
             className="min-h-[400vh]"
           />
 
-          {/* Visual Content für jeden Step */}
-          {steps.map((step, index) => (
-            <motion.div
-              key={step.id}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ ...snappySpring, delay: index * 0.2 }}
-              className="absolute left-1/2 -translate-x-1/2"
-              style={{
-                top: `${step.position}%`,
-                width: "100%",
-                maxWidth: "800px",
-              }}
-            >
-              {step.visualContent}
-            </motion.div>
-          ))}
+          {/* Visual Content für jeden Step - Video-ähnliche Transitions */}
+          {steps.map((step, index) => {
+            const isActive = currentStepIndex === index
+            const isPast = currentStepIndex > index
+            const isFuture = currentStepIndex < index
+
+            return (
+              <motion.div
+                key={step.id}
+                initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                animate={{
+                  opacity: isActive ? 1 : isPast ? 0.3 : isFuture ? 0 : 0.3,
+                  y: isActive ? 0 : isPast ? -20 : isFuture ? 50 : 0,
+                  scale: isActive ? 1 : isPast ? 0.9 : isFuture ? 0.95 : 1,
+                }}
+                transition={ENTERPRISE_SPRING}
+                className="absolute left-1/2 -translate-x-1/2"
+                style={{
+                  top: `${step.position}%`,
+                  width: "100%",
+                  maxWidth: "800px",
+                  zIndex: isActive ? 10 : isPast ? 5 : 1,
+                }}
+              >
+                {/* Parallax-Effekt für Background */}
+                <motion.div
+                  style={{
+                    y: useTransform(scrollYProgress, [0, 1], [0, -50]),
+                  }}
+                >
+                  {step.visualContent}
+                </motion.div>
+
+                {/* Active Indicator */}
+                {isActive && (
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    className="absolute -top-4 left-1/2 -translate-x-1/2"
+                  >
+                    <div className="h-2 w-2 rounded-full bg-emerald-500 shadow-lg" />
+                  </motion.div>
+                )}
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </section>

@@ -3,6 +3,7 @@ import { CookieConsent } from "@/components/ui/cookie-consent"
 import { AnimatedGridLines } from "@/components/ui/animated-grid-lines"
 import { SectionDivider } from "@/components/ui/section-divider"
 import { HeroLayered } from "@/components/sections/hero-layered"
+import { PainPointsHero } from "@/components/sections/pain-points-hero"
 import { ProductExplanation } from "@/components/sections/product-explanation"
 import { PositioningSection } from "@/components/sections/positioning-section"
 import { FeaturesBento } from "@/components/sections/features-bento"
@@ -22,6 +23,8 @@ export default function Home() {
       <div className="relative z-10 mx-auto max-w-[1400px] bg-white">
         <main className="min-h-screen bg-white">
           <HeroLayered />
+          <SectionDivider height={120} gridSize={10} />
+          <PainPointsHero />
           <SectionDivider height={120} gridSize={10} />
           <ProductExplanation />
           <SectionDivider height={120} gridSize={10} />

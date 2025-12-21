@@ -19,6 +19,7 @@ import { MagneticButton } from "@/components/ui/magnetic-button"
 export function Layer2FocusContent() {
   const containerRef = React.useRef<HTMLDivElement>(null)
   const [activeTab, setActiveTab] = React.useState<"today" | "week" | "pipeline">("today")
+  const [animationPhase, setAnimationPhase] = React.useState<number>(0)
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
@@ -27,6 +28,15 @@ export function Layer2FocusContent() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
   const y = useTransform(scrollYProgress, [0, 1], [0, 100])
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95])
+
+  // Auto-Play Video-Loop Animation (10s Loop)
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setAnimationPhase((prev) => (prev + 1) % 5) // 0-4 für 5 Phasen
+    }, 2000) // Alle 2 Sekunden nächste Phase
+
+    return () => clearInterval(interval)
+  }, [])
 
   // Value Proposition - Quantifizierbare Benefits
   const headline = "Reduziere deine Qualifizierungszeit um 70%"
@@ -249,7 +259,93 @@ export function Layer2FocusContent() {
               </motion.aside>
 
               {/* MAIN CONTENT AREA */}
-              <div className="flex-1 flex flex-col">
+              <div className="flex-1 flex flex-col relative">
+                {/* Auto-Play Animation Overlay - Phase 1: Cursor tippt Firmennamen */}
+                {animationPhase === 0 && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="absolute inset-0 z-50 flex items-center justify-center bg-black/5 backdrop-blur-sm"
+                  >
+                    <div className="bg-white rounded-xl border-2 border-black/20 p-8 shadow-2xl">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="h-6 w-6 rounded bg-black flex items-center justify-center">
+                          <motion.div
+                            animate={{ opacity: [1, 0, 1] }}
+                            transition={{ duration: 0.8, repeat: Infinity }}
+                            className="h-3 w-0.5 bg-white"
+                          />
+                        </div>
+                        <motion.span
+                          initial={{ width: 0 }}
+                          animate={{ width: "auto" }}
+                          transition={{ duration: 1.5, ease: "easeInOut" }}
+                          className="text-lg font-mono font-bold text-black overflow-hidden"
+                        >
+                          Acme Corp
+                        </motion.span>
+                      </div>
+                      <p className="text-sm text-black/60 font-inter">Research wird gestartet...</p>
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* Phase 2-3: Dashboard füllt sich, Deal-Cards erscheinen */}
+                {animationPhase >= 1 && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="absolute top-4 right-4 z-40"
+                  >
+                    <motion.div
+                      animate={{ scale: [1, 1.1, 1] }}
+                      transition={{ duration: 1, repeat: Infinity }}
+                      className="rounded-lg bg-emerald-500 px-4 py-2 shadow-lg"
+                    >
+                      <span className="text-xs font-space-grotesk font-semibold text-white">
+                        {animationPhase === 1 ? "Daten werden geladen..." : "6 Deals gefunden"}
+                      </span>
+                    </motion.div>
+                  </motion.div>
+                )}
+
+                {/* Phase 4: Email wird automatisch gesendet */}
+                {animationPhase === 3 && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    className="absolute top-20 right-4 z-40 bg-white rounded-xl border-2 border-blue-200 p-4 shadow-xl"
+                  >
+                    <div className="flex items-center gap-3">
+                      <Mail className="h-5 w-5 text-blue-600" />
+                      <div>
+                        <p className="text-sm font-space-grotesk font-semibold text-black">Email gesendet</p>
+                        <p className="text-xs text-black/60 font-inter">An Acme Corp</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* Phase 5: Deal Won Banner */}
+                {animationPhase === 4 && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    className="absolute inset-x-4 top-4 z-40 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-xl border-2 border-emerald-700 p-6 shadow-2xl"
+                  >
+                    <div className="flex items-center gap-4">
+                      <CheckCircle2 className="h-8 w-8 text-white" />
+                      <div>
+                        <p className="text-lg font-space-grotesk font-bold text-white">Deal Won!</p>
+                        <p className="text-sm text-white/90 font-inter">Acme Corp • €50K • Geschlossen</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+
                 {/* Header with Tabs */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}

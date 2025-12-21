@@ -6,6 +6,7 @@ import { CheckCircle2, ArrowRight } from "lucide-react"
 import { ENTERPRISE_SPRING, snappySpring, snappyStaggerContainer, snappyStaggerItem } from "@/lib/animations"
 import Link from "next/link"
 import { CustomFeatureIcon } from "@/components/ui/custom-feature-icons"
+import { SectionDivider } from "@/components/ui/section-divider"
 
 /**
  * Product Explanation Section - 100.000€ VERSION
@@ -150,6 +151,9 @@ export function ProductExplanation() {
           </Link>
         </motion.div>
       </div>
+
+      {/* Section Divider - Eleganter Übergang */}
+      <SectionDivider height={100} gridSize={10} />
     </section>
   )
 }

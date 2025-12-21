@@ -9,6 +9,7 @@ import { CustomFeatureIcon } from "@/components/ui/custom-feature-icons"
 import { BrowserPreview } from "@/components/ui/browser-preview"
 import { TerminalPreview } from "@/components/ui/terminal-preview"
 import { CodeSnippet } from "@/components/ui/code-snippet"
+import { SectionTransition } from "@/components/ui/section-transition"
 
 /**
  * Features Bento - 100.000€ VERSION
@@ -310,6 +311,11 @@ const task = {
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </motion.div>
+      </div>
+
+      {/* Section Transition - Eleganter Übergang nach unten */}
+      <div className="absolute bottom-0 left-0 right-0">
+        <SectionTransition position="bottom" height={150} gridSize={12} />
       </div>
     </section>
   )

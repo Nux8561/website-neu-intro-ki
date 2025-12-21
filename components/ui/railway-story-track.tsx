@@ -32,6 +32,15 @@ export function RailwayStoryTrack({ steps, className }: RailwayStoryTrackProps) 
   // Position des "Zugs" basierend auf Scroll
   const trainPosition = useTransform(scrollYProgress, [0, 1], [0, 100])
 
+  // Alle stepProgress Werte auf oberster Ebene erstellen
+  const stepProgresses = steps.map((_, i) =>
+    useTransform(
+      scrollYProgress,
+      [i / steps.length, (i + 1) / steps.length],
+      [0, 1]
+    )
+  )
+
   return (
     <div ref={containerRef} className={`relative ${className}`}>
       {/* Track Line - Horizontale Linie durch die Seite */}
@@ -39,20 +48,17 @@ export function RailwayStoryTrack({ steps, className }: RailwayStoryTrackProps) 
 
       {/* Story Steps */}
       {steps.map((step, i) => {
-        const stepProgress = useTransform(
-          scrollYProgress,
-          [i / steps.length, (i + 1) / steps.length],
-          [0, 1]
-        )
-        const isActive = useTransform(stepProgress, (v) => v > 0.3 && v < 0.7)
-
+        const stepProgress = stepProgresses[i]
+        
         return (
           <StoryStepMarker
             key={step.id}
             step={step}
             position={step.position}
             progress={stepProgress}
-            isActive={isActive}
+            scrollYProgress={scrollYProgress}
+            stepIndex={i}
+            totalSteps={steps.length}
           />
         )
       })}
@@ -93,14 +99,21 @@ function StoryStepMarker({
   step,
   position,
   progress,
-  isActive,
+  scrollYProgress,
+  stepIndex,
+  totalSteps,
 }: {
   step: StoryStep
   position: number
   progress: any
-  isActive: any
+  scrollYProgress: any
+  stepIndex: number
+  totalSteps: number
 }) {
   const [active, setActive] = React.useState(false)
+
+  // isActive basierend auf progress berechnen
+  const isActive = useTransform(progress, (v) => v > 0.3 && v < 0.7)
 
   React.useEffect(() => {
     const unsubscribe = isActive.onChange((v: boolean) => setActive(v))
@@ -135,7 +148,7 @@ function StoryStepMarker({
           animate={active ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
           className="absolute top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-lg border border-black/10 bg-white px-4 py-2 shadow-lg"
         >
-          <div className="text-sm font-jakarta font-semibold text-black">{step.title}</div>
+          <div className="text-sm font-space-grotesk font-semibold text-black">{step.title}</div>
           <div className="text-xs text-black/70 font-inter">{step.description}</div>
         </motion.div>
       </div>

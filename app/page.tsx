@@ -7,6 +7,7 @@ import { PositioningSection } from "@/components/sections/positioning-section"
 import { FeaturesBento } from "@/components/sections/features-bento"
 import { StorylineSection } from "@/components/sections/storyline-section"
 import { TrustSection } from "@/components/sections/trust-section"
+import { TestimonialsSection } from "@/components/sections/testimonials-section"
 import { CTAFooter } from "@/components/sections/cta-footer"
 import { SiteFooter } from "@/components/layout/site-footer"
 
@@ -24,6 +25,7 @@ export default function Home() {
           <PositioningSection />
           <FeaturesBento />
           <StorylineSection />
+          <TestimonialsSection />
           <TrustSection />
           <CTAFooter />
         </main>

@@ -1,27 +1,27 @@
 "use client"
 
 import { useState, useCallback, useRef, useEffect } from "react"
-import NextImage from "next/image"
+import Image from "next/image"
 
 /**
- * Preview data for UI/UX design tools
+ * Preview data for Intro KI Features
  * Replace with your actual data structure
  */
 const previewData = {
-  figma: {
-    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=560&h=320&fit=crop",
-    title: "Figma",
-    subtitle: "Collaborative interface design tool",
+  research: {
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=560&h=320&fit=crop",
+    title: "Automatische Recherche",
+    subtitle: "60 Sekunden statt 60 Minuten",
   },
-  sketch: {
-    image: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=560&h=320&fit=crop",
-    title: "Sketch",
-    subtitle: "Vector design toolkit for Mac",
+  signals: {
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=560&h=320&fit=crop",
+    title: "Proaktive Signale",
+    subtitle: "Dein CRM sagt dir, was zu tun ist",
   },
-  adobe: {
-    image: "https://images.unsplash.com/photo-1626785774625-ddcddc3445e9?w=560&h=320&fit=crop",
-    title: "Adobe XD",
-    subtitle: "Design, prototype, and share experiences",
+  priorities: {
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=560&h=320&fit=crop",
+    title: "Klare Prioritäten",
+    subtitle: "Die ersten 20 Calls sind die besten",
   },
 }
 
@@ -45,7 +45,7 @@ const HoverLink = ({
 }) => {
   return (
     <span
-      className="hover-link"
+      className="hover-link cursor-pointer font-space-grotesk font-bold text-black relative inline-block transition-colors"
       onMouseEnter={(e) => onHoverStart(previewKey, e)}
       onMouseMove={onHoverMove}
       onMouseLeave={onHoverEnd}
@@ -69,30 +69,35 @@ const PreviewCard = ({
   data: (typeof previewData)[keyof typeof previewData] | null
   position: { x: number; y: number }
   isVisible: boolean
-  cardRef: React.RefObject<HTMLDivElement>
+  cardRef: React.RefObject<HTMLDivElement | null>
 }) => {
   if (!data) return null
 
   return (
     <div
       ref={cardRef}
-      className={`preview-card ${isVisible ? "visible" : ""}`}
+      className={`preview-card fixed pointer-events-none z-[1000] transition-all duration-300 ${
+        isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-2 scale-95"
+      }`}
       style={{
         left: `${position.x}px`,
         top: `${position.y}px`,
       }}
     >
-      <div className="preview-card-inner">
-        <NextImage
+      <div className="preview-card-inner bg-white border-2 border-black rounded-2xl p-2 shadow-[8px_8px_0_0_rgba(0,0,0,1)] overflow-hidden">
+        <Image
           src={data.image}
           alt={data.title}
-          width={560}
-          height={320}
-          className="preview-card-image"
-          unoptimized
+          width={288}
+          height={200}
+          className="preview-card-image w-full h-auto rounded-xl object-cover"
         />
-        <div className="preview-card-title">{data.title}</div>
-        <div className="preview-card-subtitle">{data.subtitle}</div>
+        <div className="preview-card-title px-2 pt-3 pb-2 text-sm font-space-grotesk font-semibold text-black">
+          {data.title}
+        </div>
+        <div className="preview-card-subtitle px-2 pb-2 text-xs font-inter text-black/70">
+          {data.subtitle}
+        </div>
       </div>
     </div>
   )
@@ -104,7 +109,7 @@ const PreviewCard = ({
  * Main component that displays text content with hoverable links
  * that show preview cards on hover.
  */
-export default function HoverImagePreview() {
+export function HoverImagePreview() {
   const [activePreview, setActivePreview] = useState<(typeof previewData)[keyof typeof previewData] | null>(null)
   const [position, setPosition] = useState({ x: 0, y: 0 })
   const [isVisible, setIsVisible] = useState(false)
@@ -113,7 +118,7 @@ export default function HoverImagePreview() {
   // Preload all images on component mount for better performance
   useEffect(() => {
     Object.entries(previewData).forEach(([, data]) => {
-      const img = new Image()
+      const img = new window.Image()
       img.crossOrigin = "anonymous"
       img.src = data.image
     })
@@ -180,127 +185,8 @@ export default function HoverImagePreview() {
 
   return (
     <>
-      <style>{`
-        /* Import Space Grotesk font */
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap');
-        
-        /* Main container styles */
-        .hover-preview-container {
-          min-height: 100vh;
-          background: #ffffff;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 40px;
-          font-family: 'Space Grotesk', sans-serif;
-          overflow-x: hidden;
-          position: relative;
-        }
-        
-        /* Orthogonal grid background */
-        .grid-background {
-          position: fixed;
-          inset: 0;
-          z-index: 0;
-          pointer-events: none;
-          background-image: 
-            linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
-          background-size: 40px 40px;
-        }
-        
-        /* Noise texture overlay */
-        .noise-overlay {
-          position: fixed;
-          inset: 0;
-          z-index: 50;
-          opacity: 0.03;
-          pointer-events: none;
-          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-        }
-        
-        /* Ambient glow effect */
-        .ambient-glow {
-          position: fixed;
-          width: 600px;
-          height: 600px;
-          border-radius: 50%;
-          background: radial-gradient(circle, rgba(0, 0, 0, 0.05) 0%, transparent 70%);
-          pointer-events: none;
-          z-index: -1;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          animation: pulse 8s ease-in-out infinite;
-        }
-        
-        @keyframes pulse {
-          0%, 100% { 
-            opacity: 0.3; 
-            transform: translate(-50%, -50%) scale(1); 
-          }
-          50% { 
-            opacity: 0.5; 
-            transform: translate(-50%, -50%) scale(1.1); 
-          }
-        }
-        
-        /* Content container */
-        .content-container {
-          position: relative;
-          z-index: 10;
-          width: 100%;
-          max-width: 900px;
-        }
-        
-        /* Text block styles */
-        .text-block {
-          font-size: clamp(1.5rem, 4vw, 2.5rem);
-          line-height: 1.6;
-          color: #71717a;
-          font-weight: 400;
-          letter-spacing: -0.02em;
-        }
-        
-        .text-block p {
-          margin-bottom: 1.5em;
-          opacity: 0;
-        }
-        
-        /* Fade up animations for paragraphs */
-        .text-block p:nth-child(1) {
-          animation: fadeUp 0.8s ease forwards 0.2s;
-        }
-        
-        .text-block p:nth-child(2) {
-          animation: fadeUp 0.8s ease forwards 0.4s;
-        }
-        
-        .text-block p:nth-child(3) {
-          animation: fadeUp 0.8s ease forwards 0.6s;
-        }
-        
-        @keyframes fadeUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        /* Hover link styles with rainbow gradient */
-        .hover-link {
-          color: #000000;
-          font-weight: 700;
-          cursor: pointer;
-          position: relative;
-          display: inline-block;
-          transition: color 0.3s ease;
-        }
-        
+      <style jsx>{`
+        /* Hover link styles with underline effect */
         .hover-link::after {
           content: '';
           position: absolute;
@@ -308,131 +194,64 @@ export default function HoverImagePreview() {
           left: 0;
           width: 0;
           height: 2px;
-          background: linear-gradient(90deg, 
-            #ef4444,  /* red */
-            #eab308,  /* yellow */
-            #22c55e,  /* green */
-            #3b82f6,  /* blue */
-            #a855f7   /* purple */
-          );
+          background: black;
           transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         
         .hover-link:hover::after {
           width: 100%;
         }
-        
-        /* Preview card styles */
-        .preview-card {
-          position: fixed;
-          pointer-events: none;
-          z-index: 1000;
-          opacity: 0;
-          transform: translateY(10px) scale(0.95);
-          transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-          will-change: transform, opacity;
-        }
-        
-        .preview-card.visible {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-        }
-        
-        .preview-card-inner {
-          background: rgba(255, 255, 255, 0.95);
-          border-radius: 16px;
-          padding: 8px;
-          box-shadow: 
-            0 25px 50px -12px rgba(0, 0, 0, 0.3),
-            0 0 0 1px rgba(0, 0, 0, 0.1),
-            0 0 60px rgba(0, 0, 0, 0.05);
-          overflow: hidden;
-          backdrop-filter: blur(10px);
-          border: 1px solid rgba(0, 0, 0, 0.1);
-        }
-        
-        .preview-card-image {
-          width: 288px;
-          height: auto;
-          border-radius: 12px;
-          display: block;
-        }
-        
-        .preview-card-title {
-          padding: 12px 8px 8px;
-          font-size: 0.875rem;
-          color: #000000;
-          font-weight: 600;
-        }
-        
-        .preview-card-subtitle {
-          padding: 0 8px 8px;
-          font-size: 0.75rem;
-          color: #71717a;
-        }
-        
-        /* Responsive design */
-        @media (max-width: 768px) {
-          .hover-preview-container {
-            padding: 20px;
-          }
-          
-          .text-block {
-            font-size: clamp(1.25rem, 5vw, 1.75rem);
-          }
-          
-          .preview-card-image {
-            width: 240px;
-          }
-        }
       `}</style>
       
-      <div className="hover-preview-container">
+      <div className="relative min-h-[400px] bg-white p-8 md:p-16">
         {/* Orthogonal Grid Background */}
-        <div className="grid-background" />
-        
-        {/* Noise Texture Overlay */}
-        <div className="noise-overlay" />
-
-        {/* Ambient Glow Effect */}
-        <div className="ambient-glow" />
+        <div 
+          className="absolute inset-0 opacity-[0.03] pointer-events-none"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: "40px 40px",
+          }}
+        />
 
         {/* Content Container */}
-        <div className="content-container">
-          <div className="text-block">
-            <p>
-              Explore{" "}
+        <div className="relative z-10 max-w-4xl mx-auto">
+          <div className="text-2xl md:text-3xl lg:text-4xl leading-relaxed text-black/80 font-inter">
+            <p className="mb-6">
+              Entdecke{" "}
               <HoverLink
-                previewKey="figma"
+                previewKey="research"
                 onHoverStart={handleHoverStart}
                 onHoverMove={handleHoverMove}
                 onHoverEnd={handleHoverEnd}
               >
-                Figma
+                automatische Recherche
               </HoverLink>{" "}
-              for collaborative interface design and real-time prototyping.
+              für schnelle Lead-Analyse in 60 Sekunden.
             </p>
 
-            <p>
-              For Mac-native design try{" "}
+            <p className="mb-6">
+              Erhalte{" "}
               <HoverLink
-                previewKey="sketch"
+                previewKey="signals"
                 onHoverStart={handleHoverStart}
                 onHoverMove={handleHoverMove}
                 onHoverEnd={handleHoverEnd}
               >
-                Sketch
+                proaktive Signale
               </HoverLink>{" "}
-              or create complete experiences with{" "}
+              oder setze{" "}
               <HoverLink
-                previewKey="adobe"
+                previewKey="priorities"
                 onHoverStart={handleHoverStart}
                 onHoverMove={handleHoverMove}
                 onHoverEnd={handleHoverEnd}
               >
-                Adobe XD
-              </HoverLink>
-              .
+                klare Prioritäten
+              </HoverLink>{" "}
+              für dein Sales-Team.
             </p>
           </div>
         </div>
@@ -443,4 +262,3 @@ export default function HoverImagePreview() {
     </>
   )
 }
-

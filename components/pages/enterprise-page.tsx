@@ -75,7 +75,7 @@ export function EnterprisePage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pt-16">
       {/* Hero Section */}
       <section className="relative py-24 border-b border-border-subtle">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">

@@ -3,6 +3,7 @@
 import * as React from "react"
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
 import { IntroKILogo } from "@/components/ui/introki-logo"
 import { ENTERPRISE_SPRING } from "@/lib/animations"
@@ -12,6 +13,8 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = React.useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false)
   const { scrollY } = useScroll()
+  const pathname = usePathname()
+  const isHomePage = pathname === "/"
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 20)
@@ -21,8 +24,8 @@ export function Navbar() {
   const navItems = [
     { 
       label: "Features", 
-      href: "#features",
-      isScroll: true
+      href: isHomePage ? "#features" : "/features",
+      isScroll: isHomePage
     },
     { 
       label: "Team", 
@@ -83,12 +86,6 @@ export function Navbar() {
           {/* CTA Buttons - Industrial Tool Style */}
           <div className="hidden md:flex items-center gap-4">
             <Link
-              href="/dashboard"
-              className="text-sm font-mono font-bold uppercase tracking-wider text-black hover:text-black/60 transition-colors"
-            >
-              Anmelden
-            </Link>
-            <Link
               href="/demo"
               className="inline-flex items-center justify-center border-2 border-black bg-black text-white hover:bg-white hover:text-black rounded px-4 py-2 text-sm font-mono font-bold uppercase tracking-wider transition-all hover:scale-[1.02]"
             >
@@ -101,7 +98,7 @@ export function Navbar() {
             className="md:hidden text-black p-2 -mr-2 border-2 border-transparent hover:border-black rounded transition-all"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
-            aria-expanded={isMobileMenuOpen}
+            aria-expanded={isMobileMenuOpen ? "true" : "false"}
           >
             {isMobileMenuOpen ? (
               <X className="h-6 w-6" strokeWidth={1.5} />
@@ -136,13 +133,6 @@ export function Navbar() {
                   </Link>
                 ))}
                 <div className="flex flex-col gap-3 pt-4 border-t-2 border-black">
-                  <Link
-                    href="/dashboard"
-                    className="text-sm font-mono font-bold uppercase tracking-wider text-black hover:text-black/60 py-2 px-4 transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Anmelden
-                  </Link>
                   <Link
                     href="/demo"
                     className="inline-flex items-center justify-center border-2 border-black bg-black text-white hover:bg-white hover:text-black rounded px-4 py-2.5 text-sm font-mono font-bold uppercase tracking-wider transition-all"

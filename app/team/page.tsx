@@ -77,7 +77,7 @@ export default function TeamPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-slate-50 attio-grid-pattern attio-connection-lines">
+      <main className="min-h-screen bg-slate-50 attio-grid-pattern attio-connection-lines pt-16">
         {/* Hero Section */}
         <section className="py-32 px-4 bg-slate-50 min-h-screen">
           <div className="max-w-6xl mx-auto" ref={heroRef}>

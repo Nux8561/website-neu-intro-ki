@@ -4,25 +4,26 @@ import type React from "react"
 
 import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion"
+import { ENTERPRISE_SPRING } from "@/lib/animations"
 
 const testimonials = [
   {
-    quote: "Transformed our entire creative process overnight.",
+    quote: "Intro KI hat unseren Sales-Prozess komplett transformiert. 60 Sekunden Research statt 60 Minuten.",
     author: "Sarah Chen",
-    role: "Design Director",
-    company: "Linear",
+    role: "Sales Director",
+    company: "TechStart GmbH",
   },
   {
-    quote: "The most elegant solution we've ever implemented.",
-    author: "Marcus Webb",
-    role: "Creative Lead",
-    company: "Vercel",
+    quote: "Die automatische Priorisierung zeigt uns genau, welche Deals heute unsere Aufmerksamkeit brauchen.",
+    author: "Marcus Weber",
+    role: "Head of Sales",
+    company: "DataFlow Inc",
   },
   {
-    quote: "Pure craftsmanship in every single detail.",
+    quote: "Endlich ein CRM, das mitdenkt. Proaktive Signale statt reaktive Suche.",
     author: "Elena Frost",
-    role: "Head of Product",
-    company: "Stripe",
+    role: "VP Sales",
+    company: "Acme Corp",
   },
 ]
 
@@ -63,8 +64,8 @@ export function DesignTestimonial() {
   const current = testimonials[activeIndex]
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-white overflow-hidden">
-      <div ref={containerRef} className="relative w-full max-w-5xl" onMouseMove={handleMouseMove}>
+    <div className="flex items-center justify-center min-h-[600px] bg-white overflow-hidden">
+      <div ref={containerRef} className="relative w-full max-w-5xl px-4" onMouseMove={handleMouseMove}>
         {/* Oversized index number - positioned to bleed off left edge */}
         <motion.div
           className="absolute -left-8 top-1/2 -translate-y-1/2 text-[28rem] font-bold text-black/[0.03] select-none pointer-events-none leading-none tracking-tighter font-space-grotesk"
@@ -134,7 +135,7 @@ export function DesignTestimonial() {
               <AnimatePresence mode="wait">
                 <motion.blockquote
                   key={activeIndex}
-                  className="text-4xl md:text-5xl font-light text-black leading-[1.15] tracking-tight font-jakarta"
+                  className="text-4xl md:text-5xl font-light text-black leading-[1.15] tracking-tight font-space-grotesk"
                   initial="hidden"
                   animate="visible"
                   exit="exit"
@@ -189,7 +190,7 @@ export function DesignTestimonial() {
                     style={{ originX: 0 }}
                   />
                   <div>
-                    <p className="text-base font-medium text-black font-jakarta">{current.author}</p>
+                    <p className="text-base font-medium text-black font-space-grotesk">{current.author}</p>
                     <p className="text-sm text-black/60 font-inter">{current.role}</p>
                   </div>
                 </motion.div>
@@ -199,13 +200,13 @@ export function DesignTestimonial() {
               <div className="flex items-center gap-4">
                 <motion.button
                   onClick={goPrev}
-                  className="group relative w-12 h-12 rounded-full border border-black/10 flex items-center justify-center overflow-hidden bg-white hover:bg-black transition-colors"
+                  className="group relative w-12 h-12 rounded-full border-2 border-black flex items-center justify-center overflow-hidden"
                   whileTap={{ scale: 0.95 }}
+                  transition={ENTERPRISE_SPRING}
                 >
                   <motion.div
                     className="absolute inset-0 bg-black"
                     initial={{ x: "-100%" }}
-                    whileHover={{ x: 0 }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   />
                   <svg
@@ -227,13 +228,13 @@ export function DesignTestimonial() {
 
                 <motion.button
                   onClick={goNext}
-                  className="group relative w-12 h-12 rounded-full border border-black/10 flex items-center justify-center overflow-hidden bg-white hover:bg-black transition-colors"
+                  className="group relative w-12 h-12 rounded-full border-2 border-black flex items-center justify-center overflow-hidden"
                   whileTap={{ scale: 0.95 }}
+                  transition={ENTERPRISE_SPRING}
                 >
                   <motion.div
                     className="absolute inset-0 bg-black"
                     initial={{ x: "100%" }}
-                    whileHover={{ x: 0 }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   />
                   <svg
@@ -258,9 +259,9 @@ export function DesignTestimonial() {
         </div>
 
         {/* Bottom ticker - subtle repeating company names */}
-        <div className="absolute -bottom-20 left-0 right-0 overflow-hidden opacity-[0.08] pointer-events-none">
+        <div className="absolute -bottom-20 left-0 right-0 overflow-hidden opacity-[0.03] pointer-events-none">
           <motion.div
-            className="flex whitespace-nowrap text-6xl font-bold tracking-tight font-space-grotesk"
+            className="flex whitespace-nowrap text-6xl font-bold tracking-tight font-space-grotesk text-black"
             animate={{ x: [0, -1000] }}
             transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
           >
@@ -275,4 +276,3 @@ export function DesignTestimonial() {
     </div>
   )
 }
-

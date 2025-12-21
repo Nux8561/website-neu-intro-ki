@@ -53,7 +53,7 @@ export default function KontaktPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-slate-50 attio-grid-pattern attio-connection-lines">
+      <main className="min-h-screen bg-slate-50 attio-grid-pattern attio-connection-lines pt-16">
         <section className="py-24 px-4">
           <div className="mx-auto max-w-6xl">
             {/* Header */}
@@ -84,9 +84,18 @@ export default function KontaktPage() {
                     <h2 className="text-2xl font-semibold text-slate-900 mb-6">Kontaktinformationen</h2>
                     
                     <div className="space-y-6">
+                      {/* Email - Fake UI */}
                       <div className="flex items-start gap-4">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-slate-200 bg-white">
-                          <Mail className="h-5 w-5 text-slate-600" />
+                        <div className="flex-shrink-0 w-16 h-16 rounded-lg border border-slate-200 bg-white/50 backdrop-blur-xl shadow-attio-diffuse p-3">
+                          <div className="w-full h-full bg-gradient-to-br from-slate-50 to-white rounded border border-slate-100 p-2">
+                            <div className="flex items-center gap-1.5 mb-1">
+                              <div className="w-2 h-2 rounded-full bg-slate-300"></div>
+                              <div className="w-2 h-2 rounded-full bg-slate-300"></div>
+                              <div className="w-2 h-2 rounded-full bg-slate-300"></div>
+                            </div>
+                            <div className="h-1.5 bg-slate-200 rounded w-3/4 mb-1"></div>
+                            <div className="h-1 bg-slate-100 rounded w-1/2"></div>
+                          </div>
                         </div>
                         <div>
                           <h3 className="text-sm font-semibold text-slate-900 mb-1">Email</h3>
@@ -96,9 +105,15 @@ export default function KontaktPage() {
                         </div>
                       </div>
 
+                      {/* Phone - Fake UI */}
                       <div className="flex items-start gap-4">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-slate-200 bg-white">
-                          <Phone className="h-5 w-5 text-slate-600" />
+                        <div className="flex-shrink-0 w-16 h-16 rounded-lg border border-slate-200 bg-white/50 backdrop-blur-xl shadow-attio-diffuse p-3">
+                          <div className="w-full h-full bg-gradient-to-br from-slate-50 to-white rounded border border-slate-100 p-2 flex flex-col items-center justify-center">
+                            <div className="w-6 h-6 rounded-full border-2 border-slate-300 mb-1 flex items-center justify-center">
+                              <div className="w-2 h-2 rounded-full bg-slate-400"></div>
+                            </div>
+                            <div className="h-1 bg-slate-200 rounded w-4"></div>
+                          </div>
                         </div>
                         <div>
                           <h3 className="text-sm font-semibold text-slate-900 mb-1">Telefon</h3>
@@ -108,9 +123,18 @@ export default function KontaktPage() {
                         </div>
                       </div>
 
+                      {/* Address - Fake UI */}
                       <div className="flex items-start gap-4">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-slate-200 bg-white">
-                          <MapPin className="h-5 w-5 text-slate-600" />
+                        <div className="flex-shrink-0 w-16 h-16 rounded-lg border border-slate-200 bg-white/50 backdrop-blur-xl shadow-attio-diffuse p-3">
+                          <div className="w-full h-full bg-gradient-to-br from-slate-50 to-white rounded border border-slate-100 p-2">
+                            <div className="flex items-center gap-1 mb-1">
+                              <div className="w-3 h-3 rounded border border-slate-300 flex items-center justify-center">
+                                <div className="w-1 h-1 rounded-full bg-slate-400"></div>
+                              </div>
+                              <div className="h-1 bg-slate-200 rounded flex-1"></div>
+                            </div>
+                            <div className="h-0.5 bg-slate-100 rounded w-2/3"></div>
+                          </div>
                         </div>
                         <div>
                           <h3 className="text-sm font-semibold text-slate-900 mb-1">Adresse</h3>

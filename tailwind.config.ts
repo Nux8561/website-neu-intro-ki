@@ -111,6 +111,7 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-inter)", ...fontFamily.sans], // Inter für Body
         inter: ["var(--font-inter)", "sans-serif"],
+        jakarta: ["var(--font-jakarta)", "sans-serif"], // Plus Jakarta Sans (wie Team Page - Premium)
         "space-grotesk": ["var(--font-space-grotesk)", "sans-serif"], // Space Grotesk für Headlines (Industrial Tool)
         mono: ["var(--font-mono)", "monospace"], // JetBrains Mono für Code, Zahlen, technische Details
       },

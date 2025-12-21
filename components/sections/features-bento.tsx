@@ -13,16 +13,14 @@ export function FeaturesBento() {
     <section id="features" className="bg-white py-32 md:py-40 border-b-2 border-black">
       <div className="mx-auto max-w-full px-0">
         
-        {/* Section Header - Industrial Tool Style */}
+        {/* Section Header - Premium Style (Team Page Fonts) */}
         <ScrollReveal direction="up" distance={50}>
-          <div className="relative mb-20 max-w-3xl mx-auto px-4">
-            {/* Dekorative vertikale Linie in der Mitte (Schwarz) */}
-            <div className="absolute top-0 bottom-0 left-1/2 w-px bg-black/20 -translate-x-1/2" />
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-black mb-6 font-space-grotesk">
-              Clarity für dich und dein Team.
+          <div className="relative mb-16 max-w-3xl mx-auto px-4 text-center">
+            <h2 className="text-4xl md:text-5xl font-jakarta font-semibold tracking-tight text-black mb-4">
+              Clarity für dich und dein Team
             </h2>
-            <p className="text-xl text-black/70 leading-relaxed font-inter">
-              Intro KI sorgt dafür, dass nichts untergeht. Die ersten 20 Calls sind immer die mit dem besten Potential – nicht 100 zufällige.
+            <p className="text-lg text-black/70 leading-relaxed font-inter">
+              Die ersten 20 Calls sind immer die mit dem besten Potential.
             </p>
           </div>
         </ScrollReveal>
@@ -37,9 +35,9 @@ export function FeaturesBento() {
             className="group relative flex flex-col justify-between overflow-hidden md:col-span-2 md:row-span-1 bg-white border-2 border-black"
           >
             <div className="p-10">
-              <h3 className="mb-4 text-3xl font-bold tracking-tight text-black font-space-grotesk">Clarity & Focus</h3>
-              <p className="max-w-md text-black/70 text-base leading-relaxed mb-8 font-inter">
-                Immer die richtige Klarheit. Top Opportunities heute, was zu tun ist, worauf du dich heute fokussieren musst.
+              <h3 className="mb-4 text-3xl font-jakarta font-semibold tracking-tight text-black">Clarity & Focus</h3>
+              <p className="max-w-md text-black/80 text-base leading-relaxed mb-8 font-inter">
+                Top Opportunities heute. Was zu tun ist. Worauf du dich fokussieren musst.
               </p>
             </div>
 
@@ -53,8 +51,8 @@ export function FeaturesBento() {
                       #1
                     </div>
                     <div className="flex-1">
-                      <div className="text-xs font-bold text-black mb-1 font-space-grotesk">Acme Corp</div>
-                      <div className="text-[10px] text-black/60 font-mono">Strong Buy Signal • €50K Deal</div>
+                      <div className="text-xs font-jakarta font-semibold text-black mb-1">Acme Corp</div>
+                      <div className="text-[10px] text-black/80 font-mono">Strong Buy Signal • €50K Deal</div>
                     </div>
                   </div>
                   <div className="text-xs font-mono font-bold text-black px-2 py-1 bg-black text-white uppercase tracking-wider">Priority</div>
@@ -64,8 +62,8 @@ export function FeaturesBento() {
                 <div className="flex items-center gap-3 rounded border-2 border-black bg-white p-3 shadow-[2px_2px_0_0_rgba(0,0,0,1)]">
                   <div className="h-2 w-2 rounded-full bg-black" />
                   <div className="flex-1">
-                    <div className="text-xs font-bold text-black font-space-grotesk">Call Acme Corp - Decision Maker</div>
-                    <div className="text-[10px] text-black/60 font-mono">Heute 14:00 • Warm Lead</div>
+                    <div className="text-xs font-jakarta font-semibold text-black">Call Acme Corp - Decision Maker</div>
+                    <div className="text-[10px] text-black/80 font-mono">Heute 14:00 • Warm Lead</div>
                   </div>
                 </div>
               </div>
@@ -79,8 +77,8 @@ export function FeaturesBento() {
           >
                     <div className="flex h-full flex-col justify-between p-8">
                       <div>
-                        <h3 className="text-xl font-bold tracking-tight text-black mb-3 font-space-grotesk">Project Management</h3>
-                        <p className="text-sm text-black/70 mb-6 leading-relaxed font-inter">Goals, Sequences, Smart Automation.</p>
+                        <h3 className="text-xl font-jakarta font-semibold tracking-tight text-black mb-3">Project Management</h3>
+                        <p className="text-sm text-black/80 mb-6 leading-relaxed font-inter">Goals, Sequences, Smart Automation.</p>
                       </div>
 
               {/* Fake UI: Sequence Flow - Industrial Tool Style */}
@@ -112,8 +110,8 @@ export function FeaturesBento() {
           >
                     <div className="flex h-full flex-col justify-between p-8">
                       <div>
-                        <h3 className="text-xl font-bold tracking-tight text-black mb-3 font-space-grotesk">Deal Management</h3>
-                        <p className="text-sm text-black/70 mb-6 leading-relaxed font-inter">Next Steps für Bestandskunden finden.</p>
+                        <h3 className="text-xl font-jakarta font-semibold tracking-tight text-black mb-3">Deal Management</h3>
+                        <p className="text-sm text-black/80 mb-6 leading-relaxed font-inter">Next Steps für Bestandskunden finden.</p>
                       </div>
 
               {/* Fake UI: Deal Card - Industrial Tool Style */}

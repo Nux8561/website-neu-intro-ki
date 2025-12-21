@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Inter, Space_Grotesk, JetBrains_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
 
@@ -10,7 +10,15 @@ const inter = Inter({
   display: "swap",
 });
 
-// Headlines: Space Grotesk (Industrial Tool Vibe - Railway/Linear Style)
+// Headlines: Plus Jakarta Sans (wie Team Page - Premium Look)
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-jakarta",
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
+});
+
+// Headlines Alternative: Space Grotesk (Industrial Tool Vibe - Railway/Linear Style)
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
@@ -45,7 +53,7 @@ export default function RootLayout({
   return (
     <html lang="de">
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} ${mono.variable} antialiased attio-grid-pattern bg-noise min-h-screen`}
+        className={`${inter.variable} ${jakarta.variable} ${spaceGrotesk.variable} ${mono.variable} antialiased attio-grid-pattern bg-noise min-h-screen`}
       >
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>

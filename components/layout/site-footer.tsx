@@ -6,14 +6,39 @@ const FOOTER_LINKS = [
   {
     title: "Produkt",
     links: [
-      { label: "Features", href: "#features" },
+      { label: "Features", href: "/features" },
+      { label: "Platform", href: "/platform" },
+      { label: "Pricing", href: "/pricing" },
+      { label: "Security", href: "/security" },
       { label: "Demo buchen", href: "/demo" },
     ],
   },
   {
-    title: "Company",
+    title: "Lösungen",
     links: [
+      { label: "Für Startups", href: "/for/startups" },
+      { label: "Enterprise", href: "/enterprise" },
+      { label: "Deal Flow", href: "/for/deal-flow" },
+    ],
+  },
+  {
+    title: "Ressourcen",
+    links: [
+      { label: "Blog", href: "/blog" },
+      { label: "Help", href: "/help" },
+      { label: "FAQ", href: "/faq" },
+      { label: "Changelog", href: "/changelog" },
+      { label: "Roadmap", href: "/roadmap" },
+      { label: "Templates", href: "/templates" },
+    ],
+  },
+  {
+    title: "Unternehmen",
+    links: [
+      { label: "About", href: "/about" },
       { label: "Team", href: "/team" },
+      { label: "Careers", href: "/careers" },
+      { label: "Partners", href: "/partners" },
       { label: "Kontakt", href: "/kontakt" },
     ],
   },
@@ -30,7 +55,7 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-slate-100 bg-white pt-16 pb-12">
       <div className="mx-auto max-w-[1200px] px-4">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-6">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-7">
           {/* LOGO & SOCIALS (Links, breiter) */}
           <div className="col-span-2">
             <Link href="/" className="mb-6 flex items-center gap-2 text-slate-900">

@@ -6,6 +6,9 @@ import { ArrowRight } from "lucide-react"
 import { ENTERPRISE_SPRING, snappySpring, snappyStaggerContainer, snappyStaggerItem } from "@/lib/animations"
 import Link from "next/link"
 import { CustomFeatureIcon } from "@/components/ui/custom-feature-icons"
+import { BrowserPreview } from "@/components/ui/browser-preview"
+import { TerminalPreview } from "@/components/ui/terminal-preview"
+import { CodeSnippet } from "@/components/ui/code-snippet"
 
 /**
  * Features Bento - 100.000€ VERSION
@@ -195,47 +198,65 @@ export function FeaturesBento() {
                 )}
                 {feature.visual === "email" && (
                   <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={isInView ? { opacity: 1 } : {}}
-                    transition={{ delay: 0.5 + i * 0.1 }}
-                    className="absolute inset-0 flex items-center justify-center p-6"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                    transition={{ ...snappySpring, delay: 0.5 + i * 0.1 }}
+                    className="absolute inset-0 p-2"
                   >
-                    <div className="w-full space-y-3">
-                      <div className="h-4 w-full rounded-lg bg-blue-200" />
-                      <div className="h-4 w-3/4 rounded-lg bg-blue-100" />
-                      <div className="h-4 w-5/6 rounded-lg bg-blue-50" />
-                    </div>
+                    <BrowserPreview
+                      url="introki.app/emails"
+                      title="Email Automation"
+                      isSecure={true}
+                      height={160}
+                      showWindowControls={false}
+                    >
+                      <div className="flex h-full items-center justify-center p-4">
+                        <div className="w-full space-y-2">
+                          <div className="h-3 w-full rounded bg-blue-200" />
+                          <div className="h-3 w-3/4 rounded bg-blue-100" />
+                        </div>
+                      </div>
+                    </BrowserPreview>
                   </motion.div>
                 )}
                 {feature.visual === "call" && (
                   <motion.div
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={isInView ? { scale: 1, opacity: 1 } : {}}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
                     transition={{ ...snappySpring, delay: 0.5 + i * 0.1 }}
-                    className="absolute inset-0 flex items-center justify-center"
+                    className="absolute inset-0 p-2"
                   >
-                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-purple-100 shadow-lg">
-                      <CustomFeatureIcon type="call" className="h-8 w-8" />
-                    </div>
+                    <TerminalPreview
+                      lines={[
+                        { text: "introki@server:~$ analyze-lead Acme Corp", type: "command", prompt: "$" },
+                        { text: "✓ Research completed in 45s", type: "success" },
+                        { text: "→ Priority: HIGH", type: "output" },
+                        { text: "→ Next action: Call today", type: "output" },
+                      ]}
+                      height={160}
+                      title="Call Assistant"
+                    />
                   </motion.div>
                 )}
                 {feature.visual === "tasks" && (
-                  <div className="absolute inset-0 p-4">
-                    <div className="space-y-3">
-                      {[1, 2].map((num) => (
-                        <motion.div
-                          key={num}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={isInView ? { opacity: 1, x: 0 } : {}}
-                          transition={{ delay: 0.5 + i * 0.1 + num * 0.1 }}
-                          className="flex items-center gap-3"
-                        >
-                          <div className="h-5 w-5 rounded border-2 border-black/20 bg-white" />
-                          <div className="h-3 flex-1 rounded-full bg-slate-200" />
-                        </motion.div>
-                      ))}
-                    </div>
-                  </div>
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                    transition={{ ...snappySpring, delay: 0.5 + i * 0.1 }}
+                    className="absolute inset-0 p-2"
+                  >
+                    <CodeSnippet
+                      code={`// Auto-generated Task
+const task = {
+  type: "follow-up",
+  priority: "high",
+  dueDate: "today",
+  assignedTo: "sales-team"
+}`}
+                      language="typescript"
+                      showCopy={false}
+                    />
+                  </motion.div>
                 )}
                 {feature.visual === "pipeline" && (
                   <div className="absolute inset-0 p-4">

@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/navbar"
 import { CookieConsent } from "@/components/ui/cookie-consent"
 import { AnimatedGridLines } from "@/components/ui/animated-grid-lines"
-import { HeroSimple } from "@/components/sections/hero-simple"
+import { HeroLayered } from "@/components/sections/hero-layered"
 import { FeaturesBento } from "@/components/sections/features-bento"
 import { WorkspacesInterfaceSection } from "@/components/sections/workspaces-interface-section"
 import { FeatureRows } from "@/components/sections/feature-rows"
@@ -19,7 +19,7 @@ export default function Home() {
       {/* Main Container mit vertikalen Border-Eingrenzungen */}
       <div className="relative z-10 mx-auto max-w-[1200px] border-x border-slate-200/60 bg-white/40 backdrop-blur-sm">
         <main className="min-h-screen bg-white selection:bg-blue-100 selection:text-blue-900">
-          <HeroSimple />
+          <HeroLayered />
           <FeaturesBento />
           <WorkspacesInterfaceSection />
           <VideoDemoSection videoSrc="/videos/demo.mp4" />

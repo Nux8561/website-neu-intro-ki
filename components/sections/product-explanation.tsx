@@ -2,9 +2,10 @@
 
 import * as React from "react"
 import { motion, useInView } from "framer-motion"
-import { Search, Zap, TrendingUp, Clock, CheckCircle2, ArrowRight } from "lucide-react"
+import { CheckCircle2, ArrowRight } from "lucide-react"
 import { ENTERPRISE_SPRING, snappySpring, snappyStaggerContainer, snappyStaggerItem } from "@/lib/animations"
 import Link from "next/link"
+import { CustomFeatureIcon } from "@/components/ui/custom-feature-icons"
 
 /**
  * Product Explanation Section - 100.000€ VERSION
@@ -14,6 +15,7 @@ import Link from "next/link"
  * Team Page Fonts (font-jakarta)
  * Klarer Kontrast
  * Perfekte Animationen
+ * KEINE 3D ICONS - Custom Icons aus dem Projekt
  */
 export function ProductExplanation() {
   const ref = React.useRef<HTMLDivElement>(null)
@@ -21,33 +23,30 @@ export function ProductExplanation() {
 
   const features = [
     {
-      icon: Search,
+      icon: "research",
       title: "Automatische Recherche",
       description: "60 Sekunden statt 60 Minuten",
       bgColor: "bg-emerald-100",
-      iconColor: "text-emerald-600",
     },
     {
-      icon: Zap,
+      icon: "signals",
       title: "Proaktive Signale",
       description: "Dein CRM sagt dir, was zu tun ist",
       bgColor: "bg-blue-100",
-      iconColor: "text-blue-600",
     },
     {
-      icon: TrendingUp,
+      icon: "priorities",
       title: "Klare Prioritäten",
       description: "Die ersten 20 Calls sind die besten",
       bgColor: "bg-purple-100",
-      iconColor: "text-purple-600",
     },
   ]
 
   const workflow = [
     { step: 1, title: "Signal erkannt", icon: CheckCircle2 },
-    { step: 2, title: "Research automatisch", icon: Search },
-    { step: 3, title: "Priorität gesetzt", icon: TrendingUp },
-    { step: 4, title: "Du wirst benachrichtigt", icon: Zap },
+    { step: 2, title: "Research automatisch", icon: CheckCircle2 },
+    { step: 3, title: "Priorität gesetzt", icon: CheckCircle2 },
+    { step: 4, title: "Du wirst benachrichtigt", icon: CheckCircle2 },
   ]
 
   return (
@@ -68,7 +67,7 @@ export function ProductExplanation() {
           </p>
         </motion.div>
 
-        {/* Features - VISUELL */}
+        {/* Features - VISUELL mit Custom Icons */}
         <motion.div
           variants={snappyStaggerContainer}
           initial="hidden"
@@ -82,13 +81,14 @@ export function ProductExplanation() {
               whileHover={{ scale: 1.03, y: -6 }}
               className="group rounded-2xl border border-black/10 bg-white p-8 shadow-sm transition-all hover:shadow-xl"
             >
+              {/* Custom Icon statt Lucide */}
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={isInView ? { scale: 1, opacity: 1 } : {}}
                 transition={{ ...snappySpring, delay: 0.3 + i * 0.1 }}
                 className={`mb-6 flex h-16 w-16 items-center justify-center rounded-xl ${feature.bgColor} transition-transform group-hover:scale-110 group-hover:rotate-3`}
               >
-                <feature.icon className={`h-8 w-8 ${feature.iconColor}`} />
+                <CustomFeatureIcon type={feature.icon as any} className="h-10 w-10" />
               </motion.div>
               <h3 className="mb-3 text-2xl font-jakarta font-semibold text-black">{feature.title}</h3>
               <p className="text-base text-black/80 font-inter leading-relaxed">{feature.description}</p>

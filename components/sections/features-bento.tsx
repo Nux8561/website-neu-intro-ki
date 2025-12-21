@@ -2,17 +2,19 @@
 
 import * as React from "react"
 import { motion, useScroll, useTransform, useInView } from "framer-motion"
-import { Phone, Mail, TrendingUp, CheckCircle2, Users, Zap, ArrowRight } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { ENTERPRISE_SPRING, snappySpring, snappyStaggerContainer, snappyStaggerItem } from "@/lib/animations"
 import Link from "next/link"
+import { CustomFeatureIcon } from "@/components/ui/custom-feature-icons"
 
 /**
  * Features Bento - 100.000€ VERSION
  * 
  * - NICHT gestapelt - perfekte Abstände
  * - Hochwertige Animationen
- * - Team Page Style Visuals
+ * - Custom Icons statt 3D Icons
  * - Scroll-basierte Animationen wie ein Video
+ * - Bessere Beschreibungen in den Boxen
  */
 export function FeaturesBento() {
   const sectionRef = React.useRef<HTMLDivElement>(null)
@@ -30,55 +32,49 @@ export function FeaturesBento() {
     {
       id: 1,
       title: "Top 20 Prioritäten",
-      description: "Die wichtigsten Calls zuerst. Nicht 100 zufällige.",
-      icon: TrendingUp,
+      description: "Die wichtigsten Calls zuerst. Nicht 100 zufällige. Dein Algorithmus analysiert alle Signale und zeigt dir genau die 20 Deals, die heute deine Aufmerksamkeit brauchen.",
+      icon: "priorities",
       bgColor: "bg-emerald-100",
-      iconColor: "text-emerald-600",
       visual: "priorities",
     },
     {
       id: 2,
       title: "Automatische Email-Versendung",
-      description: "Email wird automatisch gesendet, wenn gesehen.",
-      icon: Mail,
+      description: "Email wird automatisch gesendet, wenn gesehen. Kein manuelles Versenden mehr. Das System erkennt, wann ein Lead deine Email öffnet und sendet automatisch die nächste Nachricht.",
+      icon: "email",
       bgColor: "bg-blue-100",
-      iconColor: "text-blue-600",
       visual: "email",
     },
     {
       id: 3,
       title: "Call-Hilfe",
-      description: "Die 20 wichtigsten Schritte am Anfang des Tages.",
-      icon: Phone,
+      description: "Die 20 wichtigsten Schritte am Anfang des Tages. Bevor du den ersten Call machst, zeigt dir Intro KI genau, was du sagen musst, welche Informationen wichtig sind und worauf du achten solltest.",
+      icon: "call",
       bgColor: "bg-purple-100",
-      iconColor: "text-purple-600",
       visual: "call",
     },
     {
       id: 4,
       title: "Task-Erstellung",
-      description: "Neue Tasks werden automatisch erstellt.",
-      icon: CheckCircle2,
+      description: "Neue Tasks werden automatisch erstellt. Wenn ein Signal erkannt wird, ein Deal sich bewegt oder eine Aktion nötig ist, erstellt Intro KI automatisch die passenden Tasks für dich und dein Team.",
+      icon: "tasks",
       bgColor: "bg-orange-100",
-      iconColor: "text-orange-600",
       visual: "tasks",
     },
     {
       id: 5,
       title: "Pipeline Management",
-      description: "Deal Management mit Algorithmus-basierter Priorisierung.",
-      icon: TrendingUp,
+      description: "Deal Management mit Algorithmus-basierter Priorisierung. Nicht nur eine Liste von Deals, sondern intelligente Priorisierung basierend auf Wahrscheinlichkeit, Timing und deinem ICP-Fit.",
+      icon: "pipeline",
       bgColor: "bg-indigo-100",
-      iconColor: "text-indigo-600",
       visual: "pipeline",
     },
     {
       id: 6,
       title: "Team Management",
-      description: "Übersicht über Team-Performance und Aktivitäten.",
-      icon: Users,
+      description: "Übersicht über Team-Performance und Aktivitäten. Sieh auf einen Blick, wer was macht, welche Deals heiß sind und wo dein Team Unterstützung braucht.",
+      icon: "team",
       bgColor: "bg-pink-100",
-      iconColor: "text-pink-600",
       visual: "team",
     },
   ]
@@ -158,19 +154,19 @@ export function FeaturesBento() {
               key={feature.id}
               variants={snappyStaggerItem}
               whileHover={{ scale: 1.02, y: -8 }}
-              className="group relative overflow-hidden rounded-2xl border border-black/10 bg-white p-8 shadow-sm transition-all hover:shadow-2xl"
+              className="group relative overflow-hidden rounded-2xl border border-black/10 bg-white p-8 shadow-sm transition-all hover:shadow-xl"
             >
-              {/* Icon - Team Page Style */}
+              {/* Custom Icon statt Lucide */}
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={isInView ? { scale: 1, opacity: 1 } : {}}
                 transition={{ ...snappySpring, delay: 0.3 + i * 0.1 }}
                 className={`mb-6 flex h-16 w-16 items-center justify-center rounded-xl ${feature.bgColor} transition-transform group-hover:scale-110 group-hover:rotate-3`}
               >
-                <feature.icon className={`h-8 w-8 ${feature.iconColor}`} />
+                <CustomFeatureIcon type={feature.icon as any} className="h-10 w-10" />
               </motion.div>
 
-              {/* Content */}
+              {/* Content - BESSERE BESCHREIBUNGEN */}
               <h3 className="mb-3 text-2xl font-jakarta font-semibold text-black">{feature.title}</h3>
               <p className="mb-8 text-base text-black/80 font-inter leading-relaxed">{feature.description}</p>
 
@@ -219,7 +215,7 @@ export function FeaturesBento() {
                     className="absolute inset-0 flex items-center justify-center"
                   >
                     <div className="flex h-16 w-16 items-center justify-center rounded-full bg-purple-100 shadow-lg">
-                      <Phone className="h-8 w-8 text-purple-600" />
+                      <CustomFeatureIcon type="call" className="h-8 w-8" />
                     </div>
                   </motion.div>
                 )}

@@ -2,18 +2,21 @@
 
 import * as React from "react"
 import { motion, useScroll, useTransform, useInView } from "framer-motion"
-import { Phone, Mail, Users, ShoppingCart, Check } from "lucide-react"
+import { Check } from "lucide-react"
+import Image from "next/image"
 import { ENTERPRISE_SPRING, snappySpring, snappyStaggerContainer, snappyStaggerItem } from "@/lib/animations"
 
 /**
  * Positioning Section - 100.000€ VERSION
  * 
  * Zeigt die "Goldene Mitte" Positionierung:
- * - Close CRM = Telefon-Cold-Acquisition
- * - Attio = Email-Automation & Deal Pipeline
- * - HubSpot = Zu komplex, nur für 20+ Personen
- * - Salesforce = E-Commerce/Email-Automation
+ * - Close CRM = Telefon-Cold-Acquisition (ECHTES LOGO)
+ * - Attio = Email-Automation & Deal Pipeline (ECHTES LOGO)
+ * - HubSpot = Zu komplex, nur für 20+ Personen (ECHTES LOGO)
+ * - Salesforce = E-Commerce/Email-Automation (ECHTES LOGO)
  * - Intro KI = Goldene Mitte: Telefon + Pipeline + Algorithmus
+ * 
+ * KEINE 3D ICONS MEHR - NUR ECHTE LOGOS
  */
 export function PositioningSection() {
   const ref = React.useRef<HTMLDivElement>(null)
@@ -30,40 +33,36 @@ export function PositioningSection() {
     {
       name: "Close CRM",
       strength: "Telefon-Cold-Acquisition",
-      icon: Phone,
-      bgColor: "bg-emerald-100",
-      iconColor: "text-emerald-600",
+      logo: "/logos/close.svg", // Muss hinzugefügt werden
+      fallback: "Close",
       position: "left",
     },
     {
       name: "Attio",
       strength: "Email-Automation & Pipeline",
-      icon: Mail,
-      bgColor: "bg-blue-100",
-      iconColor: "text-blue-600",
+      logo: "/logos/attio.svg", // Muss hinzugefügt werden
+      fallback: "Attio",
       position: "left-center",
     },
     {
       name: "HubSpot",
       strength: "Zu komplex, 20+ Personen",
-      icon: Users,
-      bgColor: "bg-orange-100",
-      iconColor: "text-orange-600",
+      logo: "/logos/hubspot.svg", // Bereits vorhanden
+      fallback: "HubSpot",
       position: "right-center",
     },
     {
       name: "Salesforce",
       strength: "E-Commerce & Email",
-      icon: ShoppingCart,
-      bgColor: "bg-purple-100",
-      iconColor: "text-purple-600",
+      logo: "/logos/salesforce.svg", // Muss hinzugefügt werden
+      fallback: "Salesforce",
       position: "right",
     },
   ]
 
   const differentiators = [
-    { title: "Telefon-First", desc: "Wie Close CRM, aber besser", icon: Phone },
-    { title: "Pipeline Management", desc: "Wie Attio, aber einfacher", icon: Mail },
+    { title: "Telefon-First", desc: "Wie Close CRM, aber besser", icon: Check },
+    { title: "Pipeline Management", desc: "Wie Attio, aber einfacher", icon: Check },
     { title: "Algorithmus-basiert", desc: "Automatisch, intelligent, proaktiv", icon: Check },
   ]
 
@@ -139,7 +138,7 @@ export function PositioningSection() {
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                 className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-black via-slate-800 to-black shadow-xl"
               >
-                <Phone className="h-10 w-10 text-white" />
+                <span className="text-2xl font-jakarta font-bold text-white">IK</span>
               </motion.div>
             </div>
             <h3 className="mb-4 text-center text-3xl font-jakarta font-semibold text-black">Intro KI</h3>
@@ -149,7 +148,7 @@ export function PositioningSection() {
           </div>
         </motion.div>
 
-        {/* Competitors Grid */}
+        {/* Competitors Grid - MIT ECHTEN LOGOS */}
         <motion.div
           variants={snappyStaggerContainer}
           initial="hidden"
@@ -163,8 +162,27 @@ export function PositioningSection() {
               whileHover={{ scale: 1.05, y: -6 }}
               className="rounded-2xl border border-black/10 bg-white/90 backdrop-blur-sm p-6 shadow-sm transition-all hover:shadow-xl"
             >
-              <div className={`mb-4 flex h-14 w-14 items-center justify-center rounded-xl ${competitor.bgColor} shadow-sm`}>
-                <competitor.icon className={`h-7 w-7 ${competitor.iconColor}`} />
+              {/* ECHTES LOGO statt Icon */}
+              <div className="mb-4 flex h-16 items-center justify-center">
+                <Image
+                  src={competitor.logo}
+                  alt={competitor.name}
+                  width={120}
+                  height={40}
+                  className="h-10 w-auto object-contain opacity-70 grayscale hover:opacity-100 hover:grayscale-0 transition-all"
+                  onError={(e) => {
+                    // Fallback: Text wenn Logo nicht gefunden
+                    const target = e.target as HTMLImageElement
+                    target.style.display = "none"
+                    const parent = target.parentElement
+                    if (parent && !parent.querySelector(".logo-fallback")) {
+                      const fallback = document.createElement("div")
+                      fallback.className = "logo-fallback text-lg font-jakarta font-semibold text-black/60"
+                      fallback.textContent = competitor.fallback
+                      parent.appendChild(fallback)
+                    }
+                  }}
+                />
               </div>
               <h4 className="mb-2 text-lg font-jakarta font-semibold text-black">{competitor.name}</h4>
               <p className="text-sm text-black/70 font-inter leading-relaxed">{competitor.strength}</p>

@@ -67,7 +67,7 @@ export function PositioningSection() {
   ]
 
   return (
-    <section ref={ref} className="relative bg-gradient-to-br from-slate-50 via-white to-slate-50 py-40 md:py-48 overflow-hidden">
+    <section ref={ref} className="relative bg-gradient-to-br from-slate-50 via-white to-slate-50 py-32 md:py-48 overflow-hidden">
       {/* Background Layers - Animiert */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Subtle Grid */}
@@ -148,7 +148,7 @@ export function PositioningSection() {
           </div>
         </motion.div>
 
-        {/* Competitors Grid - MIT ECHTEN LOGOS */}
+        {/* Competitors Grid - MIT ECHTEN LOGOS - Interaktiver Vergleich */}
         <motion.div
           variants={snappyStaggerContainer}
           initial="hidden"
@@ -160,7 +160,7 @@ export function PositioningSection() {
               key={competitor.name}
               variants={snappyStaggerItem}
               whileHover={{ scale: 1.05, y: -6 }}
-              className="rounded-2xl border-2 border-black/10 bg-white/90 backdrop-blur-sm p-6 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.05)] transition-all hover:shadow-[0_25px_50px_-10px_rgba(0,0,0,0.15)]"
+              className="group rounded-2xl border-2 border-black/10 bg-white/90 backdrop-blur-sm p-6 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.05)] transition-all hover:shadow-[0_25px_50px_-10px_rgba(0,0,0,0.15)] cursor-pointer"
             >
               {/* ECHTES LOGO statt Icon */}
               <div className="mb-4 flex h-16 items-center justify-center">

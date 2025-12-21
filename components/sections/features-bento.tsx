@@ -87,7 +87,7 @@ export function FeaturesBento() {
     <section
       ref={sectionRef}
       id="features"
-      className="relative bg-white py-40 md:py-48 overflow-hidden"
+      className="relative bg-white py-32 md:py-48 overflow-hidden"
     >
       {/* Background Layers - Animiert */}
       <motion.div
@@ -174,8 +174,8 @@ export function FeaturesBento() {
                   <h3 className="mb-4 text-3xl font-space-grotesk font-bold -tracking-[0.01em] text-black">{feature.title}</h3>
                   <p className="mb-8 text-lg text-black/80 font-inter leading-relaxed">{feature.description}</p>
 
-                  {/* Visual Preview - Hochwertig - GRÖSSER */}
-                  <div className="relative h-56 w-full overflow-hidden rounded-xl bg-gradient-to-br from-slate-50 to-white border-2 border-black/10 shadow-sm">
+                  {/* Visual Preview - Hochwertig - MINDESTENS 400px für maximalen Impact */}
+                  <div className="relative min-h-[400px] w-full overflow-hidden rounded-xl bg-gradient-to-br from-slate-50 to-white border-2 border-black/10 shadow-sm">
                 {/* Fake UI Preview */}
                 {feature.visual === "priorities" && (
                   <div className="absolute inset-0 p-4">

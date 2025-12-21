@@ -7,6 +7,7 @@ import { ArrowRight, Zap, Search, TrendingUp, Phone, Mail } from "lucide-react"
 import { ENTERPRISE_SPRING, snappySpring } from "@/lib/animations"
 import { ParallaxContainer } from "@/components/ui/parallax-container"
 import { NumberTicker } from "@/components/ui/number-ticker"
+import { MagneticButton } from "@/components/ui/magnetic-button"
 
 /**
  * Layer 2: Focus Content - 100.000€ VERSION
@@ -64,11 +65,11 @@ export function Layer2FocusContent() {
           </div>
         </motion.div>
 
-        {/* Headline - Zeichenweise Animation - GRÖSSER für mehr Impact */}
+        {/* Headline - Zeichenweise Animation - RESPONSIVE für bessere Lesbarkeit */}
         <motion.h1
           initial="hidden"
           animate="visible"
-          className="mb-8 text-6xl font-space-grotesk font-bold -tracking-[0.02em] text-black sm:text-7xl md:text-8xl lg:text-[120px] leading-[0.95]"
+          className="mb-8 text-4xl font-space-grotesk font-bold -tracking-[0.02em] text-black sm:text-6xl md:text-7xl lg:text-8xl xl:text-[120px] leading-[1.1] sm:leading-[1.05]"
         >
           {headline.split("").map((char, i) => (
             <motion.span
@@ -107,51 +108,53 @@ export function Layer2FocusContent() {
           60-Sekunden-Research. Algorithmus-basierte Priorisierung. Automatisierte Workflows.
         </motion.p>
 
-        {/* CTA Buttons - Premium */}
+        {/* CTA Buttons - Premium mit Magnetic Effect */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...snappySpring, delay: 1.0 }}
           className="flex flex-col sm:flex-row justify-center gap-4"
         >
-          <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }} transition={snappySpring}>
-            <Link
-              href="/demo"
-              className="group inline-flex items-center justify-center rounded-full bg-black px-12 py-5 text-base font-space-grotesk font-bold text-white shadow-[8px_8px_0_0_rgba(0,0,0,0.2)] transition-all hover:shadow-[12px_12px_0_0_rgba(0,0,0,0.2)] hover:translate-x-[-2px] hover:translate-y-[-2px]"
+          <Link href="/demo" className="group">
+            <MagneticButton
+              variant="primary"
+              className="bg-black text-white shadow-[8px_8px_0_0_rgba(0,0,0,0.2)] hover:shadow-[12px_12px_0_0_rgba(0,0,0,0.2)]"
             >
               Demo buchen
               <ArrowRight className="ml-3 h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </motion.div>
-          <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }} transition={snappySpring}>
-            <Link
-              href="#product"
-              onClick={(e) => {
-                e.preventDefault()
-                const element = document.getElementById("product")
-                if (element) {
-                  element.scrollIntoView({ behavior: "smooth", block: "start" })
-                }
-              }}
-              className="inline-flex items-center justify-center rounded-full border-2 border-black bg-white px-12 py-5 text-base font-space-grotesk font-bold text-black transition-all hover:bg-black hover:text-white shadow-[4px_4px_0_0_rgba(0,0,0,1)] hover:translate-x-[-2px] hover:translate-y-[-2px]"
+            </MagneticButton>
+          </Link>
+          <Link
+            href="#product"
+            onClick={(e) => {
+              e.preventDefault()
+              const element = document.getElementById("product")
+              if (element) {
+                element.scrollIntoView({ behavior: "smooth", block: "start" })
+              }
+            }}
+          >
+            <MagneticButton
+              variant="secondary"
+              className="border-2 border-black bg-white text-black hover:bg-black hover:text-white shadow-[4px_4px_0_0_rgba(0,0,0,1)]"
             >
               Wie es funktioniert
-            </Link>
-          </motion.div>
+            </MagneticButton>
+          </Link>
         </motion.div>
       </motion.div>
 
-      {/* VISUELLE PRODUKT-DARSTELLUNG - Hochwertig */}
+      {/* VISUELLE PRODUKT-DARSTELLUNG - 60% Viewport-Höhe für maximalen Impact */}
       <ParallaxContainer speed={0.6}>
         <motion.div
           initial={{ opacity: 0, y: 60, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1.2, delay: 1.2, ...snappySpring }}
-          className="relative mx-auto w-full max-w-6xl"
+          className="relative mx-auto w-full max-w-[90vw] xl:max-w-[1400px]"
         >
-          <div className="overflow-hidden rounded-3xl border-2 border-black/20 bg-white shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)]">
-            {/* Dashboard Preview - ECHTE UI */}
-            <div className="bg-gradient-to-br from-slate-50 via-white to-slate-50 p-8 md:p-12">
+          <div className="overflow-hidden rounded-3xl border-2 border-black/20 bg-white shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] min-h-[60vh]">
+            {/* Dashboard Preview - ECHTE UI - Größer für mehr Impact */}
+            <div className="bg-gradient-to-br from-slate-50 via-white to-slate-50 p-8 md:p-12 lg:p-16 min-h-[60vh] flex flex-col">
               {/* Header */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -191,7 +194,11 @@ export function Layer2FocusContent() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{ ...snappySpring, delay: 1.6 + i * 0.15 }}
                     whileHover={{ scale: 1.02, y: -4 }}
-                    className="group rounded-xl border border-black/10 bg-white p-6 shadow-sm transition-all hover:shadow-lg"
+                    className="group rounded-xl border border-black/10 bg-white p-6 shadow-sm transition-all hover:shadow-lg cursor-pointer"
+                    onClick={() => {
+                      // Optional: Modal öffnen oder Detail-Ansicht zeigen
+                      console.log(`Deal clicked: ${deal.name}`)
+                    }}
                   >
                     <div className="mb-3 flex items-start justify-between">
                       <div className="flex items-center gap-3 flex-1">

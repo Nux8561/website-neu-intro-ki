@@ -134,7 +134,7 @@ const priority = calculatePriority({
     <section
       ref={sectionRef}
       id="storyline"
-      className="relative bg-white py-20 md:py-32"
+      className="relative bg-white py-32 md:py-48"
     >
       <div className="mx-auto max-w-7xl px-4">
         {/* Header */}

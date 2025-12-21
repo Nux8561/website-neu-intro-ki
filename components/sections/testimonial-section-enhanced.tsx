@@ -130,7 +130,7 @@ export function TestimonialSectionEnhanced() {
             <motion.div
               key={testimonial.id}
               variants={cardVariants}
-              className="group relative bg-black/5 border border-black/10 rounded-2xl p-8 hover:border-black/20 transition-all"
+              className="group relative bg-black/5 border border-black/10 rounded-2xl p-8 hover:border-black/20 transition-all min-h-[400px] flex flex-col"
               whileHover={{ scale: 1.01 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >

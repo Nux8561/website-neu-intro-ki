@@ -51,7 +51,7 @@ export function ProductExplanation() {
   ]
 
   return (
-    <section id="product" ref={ref} className="bg-white py-40 md:py-48">
+    <section id="product" ref={ref} className="bg-white py-32 md:py-48">
       <div className="mx-auto max-w-7xl px-4">
         {/* Header - MINIMAL TEXT */}
         <motion.div

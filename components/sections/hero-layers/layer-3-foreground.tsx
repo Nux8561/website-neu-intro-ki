@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
+import { motion, useMotionValue, useSpring, useTransform, useScroll } from "framer-motion"
 import { Zap, Activity, TrendingUp } from "lucide-react"
 
 /**
@@ -13,8 +13,17 @@ import { Zap, Activity, TrendingUp } from "lucide-react"
  * - Optional: Notification-Toast
  * 
  * Bewegung: Schnelle Reaktion auf Mausbewegung (Magnetic Effect)
+ * Scroll-basierte Opacity-Transitions für sichtbare Layer-Animationen
  */
 export function Layer3Foreground() {
+  const containerRef = React.useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  })
+
+  // Scroll-basierte Opacity für Layer 3
+  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [1, 1, 0.6, 0.2])
   const containerRef = React.useRef<HTMLDivElement>(null)
   const [isDesktop, setIsDesktop] = React.useState(false)
 
@@ -80,7 +89,11 @@ export function Layer3Foreground() {
   if (!isDesktop) return null
 
   return (
-    <div ref={containerRef} className="fixed inset-0 pointer-events-none z-30 overflow-hidden">
+    <motion.div 
+      ref={containerRef} 
+      style={{ opacity }}
+      className="fixed inset-0 pointer-events-none z-30 overflow-hidden"
+    >
       {/* Cursor-Follower */}
       <motion.div
         style={{
@@ -107,7 +120,7 @@ export function Layer3Foreground() {
 
       {/* Notification-Toast (erscheint nach 3s) */}
       <NotificationToast />
-    </div>
+    </motion.div>
   )
 }
 

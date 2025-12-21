@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { motion } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
 import { ParallaxContainer } from "@/components/ui/parallax-container"
 
 /**
@@ -14,10 +14,24 @@ import { ParallaxContainer } from "@/components/ui/parallax-container"
  * - Abstrakte Formen (2-3 große, verschwommene Blobs)
  * 
  * Parallax: 0.2x Scroll-Geschwindigkeit (sehr langsam)
+ * Scroll-basierte Opacity-Transitions für sichtbare Layer-Animationen
  */
 export function Layer0DeepBackground() {
+  const containerRef = React.useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  })
+
+  // Scroll-basierte Opacity für Layer 0
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.7, 0.3])
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.2])
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <motion.div 
+      ref={containerRef}
+      style={{ opacity, scale }}
+      className="fixed inset-0 pointer-events-none z-0 overflow-hidden"
+    >
       {/* Mesh-Gradient-Orbs - Breathing Animation */}
       <ParallaxContainer speed={0.2}>
         <motion.div
@@ -138,7 +152,7 @@ export function Layer0DeepBackground() {
           }}
         />
       </ParallaxContainer>
-    </div>
+    </motion.div>
   )
 }
 

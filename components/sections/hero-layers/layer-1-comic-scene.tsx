@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { motion } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
 import { ParallaxContainer } from "@/components/ui/parallax-container"
 import { Search, TrendingUp, Activity, Zap } from "lucide-react"
 
@@ -15,8 +15,18 @@ import { Search, TrendingUp, Activity, Zap } from "lucide-react"
  * - Orthogonale Verbindungslinien mit pulsierenden Dots
  * 
  * Parallax: 0.5x Scroll-Geschwindigkeit
+ * Scroll-basierte Opacity-Transitions für sichtbare Layer-Animationen
  */
 export function Layer1ComicScene() {
+  const containerRef = React.useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  })
+
+  // Scroll-basierte Opacity für Layer 1
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.4])
+  const y = useTransform(scrollYProgress, [0, 1], [0, -100])
   // Floating UI-Schnipsel Daten
   const uiSnippets = [
     {
@@ -77,7 +87,11 @@ export function Layer1ComicScene() {
   ]
 
   return (
-    <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
+    <motion.div 
+      ref={containerRef}
+      style={{ opacity, y }}
+      className="absolute inset-0 pointer-events-none z-10 overflow-hidden"
+    >
       {/* Orthogonales Grid */}
       <ParallaxContainer speed={0.5}>
         <div
@@ -215,7 +229,7 @@ export function Layer1ComicScene() {
           />
         </svg>
       </ParallaxContainer>
-    </div>
+    </motion.div>
   )
 }
 

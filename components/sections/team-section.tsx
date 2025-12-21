@@ -27,24 +27,7 @@ const founders: TeamMember[] = [
     linkedin: "https://linkedin.com/in/dominik-scherwinsky",
     twitter: "https://twitter.com/dscherwinsky",
   },
-  {
-    id: "2",
-    name: "Tech Co-Founder",
-    role: "CTO & Co-Founder",
-    bio: "Ex-Google Engineer. Spezialisiert auf AI/ML und skalierbare Cloud-Architekturen.",
-    avatar: "/images/Gemini_Generated_Image_ukzf8vukzf8vukzf.png",
-    linkedin: "#",
-    github: "#",
-  },
-  {
-    id: "3",
-    name: "Product Co-Founder",
-    role: "CPO & Co-Founder",
-    bio: "Product-Visionär mit über 10 Jahren Erfahrung in der Entwicklung von Enterprise-SaaS-Produkten.",
-    avatar: "/images/Gemini_Generated_Image_o0qaeo0qaeo0qaeo.png",
-    linkedin: "#",
-    twitter: "#",
-  },
+  // Weitere Co-Founder werden hinzugefügt, sobald Details verfügbar sind
 ]
 
 const team: TeamMember[] = [

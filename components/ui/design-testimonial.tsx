@@ -9,21 +9,21 @@ import { ENTERPRISE_SPRING } from "@/lib/animations"
 const testimonials = [
   {
     quote: "Intro KI hat unseren Sales-Prozess komplett transformiert. 60 Sekunden Research statt 60 Minuten.",
-    author: "Sarah Chen",
-    role: "Sales Director",
-    company: "TechStart GmbH",
+    author: "Sales Director",
+    role: "B2B SaaS Unternehmen",
+    company: "München",
   },
   {
     quote: "Die automatische Priorisierung zeigt uns genau, welche Deals heute unsere Aufmerksamkeit brauchen.",
-    author: "Marcus Weber",
-    role: "Head of Sales",
-    company: "DataFlow Inc",
+    author: "Head of Sales",
+    role: "Tech-Unternehmen",
+    company: "Berlin",
   },
   {
     quote: "Endlich ein CRM, das mitdenkt. Proaktive Signale statt reaktive Suche.",
-    author: "Elena Frost",
-    role: "VP Sales",
-    company: "Acme Corp",
+    author: "VP Sales",
+    role: "Enterprise Software",
+    company: "Hamburg",
   },
 ]
 

@@ -138,10 +138,10 @@ export function PositioningSection() {
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                 className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-black via-slate-800 to-black shadow-xl"
               >
-                <span className="text-2xl font-jakarta font-bold text-white">IK</span>
+                <span className="text-2xl font-space-grotesk font-bold text-white">IK</span>
               </motion.div>
             </div>
-            <h3 className="mb-4 text-center text-3xl font-jakarta font-semibold text-black">Intro KI</h3>
+            <h3 className="mb-4 text-center text-3xl font-space-grotesk font-semibold text-black">Intro KI</h3>
             <p className="text-center text-lg text-black/80 font-inter leading-relaxed">
               Telefon-Cold-Acquisition + Pipeline Management + Algorithmus-basierte Automatisierung
             </p>
@@ -160,7 +160,7 @@ export function PositioningSection() {
               key={competitor.name}
               variants={snappyStaggerItem}
               whileHover={{ scale: 1.05, y: -6 }}
-              className="rounded-2xl border border-black/10 bg-white/90 backdrop-blur-sm p-6 shadow-sm transition-all hover:shadow-xl"
+              className="rounded-2xl border-2 border-black/10 bg-white/90 backdrop-blur-sm p-6 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.05)] transition-all hover:shadow-[0_25px_50px_-10px_rgba(0,0,0,0.15)]"
             >
               {/* ECHTES LOGO statt Icon */}
               <div className="mb-4 flex h-16 items-center justify-center">
@@ -177,14 +177,14 @@ export function PositioningSection() {
                     const parent = target.parentElement
                     if (parent && !parent.querySelector(".logo-fallback")) {
                       const fallback = document.createElement("div")
-                      fallback.className = "logo-fallback text-lg font-jakarta font-semibold text-black/60"
+                      fallback.className = "logo-fallback text-lg font-space-grotesk font-semibold text-black/60"
                       fallback.textContent = competitor.fallback
                       parent.appendChild(fallback)
                     }
                   }}
                 />
               </div>
-              <h4 className="mb-2 text-lg font-jakarta font-semibold text-black">{competitor.name}</h4>
+              <h4 className="mb-2 text-lg font-space-grotesk font-semibold text-black">{competitor.name}</h4>
               <p className="text-sm text-black/70 font-inter leading-relaxed">{competitor.strength}</p>
             </motion.div>
           ))}
@@ -195,9 +195,9 @@ export function PositioningSection() {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ ...snappySpring, delay: 0.6 }}
-          className="rounded-3xl border border-black/10 bg-white/90 backdrop-blur-sm p-10 md:p-14 shadow-xl"
+          className="rounded-3xl border-2 border-black/10 bg-white/90 backdrop-blur-sm p-10 md:p-14 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)]"
         >
-          <h3 className="mb-12 text-center text-3xl font-jakarta font-semibold text-black md:text-4xl">
+          <h3 className="mb-12 text-center text-3xl font-space-grotesk font-semibold text-black md:text-4xl">
             Was macht uns anders?
           </h3>
           <div className="grid gap-8 md:grid-cols-3">
@@ -214,7 +214,7 @@ export function PositioningSection() {
                     <item.icon className="h-7 w-7 text-black" />
                   </div>
                 </div>
-                <h4 className="mb-2 text-xl font-jakarta font-semibold text-black">{item.title}</h4>
+                <h4 className="mb-2 text-xl font-space-grotesk font-semibold text-black">{item.title}</h4>
                 <p className="text-sm text-black/70 font-inter leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}

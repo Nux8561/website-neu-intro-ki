@@ -27,9 +27,9 @@ export function Layer2FocusContent() {
   const y = useTransform(scrollYProgress, [0, 1], [0, 100])
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95])
 
-  // Headline Animation - Zeichenweise
-  const headline = "Dein CRM denkt mit."
-  const subline = "60 Sekunden statt 60 Minuten Recherche."
+  // Headline Animation - Zeichenweise - Industrial Tool Style
+  const headline = "Die Intelligence-Engine für deinen Vertrieb."
+  const subline = "Verwandle Lead-Listen in Gespräche. Automatisiert in Sekunden."
 
   return (
     <motion.div
@@ -51,7 +51,7 @@ export function Layer2FocusContent() {
           transition={{ ...snappySpring, delay: 0.1 }}
           className="mb-8 flex justify-center"
         >
-          <div className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/90 backdrop-blur-md px-4 py-2 text-xs font-jakarta font-medium text-black/80 shadow-lg">
+          <div className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/90 backdrop-blur-md px-4 py-2 text-xs font-space-grotesk font-medium text-black/80 shadow-lg">
             <motion.span
               className="relative flex h-2 w-2"
               animate={{ scale: [1, 1.2, 1] }}
@@ -60,7 +60,7 @@ export function Layer2FocusContent() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
             </motion.span>
-            Live • Research Orchestrator v2.0
+            Live • Intelligence Engine v2.0
           </div>
         </motion.div>
 
@@ -104,7 +104,7 @@ export function Layer2FocusContent() {
           transition={{ ...snappySpring, delay: 0.9 }}
           className="mx-auto mb-12 max-w-2xl text-lg md:text-xl text-black/80 leading-relaxed font-inter"
         >
-          Automatische Recherche. Proaktive Signale. Klare Prioritäten.
+          60-Sekunden-Research. Algorithmus-basierte Priorisierung. Automatisierte Workflows.
         </motion.p>
 
         {/* CTA Buttons - Premium */}
@@ -164,7 +164,7 @@ export function Layer2FocusContent() {
                     <Zap className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-jakarta font-semibold text-black">Top Prioritäten heute</h3>
+                    <h3 className="text-xl font-space-grotesk font-semibold text-black">Top Prioritäten heute</h3>
                     <p className="text-sm text-black/60 font-inter">3 Deals brauchen deine Aufmerksamkeit</p>
                   </div>
                 </div>
@@ -174,7 +174,7 @@ export function Layer2FocusContent() {
                   transition={{ ...snappySpring, delay: 1.5 }}
                   className="rounded-full bg-emerald-100 px-4 py-2 shadow-sm"
                 >
-                  <span className="text-sm font-jakarta font-semibold text-emerald-700">3 Neu</span>
+                  <span className="text-sm font-space-grotesk font-semibold text-emerald-700">3 Neu</span>
                 </motion.div>
               </motion.div>
 
@@ -199,7 +199,7 @@ export function Layer2FocusContent() {
                           #{deal.priority}
                         </div>
                         <div className="flex-1">
-                          <h4 className="text-base font-jakarta font-semibold text-black mb-1">{deal.name}</h4>
+                          <h4 className="text-base font-space-grotesk font-semibold text-black mb-1">{deal.name}</h4>
                           <p className="text-xs text-black/60 font-inter">{deal.signal}</p>
                         </div>
                       </div>
@@ -238,7 +238,7 @@ export function Layer2FocusContent() {
                       <stat.icon className={`h-6 w-6 ${stat.iconColor}`} />
                     </div>
                     <div>
-                      <div className="text-3xl font-jakarta font-bold text-black">
+                      <div className="text-3xl font-space-grotesk font-bold text-black">
                         {typeof stat.value === "number" ? (
                           <NumberTicker value={stat.value} delay={2500 + i * 200} />
                         ) : (

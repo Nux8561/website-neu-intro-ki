@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils"
 /**
  * Why Section Visualizations
  * High-Fidelity Fake UI Components to replace bare icons
- * Enterprise "Structured Magic" aesthetic
+ * Enterprise "Structured Precision" aesthetic - Industrial Tool Style
  */
 
 /**

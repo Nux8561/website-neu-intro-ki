@@ -27,7 +27,7 @@ export interface AnimatedBeamProps {
 }
 
 /**
- * AnimatedBeam - Enterprise "Structured Magic" Version
+ * AnimatedBeam - Enterprise "Structured Precision" Version - Industrial Tool Style
  * Uses orthogonal paths (horizontal/vertical only) with rounded corners
  * Track: Gray-200, 1px (static background line)
  * Beam: Blue accent, 1.5px (animated data flow)

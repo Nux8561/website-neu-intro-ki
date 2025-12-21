@@ -23,24 +23,24 @@ export function ProductExplanation() {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   const features = [
-    {
-      icon: "research",
-      title: "Automatische Recherche",
-      description: "60 Sekunden statt 60 Minuten",
-      bgColor: "bg-emerald-100",
-    },
-    {
-      icon: "signals",
-      title: "Proaktive Signale",
-      description: "Dein CRM sagt dir, was zu tun ist",
-      bgColor: "bg-blue-100",
-    },
-    {
-      icon: "priorities",
-      title: "Klare Prioritäten",
-      description: "Die ersten 20 Calls sind die besten",
-      bgColor: "bg-purple-100",
-    },
+      {
+        icon: "research",
+        title: "60-Sekunden-Research",
+        description: "Automatisierte Recherche in Echtzeit",
+        bgColor: "bg-emerald-100",
+      },
+      {
+        icon: "signals",
+        title: "Algorithmus-basierte Signale",
+        description: "Intelligence-Engine erkennt Prioritäten automatisch",
+        bgColor: "bg-blue-100",
+      },
+      {
+        icon: "priorities",
+        title: "Automatisierte Priorisierung",
+        description: "Top 20 Deals basierend auf ICP-Fit und Timing",
+        bgColor: "bg-purple-100",
+      },
   ]
 
   const workflow = [
@@ -80,7 +80,7 @@ export function ProductExplanation() {
               key={feature.title}
               variants={snappyStaggerItem}
               whileHover={{ scale: 1.03, y: -6 }}
-              className="group rounded-2xl border border-black/10 bg-white p-8 shadow-sm transition-all hover:shadow-xl"
+              className="group rounded-2xl border-2 border-black/10 bg-white p-8 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.05)] transition-all hover:shadow-[0_25px_50px_-10px_rgba(0,0,0,0.15)]"
             >
               {/* Custom Icon statt Lucide */}
               <motion.div
@@ -91,7 +91,7 @@ export function ProductExplanation() {
               >
                 <CustomFeatureIcon type={feature.icon as any} className="h-10 w-10" />
               </motion.div>
-              <h3 className="mb-3 text-2xl font-jakarta font-semibold text-black">{feature.title}</h3>
+              <h3 className="mb-3 text-2xl font-space-grotesk font-semibold text-black">{feature.title}</h3>
               <p className="text-base text-black/80 font-inter leading-relaxed">{feature.description}</p>
             </motion.div>
           ))}
@@ -102,9 +102,9 @@ export function ProductExplanation() {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ ...snappySpring, delay: 0.5 }}
-          className="rounded-3xl border border-black/10 bg-gradient-to-br from-slate-50 to-white p-10 md:p-14 shadow-xl"
+          className="rounded-3xl border-2 border-black/10 bg-gradient-to-br from-slate-50 to-white p-10 md:p-14 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)]"
         >
-          <h3 className="mb-12 text-center text-3xl font-jakarta font-semibold text-black md:text-4xl">
+          <h3 className="mb-12 text-center text-3xl font-space-grotesk font-semibold text-black md:text-4xl">
             So funktioniert es
           </h3>
           <div className="grid gap-8 md:grid-cols-4">
@@ -129,7 +129,7 @@ export function ProductExplanation() {
                   </div>
                 </motion.div>
                 <div className="mb-2 text-sm font-mono font-bold text-black/40">Schritt {item.step}</div>
-                <div className="text-lg font-jakarta font-semibold text-black">{item.title}</div>
+                <div className="text-lg font-space-grotesk font-semibold text-black">{item.title}</div>
               </motion.div>
             ))}
           </div>
@@ -144,7 +144,7 @@ export function ProductExplanation() {
         >
           <Link
             href="/demo"
-            className="group inline-flex items-center gap-2 rounded-full bg-black px-8 py-4 text-sm font-jakarta font-semibold text-white shadow-xl transition-all hover:shadow-2xl hover:scale-105"
+            className="group inline-flex items-center gap-2 rounded-full bg-black px-8 py-4 text-sm font-space-grotesk font-semibold text-white shadow-xl transition-all hover:shadow-2xl hover:scale-105"
           >
             Jetzt Demo buchen
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

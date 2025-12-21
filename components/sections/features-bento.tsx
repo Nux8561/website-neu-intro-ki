@@ -36,7 +36,7 @@ export function FeaturesBento() {
     {
       id: 1,
       title: "Top 20 Prioritäten",
-      description: "Die wichtigsten Calls zuerst. Nicht 100 zufällige. Dein Algorithmus analysiert alle Signale und zeigt dir genau die 20 Deals, die heute deine Aufmerksamkeit brauchen.",
+      description: "Algorithmus-basierte Analyse aller Signale. Zeigt exakt die 20 Deals mit höchstem ICP-Fit und optimalem Timing für heute.",
       icon: "priorities",
       bgColor: "bg-emerald-100",
       visual: "priorities",
@@ -44,23 +44,23 @@ export function FeaturesBento() {
     {
       id: 2,
       title: "Automatische Email-Versendung",
-      description: "Email wird automatisch gesendet, wenn gesehen. Kein manuelles Versenden mehr. Das System erkennt, wann ein Lead deine Email öffnet und sendet automatisch die nächste Nachricht.",
+      description: "Intelligence-Engine erkennt Email-Öffnungen in Echtzeit. Automatische Versendung der nächsten Nachricht ohne manuelle Intervention.",
       icon: "email",
       bgColor: "bg-blue-100",
       visual: "email",
     },
     {
       id: 3,
-      title: "Call-Hilfe",
-      description: "Die 20 wichtigsten Schritte am Anfang des Tages. Bevor du den ersten Call machst, zeigt dir Intro KI genau, was du sagen musst, welche Informationen wichtig sind und worauf du achten solltest.",
+      title: "Call-Assistance Engine",
+      description: "Automatisierte Call-Vorbereitung. Intelligence-Engine analysiert Lead-Daten und liefert präzise Talking Points, Pain Points und Next Steps vor jedem Call.",
       icon: "call",
       bgColor: "bg-purple-100",
       visual: "call",
     },
     {
       id: 4,
-      title: "Task-Erstellung",
-      description: "Neue Tasks werden automatisch erstellt. Wenn ein Signal erkannt wird, ein Deal sich bewegt oder eine Aktion nötig ist, erstellt Intro KI automatisch die passenden Tasks für dich und dein Team.",
+      title: "Automatische Task-Erstellung",
+      description: "Intelligence-Engine erkennt Signale, Deal-Bewegungen und notwendige Aktionen. Erstellt automatisch priorisierte Tasks mit korrekter Zuordnung.",
       icon: "tasks",
       bgColor: "bg-orange-100",
       visual: "tasks",
@@ -68,7 +68,7 @@ export function FeaturesBento() {
     {
       id: 5,
       title: "Pipeline Management",
-      description: "Deal Management mit Algorithmus-basierter Priorisierung. Nicht nur eine Liste von Deals, sondern intelligente Priorisierung basierend auf Wahrscheinlichkeit, Timing und deinem ICP-Fit.",
+      description: "Algorithmus-basierte Deal-Priorisierung. Intelligence-Engine berechnet Wahrscheinlichkeit, optimales Timing und ICP-Fit für jeden Deal.",
       icon: "pipeline",
       bgColor: "bg-indigo-100",
       visual: "pipeline",
@@ -76,7 +76,7 @@ export function FeaturesBento() {
     {
       id: 6,
       title: "Team Management",
-      description: "Übersicht über Team-Performance und Aktivitäten. Sieh auf einen Blick, wer was macht, welche Deals heiß sind und wo dein Team Unterstützung braucht.",
+      description: "Echtzeit-Übersicht über Team-Performance. Intelligence-Engine zeigt Deal-Status, Aktivitäten und automatisch erkannte Unterstützungsbedarfe.",
       icon: "team",
       bgColor: "bg-pink-100",
       visual: "team",
@@ -305,7 +305,7 @@ const task = {
         >
           <Link
             href="/demo"
-            className="group inline-flex items-center gap-2 rounded-full bg-black px-8 py-4 text-sm font-jakarta font-semibold text-white shadow-xl transition-all hover:shadow-2xl hover:scale-105"
+            className="group inline-flex items-center gap-2 rounded-full bg-black px-8 py-4 text-sm font-space-grotesk font-semibold text-white shadow-xl transition-all hover:shadow-2xl hover:scale-105"
           >
             Jetzt Demo buchen
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

@@ -25,7 +25,7 @@ export function TrustSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={ENTERPRISE_SPRING}
-          className="mb-16 text-base font-jakarta font-medium text-black/80"
+          className="mb-16 text-base font-space-grotesk font-medium text-black/80"
         >
           Vertraut von modernen GTM-Teams weltweit
         </motion.p>

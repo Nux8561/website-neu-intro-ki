@@ -511,7 +511,7 @@ function FallbackGallery({ images }: { images: ImageItem[] }) {
 					<Image
 						key={i}
 						src={img.src || '/placeholder.svg'}
-						alt={img.alt}
+						alt={img.alt || `Image ${i + 1}`}
 						width={128}
 						height={128}
 						className="w-full h-32 object-cover rounded"

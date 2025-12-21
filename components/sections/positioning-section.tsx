@@ -1,12 +1,12 @@
 "use client"
 
 import * as React from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
-import { Phone, Mail, Users, ShoppingCart } from "lucide-react"
-import { ENTERPRISE_SPRING } from "@/lib/animations"
+import { motion, useScroll, useTransform, useInView } from "framer-motion"
+import { Phone, Mail, Users, ShoppingCart, Check } from "lucide-react"
+import { ENTERPRISE_SPRING, snappySpring, snappyStaggerContainer, snappyStaggerItem } from "@/lib/animations"
 
 /**
- * Positioning Section
+ * Positioning Section - 100.000€ VERSION
  * 
  * Zeigt die "Goldene Mitte" Positionierung:
  * - Close CRM = Telefon-Cold-Acquisition
@@ -17,12 +17,13 @@ import { ENTERPRISE_SPRING } from "@/lib/animations"
  */
 export function PositioningSection() {
   const ref = React.useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref, { once: true, margin: "-100px" })
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
   })
 
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0])
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
   const y = useTransform(scrollYProgress, [0, 1], [100, -100])
 
   const competitors = [
@@ -60,41 +61,45 @@ export function PositioningSection() {
     },
   ]
 
+  const differentiators = [
+    { title: "Telefon-First", desc: "Wie Close CRM, aber besser", icon: Phone },
+    { title: "Pipeline Management", desc: "Wie Attio, aber einfacher", icon: Mail },
+    { title: "Algorithmus-basiert", desc: "Automatisch, intelligent, proaktiv", icon: Check },
+  ]
+
   return (
-    <section ref={ref} className="relative bg-gradient-to-br from-slate-50 to-white py-32 md:py-40 overflow-hidden">
-      {/* Background Layers - Mehr Animation */}
+    <section ref={ref} className="relative bg-gradient-to-br from-slate-50 via-white to-slate-50 py-40 md:py-48 overflow-hidden">
+      {/* Background Layers - Animiert */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Layer 1: Subtle Grid */}
+        {/* Subtle Grid */}
         <motion.div
-          className="absolute inset-0 opacity-30"
+          className="absolute inset-0 opacity-[0.02]"
           style={{
             backgroundImage: `
-              linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px)
+              linear-gradient(to right, rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px)
             `,
-            backgroundSize: "40px 40px",
-            x: useTransform(scrollYProgress, [0, 1], [0, 40]),
+            backgroundSize: "60px 60px",
+            x: useTransform(scrollYProgress, [0, 1], [0, 60]),
           }}
         />
-        {/* Layer 2: Floating Shapes - Ohne useTransform, nur animate */}
-        {Array.from({ length: 5 }).map((_, i) => (
+        {/* Floating Shapes */}
+        {Array.from({ length: 6 }).map((_, i) => (
           <motion.div
             key={i}
             className="absolute rounded-full bg-black/5"
             style={{
-              width: 200 + i * 50,
-              height: 200 + i * 50,
-              left: `${20 + i * 15}%`,
-              top: `${10 + i * 20}%`,
+              width: 150 + i * 40,
+              height: 150 + i * 40,
+              left: `${15 + i * 12}%`,
+              top: `${10 + i * 15}%`,
             }}
             animate={{
               scale: [1, 1.1, 1],
-              opacity: [0.05, 0.1, 0.05],
-              x: [0, (i + 1) * 20, 0],
-              y: [0, (i + 1) * -15, 0],
+              opacity: [0.04, 0.08, 0.04],
             }}
             transition={{
-              duration: 8 + i * 2,
+              duration: 10 + i * 2,
               repeat: Infinity,
               ease: "easeInOut",
               delay: i * 0.5,
@@ -107,86 +112,92 @@ export function PositioningSection() {
         {/* Header */}
         <motion.div
           style={{ opacity, y }}
-          className="mb-20 text-center"
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ ...snappySpring, delay: 0.2 }}
+          className="mb-24 text-center"
         >
-          <h2 className="mb-4 text-4xl font-jakarta font-semibold tracking-tight text-black md:text-5xl">
+          <h2 className="mb-6 text-5xl font-jakarta font-semibold tracking-tight text-black md:text-6xl">
             Die goldene Mitte
           </h2>
-          <p className="mx-auto max-w-2xl text-lg text-black/80 font-inter">
+          <p className="mx-auto max-w-2xl text-xl text-black/80 font-inter leading-relaxed">
             Nicht zu einfach, nicht zu komplex. Genau richtig für dein Team.
           </p>
         </motion.div>
 
-        {/* Competitor Comparison - VISUELL */}
-        <div className="relative mb-16">
-          {/* Intro KI in der Mitte */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={ENTERPRISE_SPRING}
-            className="relative z-20 mx-auto mb-12 max-w-md rounded-2xl border-2 border-black bg-white p-8 shadow-2xl"
-          >
-            <div className="mb-4 flex items-center justify-center">
-              <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-black to-slate-800">
-                <Phone className="h-8 w-8 text-white" />
-              </div>
+        {/* Intro KI in der Mitte - Highlighted */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9, y: 40 }}
+          animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
+          transition={{ ...snappySpring, delay: 0.4 }}
+          className="relative z-20 mx-auto mb-20 max-w-2xl"
+        >
+          <div className="rounded-3xl border-2 border-black bg-white p-10 shadow-2xl">
+            <div className="mb-6 flex items-center justify-center">
+              <motion.div
+                animate={{ rotate: [0, 5, -5, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-black via-slate-800 to-black shadow-xl"
+              >
+                <Phone className="h-10 w-10 text-white" />
+              </motion.div>
             </div>
-            <h3 className="mb-2 text-center text-2xl font-jakarta font-semibold text-black">Intro KI</h3>
-            <p className="text-center text-sm text-black/80 font-inter">
+            <h3 className="mb-4 text-center text-3xl font-jakarta font-semibold text-black">Intro KI</h3>
+            <p className="text-center text-lg text-black/80 font-inter leading-relaxed">
               Telefon-Cold-Acquisition + Pipeline Management + Algorithmus-basierte Automatisierung
             </p>
-          </motion.div>
-
-          {/* Competitors Grid */}
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {competitors.map((competitor, i) => (
-              <motion.div
-                key={competitor.name}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ ...ENTERPRISE_SPRING, delay: i * 0.1 }}
-                whileHover={{ scale: 1.05, y: -4 }}
-                className="rounded-xl border border-black/10 bg-white/80 backdrop-blur-sm p-6 shadow-sm transition-all hover:shadow-lg"
-              >
-                <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-lg ${competitor.bgColor}`}>
-                  <competitor.icon className={`h-6 w-6 ${competitor.iconColor}`} />
-                </div>
-                <h4 className="mb-2 text-lg font-jakarta font-semibold text-black">{competitor.name}</h4>
-                <p className="text-sm text-black/70 font-inter">{competitor.strength}</p>
-              </motion.div>
-            ))}
           </div>
-        </div>
+        </motion.div>
+
+        {/* Competitors Grid */}
+        <motion.div
+          variants={snappyStaggerContainer}
+          initial="hidden"
+          animate={isInView ? "show" : "hidden"}
+          className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-20"
+        >
+          {competitors.map((competitor, i) => (
+            <motion.div
+              key={competitor.name}
+              variants={snappyStaggerItem}
+              whileHover={{ scale: 1.05, y: -6 }}
+              className="rounded-2xl border border-black/10 bg-white/90 backdrop-blur-sm p-6 shadow-sm transition-all hover:shadow-xl"
+            >
+              <div className={`mb-4 flex h-14 w-14 items-center justify-center rounded-xl ${competitor.bgColor} shadow-sm`}>
+                <competitor.icon className={`h-7 w-7 ${competitor.iconColor}`} />
+              </div>
+              <h4 className="mb-2 text-lg font-jakarta font-semibold text-black">{competitor.name}</h4>
+              <p className="text-sm text-black/70 font-inter leading-relaxed">{competitor.strength}</p>
+            </motion.div>
+          ))}
+        </motion.div>
 
         {/* Key Differentiators */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={ENTERPRISE_SPRING}
-          className="rounded-2xl border border-black/10 bg-white/80 backdrop-blur-sm p-8 md:p-12"
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ ...snappySpring, delay: 0.6 }}
+          className="rounded-3xl border border-black/10 bg-white/90 backdrop-blur-sm p-10 md:p-14 shadow-xl"
         >
-          <h3 className="mb-8 text-center text-2xl font-jakarta font-semibold text-black">
+          <h3 className="mb-12 text-center text-3xl font-jakarta font-semibold text-black md:text-4xl">
             Was macht uns anders?
           </h3>
-          <div className="grid gap-6 md:grid-cols-3">
-            {[
-              { title: "Telefon-First", desc: "Wie Close CRM, aber besser" },
-              { title: "Pipeline Management", desc: "Wie Attio, aber einfacher" },
-              { title: "Algorithmus-basiert", desc: "Automatisch, intelligent, proaktiv" },
-            ].map((item, i) => (
+          <div className="grid gap-8 md:grid-cols-3">
+            {differentiators.map((item, i) => (
               <motion.div
                 key={item.title}
                 initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ ...ENTERPRISE_SPRING, delay: i * 0.1 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ ...snappySpring, delay: 0.7 + i * 0.1 }}
                 className="text-center"
               >
-                <h4 className="mb-2 text-lg font-jakarta font-semibold text-black">{item.title}</h4>
-                <p className="text-sm text-black/70 font-inter">{item.desc}</p>
+                <div className="mb-4 flex justify-center">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-black/5">
+                    <item.icon className="h-7 w-7 text-black" />
+                  </div>
+                </div>
+                <h4 className="mb-2 text-xl font-jakarta font-semibold text-black">{item.title}</h4>
+                <p className="text-sm text-black/70 font-inter leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -195,4 +206,3 @@ export function PositioningSection() {
     </section>
   )
 }
-

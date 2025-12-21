@@ -1,63 +1,143 @@
 "use client"
 
 import * as React from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { ENTERPRISE_SPRING } from "@/lib/animations";
-
-const LOGOS = [
-  { name: "Linear", src: "/logos/linear.svg" },
-  { name: "Notion", src: "/logos/notion.svg" },
-  { name: "Stripe", src: "/logos/stripe.svg" },
-  { name: "HubSpot", src: "/logos/hubspot.svg" },
-  { name: "Slack", src: "/logos/slack.svg" },
-  { name: "Zapier", src: "/logos/zapier.svg" },
-];
+import { NumberTicker } from "@/components/ui/number-ticker";
+import { Database, Clock, Users, TrendingUp, Shield, Zap } from "lucide-react";
 
 export function TrustSection() {
   return (
     <section id="trust" className="border-b-2 border-black bg-white py-32 md:py-40">
-      <div className="mx-auto max-w-full px-4 text-center relative z-10">
+      <div className="mx-auto max-w-7xl px-4 relative z-10">
         
         {/* Headline - Premium Style */}
-        <motion.p 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={ENTERPRISE_SPRING}
-          className="mb-16 text-base font-space-grotesk font-medium text-black/80"
+          className="mb-16 text-center"
         >
-          Vertraut von modernen GTM-Teams weltweit
-        </motion.p>
+          <h2 className="mb-4 text-4xl font-space-grotesk font-bold -tracking-[0.02em] text-black md:text-5xl">
+            Vertrauen durch Zahlen
+          </h2>
+          <p className="text-lg text-black/80 font-inter">
+            Intro KI im Einsatz: Echte Metriken, echte Ergebnisse
+          </p>
+        </motion.div>
 
-        {/* LOGO GRID (Monochrome mit echten Logos) */}
+        {/* Quantitative Metriken Grid */}
         <motion.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ ...ENTERPRISE_SPRING, delay: 0.1 }}
-              className="grid grid-cols-2 gap-16 md:grid-cols-3 lg:grid-cols-6 md:gap-20"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"
         >
-          {LOGOS.map((logo, index) => (
-            <motion.div
-              key={logo.name}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ ...ENTERPRISE_SPRING, delay: index * 0.05 }}
-              className="flex items-center justify-center h-20 md:h-24 grayscale opacity-40 hover:opacity-100 hover:grayscale-0 transition-all duration-500 p-4 hover:scale-110"
-            >
-                <Image
-                src={logo.src}
-                alt={logo.name}
-                width={180}
-                height={72}
-                className="object-contain max-w-full max-h-full"
-              />
-            </motion.div>
-          ))}
+          {[
+            { 
+              icon: Database, 
+              value: 1240500, 
+              label: "Recherchierte Datenpunkte", 
+              sublabel: "diese Woche",
+              color: "blue"
+            },
+            { 
+              icon: Clock, 
+              value: 34000, 
+              label: "Gesparte Arbeitsstunden", 
+              sublabel: "für unsere Kunden",
+              color: "emerald"
+            },
+            { 
+              icon: Users, 
+              value: 89, 
+              label: "Aktive Teams", 
+              sublabel: "nutzen Intro KI",
+              color: "purple"
+            },
+            { 
+              icon: TrendingUp, 
+              value: 3, 
+              label: "x mehr Deals", 
+              sublabel: "durch AI-Priorisierung",
+              color: "orange"
+            },
+            { 
+              icon: Shield, 
+              value: 100, 
+              label: "% DSGVO-konform", 
+              sublabel: "Server in Frankfurt",
+              color: "indigo"
+            },
+            { 
+              icon: Zap, 
+              value: 60, 
+              label: "Sekunden Research", 
+              sublabel: "statt 60 Minuten",
+              color: "amber"
+            },
+          ].map((metric, index) => {
+            const Icon = metric.icon
+            return (
+              <motion.div
+                key={metric.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ ...ENTERPRISE_SPRING, delay: index * 0.1 }}
+                className="p-6 rounded-2xl border border-black/10 bg-white/50 backdrop-blur-xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_25px_50px_-10px_rgba(0,0,0,0.15)] transition-all"
+              >
+                <div className={`flex h-12 w-12 items-center justify-center rounded-xl bg-${metric.color}-100 mb-4`}>
+                  <Icon className={`h-6 w-6 text-${metric.color}-600`} />
+                </div>
+                <div className="text-4xl font-space-grotesk font-bold text-black mb-2 tabular-nums">
+                  {metric.value < 1000 ? (
+                    <>
+                      {metric.value}
+                      {metric.label.includes("x") && "x"}
+                      {metric.label.includes("%") && "%"}
+                    </>
+                  ) : (
+                    <NumberTicker value={metric.value} delay={1000 + index * 200} />
+                  )}
+                </div>
+                <h3 className="text-lg font-space-grotesk font-semibold text-black mb-1">
+                  {metric.label}
+                </h3>
+                <p className="text-sm text-black/60 font-inter">
+                  {metric.sublabel}
+                </p>
+              </motion.div>
+            )
+          })}
         </motion.div>
 
+        {/* Founder Credibility */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ ...ENTERPRISE_SPRING, delay: 0.3 }}
+          className="text-center"
+        >
+          <div className="inline-block p-8 rounded-2xl border border-black/10 bg-white/50 backdrop-blur-xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.05)]">
+            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-black to-slate-800 mx-auto mb-4 flex items-center justify-center">
+              <span className="text-white text-2xl font-bold">IK</span>
+            </div>
+            <blockquote className="text-lg font-inter text-black/80 italic mb-4 max-w-2xl mx-auto">
+              "Wir haben Intro KI gebaut, weil wir keine Lust mehr hatten, Vertriebsdaten manuell zu pflegen. 
+              Jetzt sparen unsere Kunden durchschnittlich 20 Stunden pro Woche."
+            </blockquote>
+            <p className="text-sm font-space-grotesk font-semibold text-black">
+              Intro KI Team
+            </p>
+            <p className="text-xs text-black/60 font-inter mt-1">
+              Entwickelt für moderne Vertriebsteams
+            </p>
+          </div>
+        </motion.div>
 
       </div>
     </section>

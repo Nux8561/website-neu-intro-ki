@@ -51,13 +51,34 @@ export function CTAFooter() {
             />
           </div>
           <div className="relative z-10">
-            <h2 className="mx-auto mb-8 max-w-4xl text-5xl font-space-grotesk font-bold -tracking-[0.02em] text-white md:text-6xl lg:text-7xl leading-tight">
-              Bereit, dein CRM intelligent zu machen?
+            <h2 className="mx-auto mb-8 max-w-4xl text-[32px] leading-[40px] -tracking-[0.02em] font-medium text-white md:text-[48px] md:leading-[56px] lg:text-[64px] lg:leading-[72px] font-space-grotesk">
+              Reduziere deine Qualifizierungszeit um 70%
             </h2>
             
-            <p className="mx-auto mb-16 max-w-2xl text-xl text-white/90 leading-relaxed font-inter">
-              Sprich mit unserem Sales-Team für eine individuelle Demo.
+            <p className="mx-auto mb-12 max-w-2xl text-xl text-white/90 leading-relaxed font-inter">
+              Von 60 Minuten Recherche auf 60 Sekunden. Automatisiert. DSGVO-konform.
             </p>
+
+            {/* Benefit Badges */}
+            <div className="flex flex-wrap justify-center gap-4 mb-16">
+              {[
+                { label: "60 Sek. Research", value: "statt 60 Min" },
+                { label: "3x mehr Deals", value: "durch AI-Priorisierung" },
+                { label: "20h/Woche gespart", value: "durch Automatisierung" },
+              ].map((benefit, i) => (
+                <motion.div
+                  key={benefit.label}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ ...ENTERPRISE_SPRING, delay: i * 0.1 }}
+                  className="px-4 py-2 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20"
+                >
+                  <p className="text-sm font-space-grotesk font-semibold text-white">{benefit.label}</p>
+                  <p className="text-xs text-white/70 font-inter">{benefit.value}</p>
+                </motion.div>
+              ))}
+            </div>
 
             <div className="flex flex-col items-center justify-center gap-6 sm:flex-row">
               <Link href="/demo" className="group">

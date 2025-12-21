@@ -11,6 +11,9 @@ interface Testimonial {
   image: string
   name: string
   role: string
+  companySize: string
+  roi: string
+  useCase: string
 }
 
 // --- Data ---
@@ -18,56 +21,83 @@ const testimonials: Testimonial[] = [
   {
     text: "Intro KI hat unseren Sales-Prozess revolutioniert. Die automatische Recherche spart uns täglich Stunden.",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150&h=150",
-    name: "Sales Manager",
-    role: "B2B SaaS, München",
+    name: "Sarah Müller",
+    role: "Sales Manager",
+    companySize: "KMU mit 25 Mitarbeitern",
+    roi: "Spare 20h/Woche",
+    useCase: "Nutze für Cold Outreach",
   },
   {
     text: "Die Priorisierung zeigt uns genau, welche Deals heute unsere Aufmerksamkeit brauchen. Game Changer.",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150&h=150",
-    name: "Head of Sales",
-    role: "Tech-Unternehmen, Berlin",
+    name: "Thomas Schmidt",
+    role: "Head of Sales",
+    companySize: "Tech-Unternehmen, 50 Mitarbeiter",
+    roi: "3x mehr Deals geschlossen",
+    useCase: "Pipeline Management",
   },
   {
     text: "Endlich ein CRM, das proaktiv Signale sendet statt nur Daten zu sammeln. Unser Team liebt es.",
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=150&h=150",
-    name: "VP Sales",
-    role: "Enterprise Software, Hamburg",
+    name: "Julia Weber",
+    role: "VP Sales",
+    companySize: "Enterprise Software, 200+ Mitarbeiter",
+    roi: "ROI: 450% in 6 Monaten",
+    useCase: "Team Management & Analytics",
   },
   {
     text: "Die Integration war nahtlos. Unser bestehendes System funktioniert perfekt mit Intro KI zusammen.",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150",
-    name: "CEO",
-    role: "SaaS-Startup, Köln",
+    name: "Michael Bauer",
+    role: "CEO",
+    companySize: "SaaS-Startup, 15 Mitarbeiter",
+    roi: "60 Min → 60 Sek Research",
+    useCase: "Lead-Qualifizierung",
   },
   {
     text: "Die Call-Hilfe Feature ist genial. Wir wissen immer genau, was wir sagen müssen, bevor wir anrufen.",
     image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150&h=150",
-    name: "Sales Director",
-    role: "B2B Vertrieb, Frankfurt",
+    name: "Anna Fischer",
+    role: "Sales Director",
+    companySize: "B2B Vertrieb, 40 Mitarbeiter",
+    roi: "30% höhere Close-Rate",
+    useCase: "Call-Coaching & Vorbereitung",
   },
   {
     text: "Automatische Task-Erstellung spart uns so viel Zeit. Das System denkt mit und handelt proaktiv.",
     image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=150&h=150",
-    name: "Operations Manager",
-    role: "Tech-Scale-up, Stuttgart",
+    name: "Lisa Hoffmann",
+    role: "Operations Manager",
+    companySize: "Tech-Scale-up, 80 Mitarbeiter",
+    roi: "15h/Woche gespart",
+    useCase: "Workflow-Automatisierung",
   },
   {
     text: "Die Pipeline-Verwaltung mit Algorithmus-basierter Priorisierung ist genau das, was wir brauchten.",
     image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150&h=150",
-    name: "Sales Lead",
-    role: "Software-Unternehmen, Düsseldorf",
+    name: "David Wagner",
+    role: "Sales Lead",
+    companySize: "Software-Unternehmen, 30 Mitarbeiter",
+    roi: "2x schnellere Deal-Velocity",
+    useCase: "Deal-Priorisierung",
   },
   {
     text: "Team Management auf einen Blick. Wir sehen sofort, wer was macht und wo Unterstützung nötig ist.",
     image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150&h=150",
-    name: "Head of Revenue",
-    role: "B2B SaaS, München",
+    name: "Markus Klein",
+    role: "Head of Revenue",
+    companySize: "B2B SaaS, 60 Mitarbeiter",
+    roi: "25% mehr Team-Produktivität",
+    useCase: "Team-Performance-Tracking",
   },
   {
     text: "Die Email-Automatisierung funktioniert perfekt. Emails werden automatisch gesendet, wenn gesehen.",
     image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=150&h=150",
-    name: "Sales Operations",
-    role: "Enterprise CRM, Hamburg",
+    name: "Stefan Richter",
+    role: "Sales Operations",
+    companySize: "Enterprise CRM, 150+ Mitarbeiter",
+    roi: "40% höhere Email-Response-Rate",
+    useCase: "Email-Sequenzen & Automation",
   },
 ]
 
@@ -121,22 +151,35 @@ const TestimonialsColumn = (props: {
                     <p className="text-black/80 leading-relaxed font-normal m-0 transition-colors duration-300 font-inter">
                       {text}
                     </p>
-                    <footer className="flex items-center gap-3 mt-6">
-                      <Image
-                        width={40}
-                        height={40}
-                        src={image}
-                        alt={`Avatar of ${name}`}
-                        className="h-10 w-10 rounded-full object-cover ring-2 ring-black/5 group-hover:ring-black/20 transition-all duration-300 ease-in-out"
-                      />
-                      <div className="flex flex-col">
-                        <cite className="font-semibold not-italic tracking-tight leading-5 text-black transition-colors duration-300 font-space-grotesk">
-                          {name}
-                        </cite>
-                        <span className="text-sm leading-5 tracking-tight text-black/60 mt-0.5 transition-colors duration-300 font-inter">
-                          {role}
+                    <footer className="mt-6">
+                      <div className="flex items-center gap-3 mb-3">
+                        <Image
+                          width={40}
+                          height={40}
+                          src={image}
+                          alt={`Avatar of ${name}`}
+                          className="h-10 w-10 rounded-full object-cover ring-2 ring-black/5 group-hover:ring-black/20 transition-all duration-300 ease-in-out"
+                        />
+                        <div className="flex flex-col">
+                          <cite className="font-semibold not-italic tracking-tight leading-5 text-black transition-colors duration-300 font-space-grotesk">
+                            {name}
+                          </cite>
+                          <span className="text-sm leading-5 tracking-tight text-black/60 mt-0.5 transition-colors duration-300 font-inter">
+                            {role}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex flex-wrap gap-2 mb-2">
+                        <span className="px-2 py-1 rounded-md bg-emerald-100 text-xs font-inter font-medium text-emerald-700">
+                          {roi}
+                        </span>
+                        <span className="px-2 py-1 rounded-md bg-blue-100 text-xs font-inter font-medium text-blue-700">
+                          {useCase}
                         </span>
                       </div>
+                      <p className="text-xs text-black/50 font-inter">
+                        {companySize}
+                      </p>
                     </footer>
                   </blockquote>
                 </motion.li>

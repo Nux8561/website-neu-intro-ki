@@ -22,6 +22,18 @@ export function AnimatedGridLines() {
 
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      {/* Subtiles 4pt-Grid-System (16px Raster) - Enterprise-Level */}
+      <motion.div
+        className="absolute inset-0 opacity-[0.02]"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: '16px 16px', // 4pt-System (4 * 4px = 16px)
+        }}
+      />
+
       {/* Basis-Grid (Horizontal & Vertical) - Industrial Tool Style (Schwarz-Weiß) */}
       <motion.div
         className="absolute inset-0 opacity-20"

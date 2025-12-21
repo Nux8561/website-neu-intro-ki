@@ -1,14 +1,13 @@
 "use client"
 
 import * as React from "react"
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
+import { motion, useMotionValue, useSpring, useTransform, HTMLMotionProps } from "framer-motion"
 import { ENTERPRISE_SPRING } from "@/lib/animations"
 import { cn } from "@/lib/utils"
 
-interface MagneticButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface MagneticButtonProps extends Omit<HTMLMotionProps<"button">, "onDrag" | "onDragStart" | "onDragEnd"> {
   children: React.ReactNode
   variant?: "primary" | "secondary" | "ghost"
-  className?: string
   magneticStrength?: number
 }
 

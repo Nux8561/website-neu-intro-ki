@@ -128,7 +128,7 @@ const TestimonialsColumn = (props: {
         {[
           ...new Array(2).fill(0).map((_, index) => (
             <React.Fragment key={index}>
-              {props.testimonials.map(({ text, image, name, role }, i) => (
+              {props.testimonials.map(({ text, image, name, role, roi, useCase, companySize }, i) => (
                 <motion.li 
                   key={`${index}-${i}`}
                   aria-hidden={index === 1 ? "true" : "false"}

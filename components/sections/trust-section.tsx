@@ -16,16 +16,16 @@ const LOGOS = [
 
 export function TrustSection() {
   return (
-    <section id="trust" className="border-b border-slate-200/60 bg-white py-32 md:py-40 attio-grid-pattern attio-connection-lines">
+    <section id="trust" className="border-b-2 border-black bg-white py-32 md:py-40">
       <div className="mx-auto max-w-full px-4 text-center relative z-10">
         
-        {/* Headline */}
+        {/* Headline - Industrial Tool Style */}
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={ENTERPRISE_SPRING}
-          className="mb-16 text-base font-medium text-slate-600"
+          className="mb-16 text-base font-mono font-bold uppercase tracking-wider text-black/70"
         >
           Vertraut von modernen GTM-Teams weltweit
         </motion.p>
@@ -45,7 +45,7 @@ export function TrustSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ ...ENTERPRISE_SPRING, delay: index * 0.05 }}
-              className="flex items-center justify-center h-16 grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-300"
+              className="flex items-center justify-center h-16 grayscale opacity-40 hover:opacity-100 hover:grayscale-0 transition-all duration-300 border-2 border-transparent hover:border-black rounded p-2"
             >
                 <Image
                 src={logo.src}

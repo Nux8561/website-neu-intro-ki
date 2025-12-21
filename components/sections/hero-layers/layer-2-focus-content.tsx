@@ -7,8 +7,8 @@ import { ArrowRight } from "lucide-react"
 import { ENTERPRISE_SPRING } from "@/lib/animations"
 import { ParallaxContainer } from "@/components/ui/parallax-container"
 import { ExpensiveCard } from "@/components/ui/3d-card"
-import { AnimatedBadge } from "@/components/ui/animated-badge"
 import { NumberTicker } from "@/components/ui/number-ticker"
+import { IndustrialDataFlow, IndustrialBlueprint } from "@/components/ui/industrial-data-flow"
 
 /**
  * Layer 2: Focus Content
@@ -33,9 +33,10 @@ export function Layer2FocusContent() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
   const y = useTransform(scrollYProgress, [0, 1], [0, 100])
 
-  // Headline für Kinetic Typography
-  const headline = "Dein CRM ist blind."
-  const subline = "Intro KI sieht alles."
+  // Neue Storytelling-Headlines (Industrial Tool Vibe)
+  // Emotionale Verbindung: Problem → Lösung
+  const headline = "60% deiner Zeit für Recherche."
+  const subline = "Intro KI macht das in 60 Sekunden."
   const words = headline.split(" ")
 
   // Metrics Daten
@@ -51,6 +52,9 @@ export function Layer2FocusContent() {
       style={{ y, opacity }}
       className="relative z-20 mx-auto flex max-w-[1200px] flex-col gap-16 px-4 pt-32 pb-40 md:pt-40 md:pb-48"
     >
+      {/* Industrial Background Visuals */}
+      <IndustrialBlueprint />
+      <IndustrialDataFlow />
       {/* Hero-Text-Container mit Glasmorphismus */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -58,16 +62,27 @@ export function Layer2FocusContent() {
         transition={{ ...ENTERPRISE_SPRING, delay: 0.2 }}
         className="mx-auto max-w-4xl text-center"
       >
-        {/* Animated Badge */}
+        {/* Animated Badge - Industrial Tool Style */}
         <div className="mb-8 flex justify-center">
-          <AnimatedBadge text="Neu: Research Orchestrator 2.0" color="#10b981" />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ ...ENTERPRISE_SPRING, delay: 0.1 }}
+            className="inline-flex items-center gap-2 rounded border border-black bg-white px-4 py-1.5 text-xs font-mono uppercase tracking-wider text-black"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-black opacity-20" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-black" />
+            </span>
+            Research Orchestrator v2.0
+          </motion.div>
         </div>
 
-        {/* Kinetic Typography - Zeichenweise Reveal */}
+        {/* Kinetic Typography - Zeichenweise Reveal (Industrial Tool: Monospace für Headlines) */}
         <motion.h1
           initial="hidden"
           animate="visible"
-          className="mb-6 text-5xl font-semibold tracking-tighter text-slate-900 sm:text-7xl md:text-8xl"
+          className="mb-6 text-5xl font-bold tracking-tight text-black sm:text-7xl md:text-8xl font-space-grotesk"
         >
           {words.map((word, i) => (
             <motion.span
@@ -93,21 +108,20 @@ export function Layer2FocusContent() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...ENTERPRISE_SPRING, delay: 0.8 }}
-            className="text-slate-400"
+            className="text-slate-600 font-mono text-4xl sm:text-5xl md:text-6xl"
           >
             {subline}
           </motion.span>
         </motion.h1>
 
-        {/* Subline */}
+        {/* Subline - Storytelling: Das Problem erzählen */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...ENTERPRISE_SPRING, delay: 0.9 }}
-          className="mx-auto mb-10 max-w-2xl text-sm md:text-lg text-slate-500 leading-relaxed"
+          className="mx-auto mb-10 max-w-2xl text-base md:text-lg text-slate-600 leading-relaxed font-inter"
         >
-          Schluss mit manueller Dateneingabe. Intro KI überwacht Deals, News und Signale automatisch – und
-          sagt deinem Team proaktiv, was zu tun ist.
+          Dein Vertriebsteam verbringt Stunden mit manueller Recherche. Intro KI überwacht Deals, News und Signale automatisch – und sagt deinem Team proaktiv, was zu tun ist.
         </motion.p>
 
         {/* CTA-Buttons */}
@@ -119,7 +133,7 @@ export function Layer2FocusContent() {
         >
           <Link
             href="/demo"
-            className="group inline-flex items-center justify-center rounded-lg bg-slate-900 px-6 py-3 text-sm font-medium text-white shadow-attio-md transition-all hover:scale-[1.02] hover:bg-slate-800 hover:shadow-attio-lg"
+            className="group inline-flex items-center justify-center rounded border-2 border-black bg-black px-8 py-3 text-sm font-mono font-semibold uppercase tracking-wider text-white transition-all hover:bg-white hover:text-black"
           >
             Demo buchen
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -133,7 +147,7 @@ export function Layer2FocusContent() {
                 element.scrollIntoView({ behavior: "smooth", block: "start" })
               }
             }}
-            className="inline-flex items-center justify-center rounded-lg border border-slate-200 bg-white/80 backdrop-blur-sm px-6 py-3 text-sm font-medium text-slate-700 hover:bg-white hover:border-slate-300 transition-all shadow-attio-sm hover:shadow-attio-md hover:scale-[1.02]"
+            className="inline-flex items-center justify-center rounded border-2 border-black bg-white px-8 py-3 text-sm font-mono font-semibold uppercase tracking-wider text-black transition-all hover:bg-black hover:text-white"
           >
             Wie es funktioniert
           </Link>
@@ -148,7 +162,8 @@ export function Layer2FocusContent() {
           transition={{ ...ENTERPRISE_SPRING, delay: 1.2 }}
           className="hidden lg:block absolute top-20 right-8"
         >
-          <div className="rounded-lg border border-slate-200/60 bg-slate-900/90 backdrop-blur-xl p-4 shadow-attio-diffuse">
+          {/* Industrial Tool Style: Schwarz-Weiß, brutal, monospace */}
+          <div className="rounded border-2 border-black bg-white p-4 shadow-[4px_4px_0_0_rgba(0,0,0,1)]">
             <div className="space-y-3">
               {metrics.map((metric, i) => (
                 <motion.div
@@ -156,10 +171,10 @@ export function Layer2FocusContent() {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ ...ENTERPRISE_SPRING, delay: 1.3 + i * 0.1 }}
-                  className="flex items-center justify-between gap-4"
+                  className="flex items-center justify-between gap-4 border-b border-black/10 pb-2 last:border-0 last:pb-0"
                 >
-                  <span className="text-xs font-medium text-slate-400">{metric.label}</span>
-                  <span className="font-mono text-sm font-semibold text-white tabular-nums">
+                  <span className="text-xs font-mono uppercase tracking-wider text-black/60">{metric.label}</span>
+                  <span className="font-mono text-sm font-bold text-black tabular-nums">
                     <NumberTicker 
                       value={metric.value} 
                       delay={1500 + i * 200}
@@ -181,7 +196,8 @@ export function Layer2FocusContent() {
         transition={{ ...ENTERPRISE_SPRING, delay: 1.2 }}
         className="lg:hidden mx-auto w-full max-w-sm"
       >
-        <div className="rounded-lg border border-slate-200/60 bg-slate-900/90 backdrop-blur-xl p-4 shadow-attio-diffuse">
+        {/* Industrial Tool Style: Mobile */}
+        <div className="rounded border-2 border-black bg-white p-4 shadow-[4px_4px_0_0_rgba(0,0,0,1)]">
           <div className="grid grid-cols-3 gap-4">
             {metrics.map((metric, i) => (
               <motion.div
@@ -189,9 +205,9 @@ export function Layer2FocusContent() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ ...ENTERPRISE_SPRING, delay: 1.3 + i * 0.1 }}
-                className="text-center"
+                className="text-center border-r border-black/10 last:border-0 pr-2 last:pr-0"
               >
-                <div className="font-mono text-lg font-semibold text-white tabular-nums">
+                <div className="font-mono text-lg font-bold text-black tabular-nums">
                   <NumberTicker 
                     value={metric.value} 
                     delay={1500 + i * 200}
@@ -199,7 +215,7 @@ export function Layer2FocusContent() {
                   />
                   {metric.suffix}
                 </div>
-                <div className="text-[10px] font-medium text-slate-400 mt-1">{metric.label}</div>
+                <div className="text-[10px] font-mono uppercase tracking-wider text-black/60 mt-1">{metric.label}</div>
               </motion.div>
             ))}
           </div>

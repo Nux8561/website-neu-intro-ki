@@ -1,32 +1,27 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Inter, IBM_Plex_Mono } from "next/font/google";
+import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
 
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-jakarta",
-  display: "swap",
-});
-
+// Body Text: Inter (bleibt, ist gut)
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
 });
 
-// Inter Display (Variable Font) - für große Headlines
-// Nutze Inter mit verschiedenen Gewichten als Inter Display Ersatz
-const interDisplay = Inter({
+// Headlines: Space Grotesk (Industrial Tool Vibe - Railway/Linear Style)
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-inter-display",
+  variable: "--font-space-grotesk",
   display: "swap",
   weight: ["400", "500", "600", "700"],
 });
 
-const mono = IBM_Plex_Mono({
+// Monospace: JetBrains Mono (für Code, Zahlen, technische Details)
+const mono = JetBrains_Mono({
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-mono",
   display: "swap",
 });
@@ -50,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="de">
       <body
-        className={`${jakarta.variable} ${inter.variable} ${interDisplay.variable} ${mono.variable} antialiased attio-grid-pattern bg-noise min-h-screen`}
+        className={`${inter.variable} ${spaceGrotesk.variable} ${mono.variable} antialiased attio-grid-pattern bg-noise min-h-screen`}
       >
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>

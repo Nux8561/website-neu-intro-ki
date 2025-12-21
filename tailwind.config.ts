@@ -109,12 +109,10 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-sans)", ...fontFamily.sans], // Ensure you have Inter or Plus Jakarta Sans loaded
-        jakarta: ["var(--font-jakarta)", "sans-serif"],
+        sans: ["var(--font-inter)", ...fontFamily.sans], // Inter für Body
         inter: ["var(--font-inter)", "sans-serif"],
-        "inter-display": ["var(--font-inter-display)", "sans-serif"],
-        tiempos: ["Georgia", "serif"], // Fallback für Tiempos Text
-        mono: ["var(--font-mono)", "monospace"],
+        "space-grotesk": ["var(--font-space-grotesk)", "sans-serif"], // Space Grotesk für Headlines (Industrial Tool)
+        mono: ["var(--font-mono)", "monospace"], // JetBrains Mono für Code, Zahlen, technische Details
       },
       // Strict Typography Mapping from "Mastering Mobile UI" PDF
       fontSize: {

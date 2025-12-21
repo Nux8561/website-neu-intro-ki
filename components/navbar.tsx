@@ -50,9 +50,9 @@ export function Navbar() {
     <motion.nav
       className={cn(
         "sticky top-0 left-0 right-0 z-50",
-        "bg-white/60 backdrop-blur-xl",
-        "border-b border-white/50",
-        "shadow-sm"
+        "bg-white",
+        "border-b-2 border-black",
+        "shadow-[0_2px_0_0_rgba(0,0,0,1)]"
       )}
       animate={{
         height: isScrolled ? 56 : 64, // h-14 (56px) when scrolled, h-16 (64px) when not
@@ -73,32 +73,32 @@ export function Navbar() {
                 key={item.href}
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item)}
-                className="text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100/50 rounded-full px-3 py-1 transition-all"
+                className="text-sm font-mono font-bold uppercase tracking-wider text-black hover:text-black/60 hover:bg-black/5 rounded border-2 border-transparent hover:border-black px-3 py-1 transition-all"
               >
                 {item.label}
               </Link>
             ))}
           </div>
 
-          {/* CTA Buttons - B2B Enterprise Focus */}
+          {/* CTA Buttons - Industrial Tool Style */}
           <div className="hidden md:flex items-center gap-4">
             <Link
               href="/dashboard"
-              className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
+              className="text-sm font-mono font-bold uppercase tracking-wider text-black hover:text-black/60 transition-colors"
             >
               Anmelden
             </Link>
             <Link
               href="/demo"
-              className="inline-flex items-center justify-center bg-slate-900 text-white hover:bg-slate-800 rounded-md px-4 py-2 text-sm font-medium transition-all shadow-attio-sm hover:scale-[1.02]"
+              className="inline-flex items-center justify-center border-2 border-black bg-black text-white hover:bg-white hover:text-black rounded px-4 py-2 text-sm font-mono font-bold uppercase tracking-wider transition-all hover:scale-[1.02]"
             >
               Demo buchen
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button - Industrial Tool Style */}
           <button
-            className="md:hidden text-gray-900 p-2 -mr-2"
+            className="md:hidden text-black p-2 -mr-2 border-2 border-transparent hover:border-black rounded transition-all"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
             aria-expanded={isMobileMenuOpen}
@@ -115,7 +115,7 @@ export function Navbar() {
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
-              className="md:hidden border-t border-white/50 bg-white/60 backdrop-blur-xl"
+              className="md:hidden border-t-2 border-black bg-white"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
@@ -130,22 +130,22 @@ export function Navbar() {
                       handleNavClick(e, item)
                       setIsMobileMenuOpen(false)
                     }}
-                    className="block text-sm font-medium text-slate-600 hover:text-slate-900 py-2 transition-colors"
+                    className="block text-sm font-mono font-bold uppercase tracking-wider text-black hover:text-black/60 hover:bg-black/5 py-2 px-4 rounded border-2 border-transparent hover:border-black transition-all"
                   >
                     {item.label}
                   </Link>
                 ))}
-                <div className="flex flex-col gap-3 pt-4 border-t border-slate-200">
+                <div className="flex flex-col gap-3 pt-4 border-t-2 border-black">
                   <Link
                     href="/dashboard"
-                    className="text-sm font-medium text-slate-600 hover:text-slate-900 py-2 transition-colors"
+                    className="text-sm font-mono font-bold uppercase tracking-wider text-black hover:text-black/60 py-2 px-4 transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Anmelden
                   </Link>
                   <Link
                     href="/demo"
-                    className="inline-flex items-center justify-center bg-slate-900 text-white hover:bg-slate-800 rounded-md px-4 py-2.5 text-sm font-medium transition-all shadow-attio-sm"
+                    className="inline-flex items-center justify-center border-2 border-black bg-black text-white hover:bg-white hover:text-black rounded px-4 py-2.5 text-sm font-mono font-bold uppercase tracking-wider transition-all"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Demo buchen

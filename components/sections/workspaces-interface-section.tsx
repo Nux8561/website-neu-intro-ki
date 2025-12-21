@@ -23,74 +23,74 @@ export function WorkspacesInterfaceSection() {
   ]
 
   return (
-    <section className="py-32 md:py-40 bg-white relative overflow-hidden attio-grid-pattern attio-connection-lines border-b border-slate-200/60">
+    <section className="py-32 md:py-40 bg-white relative overflow-hidden border-b-2 border-black">
       <div className="mx-auto max-w-full px-4">
         <ScrollReveal direction="up" distance={50}>
           <div className="mb-20 max-w-3xl">
-            <h2 className="text-4xl md:text-5xl font-semibold tracking-tighter text-slate-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-black mb-6 font-space-grotesk">
               Always connected to your data.
             </h2>
-            <p className="text-xl text-slate-600 leading-relaxed">
+            <p className="text-xl text-black/70 leading-relaxed font-inter">
               Continually sync your product, billing, and relationship data into your workspace.
             </p>
           </div>
         </ScrollReveal>
 
-        {/* Interface Mockup */}
+        {/* Interface Mockup - Industrial Tool Style */}
         <ScrollReveal direction="up" distance={80}>
-          <ExpensiveCard intensity={5} className="overflow-hidden">
-            {/* Top Bar */}
-            <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-6 py-4">
+          <ExpensiveCard intensity={5} className="overflow-hidden border-2 border-black">
+            {/* Top Bar - Industrial Tool Style */}
+            <div className="flex items-center justify-between border-b-2 border-black bg-white px-6 py-4">
               <div className="flex items-center gap-3">
-                <div className="h-5 w-5 rounded border border-slate-300" />
-                <span className="text-sm font-medium text-slate-900">Workspaces</span>
+                <div className="h-5 w-5 rounded border-2 border-black bg-black" />
+                <span className="text-sm font-bold text-black font-space-grotesk uppercase tracking-wider">Workspaces</span>
               </div>
               <div className="flex items-center gap-2">
                 {[1, 2, 3].map((i) => (
-                  <div key={i} className="h-8 w-8 rounded-full bg-slate-200 border border-slate-300" />
+                  <div key={i} className="h-8 w-8 rounded-full border-2 border-black bg-white" />
                 ))}
               </div>
             </div>
 
-            {/* Control Bar */}
-            <div className="flex items-center gap-3 border-b border-slate-200 bg-white px-6 py-3">
-              <button className="flex items-center gap-2 px-3 py-1.5 rounded border border-slate-200 bg-white text-sm font-medium text-slate-700 hover:bg-slate-50">
-                <div className="h-4 w-4 rounded bg-slate-200" />
+            {/* Control Bar - Industrial Tool Style */}
+            <div className="flex items-center gap-3 border-b-2 border-black bg-white px-6 py-3">
+              <button className="flex items-center gap-2 px-3 py-1.5 rounded border-2 border-black bg-white text-sm font-mono font-bold uppercase tracking-wider text-black hover:bg-black hover:text-white transition-all">
+                <div className="h-4 w-4 rounded border-2 border-black bg-white" />
                 All workspaces
-                <div className="h-3 w-3 border border-slate-300" />
+                <div className="h-3 w-3 border-2 border-black" />
               </button>
-              <button className="flex items-center gap-2 px-3 py-1.5 rounded border border-slate-200 bg-white text-sm font-medium text-slate-700 hover:bg-slate-50">
-                <div className="h-4 w-4 rounded bg-slate-200" />
+              <button className="flex items-center gap-2 px-3 py-1.5 rounded border-2 border-black bg-white text-sm font-mono font-bold uppercase tracking-wider text-black hover:bg-black hover:text-white transition-all">
+                <div className="h-4 w-4 rounded border-2 border-black bg-white" />
                 Filter
-                <span className="h-5 w-5 rounded-full bg-blue-600 text-white text-xs flex items-center justify-center">2</span>
+                <span className="h-5 w-5 rounded-full border-2 border-black bg-black text-white text-xs flex items-center justify-center font-mono font-bold">2</span>
               </button>
-              <button className="flex items-center gap-2 px-3 py-1.5 rounded border border-slate-200 bg-white text-sm font-medium text-slate-700 hover:bg-slate-50">
-                <div className="h-4 w-4 rounded bg-slate-200" />
+              <button className="flex items-center gap-2 px-3 py-1.5 rounded border-2 border-black bg-white text-sm font-mono font-bold uppercase tracking-wider text-black hover:bg-black hover:text-white transition-all">
+                <div className="h-4 w-4 rounded border-2 border-black bg-white" />
                 Sort
               </button>
-              <button className="flex items-center gap-2 px-3 py-1.5 rounded border border-slate-200 bg-white text-sm font-medium text-slate-700 hover:bg-slate-50">
-                <div className="h-4 w-4 rounded bg-slate-200" />
+              <button className="flex items-center gap-2 px-3 py-1.5 rounded border-2 border-black bg-white text-sm font-mono font-bold uppercase tracking-wider text-black hover:bg-black hover:text-white transition-all">
+                <div className="h-4 w-4 rounded border-2 border-black bg-white" />
                 View settings
               </button>
-              <button className="flex items-center gap-2 px-3 py-1.5 rounded border border-slate-200 bg-white text-sm font-medium text-slate-700 hover:bg-slate-50 ml-auto">
-                <div className="h-4 w-4 rounded bg-slate-200" />
+              <button className="flex items-center gap-2 px-3 py-1.5 rounded border-2 border-black bg-white text-sm font-mono font-bold uppercase tracking-wider text-black hover:bg-black hover:text-white transition-all ml-auto">
+                <div className="h-4 w-4 rounded border-2 border-black bg-white" />
                 Export
               </button>
             </div>
 
-            {/* Table */}
+            {/* Table - Industrial Tool Style */}
             <div className="bg-white">
               {/* Table Header */}
-              <div className="grid grid-cols-5 gap-4 px-6 py-3 border-b border-slate-200 bg-slate-50/50">
-                <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Workspace</div>
-                <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Recent</div>
-                <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Domain</div>
-                <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider"># Seats</div>
-                <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider"># Billed</div>
+              <div className="grid grid-cols-5 gap-4 px-6 py-3 border-b-2 border-black bg-black/5">
+                <div className="text-xs font-mono font-bold text-black uppercase tracking-wider">Workspace</div>
+                <div className="text-xs font-mono font-bold text-black uppercase tracking-wider">Recent</div>
+                <div className="text-xs font-mono font-bold text-black uppercase tracking-wider">Domain</div>
+                <div className="text-xs font-mono font-bold text-black uppercase tracking-wider"># Seats</div>
+                <div className="text-xs font-mono font-bold text-black uppercase tracking-wider"># Billed</div>
               </div>
 
-              {/* Table Rows */}
-              <div className="divide-y divide-slate-100">
+              {/* Table Rows - Industrial Tool Style */}
+              <div className="divide-y-2 divide-black/10">
                 {workspaces.map((workspace, i) => (
                   <motion.div
                     key={workspace.name}
@@ -98,28 +98,28 @@ export function WorkspacesInterfaceSection() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ ...ENTERPRISE_SPRING, delay: i * 0.05 }}
-                    className="grid grid-cols-5 gap-4 px-6 py-4 hover:bg-slate-50/50 transition-colors"
+                    className="grid grid-cols-5 gap-4 px-6 py-4 hover:bg-black/5 transition-colors"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="h-2 w-2 rounded-full border border-slate-300" />
-                      <div className="h-6 w-6 rounded bg-slate-200" />
-                      <span className="text-sm font-medium text-slate-900">{workspace.name}</span>
+                      <div className="h-2 w-2 rounded-full border-2 border-black bg-black" />
+                      <div className="h-6 w-6 rounded border-2 border-black bg-white" />
+                      <span className="text-sm font-bold text-black font-space-grotesk">{workspace.name}</span>
                     </div>
-                    <div className="text-sm text-slate-500">—</div>
+                    <div className="text-sm text-black/60 font-mono">—</div>
                     <div>
-                      <span className="inline-block px-2 py-1 rounded text-xs font-medium text-slate-700 bg-purple-50 border border-purple-100">
+                      <span className="inline-block px-2 py-1 rounded border-2 border-black bg-white text-xs font-mono font-bold text-black uppercase tracking-wider">
                         {workspace.domain}
                       </span>
                     </div>
-                    <div className="text-sm font-medium text-slate-900">{workspace.seats}</div>
-                    <div className="text-sm font-medium text-slate-900">{workspace.billed}</div>
+                    <div className="text-sm font-bold text-black font-mono tabular-nums">{workspace.seats}</div>
+                    <div className="text-sm font-bold text-black font-mono tabular-nums">{workspace.billed}</div>
                   </motion.div>
                 ))}
               </div>
 
-              {/* Bottom Actions */}
-              <div className="border-t border-slate-200 bg-slate-50/50 px-6 py-3">
-                <button className="text-sm font-medium text-slate-700 hover:text-slate-900">
+              {/* Bottom Actions - Industrial Tool Style */}
+              <div className="border-t-2 border-black bg-black/5 px-6 py-3">
+                <button className="text-sm font-mono font-bold uppercase tracking-wider text-black hover:text-black/60 transition-colors">
                   + Add Calculation Field
                 </button>
               </div>

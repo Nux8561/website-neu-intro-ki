@@ -16,8 +16,8 @@ export default function Home() {
       <Navbar />
       {/* Animiertes Grid-System im Hintergrund */}
       <AnimatedGridLines />
-      {/* Main Container mit vertikalen Border-Eingrenzungen */}
-      <div className="relative z-10 mx-auto max-w-[1200px] border-x border-slate-200/60 bg-white/40 backdrop-blur-sm">
+      {/* Main Container - Industrial Tool Style (Schwarz-Weiß, brutal) */}
+      <div className="relative z-10 mx-auto max-w-[1200px] border-x-2 border-black bg-white">
         <main className="min-h-screen bg-white selection:bg-blue-100 selection:text-blue-900">
           <HeroLayered />
           <FeaturesBento />

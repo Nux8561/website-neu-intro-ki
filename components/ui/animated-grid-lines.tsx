@@ -22,15 +22,15 @@ export function AnimatedGridLines() {
 
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-      {/* Basis-Grid (Horizontal & Vertical) - Animiert */}
+      {/* Basis-Grid (Horizontal & Vertical) - Industrial Tool Style (Schwarz-Weiß) */}
       <motion.div
-        className="absolute inset-0"
+        className="absolute inset-0 opacity-20"
         style={{
           backgroundImage: `
-            linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px)
+            linear-gradient(to right, rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px)
           `,
-          backgroundSize: '4rem 4rem',
+          backgroundSize: '2rem 2rem',
           x: horizontalFlow,
         }}
         animate={{
@@ -43,17 +43,17 @@ export function AnimatedGridLines() {
         }}
       />
 
-      {/* Diagonale Linien - 45° (von links oben nach rechts unten) */}
+      {/* Diagonale Linien - 45° (von links oben nach rechts unten) - Industrial Tool Style */}
       <motion.div
-        className="absolute inset-0"
+        className="absolute inset-0 opacity-10"
         style={{
           backgroundImage: `
             repeating-linear-gradient(
               45deg,
               transparent,
               transparent 2px,
-              rgba(148, 163, 184, 0.08) 2px,
-              rgba(148, 163, 184, 0.08) 4px
+              rgba(0, 0, 0, 0.15) 2px,
+              rgba(0, 0, 0, 0.15) 4px
             )
           `,
           backgroundSize: '8rem 8rem',
@@ -69,17 +69,17 @@ export function AnimatedGridLines() {
         }}
       />
 
-      {/* Diagonale Linien - -45° (von rechts oben nach links unten) */}
+      {/* Diagonale Linien - -45° (von rechts oben nach links unten) - Industrial Tool Style */}
       <motion.div
-        className="absolute inset-0"
+        className="absolute inset-0 opacity-10"
         style={{
           backgroundImage: `
             repeating-linear-gradient(
               -45deg,
               transparent,
               transparent 2px,
-              rgba(148, 163, 184, 0.06) 2px,
-              rgba(148, 163, 184, 0.06) 4px
+              rgba(0, 0, 0, 0.1) 2px,
+              rgba(0, 0, 0, 0.1) 4px
             )
           `,
           backgroundSize: '8rem 8rem',
@@ -95,17 +95,17 @@ export function AnimatedGridLines() {
         }}
       />
 
-      {/* Fließende horizontale Linien (von links nach rechts) */}
+      {/* Fließende horizontale Linien (von links nach rechts) - Industrial Tool Style */}
       <motion.div
-        className="absolute inset-0"
+        className="absolute inset-0 opacity-15"
         style={{
           backgroundImage: `
             linear-gradient(
               to right,
               transparent 0%,
-              rgba(148, 163, 184, 0.1) 20%,
-              rgba(148, 163, 184, 0.15) 50%,
-              rgba(148, 163, 184, 0.1) 80%,
+              rgba(0, 0, 0, 0.2) 20%,
+              rgba(0, 0, 0, 0.3) 50%,
+              rgba(0, 0, 0, 0.2) 80%,
               transparent 100%
             )
           `,
@@ -122,17 +122,17 @@ export function AnimatedGridLines() {
         }}
       />
 
-      {/* Fließende vertikale Linien (von oben nach unten) */}
+      {/* Fließende vertikale Linien (von oben nach unten) - Industrial Tool Style */}
       <motion.div
-        className="absolute inset-0"
+        className="absolute inset-0 opacity-15"
         style={{
           backgroundImage: `
             linear-gradient(
               to bottom,
               transparent 0%,
-              rgba(148, 163, 184, 0.1) 20%,
-              rgba(148, 163, 184, 0.15) 50%,
-              rgba(148, 163, 184, 0.1) 80%,
+              rgba(0, 0, 0, 0.2) 20%,
+              rgba(0, 0, 0, 0.3) 50%,
+              rgba(0, 0, 0, 0.2) 80%,
               transparent 100%
             )
           `,
@@ -149,17 +149,17 @@ export function AnimatedGridLines() {
         }}
       />
 
-      {/* Zusätzliche künstlerische Linien - Wellenform */}
+      {/* Zusätzliche künstlerische Linien - Wellenform - Industrial Tool Style */}
       <motion.div
-        className="absolute inset-0 opacity-30"
+        className="absolute inset-0 opacity-10"
         style={{
           backgroundImage: `
             repeating-linear-gradient(
               90deg,
               transparent,
               transparent 3rem,
-              rgba(148, 163, 184, 0.04) 3rem,
-              rgba(148, 163, 184, 0.04) 3.5rem
+              rgba(0, 0, 0, 0.08) 3rem,
+              rgba(0, 0, 0, 0.08) 3.5rem
             )
           `,
         }}

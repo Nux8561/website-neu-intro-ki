@@ -20,19 +20,22 @@ export function ProductExplanation() {
       icon: Search,
       title: "Automatische Recherche",
       description: "60 Sekunden statt 60 Minuten",
-      color: "emerald",
+      bgColor: "bg-emerald-100",
+      iconColor: "text-emerald-600",
     },
     {
       icon: Zap,
       title: "Proaktive Signale",
       description: "Dein CRM sagt dir, was zu tun ist",
-      color: "blue",
+      bgColor: "bg-blue-100",
+      iconColor: "text-blue-600",
     },
     {
       icon: TrendingUp,
       title: "Klare Prioritäten",
       description: "Die ersten 20 Calls sind die besten",
-      color: "purple",
+      bgColor: "bg-purple-100",
+      iconColor: "text-purple-600",
     },
   ]
 
@@ -61,19 +64,21 @@ export function ProductExplanation() {
         {/* Features - VISUELL */}
         <div className="mb-20 grid gap-6 md:grid-cols-3">
           {features.map((feature, i) => (
-            <ScrollReveal key={feature.title} direction="up" distance={50} delay={i * 0.1}>
-              <motion.div
-                whileHover={{ scale: 1.02, y: -4 }}
-                transition={ENTERPRISE_SPRING}
-                className="group rounded-2xl border border-black/10 bg-white p-8 shadow-sm transition-all hover:shadow-lg"
-              >
-                <div className={`mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-${feature.color}-100`}>
-                  <feature.icon className={`h-7 w-7 text-${feature.color}-600`} />
-                </div>
-                <h3 className="mb-2 text-xl font-jakarta font-semibold text-black">{feature.title}</h3>
-                <p className="text-sm text-black/80 font-inter">{feature.description}</p>
-              </motion.div>
-            </ScrollReveal>
+            <motion.div
+              key={feature.title}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ ...ENTERPRISE_SPRING, delay: i * 0.1 }}
+              whileHover={{ scale: 1.02, y: -4 }}
+              className="group rounded-2xl border border-black/10 bg-white p-8 shadow-sm transition-all hover:shadow-lg"
+            >
+              <div className={`mb-4 flex h-14 w-14 items-center justify-center rounded-xl ${feature.bgColor}`}>
+                <feature.icon className={`h-7 w-7 ${feature.iconColor}`} />
+              </div>
+              <h3 className="mb-2 text-xl font-jakarta font-semibold text-black">{feature.title}</h3>
+              <p className="text-sm text-black/80 font-inter">{feature.description}</p>
+            </motion.div>
           ))}
         </div>
 

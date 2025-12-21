@@ -60,12 +60,12 @@ export function ProductExplanation() {
           transition={{ ...snappySpring, delay: 0.2 }}
           className="mb-20 text-center"
         >
-          <h2 className="mb-6 text-5xl font-jakarta font-semibold tracking-tight text-black md:text-6xl">
-            Was macht Intro KI?
-          </h2>
-          <p className="mx-auto max-w-2xl text-xl text-black/80 font-inter leading-relaxed">
-            Dein CRM denkt mit. Automatisch.
-          </p>
+              <h2 className="mb-6 text-6xl font-space-grotesk font-bold -tracking-[0.02em] text-black md:text-7xl">
+                Was macht Intro KI?
+              </h2>
+              <p className="mx-auto max-w-2xl text-2xl text-black/80 font-inter leading-relaxed">
+                Dein CRM denkt mit. Automatisch.
+              </p>
         </motion.div>
 
         {/* Features - VISUELL mit Custom Icons */}

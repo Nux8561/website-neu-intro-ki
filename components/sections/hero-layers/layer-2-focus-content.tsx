@@ -64,11 +64,11 @@ export function Layer2FocusContent() {
           </div>
         </motion.div>
 
-        {/* Headline - Zeichenweise Animation */}
+        {/* Headline - Zeichenweise Animation - GRÖSSER für mehr Impact */}
         <motion.h1
           initial="hidden"
           animate="visible"
-          className="mb-8 text-5xl font-jakarta font-semibold tracking-tight text-black sm:text-6xl md:text-7xl lg:text-8xl"
+          className="mb-8 text-6xl font-space-grotesk font-bold -tracking-[0.02em] text-black sm:text-7xl md:text-8xl lg:text-[120px] leading-[0.95]"
         >
           {headline.split("").map((char, i) => (
             <motion.span
@@ -91,7 +91,7 @@ export function Layer2FocusContent() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...snappySpring, delay: 0.8 }}
-            className="block mt-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-black/60 font-jakarta font-medium"
+            className="block mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-black/70 font-space-grotesk font-medium -tracking-[0.01em]"
           >
             {subline}
           </motion.span>
@@ -114,16 +114,16 @@ export function Layer2FocusContent() {
           transition={{ ...snappySpring, delay: 1.0 }}
           className="flex flex-col sm:flex-row justify-center gap-4"
         >
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={snappySpring}>
+          <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }} transition={snappySpring}>
             <Link
               href="/demo"
-              className="group inline-flex items-center justify-center rounded-full bg-black px-8 py-4 text-sm font-jakarta font-semibold text-white shadow-xl transition-all hover:shadow-2xl"
+              className="group inline-flex items-center justify-center rounded-full bg-black px-12 py-5 text-base font-space-grotesk font-bold text-white shadow-[8px_8px_0_0_rgba(0,0,0,0.2)] transition-all hover:shadow-[12px_12px_0_0_rgba(0,0,0,0.2)] hover:translate-x-[-2px] hover:translate-y-[-2px]"
             >
               Demo buchen
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              <ArrowRight className="ml-3 h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Link>
           </motion.div>
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={snappySpring}>
+          <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }} transition={snappySpring}>
             <Link
               href="#product"
               onClick={(e) => {
@@ -133,7 +133,7 @@ export function Layer2FocusContent() {
                   element.scrollIntoView({ behavior: "smooth", block: "start" })
                 }
               }}
-              className="inline-flex items-center justify-center rounded-full border-2 border-black bg-white px-8 py-4 text-sm font-jakarta font-semibold text-black transition-all hover:bg-black hover:text-white shadow-lg"
+              className="inline-flex items-center justify-center rounded-full border-2 border-black bg-white px-12 py-5 text-base font-space-grotesk font-bold text-black transition-all hover:bg-black hover:text-white shadow-[4px_4px_0_0_rgba(0,0,0,1)] hover:translate-x-[-2px] hover:translate-y-[-2px]"
             >
               Wie es funktioniert
             </Link>
@@ -149,7 +149,7 @@ export function Layer2FocusContent() {
           transition={{ duration: 1.2, delay: 1.2, ...snappySpring }}
           className="relative mx-auto w-full max-w-6xl"
         >
-          <div className="overflow-hidden rounded-3xl border border-black/10 bg-white shadow-2xl">
+          <div className="overflow-hidden rounded-3xl border-2 border-black/20 bg-white shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)]">
             {/* Dashboard Preview - ECHTE UI */}
             <div className="bg-gradient-to-br from-slate-50 via-white to-slate-50 p-8 md:p-12">
               {/* Header */}

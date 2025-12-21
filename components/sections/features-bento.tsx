@@ -138,10 +138,10 @@ export function FeaturesBento() {
           transition={{ ...snappySpring, delay: 0.2 }}
           className="mb-24 text-center"
         >
-          <h2 className="mb-6 text-5xl font-jakarta font-semibold tracking-tight text-black md:text-6xl">
+          <h2 className="mb-6 text-6xl font-space-grotesk font-bold -tracking-[0.02em] text-black md:text-7xl">
             Alles, was du brauchst
           </h2>
-          <p className="mx-auto max-w-2xl text-xl text-black/80 font-inter leading-relaxed">
+          <p className="mx-auto max-w-2xl text-2xl text-black/80 font-inter leading-relaxed">
             Telefon-Cold-Acquisition + Pipeline Management + Algorithmus-basierte Automatisierung
           </p>
         </motion.div>
@@ -157,8 +157,8 @@ export function FeaturesBento() {
             <motion.div
               key={feature.id}
               variants={snappyStaggerItem}
-              whileHover={{ scale: 1.02, y: -8 }}
-              className="group relative overflow-hidden rounded-2xl border border-black/10 bg-white p-8 shadow-sm transition-all hover:shadow-xl"
+                  whileHover={{ scale: 1.02, y: -8 }}
+                  className="group relative overflow-hidden rounded-2xl border-2 border-black/10 bg-white p-8 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.05)] transition-all hover:shadow-[0_25px_50px_-10px_rgba(0,0,0,0.15)]"
             >
               {/* Custom Icon statt Lucide */}
               <motion.div
@@ -170,12 +170,12 @@ export function FeaturesBento() {
                 <CustomFeatureIcon type={feature.icon as any} className="h-10 w-10" />
               </motion.div>
 
-              {/* Content - BESSERE BESCHREIBUNGEN */}
-              <h3 className="mb-3 text-2xl font-jakarta font-semibold text-black">{feature.title}</h3>
-              <p className="mb-8 text-base text-black/80 font-inter leading-relaxed">{feature.description}</p>
+                  {/* Content - BESSERE BESCHREIBUNGEN */}
+                  <h3 className="mb-4 text-3xl font-space-grotesk font-bold -tracking-[0.01em] text-black">{feature.title}</h3>
+                  <p className="mb-8 text-lg text-black/80 font-inter leading-relaxed">{feature.description}</p>
 
-              {/* Visual Preview - Hochwertig */}
-              <div className="relative h-40 w-full overflow-hidden rounded-xl bg-gradient-to-br from-slate-50 to-white border border-black/5">
+                  {/* Visual Preview - Hochwertig - GRÖSSER */}
+                  <div className="relative h-56 w-full overflow-hidden rounded-xl bg-gradient-to-br from-slate-50 to-white border-2 border-black/10 shadow-sm">
                 {/* Fake UI Preview */}
                 {feature.visual === "priorities" && (
                   <div className="absolute inset-0 p-4">
@@ -208,8 +208,8 @@ export function FeaturesBento() {
                       url="introki.app/emails"
                       title="Email Automation"
                       isSecure={true}
-                      height={160}
-                      showWindowControls={false}
+                      height={224}
+                      showWindowControls={true}
                     >
                       <div className="flex h-full items-center justify-center p-4">
                         <div className="w-full space-y-2">
@@ -234,7 +234,7 @@ export function FeaturesBento() {
                         { text: "→ Priority: HIGH", type: "output" },
                         { text: "→ Next action: Call today", type: "output" },
                       ]}
-                      height={160}
+                      height={224}
                       title="Call Assistant"
                     />
                   </motion.div>

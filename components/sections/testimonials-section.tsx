@@ -12,9 +12,11 @@ import { SectionDivider } from "@/components/ui/section-divider"
  */
 export function TestimonialsSection() {
   return (
-    <section id="testimonials" className="bg-white">
+    <section id="testimonials" className="bg-white border-b-2 border-black">
       {/* Premium Design Testimonial */}
-      <DesignTestimonial />
+      <div className="border-b border-black/10">
+        <DesignTestimonial />
+      </div>
       
       {/* Divider */}
       <SectionDivider height={80} gridSize={10} />

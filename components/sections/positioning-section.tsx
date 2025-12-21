@@ -116,10 +116,10 @@ export function PositioningSection() {
           transition={{ ...snappySpring, delay: 0.2 }}
           className="mb-24 text-center"
         >
-          <h2 className="mb-6 text-5xl font-jakarta font-semibold tracking-tight text-black md:text-6xl">
+          <h2 className="mb-6 text-6xl font-space-grotesk font-bold -tracking-[0.02em] text-black md:text-7xl">
             Die goldene Mitte
           </h2>
-          <p className="mx-auto max-w-2xl text-xl text-black/80 font-inter leading-relaxed">
+          <p className="mx-auto max-w-2xl text-2xl text-black/80 font-inter leading-relaxed">
             Nicht zu einfach, nicht zu komplex. Genau richtig für dein Team.
           </p>
         </motion.div>

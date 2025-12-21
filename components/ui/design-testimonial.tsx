@@ -64,7 +64,7 @@ export function DesignTestimonial() {
   const current = testimonials[activeIndex]
 
   return (
-    <div className="flex items-center justify-center min-h-[600px] bg-white overflow-hidden">
+    <div className="flex items-center justify-center min-h-[700px] bg-white overflow-hidden py-20">
       <div ref={containerRef} className="relative w-full max-w-5xl px-4" onMouseMove={handleMouseMove}>
         {/* Oversized index number - positioned to bleed off left edge */}
         <motion.div

@@ -45,13 +45,13 @@ export function TrustSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ ...ENTERPRISE_SPRING, delay: index * 0.05 }}
-              className="flex items-center justify-center h-16 grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-300 p-2"
+              className="flex items-center justify-center h-20 md:h-24 grayscale opacity-40 hover:opacity-100 hover:grayscale-0 transition-all duration-500 p-4 hover:scale-110"
             >
                 <Image
                 src={logo.src}
                 alt={logo.name}
-                width={140}
-                height={56}
+                width={180}
+                height={72}
                 className="object-contain max-w-full max-h-full"
               />
             </motion.div>

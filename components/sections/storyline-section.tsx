@@ -34,6 +34,7 @@ export function StorylineSection() {
 
   // Video-ähnlicher Scroll-Flow: Berechne aktiven Step basierend auf Scroll-Progress
   const activeStep = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75, 1], [0, 1, 2, 3, 3])
+  const parallaxY = useTransform(scrollYProgress, [0, 1], [0, -50])
   const [currentStepIndex, setCurrentStepIndex] = React.useState(0)
 
   React.useEffect(() => {
@@ -209,7 +210,7 @@ const priority = calculatePriority({
                 {/* Parallax-Effekt für Background */}
                 <motion.div
                   style={{
-                    y: useTransform(scrollYProgress, [0, 1], [0, -50]),
+                    y: parallaxY,
                   }}
                 >
                   {step.visualContent}

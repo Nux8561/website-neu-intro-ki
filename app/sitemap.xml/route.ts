@@ -1,19 +1,62 @@
 import { NextResponse } from "next/server"
-import { navigationItems } from "@/components/navbar/nav-items"
 
 function getAllUrls(): string[] {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://introki.app"
   const urls: string[] = [baseUrl]
 
+  // Navigation items (server-safe, without icons)
+  const navigationData = [
+    {
+      href: "#",
+      children: [
+        { href: "/features" },
+        { href: "/platform" },
+        { href: "/pricing" },
+        { href: "/security" },
+      ],
+    },
+    {
+      href: "#",
+      children: [
+        { href: "/for/startups" },
+        { href: "/enterprise" },
+        { href: "/for/deal-flow" },
+      ],
+    },
+    {
+      href: "#",
+      children: [
+        { href: "/blog" },
+        { href: "/help" },
+        { href: "/faq" },
+        { href: "/changelog" },
+        { href: "/roadmap" },
+        { href: "/templates" },
+      ],
+    },
+    {
+      href: "#",
+      children: [
+        { href: "/about" },
+        { href: "/team" },
+        { href: "/careers" },
+        { href: "/partners" },
+        { href: "/kontakt" },
+      ],
+    },
+  ]
+
   // Add all navigation items
-  navigationItems.forEach((item) => {
+  for (const item of navigationData) {
     if (item.href !== "#") {
       urls.push(`${baseUrl}${item.href}`)
     }
-    item.children?.forEach((child) => {
-      urls.push(`${baseUrl}${child.href}`)
-    })
-  })
+    if (item.children) {
+      for (const child of item.children) {
+        urls.push(`${baseUrl}${child.href}`)
+      }
+    }
+  }
 
   // Add additional important pages
   const additionalPages = [
@@ -21,9 +64,9 @@ function getAllUrls(): string[] {
     "/demo",
   ]
 
-  additionalPages.forEach((page) => {
+  for (const page of additionalPages) {
     urls.push(`${baseUrl}${page}`)
-  })
+  }
 
   return urls
 }

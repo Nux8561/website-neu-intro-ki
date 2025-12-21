@@ -24,7 +24,6 @@ export function Layer3Foreground() {
 
   // Scroll-basierte Opacity für Layer 3
   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [1, 1, 0.6, 0.2])
-  const containerRef = React.useRef<HTMLDivElement>(null)
   const [isDesktop, setIsDesktop] = React.useState(false)
 
   // Mausposition für Cursor-Follower und Magnetic Icons

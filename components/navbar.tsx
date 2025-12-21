@@ -221,7 +221,7 @@ export function Navbar() {
             className="md:hidden text-black p-2 -mr-2 border-2 border-transparent hover:border-black rounded transition-all"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
-            aria-expanded={String(isMobileMenuOpen)}
+            aria-expanded={isMobileMenuOpen}
           >
             {isMobileMenuOpen ? (
               <X className="h-6 w-6" strokeWidth={1.5} />

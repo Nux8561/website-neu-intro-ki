@@ -277,13 +277,13 @@ section [class*="container"] {
   font-feature-settings: "tnum";
 }
 
-/* Responsive Typography */
+/* Responsive Typography - Industrial Tool Style (Space Grotesk) */
 .heading-responsive {
-  @apply font-jakarta tracking-tight text-3xl md:text-4xl lg:text-5xl xl:text-6xl;
+  @apply font-space-grotesk tracking-tight text-3xl md:text-4xl lg:text-5xl xl:text-6xl;
 }
 
 .subheading-responsive {
-  @apply font-jakarta tracking-tight text-xl sm:text-2xl md:text-3xl;
+  @apply font-space-grotesk tracking-tight text-xl sm:text-2xl md:text-3xl;
 }
 
 /* Responsive Grid */

@@ -76,7 +76,7 @@ export function PositioningSection() {
             x: useTransform(scrollYProgress, [0, 1], [0, 40]),
           }}
         />
-        {/* Layer 2: Floating Shapes */}
+        {/* Layer 2: Floating Shapes - Ohne useTransform, nur animate */}
         {Array.from({ length: 5 }).map((_, i) => (
           <motion.div
             key={i}
@@ -86,12 +86,12 @@ export function PositioningSection() {
               height: 200 + i * 50,
               left: `${20 + i * 15}%`,
               top: `${10 + i * 20}%`,
-              x: useTransform(scrollYProgress, [0, 1], [0, (i + 1) * 20]),
-              y: useTransform(scrollYProgress, [0, 1], [0, (i + 1) * -15]),
             }}
             animate={{
               scale: [1, 1.1, 1],
               opacity: [0.05, 0.1, 0.05],
+              x: [0, (i + 1) * 20, 0],
+              y: [0, (i + 1) * -15, 0],
             }}
             transition={{
               duration: 8 + i * 2,

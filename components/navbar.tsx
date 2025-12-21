@@ -153,7 +153,8 @@ export function Navbar() {
         "shadow-[0_2px_0_0_rgba(0,0,0,1)]"
       )}
       animate={{
-        height: isScrolled ? 56 : 64, // h-14 (56px) when scrolled, h-16 (64px) when not
+        backgroundColor: isScrolled ? "rgba(255, 255, 255, 0.98)" : "rgba(255, 255, 255, 1)",
+        backdropFilter: isScrolled ? "blur(12px)" : "blur(0px)",
       }}
       transition={ENTERPRISE_SPRING}
     >
@@ -220,7 +221,7 @@ export function Navbar() {
             className="md:hidden text-black p-2 -mr-2 border-2 border-transparent hover:border-black rounded transition-all"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
-            aria-expanded={isMobileMenuOpen ? "true" : "false"}
+            aria-expanded={String(isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (
               <X className="h-6 w-6" strokeWidth={1.5} />

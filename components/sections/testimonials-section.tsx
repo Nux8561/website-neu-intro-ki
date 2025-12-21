@@ -18,9 +18,6 @@ export function TestimonialsSection() {
         <DesignTestimonial />
       </div>
       
-      {/* Divider */}
-      <SectionDivider height={80} gridSize={10} />
-      
       {/* Scrolling Testimonials */}
       <TestimonialV2 />
     </section>

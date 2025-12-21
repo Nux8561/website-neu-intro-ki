@@ -27,19 +27,16 @@ export function ProductExplanation() {
         icon: "research",
         title: "60-Sekunden-Research",
         description: "Automatisierte Recherche in Echtzeit",
-        bgColor: "bg-emerald-100",
       },
       {
         icon: "signals",
         title: "Algorithmus-basierte Signale",
         description: "Intelligence-Engine erkennt Prioritäten automatisch",
-        bgColor: "bg-blue-100",
       },
       {
         icon: "priorities",
         title: "Automatisierte Priorisierung",
         description: "Top 20 Deals basierend auf ICP-Fit und Timing",
-        bgColor: "bg-purple-100",
       },
   ]
 
@@ -51,7 +48,7 @@ export function ProductExplanation() {
   ]
 
   return (
-    <section id="product" ref={ref} className="bg-white py-32 md:py-48">
+    <section id="product" ref={ref} className="bg-white py-24 md:py-32 border-b-2 border-black">
       <div className="mx-auto max-w-7xl px-4">
         {/* Header - MINIMAL TEXT */}
         <motion.div
@@ -82,14 +79,14 @@ export function ProductExplanation() {
               whileHover={{ scale: 1.03, y: -6 }}
               className="group rounded-2xl border-2 border-black/10 bg-white p-8 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.05)] transition-all hover:shadow-[0_25px_50px_-10px_rgba(0,0,0,0.15)]"
             >
-              {/* Custom Icon statt Lucide */}
+              {/* Custom Icon - Monochrome, Premium */}
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={isInView ? { scale: 1, opacity: 1 } : {}}
                 transition={{ ...snappySpring, delay: 0.3 + i * 0.1 }}
-                className={`mb-6 flex h-16 w-16 items-center justify-center rounded-xl ${feature.bgColor} transition-transform group-hover:scale-110 group-hover:rotate-3`}
+                className="mb-6 flex h-16 w-16 items-center justify-center rounded-xl border-2 border-black/10 bg-white/50 backdrop-blur-sm transition-transform group-hover:scale-105 group-hover:border-black/20"
               >
-                <CustomFeatureIcon type={feature.icon as any} className="h-10 w-10" />
+                <CustomFeatureIcon type={feature.icon as any} className="h-8 w-8 text-black" />
               </motion.div>
               <h3 className="mb-3 text-2xl font-space-grotesk font-semibold text-black">{feature.title}</h3>
               <p className="text-base text-black/80 font-inter leading-relaxed">{feature.description}</p>
@@ -97,43 +94,6 @@ export function ProductExplanation() {
           ))}
         </motion.div>
 
-        {/* Workflow - VISUELL */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ ...snappySpring, delay: 0.5 }}
-          className="rounded-3xl border-2 border-black/10 bg-gradient-to-br from-slate-50 to-white p-10 md:p-14 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)]"
-        >
-          <h3 className="mb-12 text-center text-3xl font-space-grotesk font-semibold text-black md:text-4xl">
-            So funktioniert es
-          </h3>
-          <div className="grid gap-8 md:grid-cols-4">
-            {workflow.map((item, i) => (
-              <motion.div
-                key={item.step}
-                initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-                transition={{ ...snappySpring, delay: 0.6 + i * 0.15 }}
-                className="relative text-center"
-              >
-                {/* Connector Line */}
-                {i < workflow.length - 1 && (
-                  <div className="absolute top-8 left-[60%] right-0 hidden h-0.5 bg-black/10 md:block" />
-                )}
-                <motion.div
-                  whileHover={{ scale: 1.1 }}
-                  className="mb-6 flex justify-center"
-                >
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-black text-white shadow-lg">
-                    <item.icon className="h-8 w-8" />
-                  </div>
-                </motion.div>
-                <div className="mb-2 text-sm font-mono font-bold text-black/40">Schritt {item.step}</div>
-                <div className="text-lg font-space-grotesk font-semibold text-black">{item.title}</div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
 
         {/* CTA */}
         <motion.div
@@ -151,9 +111,6 @@ export function ProductExplanation() {
           </Link>
         </motion.div>
       </div>
-
-      {/* Section Divider - Eleganter Übergang */}
-      <SectionDivider height={100} gridSize={10} />
     </section>
   )
 }

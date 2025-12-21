@@ -8,7 +8,7 @@ import { Database, Clock, Users, TrendingUp, Shield, Zap, MapPin, Server } from 
 
 export function TrustSection() {
   return (
-    <section id="trust" className="border-b-2 border-black bg-white py-32 md:py-40">
+    <section id="trust" className="border-b-2 border-black bg-white py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-4 relative z-10">
         
         {/* Headline - Premium Style */}
@@ -254,44 +254,6 @@ export function TrustSection() {
           </div>
         </motion.div>
 
-        {/* Founder Credibility - Erweitert */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ ...ENTERPRISE_SPRING, delay: 0.3 }}
-          className="text-center"
-        >
-          <div className="inline-block p-8 rounded-2xl border border-black/10 bg-white/50 backdrop-blur-xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.05)]">
-            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-black to-slate-800 mx-auto mb-4 flex items-center justify-center">
-              <span className="text-white text-2xl font-bold">IK</span>
-            </div>
-            <blockquote className="text-lg font-inter text-black/80 italic mb-4 max-w-2xl mx-auto">
-              &quot;Wir haben Intro KI gebaut, weil wir keine Lust mehr hatten, Vertriebsdaten manuell zu pflegen. 
-              Jetzt sparen unsere Kunden durchschnittlich 20 Stunden pro Woche.&quot;
-            </blockquote>
-            <p className="text-sm font-space-grotesk font-semibold text-black">
-              Intro KI Team
-            </p>
-            <p className="text-xs text-black/60 font-inter mt-1">
-              Entwickelt für moderne Vertriebsteams
-            </p>
-            
-            {/* Made in Germany Badge */}
-            <motion.div
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ ...ENTERPRISE_SPRING, delay: 0.4 }}
-              className="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/5 border border-black/10"
-            >
-              <MapPin className="h-4 w-4 text-black/60" />
-              <span className="text-xs font-space-grotesk font-semibold text-black">
-                Made in Germany
-              </span>
-            </motion.div>
-          </div>
-        </motion.div>
 
       </div>
     </section>

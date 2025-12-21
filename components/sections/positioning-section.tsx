@@ -67,7 +67,7 @@ export function PositioningSection() {
   ]
 
   return (
-    <section ref={ref} className="relative bg-gradient-to-br from-slate-50 via-white to-slate-50 py-32 md:py-48 overflow-hidden">
+    <section ref={ref} className="relative bg-white py-24 md:py-32 overflow-hidden border-b-2 border-black">
       {/* Background Layers - Animiert */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Subtle Grid */}

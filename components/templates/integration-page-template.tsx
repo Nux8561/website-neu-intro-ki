@@ -126,7 +126,7 @@ export function IntegrationPageTemplate({
               className="mb-16 text-center"
             >
               <h2 className="mb-6 text-[32px] leading-[40px] -tracking-[0.02em] font-medium text-black md:text-[48px] md:leading-[56px] font-space-grotesk">
-                So einfach geht's
+                So einfach geht&apos;s
               </h2>
             </motion.div>
 

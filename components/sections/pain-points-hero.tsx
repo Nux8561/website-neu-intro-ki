@@ -23,9 +23,6 @@ export function PainPointsHero() {
 
   const [activePainPoint, setActivePainPoint] = React.useState<string | null>(null)
 
-  // Kundenfeedback-Zitat
-  const customerQuote = "Wir haben verschiedene CRM-Systeme ausprobiert. Das Resultat war entweder waren sie viel zu teuer, die waren viel zu komplex und am Ende haben wir viel mehr Zeit verbracht, um die ganzen Einstellungen durchzuführen, die am Ende dann doch chaotisch waren und nicht richtig intuitiv, dass man viel zu viele manuelle Schritte Sachen wie Follow-ups richtig eintragen, richtige Priorisierungen. Das hat natürlich dazu geführt, dass man ja nicht immer motiviert war, Potenzial liegen lassen."
-
   const painPoints: PainPoint[] = [
     {
       id: "expensive",
@@ -214,31 +211,9 @@ export function PainPointsHero() {
     <section
       ref={sectionRef}
       id="pain-points"
-      className="relative bg-white py-32 md:py-48 overflow-hidden border-b-2 border-black"
+      className="relative bg-white py-24 md:py-32 overflow-hidden border-b-2 border-black"
     >
       <div className="relative z-10 mx-auto max-w-7xl px-4">
-        {/* Kundenfeedback-Zitat - Prominent */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ ...snappySpring, delay: 0.2 }}
-          className="mb-20 text-center"
-        >
-          <div className="inline-block mb-6">
-            <span className="px-3 py-1 rounded-full bg-black/5 text-xs font-mono font-medium text-black/60 uppercase tracking-wider">
-              Kundenfeedback
-            </span>
-          </div>
-          <blockquote className="mx-auto max-w-4xl">
-            <p className="text-2xl md:text-3xl font-space-grotesk font-medium -tracking-[0.01em] text-black leading-relaxed mb-6">
-              &quot;{customerQuote}&quot;
-            </p>
-            <footer className="text-sm text-black/60 font-inter">
-              — Echter Kunde, Mittelstand
-            </footer>
-          </blockquote>
-        </motion.div>
-
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -284,15 +259,21 @@ export function PainPointsHero() {
                 {painPoint.problem}
               </h3>
 
-              {/* Before/After Visual - Smooth Transition */}
-              <div className="relative h-64 mb-6 overflow-hidden rounded-xl">
+              {/* Before/After Visual - Premium Smooth Transition */}
+              <div className="relative h-64 mb-6 overflow-hidden rounded-xl border border-black/5">
                 <motion.div
                   initial={false}
                   animate={{
                     opacity: activePainPoint === painPoint.id ? 0 : 1,
-                    scale: activePainPoint === painPoint.id ? 0.95 : 1,
+                    scale: activePainPoint === painPoint.id ? 0.98 : 1,
+                    y: activePainPoint === painPoint.id ? -10 : 0,
                   }}
-                  transition={ENTERPRISE_SPRING}
+                  transition={{
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 30,
+                    mass: 0.5,
+                  }}
                   className="absolute inset-0"
                 >
                   {painPoint.beforeVisual}
@@ -301,9 +282,15 @@ export function PainPointsHero() {
                   initial={false}
                   animate={{
                     opacity: activePainPoint === painPoint.id ? 1 : 0,
-                    scale: activePainPoint === painPoint.id ? 1 : 0.95,
+                    scale: activePainPoint === painPoint.id ? 1 : 0.98,
+                    y: activePainPoint === painPoint.id ? 0 : 10,
                   }}
-                  transition={ENTERPRISE_SPRING}
+                  transition={{
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 30,
+                    mass: 0.5,
+                  }}
                   className="absolute inset-0"
                 >
                   {painPoint.afterVisual}

@@ -85,9 +85,9 @@ export function FeaturesBento() {
 
   return (
     <section
-      ref={sectionRef}
       id="features"
-      className="relative bg-white py-32 md:py-48 overflow-hidden"
+      ref={sectionRef}
+      className="relative bg-white py-24 md:py-32 overflow-hidden border-b-2 border-black"
     >
       {/* Background Layers - Animiert */}
       <motion.div

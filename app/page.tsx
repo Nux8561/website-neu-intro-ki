@@ -23,21 +23,12 @@ export default function Home() {
       <div className="relative z-10 mx-auto max-w-[1400px] bg-white">
         <main className="min-h-screen bg-white">
           <HeroLayered />
-          <SectionDivider height={120} gridSize={10} />
           <PainPointsHero />
-          <SectionDivider height={120} gridSize={10} />
           <ProductExplanation />
-          <SectionDivider height={120} gridSize={10} />
           <PositioningSection />
-          <SectionDivider height={120} gridSize={10} />
           <FeaturesBento />
-          <SectionDivider height={120} gridSize={10} />
-          <StorylineSection />
-          <SectionDivider height={120} gridSize={10} />
           <TestimonialsSection />
-          <SectionDivider height={120} gridSize={10} />
           <TrustSection />
-          <SectionDivider height={120} gridSize={10} />
           <CTAFooter />
         </main>
         <SiteFooter />

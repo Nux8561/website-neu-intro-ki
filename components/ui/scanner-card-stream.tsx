@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import * as THREE from 'three';
+import Image from 'next/image';
 
 // --- Default Images (used if no cardImages prop is provided) ---
 const defaultCardImages = [
@@ -451,10 +452,13 @@ const ScannerCardStream = ({
           {cards.map(card => (
             <div key={card.id} className="card-wrapper relative w-[400px] h-[250px] shrink-0">
               <div className="card-normal card absolute top-0 left-0 w-full h-full rounded-[15px] overflow-hidden bg-transparent shadow-[0_15px_40px_rgba(0,0,0,0.4)] z-[2] [clip-path:inset(0_0_0_var(--clip-right,0%))]">
-                <img 
+                <Image 
                   src={card.image} 
                   alt="Card" 
+                  width={400}
+                  height={250}
                   className="w-full h-full object-cover rounded-[15px] transition-all duration-attio ease-attio-ease-out brightness-110 contrast-110 shadow-[inset_0_0_20px_rgba(0,0,0,0.1)] hover:brightness-125 hover:contrast-125" 
+                  unoptimized
                 />
               </div>
               <div className="card-ascii card absolute top-0 left-0 w-full h-full rounded-[15px] overflow-hidden bg-transparent z-[1] [clip-path:inset(0_calc(100%-var(--clip-left,0%))_0_0)]">

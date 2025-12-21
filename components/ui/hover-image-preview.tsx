@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useCallback, useRef, useEffect } from "react"
+import Image from "next/image"
 
 /**
  * Preview data for UI/UX design tools
@@ -82,12 +83,13 @@ const PreviewCard = ({
       }}
     >
       <div className="preview-card-inner">
-        <img
+        <Image
           src={data.image}
           alt={data.title}
-          crossOrigin="anonymous"
-          referrerPolicy="no-referrer"
+          width={560}
+          height={320}
           className="preview-card-image"
+          unoptimized
         />
         <div className="preview-card-title">{data.title}</div>
         <div className="preview-card-subtitle">{data.subtitle}</div>

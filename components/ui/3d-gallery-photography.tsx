@@ -5,6 +5,7 @@ import { useRef, useMemo, useCallback, useState, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useTexture } from '@react-three/drei';
 import * as THREE from 'three';
+import Image from 'next/image';
 
 type ImageItem = string | { src: string; alt?: string };
 
@@ -507,11 +508,14 @@ function FallbackGallery({ images }: { images: ImageItem[] }) {
 			</p>
 			<div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-h-96 overflow-y-auto">
 				{normalizedImages.map((img, i) => (
-					<img
+					<Image
 						key={i}
 						src={img.src || '/placeholder.svg'}
 						alt={img.alt}
+						width={128}
+						height={128}
 						className="w-full h-32 object-cover rounded"
+						unoptimized
 					/>
 				))}
 			</div>

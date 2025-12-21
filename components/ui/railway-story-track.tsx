@@ -32,36 +32,22 @@ export function RailwayStoryTrack({ steps, className }: RailwayStoryTrackProps) 
   // Position des "Zugs" basierend auf Scroll
   const trainPosition = useTransform(scrollYProgress, [0, 1], [0, 100])
 
-  // Alle stepProgress Werte auf oberster Ebene erstellen
-  const stepProgresses = steps.map((_, i) =>
-    useTransform(
-      scrollYProgress,
-      [i / steps.length, (i + 1) / steps.length],
-      [0, 1]
-    )
-  )
-
   return (
     <div ref={containerRef} className={`relative ${className}`}>
       {/* Track Line - Horizontale Linie durch die Seite */}
       <div className="absolute left-0 right-0 top-1/2 h-0.5 bg-black/10" />
 
-      {/* Story Steps */}
-      {steps.map((step, i) => {
-        const stepProgress = stepProgresses[i]
-        
-        return (
-          <StoryStepMarker
-            key={step.id}
-            step={step}
-            position={step.position}
-            progress={stepProgress}
-            scrollYProgress={scrollYProgress}
-            stepIndex={i}
-            totalSteps={steps.length}
-          />
-        )
-      })}
+      {/* Story Steps - Jeder Step ist eine separate Komponente mit eigenen Hooks */}
+      {steps.map((step, i) => (
+        <StoryStepMarker
+          key={step.id}
+          step={step}
+          position={step.position}
+          scrollYProgress={scrollYProgress}
+          stepIndex={i}
+          totalSteps={steps.length}
+        />
+      ))}
 
       {/* Train - Das Element, das durch die Seite läuft */}
       <motion.div
@@ -98,30 +84,36 @@ export function RailwayStoryTrack({ steps, className }: RailwayStoryTrackProps) 
 function StoryStepMarker({
   step,
   position,
-  progress,
   scrollYProgress,
   stepIndex,
   totalSteps,
 }: {
   step: StoryStep
   position: number
-  progress: any
   scrollYProgress: any
   stepIndex: number
   totalSteps: number
 }) {
+  // Alle Hooks müssen auf oberster Ebene sein - nicht in Callbacks!
+  // stepProgress wird hier berechnet, basierend auf scrollYProgress
+  const stepProgress = useTransform(
+    scrollYProgress,
+    [stepIndex / totalSteps, (stepIndex + 1) / totalSteps],
+    [0, 1]
+  )
+
   const [active, setActive] = React.useState(false)
 
   // isActive basierend auf progress berechnen
-  const isActive = useTransform(progress, (v) => v > 0.3 && v < 0.7)
+  const isActive = useTransform(stepProgress, (v) => v > 0.3 && v < 0.7)
 
   React.useEffect(() => {
     const unsubscribe = isActive.onChange((v: boolean) => setActive(v))
     return unsubscribe
   }, [isActive])
 
-  const opacity = useTransform(progress, [0, 0.3, 0.7, 1], [0.3, 1, 1, 0.3])
-  const scale = useTransform(progress, [0, 0.3, 0.7, 1], [0.8, 1, 1, 0.8])
+  const opacity = useTransform(stepProgress, [0, 0.3, 0.7, 1], [0.3, 1, 1, 0.3])
+  const scale = useTransform(stepProgress, [0, 0.3, 0.7, 1], [0.8, 1, 1, 0.8])
 
   return (
     <motion.div

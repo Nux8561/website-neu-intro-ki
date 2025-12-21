@@ -136,9 +136,16 @@ export function PositioningSection() {
               <motion.div
                 animate={{ rotate: [0, 5, -5, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-black via-slate-800 to-black shadow-xl"
+                className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-black via-slate-800 to-black shadow-xl overflow-hidden"
               >
-                <span className="text-2xl font-space-grotesk font-bold text-white">IK</span>
+                <Image
+                  src="/images/app logo.png"
+                  alt="Intro KI Logo"
+                  width={80}
+                  height={80}
+                  className="object-contain"
+                  priority
+                />
               </motion.div>
             </div>
             <h3 className="mb-4 text-center text-3xl font-space-grotesk font-semibold text-black">Intro KI</h3>

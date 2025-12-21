@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { motion, useScroll, useTransform, useInView } from "framer-motion"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Mail, Phone, CheckCircle2 } from "lucide-react"
 import { ENTERPRISE_SPRING, snappySpring, snappyStaggerContainer, snappyStaggerItem } from "@/lib/animations"
 import Link from "next/link"
 import { CustomFeatureIcon } from "@/components/ui/custom-feature-icons"
@@ -491,7 +491,7 @@ export function FeaturesBento() {
                           <div className="space-y-2">
                             <div className="p-2 rounded-lg bg-slate-900">
                               <p className="text-[10px] text-slate-500 font-inter mb-1">Keyword</p>
-                              <p className="text-xs text-white font-inter">"CRM" erkannt</p>
+                              <p className="text-xs text-white font-inter">&quot;CRM&quot; erkannt</p>
                             </div>
                             <div className="p-2 rounded-lg bg-slate-900">
                               <p className="text-[10px] text-slate-500 font-inter mb-1">Tone</p>

@@ -80,6 +80,15 @@ export function TrustSection() {
             },
           ].map((metric, index) => {
             const Icon = metric.icon
+            const colorMap = {
+              blue: { bg: "bg-blue-100", text: "text-blue-600" },
+              emerald: { bg: "bg-emerald-100", text: "text-emerald-600" },
+              purple: { bg: "bg-purple-100", text: "text-purple-600" },
+              orange: { bg: "bg-orange-100", text: "text-orange-600" },
+              indigo: { bg: "bg-indigo-100", text: "text-indigo-600" },
+              amber: { bg: "bg-amber-100", text: "text-amber-600" },
+            } as const
+            const colors = colorMap[metric.color as keyof typeof colorMap] || colorMap.blue
             return (
               <motion.div
                 key={metric.label}
@@ -89,8 +98,8 @@ export function TrustSection() {
                 transition={{ ...ENTERPRISE_SPRING, delay: index * 0.1 }}
                 className="p-6 rounded-2xl border border-black/10 bg-white/50 backdrop-blur-xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_25px_50px_-10px_rgba(0,0,0,0.15)] transition-all"
               >
-                <div className={`flex h-12 w-12 items-center justify-center rounded-xl bg-${metric.color}-100 mb-4`}>
-                  <Icon className={`h-6 w-6 text-${metric.color}-600`} />
+                <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${colors.bg} mb-4`}>
+                  <Icon className={`h-6 w-6 ${colors.text}`} />
                 </div>
                 <div className="text-4xl font-space-grotesk font-bold text-black mb-2 tabular-nums">
                   {metric.value < 1000 ? (
@@ -127,8 +136,8 @@ export function TrustSection() {
               <span className="text-white text-2xl font-bold">IK</span>
             </div>
             <blockquote className="text-lg font-inter text-black/80 italic mb-4 max-w-2xl mx-auto">
-              "Wir haben Intro KI gebaut, weil wir keine Lust mehr hatten, Vertriebsdaten manuell zu pflegen. 
-              Jetzt sparen unsere Kunden durchschnittlich 20 Stunden pro Woche."
+              &quot;Wir haben Intro KI gebaut, weil wir keine Lust mehr hatten, Vertriebsdaten manuell zu pflegen. 
+              Jetzt sparen unsere Kunden durchschnittlich 20 Stunden pro Woche.&quot;
             </blockquote>
             <p className="text-sm font-space-grotesk font-semibold text-black">
               Intro KI Team

@@ -3,6 +3,7 @@ import { CookieConsent } from "@/components/ui/cookie-consent"
 import { AnimatedGridLines } from "@/components/ui/animated-grid-lines"
 import { HeroLayered } from "@/components/sections/hero-layered"
 import { ProductExplanation } from "@/components/sections/product-explanation"
+import { PositioningSection } from "@/components/sections/positioning-section"
 import { FeaturesBento } from "@/components/sections/features-bento"
 import { TrustSection } from "@/components/sections/trust-section"
 import { CTAFooter } from "@/components/sections/cta-footer"
@@ -19,6 +20,7 @@ export default function Home() {
         <main className="min-h-screen bg-white">
           <HeroLayered />
           <ProductExplanation />
+          <PositioningSection />
           <FeaturesBento />
           <TrustSection />
           <CTAFooter />

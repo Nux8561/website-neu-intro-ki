@@ -1,228 +1,269 @@
 "use client"
 
-import * as React from "react";
-import { motion } from "framer-motion";
-import { ArrowRight } from "iconoir-react";
-import { ENTERPRISE_SPRING } from "@/lib/animations";
-import { ExpensiveCard } from "@/components/ui/3d-card";
-import { ScrollReveal } from "@/components/ui/scroll-reveal";
-import { StaggerReveal } from "@/components/ui/stagger-reveal";
+import * as React from "react"
+import { motion, useScroll, useTransform } from "framer-motion"
+import { Phone, Mail, TrendingUp, CheckCircle2, Users, Zap } from "lucide-react"
+import { ENTERPRISE_SPRING } from "@/lib/animations"
+import Image from "next/image"
 
+/**
+ * Features Bento - PREMIUM VERSION
+ * 
+ * - Nicht gestapelt, sondern mit Abstand und Animationen
+ * - Team Page Style (Bilder statt 3D Icons)
+ * - Scroll-basierte Animationen wie ein Video
+ * - Features: Auto-Email, Task-Erstellung, Call-Hilfe, Top 20 Prioritäten, Team Management
+ */
 export function FeaturesBento() {
+  const sectionRef = React.useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  })
+
+  // Parallax für Hintergrund-Layers
+  const bgY = useTransform(scrollYProgress, [0, 1], [0, -100])
+
+  const features = [
+    {
+      id: 1,
+      title: "Top 20 Prioritäten",
+      description: "Die wichtigsten Calls zuerst. Nicht 100 zufällige.",
+      icon: TrendingUp,
+      bgColor: "bg-emerald-100",
+      iconColor: "text-emerald-600",
+      size: "large",
+      position: "top-left",
+      visual: "priorities",
+    },
+    {
+      id: 2,
+      title: "Automatische Email-Versendung",
+      description: "Email wird automatisch gesendet, wenn gesehen.",
+      icon: Mail,
+      bgColor: "bg-blue-100",
+      iconColor: "text-blue-600",
+      size: "medium",
+      position: "top-right",
+      visual: "email",
+    },
+    {
+      id: 3,
+      title: "Call-Hilfe",
+      description: "Die 20 wichtigsten Schritte am Anfang des Tages.",
+      icon: Phone,
+      bgColor: "bg-purple-100",
+      iconColor: "text-purple-600",
+      size: "medium",
+      position: "middle-left",
+      visual: "call",
+    },
+    {
+      id: 4,
+      title: "Task-Erstellung",
+      description: "Neue Tasks werden automatisch erstellt.",
+      icon: CheckCircle2,
+      bgColor: "bg-orange-100",
+      iconColor: "text-orange-600",
+      size: "medium",
+      position: "middle-right",
+      visual: "tasks",
+    },
+    {
+      id: 5,
+      title: "Pipeline Management",
+      description: "Deal Management mit Algorithmus-basierter Priorisierung.",
+      icon: TrendingUp,
+      bgColor: "bg-indigo-100",
+      iconColor: "text-indigo-600",
+      size: "large",
+      position: "bottom",
+      visual: "pipeline",
+    },
+    {
+      id: 6,
+      title: "Team Management",
+      description: "Übersicht über Team-Performance und Aktivitäten.",
+      icon: Users,
+      bgColor: "bg-pink-100",
+      iconColor: "text-pink-600",
+      size: "medium",
+      position: "bottom-right",
+      visual: "team",
+    },
+  ]
+
   return (
-    <section id="features" className="bg-white py-32 md:py-40 border-b-2 border-black">
-      <div className="mx-auto max-w-full px-0">
-        
-        {/* Section Header - Premium Style (Team Page Fonts) */}
-        <ScrollReveal direction="up" distance={50}>
-          <div className="relative mb-16 max-w-3xl mx-auto px-4 text-center">
-            <h2 className="text-4xl md:text-5xl font-jakarta font-semibold tracking-tight text-black mb-4">
-              Clarity für dich und dein Team
-            </h2>
-            <p className="text-lg text-black/70 leading-relaxed font-inter">
-              Die ersten 20 Calls sind immer die mit dem besten Potential.
-            </p>
-          </div>
-        </ScrollReveal>
+    <section
+      ref={sectionRef}
+      id="features"
+      className="relative bg-white py-32 md:py-40 overflow-hidden"
+    >
+      {/* Background Layers - Mehr Animation */}
+      <motion.div
+        style={{ y: bgY }}
+        className="absolute inset-0 pointer-events-none"
+      >
+        {/* Subtle Grid */}
+        <div
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px)
+            `,
+            backgroundSize: "60px 60px",
+          }}
+        />
+        {/* Floating Elements */}
+        {Array.from({ length: 8 }).map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full bg-black/5"
+            style={{
+              width: 100 + i * 30,
+              height: 100 + i * 30,
+              left: `${(i * 12) % 100}%`,
+              top: `${(i * 15) % 100}%`,
+            }}
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.05, 0.1, 0.05],
+            }}
+            transition={{
+              duration: 6 + i * 1.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.3,
+            }}
+          />
+        ))}
+      </motion.div>
 
-        {/* BENTO GRID LAYOUT - Industrial Tool Style (Schwarz-Weiß, brutal) */}
-        {/* Der Hintergrund ist schwarz, gap-px erzeugt messerscharfe 2px Linien */}
-        <StaggerReveal className="grid gap-[2px] bg-black md:grid-cols-3 md:grid-rows-3 h-auto md:h-[800px]">
-          
-          {/* CARD 1: CLARITY & FOCUS (Groß, Links Oben) - Industrial Tool Style */}
-          <ExpensiveCard 
-            intensity={8}
-            className="group relative flex flex-col justify-between overflow-hidden md:col-span-2 md:row-span-1 bg-white border-2 border-black"
-          >
-            <div className="p-10">
-              <h3 className="mb-4 text-3xl font-jakarta font-semibold tracking-tight text-black">Clarity & Focus</h3>
-              <p className="max-w-md text-black/80 text-base leading-relaxed mb-8 font-inter">
-                Top Opportunities heute. Was zu tun ist. Worauf du dich fokussieren musst.
-              </p>
-            </div>
+      <div className="relative z-10 mx-auto max-w-7xl px-4">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={ENTERPRISE_SPRING}
+          className="mb-20 text-center"
+        >
+          <h2 className="mb-4 text-4xl font-jakarta font-semibold tracking-tight text-black md:text-5xl">
+            Alles, was du brauchst
+          </h2>
+          <p className="mx-auto max-w-2xl text-lg text-black/80 font-inter">
+            Telefon-Cold-Acquisition + Pipeline Management + Algorithmus-basierte Automatisierung
+          </p>
+        </motion.div>
 
-            {/* Fake UI: Focus Dashboard - Industrial Tool Style */}
-            <div className="relative mt-auto h-48 w-full border-t-2 border-black bg-white p-6">
-              <div className="relative z-10 space-y-3">
-                {/* Top Opportunity */}
-                <div className="flex items-center justify-between rounded border-2 border-black bg-white p-4 shadow-[2px_2px_0_0_rgba(0,0,0,1)]">
-                  <div className="flex items-center gap-3 flex-1">
-                    <div className="flex h-10 w-10 items-center justify-center rounded border-2 border-black bg-white font-mono text-xs font-bold text-black">
-                      #1
+        {/* Features Grid - NICHT gestapelt, mit Abstand */}
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {features.map((feature, i) => (
+            <motion.div
+              key={feature.id}
+              initial={{ opacity: 0, y: 50, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ ...ENTERPRISE_SPRING, delay: i * 0.1 }}
+              whileHover={{ scale: 1.02, y: -8 }}
+              className={`group relative overflow-hidden rounded-2xl border border-black/10 bg-white p-8 shadow-sm transition-all hover:shadow-xl ${
+                feature.size === "large" ? "md:col-span-2 lg:col-span-1" : ""
+              }`}
+            >
+              {/* Icon - Team Page Style */}
+              <div className={`mb-6 flex h-16 w-16 items-center justify-center rounded-xl ${feature.bgColor} transition-transform group-hover:scale-110`}>
+                <feature.icon className={`h-8 w-8 ${feature.iconColor}`} />
+              </div>
+
+              {/* Content */}
+              <h3 className="mb-3 text-2xl font-jakarta font-semibold text-black">{feature.title}</h3>
+              <p className="mb-6 text-base text-black/80 font-inter leading-relaxed">{feature.description}</p>
+
+              {/* Visual Preview - Team Page Style (statt 3D Icons) */}
+              <div className="relative h-32 w-full overflow-hidden rounded-lg bg-gradient-to-br from-slate-50 to-white border border-black/5">
+                {/* Fake UI Preview basierend auf Feature */}
+                {feature.visual === "priorities" && (
+                  <div className="absolute inset-0 p-4">
+                    <div className="space-y-2">
+                      {[1, 2, 3].map((num) => (
+                        <motion.div
+                          key={num}
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: num * 0.1 }}
+                          className="flex items-center gap-2 rounded-md bg-white p-2 shadow-sm"
+                        >
+                          <div className="flex h-6 w-6 items-center justify-center rounded bg-black text-xs font-mono font-bold text-white">
+                            {num}
+                          </div>
+                          <div className="h-2 flex-1 rounded bg-slate-200" />
+                        </motion.div>
+                      ))}
                     </div>
-                    <div className="flex-1">
-                      <div className="text-xs font-jakarta font-semibold text-black mb-1">Acme Corp</div>
-                      <div className="text-[10px] text-black/80 font-mono">Strong Buy Signal • €50K Deal</div>
+                  </div>
+                )}
+                {feature.visual === "email" && (
+                  <div className="absolute inset-0 flex items-center justify-center p-4">
+                    <div className="w-full space-y-2">
+                      <div className="h-3 w-full rounded bg-blue-200" />
+                      <div className="h-3 w-3/4 rounded bg-blue-100" />
                     </div>
                   </div>
-                  <div className="text-xs font-mono font-bold text-black px-2 py-1 bg-black text-white uppercase tracking-wider">Priority</div>
-                </div>
-
-                {/* Today's Tasks */}
-                <div className="flex items-center gap-3 rounded border-2 border-black bg-white p-3 shadow-[2px_2px_0_0_rgba(0,0,0,1)]">
-                  <div className="h-2 w-2 rounded-full bg-black" />
-                  <div className="flex-1">
-                    <div className="text-xs font-jakarta font-semibold text-black">Call Acme Corp - Decision Maker</div>
-                    <div className="text-[10px] text-black/80 font-mono">Heute 14:00 • Warm Lead</div>
+                )}
+                {feature.visual === "call" && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-purple-100">
+                      <Phone className="h-6 w-6 text-purple-600" />
+                    </div>
                   </div>
-                </div>
-              </div>
-            </div>
-          </ExpensiveCard>
-
-          {/* CARD 2: PROJECT MANAGEMENT (Rechts Oben) - Industrial Tool Style */}
-          <ExpensiveCard 
-            intensity={6}
-            className="group relative overflow-hidden md:col-span-1 md:row-span-1 bg-white border-2 border-black"
-          >
-                    <div className="flex h-full flex-col justify-between p-8">
-                      <div>
-                        <h3 className="text-xl font-jakarta font-semibold tracking-tight text-black mb-3">Project Management</h3>
-                        <p className="text-sm text-black/80 mb-6 leading-relaxed font-inter">Goals, Sequences, Smart Automation.</p>
-                      </div>
-
-              {/* Fake UI: Sequence Flow - Industrial Tool Style */}
-              <div className="mt-auto space-y-2">
-                <div className="flex items-center gap-2 text-[10px] text-black font-mono">
-                  <div className="h-1.5 w-1.5 rounded-full bg-black" />
-                  Lead called → Not reached
-                </div>
-                <div className="flex items-center gap-2 text-[10px] text-black font-mono">
-                  <div className="h-1.5 w-1.5 rounded-full bg-black" />
-                  Email sent → Tracking link
-                </div>
-                <div className="flex items-center gap-2 text-[10px] text-black font-mono">
-                  <div className="h-1.5 w-1.5 rounded-full bg-black" />
-                  Link opened → Task created
-                </div>
-                <div className="mt-3 pt-3 border-t-2 border-black">
-                  <div className="text-[10px] font-bold text-black font-mono uppercase tracking-wider">Smart Automation</div>
-                  <div className="text-[9px] text-black/60 mt-1 font-mono">Automatisch • Kein manueller Input</div>
-                </div>
-              </div>
-            </div>
-          </ExpensiveCard>
-
-          {/* CARD 3: DEAL MANAGEMENT (Links Mitte) - Industrial Tool Style */}
-          <ExpensiveCard 
-            intensity={6}
-            className="group relative overflow-hidden md:col-span-1 md:row-span-1 bg-white border-2 border-black"
-          >
-                    <div className="flex h-full flex-col justify-between p-8">
-                      <div>
-                        <h3 className="text-xl font-jakarta font-semibold tracking-tight text-black mb-3">Deal Management</h3>
-                        <p className="text-sm text-black/80 mb-6 leading-relaxed font-inter">Next Steps für Bestandskunden finden.</p>
-                      </div>
-
-              {/* Fake UI: Deal Card - Industrial Tool Style */}
-              <div className="mt-auto rounded border-2 border-black bg-white p-4 shadow-[2px_2px_0_0_rgba(0,0,0,1)]">
-                <div className="flex justify-between items-start mb-3">
-                  <div className="h-2 w-20 bg-black rounded" />
-                  <div className="h-2 w-12 bg-black rounded" />
-                </div>
-                <div className="space-y-2">
-                  <div className="text-[10px] text-black/60 font-mono uppercase tracking-wider">Next Step</div>
-                  <div className="text-xs font-bold text-black font-space-grotesk">Follow-up Call • Q1 Review</div>
-                  <div className="text-[9px] text-black/60 mt-2 font-mono">Bestandskunde • 6 Monate inaktiv</div>
-                </div>
-              </div>
-            </div>
-          </ExpensiveCard>
-
-          {/* CARD 4: RESEARCH (Mitte) - Industrial Tool Style */}
-          <ExpensiveCard 
-            intensity={6}
-            className="group relative overflow-hidden md:col-span-1 md:row-span-1 bg-white border-2 border-black"
-          >
-                    <div className="flex h-full flex-col justify-between p-8">
-                      <div>
-                        <h3 className="text-xl font-bold tracking-tight text-black mb-3 font-space-grotesk">Research</h3>
-                        <p className="text-sm text-black/70 mb-6 leading-relaxed font-inter">Kontaktpersonen & Insider-Infos finden.</p>
-                      </div>
-
-              {/* Fake UI: Research Results - Industrial Tool Style */}
-              <div className="mt-auto space-y-2">
-                <div className="flex items-center gap-2 rounded border-2 border-black bg-white p-2 shadow-[1px_1px_0_0_rgba(0,0,0,1)]">
-                  <div className="h-6 w-6 rounded border-2 border-black bg-black" />
-                  <div className="flex-1">
-                    <div className="text-[10px] font-bold text-black font-space-grotesk">CEO gefunden</div>
-                    <div className="text-[9px] text-black/60 font-mono">LinkedIn • Email</div>
+                )}
+                {feature.visual === "tasks" && (
+                  <div className="absolute inset-0 p-4">
+                    <div className="space-y-2">
+                      {[1, 2].map((num) => (
+                        <div key={num} className="flex items-center gap-2">
+                          <div className="h-4 w-4 rounded border-2 border-black/20" />
+                          <div className="h-2 flex-1 rounded bg-slate-200" />
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-center gap-2 rounded border-2 border-black bg-white p-2 shadow-[1px_1px_0_0_rgba(0,0,0,1)]">
-                  <div className="h-6 w-6 rounded border-2 border-black bg-black" />
-                  <div className="flex-1">
-                    <div className="text-[10px] font-bold text-black font-space-grotesk">Funding News</div>
-                    <div className="text-[9px] text-black/60 font-mono">Series B • €5M</div>
+                )}
+                {feature.visual === "pipeline" && (
+                  <div className="absolute inset-0 p-4">
+                    <div className="flex h-full items-end justify-around gap-2">
+                      {[40, 60, 80, 50].map((height, i) => (
+                        <motion.div
+                          key={i}
+                          initial={{ height: 0 }}
+                          whileInView={{ height: `${height}%` }}
+                          viewport={{ once: true }}
+                          transition={{ delay: i * 0.1 }}
+                          className="w-full rounded-t bg-indigo-200"
+                        />
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
+                {feature.visual === "team" && (
+                  <div className="absolute inset-0 flex items-center justify-center p-4">
+                    <div className="flex -space-x-2">
+                      {[1, 2, 3].map((num) => (
+                        <div
+                          key={num}
+                          className="h-8 w-8 rounded-full border-2 border-white bg-slate-300"
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
-            </div>
-          </ExpensiveCard>
-
-          {/* CARD 5: DATA HUB (Rechts Mitte) - Industrial Tool Style */}
-          <ExpensiveCard 
-            intensity={6}
-            className="group relative overflow-hidden md:col-span-1 md:row-span-1 bg-white border-2 border-black"
-          >
-                    <div className="flex h-full flex-col justify-between p-8">
-                      <div>
-                        <h3 className="text-xl font-bold tracking-tight text-black mb-3 font-space-grotesk">Data Hub</h3>
-                        <p className="text-sm text-black/70 mb-6 leading-relaxed font-inter">Excel, PDFs, alles verstehen.</p>
-                      </div>
-
-              {/* Fake UI: Data Sources - Industrial Tool Style */}
-              <div className="mt-auto space-y-2">
-                <div className="flex items-center gap-2 text-[10px] text-black font-mono">
-                  <div className="h-4 w-4 rounded border-2 border-black bg-white" />
-                  <span>Leads.xlsx</span>
-                  <span className="ml-auto text-black/60">1,234 rows</span>
-                </div>
-                <div className="flex items-center gap-2 text-[10px] text-black font-mono">
-                  <div className="h-4 w-4 rounded border-2 border-black bg-white" />
-                  <span>Company_Data.pdf</span>
-                  <span className="ml-auto text-black/60">Processed</span>
-                </div>
-                <div className="mt-2 pt-2 border-t-2 border-black">
-                  <div className="text-[9px] text-black/60 font-mono uppercase tracking-wider">Smart Algorithm versteht alles</div>
-                </div>
-              </div>
-            </div>
-          </ExpensiveCard>
-
-          {/* CARD 6: AUTOMATION & CAMPAIGNS (Groß, Unten) - Industrial Tool Style */}
-          <ExpensiveCard 
-            intensity={8}
-            className="group relative flex flex-col justify-between overflow-hidden md:col-span-2 md:row-span-1 bg-white border-2 border-black"
-          >
-            <div className="p-10">
-              <h3 className="mb-4 text-3xl font-bold tracking-tight text-black font-space-grotesk">Email Campaigns & Lead Forms</h3>
-              <p className="max-w-md text-black/70 text-base leading-relaxed font-inter">
-                Erstelle Email-Kampagnen und Lead-Forms. Team-Management und ICP-Scoring für maximale Effizienz.
-              </p>
-            </div>
-
-            {/* Fake UI: Campaign Stats - Industrial Tool Style */}
-            <div className="relative mt-auto h-40 w-full border-t-2 border-black bg-white p-6">
-              <div className="relative z-10 grid grid-cols-3 gap-4">
-                <div className="text-center">
-                  <div className="text-lg font-bold text-black font-mono tabular-nums">24</div>
-                  <div className="text-[10px] text-black/60 font-mono uppercase tracking-wider mt-1">Active Campaigns</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-lg font-bold text-black font-mono tabular-nums">1,456</div>
-                  <div className="text-[10px] text-black/60 font-mono uppercase tracking-wider mt-1">Leads Generated</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-lg font-bold text-black font-mono tabular-nums">89%</div>
-                  <div className="text-[10px] text-black/60 font-mono uppercase tracking-wider mt-1">ICP Match Rate</div>
-                </div>
-              </div>
-            </div>
-          </ExpensiveCard>
-
-        </StaggerReveal>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
-  );
+  )
 }

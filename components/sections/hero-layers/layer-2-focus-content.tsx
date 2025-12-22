@@ -62,14 +62,14 @@ export function Layer2FocusContent() {
           transition={{ ...snappySpring, delay: 0.1 }}
           className="mb-8 flex justify-center"
         >
-          <div className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/90 backdrop-blur-md px-4 py-2 text-xs font-space-grotesk font-medium text-black/80 shadow-lg">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-xl px-4 py-2 text-xs font-space-grotesk font-medium text-white/90 shadow-lg">
             <motion.span
               className="relative flex h-2 w-2"
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#10B981] opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-[#10B981]" />
             </motion.span>
             Live • Intelligence Engine v2.0
           </div>
@@ -79,7 +79,7 @@ export function Layer2FocusContent() {
         <motion.h1
           initial="hidden"
           animate="visible"
-          className="mb-8 text-[32px] leading-[40px] -tracking-[0.02em] font-medium text-black sm:text-[48px] sm:leading-[56px] md:text-[64px] md:leading-[72px] lg:text-[80px] lg:leading-[88px] xl:text-[96px] xl:leading-[104px] font-space-grotesk"
+          className="mb-8 text-[32px] leading-[40px] -tracking-[0.03em] font-medium text-white sm:text-[48px] sm:leading-[56px] md:text-[64px] md:leading-[72px] lg:text-[80px] lg:leading-[88px] xl:text-[96px] xl:leading-[104px] font-space-grotesk"
         >
           {headline.split("").map((char, i) => (
             <motion.span
@@ -102,7 +102,7 @@ export function Layer2FocusContent() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...snappySpring, delay: 0.8 }}
-            className="block mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-black/70 font-space-grotesk font-medium -tracking-[0.01em]"
+            className="block mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white/70 font-space-grotesk font-medium -tracking-[0.01em]"
           >
             {subline}
           </motion.span>
@@ -113,7 +113,7 @@ export function Layer2FocusContent() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...snappySpring, delay: 0.9 }}
-          className="mx-auto mb-8 max-w-2xl text-lg md:text-xl text-black/80 leading-relaxed font-inter"
+          className="mx-auto mb-8 max-w-2xl text-lg md:text-xl text-white/80 leading-relaxed font-inter"
         >
           {subline}
         </motion.p>
@@ -126,9 +126,9 @@ export function Layer2FocusContent() {
           className="flex flex-wrap justify-center gap-3 mb-12"
         >
           {[
-            { label: "60 Sek. Research", icon: Clock },
-            { label: "3x mehr Deals", icon: TrendingUp },
-            { label: "100% DSGVO", icon: CheckCircle2 },
+            { label: "60 Sek. Research", icon: Clock, color: "text-[#3B82F6]" },
+            { label: "3x mehr Deals", icon: TrendingUp, color: "text-[#10B981]" },
+            { label: "100% DSGVO", icon: CheckCircle2, color: "text-white/90" },
           ].map((badge, i) => {
             const Icon = badge.icon
             return (
@@ -137,9 +137,9 @@ export function Layer2FocusContent() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ ...snappySpring, delay: 1.1 + i * 0.1 }}
-                className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/90 backdrop-blur-md px-4 py-2 text-sm font-space-grotesk font-medium text-black/80 shadow-sm"
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-xl px-4 py-2 text-sm font-space-grotesk font-medium text-white/90 shadow-sm"
               >
-                <Icon className="h-4 w-4" />
+                <Icon className={`h-4 w-4 ${badge.color || "text-white/90"}`} />
                 <span>{badge.label}</span>
               </motion.div>
             )
@@ -156,7 +156,7 @@ export function Layer2FocusContent() {
           <Link href="/demo" className="group">
             <MagneticButton
               variant="primary"
-              className="bg-black text-white shadow-[8px_8px_0_0_rgba(0,0,0,0.2)] hover:shadow-[12px_12px_0_0_rgba(0,0,0,0.2)]"
+              className="bg-white/10 backdrop-blur-xl border border-white/20 text-white hover:bg-white/20 shadow-[0_8px_32px_rgba(59,130,246,0.2)] hover:shadow-[0_12px_40px_rgba(59,130,246,0.3)] transition-all"
             >
               Demo buchen
               <ArrowRight className="ml-3 h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -174,7 +174,7 @@ export function Layer2FocusContent() {
           >
             <MagneticButton
               variant="secondary"
-              className="border-2 border-black bg-white text-black hover:bg-black hover:text-white shadow-[4px_4px_0_0_rgba(0,0,0,1)]"
+              className="border border-white/20 bg-white/5 backdrop-blur-xl text-white hover:bg-white/10 shadow-[0_4px_16px_rgba(255,255,255,0.1)] hover:shadow-[0_8px_24px_rgba(255,255,255,0.15)] transition-all"
             >
               Wie es funktioniert
             </MagneticButton>
@@ -190,23 +190,23 @@ export function Layer2FocusContent() {
           transition={{ duration: 1.2, delay: 1.2, ...snappySpring }}
           className="relative mx-auto w-full max-w-[90vw] xl:max-w-[1400px]"
         >
-          <div className="overflow-hidden rounded-3xl border-2 border-black/20 bg-white/50 backdrop-blur-xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] min-h-[60vh]">
-            <div className="bg-gradient-to-br from-slate-50 via-white to-slate-50 min-h-[60vh] flex">
+          <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] min-h-[60vh]">
+            <div className="bg-gradient-to-br from-[#0B0E14] via-[#0F1419] to-[#0B0E14] min-h-[60vh] flex">
               {/* SIDEBAR NAVIGATION */}
               <motion.aside
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ ...snappySpring, delay: 1.4 }}
-                className="w-64 border-r border-black/10 bg-white/50 backdrop-blur-sm p-4 flex flex-col"
+                className="w-64 border-r border-white/10 bg-white/5 backdrop-blur-xl p-4 flex flex-col"
               >
                 <div className="mb-6">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-black to-slate-800 shadow-lg">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#3B82F6] to-[#2563EB] shadow-lg">
                       <Zap className="h-5 w-5 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-sm font-space-grotesk font-semibold text-black">Intro KI</h3>
-                      <p className="text-xs text-black/60 font-inter">Dashboard</p>
+                      <h3 className="text-sm font-space-grotesk font-semibold text-white">Intro KI</h3>
+                      <p className="text-xs text-white/60 font-inter">Dashboard</p>
                     </div>
                   </div>
                 </div>
@@ -227,8 +227,8 @@ export function Layer2FocusContent() {
                         transition={{ ...snappySpring, delay: 1.5 + i * 0.1 }}
                         className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-inter transition-all mb-1 ${
                           item.active
-                            ? "bg-black text-white"
-                            : "text-black/70 hover:text-black hover:bg-black/5"
+                            ? "bg-white/10 text-white border border-white/20"
+                            : "text-white/70 hover:text-white hover:bg-white/5"
                         }`}
                         whileHover={{ scale: 1.02, x: 2 }}
                         whileTap={{ scale: 0.98 }}
@@ -238,7 +238,7 @@ export function Layer2FocusContent() {
                           <span>{item.label}</span>
                         </div>
                         {item.badge && (
-                          <span className="text-xs font-mono font-bold bg-black/10 px-2 py-0.5 rounded">
+                          <span className="text-xs font-mono font-bold bg-white/10 text-white px-2 py-0.5 rounded">
                             {item.badge}
                           </span>
                         )}
@@ -247,13 +247,13 @@ export function Layer2FocusContent() {
                   })}
                 </nav>
 
-                <div className="mt-auto pt-4 border-t border-black/10">
-                  <div className="px-3 py-2 rounded-lg bg-emerald-50 border border-emerald-200/50">
+                <div className="mt-auto pt-4 border-t border-white/10">
+                  <div className="px-3 py-2 rounded-lg bg-[#10B981]/10 border border-[#10B981]/30">
                     <div className="flex items-center gap-2 mb-1">
-                      <Activity className="h-3.5 w-3.5 text-emerald-600" />
-                      <span className="text-xs font-space-grotesk font-semibold text-emerald-700">AI aktiv</span>
+                      <Activity className="h-3.5 w-3.5 text-[#10B981]" />
+                      <span className="text-xs font-space-grotesk font-semibold text-[#10B981]">AI aktiv</span>
                     </div>
-                    <p className="text-xs text-emerald-600/80 font-inter">3 Researchs laufen</p>
+                    <p className="text-xs text-[#10B981]/80 font-inter">3 Researchs laufen</p>
                   </div>
                 </div>
               </motion.aside>
@@ -266,11 +266,11 @@ export function Layer2FocusContent() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="absolute inset-0 z-50 flex items-center justify-center bg-black/5 backdrop-blur-sm"
+                    className="absolute inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-sm"
                   >
-                    <div className="bg-white rounded-xl border-2 border-black/20 p-8 shadow-2xl">
+                    <div className="bg-white/10 backdrop-blur-xl rounded-xl border border-white/20 p-8 shadow-2xl">
                       <div className="flex items-center gap-3 mb-4">
-                        <div className="h-6 w-6 rounded bg-black flex items-center justify-center">
+                        <div className="h-6 w-6 rounded bg-[#3B82F6] flex items-center justify-center">
                           <motion.div
                             animate={{ opacity: [1, 0, 1] }}
                             transition={{ duration: 0.8, repeat: Infinity }}
@@ -281,12 +281,12 @@ export function Layer2FocusContent() {
                           initial={{ width: 0 }}
                           animate={{ width: "auto" }}
                           transition={{ duration: 1.5, ease: "easeInOut" }}
-                          className="text-lg font-mono font-bold text-black overflow-hidden"
+                          className="text-lg font-mono font-bold text-white overflow-hidden"
                         >
                           Acme Corp
                         </motion.span>
                       </div>
-                      <p className="text-sm text-black/60 font-inter">Research wird gestartet...</p>
+                      <p className="text-sm text-white/60 font-inter">Research wird gestartet...</p>
                     </div>
                   </motion.div>
                 )}
@@ -301,9 +301,9 @@ export function Layer2FocusContent() {
                     <motion.div
                       animate={{ scale: [1, 1.1, 1] }}
                       transition={{ duration: 1, repeat: Infinity }}
-                      className="rounded-lg bg-emerald-500 px-4 py-2 shadow-lg"
+                      className="rounded-lg bg-[#10B981]/20 border border-[#10B981]/30 backdrop-blur-xl px-4 py-2 shadow-lg"
                     >
-                      <span className="text-xs font-space-grotesk font-semibold text-white">
+                      <span className="text-xs font-space-grotesk font-semibold text-[#10B981]">
                         {animationPhase === 1 ? "Daten werden geladen..." : "6 Deals gefunden"}
                       </span>
                     </motion.div>
@@ -316,13 +316,13 @@ export function Layer2FocusContent() {
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
-                    className="absolute top-20 right-4 z-40 bg-white rounded-xl border-2 border-blue-200 p-4 shadow-xl"
+                    className="absolute top-20 right-4 z-40 bg-white/10 backdrop-blur-xl rounded-xl border border-[#3B82F6]/30 p-4 shadow-xl"
                   >
                     <div className="flex items-center gap-3">
-                      <Mail className="h-5 w-5 text-blue-600" />
+                      <Mail className="h-5 w-5 text-[#3B82F6]" />
                       <div>
-                        <p className="text-sm font-space-grotesk font-semibold text-black">Email gesendet</p>
-                        <p className="text-xs text-black/60 font-inter">An Acme Corp</p>
+                        <p className="text-sm font-space-grotesk font-semibold text-white">Email gesendet</p>
+                        <p className="text-xs text-white/60 font-inter">An Acme Corp</p>
                       </div>
                     </div>
                   </motion.div>
@@ -351,20 +351,20 @@ export function Layer2FocusContent() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ ...snappySpring, delay: 1.5 }}
-                  className="border-b border-black/10 bg-white/50 backdrop-blur-sm p-6"
+                  className="border-b border-white/10 bg-white/5 backdrop-blur-xl p-6"
                 >
                   <div className="flex items-center justify-between mb-4">
                     <div>
-                      <h3 className="text-xl font-space-grotesk font-semibold text-black mb-1">Top Prioritäten</h3>
-                      <p className="text-sm text-black/60 font-inter">6 Deals brauchen deine Aufmerksamkeit</p>
+                      <h3 className="text-xl font-space-grotesk font-semibold text-white mb-1">Top Prioritäten</h3>
+                      <p className="text-sm text-white/60 font-inter">6 Deals brauchen deine Aufmerksamkeit</p>
                     </div>
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ ...snappySpring, delay: 1.6 }}
-                      className="rounded-full bg-emerald-100 px-4 py-2 shadow-sm"
+                      className="rounded-full bg-[#10B981]/20 border border-[#10B981]/30 px-4 py-2 shadow-sm"
                     >
-                      <span className="text-sm font-space-grotesk font-semibold text-emerald-700">6 Neu</span>
+                      <span className="text-sm font-space-grotesk font-semibold text-[#10B981]">6 Neu</span>
                     </motion.div>
                   </div>
 
@@ -380,8 +380,8 @@ export function Layer2FocusContent() {
                         onClick={() => setActiveTab(tab.id)}
                         className={`px-4 py-2 rounded-lg text-sm font-inter transition-all ${
                           activeTab === tab.id
-                            ? "bg-black text-white"
-                            : "text-black/70 hover:text-black hover:bg-black/5"
+                            ? "bg-white/10 text-white border border-white/20"
+                            : "text-white/70 hover:text-white hover:bg-white/5"
                         }`}
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
@@ -410,36 +410,36 @@ export function Layer2FocusContent() {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         transition={{ ...snappySpring, delay: 1.7 + i * 0.1 }}
                         whileHover={{ scale: 1.02, y: -4 }}
-                        className="group rounded-xl border border-white/60 bg-white/50 backdrop-blur-xl p-6 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.05)] transition-all hover:shadow-[0_25px_50px_-10px_rgba(0,0,0,0.15)] cursor-pointer"
+                        className="group rounded-xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] transition-all hover:shadow-[0_25px_50px_-10px_rgba(59,130,246,0.2)] hover:border-white/20 cursor-pointer"
                       >
                         {/* Priority Badge & Header */}
                         <div className="mb-4 flex items-start justify-between">
                           <div className="flex items-center gap-3 flex-1">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-black text-xs font-mono font-bold text-white tabular-nums">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#3B82F6] text-xs font-mono font-bold text-white tabular-nums">
                               #{deal.priority}
                             </div>
                             <div className="flex-1">
-                              <h4 className="text-base font-space-grotesk font-semibold text-black mb-1">{deal.name}</h4>
-                              <p className="text-xs text-black/60 font-inter">{deal.signal}</p>
+                              <h4 className="text-base font-space-grotesk font-semibold text-white mb-1">{deal.name}</h4>
+                              <p className="text-xs text-white/60 font-inter">{deal.signal}</p>
                             </div>
                           </div>
-                          <div className="rounded-full bg-black/5 px-3 py-1.5">
-                            <span className="text-sm font-mono font-bold text-black tabular-nums">{deal.value}</span>
+                          <div className="rounded-full bg-white/10 border border-white/20 px-3 py-1.5">
+                            <span className="text-sm font-mono font-bold text-white tabular-nums">{deal.value}</span>
                           </div>
                         </div>
 
                         {/* Progress Bar */}
                         <div className="mb-4">
                           <div className="flex items-center justify-between mb-1">
-                            <span className="text-xs text-black/60 font-inter">Fortschritt</span>
-                            <span className="text-xs font-mono font-bold text-black tabular-nums">{deal.progress}%</span>
+                            <span className="text-xs text-white/60 font-inter">Fortschritt</span>
+                            <span className="text-xs font-mono font-bold text-white tabular-nums">{deal.progress}%</span>
                           </div>
-                          <div className="h-2 rounded-full bg-black/5 overflow-hidden">
+                          <div className="h-2 rounded-full bg-white/10 overflow-hidden">
                             <motion.div
                               initial={{ width: 0 }}
                               animate={{ width: `${deal.progress}%` }}
                               transition={{ ...snappySpring, delay: 1.8 + i * 0.1 }}
-                              className="h-full bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-full"
+                              className="h-full bg-gradient-to-r from-[#10B981] to-[#059669] rounded-full"
                             />
                           </div>
                         </div>
@@ -449,7 +449,7 @@ export function Layer2FocusContent() {
                           {deal.tags.map((tag, idx) => (
                             <span
                               key={idx}
-                              className="px-2 py-1 rounded-md bg-black/5 text-xs font-inter text-black/70"
+                              className="px-2 py-1 rounded-md bg-white/10 border border-white/20 text-xs font-inter text-white/70"
                             >
                               {tag}
                             </span>
@@ -457,20 +457,20 @@ export function Layer2FocusContent() {
                         </div>
 
                         {/* AI Insight */}
-                        <div className="mb-4 p-3 rounded-lg bg-blue-50 border border-blue-200/50">
+                        <div className="mb-4 p-3 rounded-lg bg-[#3B82F6]/10 border border-[#3B82F6]/30">
                           <div className="flex items-start gap-2">
-                            <Sparkles className="h-3.5 w-3.5 text-blue-600 mt-0.5 flex-shrink-0" />
-                            <p className="text-xs text-blue-700 font-inter">{deal.aiInsight}</p>
+                            <Sparkles className="h-3.5 w-3.5 text-[#3B82F6] mt-0.5 flex-shrink-0" />
+                            <p className="text-xs text-[#3B82F6] font-inter">{deal.aiInsight}</p>
                           </div>
                         </div>
 
                         {/* Footer */}
-                        <div className="flex items-center justify-between pt-3 border-t border-black/10">
-                          <div className="flex items-center gap-2 text-xs text-black/60">
+                        <div className="flex items-center justify-between pt-3 border-t border-white/10">
+                          <div className="flex items-center gap-2 text-xs text-white/60">
                             <Search className="h-3.5 w-3.5" />
                             <span className="font-inter">Research vor {deal.time}</span>
                           </div>
-                          <Clock className="h-3.5 w-3.5 text-black/40" />
+                          <Clock className="h-3.5 w-3.5 text-white/40" />
                         </div>
                       </motion.div>
                     ))}
@@ -482,25 +482,25 @@ export function Layer2FocusContent() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ ...snappySpring, delay: 2.2 }}
-                  className="border-t border-black/10 bg-white/50 backdrop-blur-sm px-6 py-3 flex items-center justify-between"
+                  className="border-t border-white/10 bg-white/5 backdrop-blur-xl px-6 py-3 flex items-center justify-between"
                 >
                   <div className="flex items-center gap-6">
                     <div className="flex items-center gap-2">
-                      <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                      <span className="text-xs text-black/60 font-inter">Last Sync: vor 2 Min</span>
+                      <div className="h-2 w-2 rounded-full bg-[#10B981] animate-pulse" />
+                      <span className="text-xs text-white/60 font-inter">Last Sync: vor 2 Min</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Users className="h-3.5 w-3.5 text-black/40" />
-                      <span className="text-xs text-black/60 font-inter">3 aktive Nutzer</span>
+                      <Users className="h-3.5 w-3.5 text-white/40" />
+                      <span className="text-xs text-white/60 font-inter">3 aktive Nutzer</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Activity className="h-3.5 w-3.5 text-blue-500" />
-                      <span className="text-xs text-black/60 font-inter">System: Online</span>
+                      <Activity className="h-3.5 w-3.5 text-[#3B82F6]" />
+                      <span className="text-xs text-white/60 font-inter">System: Online</span>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Target className="h-3.5 w-3.5 text-black/40" />
-                    <span className="text-xs font-mono font-bold text-black tabular-nums">89 Deals aktiv</span>
+                    <Target className="h-3.5 w-3.5 text-white/40" />
+                    <span className="text-xs font-mono font-bold text-white tabular-nums">89 Deals aktiv</span>
                   </div>
                 </motion.div>
               </div>
@@ -510,9 +510,9 @@ export function Layer2FocusContent() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ ...snappySpring, delay: 1.6 }}
-                className="w-80 border-l border-black/10 bg-white/50 backdrop-blur-sm p-6"
+                className="w-80 border-l border-white/10 bg-white/5 backdrop-blur-xl p-6"
               >
-                <h4 className="text-sm font-space-grotesk font-semibold text-black mb-4">Live Metrics</h4>
+                <h4 className="text-sm font-space-grotesk font-semibold text-white mb-4">Live Metrics</h4>
                 
                 <div className="space-y-4">
                   {[
@@ -528,17 +528,27 @@ export function Layer2FocusContent() {
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ ...snappySpring, delay: 1.7 + i * 0.1 }}
-                        className="p-4 rounded-xl border border-black/10 bg-white/80 backdrop-blur-sm"
+                        className="p-4 rounded-xl border border-white/10 bg-white/5 backdrop-blur-xl"
                       >
                         <div className="flex items-center justify-between mb-2">
                           <div className="flex items-center gap-2">
-                            <div className={`p-2 rounded-lg bg-${metric.color}-100`}>
-                              <Icon className={`h-4 w-4 text-${metric.color}-600`} />
+                            <div className={`p-2 rounded-lg ${
+                              metric.color === "emerald" ? "bg-[#10B981]/20" :
+                              metric.color === "blue" ? "bg-[#3B82F6]/20" :
+                              metric.color === "purple" ? "bg-purple-500/20" :
+                              "bg-orange-500/20"
+                            }`}>
+                              <Icon className={`h-4 w-4 ${
+                                metric.color === "emerald" ? "text-[#10B981]" :
+                                metric.color === "blue" ? "text-[#3B82F6]" :
+                                metric.color === "purple" ? "text-purple-400" :
+                                "text-orange-400"
+                              }`} />
                             </div>
-                            <span className="text-xs text-black/60 font-inter">{metric.label}</span>
+                            <span className="text-xs text-white/60 font-inter">{metric.label}</span>
                           </div>
                         </div>
-                        <div className="text-2xl font-space-grotesk font-bold text-black tabular-nums">
+                        <div className="text-2xl font-space-grotesk font-bold text-white tabular-nums">
                           <NumberTicker value={metric.value} delay={2000 + i * 200} />
                         </div>
                       </motion.div>
@@ -547,8 +557,8 @@ export function Layer2FocusContent() {
                 </div>
 
                 {/* AI Activity Feed */}
-                <div className="mt-6 pt-6 border-t border-black/10">
-                  <h5 className="text-xs font-space-grotesk font-semibold text-black mb-3">AI Activity</h5>
+                <div className="mt-6 pt-6 border-t border-white/10">
+                  <h5 className="text-xs font-space-grotesk font-semibold text-white mb-3">AI Activity</h5>
                   <div className="space-y-2">
                     {[
                       { text: "Research für Acme Corp abgeschlossen", time: "2 Min" },
@@ -560,10 +570,10 @@ export function Layer2FocusContent() {
                         initial={{ opacity: 0, x: 10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ ...snappySpring, delay: 2.0 + i * 0.1 }}
-                        className="p-2 rounded-lg bg-black/5 text-xs font-inter text-black/70"
+                        className="p-2 rounded-lg bg-white/5 border border-white/10 text-xs font-inter text-white/70"
                       >
                         <p>{activity.text}</p>
-                        <p className="text-black/40 mt-1">vor {activity.time}</p>
+                        <p className="text-white/40 mt-1">vor {activity.time}</p>
                       </motion.div>
                     ))}
                   </div>
@@ -582,14 +592,14 @@ export function Layer2FocusContent() {
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className="w-14 h-14 rounded-full bg-black text-white shadow-lg flex items-center justify-center"
+              className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white shadow-lg flex items-center justify-center hover:bg-white/20 transition-all"
             >
               <Phone className="h-5 w-5" />
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className="w-14 h-14 rounded-full bg-emerald-500 text-white shadow-lg flex items-center justify-center"
+              className="w-14 h-14 rounded-full bg-[#10B981]/20 backdrop-blur-xl border border-[#10B981]/30 text-[#10B981] shadow-lg flex items-center justify-center hover:bg-[#10B981]/30 transition-all"
             >
               <Mail className="h-5 w-5" />
             </motion.button>

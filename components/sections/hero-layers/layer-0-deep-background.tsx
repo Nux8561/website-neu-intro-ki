@@ -100,7 +100,7 @@ export function Layer0DeepBackground() {
           {Array.from({ length: 20 }).map((_, i) => (
             <motion.div
               key={i}
-              className="absolute h-1 w-1 rounded-full bg-white/20"
+              className="absolute h-1 w-1 rounded-full bg-white/30"
               style={{
                 left: `${(i * 7) % 100}%`,
                 top: `${(i * 13) % 100}%`,

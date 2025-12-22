@@ -53,12 +53,12 @@ const FOOTER_LINKS = [
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-slate-100 bg-white pt-16 pb-12">
+    <footer className="border-t border-white/10 bg-[#0B0E14] pt-16 pb-12">
       <div className="mx-auto max-w-[1200px] px-4">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-7">
           {/* LOGO & SOCIALS (Links, breiter) */}
           <div className="col-span-2">
-            <Link href="/" className="mb-6 flex items-center gap-2 text-slate-900">
+            <Link href="/" className="mb-6 flex items-center gap-2 text-white">
               <Image 
                 src="/images/app logo.png" 
                 alt="Intro KI Logo" 
@@ -68,18 +68,18 @@ export function SiteFooter() {
               />
               <span className="text-sm font-medium">Intro KI</span>
             </Link>
-            <p className="mb-6 max-w-xs text-sm leading-relaxed text-slate-500">
+            <p className="mb-6 max-w-xs text-sm leading-relaxed text-white/60">
               Das CRM, das mitdenkt. Entwickelt für moderne Vertriebsteams, die mehr Zeit für Kunden und
               weniger für Datenpflege haben wollen.
             </p>
-            <div className="flex gap-4 text-slate-400">
-              <Link href="#" className="transition-colors hover:text-slate-600">
+            <div className="flex gap-4 text-white/60">
+              <Link href="#" className="transition-colors hover:text-white">
                 <Twitter className="h-5 w-5" />
               </Link>
-              <Link href="#" className="transition-colors hover:text-slate-600">
+              <Link href="#" className="transition-colors hover:text-white">
                 <Github className="h-5 w-5" />
               </Link>
-              <Link href="#" className="transition-colors hover:text-slate-600">
+              <Link href="#" className="transition-colors hover:text-white">
                 <Linkedin className="h-5 w-5" />
               </Link>
             </div>
@@ -88,11 +88,11 @@ export function SiteFooter() {
           {/* LINK COLUMNS */}
           {FOOTER_LINKS.map((group) => (
             <div key={group.title}>
-              <h3 className="mb-4 text-sm font-semibold text-slate-900">{group.title}</h3>
-              <ul className="space-y-3 text-sm text-slate-500">
+              <h3 className="mb-4 text-sm font-semibold text-white">{group.title}</h3>
+              <ul className="space-y-3 text-sm text-white/60">
                 {group.links.map((link) => (
                   <li key={link.label}>
-                    <Link href={link.href} className="transition-colors hover:text-slate-900">
+                    <Link href={link.href} className="transition-colors hover:text-white">
                       {link.label}
                     </Link>
                   </li>
@@ -103,11 +103,11 @@ export function SiteFooter() {
         </div>
 
         {/* COPYRIGHT LINE */}
-        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-slate-100 pt-8 text-xs text-slate-400 md:flex-row">
+        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/60 md:flex-row">
           <p>© 2024 Intro KI GmbH. Alle Rechte vorbehalten.</p>
           <div className="flex gap-8">
             <span className="flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-emerald-500" />
+              <span className="h-2 w-2 rounded-full bg-[#10B981]" />
               All Systems Operational
             </span>
             <span>Made in Germany</span>

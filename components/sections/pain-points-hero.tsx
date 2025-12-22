@@ -211,7 +211,7 @@ export function PainPointsHero() {
     <section
       ref={sectionRef}
       id="pain-points"
-      className="relative bg-white py-24 md:py-32 overflow-hidden border-b-2 border-black"
+      className="relative bg-[#0B0E14] py-24 md:py-32 overflow-hidden border-b border-white/10"
     >
       <div className="relative z-10 mx-auto max-w-7xl px-4">
         {/* Header */}
@@ -221,10 +221,10 @@ export function PainPointsHero() {
           transition={{ ...snappySpring, delay: 0.3 }}
           className="mb-16 text-center"
         >
-          <h2 className="mb-6 text-[32px] leading-[40px] -tracking-[0.02em] font-medium text-black md:text-[48px] md:leading-[56px] lg:text-[64px] lg:leading-[72px] font-space-grotesk">
+          <h2 className="mb-6 text-[32px] leading-[40px] -tracking-[0.03em] font-medium text-white md:text-[48px] md:leading-[56px] lg:text-[64px] lg:leading-[72px] font-space-grotesk">
             Die größten Pain Points. Gelöst.
           </h2>
-          <p className="mx-auto max-w-2xl text-xl text-black/80 font-inter leading-relaxed">
+          <p className="mx-auto max-w-2xl text-xl text-white/80 font-inter leading-relaxed">
             Wir kennen die Probleme. Wir haben die Lösungen.
           </p>
         </motion.div>
@@ -242,25 +242,25 @@ export function PainPointsHero() {
               variants={snappyStaggerItem}
               onMouseEnter={() => setActivePainPoint(painPoint.id)}
               onMouseLeave={() => setActivePainPoint(null)}
-              className="group relative overflow-hidden rounded-2xl border-2 border-black/10 bg-white/50 backdrop-blur-xl p-8 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.05)] transition-all hover:shadow-[0_25px_50px_-10px_rgba(0,0,0,0.15)] cursor-pointer"
+              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] transition-all hover:shadow-[0_25px_50px_-10px_rgba(59,130,246,0.2)] hover:border-white/20 cursor-pointer"
             >
               {/* Problem Badge */}
               <div className="mb-4 flex items-center gap-2">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-red-100">
-                  <AlertCircle className="h-4 w-4 text-red-600" />
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-red-500/20 border border-red-500/30">
+                  <AlertCircle className="h-4 w-4 text-red-400" />
                 </div>
-                <span className="px-2 py-1 rounded-md bg-red-100 text-xs font-inter font-medium text-red-700">
+                <span className="px-2 py-1 rounded-md bg-red-500/20 border border-red-500/30 text-xs font-inter font-medium text-red-400">
                   Problem
                 </span>
               </div>
 
               {/* Problem Text */}
-              <h3 className="mb-4 text-2xl font-space-grotesk font-semibold text-black">
+              <h3 className="mb-4 text-2xl font-space-grotesk font-semibold text-white">
                 {painPoint.problem}
               </h3>
 
               {/* Before/After Visual - Premium Smooth Transition */}
-              <div className="relative h-64 mb-6 overflow-hidden rounded-xl border border-black/5">
+              <div className="relative h-64 mb-6 overflow-hidden rounded-xl border border-white/10">
                 <motion.div
                   initial={false}
                   animate={{
@@ -299,12 +299,12 @@ export function PainPointsHero() {
 
               {/* Solution */}
               <div className="flex items-start gap-2">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-100 flex-shrink-0">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#10B981]/20 border border-[#10B981]/30 flex-shrink-0">
+                  <CheckCircle2 className="h-4 w-4 text-[#10B981]" />
                 </div>
                 <div>
-                  <span className="block mb-1 text-xs font-inter font-medium text-emerald-700">Lösung</span>
-                  <p className="text-base text-black/80 font-inter leading-relaxed">{painPoint.solution}</p>
+                  <span className="block mb-1 text-xs font-inter font-medium text-[#10B981]">Lösung</span>
+                  <p className="text-base text-white/80 font-inter leading-relaxed">{painPoint.solution}</p>
                 </div>
               </div>
 
@@ -316,7 +316,7 @@ export function PainPointsHero() {
                 transition={{ duration: 1.5, repeat: Infinity }}
                 className="absolute bottom-6 right-6"
               >
-                <ArrowRight className="h-5 w-5 text-black/40" />
+                <ArrowRight className="h-5 w-5 text-white/40" />
               </motion.div>
             </motion.div>
           ))}

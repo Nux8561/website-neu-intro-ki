@@ -8,7 +8,7 @@ import { Database, Clock, Users, TrendingUp, Shield, Zap, MapPin, Server } from 
 
 export function TrustSection() {
   return (
-    <section id="trust" className="border-b-2 border-black bg-white py-24 md:py-32">
+    <section id="trust" className="border-b border-white/10 bg-[#0B0E14] py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-4 relative z-10">
         
         {/* Headline - Premium Style */}
@@ -19,10 +19,10 @@ export function TrustSection() {
           transition={ENTERPRISE_SPRING}
           className="mb-16 text-center"
         >
-          <h2 className="mb-4 text-4xl font-space-grotesk font-bold -tracking-[0.02em] text-black md:text-5xl">
+          <h2 className="mb-4 text-4xl font-space-grotesk font-bold -tracking-[0.03em] text-white md:text-5xl">
             Vertrauen durch Zahlen
           </h2>
-          <p className="text-lg text-black/80 font-inter">
+          <p className="text-lg text-white/80 font-inter">
             Intro KI im Einsatz: Echte Metriken, echte Ergebnisse
           </p>
         </motion.div>
@@ -96,12 +96,12 @@ export function TrustSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ ...ENTERPRISE_SPRING, delay: index * 0.1 }}
-                className="p-6 rounded-2xl border border-black/10 bg-white/50 backdrop-blur-xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_25px_50px_-10px_rgba(0,0,0,0.15)] transition-all"
+                className="p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_50px_-10px_rgba(59,130,246,0.2)] hover:border-white/20 transition-all"
               >
-                <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${colors.bg} mb-4`}>
-                  <Icon className={`h-6 w-6 ${colors.text}`} />
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 border border-white/20 mb-4">
+                  <Icon className="h-6 w-6 text-white" />
                 </div>
-                <div className="text-4xl font-space-grotesk font-bold text-black mb-2 tabular-nums">
+                <div className="text-4xl font-space-grotesk font-bold text-white mb-2 tabular-nums">
                   {metric.value < 1000 ? (
                     <>
                       {metric.value}
@@ -112,10 +112,10 @@ export function TrustSection() {
                     <NumberTicker value={metric.value} delay={1000 + index * 200} />
                   )}
                 </div>
-                <h3 className="text-lg font-space-grotesk font-semibold text-black mb-1">
+                <h3 className="text-lg font-space-grotesk font-semibold text-white mb-1">
                   {metric.label}
                 </h3>
-                <p className="text-sm text-black/60 font-inter">
+                <p className="text-sm text-white/60 font-inter">
                   {metric.sublabel}
                 </p>
               </motion.div>
@@ -131,19 +131,19 @@ export function TrustSection() {
           transition={{ ...ENTERPRISE_SPRING, delay: 0.2 }}
           className="mb-20"
         >
-          <div className="rounded-3xl border-2 border-black/10 bg-white/50 backdrop-blur-xl p-10 md:p-14 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)]">
+          <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-10 md:p-14 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)]">
             <div className="text-center mb-12">
-              <h3 className="text-3xl font-space-grotesk font-semibold text-black mb-4 md:text-4xl">
+              <h3 className="text-3xl font-space-grotesk font-semibold text-white mb-4 md:text-4xl">
                 Ihre Daten bleiben zu Hause
               </h3>
-              <p className="text-lg text-black/80 font-inter max-w-2xl mx-auto">
+              <p className="text-lg text-white/80 font-inter max-w-2xl mx-auto">
                 Gehostet auf ISO 27001 zertifizierten High-Security Servern in Frankfurt am Main. 
                 Kein Datentransfer in Drittstaaten ohne explizite Zustimmung.
               </p>
             </div>
 
             {/* Karte von Deutschland/Europa mit Server-Standort */}
-            <div className="relative h-64 md:h-80 rounded-xl bg-gradient-to-br from-slate-50 to-white border border-black/10 overflow-hidden">
+            <div className="relative h-64 md:h-80 rounded-xl bg-gradient-to-br from-[#0B0E14] via-[#0F1419] to-[#0B0E14] border border-white/10 overflow-hidden">
               {/* Stilisierte Karte */}
               <svg
                 viewBox="0 0 800 400"
@@ -234,16 +234,16 @@ export function TrustSection() {
 
               {/* Server-Standort Info */}
               <div className="absolute bottom-4 left-4 right-4">
-                <div className="bg-white/90 backdrop-blur-sm rounded-lg border border-black/10 p-4 shadow-lg">
+                <div className="bg-white/10 backdrop-blur-xl rounded-lg border border-white/20 p-4 shadow-lg">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-100">
-                      <Server className="h-5 w-5 text-emerald-600" />
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#10B981]/20 border border-[#10B981]/30">
+                      <Server className="h-5 w-5 text-[#10B981]" />
                     </div>
                     <div>
-                      <p className="text-sm font-space-grotesk font-semibold text-black">
+                      <p className="text-sm font-space-grotesk font-semibold text-white">
                         Server-Standort: Frankfurt am Main
                       </p>
-                      <p className="text-xs text-black/60 font-inter">
+                      <p className="text-xs text-white/60 font-inter">
                         ISO 27001 zertifiziert • DSGVO-konform • Keine Datenübertragung außerhalb EU
                       </p>
                     </div>

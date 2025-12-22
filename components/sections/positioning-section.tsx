@@ -67,7 +67,7 @@ export function PositioningSection() {
   ]
 
   return (
-    <section ref={ref} className="relative bg-white py-24 md:py-32 overflow-hidden border-b-2 border-black">
+    <section ref={ref} className="relative bg-[#0B0E14] py-24 md:py-32 overflow-hidden border-b border-white/10">
       {/* Background Layers - Animiert */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Subtle Grid */}
@@ -116,10 +116,10 @@ export function PositioningSection() {
           transition={{ ...snappySpring, delay: 0.2 }}
           className="mb-24 text-center"
         >
-          <h2 className="mb-6 text-6xl font-space-grotesk font-bold -tracking-[0.02em] text-black md:text-7xl">
+          <h2 className="mb-6 text-6xl font-space-grotesk font-bold -tracking-[0.03em] text-white md:text-7xl">
             Die goldene Mitte
           </h2>
-          <p className="mx-auto max-w-2xl text-2xl text-black/80 font-inter leading-relaxed">
+          <p className="mx-auto max-w-2xl text-2xl text-white/80 font-inter leading-relaxed">
             Nicht zu einfach, nicht zu komplex. Genau richtig für dein Team.
           </p>
         </motion.div>
@@ -131,12 +131,12 @@ export function PositioningSection() {
           transition={{ ...snappySpring, delay: 0.4 }}
           className="relative z-20 mx-auto mb-20 max-w-2xl"
         >
-          <div className="rounded-3xl border-2 border-black bg-white p-10 shadow-2xl">
+          <div className="rounded-3xl border border-white/20 bg-white/5 backdrop-blur-xl p-10 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)]">
             <div className="mb-6 flex items-center justify-center">
               <motion.div
                 animate={{ rotate: [0, 5, -5, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-black via-slate-800 to-black shadow-xl overflow-hidden"
+                className="flex h-20 w-20 items-center justify-center rounded-2xl bg-white/10 border border-white/20 shadow-xl overflow-hidden"
               >
                 <Image
                   src="/images/app logo.png"
@@ -148,8 +148,8 @@ export function PositioningSection() {
                 />
               </motion.div>
             </div>
-            <h3 className="mb-4 text-center text-3xl font-space-grotesk font-semibold text-black">Intro KI</h3>
-            <p className="text-center text-lg text-black/80 font-inter leading-relaxed">
+            <h3 className="mb-4 text-center text-3xl font-space-grotesk font-semibold text-white">Intro KI</h3>
+            <p className="text-center text-lg text-white/80 font-inter leading-relaxed">
               Telefon-Cold-Acquisition + Pipeline Management + Algorithmus-basierte Automatisierung
             </p>
           </div>
@@ -167,7 +167,7 @@ export function PositioningSection() {
               key={competitor.name}
               variants={snappyStaggerItem}
               whileHover={{ scale: 1.05, y: -6 }}
-              className="group rounded-2xl border-2 border-black/10 bg-white/90 backdrop-blur-sm p-6 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.05)] transition-all hover:shadow-[0_25px_50px_-10px_rgba(0,0,0,0.15)] cursor-pointer"
+              className="group rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] transition-all hover:shadow-[0_25px_50px_-10px_rgba(59,130,246,0.2)] hover:border-white/20 cursor-pointer"
             >
               {/* ECHTES LOGO statt Icon */}
               <div className="mb-4 flex h-16 items-center justify-center">
@@ -176,7 +176,7 @@ export function PositioningSection() {
                   alt={competitor.name}
                   width={120}
                   height={40}
-                  className="h-10 w-auto object-contain opacity-70 grayscale hover:opacity-100 hover:grayscale-0 transition-all"
+                  className="h-10 w-auto object-contain opacity-50 grayscale hover:opacity-100 hover:grayscale-0 transition-all"
                   onError={(e) => {
                     // Fallback: Text wenn Logo nicht gefunden
                     const target = e.target as HTMLImageElement
@@ -184,15 +184,15 @@ export function PositioningSection() {
                     const parent = target.parentElement
                     if (parent && !parent.querySelector(".logo-fallback")) {
                       const fallback = document.createElement("div")
-                      fallback.className = "logo-fallback text-lg font-space-grotesk font-semibold text-black/60"
+                      fallback.className = "logo-fallback text-lg font-space-grotesk font-semibold text-white/60"
                       fallback.textContent = competitor.fallback
                       parent.appendChild(fallback)
                     }
                   }}
                 />
               </div>
-              <h4 className="mb-2 text-lg font-space-grotesk font-semibold text-black">{competitor.name}</h4>
-              <p className="text-sm text-black/70 font-inter leading-relaxed">{competitor.strength}</p>
+              <h4 className="mb-2 text-lg font-space-grotesk font-semibold text-white">{competitor.name}</h4>
+              <p className="text-sm text-white/70 font-inter leading-relaxed">{competitor.strength}</p>
             </motion.div>
           ))}
         </motion.div>

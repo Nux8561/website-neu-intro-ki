@@ -20,8 +20,8 @@ export default function Home() {
       {/* Animiertes Grid-System im Hintergrund */}
       <AnimatedGridLines />
       {/* Main Container - Premium Style */}
-      <div className="relative z-10 mx-auto max-w-[1400px] bg-white">
-        <main className="min-h-screen bg-white">
+      <div className="relative z-10 mx-auto max-w-[1400px] bg-[#0B0E14]">
+        <main className="min-h-screen bg-[#0B0E14]">
           <HeroLayered />
           <PainPointsHero />
           <ProductExplanation />

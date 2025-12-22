@@ -9,7 +9,7 @@ import { Zap, Activity, TrendingUp } from "lucide-react"
  * 
  * Elemente, die "vor" dem Bildschirm schweben
  * - Cursor-Follower (Glowing Dot)
- * - Magnetic Icons (3D-Icons mit Magnetic Pull)
+ * - Magnetic Icons (Icons mit subtilem Magnetic Pull, keine 3D-Rotation)
  * - Optional: Notification-Toast
  * 
  * Bewegung: Schnelle Reaktion auf Mausbewegung (Magnetic Effect)
@@ -125,7 +125,7 @@ export function Layer3Foreground() {
 
 /**
  * Magnetic Icon Component
- * Reagiert auf Mausposition mit Magnetic Pull und 3D-Rotation
+ * Reagiert auf Mausposition mit subtilem Magnetic Pull (keine 3D-Rotation)
  */
 function MagneticIcon({
   Icon,
@@ -149,10 +149,6 @@ function MagneticIcon({
   const smoothX = useSpring(iconX, { stiffness: 150, damping: 15 })
   const smoothY = useSpring(iconY, { stiffness: 150, damping: 15 })
 
-  // 3D-Rotation basierend auf Mausposition
-  const rotateX = useTransform(smoothY, [-200, 200], [10, -10])
-  const rotateY = useTransform(smoothX, [-200, 200], [-10, 10])
-
   React.useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!ref.current) return
@@ -165,12 +161,12 @@ function MagneticIcon({
       const deltaY = e.clientY - centerY
       const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY)
 
-      // Magnetic Pull: Stärker wenn Maus näher ist
+      // Magnetic Pull: Stärker wenn Maus näher ist (reduziert für subtileren Effekt)
       const maxDistance = 200
       const pullStrength = Math.max(0, 1 - distance / maxDistance)
 
-      iconX.set(deltaX * pullStrength * 0.3)
-      iconY.set(deltaY * pullStrength * 0.3)
+      iconX.set(deltaX * pullStrength * 0.15) // Reduziert von 0.3 auf 0.15
+      iconY.set(deltaY * pullStrength * 0.15)
     }
 
     window.addEventListener("mousemove", handleMouseMove)
@@ -185,15 +181,12 @@ function MagneticIcon({
         top: position.y,
         x: smoothX,
         y: smoothY,
-        rotateX,
-        rotateY,
-        transformStyle: "preserve-3d",
       }}
       className="absolute"
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.6, delay: 2 }}
-      whileHover={{ scale: 1.1 }}
+      whileHover={{ scale: 1.05 }} // Reduziert von 1.1 auf 1.05
     >
       <div className={`rounded-lg ${bgColor} p-3 border border-white/20 backdrop-blur-sm shadow-attio-md`}>
         <Icon className={`h-6 w-6 ${color}`} />
@@ -222,13 +215,13 @@ function NotificationToast() {
       initial={{ x: 400, opacity: 0 }}
       animate={isVisible ? { x: 0, opacity: 1 } : { x: 400, opacity: 0 }}
       transition={{ type: "spring", stiffness: 300, damping: 25 }}
-      className="absolute top-8 right-8 rounded-lg border border-emerald-200/50 bg-white/80 backdrop-blur-xl p-4 shadow-attio-diffuse"
+      className="absolute top-8 right-8 rounded-lg border border-[#10B981]/30 bg-white/10 backdrop-blur-xl p-4 shadow-attio-diffuse"
     >
       <div className="flex items-center gap-3">
-        <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+        <div className="h-2 w-2 rounded-full bg-[#10B981] animate-pulse" />
         <div>
-          <div className="text-sm font-semibold text-slate-900">New Signal Detected</div>
-          <div className="text-xs text-slate-500">Acme Corp - Strong Buy Signal</div>
+          <div className="text-sm font-semibold text-white">New Signal Detected</div>
+          <div className="text-xs text-white/60">Acme Corp - Strong Buy Signal</div>
         </div>
       </div>
     </motion.div>

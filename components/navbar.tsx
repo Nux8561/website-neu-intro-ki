@@ -47,7 +47,7 @@ function MobileNavMenu({
               <>
                 <button
                   onClick={() => toggleExpanded(item.label)}
-                  className="w-full flex items-center justify-between text-sm font-inter font-medium text-white/70 hover:text-white hover:bg-white/5 py-2 px-4 rounded-lg border border-transparent hover:border-white/10 transition-all"
+                  className="w-full flex items-center justify-between text-sm font-mono font-bold uppercase tracking-wider text-black hover:text-black/60 hover:bg-black/5 py-2 px-4 rounded border-2 border-transparent hover:border-black transition-all"
                 >
                   {item.label}
                   <ChevronDown className={cn("h-3 w-3 transition-transform", isExpanded && "rotate-180")} />
@@ -67,7 +67,7 @@ function MobileNavMenu({
                             key={child.href}
                             href={child.href}
                             onClick={onClose}
-                            className="block text-sm font-inter text-white/70 hover:text-white hover:bg-white/5 py-2 px-4 rounded-lg transition-all"
+                            className="block text-sm font-inter text-black/80 hover:text-black hover:bg-black/5 py-2 px-4 rounded transition-all"
                           >
                             {child.label}
                           </Link>
@@ -148,12 +148,12 @@ export function Navbar() {
     <motion.nav
       className={cn(
         "sticky top-0 left-0 right-0 z-50",
-        "bg-[#0B0E14]/70 backdrop-blur-xl",
-        "border-b border-white/10"
+        "bg-white",
+        "border-b border-black/10"
       )}
       animate={{
-        backgroundColor: isScrolled ? "rgba(11, 14, 20, 0.85)" : "rgba(11, 14, 20, 0.70)",
-        backdropFilter: "blur(24px)",
+        backgroundColor: isScrolled ? "rgba(255, 255, 255, 0.98)" : "rgba(255, 255, 255, 1)",
+        backdropFilter: isScrolled ? "blur(12px)" : "blur(0px)",
       }}
       transition={ENTERPRISE_SPRING}
     >
@@ -177,7 +177,7 @@ export function Navbar() {
                       <button
                         ref={triggerRefs.current[item.label]}
                         onMouseEnter={() => setOpenDropdown(item.label)}
-                        className="flex items-center gap-1 text-sm font-inter font-medium text-white/70 hover:text-white hover:bg-white/5 rounded-lg border border-transparent hover:border-white/10 px-3 py-1.5 transition-all"
+                        className="flex items-center gap-1 text-sm font-inter font-medium text-black/60 hover:text-black hover:bg-black/5 rounded-lg border border-transparent hover:border-black/10 px-3 py-1.5 transition-all"
                       >
                         {item.label}
                         <ChevronDown className={cn("h-3 w-3 transition-transform", isOpen && "rotate-180")} />
@@ -195,7 +195,7 @@ export function Navbar() {
                     <Link
                       href={item.href}
                       onClick={(e) => handleNavClick(e, item)}
-                      className="text-sm font-inter font-medium text-white/70 hover:text-white hover:bg-white/5 rounded-lg border border-transparent hover:border-white/10 px-3 py-1.5 transition-all"
+                      className="text-sm font-inter font-medium text-black/60 hover:text-black hover:bg-black/5 rounded-lg border border-transparent hover:border-black/10 px-3 py-1.5 transition-all"
                     >
                       {item.label}
                     </Link>
@@ -209,7 +209,7 @@ export function Navbar() {
           <div className="hidden md:flex items-center gap-4">
             <Link
               href="/demo"
-              className="inline-flex items-center justify-center border border-white/20 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 rounded-lg px-4 py-2 text-sm font-inter font-medium transition-all hover:scale-[1.02] shadow-[0_4px_16px_rgba(59,130,246,0.15)] hover:shadow-[0_8px_24px_rgba(59,130,246,0.25)]"
+              className="inline-flex items-center justify-center border-2 border-black bg-black text-white hover:bg-white hover:text-black rounded px-4 py-2 text-sm font-mono font-bold uppercase tracking-wider transition-all hover:scale-[1.02]"
             >
               Demo buchen
             </Link>
@@ -217,7 +217,7 @@ export function Navbar() {
 
           {/* Mobile Menu Button - Industrial Tool Style */}
           <button
-            className="md:hidden text-white/70 hover:text-white p-2 -mr-2 border border-transparent hover:border-white/20 rounded-lg transition-all"
+            className="md:hidden text-black p-2 -mr-2 border-2 border-transparent hover:border-black rounded transition-all"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
             aria-expanded={isMobileMenuOpen}
@@ -234,7 +234,7 @@ export function Navbar() {
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
-              className="md:hidden border-t border-white/10 bg-[#0B0E14]/95 backdrop-blur-xl"
+              className="md:hidden border-t-2 border-black bg-white"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
@@ -251,7 +251,7 @@ export function Navbar() {
               <div className="flex flex-col gap-3 pt-4 border-t border-white/10">
                 <Link
                   href="/demo"
-                  className="inline-flex items-center justify-center border border-white/20 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 rounded-lg px-4 py-2.5 text-sm font-inter font-medium transition-all shadow-[0_4px_16px_rgba(59,130,246,0.15)]"
+                  className="inline-flex items-center justify-center border-2 border-black bg-black text-white hover:bg-white hover:text-black rounded px-4 py-2.5 text-sm font-mono font-bold uppercase tracking-wider transition-all"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Demo buchen

@@ -94,7 +94,7 @@ export function FeaturesBento() {
     <section
       id="features"
       ref={sectionRef}
-      className="relative bg-[#0B0E14] py-24 md:py-32 overflow-hidden border-b border-white/10"
+      className="relative bg-white py-24 md:py-32 overflow-hidden border-b border-black/10"
     >
       {/* Background Layers - Animiert */}
       <motion.div
@@ -145,10 +145,10 @@ export function FeaturesBento() {
           transition={{ ...snappySpring, delay: 0.2 }}
           className="mb-24 text-center"
         >
-          <h2 className="mb-6 text-[32px] leading-[40px] -tracking-[0.03em] font-medium text-white md:text-[48px] md:leading-[56px] lg:text-[64px] lg:leading-[72px] font-space-grotesk">
+          <h2 className="mb-6 text-[32px] leading-[40px] -tracking-[0.02em] font-medium text-black md:text-[48px] md:leading-[56px] lg:text-[64px] lg:leading-[72px] font-space-grotesk">
             Alles, was du brauchst
           </h2>
-          <p className="mx-auto max-w-2xl text-2xl text-white/80 font-inter leading-relaxed">
+          <p className="mx-auto max-w-2xl text-2xl text-black/80 font-inter leading-relaxed">
             60 Sekunden statt 60 Minuten Research • 3x mehr Deals • 100% DSGVO-konform
           </p>
         </motion.div>
@@ -166,7 +166,7 @@ export function FeaturesBento() {
               variants={snappyStaggerItem}
                   whileHover={{ scale: 1.02, y: -8 }}
                   className={cn(
-                    "group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] transition-all hover:shadow-[0_25px_50px_-10px_rgba(59,130,246,0.2)] hover:border-white/20",
+                    "group relative overflow-hidden rounded-2xl border border-black/10 bg-white p-8 shadow-sm transition-all hover:shadow-md",
                     feature.span
                   )}
             >
@@ -182,42 +182,42 @@ export function FeaturesBento() {
 
                   {/* Content - BESSERE BESCHREIBUNGEN */}
                   <div className="mb-4 flex items-start justify-between">
-                    <h3 className="text-3xl font-space-grotesk font-bold -tracking-[0.01em] text-white">{feature.title}</h3>
+                    <h3 className="text-3xl font-space-grotesk font-bold -tracking-[0.01em] text-black">{feature.title}</h3>
                     <div className="flex gap-2">
-                      <span className="px-2 py-1 rounded-md bg-[#10B981]/20 border border-[#10B981]/30 text-xs font-inter font-medium text-[#10B981]">
+                      <span className="px-2 py-1 rounded-md bg-emerald-100 text-xs font-inter font-medium text-emerald-700">
                         Active
                       </span>
-                      <span className="px-2 py-1 rounded-md bg-[#3B82F6]/20 border border-[#3B82F6]/30 text-xs font-inter font-medium text-[#3B82F6]">
+                      <span className="px-2 py-1 rounded-md bg-blue-100 text-xs font-inter font-medium text-blue-700">
                         Automated
                       </span>
                     </div>
                   </div>
-                  <p className="mb-6 text-lg text-white/80 font-inter leading-relaxed">{feature.description}</p>
+                  <p className="mb-6 text-lg text-black/80 font-inter leading-relaxed">{feature.description}</p>
 
                   {/* Metrics & Progress */}
                   <div className="mb-6 space-y-3">
                     <div>
                       <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs text-white/60 font-inter">Performance</span>
-                        <span className="text-xs font-mono font-bold text-white tabular-nums">87%</span>
+                        <span className="text-xs text-black/60 font-inter">Performance</span>
+                        <span className="text-xs font-mono font-bold text-black tabular-nums">87%</span>
                       </div>
-                      <div className="h-2 rounded-full bg-white/10 overflow-hidden">
+                      <div className="h-2 rounded-full bg-black/5 overflow-hidden">
                         <motion.div
                           initial={{ width: 0 }}
                           animate={isInView ? { width: "87%" } : {}}
                           transition={{ ...snappySpring, delay: 0.4 + i * 0.1 }}
-                          className="h-full bg-gradient-to-r from-[#10B981] to-[#059669] rounded-full"
+                          className="h-full bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-full"
                         />
                       </div>
                     </div>
                     <div className="flex items-center gap-4 text-xs">
                       <div>
-                        <span className="text-white/60 font-inter">Success Rate: </span>
-                        <span className="font-mono font-bold text-white tabular-nums">94%</span>
+                        <span className="text-black/60 font-inter">Success Rate: </span>
+                        <span className="font-mono font-bold text-black tabular-nums">94%</span>
                       </div>
                       <div>
-                        <span className="text-white/60 font-inter">Time Saved: </span>
-                        <span className="font-mono font-bold text-white tabular-nums">20h/Woche</span>
+                        <span className="text-black/60 font-inter">Time Saved: </span>
+                        <span className="font-mono font-bold text-black tabular-nums">20h/Woche</span>
                       </div>
                     </div>
                   </div>
@@ -225,47 +225,47 @@ export function FeaturesBento() {
                   {/* Tags */}
                   <div className="mb-6 flex flex-wrap gap-2">
                     {feature.id === 1 && ["High Priority", "AI-Powered", "Real-time"].map((tag, idx) => (
-                      <span key={idx} className="px-2 py-1 rounded-md bg-white/10 border border-white/20 text-xs font-inter text-white/70">
+                      <span key={idx} className="px-2 py-1 rounded-md bg-black/5 text-xs font-inter text-black/70">
                         {tag}
                       </span>
                     ))}
                     {feature.id === 2 && ["Automated", "Echtzeit", "Tracking"].map((tag, idx) => (
-                      <span key={idx} className="px-2 py-1 rounded-md bg-white/10 border border-white/20 text-xs font-inter text-white/70">
+                      <span key={idx} className="px-2 py-1 rounded-md bg-black/5 text-xs font-inter text-black/70">
                         {tag}
                       </span>
                     ))}
                     {feature.id === 3 && ["Live Coaching", "Sentiment", "AI Insights"].map((tag, idx) => (
-                      <span key={idx} className="px-2 py-1 rounded-md bg-white/10 border border-white/20 text-xs font-inter text-white/70">
+                      <span key={idx} className="px-2 py-1 rounded-md bg-black/5 text-xs font-inter text-black/70">
                         {tag}
                       </span>
                     ))}
                     {feature.id === 4 && ["Auto-Generated", "Prioritized", "Smart"].map((tag, idx) => (
-                      <span key={idx} className="px-2 py-1 rounded-md bg-white/10 border border-white/20 text-xs font-inter text-white/70">
+                      <span key={idx} className="px-2 py-1 rounded-md bg-black/5 text-xs font-inter text-black/70">
                         {tag}
                       </span>
                     ))}
                     {feature.id === 5 && ["Kanban", "AI Predictions", "Analytics"].map((tag, idx) => (
-                      <span key={idx} className="px-2 py-1 rounded-md bg-white/10 border border-white/20 text-xs font-inter text-white/70">
+                      <span key={idx} className="px-2 py-1 rounded-md bg-black/5 text-xs font-inter text-black/70">
                         {tag}
                       </span>
                     ))}
                     {feature.id === 6 && ["Team View", "Real-time", "Collaboration"].map((tag, idx) => (
-                      <span key={idx} className="px-2 py-1 rounded-md bg-white/10 border border-white/20 text-xs font-inter text-white/70">
+                      <span key={idx} className="px-2 py-1 rounded-md bg-black/5 text-xs font-inter text-black/70">
                         {tag}
                       </span>
                     ))}
                   </div>
 
                   {/* Timestamp & Activity */}
-                  <div className="mb-4 pt-4 border-t border-white/10">
-                    <div className="flex items-center justify-between text-xs text-white/50 font-inter">
+                  <div className="mb-4 pt-4 border-t border-black/10">
+                    <div className="flex items-center justify-between text-xs text-black/50 font-inter">
                       <span>Last updated: vor 2 Min</span>
                       <span>Next sync: in 5 Min</span>
                     </div>
                   </div>
 
                   {/* Visual Preview - Hochwertig - MINDESTENS 400px für maximalen Impact */}
-                  <div className="relative min-h-[400px] w-full overflow-hidden rounded-xl bg-gradient-to-br from-[#0B0E14] via-[#0F1419] to-[#0B0E14] border border-white/10 shadow-sm">
+                  <div className="relative min-h-[400px] w-full overflow-hidden rounded-xl bg-gradient-to-br from-slate-50 to-white border border-black/10 shadow-sm">
                 {/* Fake UI Preview */}
                 {feature.visual === "priorities" && (
                   <div className="absolute inset-0 p-4">
@@ -276,12 +276,12 @@ export function FeaturesBento() {
                           initial={{ opacity: 0, x: -20 }}
                           animate={isInView ? { opacity: 1, x: 0 } : {}}
                           transition={{ delay: 0.5 + i * 0.1 + num * 0.1 }}
-                          className="flex items-center gap-3 rounded-lg bg-white/5 border border-white/10 p-3 shadow-sm"
+                          className="flex items-center gap-3 rounded-lg bg-white p-3 shadow-sm border border-black/5"
                         >
-                          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#3B82F6] text-xs font-mono font-bold text-white">
+                          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-black text-xs font-mono font-bold text-white">
                             {num}
                           </div>
-                          <div className="h-2.5 flex-1 rounded-full bg-white/10" />
+                          <div className="h-2.5 flex-1 rounded-full bg-slate-200" />
                         </motion.div>
                       ))}
                     </div>
@@ -301,11 +301,11 @@ export function FeaturesBento() {
                       height={400}
                       showWindowControls={true}
                     >
-                      <div className="flex h-full bg-[#0B0E14]">
+                      <div className="flex h-full bg-slate-50">
                         {/* Filter Sidebar */}
-                        <div className="w-48 border-r border-white/10 bg-white/5 p-3">
+                        <div className="w-48 border-r border-black/10 bg-white p-3">
                           <div className="mb-4">
-                            <button className="w-full px-3 py-2 rounded-lg bg-[#3B82F6] text-white text-xs font-inter font-medium mb-2 flex items-center justify-center gap-2">
+                            <button className="w-full px-3 py-2 rounded-lg bg-black text-white text-xs font-inter font-medium mb-2 flex items-center justify-center gap-2">
                               <Mail className="h-3.5 w-3.5" />
                               Compose
                               <span className="ml-auto bg-white/20 px-1.5 py-0.5 rounded text-xs">3</span>
@@ -317,13 +317,13 @@ export function FeaturesBento() {
                                 key={filter}
                                 className={`w-full text-left px-3 py-1.5 rounded text-xs font-inter transition-all ${
                                   idx === 0
-                                    ? "bg-white/10 text-white font-medium border border-white/20"
-                                    : "text-white/60 hover:text-white hover:bg-white/5"
+                                    ? "bg-black/5 text-black font-medium"
+                                    : "text-black/60 hover:text-black hover:bg-black/5"
                                 }`}
                               >
                                 {filter}
                                 {idx > 0 && (
-                                  <span className="ml-auto float-right text-white/40">
+                                  <span className="ml-auto float-right text-black/40">
                                     {[12, 8, 5, 3][idx - 1]}
                                   </span>
                                 )}
@@ -349,23 +349,23 @@ export function FeaturesBento() {
                                 initial={{ opacity: 0, x: -10 }}
                                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                                 transition={{ delay: 0.6 + i * 0.1 + idx * 0.05 }}
-                                className="p-3 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 transition-all cursor-pointer group"
+                                className="p-3 rounded-lg border border-black/10 bg-white hover:bg-black/5 transition-all cursor-pointer group"
                               >
                                 <div className="flex items-start justify-between mb-2">
                                   <div className="flex-1">
                                     <div className="flex items-center gap-2 mb-1">
-                                      <span className="text-xs font-space-grotesk font-semibold text-white">
+                                      <span className="text-xs font-space-grotesk font-semibold text-black">
                                         {email.to}
                                       </span>
                                       <span
                                         className={`px-1.5 py-0.5 rounded text-[10px] font-inter font-medium ${
                                           email.status === "replied"
-                                            ? "bg-[#10B981]/20 text-[#10B981] border border-[#10B981]/30"
+                                            ? "bg-emerald-100 text-emerald-700"
                                             : email.status === "clicked"
-                                            ? "bg-[#3B82F6]/20 text-[#3B82F6] border border-[#3B82F6]/30"
+                                            ? "bg-blue-100 text-blue-700"
                                             : email.status === "opened"
-                                            ? "bg-purple-500/20 text-purple-400 border border-purple-500/30"
-                                            : "bg-white/10 text-white/60 border border-white/20"
+                                            ? "bg-purple-100 text-purple-700"
+                                            : "bg-slate-100 text-slate-700"
                                         }`}
                                       >
                                         {email.status === "replied"
@@ -377,21 +377,21 @@ export function FeaturesBento() {
                                           : "Sent"}
                                       </span>
                                     </div>
-                                    <p className="text-xs font-inter text-white/80 mb-1">{email.subject}</p>
+                                    <p className="text-xs font-inter text-black/80 mb-1">{email.subject}</p>
                                   </div>
-                                  <span className="text-[10px] text-white/40 font-inter ml-2">{email.time}</span>
+                                  <span className="text-[10px] text-black/40 font-inter ml-2">{email.time}</span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                   {email.opened && (
                                     <div className="flex items-center gap-1">
-                                      <div className="h-1.5 w-1.5 rounded-full bg-purple-400" />
-                                      <span className="text-[10px] text-white/50 font-inter">Opened</span>
+                                      <div className="h-1.5 w-1.5 rounded-full bg-purple-500" />
+                                      <span className="text-[10px] text-black/50 font-inter">Opened</span>
                                     </div>
                                   )}
                                   {email.clicked && (
                                     <div className="flex items-center gap-1">
-                                      <div className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]" />
-                                      <span className="text-[10px] text-white/50 font-inter">Clicked</span>
+                                      <div className="h-1.5 w-1.5 rounded-full bg-blue-500" />
+                                      <span className="text-[10px] text-black/50 font-inter">Clicked</span>
                                     </div>
                                   )}
                                 </div>
@@ -410,39 +410,39 @@ export function FeaturesBento() {
                     transition={{ ...snappySpring, delay: 0.5 + i * 0.1 }}
                     className="absolute inset-0 p-2"
                   >
-                    <div className="h-full rounded-lg border border-white/10 bg-[#0B0E14] overflow-hidden flex flex-col">
+                    <div className="h-full rounded-lg border border-black/20 bg-slate-900 overflow-hidden flex flex-col">
                       {/* Header */}
-                      <div className="bg-white/5 border-b border-white/10 px-4 py-2 flex items-center justify-between">
+                      <div className="bg-slate-800 border-b border-black/20 px-4 py-2 flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <Phone className="h-4 w-4 text-[#10B981]" />
+                          <Phone className="h-4 w-4 text-emerald-400" />
                           <span className="text-xs font-space-grotesk font-semibold text-white">Call Assistant</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <div className="h-2 w-2 rounded-full bg-[#10B981] animate-pulse" />
-                          <span className="text-[10px] text-white/60 font-inter">Live</span>
+                          <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                          <span className="text-[10px] text-slate-400 font-inter">Live</span>
                         </div>
                       </div>
 
                       <div className="flex-1 flex overflow-hidden">
                         {/* Left Panel: Lead Profile */}
-                        <div className="w-48 border-r border-white/10 bg-white/5 p-3 overflow-y-auto">
+                        <div className="w-48 border-r border-slate-700 bg-slate-800/50 p-3 overflow-y-auto">
                           <div className="mb-4">
-                            <div className="h-12 w-12 rounded-lg bg-[#3B82F6] flex items-center justify-center mb-2">
+                            <div className="h-12 w-12 rounded-lg bg-slate-700 flex items-center justify-center mb-2">
                               <span className="text-white text-lg font-bold">AC</span>
                             </div>
                             <h4 className="text-sm font-space-grotesk font-semibold text-white mb-1">Acme Corp</h4>
-                            <p className="text-xs text-white/60 font-inter">Enterprise • 500+ Mitarbeiter</p>
+                            <p className="text-xs text-slate-400 font-inter">Enterprise • 500+ Mitarbeiter</p>
                           </div>
                           <div className="space-y-3">
                             <div>
-                              <p className="text-[10px] text-white/50 font-inter uppercase mb-1">Role</p>
+                              <p className="text-[10px] text-slate-500 font-inter uppercase mb-1">Role</p>
                               <p className="text-xs text-white font-inter">VP of Sales</p>
                             </div>
                             <div>
-                              <p className="text-[10px] text-white/50 font-inter uppercase mb-1">Pain Points</p>
+                              <p className="text-[10px] text-slate-500 font-inter uppercase mb-1">Pain Points</p>
                               <div className="space-y-1">
                                 {["CRM zu komplex", "Datenpflege zu zeitaufwändig"].map((pain, idx) => (
-                                  <div key={idx} className="px-2 py-1 rounded bg-white/10 border border-white/20 text-xs text-white/80">
+                                  <div key={idx} className="px-2 py-1 rounded bg-slate-700/50 text-xs text-slate-300">
                                     {pain}
                                   </div>
                                 ))}
@@ -452,7 +452,7 @@ export function FeaturesBento() {
                         </div>
 
                         {/* Center Panel: Talking Points */}
-                        <div className="flex-1 p-3 overflow-y-auto bg-[#0B0E14]">
+                        <div className="flex-1 p-3 overflow-y-auto bg-slate-900">
                           <h5 className="text-xs font-space-grotesk font-semibold text-white mb-3">Talking Points</h5>
                           <div className="space-y-2">
                             {[
@@ -466,14 +466,14 @@ export function FeaturesBento() {
                                 initial={{ opacity: 0, x: -10 }}
                                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                                 transition={{ delay: 0.6 + i * 0.1 + idx * 0.1 }}
-                                className="flex items-start gap-2 p-2 rounded-lg bg-white/5 border border-white/10"
+                                className="flex items-start gap-2 p-2 rounded-lg bg-slate-800/50"
                               >
                                 {point.checked ? (
-                                  <CheckCircle2 className="h-4 w-4 text-[#10B981] flex-shrink-0 mt-0.5" />
+                                  <CheckCircle2 className="h-4 w-4 text-emerald-400 flex-shrink-0 mt-0.5" />
                                 ) : (
-                                  <div className="h-4 w-4 rounded-full border-2 border-white/30 flex-shrink-0 mt-0.5" />
+                                  <div className="h-4 w-4 rounded-full border-2 border-slate-600 flex-shrink-0 mt-0.5" />
                                 )}
-                                <p className={`text-xs font-inter ${point.checked ? "text-white/60 line-through" : "text-white"}`}>
+                                <p className={`text-xs font-inter ${point.checked ? "text-slate-300 line-through" : "text-white"}`}>
                                   {point.text}
                                 </p>
                               </motion.div>
@@ -482,43 +482,43 @@ export function FeaturesBento() {
                         </div>
 
                         {/* Right Panel: Real-time Sentiment */}
-                        <div className="w-40 border-l border-white/10 bg-white/5 p-3">
+                        <div className="w-40 border-l border-slate-700 bg-slate-800/50 p-3">
                           <h5 className="text-xs font-space-grotesk font-semibold text-white mb-3">Sentiment</h5>
                           <div className="mb-4">
-                            <div className="h-24 rounded-lg bg-[#0B0E14] p-2 flex items-end justify-around gap-1">
+                            <div className="h-24 rounded-lg bg-slate-900 p-2 flex items-end justify-around gap-1">
                               {[20, 35, 45, 30, 50, 40, 35].map((height, idx) => (
                                 <motion.div
                                   key={idx}
                                   initial={{ height: 0 }}
                                   animate={isInView ? { height: `${height}%` } : {}}
                                   transition={{ ...snappySpring, delay: 0.7 + i * 0.1 + idx * 0.05 }}
-                                  className="w-full rounded-t bg-gradient-to-t from-[#10B981] to-[#059669]"
+                                  className="w-full rounded-t bg-gradient-to-t from-emerald-500 to-emerald-400"
                                 />
                               ))}
                             </div>
-                            <p className="text-[10px] text-white/60 font-inter mt-2 text-center">Neutral → Positiv</p>
+                            <p className="text-[10px] text-slate-400 font-inter mt-2 text-center">Neutral → Positiv</p>
                           </div>
                           <div className="space-y-2">
-                            <div className="p-2 rounded-lg bg-white/5 border border-white/10">
-                              <p className="text-[10px] text-white/50 font-inter mb-1">Keyword</p>
+                            <div className="p-2 rounded-lg bg-slate-900">
+                              <p className="text-[10px] text-slate-500 font-inter mb-1">Keyword</p>
                               <p className="text-xs text-white font-inter">&quot;CRM&quot; erkannt</p>
                             </div>
-                            <div className="p-2 rounded-lg bg-white/5 border border-white/10">
-                              <p className="text-[10px] text-white/50 font-inter mb-1">Tone</p>
-                              <p className="text-xs text-[#10B981] font-inter">Positiv</p>
+                            <div className="p-2 rounded-lg bg-slate-900">
+                              <p className="text-[10px] text-slate-500 font-inter mb-1">Tone</p>
+                              <p className="text-xs text-emerald-400 font-inter">Positiv</p>
                             </div>
                           </div>
                         </div>
                       </div>
 
                       {/* Bottom Bar: Call Controls */}
-                      <div className="bg-white/5 border-t border-white/10 px-4 py-2 flex items-center justify-between">
+                      <div className="bg-slate-800 border-t border-slate-700 px-4 py-2 flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <div className="h-2 w-2 rounded-full bg-[#10B981]" />
-                          <span className="text-[10px] text-white/60 font-inter">Recording</span>
+                          <div className="h-2 w-2 rounded-full bg-emerald-500" />
+                          <span className="text-[10px] text-slate-400 font-inter">Recording</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <button className="px-3 py-1 rounded-lg bg-[#10B981] text-white text-xs font-inter font-medium">
+                          <button className="px-3 py-1 rounded bg-emerald-500 text-white text-xs font-inter font-medium">
                             End Call
                           </button>
                         </div>
@@ -547,7 +547,7 @@ const task = {
                   </motion.div>
                 )}
                 {feature.visual === "pipeline" && (
-                  <div className="absolute inset-0 p-3 bg-gradient-to-br from-[#0B0E14] via-[#0F1419] to-[#0B0E14]">
+                  <div className="absolute inset-0 p-3 bg-gradient-to-br from-slate-50 to-white">
                     <div className="h-full flex gap-2 overflow-x-auto">
                       {[
                         { stage: "Lead", deals: [{ name: "Acme Corp", value: "€50K", probability: 25, days: 2 }], color: "slate" },
@@ -558,10 +558,10 @@ const task = {
                       ].map((column, colIdx) => (
                         <div key={column.stage} className="flex-shrink-0 w-48 flex flex-col">
                           <div className="mb-2">
-                            <h5 className="text-xs font-space-grotesk font-semibold text-white mb-1">
+                            <h5 className="text-xs font-space-grotesk font-semibold text-black mb-1">
                               {column.stage}
                             </h5>
-                            <p className="text-[10px] text-white/50 font-inter">{column.deals.length} Deals</p>
+                            <p className="text-[10px] text-black/50 font-inter">{column.deals.length} Deals</p>
                           </div>
                           <div className="flex-1 space-y-2 overflow-y-auto">
                             {column.deals.map((deal, dealIdx) => (
@@ -570,40 +570,40 @@ const task = {
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                                 transition={{ ...snappySpring, delay: 0.6 + i * 0.1 + colIdx * 0.1 + dealIdx * 0.05 }}
-                                className="p-3 rounded-lg border border-white/10 bg-white/5 shadow-sm"
+                                className="p-3 rounded-lg border border-black/10 bg-white shadow-sm"
                               >
                                 <div className="mb-2">
-                                  <h6 className="text-xs font-space-grotesk font-semibold text-white mb-1">
+                                  <h6 className="text-xs font-space-grotesk font-semibold text-black mb-1">
                                     {deal.name}
                                   </h6>
-                                  <p className="text-[10px] font-mono font-bold text-white tabular-nums">{deal.value}</p>
+                                  <p className="text-[10px] font-mono font-bold text-black tabular-nums">{deal.value}</p>
                                 </div>
                                 <div className="mb-2">
                                   <div className="flex items-center justify-between mb-1">
-                                    <span className="text-[10px] text-white/50 font-inter">Win Probability</span>
-                                    <span className="text-[10px] font-mono font-bold text-white tabular-nums">{deal.probability}%</span>
+                                    <span className="text-[10px] text-black/50 font-inter">Win Probability</span>
+                                    <span className="text-[10px] font-mono font-bold text-black tabular-nums">{deal.probability}%</span>
                                   </div>
-                                  <div className="h-1.5 rounded-full bg-white/10 overflow-hidden">
+                                  <div className="h-1.5 rounded-full bg-black/5 overflow-hidden">
                                     <motion.div
                                       initial={{ width: 0 }}
                                       animate={isInView ? { width: `${deal.probability}%` } : {}}
                                       transition={{ ...snappySpring, delay: 0.7 + i * 0.1 + colIdx * 0.1 + dealIdx * 0.05 }}
                                       className={`h-full bg-gradient-to-r ${
                                         deal.probability > 70
-                                          ? "from-[#10B981] to-[#059669]"
+                                          ? "from-emerald-500 to-emerald-600"
                                           : deal.probability > 40
-                                          ? "from-[#3B82F6] to-[#2563EB]"
-                                          : "from-white/30 to-white/20"
+                                          ? "from-blue-500 to-blue-600"
+                                          : "from-slate-400 to-slate-500"
                                       } rounded-full`}
                                     />
                                   </div>
                                 </div>
                                 <div className="flex items-center justify-between">
-                                  <span className="text-[10px] text-white/40 font-inter">
+                                  <span className="text-[10px] text-black/40 font-inter">
                                     {deal.days === 0 ? "Heute" : `${deal.days} Tage`}
                                   </span>
                                   {deal.probability > 70 && (
-                                    <div className="px-1.5 py-0.5 rounded bg-[#10B981]/20 border border-[#10B981]/30 text-[10px] text-[#10B981] font-inter">
+                                    <div className="px-1.5 py-0.5 rounded bg-emerald-100 text-[10px] text-emerald-700 font-inter">
                                       Hot
                                     </div>
                                   )}
@@ -627,7 +627,7 @@ const task = {
                       {[1, 2, 3, 4].map((num) => (
                         <div
                           key={num}
-                          className="h-10 w-10 rounded-full border-2 border-white/20 bg-white/10 shadow-md"
+                          className="h-10 w-10 rounded-full border-2 border-white bg-slate-300 shadow-md"
                         />
                       ))}
                     </div>
@@ -647,7 +647,7 @@ const task = {
         >
           <Link
             href="/demo"
-            className="group inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 backdrop-blur-sm px-8 py-4 text-sm font-inter font-medium text-white shadow-[0_4px_16px_rgba(59,130,246,0.15)] transition-all hover:bg-white/20 hover:shadow-[0_8px_24px_rgba(59,130,246,0.25)] hover:scale-[1.02]"
+            className="group inline-flex items-center gap-2 rounded-full bg-black px-8 py-4 text-sm font-space-grotesk font-semibold text-white shadow-xl transition-all hover:shadow-2xl hover:scale-105"
           >
             Jetzt Demo buchen
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

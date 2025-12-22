@@ -22,7 +22,7 @@ import { Layer3Foreground } from "./hero-layers/layer-3-foreground"
  */
 export function HeroLayered() {
   return (
-    <section className="relative w-full overflow-hidden bg-[#0B0E14] border-b border-white/10">
+    <section className="relative w-full overflow-hidden bg-white border-b border-black/10">
       {/* Layer 0: Deep Background (Z: -100 bis -50) */}
       <Layer0DeepBackground />
 

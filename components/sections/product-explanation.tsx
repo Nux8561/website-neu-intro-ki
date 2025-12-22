@@ -48,7 +48,7 @@ export function ProductExplanation() {
   ]
 
   return (
-    <section id="product" ref={ref} className="bg-[#0B0E14] py-24 md:py-32 border-b border-white/10">
+    <section id="product" ref={ref} className="bg-white py-24 md:py-32 border-b border-black/10">
       <div className="mx-auto max-w-7xl px-4">
         {/* Header - MINIMAL TEXT */}
         <motion.div
@@ -57,10 +57,10 @@ export function ProductExplanation() {
           transition={{ ...snappySpring, delay: 0.2 }}
           className="mb-20 text-center"
         >
-              <h2 className="mb-6 text-6xl font-space-grotesk font-bold -tracking-[0.03em] text-white md:text-7xl">
+              <h2 className="mb-6 text-6xl font-space-grotesk font-bold -tracking-[0.02em] text-black md:text-7xl">
                 Was macht Intro KI?
               </h2>
-              <p className="mx-auto max-w-2xl text-2xl text-white/80 font-inter leading-relaxed">
+              <p className="mx-auto max-w-2xl text-2xl text-black/80 font-inter leading-relaxed">
                 Dein CRM denkt mit. Automatisch.
               </p>
         </motion.div>
@@ -77,19 +77,19 @@ export function ProductExplanation() {
               key={feature.title}
               variants={snappyStaggerItem}
               whileHover={{ scale: 1.03, y: -6 }}
-              className="group rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] transition-all hover:shadow-[0_25px_50px_-10px_rgba(59,130,246,0.2)] hover:border-white/20"
+              className="group rounded-2xl border border-black/10 bg-white p-8 shadow-sm transition-all hover:shadow-md"
             >
               {/* Custom Icon - Monochrome, Premium */}
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={isInView ? { scale: 1, opacity: 1 } : {}}
                 transition={{ ...snappySpring, delay: 0.3 + i * 0.1 }}
-                className="mb-6 flex h-16 w-16 items-center justify-center rounded-xl border border-white/20 bg-white/10 backdrop-blur-sm transition-transform group-hover:scale-105 group-hover:border-white/30"
+                className="mb-6 flex h-16 w-16 items-center justify-center rounded-xl border border-black/10 bg-black/5 transition-transform group-hover:scale-105"
               >
-                <CustomFeatureIcon type={feature.icon as any} className="h-8 w-8 text-white" />
+                <CustomFeatureIcon type={feature.icon as any} className="h-8 w-8 text-black/60" />
               </motion.div>
-              <h3 className="mb-3 text-2xl font-space-grotesk font-semibold text-white">{feature.title}</h3>
-              <p className="text-base text-white/80 font-inter leading-relaxed">{feature.description}</p>
+              <h3 className="mb-3 text-2xl font-space-grotesk font-semibold text-black">{feature.title}</h3>
+              <p className="text-base text-black/80 font-inter leading-relaxed">{feature.description}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -104,7 +104,7 @@ export function ProductExplanation() {
         >
           <Link
             href="/demo"
-            className="group inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 backdrop-blur-sm px-8 py-4 text-sm font-inter font-medium text-white shadow-[0_4px_16px_rgba(59,130,246,0.15)] transition-all hover:bg-white/20 hover:shadow-[0_8px_24px_rgba(59,130,246,0.25)] hover:scale-[1.02]"
+            className="group inline-flex items-center gap-2 rounded-full bg-black px-8 py-4 text-sm font-space-grotesk font-semibold text-white shadow-xl transition-all hover:shadow-2xl hover:scale-105"
           >
             Jetzt Demo buchen
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

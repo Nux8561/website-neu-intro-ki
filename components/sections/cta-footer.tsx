@@ -9,7 +9,7 @@ import { MagneticButton } from "@/components/ui/magnetic-button";
 
 export function CTAFooter() {
   return (
-    <section className="bg-white py-32 md:py-40 border-b-2 border-black">
+    <section className="bg-white py-32 md:py-40 border-b border-black/10">
       <div className="mx-auto max-w-full px-4">
         
         {/* Industrial Tool Style: Schwarz-Weiß, brutal - Mit animierten Backgrounds */}
